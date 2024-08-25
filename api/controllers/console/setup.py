@@ -38,7 +38,7 @@ class SetupApi(Resource):
         tenant_count = TenantService.get_tenant_count()
         if tenant_count > 0:
             raise AlreadySetupError()
-    
+
         if not get_init_validate_status():
             raise NotInitValidateError()
 
@@ -68,7 +68,7 @@ def setup_required(view):
         # check setup
         if not get_init_validate_status():
             raise NotInitValidateError()
-        
+
         elif not get_setup_status():
             raise NotSetupError()
 
@@ -82,5 +82,6 @@ def get_setup_status():
         return DifySetup.query.first()
     else:
         return True
+
 
 api.add_resource(SetupApi, '/setup')
