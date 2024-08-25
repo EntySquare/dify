@@ -9,7 +9,6 @@ import I18n from '@/context/i18n'
 import Button from '@/app/components/base/button'
 import Modal from '@/app/components/base/modal'
 import Tag from '@/app/components/base/tag'
-import { LanguagesSupported } from '@/i18n/language'
 
 type IShareLinkProps = {
   isShow: boolean
@@ -87,7 +86,7 @@ const CustomizeModal: FC<IShareLinkProps> = ({
           <div className='text-gray-500 text-xs mt-1 mb-2'>{t(`${prefixCustomize}.way1.step3Tip`)}</div>
           <pre className='overflow-x-scroll box-border py-3 px-4 bg-gray-100 text-xs font-medium rounded-lg select-text'>
             NEXT_PUBLIC_APP_ID={`'${appId}'`} <br />
-            NEXT_PUBLIC_APP_KEY={'\'<Web API Key From Dify>\''} <br />
+            NEXT_PUBLIC_APP_KEY={'\'<Web API Key From TG AI>\''} <br />
             NEXT_PUBLIC_API_URL={`'${api_base_url}'`}
           </pre>
         </div>
@@ -99,15 +98,15 @@ const CustomizeModal: FC<IShareLinkProps> = ({
       <p className='mt-2 text-base font-medium text-gray-800'>{t(`${prefixCustomize}.way2.name`)}</p>
       <Button
         className='mt-2'
-        onClick={() =>
-          window.open(
-            `https://docs.dify.ai/${locale !== LanguagesSupported[1]
-              ? 'user-guide/launching-dify-apps/developing-with-apis'
-              : `v/${locale.toLowerCase()}/guides/application-publishing/developing-with-apis`
-            }`,
-            '_blank',
-          )
-        }
+        // onClick={() =>
+        //   window.open(
+        //     `https://docs.dify.ai/${locale !== LanguagesSupported[1]
+        //       ? 'user-guide/launching-dify-apps/developing-with-apis'
+        //       : `v/${locale.toLowerCase()}/guides/application-publishing/developing-with-apis`
+        //     }`,
+        //     '_blank',
+        //   )
+        // }
       >
         <span className='text-sm text-gray-800'>{t(`${prefixCustomize}.way2.operation`)}</span>
         <ArrowTopRightOnSquareIcon className='w-4 h-4 ml-1 text-gray-800 shrink-0' />
