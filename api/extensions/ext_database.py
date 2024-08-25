@@ -1,7 +1,8 @@
+import logging
+
+import coloredlogs
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
-import coloredlogs
-import logging
 
 POSTGRES_INDEXES_NAMING_CONVENTION = {
     "ix": "%(column_0_label)s_idx",

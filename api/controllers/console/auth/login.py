@@ -3,14 +3,14 @@ from typing import cast
 import flask_login
 from flask import request
 from flask_restful import Resource, reqparse
-from events.tenant_event import tenant_was_created
+
 import services
 from controllers.console import api
 from controllers.console.setup import setup_required
-from libs.helper import email, get_remote_ip
-from libs.password import valid_password
+from events.tenant_event import tenant_was_created
+from libs.helper import get_remote_ip
 from models.account import Account
-from services.account_service import AccountService, TenantService, RegisterService
+from services.account_service import AccountService, RegisterService, TenantService
 
 
 class LoginApi(Resource):
