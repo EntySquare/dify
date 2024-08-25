@@ -125,7 +125,7 @@ const Apps = () => {
 
   return (
     <>
-      <div className='sticky top-0 flex justify-between items-center pt-4 px-12 pb-2 leading-[56px] bg-gray-100 z-10 flex-wrap gap-y-2'>
+      <div className='sticky top-0 flex justify-between items-center pt-4 px-4 pb-2 leading-[56px] bg-gray-100 z-10 flex-wrap gap-y-2'>
         <TabSliderNew
           value={activeTab}
           onChange={setActiveTab}
@@ -136,7 +136,7 @@ const Apps = () => {
           <SearchInput className='w-[200px]' value={keywords} onChange={handleKeywordsChange} />
         </div>
       </div>
-      <nav className='grid content-start grid-cols-1 gap-4 px-12 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grow shrink-0'>
+      <nav className='grid content-start grid-cols-1 gap-4 px-4 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grow shrink-0'>
         {isCurrentWorkspaceEditor
           && <NewAppCard onSuccess={mutate} />}
         {data?.map(({ data: apps }: any) => apps.map((app: any) => (

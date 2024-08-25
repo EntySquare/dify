@@ -246,8 +246,6 @@ class AccountIntegrateApi(Resource):
         return {'data': integrate_data}
 
 
-
-
 # Register API resources
 api.add_resource(AccountInitApi, '/account/init')
 api.add_resource(AccountProfileApi, '/account/profile')

@@ -64,7 +64,7 @@ class DraftWorkflowApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         content_type = request.headers.get('Content-Type', '')
 
         if 'application/json' in content_type:
@@ -162,7 +162,7 @@ class AdvancedChatDraftWorkflowRunApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('inputs', type=dict, location='json')
         parser.add_argument('query', type=str, required=True, location='json', default='')
@@ -190,6 +190,7 @@ class AdvancedChatDraftWorkflowRunApi(Resource):
             logging.exception("internal server error.")
             raise InternalServerError()
 
+
 class AdvancedChatDraftRunIterationNodeApi(Resource):
     @setup_required
     @login_required
@@ -202,7 +203,7 @@ class AdvancedChatDraftRunIterationNodeApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('inputs', type=dict, location='json')
         args = parser.parse_args()
@@ -226,6 +227,7 @@ class AdvancedChatDraftRunIterationNodeApi(Resource):
         except Exception as e:
             logging.exception("internal server error.")
             raise InternalServerError()
+
 
 class WorkflowDraftRunIterationNodeApi(Resource):
     @setup_required
@@ -239,7 +241,7 @@ class WorkflowDraftRunIterationNodeApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('inputs', type=dict, location='json')
         args = parser.parse_args()
@@ -264,6 +266,7 @@ class WorkflowDraftRunIterationNodeApi(Resource):
             logging.exception("internal server error.")
             raise InternalServerError()
 
+
 class DraftWorkflowRunApi(Resource):
     @setup_required
     @login_required
@@ -276,7 +279,7 @@ class DraftWorkflowRunApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('inputs', type=dict, required=True, nullable=False, location='json')
         parser.add_argument('files', type=list, required=False, location='json')
@@ -311,7 +314,7 @@ class WorkflowTaskStopApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         AppQueueManager.set_stop_flag(task_id, InvokeFrom.DEBUGGER, current_user.id)
 
         return {
@@ -332,7 +335,7 @@ class DraftWorkflowNodeRunApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('inputs', type=dict, required=True, nullable=False, location='json')
         args = parser.parse_args()
@@ -362,7 +365,7 @@ class PublishedWorkflowApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         # fetch published workflow by app_model
         workflow_service = WorkflowService()
         workflow = workflow_service.get_published_workflow(app_model=app_model)
@@ -381,7 +384,7 @@ class PublishedWorkflowApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         workflow_service = WorkflowService()
         workflow = workflow_service.publish_workflow(app_model=app_model, account=current_user)
 
@@ -403,7 +406,7 @@ class DefaultBlockConfigsApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         # Get default block configs
         workflow_service = WorkflowService()
         return workflow_service.get_default_block_configs()
@@ -421,7 +424,7 @@ class DefaultBlockConfigApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         parser = reqparse.RequestParser()
         parser.add_argument('q', type=str, location='args')
         args = parser.parse_args()
@@ -455,7 +458,7 @@ class ConvertToWorkflowApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-        
+
         if request.data:
             parser = reqparse.RequestParser()
             parser.add_argument('name', type=str, required=False, nullable=True, location='json')
@@ -486,10 +489,37 @@ api.add_resource(AdvancedChatDraftWorkflowRunApi, '/apps/<uuid:app_id>/advanced-
 api.add_resource(DraftWorkflowRunApi, '/apps/<uuid:app_id>/workflows/draft/run')
 api.add_resource(WorkflowTaskStopApi, '/apps/<uuid:app_id>/workflow-runs/tasks/<string:task_id>/stop')
 api.add_resource(DraftWorkflowNodeRunApi, '/apps/<uuid:app_id>/workflows/draft/nodes/<string:node_id>/run')
-api.add_resource(AdvancedChatDraftRunIterationNodeApi, '/apps/<uuid:app_id>/advanced-chat/workflows/draft/iteration/nodes/<string:node_id>/run')
-api.add_resource(WorkflowDraftRunIterationNodeApi, '/apps/<uuid:app_id>/workflows/draft/iteration/nodes/<string:node_id>/run')
+api.add_resource(AdvancedChatDraftRunIterationNodeApi,
+                 '/apps/<uuid:app_id>/advanced-chat/workflows/draft/iteration/nodes/<string:node_id>/run')
+api.add_resource(WorkflowDraftRunIterationNodeApi,
+                 '/apps/<uuid:app_id>/workflows/draft/iteration/nodes/<string:node_id>/run')
 api.add_resource(PublishedWorkflowApi, '/apps/<uuid:app_id>/workflows/publish')
 api.add_resource(DefaultBlockConfigsApi, '/apps/<uuid:app_id>/workflows/default-workflow-block-configs')
 api.add_resource(DefaultBlockConfigApi, '/apps/<uuid:app_id>/workflows/default-workflow-block-configs'
                                         '/<string:block_type>')
 api.add_resource(ConvertToWorkflowApi, '/apps/<uuid:app_id>/convert-to-workflow')
+
+
+# class EntySelectWorkflows(Resource):
+#     # @setup_required
+#     @account_initialization_required
+#     def get(self):
+#         print("/apps/enty_api/select-workflows------------------------开始")
+#
+#         """
+#         Get default block config
+#         """
+#         # The role of the current user in the ta table must be admin, owner, or editor
+#         if not current_user.is_editor:
+#             raise Forbidden()
+#
+#         # Get default block configs
+#         workflow_service = WorkflowService()
+#         list = workflow_service.ent_select_apps_workflows_draft()
+#         print(list)
+#         print("/apps/enty_api/select-workflows------------------------结束")
+#         return list
+#
+#
+# # Enty迭代
+# api.add_resource(EntySelectWorkflows, '/apps/enty_api/select-workflows')

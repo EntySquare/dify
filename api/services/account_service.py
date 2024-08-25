@@ -79,9 +79,9 @@ class AccountService:
     def get_account_jwt_token(account, *, exp: timedelta = timedelta(days=30)):
         payload = {
             "user_id": account.id,
-            "exp": datetime.now(timezone.utc).replace(tzinfo=None) + exp,
-            "iss": dify_config.EDITION,
-            "sub": 'Console API Passport',
+            # "exp": datetime.now(timezone.utc).replace(tzinfo=None) + exp,
+            # "iss": dify_config.EDITION,
+            # "sub": 'Console API Passport',
         }
 
         token = PassportService().issue(payload)

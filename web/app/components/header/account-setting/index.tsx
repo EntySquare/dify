@@ -1,11 +1,13 @@
+// 设置页面
+
 'use client'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useRef, useState } from 'react'
 import {
-  RiAccountCircleFill,
-  RiAccountCircleLine,
-  RiApps2AddFill,
-  RiApps2AddLine,
+  // RiAccountCircleFill,
+  // RiAccountCircleLine,
+  // RiApps2AddFill,
+  // RiApps2AddLine,
   RiBox3Fill,
   RiBox3Line,
   RiCloseLine,
@@ -13,13 +15,13 @@ import {
   RiColorFilterLine,
   RiDatabase2Fill,
   RiDatabase2Line,
-  RiGroup2Fill,
-  RiGroup2Line,
-  RiMoneyDollarCircleFill,
-  RiMoneyDollarCircleLine,
+  // RiGroup2Fill,
+  // RiGroup2Line,
+  // RiMoneyDollarCircleFill,
+  // RiMoneyDollarCircleLine,
   RiPuzzle2Fill,
   RiPuzzle2Line,
-  RiTranslate2,
+  // RiTranslate2,
 } from '@remixicon/react'
 import AccountPage from './account-page'
 import MembersPage from './members-page'
@@ -62,7 +64,7 @@ export default function AccountSetting({
   onCancel,
   activeTab = 'account',
 }: IAccountSettingProps) {
-  const [activeMenu, setActiveMenu] = useState(activeTab)
+  const [activeMenu, setActiveMenu] = useState('provider')
   const { t } = useTranslation()
   const { enableBilling, enableReplaceWebAppLogo } = useProviderContext()
   const { isCurrentWorkspaceDatasetOperator } = useAppContext()
@@ -77,20 +79,20 @@ export default function AccountSetting({
         icon: <RiBox3Line className={iconClassName} />,
         activeIcon: <RiBox3Fill className={iconClassName} />,
       },
-      {
-        key: 'members',
-        name: t('common.settings.members'),
-        icon: <RiGroup2Line className={iconClassName} />,
-        activeIcon: <RiGroup2Fill className={iconClassName} />,
-      },
-      {
-        // Use key false to hide this item
-        key: enableBilling ? 'billing' : false,
-        name: t('common.settings.billing'),
-        description: t('billing.plansCommon.receiptInfo'),
-        icon: <RiMoneyDollarCircleLine className={iconClassName} />,
-        activeIcon: <RiMoneyDollarCircleFill className={iconClassName} />,
-      },
+      // {
+      //   key: 'members',
+      //   name: t('common.settings.members'),
+      //   icon: <RiGroup2Line className={iconClassName} />,
+      //   activeIcon: <RiGroup2Fill className={iconClassName} />,
+      // },
+      // {
+      //   // Use key false to hide this item
+      //   key: enableBilling ? 'billing' : false,
+      //   name: t('common.settings.billing'),
+      //   description: t('billing.plansCommon.receiptInfo'),
+      //   icon: <RiMoneyDollarCircleLine className={iconClassName} />,
+      //   activeIcon: <RiMoneyDollarCircleFill className={iconClassName} />,
+      // },
       {
         key: 'data-source',
         name: t('common.settings.dataSource'),
@@ -121,30 +123,30 @@ export default function AccountSetting({
       name: t('common.settings.workplaceGroup'),
       items: workplaceGroupItems,
     },
-    {
-      key: 'account-group',
-      name: t('common.settings.accountGroup'),
-      items: [
-        {
-          key: 'account',
-          name: t('common.settings.account'),
-          icon: <RiAccountCircleLine className={iconClassName} />,
-          activeIcon: <RiAccountCircleFill className={iconClassName} />,
-        },
-        {
-          key: 'integrations',
-          name: t('common.settings.integrations'),
-          icon: <RiApps2AddLine className={iconClassName} />,
-          activeIcon: <RiApps2AddFill className={iconClassName} />,
-        },
-        {
-          key: 'language',
-          name: t('common.settings.language'),
-          icon: <RiTranslate2 className={iconClassName} />,
-          activeIcon: <RiTranslate2 className={iconClassName} />,
-        },
-      ],
-    },
+    // {
+    //   key: 'account-group',
+    //   name: t('common.settings.accountGroup'),
+    //   items: [
+    //     {
+    //       key: 'account',
+    //       name: t('common.settings.account'),
+    //       icon: <RiAccountCircleLine className={iconClassName} />,
+    //       activeIcon: <RiAccountCircleFill className={iconClassName} />,
+    //     },
+    //     {
+    //       key: 'integrations',
+    //       name: t('common.settings.integrations'),
+    //       icon: <RiApps2AddLine className={iconClassName} />,
+    //       activeIcon: <RiApps2AddFill className={iconClassName} />,
+    //     },
+    //     {
+    //       key: 'language',
+    //       name: t('common.settings.language'),
+    //       icon: <RiTranslate2 className={iconClassName} />,
+    //       activeIcon: <RiTranslate2 className={iconClassName} />,
+    //     },
+    //   ],
+    // },
   ]
   const scrollRef = useRef<HTMLDivElement>(null)
   const [scrolled, setScrolled] = useState(false)
@@ -160,7 +162,8 @@ export default function AccountSetting({
     }
   }, [])
 
-  const activeItem = [...menuItems[0].items, ...menuItems[1].items].find(item => item.key === activeMenu)
+  const activeItem = [...menuItems[0].items].find(item => item.key === activeMenu)
+  // const activeItem = [...menuItems[0].items, ...menuItems[1].items].find(item => item.key === activeMenu)
 
   return (
     <Modal
