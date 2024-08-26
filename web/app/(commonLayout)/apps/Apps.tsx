@@ -13,6 +13,7 @@ import {
 } from '@remixicon/react'
 import AppCard from './AppCard'
 import NewAppCard from './NewAppCard'
+import CreateAppCardEntyTgAi from './NewAppCard_EntyTgAi'
 import useAppsQueryState from './hooks/useAppsQueryState'
 import type { AppListResponse } from '@/models/app'
 import { fetchAppList } from '@/service/apps'
@@ -138,7 +139,10 @@ const Apps = () => {
       </div>
       <nav className='grid content-start grid-cols-1 gap-4 px-4 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grow shrink-0'>
         {isCurrentWorkspaceEditor
-          && <NewAppCard onSuccess={mutate} />}
+          && <>
+            <NewAppCard onSuccess={mutate} />
+            <CreateAppCardEntyTgAi onSuccess={mutate} />
+          </>}
         {data?.map(({ data: apps }: any) => apps.map((app: any) => (
           <AppCard key={app.id} app={app} onRefresh={mutate} />
         )))}

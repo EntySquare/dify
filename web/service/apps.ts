@@ -21,6 +21,10 @@ export const createApp: Fetcher<AppDetailResponse, { name: string; icon_type?: A
   return post<AppDetailResponse>('apps', { body: { name, icon_type, icon, icon_background, mode, description, model_config: config } })
 }
 
+export const createAppChatOneV1: Fetcher<AppDetailResponse, { name: string; icon_type?: AppIconType; icon?: string; icon_background?: string; mode: AppMode; description?: string; config?: ModelConfig }> = ({ name, icon_type, icon, icon_background, mode, description, config }) => {
+  return post<AppDetailResponse>('/create/chat_one_v1', { body: { name, icon_type, icon, icon_background, mode, description, model_config: config } })
+}
+
 export const updateAppInfo: Fetcher<AppDetailResponse, { appID: string; name: string; icon_type: AppIconType; icon: string; icon_background?: string; description: string }> = ({ appID, name, icon_type, icon, icon_background, description }) => {
   return put<AppDetailResponse>(`apps/${appID}`, { body: { name, icon_type, icon, icon_background, description } })
 }

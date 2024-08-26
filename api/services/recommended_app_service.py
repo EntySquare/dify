@@ -115,7 +115,10 @@ class RecommendedAppService:
 
         if "categories" in result:
             result["categories"] = sorted(result["categories"])
-        
+
+        print(">>>>>>>>>>>>>>>>>>>")
+        print(result)
+        print(">>>>>>>>>>>>>>>>>>>")
         return result
 
     @classmethod
@@ -214,7 +217,6 @@ class RecommendedAppService:
         """
         if cls.builtin_data:
             return cls.builtin_data
-
         root_path = current_app.root_path
         with open(path.join(root_path, 'constants', 'recommended_apps.json'), encoding='utf-8') as f:
             json_data = f.read()
