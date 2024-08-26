@@ -161,7 +161,7 @@ class CreateChatOneV1(Resource):
         args = parser.parse_args()
 
         args["name"] = "单聊模版(TGAI_V1)"
-        args["description"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        args["description"] = '临时模版名称，请修改。此模版为TGAI单聊对接模版，遵循输入输出规范才可生效模版创建时间：'+datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         args["mode"] = 'workflow'
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:

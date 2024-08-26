@@ -12,7 +12,6 @@ import {
   RiRobot3Line,
 } from '@remixicon/react'
 import AppCard from './AppCard'
-import NewAppCard from './NewAppCard'
 import CreateAppCardEntyTgAi from './NewAppCard_EntyTgAi'
 import useAppsQueryState from './hooks/useAppsQueryState'
 import type { AppListResponse } from '@/models/app'
@@ -20,12 +19,9 @@ import { fetchAppList } from '@/service/apps'
 import { useAppContext } from '@/context/app-context'
 import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
 import { CheckModal } from '@/hooks/use-pay'
-import TabSliderNew from '@/app/components/base/tab-slider-new'
 import { useTabSearchParams } from '@/hooks/use-tab-searchparams'
-import SearchInput from '@/app/components/base/search-input'
 import { useStore as useTagStore } from '@/app/components/base/tag-management/store'
 import TagManagementModal from '@/app/components/base/tag-management'
-import TagFilter from '@/app/components/base/tag-management/filter'
 
 const getKey = (
   pageIndex: number,
@@ -127,20 +123,20 @@ const Apps = () => {
   return (
     <>
       <div className='sticky top-0 flex justify-between items-center pt-4 px-4 pb-2 leading-[56px] bg-gray-100 z-10 flex-wrap gap-y-2'>
-        <TabSliderNew
-          value={activeTab}
-          onChange={setActiveTab}
-          options={options}
-        />
-        <div className='flex items-center gap-2'>
-          <TagFilter type='app' value={tagFilterValue} onChange={handleTagsChange} />
-          <SearchInput className='w-[200px]' value={keywords} onChange={handleKeywordsChange} />
-        </div>
+        {/* <TabSliderNew */}
+        {/*   value={activeTab} */}
+        {/*   onChange={setActiveTab} */}
+        {/*   options={options} */}
+        {/* /> */}
+        {/* <div className='flex items-center gap-2'> */}
+        {/*   <TagFilter type='app' value={tagFilterValue} onChange={handleTagsChange} /> */}
+        {/*   <SearchInput className='w-[200px]' value={keywords} onChange={handleKeywordsChange} /> */}
+        {/* </div> */}
       </div>
       <nav className='grid content-start grid-cols-1 gap-4 px-4 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grow shrink-0'>
         {isCurrentWorkspaceEditor
           && <>
-            <NewAppCard onSuccess={mutate} />
+            {/* <NewAppCard onSuccess={mutate} /> */}
             <CreateAppCardEntyTgAi onSuccess={mutate} />
           </>}
         {data?.map(({ data: apps }: any) => apps.map((app: any) => (
