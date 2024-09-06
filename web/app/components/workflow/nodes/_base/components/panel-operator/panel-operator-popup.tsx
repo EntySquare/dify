@@ -178,17 +178,17 @@ const PanelOperatorPopup = ({
           </>
         )
       }
-      <div className='p-1'>
-        <div className='px-3 py-2 text-xs text-gray-500'>
-          <div className='flex items-center mb-1 h-[22px] font-medium'>
-            {t('workflow.panel.about').toLocaleUpperCase()}
-          </div>
-          <div className='mb-1 text-gray-700 leading-[18px]'>{about}</div>
-          <div className='leading-[18px]'>
-            {t('workflow.panel.createdBy')} {author}
-          </div>
-        </div>
-      </div>
+      {/* <div className='p-1'> */}
+      {/*   <div className='px-3 py-2 text-xs text-gray-500'> */}
+      {/*     <div className='flex items-center mb-1 h-[22px] font-medium'> */}
+      {/*       {t('workflow.panel.about').toLocaleUpperCase()} */}
+      {/*     </div> */}
+      {/*     <div className='mb-1 text-gray-700 leading-[18px]'>{about}</div> */}
+      {/*     <div className='leading-[18px]'> */}
+      {/*       {t('workflow.panel.createdBy')} {author} */}
+      {/*     </div> */}
+      {/*   </div> */}
+      {/* </div> */}
     </div>
   )
 }
