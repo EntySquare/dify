@@ -165,15 +165,15 @@ const PanelOperatorPopup = ({
       {
         showHelpLink && (
           <>
-            <div className='p-1'>
-              <a
-                href={link}
-                target='_blank'
-                className='flex items-center px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
-              >
-                {t('workflow.panel.helpLink')}
-              </a>
-            </div>
+            {/* <div className='p-1'> */}
+            {/*   <a */}
+            {/*     href={link} */}
+            {/*     target='_blank' */}
+            {/*     className='flex items-center px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50' */}
+            {/*   > */}
+            {/*     {t('workflow.panel.helpLink')} */}
+            {/*   </a> */}
+            {/* </div> */}
             <div className='h-[1px] bg-gray-100'></div>
           </>
         )

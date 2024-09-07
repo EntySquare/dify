@@ -7,10 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { useBoolean } from 'ahooks'
 import {
   Cog8ToothIcon,
-  // CommandLineIcon,
-  Squares2X2Icon,
-  // eslint-disable-next-line sort-imports
-  PuzzlePieceIcon,
   DocumentTextIcon,
   PaperClipIcon,
   QuestionMarkCircleIcon,
@@ -33,7 +29,6 @@ import FloatPopoverContainer from '@/app/components/base/float-popover-container
 import DatasetDetailContext from '@/context/dataset-detail'
 import { DataSourceType } from '@/models/datasets'
 import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import { LanguagesSupported } from '@/i18n/language'
 import { useStore } from '@/app/components/app/store'
 import { AiText, ChatBot, CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
 import { Route } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
@@ -153,27 +148,27 @@ const ExtraInfo = ({ isMobile, relatedApps }: IExtraInfoProps) => {
         }
       >
         <div className={classNames('mt-5 p-3', isMobile && 'border-[0.5px] border-gray-200 shadow-lg rounded-lg bg-white w-[160px]')}>
-          <div className='flex items-center justify-start gap-2'>
-            <div className={s.emptyIconDiv}>
-              <Squares2X2Icon className='w-3 h-3 text-gray-500' />
-            </div>
-            <div className={s.emptyIconDiv}>
-              <PuzzlePieceIcon className='w-3 h-3 text-gray-500' />
-            </div>
-          </div>
-          <div className='text-xs text-gray-500 mt-2'>{t('common.datasetMenus.emptyTip')}</div>
-          <a
-            className='inline-flex items-center text-xs text-primary-600 mt-2 cursor-pointer'
-            href={
-              locale === LanguagesSupported[1]
-                ? 'https://docs.dify.ai/v/zh-hans/guides/knowledge-base/integrate_knowledge_within_application'
-                : 'https://docs.dify.ai/guides/knowledge-base/integrate-knowledge-within-application'
-            }
-            target='_blank' rel='noopener noreferrer'
-          >
-            <BookOpenIcon className='mr-1' />
-            {t('common.datasetMenus.viewDoc')}
-          </a>
+          {/* <div className='flex items-center justify-start gap-2'> */}
+          {/*   <div className={s.emptyIconDiv}> */}
+          {/*     <Squares2X2Icon className='w-3 h-3 text-gray-500' /> */}
+          {/*   </div> */}
+          {/*   <div className={s.emptyIconDiv}> */}
+          {/*     <PuzzlePieceIcon className='w-3 h-3 text-gray-500' /> */}
+          {/*   </div> */}
+          {/* </div> */}
+          {/* <div className='text-xs text-gray-500 mt-2'>{t('common.datasetMenus.emptyTip')}</div> */}
+          {/* <a */}
+          {/*   className='inline-flex items-center text-xs text-primary-600 mt-2 cursor-pointer' */}
+          {/*   href={ */}
+          {/*     locale === LanguagesSupported[1] */}
+          {/*       ? 'https://docs.dify.ai/v/zh-hans/guides/knowledge-base/integrate_knowledge_within_application' */}
+          {/*       : 'https://docs.dify.ai/guides/knowledge-base/integrate-knowledge-within-application' */}
+          {/*   } */}
+          {/*   target='_blank' rel='noopener noreferrer' */}
+          {/* > */}
+          {/*   <BookOpenIcon className='mr-1' /> */}
+          {/*   {t('common.datasetMenus.viewDoc')} */}
+          {/* </a> */}
         </div>
       </FloatPopoverContainer>
     )}

@@ -7,8 +7,7 @@ import { Pagination } from 'react-headless-pagination'
 import { omit } from 'lodash-es'
 import dayjs from 'dayjs'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
-import { Trans, useTranslation } from 'react-i18next'
-import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 import List from './list'
 import Filter from './filter'
 import s from './style.module.css'
@@ -39,13 +38,13 @@ const EmptyElement: FC<{ appUrl: string }> = ({ appUrl }) => {
   pathSegments.pop()
   return <div className='flex items-center justify-center h-full'>
     <div className='bg-gray-50 w-[560px] h-fit box-border px-5 py-4 rounded-2xl'>
-      <span className='text-gray-700 font-semibold'>{t('appLog.table.empty.element.title')}<ThreeDotsIcon className='inline relative -top-3 -left-1.5' /></span>
-      <div className='mt-2 text-gray-500 text-sm font-normal'>
-        <Trans
-          i18nKey="appLog.table.empty.element.content"
-          components={{ shareLink: <Link href={`${pathSegments.join('/')}/overview`} className='text-primary-600' />, testLink: <Link href={appUrl} className='text-primary-600' target='_blank' rel='noopener noreferrer' /> }}
-        />
-      </div>
+      {/* <span className='text-gray-700 font-semibold'>{t('appLog.table.empty.element.title')}<ThreeDotsIcon className='inline relative -top-3 -left-1.5' /></span> */}
+      {/* <div className='mt-2 text-gray-500 text-sm font-normal'> */}
+      {/*   <Trans */}
+      {/*     i18nKey="appLog.table.empty.element.content" */}
+      {/*     components={{ shareLink: <Link href={`${pathSegments.join('/')}/overview`} className='text-primary-600' />, testLink: <Link href={appUrl} className='text-primary-600' target='_blank' rel='noopener noreferrer' /> }} */}
+      {/*   /> */}
+      {/* </div> */}
     </div>
   </div>
 }

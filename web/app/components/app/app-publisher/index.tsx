@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import dayjs from 'dayjs'
 import { RiArrowDownSLine } from '@remixicon/react'
 import type { ModelAndParameter } from '../configuration/debug/types'
-import SuggestedAction from './suggested-action'
 import PublishWithMultipleModel from './publish-with-multiple-model'
 import Button from '@/app/components/base/button'
 import {
@@ -18,10 +17,6 @@ import {
 import EmbeddedModal from '@/app/components/app/overview/embedded'
 import { useStore as useAppStore } from '@/app/components/app/store'
 import { useGetLanguage } from '@/context/i18n'
-import { PlayCircle } from '@/app/components/base/icons/src/vender/line/mediaAndDevices'
-import { CodeBrowser } from '@/app/components/base/icons/src/vender/line/development'
-import { LeftIndent02 } from '@/app/components/base/icons/src/vender/line/editor'
-import { FileText } from '@/app/components/base/icons/src/vender/line/files'
 import WorkflowToolConfigureButton from '@/app/components/tools/workflow-tool/configure-button'
 import type { InputVar } from '@/app/components/workflow/types'
 
@@ -181,30 +176,30 @@ const AppPublisher = ({
             }
           </div>
           <div className='p-4 pt-3 border-t-[0.5px] border-t-black/5'>
-            <SuggestedAction disabled={!publishedAt} link={appURL} icon={<PlayCircle />}>{t('workflow.common.runApp')}</SuggestedAction>
-            {appDetail?.mode === 'workflow'
-              ? (
-                <SuggestedAction
-                  disabled={!publishedAt}
-                  link={`${appURL}${appURL.includes('?') ? '&' : '?'}mode=batch`}
-                  icon={<LeftIndent02 className='w-4 h-4' />}
-                >
-                  {t('workflow.common.batchRunApp')}
-                </SuggestedAction>
-              )
-              : (
-                <SuggestedAction
-                  onClick={() => {
-                    setEmbeddingModalOpen(true)
-                    handleTrigger()
-                  }}
-                  disabled={!publishedAt}
-                  icon={<CodeBrowser className='w-4 h-4' />}
-                >
-                  {t('workflow.common.embedIntoSite')}
-                </SuggestedAction>
-              )}
-            <SuggestedAction disabled={!publishedAt} link='./develop' icon={<FileText className='w-4 h-4' />}>{t('workflow.common.accessAPIReference')}</SuggestedAction>
+            {/* <SuggestedAction disabled={!publishedAt} link={appURL} icon={<PlayCircle />}>{t('workflow.common.runApp')}</SuggestedAction> */}
+            {/* {appDetail?.mode === 'workflow' */}
+            {/*   ? ( */}
+            {/*     <SuggestedAction */}
+            {/*       disabled={!publishedAt} */}
+            {/*       link={`${appURL}${appURL.includes('?') ? '&' : '?'}mode=batch`} */}
+            {/*       icon={<LeftIndent02 className='w-4 h-4' />} */}
+            {/*     > */}
+            {/*       {t('workflow.common.batchRunApp')} */}
+            {/*     </SuggestedAction> */}
+            {/*   ) */}
+            {/*   : ( */}
+            {/*     <SuggestedAction */}
+            {/*       onClick={() => { */}
+            {/*         setEmbeddingModalOpen(true) */}
+            {/*         handleTrigger() */}
+            {/*       }} */}
+            {/*       disabled={!publishedAt} */}
+            {/*       icon={<CodeBrowser className='w-4 h-4' />} */}
+            {/*     > */}
+            {/*       {t('workflow.common.embedIntoSite')} */}
+            {/*     </SuggestedAction> */}
+            {/*   )} */}
+            {/* <SuggestedAction disabled={!publishedAt} link='./develop' icon={<FileText className='w-4 h-4' />}>{t('workflow.common.accessAPIReference')}</SuggestedAction> */}
             {appDetail?.mode === 'workflow' && (
               <WorkflowToolConfigureButton
                 disabled={!publishedAt}

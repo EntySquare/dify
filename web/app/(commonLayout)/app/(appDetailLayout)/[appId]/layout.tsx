@@ -4,8 +4,6 @@ import { useUnmount } from 'ahooks'
 import React, { useCallback, useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import {
-  RiDashboard2Fill,
-  RiDashboard2Line,
   RiFileList3Fill,
   RiFileList3Line,
   RiTerminalBoxFill,
@@ -81,12 +79,12 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
         }]
         : []
       ),
-      {
-        name: t('common.appMenus.overview'),
-        href: `/app/${appId}/overview`,
-        icon: RiDashboard2Line,
-        selectedIcon: RiDashboard2Fill,
-      },
+      // {
+      //   name: t('common.appMenus.overview'),
+      //   href: `/app/${appId}/overview`,
+      //   icon: RiDashboard2Line,
+      //   selectedIcon: RiDashboard2Fill,
+      // },
     ]
     return navs
   }, [t])
