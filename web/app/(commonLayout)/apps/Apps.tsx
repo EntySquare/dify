@@ -14,6 +14,7 @@ import {
 import AppCard from './AppCard'
 import CreateAppCardEntyTgAi from './NewAppCard_EntyTgAi'
 import useAppsQueryState from './hooks/useAppsQueryState'
+import NewAppCard from '@/app/(commonLayout)/apps/NewAppCard'
 import type { AppListResponse } from '@/models/app'
 import { fetchAppList } from '@/service/apps'
 import { useAppContext } from '@/context/app-context'
@@ -136,7 +137,7 @@ const Apps = () => {
       <nav className='grid content-start grid-cols-1 gap-4 px-4 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grow shrink-0'>
         {isCurrentWorkspaceEditor
           && <>
-            {/* <NewAppCard onSuccess={mutate} /> */}
+            <NewAppCard onSuccess={mutate} />
             <CreateAppCardEntyTgAi onSuccess={mutate} />
           </>}
         {data?.map(({ data: apps }: any) => apps.map((app: any) => (
