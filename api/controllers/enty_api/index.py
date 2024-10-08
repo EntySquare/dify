@@ -42,8 +42,8 @@ from services.app_service import AppService
 from services.workflow_service import WorkflowService
 
 from .chat_one_v1.chat_one_v1_features import data as one_v1_features
-from .chat_one_v1.chat_one_v1_qraph import data as chat_one_v1_qraph # 第一版
-from .chat_one_v1.general_v2 import data as general_v2 # 通用版本 第二版
+from .chat_one_v1.chat_one_v1_qraph import data as chat_one_v1_qraph  # 第一版
+from .chat_one_v1.general_v2 import data as general_v2  # 通用版本 第二版
 
 logger = logging.getLogger(__name__)
 
