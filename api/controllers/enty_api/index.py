@@ -42,7 +42,8 @@ from services.app_service import AppService
 from services.workflow_service import WorkflowService
 
 from .chat_one_v1.chat_one_v1_features import data as one_v1_features
-from .chat_one_v1.chat_one_v1_qraph import data as chat_one_v1_qraph
+from .chat_one_v1.chat_one_v1_qraph import data as chat_one_v1_qraph # 第一版
+from .chat_one_v1.general_v2 import data as general_v2 # 通用版本 第二版
 
 logger = logging.getLogger(__name__)
 
@@ -188,9 +189,53 @@ class CreateChatOneV1(Resource):
         return app, 201
 
 
+class CreateGeneralV2(Resource):
+    @setup_required
+    @login_required
+    @account_initialization_required
+    @marshal_with(app_detail_fields)
+    @cloud_edition_billing_resource_check('apps')
+    def post(self):
+        """Create app"""
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', type=str, required=True, location='json')
+        parser.add_argument('description', type=str, location='json')
+        parser.add_argument('icon_type', type=str, location='json')
+        parser.add_argument('icon', type=str, location='json')
+        parser.add_argument('icon_background', type=str, location='json')
+        args = parser.parse_args()
+
+        args["name"] = "通用模版(V2)"
+        args["description"] = '临时模版名称，请修改。此模版为通用模版，遵循输入输出规范才可生效模版创建时间：'+datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        args["mode"] = 'workflow'
+        # The role of the current user in the ta table must be admin, owner, or editor
+        if not current_user.is_editor:
+            raise Forbidden()
+
+        if 'mode' not in args or args['mode'] is None:
+            raise BadRequest("mode is required")
+
+        app_service = AppService()
+        workflow_service = WorkflowService()
+        app = app_service.create_app(current_user.current_tenant_id, args, current_user)
+        workflow = workflow_service.sync_draft_workflow(
+            app_model=app,
+            graph=general_v2,
+            features=one_v1_features,
+            unique_hash=app.id,
+            account=current_user,
+            environment_variables={},
+            conversation_variables={},
+        )
+        print("得到workflow——————————")
+        print("workflow")
+        print("得到workflow》》》》》》")
+        return app, 201
+
 api.add_resource(Ping, '/ping')
 api.add_resource(WorkflowsAll, '/workflows-all')  # 列表
 api.add_resource(DraftWorkflowRunApi, '/workflows-run/<uuid:app_id>')  # 执行
 # api.add_resource(LoginOrCreation, '/login-or-creation')  # 登录或创建
 
 console_api.add_resource(CreateChatOneV1, '/create/chat_one_v1')  # 创建tgai 单聊模版
+console_api.add_resource(CreateGeneralV2, '/create/general_v2')  # 创建tgai 单聊模版
