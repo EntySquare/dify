@@ -8,6 +8,8 @@ x-shared-env: &shared-api-worker-env
   CONSOLE_WEB_URL: ${CONSOLE_WEB_URL:-}
   CONSOLE_API_URL: ${CONSOLE_API_URL:-}
   SERVICE_API_URL: ${SERVICE_API_URL:-}
+  TG_API_3010: ${TG_API_3010:-}
+  TG_API_WS_3010: ${TG_API_WS_3010:-}
   APP_WEB_URL: ${APP_WEB_URL:-}
   CHECK_UPDATE_URL: ${CHECK_UPDATE_URL:-https://updates.dify.ai}
   OPENAI_API_BASE: ${OPENAI_API_BASE:-https://api.openai.com/v1}
@@ -182,13 +184,16 @@ x-shared-env: &shared-api-worker-env
   CODE_MAX_STRING_ARRAY_LENGTH: ${CODE_MAX_STRING_ARRAY_LENGTH:-30}
   CODE_MAX_OBJECT_ARRAY_LENGTH: ${CODE_MAX_OBJECT_ARRAY_LENGTH:-30}
   CODE_MAX_NUMBER_ARRAY_LENGTH: ${CODE_MAX_NUMBER_ARRAY_LENGTH:-1000}
-  SSRF_PROXY_HTTP_URL: ${SSRF_PROXY_HTTP_URL:-http://ssrf_proxy:3128}
-  SSRF_PROXY_HTTPS_URL: ${SSRF_PROXY_HTTPS_URL:-http://ssrf_proxy:3128}
+#  SSRF_PROXY_HTTP_URL: ${SSRF_PROXY_HTTP_URL:-http://ssrf_proxy:3128}
+#  SSRF_PROXY_HTTPS_URL: ${SSRF_PROXY_HTTPS_URL:-http://ssrf_proxy:3128}
 
 services:
   # API service
   api:
-    image: 11153123/enty-work-api:0.1.0
+    image: 11153123/enty-work-api:0.3.0
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     restart: always
     environment:
       # Use the shared environment variables.
@@ -210,7 +215,7 @@ services:
   # worker service
   # The Celery worker for processing the queue.
   worker:
-    image: 11153123/enty-work-api:0.1.0
+    image: 11153123/enty-work-api:0.3.0
     restart: always
     environment:
       # Use the shared environment variables.
@@ -237,12 +242,14 @@ services:
 #      SENTRY_DSN: ${WEB_SENTRY_DSN:-}
 #      NEXT_TELEMETRY_DISABLED: ${NEXT_TELEMETRY_DISABLED:-0}
   web:
-    image: 11153123/enty-web
+    image: 11153123/enty-web:0.0.4
     ports:
-      - "3000:3000"
+      - "3002:3000"
     environment:
       - CONSOLE_API_URL=${CONSOLE_API_URL:-}
       - APP_API_URL=${APP_API_URL:-}
+      - TG_API_3010=${TG_API_3010:-}
+      - TG_API_WS_3010=${TG_API_WS_3010:-}
     stdin_open: true  # 相当于 -it (interactive terminal)
     tty: true         # 保持伪终端打开
   # The postgres database.
