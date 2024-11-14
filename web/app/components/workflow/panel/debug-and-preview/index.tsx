@@ -15,12 +15,12 @@ import {
 import { BlockEnum } from '../../types'
 import type { StartNodeType } from '../../nodes/start/types'
 import ChatWrapper from './chat-wrapper'
-import cn from '@/utils/classnames'
-import { RefreshCcw01 } from '@/app/components/base/icons/src/vender/line/arrows'
-import { BubbleX } from '@/app/components/base/icons/src/vender/line/others'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import ActionButton, { ActionButtonState } from '@/app/components/base/action-button'
-import { useStore } from '@/app/components/workflow/store'
+import cn from '../../../../../utils/classnames'
+import { RefreshCcw01 } from '../../../base/icons/src/vender/line/arrows'
+import { BubbleX } from '../../../base/icons/src/vender/line/others'
+import TooltipPlus from '../../../base/tooltip-plus'
+import ActionButton, { ActionButtonState } from '../../../base/action-button'
+import { useStore } from '../../store'
 
 export type ChatWrapperRefType = {
   handleRestart: () => void
@@ -100,7 +100,7 @@ const DebugAndPreview = () => {
           </div>
         </div>
       </div>
-      <div className='grow rounded-b-2xl overflow-y-auto'>
+      <div className='grow rounded-b-2xl overflow-y-auto tgai-custom-scrollbar'>
         <ChatWrapper
           ref={chatRef}
           showConversationVariableModal={showConversationVariableModal}

@@ -1,7 +1,7 @@
 'use client'
 import type { FC } from 'react'
 import React from 'react'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 
 type Option = {
   value: string
@@ -26,9 +26,9 @@ const Item: FC<ItemProps> = ({
       className={cn(className, !isActive && 'cursor-pointer', 'relative pb-2.5  leading-6 text-base font-semibold')}
       onClick={() => !isActive && onClick(option.value)}
     >
-      <div className={cn(isActive ? 'text-gray-900' : 'text-gray-600')}>{option.text}</div>
+      <div className={cn(isActive ? 'text-tgai-text-1' : 'text-tgai-text-2')}>{option.text}</div>
       {isActive && (
-        <div className='absolute bottom-0 left-0 right-0 h-0.5 bg-[#155EEF]'></div>
+        <div className='absolute bottom-0 left-0 right-0 h-0.5 bg-tgai-primary]'></div>
       )}
     </div>
   )
@@ -52,7 +52,7 @@ const TabSlider: FC<Props> = ({
   itemClassName,
 }) => {
   return (
-    <div className={cn(className, !noBorderBottom && 'border-b border-[#EAECF0]', 'flex  space-x-6')}>
+    <div className={cn(className, !noBorderBottom && 'border-b border-[#EAECF0] dark:border-stone-600', 'flex  space-x-6')}>
       {options.map(option => (
         <Item
           isActive={option.value === value}

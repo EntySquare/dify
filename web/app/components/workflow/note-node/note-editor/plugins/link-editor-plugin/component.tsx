@@ -20,8 +20,8 @@ import {
 } from '@remixicon/react'
 import { useStore } from '../../store'
 import { useLink } from './hooks'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../../../utils/classnames'
+import Button from '../../../../../base/button'
 
 type LinkEditorComponentProps = {
   containerElement: HTMLDivElement | null

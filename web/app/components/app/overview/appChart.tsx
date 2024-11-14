@@ -7,11 +7,13 @@ import useSWR from 'swr'
 import dayjs from 'dayjs'
 import { get } from 'lodash-es'
 import { useTranslation } from 'react-i18next'
-import { formatNumber } from '@/utils/format'
-import Basic from '@/app/components/app-sidebar/basic'
-import Loading from '@/app/components/base/loading'
-import type { AppDailyConversationsResponse, AppDailyEndUsersResponse, AppTokenCostsResponse } from '@/models/app'
-import { getAppDailyConversations, getAppDailyEndUsers, getAppStatistics, getAppTokenCosts, getWorkflowDailyConversations } from '@/service/apps'
+import { formatNumber } from '../../../../utils/format'
+import Basic from '../../app-sidebar/basic'
+import Loading from '../../base/loading'
+import type { AppDailyConversationsResponse, AppDailyEndUsersResponse, AppTokenCostsResponse } from '../../../../models/app'
+import { getAppDailyConversations, getAppDailyEndUsers, getAppStatistics, getAppTokenCosts, getWorkflowDailyConversations } from '../../../../service/apps'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 const valueFormatter = (v: string | number) => v
 
 const COLOR_TYPE_MAP = {
@@ -33,6 +35,9 @@ const COMMON_COLOR_MAP = {
   label: '#9CA3AF',
   splitLineLight: '#F3F4F6',
   splitLineDark: '#E5E7EB',
+  label_dark: '#FFFFFFB3',
+  splitLineLight_dark: '#4e5969',
+  splitLineDark_dark: '#86909c',
 }
 
 type IColorType = 'green' | 'orange' | 'blue'
@@ -116,6 +121,8 @@ const Chart: React.FC<IChartProps> = ({
     return item[yField] || 0
   })
 
+  const theme = useTGAIGlobalStore(state => state.theme)
+
   const options: EChartsOption = {
     dataset: {
       dimensions: ['date', yField],
@@ -131,7 +138,7 @@ const Chart: React.FC<IChartProps> = ({
       type: 'category',
       boundaryGap: false,
       axisLabel: {
-        color: COMMON_COLOR_MAP.label,
+        color: theme === Theme.light ? COMMON_COLOR_MAP.label : COMMON_COLOR_MAP.label_dark,
         hideOverlap: true,
         overflow: 'break',
         formatter(value) {
@@ -143,7 +150,7 @@ const Chart: React.FC<IChartProps> = ({
       splitLine: {
         show: true,
         lineStyle: {
-          color: COMMON_COLOR_MAP.splitLineLight,
+          color: theme === Theme.light ? COMMON_COLOR_MAP.splitLineLight : COMMON_COLOR_MAP.splitLineLight_dark,
           width: 1,
           type: [10, 10],
         },
@@ -161,7 +168,7 @@ const Chart: React.FC<IChartProps> = ({
       splitLine: {
         show: true,
         lineStyle: {
-          color: COMMON_COLOR_MAP.splitLineDark,
+          color: theme === Theme.light ? COMMON_COLOR_MAP.splitLineDark : COMMON_COLOR_MAP.splitLineDark_dark,
         },
         interval(index, value) {
           return !!value
@@ -171,10 +178,10 @@ const Chart: React.FC<IChartProps> = ({
     yAxis: {
       max: yMax ?? 'dataMax',
       type: 'value',
-      axisLabel: { color: COMMON_COLOR_MAP.label, hideOverlap: true },
+      axisLabel: { color: theme === Theme.light ? COMMON_COLOR_MAP.label : COMMON_COLOR_MAP.label_dark, hideOverlap: true },
       splitLine: {
         lineStyle: {
-          color: COMMON_COLOR_MAP.splitLineLight,
+          color: theme === Theme.light ? COMMON_COLOR_MAP.splitLineLight : COMMON_COLOR_MAP.splitLineLight_dark,
         },
       },
     },
@@ -209,12 +216,13 @@ const Chart: React.FC<IChartProps> = ({
         },
         tooltip: {
           padding: [8, 12, 8, 12],
+          backgroundColor: theme === Theme.dark && "black",
           formatter(params) {
-            return `<div style='color:#6B7280;font-size:12px'>${params.name}</div>
-                          <div style='font-size:14px;color:#1F2A37'>${valueFormatter((params.data as any)[yField])}
+            return `<div style='color:${theme === Theme.light ? "#6B7280" : "#FFFFFFE6"};font-size:12px'>${params.name}</div>
+                          <div style='font-size:14px;color:${theme === Theme.light ? "#1F2A37" : "#FFFFFFB3"}'>${valueFormatter((params.data as any)[yField])}
                               ${!CHART_TYPE_CONFIG[chartType].showTokens
-    ? ''
-    : `<span style='font-size:12px'>
+                ? ''
+                : `<span style='font-size:12px'>
                                   <span style='margin-left:4px;color:#6B7280'>(</span>
                                   <span style='color:#FF8A4C'>~$${get(params.data, 'total_price', 0)}</span>
                                   <span style='color:#6B7280'>)</span>
@@ -228,7 +236,7 @@ const Chart: React.FC<IChartProps> = ({
   const sumData = isAvg ? (sum(yData) / yData.length) : sum(yData)
 
   return (
-    <div className={`flex flex-col w-full px-6 py-4 border-[0.5px] rounded-lg border-gray-200 shadow-xs ${className ?? ''}`}>
+    <div className={`flex flex-col w-full px-6 py-4 border-[0.5px] rounded-lg border-gray-200 dark:border-stone-500 shadow-xs dark:shadow-stone-800 ${className ?? ''}`}>
       <div className='mb-3'>
         <Basic name={title} type={timePeriod} hoverTip={explanation} />
       </div>

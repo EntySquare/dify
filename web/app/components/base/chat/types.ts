@@ -2,17 +2,17 @@ import type {
   ModelConfig,
   VisionFile,
   VisionSettings,
-} from '@/types/app'
-import type { IChatItem } from '@/app/components/base/chat/chat/type'
-import type { NodeTracing } from '@/types/workflow'
-import type { WorkflowRunningStatus } from '@/app/components/workflow/types'
+} from '../../../../types/app'
+import type { IChatItem } from './chat/type'
+import type { NodeTracing } from '../../../../types/workflow'
+import type { WorkflowRunningStatus } from '../../workflow/types'
 
-export type { VisionFile } from '@/types/app'
-export { TransferMethod } from '@/types/app'
+export type { VisionFile } from '../../../../types/app'
+export { TransferMethod } from '../../../../types/app'
 export type {
   Inputs,
   PromptVariable,
-} from '@/models/debug'
+} from '../../../../models/debug'
 
 export type UserInputForm = {
   default: string

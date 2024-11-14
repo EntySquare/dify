@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next'
 import {
   RiQuestionLine,
 } from '@remixicon/react'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import SuggestedQuestionsAfterAnswerIcon from '@/app/components/app/configuration/base/icons/suggested-questions-after-answer-icon'
-import Tooltip from '@/app/components/base/tooltip'
+import Panel from '../../../base/feature-panel'
+import SuggestedQuestionsAfterAnswerIcon from '../../../base/icons/suggested-questions-after-answer-icon'
+import Tooltip from '../../../../../base/tooltip'
 
 const SuggestedQuestionsAfterAnswer: FC = () => {
   const { t } = useTranslation()

@@ -4,8 +4,8 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import NotionIcon from '../../notion-icon'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import type { DataSourceNotionWorkspace } from '@/models/common'
+import cn from '../../../../../utils/classnames'
+import type { DataSourceNotionWorkspace } from '../../../../../models/common'
 
 type WorkspaceSelectorProps = {
   value: string

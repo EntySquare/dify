@@ -15,14 +15,14 @@ import AddAnnotationModal from '../add-annotation-modal'
 import type { AnnotationItemBasic } from '../type'
 import BatchAddModal from '../batch-add-annotation-modal'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import CustomPopover from '@/app/components/base/popover'
-import { FileDownload02, FilePlus02 } from '@/app/components/base/icons/src/vender/line/files'
-import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import cn from '../../../../../utils/classnames'
+import CustomPopover from '../../../base/popover'
+import { FileDownload02, FilePlus02 } from '../../../base/icons/src/vender/line/files'
+import { ChevronRight } from '../../../base/icons/src/vender/line/arrows'
 
-import I18n from '@/context/i18n'
-import { fetchExportAnnotationList } from '@/service/annotation'
-import { LanguagesSupported } from '@/i18n/language'
+import I18n from '../../../../../context/i18n'
+import { fetchExportAnnotationList } from '../../../../../service/annotation'
+import { LanguagesSupported } from '../../../../../i18n/language'
 
 const CSV_HEADER_QA_EN = ['Question', 'Answer']
 const CSV_HEADER_QA_CN = ['问题', '答案']

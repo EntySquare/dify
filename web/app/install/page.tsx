@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../signin/_header'
 import style from '../signin/page.module.css'
 import InstallForm from './installForm'
-import classNames from '@/utils/classnames'
+import classNames from '../../utils/classnames'
 
 const Install = () => {
   return (

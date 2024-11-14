@@ -3,8 +3,8 @@ import type { FC } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import React, { useEffect } from 'react'
-import ToolProviderList from '@/app/components/tools/provider-list'
-import { useAppContext } from '@/context/app-context'
+import ToolProviderList from '../../components/tools/provider-list'
+import { useAppContext } from '../../../context/app-context'
 
 const Layout: FC = () => {
   const { t } = useTranslation()
@@ -13,7 +13,7 @@ const Layout: FC = () => {
 
   useEffect(() => {
     if (typeof window !== 'undefined')
-      document.title = `${t('tools.title')}`
+      document.title = `${t('tools.title')} - TGAI`
     if (isCurrentWorkspaceDatasetOperator)
       return router.replace('/datasets')
   }, [isCurrentWorkspaceDatasetOperator, router, t])

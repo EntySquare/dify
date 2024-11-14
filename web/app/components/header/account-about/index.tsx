@@ -4,11 +4,11 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 import { RiCloseLine } from '@remixicon/react'
 import s from './index.module.css'
-import classNames from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import type { LangGeniusVersionResponse } from '@/models/common'
-import { IS_CE_EDITION } from '@/config'
-import LogoSite from '@/app/components/base/logo/logo-site'
+import classNames from '../../../../utils/classnames'
+import Modal from '../../base/modal'
+import type { LangGeniusVersionResponse } from '../../../../models/common'
+import { IS_CE_EDITION } from '../../../../config'
+import LogoSite from '../../base/logo/logo-site'
 
 type IAccountSettingProps = {
   langeniusVersionInfo: LangGeniusVersionResponse

@@ -7,14 +7,14 @@ import Link from 'next/link'
 import produce from 'immer'
 import TypeIcon from '../type-icon'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import type { DataSet } from '@/models/datasets'
-import Button from '@/app/components/base/button'
-import { fetchDatasets } from '@/service/datasets'
-import Loading from '@/app/components/base/loading'
-import Badge from '@/app/components/base/badge'
-import { useKnowledge } from '@/hooks/use-knowledge'
+import cn from '../../../../../../utils/classnames'
+import Modal from '../../../../base/modal'
+import type { DataSet } from '../../../../../../models/datasets'
+import Button from '../../../../base/button'
+import { fetchDatasets } from '../../../../../../service/datasets'
+import Loading from '../../../../base/loading'
+import Badge from '../../../../base/badge'
+import { useKnowledge } from '../../../../../../hooks/use-knowledge'
 
 export type ISelectDataSetProps = {
   isShow: boolean
@@ -111,18 +111,22 @@ const SelectDataSet: FC<ISelectDataSetProps> = ({
             borderColor: 'rgba(0, 0, 0, 0.02',
           }}
         >
-          <span className='text-gray-500'>{t('appDebug.feature.dataSet.noDataSet')}</span>
-          <Link href="/datasets/create" className='font-normal text-[#155EEF]'>{t('appDebug.feature.dataSet.toCreate')}</Link>
+          <span className='text-tgai-text-3'>{t('appDebug.feature.dataSet.noDataSet')}</span>
+          <Link href="/datasets/create" className='font-normal text-[#155EEF] dark:text-tgai-primary'>{t('appDebug.feature.dataSet.toCreate')}</Link>
         </div>
       )}
 
       {datasets && datasets?.length > 0 && (
         <>
-          <div ref={listRef} className='mt-7 space-y-1 max-h-[286px] overflow-y-auto'>
+          <div ref={listRef} className='mt-7 space-y-1 max-h-[286px] overflow-y-auto tgai-custom-scrollbar'>
             {datasets.map(item => (
               <div
                 key={item.id}
-                className={cn(s.item, selected.some(i => i.id === item.id) && s.selected, 'flex justify-between items-center h-10 px-2 rounded-lg bg-white border border-gray-200  cursor-pointer', !item.embedding_available && s.disabled)}
+                className={cn(s.item, selected.some(i => i.id === item.id) && s.selected, 'flex justify-between items-center h-10 px-2 rounded-lg bg-white dark:bg-tgai-input-background border border-gray-200 dark:border-stone-600 cursor-pointer dark:hover:!bg-zinc-700 dark:hover:!border-tgai-primary-5', 
+                  !item.embedding_available && s.disabled,
+                  selected.some(i => i.id === item.id) && "dark:!bg-zinc-700 dark:!border-tgai-primary-5",
+                  !item.embedding_available && "dark:!bg-zinc-800 dark:!border-stone-600 dark:hover:!bg-zinc-800 dark:hover:!border-stone-600"
+                )}
                 onClick={() => {
                   if (!item.embedding_available)
                     return
@@ -133,9 +137,9 @@ const SelectDataSet: FC<ISelectDataSetProps> = ({
                   <div className={cn('mr-2', !item.embedding_available && 'opacity-50')}>
                     <TypeIcon type="upload_file" size='md' />
                   </div>
-                  <div className={cn('max-w-[200px] text-[13px] font-medium text-gray-800 overflow-hidden text-ellipsis whitespace-nowrap', !item.embedding_available && 'opacity-50 !max-w-[120px]')}>{item.name}</div>
+                  <div className={cn('max-w-[200px] text-[13px] font-medium text-tgai-text-1 overflow-hidden text-ellipsis whitespace-nowrap', !item.embedding_available && 'opacity-50 !max-w-[120px]')}>{item.name}</div>
                   {!item.embedding_available && (
-                    <span className='ml-1 shrink-0 px-1 border boder-gray-200 rounded-md text-gray-500 text-xs font-normal leading-[18px]'>{t('dataset.unavailable')}</span>
+                    <span className='ml-1 shrink-0 px-1 border boder-gray-200 rounded-md text-tgai-text-3 text-xs font-normal leading-[18px]'>{t('dataset.unavailable')}</span>
                   )}
                 </div>
                 {
@@ -152,7 +156,7 @@ const SelectDataSet: FC<ISelectDataSetProps> = ({
       )}
       {loaded && (
         <div className='flex justify-between items-center mt-8'>
-          <div className='text-sm  font-medium text-gray-700'>
+          <div className='text-sm  font-medium text-tgai-text-2'>
             {selected.length > 0 && `${selected.length} ${t('appDebug.feature.dataSet.selected')}`}
           </div>
           <div className='flex space-x-2'>

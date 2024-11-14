@@ -14,13 +14,13 @@ import { comparisonOperatorNotRequireValue } from '../../utils'
 import ConditionNumberInput from '../condition-number-input'
 import ConditionOperator from './condition-operator'
 import ConditionInput from './condition-input'
-import VariableTag from '@/app/components/workflow/nodes/_base/components/variable-tag'
+import VariableTag from '../../../_base/components/variable-tag'
 import type {
   Node,
   NodeOutPutVar,
-} from '@/app/components/workflow/types'
-import { VarType } from '@/app/components/workflow/types'
-import cn from '@/utils/classnames'
+} from '../../../../types'
+import { VarType } from '../../../../types'
+import cn from '../../../../../../../utils/classnames'
 
 type ConditionItemProps = {
   disabled?: boolean
@@ -92,7 +92,7 @@ const ConditionItem = ({
         </div>
         {
           !comparisonOperatorNotRequireValue(condition.comparison_operator) && condition.varType !== VarType.number && (
-            <div className='px-2 py-1 max-h-[100px] border-t border-t-divider-subtle overflow-y-auto'>
+            <div className='px-2 py-1 max-h-[100px] border-t border-t-divider-subtle overflow-y-auto tgai-custom-scrollbar'>
               <ConditionInput
                 disabled={disabled}
                 value={condition.value}

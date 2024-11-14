@@ -2,7 +2,7 @@
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import NewAppDialog from './newAppDialog'
-import AppList, { PageType } from '@/app/components/explore/app-list'
+import AppList, { PageType } from '../../explore/app-list'
 
 type CreateAppDialogProps = {
   show: boolean

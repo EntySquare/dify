@@ -3,14 +3,14 @@ import type { FC } from 'react'
 import React, { useCallback, useRef, useState } from 'react'
 import copy from 'copy-to-clipboard'
 import Wrap from './wrap'
-import cn from '@/utils/classnames'
-import PromptEditorHeightResizeWrap from '@/app/components/app/configuration/config-prompt/prompt-editor-height-resize-wrap'
+import cn from '../../../../../../../utils/classnames'
+import PromptEditorHeightResizeWrap from '../../../../../app/configuration/config-prompt/prompt-editor-height-resize-wrap'
 import {
   Clipboard,
   ClipboardCheck,
-} from '@/app/components/base/icons/src/vender/line/files'
-import ToggleExpandBtn from '@/app/components/workflow/nodes/_base/components/toggle-expand-btn'
-import useToggleExpend from '@/app/components/workflow/nodes/_base/hooks/use-toggle-expend'
+} from '../../../../../base/icons/src/vender/line/files'
+import ToggleExpandBtn from '../toggle-expand-btn'
+import useToggleExpend from '../../hooks/use-toggle-expend'
 
 type Props = {
   className?: string
@@ -56,9 +56,9 @@ const Base: FC<Props> = ({
 
   return (
     <Wrap className={cn(wrapClassName)} style={wrapStyle} isInNode={isInNode} isExpand={isExpand}>
-      <div ref={ref} className={cn(className, isExpand && 'h-full', 'rounded-lg border', isFocus ? 'bg-white border-gray-200' : 'bg-gray-100 border-gray-100 overflow-hidden')}>
+      <div ref={ref} className={cn(className, isExpand && 'h-full', 'rounded-lg border', isFocus ? 'bg-white dark:bg-zinc-600 border-gray-200 dark:border-stone-500' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-tgai-input-background overflow-hidden')}>
         <div className='flex justify-between items-center h-7 pt-1 pl-3 pr-2'>
-          <div className='text-xs font-semibold text-gray-700'>{title}</div>
+          <div className='text-xs font-semibold text-tgai-text-2'>{title}</div>
           <div className='flex items-center' onClick={(e) => {
             e.nativeEvent.stopImmediatePropagation()
             e.stopPropagation()
@@ -66,10 +66,10 @@ const Base: FC<Props> = ({
             {headerRight}
             {!isCopied
               ? (
-                <Clipboard className='mx-1 w-3.5 h-3.5 text-gray-500 cursor-pointer' onClick={handleCopy} />
+                <Clipboard className='mx-1 w-3.5 h-3.5 text-tgai-text-3 cursor-pointer' onClick={handleCopy} />
               )
               : (
-                <ClipboardCheck className='mx-1 w-3.5 h-3.5 text-gray-500' />
+                <ClipboardCheck className='mx-1 w-3.5 h-3.5 text-tgai-text-3' />
               )
             }
             <div className='ml-1'>

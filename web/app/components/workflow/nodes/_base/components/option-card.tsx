@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React, { useCallback } from 'react'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 
 const variants = cva([], {
   variants: {
@@ -47,7 +47,7 @@ const OptionCard: FC<Props> = ({
       className={cn(
         'flex items-center px-2 h-8 rounded-md system-sm-regular bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary cursor-default',
         (!selected && !disabled) && 'hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover hover:shadow-xs cursor-pointer',
-        selected && 'bg-components-option-card-option-selected-bg border-[1.5px] border-components-option-card-option-selected-border system-sm-medium shadow-xs',
+        selected && 'bg-components-option-card-option-selected-bg border-[1.5px] border-components-option-card-option-selected-border !border-tgai-primary system-sm-medium shadow-xs',
         disabled && 'text-text-disabled',
         variants({ align }),
         className,

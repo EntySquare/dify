@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from '@/app/components/datasets/documents'
+import Main from '../../../../../components/datasets/documents'
 
 export type IProps = {
   params: { datasetId: string }

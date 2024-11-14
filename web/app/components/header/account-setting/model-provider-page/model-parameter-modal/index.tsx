@@ -20,17 +20,17 @@ import type { ParameterValue } from './parameter-item'
 import Trigger from './trigger'
 import type { TriggerProps } from './trigger'
 import PresetsParameter from './presets-parameter'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { fetchModelParameterRules } from '@/service/common'
-import Loading from '@/app/components/base/loading'
-import { useProviderContext } from '@/context/provider-context'
-import { TONE_LIST } from '@/config'
-import { ArrowNarrowLeft } from '@/app/components/base/icons/src/vender/line/arrows'
+} from '../../../../base/portal-to-follow-elem'
+import { fetchModelParameterRules } from '../../../../../../service/common'
+import Loading from '../../../../base/loading'
+import { useProviderContext } from '../../../../../../context/provider-context'
+import { TONE_LIST } from '../../../../../../config'
+import { ArrowNarrowLeft } from '../../../../base/icons/src/vender/line/arrows'
 
 export type ModelParameterModalProps = {
   popupClassName?: string
@@ -191,13 +191,13 @@ const ModelParameterModal: FC<ModelParameterModalProps> = ({
           }
         </PortalToFollowElemTrigger>
         <PortalToFollowElemContent className={cn(portalToFollowElemContentClassName, 'z-[60]')}>
-          <div className={cn(popupClassName, 'w-[496px] rounded-xl border border-gray-100 bg-white shadow-xl')}>
+          <div className={cn(popupClassName, 'w-[496px] rounded-xl border border-gray-100 dark:border-stone-700 bg-white dark:bg-tgai-panel-background shadow-xl dark:shadow-stone-800')}>
             <div className={cn(
-              'max-h-[480px]  overflow-y-auto',
+              'max-h-[480px]  overflow-y-auto tgai-custom-scrollbar',
               !isInWorkflow && 'px-10 pt-6 pb-8',
               isInWorkflow && 'p-4')}>
               <div className='flex items-center justify-between h-8'>
-                <div className={cn('font-semibold text-gray-900 shrink-0', isInWorkflow && 'text-[13px]')}>
+                <div className={cn('font-semibold text-tgai-text-1 shrink-0', isInWorkflow && 'text-[13px]')}>
                   {t('common.modelProvider.model').toLocaleUpperCase()}
                 </div>
                 <ModelSelector
@@ -209,7 +209,7 @@ const ModelParameterModal: FC<ModelParameterModalProps> = ({
               </div>
               {
                 !!parameterRules.length && (
-                  <div className='my-5 h-[1px] bg-gray-100' />
+                  <div className='my-5 h-[1px] bg-gray-100 dark:bg-tgai-input-background' />
                 )
               }
               {
@@ -220,7 +220,7 @@ const ModelParameterModal: FC<ModelParameterModalProps> = ({
               {
                 !isLoading && !!parameterRules.length && (
                   <div className='flex items-center justify-between mb-4'>
-                    <div className={cn('font-semibold text-gray-900', isInWorkflow && 'text-[13px]')}>{t('common.modelProvider.parameters')}</div>
+                    <div className={cn('font-semibold text-tgai-text-1', isInWorkflow && 'text-[13px]')}>{t('common.modelProvider.parameters')}</div>
                     {
                       PROVIDER_WITH_PRESET_TONE.includes(provider) && (
                         <PresetsParameter onSelect={handleSelectPresetParameter} />
@@ -250,7 +250,7 @@ const ModelParameterModal: FC<ModelParameterModalProps> = ({
             </div>
             {!hideDebugWithMultipleModel && (
               <div
-                className='flex items-center justify-between px-6 h-[50px] bg-gray-50 border-t border-t-gray-100 text-xs font-medium text-primary-600 cursor-pointer rounded-b-xl'
+                className='flex items-center justify-between px-6 h-[50px] bg-gray-50 border-t border-t-gray-100 text-xs font-medium text-tgai-primary cursor-pointer rounded-b-xl'
                 onClick={() => onDebugWithMultipleModelChange?.()}
               >
                 {

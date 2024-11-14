@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React from 'react'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import Switch from '@/app/components/base/switch'
+import cn from '../../../../../../../../utils/classnames'
+import Switch from '../../../../../../base/switch'
 
 export type IFeatureItemProps = {
   icon: React.ReactNode

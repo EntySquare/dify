@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
+import Modal from '../../../modal'
+import Button from '../../../button'
 
 export type IRenameModalProps = {
   isShow: boolean

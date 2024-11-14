@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React from 'react'
 import useSWR, { useSWRConfig } from 'swr'
 import { createApp, fetchAppDetail, fetchAppList, getAppDailyConversations, getAppDailyEndUsers, updateAppApiStatus, updateAppModelConfig, updateAppRateLimit, updateAppSiteAccessToken, updateAppSiteConfig, updateAppSiteStatus } from '../apps'
-import Loading from '@/app/components/base/loading'
+import Loading from '../../app/components/base/loading'
 const Service: FC = () => {
   const { data: appList, error: appListError } = useSWR({ url: '/apps', params: { page: 1 } }, fetchAppList)
   const { data: firstApp, error: appDetailError } = useSWR({ url: '/apps', id: '1' }, fetchAppDetail)

@@ -11,15 +11,15 @@ import { BlockEnum, InputVarType } from '../../../../types'
 import CodeEditor from '../editor/code-editor'
 import { CodeLanguage } from '../../../code/types'
 import TextEditor from '../editor/text-editor'
-import Select from '@/app/components/base/select'
-import TextGenerationImageUploader from '@/app/components/base/image-uploader/text-generation-image-uploader'
-import { Resolution } from '@/types/app'
-import { useFeatures } from '@/app/components/base/features/hooks'
-import { VarBlockIcon } from '@/app/components/workflow/block-icon'
-import { Line3 } from '@/app/components/base/icons/src/public/common'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
-import { BubbleX } from '@/app/components/base/icons/src/vender/line/others'
-import cn from '@/utils/classnames'
+import Select from '../../../../../base/select'
+import TextGenerationImageUploader from '../../../../../base/image-uploader/text-generation-image-uploader'
+import { Resolution } from '../../../../../../../types/app'
+import { useFeatures } from '../../../../../base/features/hooks'
+import { VarBlockIcon } from '../../../../block-icon'
+import { Line3 } from '../../../../../base/icons/src/public/common'
+import { Variable02 } from '../../../../../base/icons/src/vender/solid/development'
+import { BubbleX } from '../../../../../base/icons/src/vender/line/others'
+import cn from '../../../../../../../utils/classnames'
 
 type Props = {
   payload: InputVar
@@ -66,15 +66,15 @@ const FormItem: FC<Props> = ({
               <div className='p-[1px]'>
                 <VarBlockIcon type={nodeType || BlockEnum.Start} />
               </div>
-              <div className='mx-0.5 text-xs font-medium text-gray-700 max-w-[150px] truncate' title={nodeName}>
+              <div className='mx-0.5 text-xs font-medium text-tgai-text-2 max-w-[150px] truncate' title={nodeName}>
                 {nodeName}
               </div>
               <Line3 className='mr-0.5'></Line3>
             </div>
           )}
-          <div className='flex items-center text-primary-600'>
+          <div className='flex items-center text-primary-600 dark:text-tgai-primary'>
             {!isChatVar && <Variable02 className='w-3.5 h-3.5' />}
-            {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
+            {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700 dark:text-util-colors-teal-teal-100' />}
             <div className={cn('ml-0.5 text-xs font-medium max-w-[150px] truncate', isChatVar && 'text-text-secondary')} title={variable} >
               {variable}
             </div>
@@ -100,7 +100,7 @@ const FormItem: FC<Props> = ({
         {
           type === InputVarType.textInput && (
             <input
-              className="w-full px-3 text-sm leading-8 text-gray-900 border-0 rounded-lg grow h-8 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200"
+              className="w-full px-3 text-sm leading-8 text-tgai-text-1 border-0 rounded-lg grow h-8 bg-gray-50 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-zinc-600"
               type="text"
               value={value || ''}
               onChange={e => onChange(e.target.value)}
@@ -113,7 +113,7 @@ const FormItem: FC<Props> = ({
         {
           type === InputVarType.number && (
             <input
-              className="w-full px-3 text-sm leading-8 text-gray-900 border-0 rounded-lg grow h-8 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200"
+              className="w-full px-3 text-sm leading-8 text-tgai-text-1 border-0 rounded-lg grow h-8 bg-gray-50 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-zinc-600"
               type="number"
               value={value || ''}
               onChange={e => onChange(e.target.value)}
@@ -126,7 +126,7 @@ const FormItem: FC<Props> = ({
         {
           type === InputVarType.paragraph && (
             <textarea
-              className="w-full px-3 py-1 text-sm leading-[18px] text-gray-900 border-0 rounded-lg grow h-[120px] bg-gray-50 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200"
+              className="w-full px-3 py-1 text-sm leading-[18px] text-tgai-text-1 border-0 rounded-lg grow h-[120px] bg-gray-50 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-zinc-600"
               value={value || ''}
               onChange={e => onChange(e.target.value)}
               placeholder={t('appDebug.variableConig.inputPlaceholder')!}
@@ -187,7 +187,7 @@ const FormItem: FC<Props> = ({
                     (value as any).length > 1
                       ? (<RiDeleteBinLine
                         onClick={handleArrayItemRemove(index)}
-                        className='mr-1 w-3.5 h-3.5 text-gray-500 cursor-pointer'
+                        className='mr-1 w-3.5 h-3.5 text-tgai-text-3 cursor-pointer'
                       />)
                       : undefined
                   }
@@ -213,7 +213,7 @@ const FormItem: FC<Props> = ({
                     (value as any).length > 1
                       ? (<RiDeleteBinLine
                         onClick={handleArrayItemRemove(index)}
-                        className='mr-1 w-3.5 h-3.5 text-gray-500 cursor-pointer'
+                        className='mr-1 w-3.5 h-3.5 text-tgai-text-3 cursor-pointer'
                       />)
                       : undefined
                   }

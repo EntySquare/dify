@@ -24,14 +24,14 @@ import Answer from './answer'
 import ChatInput from './chat-input'
 import TryToAsk from './try-to-ask'
 import { ChatContextProvider } from './context'
-import classNames from '@/utils/classnames'
-import type { Emoji } from '@/app/components/tools/types'
-import Button from '@/app/components/base/button'
-import { StopCircle } from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
-import AgentLogModal from '@/app/components/base/agent-log-modal'
-import PromptLogModal from '@/app/components/base/prompt-log-modal'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import type { AppData } from '@/models/share'
+import classNames from '../../../../../utils/classnames'
+import type { Emoji } from '../../../tools/types'
+import Button from '../../button'
+import { StopCircle } from '../../icons/src/vender/solid/mediaAndDevices'
+import AgentLogModal from '../../agent-log-modal'
+import PromptLogModal from '../../prompt-log-modal'
+import { useStore as useAppStore } from '../../../app/store'
+import type { AppData } from '../../../../../models/share'
 
 export type ChatProps = {
   appData?: AppData
@@ -192,7 +192,7 @@ const Chat: FC<ChatProps> = ({
       <div className='relative h-full'>
         <div
           ref={chatContainerRef}
-          className={classNames('relative h-full overflow-y-auto', chatContainerClassName)}
+          className={classNames('relative h-full overflow-y-auto tgai-custom-scrollbar', chatContainerClassName)}
         >
           {chatNode}
           <div

@@ -7,7 +7,7 @@ import {
 import { useFeatures } from '../hooks'
 import type { OnFeaturesChange } from '../types'
 import FeatureModal from './feature-modal'
-import Button from '@/app/components/base/button'
+import Button from '../../button'
 
 type ChooseFeatureProps = {
   onChange?: OnFeaturesChange
@@ -24,7 +24,7 @@ const ChooseFeature = ({
     <>
       <Button
         className={`
-          border-primary-100 bg-primary-25 text-xs font-semibold text-primary-600
+          border-primary-100 bg-primary-25 text-xs font-semibold text-tgai-primary
         `}
         onClick={() => !disabled && setShowFeaturesModal(true)}
       >

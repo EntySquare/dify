@@ -9,16 +9,16 @@ import {
 } from '../../hooks'
 import useAvailableVarList from '../_base/hooks/use-available-var-list'
 import type { LLMNodeType } from './types'
-import { Resolution } from '@/types/app'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel, useTextGenerationCurrentProviderAndModelAndModelList } from '@/app/components/header/account-setting/model-provider-page/hooks'
+import { Resolution } from '../../../../../types/app'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel, useTextGenerationCurrentProviderAndModelAndModelList } from '../../../header/account-setting/model-provider-page/hooks'
 import {
   ModelFeatureEnum,
   ModelTypeEnum,
-} from '@/app/components/header/account-setting/model-provider-page/declarations'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
-import { RETRIEVAL_OUTPUT_STRUCT } from '@/app/components/workflow/constants'
-import { checkHasContextBlock, checkHasHistoryBlock, checkHasQueryBlock } from '@/app/components/base/prompt-editor/constants'
+} from '../../../header/account-setting/model-provider-page/declarations'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import useOneStepRun from '../_base/hooks/use-one-step-run'
+import { RETRIEVAL_OUTPUT_STRUCT } from '../../constants'
+import { checkHasContextBlock, checkHasHistoryBlock, checkHasQueryBlock } from '../../../base/prompt-editor/constants'
 
 const useConfig = (id: string, payload: LLMNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

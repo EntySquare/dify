@@ -3,14 +3,14 @@ import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
-import cn from '@/utils/classnames'
-import Log from '@/app/components/app/log'
-import WorkflowLog from '@/app/components/app/workflow-log'
-import Annotation from '@/app/components/app/annotation'
-import Loading from '@/app/components/base/loading'
-import { PageType } from '@/app/components/app/configuration/toolbox/annotation/type'
-import TabSlider from '@/app/components/base/tab-slider-plain'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import cn from '../../../../utils/classnames'
+import Log from '../log'
+import WorkflowLog from '../workflow-log'
+import Annotation from '../annotation'
+import Loading from '../../base/loading'
+import { PageType } from '../configuration/toolbox/annotation/type'
+import TabSlider from '../../base/tab-slider-plain'
+import { useStore as useAppStore } from '../store'
 
 type Props = {
   pageType: PageType
@@ -30,7 +30,7 @@ const LogAnnotation: FC<Props> = ({
 
   if (!appDetail) {
     return (
-      <div className='flex h-full items-center justify-center bg-white'>
+      <div className='flex h-full items-center justify-center bg-white dark:bg-tgai-panel-background'>
         <Loading />
       </div>
     )

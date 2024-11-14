@@ -1,0 +1,138 @@
+.wrap{
+    display: flex;
+    justify-content: space-between;
+}
+.wrapBox{
+    width: 70%;
+}
+.flexBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.wrapBoxR{
+    width: 30%;
+    margin-left: 10px;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: var(--tgai-panel-background);
+    border: 1px solid #ddd;
+}
+.wrapBoxR h5{
+    font-size: 20px;
+}
+.dropDown{
+    display: flex;
+    align-items: baseline;
+}
+.dropDown .dropBtn{
+    margin-left: 10px;
+}
+.title{
+    background-color: var(--tgai-primary-7);
+    padding: 16px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    font-size: 16px;
+    color: #fff;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+}
+.top{
+    /* max-height: 400px; */
+    overflow-y: auto;
+}
+.topBox{
+    border: 1px solid #e5e6eb;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.topBox:first-child{
+    margin-top: 0;
+}
+.topBox>h4{
+    font-size: 16px;
+    color: var(--tgai-text-1);
+}
+.topBox>p{
+    font-size: 14px;
+    color: #cacaca;
+}
+.main{
+    margin-top: 15px;
+}
+.main h5{
+    font-size: 14px;
+    color: var(--tgai-text-1);
+    text-align: center;
+    margin-bottom: 15px;
+}
+.main .content{
+    background-color: var(--tgai-section-background);
+    padding: 15px 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.content .box{
+    border: 1px solid #e5e6eb;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: var(--tgai-panel-background-3);
+}
+.content .box:first-child{
+    margin-top: 0;
+}
+.content .box .boxTop{
+    display: flex;
+    justify-content: space-between;
+
+}
+.content .box .boxTop h6{
+    font-size: 16px;
+    color: var(--tgai-text-1);
+}
+.content .box p{
+    font-size: 14px;
+    color: #cacaca;
+    white-space: normal;
+}
+.content ::-webkit-scrollbar {
+    width: 2px;
+    background-color: #fff;
+}
+.tableBox{
+    display: flex;
+}
+.inputWrap{
+    display: flex;
+    flex-direction: column;
+}
+.inputBox{
+    margin-top: 15px;
+}
+.inputBox h6{
+    margin-bottom: 10px;
+}
+.inputBox:first-child{
+    margin-top: 0;
+}
+
+  /* 修改滚动条轨道颜色 */
+  .content ::-webkit-scrollbar-track {
+    background-color: #f8f8f8;
+  }
+
+  /* 修改滚动条滑块颜色 */
+  .content ::-webkit-scrollbar-thumb {
+    background-color: #9ccefb;
+  }
+
+  /* 修改滚动条滑块在hover状态下的颜色 */
+  .content ::-webkit-scrollbar-thumb:hover {
+    background-color: #ddd;
+  }

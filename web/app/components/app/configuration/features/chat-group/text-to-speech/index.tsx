@@ -4,12 +4,12 @@ import React, { type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
 import { usePathname } from 'next/navigation'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import { Speaker } from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
-import ConfigContext from '@/context/debug-configuration'
-import { languages } from '@/i18n/language'
-import { fetchAppVoices } from '@/service/apps'
-import AudioBtn from '@/app/components/base/audio-btn'
+import Panel from '../../../base/feature-panel'
+import { Speaker } from '../../../../../base/icons/src/vender/solid/mediaAndDevices'
+import ConfigContext from '../../../../../../../context/debug-configuration'
+import { languages } from '../../../../../../../i18n/language'
+import { fetchAppVoices } from '../../../../../../../service/apps'
+import AudioBtn from '../../../../../base/audio-btn'
 
 const TextToSpeech: FC = () => {
   const { t } = useTranslation()

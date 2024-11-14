@@ -11,8 +11,8 @@ import {
 import { useLanguage } from '../hooks'
 import ModelIcon from '../model-icon'
 import ModelName from '../model-name'
-import { AlertTriangle } from '@/app/components/base/icons/src/vender/line/alertsAndFeedback'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import { AlertTriangle } from '../../../../base/icons/src/vender/line/alertsAndFeedback'
+import TooltipPlus from '../../../../base/tooltip-plus'
 
 type ModelTriggerProps = {
   open: boolean
@@ -33,11 +33,11 @@ const ModelTrigger: FC<ModelTriggerProps> = ({
   return (
     <div
       className={`
-        group flex items-center px-2 h-8 rounded-lg bg-gray-100 
-        ${!readonly && 'hover:bg-gray-200 cursor-pointer'}
+        group flex items-center px-2 h-8 rounded-lg bg-gray-100 dark:bg-tgai-input-background
+        ${!readonly && 'hover:bg-gray-200 dark:hover:bg-zinc-600 cursor-pointer'}
         ${className}
-        ${open && '!bg-gray-200'}
-        ${model.status !== ModelStatusEnum.active && '!bg-[#FFFAEB]'}
+        ${open && '!bg-gray-200 dark:!bg-zinc-600'}
+        ${model.status !== ModelStatusEnum.active && '!bg-[#FFFAEB] dark:!bg-red-800'}
       `}
     >
       <ModelIcon
@@ -62,7 +62,7 @@ const ModelTrigger: FC<ModelTriggerProps> = ({
               )
               : (
                 <RiArrowDownSLine
-                  className='w-3.5 h-3.5 text-gray-500'
+                  className='w-3.5 h-3.5 text-tgai-text-2'
                 />
               )
           }

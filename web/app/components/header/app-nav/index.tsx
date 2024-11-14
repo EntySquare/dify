@@ -12,13 +12,13 @@ import {
 } from '@remixicon/react'
 import Nav from '../nav'
 import { type NavItem } from '../nav/nav-selector'
-import { fetchAppList } from '@/service/apps'
-import CreateAppTemplateDialog from '@/app/components/app/create-app-dialog'
-import CreateAppModal from '@/app/components/app/create-app-modal'
-import CreateFromDSLModal from '@/app/components/app/create-from-dsl-modal'
-import type { AppListResponse } from '@/models/app'
-import { useAppContext } from '@/context/app-context'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import { fetchAppList } from '../../../../service/apps'
+import CreateAppTemplateDialog from '../../app/create-app-dialog'
+import CreateAppModal from '../../app/create-app-modal'
+import CreateFromDSLModal from '../../app/create-from-dsl-modal'
+import type { AppListResponse } from '../../../../models/app'
+import { useAppContext } from '../../../../context/app-context'
+import { useStore as useAppStore } from '../../app/store'
 
 const getKey = (
   pageIndex: number,
@@ -117,7 +117,8 @@ const AppNav = () => {
         isApp
         icon={<RiRobot2Line className='w-4 h-4' />}
         activeIcon={<RiRobot2Fill className='w-4 h-4' />}
-        text={t('common.menus.apps')}
+        // text={t('common.menus.apps')}
+        text={'任务中心'}
         activeSegment={['apps', 'app']}
         link='/apps'
         curNav={appDetail}

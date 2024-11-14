@@ -1,12 +1,12 @@
 'use client'
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
-import type { CredentialFormSchema, CredentialFormSchemaNumberInput, CredentialFormSchemaSelect } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { FormTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { VarType as VarKindType } from '@/app/components/workflow/nodes/tool/types'
-import type { Var } from '@/app/components/workflow/types'
-import { SimpleSelect } from '@/app/components/base/select'
+import type { CredentialFormSchema, CredentialFormSchemaNumberInput, CredentialFormSchemaSelect } from '../../../../../header/account-setting/model-provider-page/declarations'
+import { FormTypeEnum } from '../../../../../header/account-setting/model-provider-page/declarations'
+import { useLanguage } from '../../../../../header/account-setting/model-provider-page/hooks'
+import { VarType as VarKindType } from '../../../tool/types'
+import type { Var } from '../../../../types'
+import { SimpleSelect } from '../../../../../base/select'
 
 type Props = {
   schema: Partial<CredentialFormSchema>
@@ -47,7 +47,7 @@ const ConstantField: FC<Props> = ({
       {schema.type === FormTypeEnum.textNumber && (
         <input
           type='number'
-          className='w-full h-8 leading-8 p-2 rounded-lg bg-gray-100 text-[13px] font-normal text-gray-900 placeholder:text-gray-400 focus:outline-none overflow-hidden'
+          className='w-full h-8 leading-8 p-2 rounded-lg bg-gray-100 dark:bg-tgai-input-background text-[13px] font-normal text-tgai-text-1 placeholder:text-gray-400 focus:outline-none overflow-hidden'
           value={value}
           onChange={handleStaticChange}
           readOnly={readonly}

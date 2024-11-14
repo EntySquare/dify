@@ -4,16 +4,17 @@ import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
 import useSWR from 'swr'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import type { CustomFile as File, FileItem } from '@/models/datasets'
-import { ToastContext } from '@/app/components/base/toast'
+import cn from '../../../../../utils/classnames'
+import type { CustomFile as File, FileItem } from '../../../../../models/datasets'
+import { ToastContext } from '../../../base/toast'
 
-import { upload } from '@/service/base'
-import { fetchFileUploadConfig } from '@/service/common'
-import { fetchSupportFileTypes } from '@/service/datasets'
-import I18n from '@/context/i18n'
-import { LanguagesSupported } from '@/i18n/language'
-import { IS_CE_EDITION } from '@/config'
+import { upload } from '../../../../../service/base'
+import { fetchFileUploadConfig } from '../../../../../service/common'
+import { fetchSupportFileTypes } from '../../../../../service/datasets'
+import I18n from '../../../../../context/i18n'
+import { LanguagesSupported } from '../../../../../i18n/language'
+import { IS_CE_EDITION } from '../../../../../config'
+import { UploadCloud01 } from '@/app/components/base/icons/src/vender/line/general'
 
 const FILES_NUMBER_LIMIT = 20
 
@@ -252,9 +253,15 @@ const FileUploader = ({
       <div className={cn(s.title, titleClassName)}>{t('datasetCreation.stepOne.uploader.title')}</div>
       {!hideUpload && (
 
-        <div ref={dropRef} className={cn(s.uploader, dragging && s.dragging)}>
+        <div ref={dropRef} className={cn(s.uploader, 
+          "dark:!bg-tgai-panel-background-4 dark:!border-stone-700",
+          dragging && s.dragging,
+          dragging && "dark:!bg-zinc-600 dark:!border-tgai-primary-5"
+        )}>
           <div className='flex justify-center items-center min-h-6 mb-2'>
-            <span className={s.uploadIcon} />
+            <span className={s.uploadIcon}>
+              <UploadCloud01 />
+            </span>
             <span>
               {t('datasetCreation.stepOne.uploader.button')}
               <label className={s.browse} onClick={selectHandle}>{t('datasetCreation.stepOne.uploader.browse')}</label>
@@ -274,11 +281,13 @@ const FileUploader = ({
             onClick={() => fileItem.file?.id && onPreview(fileItem.file)}
             className={cn(
               s.file,
+              "dark:!bg-tgai-panel-background-2 dark:!border-stone-600 dark:hover:!border-tgai-primary-7 dark:hover:!bg-zinc-700 dark:!shadow-sm dark:shadow-stone-700 dark:hover:!shadow-lg dark:hover:!shadow-stone-700",
               fileItem.progress < 100 && s.uploading,
+              fileItem.progress < 100 && "dark:!bg-zinc-700 dark:!border-tgai-primary-7"
             )}
           >
             {fileItem.progress < 100 && (
-              <div className={s.progressbar} style={{ width: `${fileItem.progress}%` }} />
+              <div className={cn(s.progressbar, "dark:!bg-zinc-500")} style={{ width: `${fileItem.progress}%` }} />
             )}
             <div className={s.fileInfo}>
               <div className={cn(s.fileIcon, s[getFileType(fileItem.file)])} />
@@ -287,7 +296,7 @@ const FileUploader = ({
             </div>
             <div className={s.actionWrapper}>
               {(fileItem.progress < 100 && fileItem.progress >= 0) && (
-                <div className={s.percent}>{`${fileItem.progress}%`}</div>
+                <div className={cn(s.percent,"dark:!text-tgai-text-2")}>{`${fileItem.progress}%`}</div>
               )}
               {fileItem.progress === 100 && (
                 <div className={s.remove} onClick={(e) => {

@@ -18,15 +18,15 @@ import { $createCustomTextNode } from '../custom-text/node'
 import { PromptMenuItem } from './prompt-option'
 import { VariableMenuItem } from './variable-option'
 import { PickerBlockMenuOption } from './menu'
-import { File05 } from '@/app/components/base/icons/src/vender/solid/files'
+import { File05 } from '../../../icons/src/vender/solid/files'
 import {
   MessageClockCircle,
   Tool03,
-} from '@/app/components/base/icons/src/vender/solid/general'
-import { BracketsX } from '@/app/components/base/icons/src/vender/line/development'
-import { UserEdit02 } from '@/app/components/base/icons/src/vender/solid/users'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
-import AppIcon from '@/app/components/base/app-icon'
+} from '../../../icons/src/vender/solid/general'
+import { BracketsX } from '../../../icons/src/vender/line/development'
+import { UserEdit02 } from '../../../icons/src/vender/solid/users'
+import { ArrowUpRight } from '../../../icons/src/vender/line/arrows'
+import AppIcon from '../../../app-icon'
 
 export const usePromptOptions = (
   contextBlock?: ContextBlockType,
@@ -44,7 +44,7 @@ export const usePromptOptions = (
       render: ({ isSelected, onSelect, onSetHighlight }) => {
         return <PromptMenuItem
           title={t('common.promptEditor.context.item.title')}
-          icon={<File05 className='w-4 h-4 text-[#6938EF]' />}
+          icon={<File05 className='w-4 h-4 text-[#6938EF] dark:text-tgai-primary' />}
           disabled={!contextBlock.selectable}
           isSelected={isSelected}
           onClick={onSelect}
@@ -211,7 +211,7 @@ export const useExternalToolOptions = (
                   background={item.icon_background}
                 />
               }
-              extraElement={<div className='text-xs text-gray-400'>{item.variableName}</div>}
+              extraElement={<div className='text-xs text-tgai-text-3'>{item.variableName}</div>}
               queryString={queryString}
               isSelected={isSelected}
               onClick={onSelect}

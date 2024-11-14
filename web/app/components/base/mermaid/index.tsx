@@ -3,7 +3,7 @@ import mermaid from 'mermaid'
 import { usePrevious } from 'ahooks'
 import CryptoJS from 'crypto-js'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-import LoadingAnim from '@/app/components/base/chat/chat/loading-anim'
+import LoadingAnim from '../chat/chat/loading-anim'
 
 let mermaidAPI: any
 mermaidAPI = null

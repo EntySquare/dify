@@ -15,15 +15,15 @@ import {
   useFeaturesStore,
 } from '../../hooks'
 import type { OnFeaturesChange } from '../../types'
-import cn from '@/utils/classnames'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import Button from '@/app/components/base/button'
-import OperationBtn from '@/app/components/app/configuration/base/operation-btn'
-import { getInputKeys } from '@/app/components/base/block-input'
-import ConfirmAddVar from '@/app/components/app/configuration/config-prompt/confirm-add-var'
-import { getNewVar } from '@/utils/var'
-import { varHighlightHTML } from '@/app/components/app/configuration/base/var-highlight'
-import type { PromptVariable } from '@/models/debug'
+import cn from '../../../../../../utils/classnames'
+import Panel from '../../../../app/configuration/base/feature-panel'
+import Button from '../../../button'
+import OperationBtn from '../../../../app/configuration/base/operation-btn'
+import { getInputKeys } from '../../../block-input'
+import ConfirmAddVar from '../../../../app/configuration/config-prompt/confirm-add-var'
+import { getNewVar } from '../../../../../../utils/var'
+import { varHighlightHTML } from '../../../../app/configuration/base/var-highlight'
+import type { PromptVariable } from '../../../../../../models/debug'
 
 const MAX_QUESTION_NUM = 5
 
@@ -189,7 +189,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
     return isFocus ? (
       <div>
         <div className='flex items-center py-2'>
-          <div className='shrink-0 flex space-x-0.5 leading-[18px] text-xs font-medium text-gray-500'>
+          <div className='shrink-0 flex space-x-0.5 leading-[18px] text-xs font-medium text-tgai-text-2'>
             <div className='uppercase'>{t('appDebug.openingStatement.openingQuestion')}</div>
             <div>·</div>
             <div>{tempSuggestedQuestions.length}/{MAX_QUESTION_NUM}</div>
@@ -211,10 +211,10 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
         >
           {tempSuggestedQuestions.map((question, index) => {
             return (
-              <div className='group relative rounded-lg border border-gray-200 flex items-center pl-2.5 hover:border-gray-300 hover:bg-white' key={index}>
-                <div className='handle flex items-center justify-center w-4 h-4 cursor-grab'>
+              <div className='group relative rounded-lg border border-gray-200 dark:border-stone-700 flex items-center pl-2.5 hover:border-gray-300 dark:hover:border-stone-600 hover:bg-white dark:hover:bg-zinc-600' key={index}>
+                <div className='handle flex items-center justify-center w-4 h-4 cursor-grab text-tgai-text-3'>
                   <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M1 2C1.55228 2 2 1.55228 2 1C2 0.447715 1.55228 0 1 0C0.447715 0 0 0.447715 0 1C0 1.55228 0.447715 2 1 2ZM1 6C1.55228 6 2 5.55228 2 5C2 4.44772 1.55228 4 1 4C0.447715 4 0 4.44772 0 5C0 5.55228 0.447715 6 1 6ZM6 1C6 1.55228 5.55228 2 5 2C4.44772 2 4 1.55228 4 1C4 0.447715 4.44772 0 5 0C5.55228 0 6 0.447715 6 1ZM5 6C5.55228 6 6 5.55228 6 5C6 4.44772 5.55228 4 5 4C4.44772 4 4 4.44772 4 5C4 5.55228 4.44772 6 5 6ZM2 9C2 9.55229 1.55228 10 1 10C0.447715 10 0 9.55229 0 9C0 8.44771 0.447715 8 1 8C1.55228 8 2 8.44771 2 9ZM5 10C5.55228 10 6 9.55229 6 9C6 8.44771 5.55228 8 5 8C4.44772 8 4 8.44771 4 9C4 9.55229 4.44772 10 5 10Z" fill="#98A2B3" />
+                    <path fillRule="evenodd" clipRule="evenodd" d="M1 2C1.55228 2 2 1.55228 2 1C2 0.447715 1.55228 0 1 0C0.447715 0 0 0.447715 0 1C0 1.55228 0.447715 2 1 2ZM1 6C1.55228 6 2 5.55228 2 5C2 4.44772 1.55228 4 1 4C0.447715 4 0 4.44772 0 5C0 5.55228 0.447715 6 1 6ZM6 1C6 1.55228 5.55228 2 5 2C4.44772 2 4 1.55228 4 1C4 0.447715 4.44772 0 5 0C5.55228 0 6 0.447715 6 1ZM5 6C5.55228 6 6 5.55228 6 5C6 4.44772 5.55228 4 5 4C4.44772 4 4 4.44772 4 5C4 5.55228 4.44772 6 5 6ZM2 9C2 9.55229 1.55228 10 1 10C0.447715 10 0 9.55229 0 9C0 8.44771 0.447715 8 1 8C1.55228 8 2 8.44771 2 9ZM5 10C5.55228 10 6 9.55229 6 9C6 8.44771 5.55228 8 5 8C4.44772 8 4 8.44771 4 9C4 9.55229 4.44772 10 5 10Z" fill="currentColor" />
                   </svg>
                 </div>
                 <input
@@ -229,7 +229,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
                       return item
                     }))
                   }}
-                  className={'w-full overflow-x-auto pl-1.5 pr-8 text-sm leading-9 text-gray-900 border-0 grow h-9 bg-transparent focus:outline-none cursor-pointer rounded-lg'}
+                  className={'w-full overflow-x-auto pl-1.5 pr-8 text-sm leading-9 text-tgai-text-1 border-0 grow h-9 bg-transparent focus:outline-none cursor-pointer rounded-lg tgai-custom-scrollbar'}
                 />
 
                 <div
@@ -246,9 +246,9 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
         {tempSuggestedQuestions.length < MAX_QUESTION_NUM && (
           <div
             onClick={() => { setTempSuggestedQuestions([...tempSuggestedQuestions, '']) }}
-            className='mt-1 flex items-center h-9 px-3 gap-2 rounded-lg cursor-pointer text-gray-400  bg-gray-100 hover:bg-gray-200'>
+            className='mt-1 flex items-center h-9 px-3 gap-2 rounded-lg cursor-pointer text-tgai-text-3 bg-gray-100 dark:bg-neutral-700 hover:bg-gray-200 dark:hover:bg-neutral-600'>
             <RiAddLine className='w-4 h-4' />
-            <div className='text-gray-500 text-[13px]'>{t('appDebug.variableConig.addOption')}</div>
+            <div className='text-tgai-text-2 text-[13px]'>{t('appDebug.variableConig.addOption')}</div>
           </div>
         )}
       </div>
@@ -256,7 +256,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
       <div className='mt-1.5 flex flex-wrap'>
         {notEmptyQuestions.map((question, index) => {
           return (
-            <div key={index} className='mt-1 mr-1 max-w-full truncate last:mr-0 shrink-0 leading-8 items-center px-2.5 rounded-lg border border-gray-200 shadow-xs bg-white text-[13px] font-normal text-gray-900 cursor-pointer'>
+            <div key={index} className='mt-1 mr-1 max-w-full truncate last:mr-0 shrink-0 leading-8 items-center px-2.5 rounded-lg border border-gray-200 dark:border-stone-600 shadow-xs dark:shadow-stone-800 bg-white dark:bg-zinc-600 text-[13px] font-normal text-tgai-text-1 cursor-pointer'>
               {question}
             </div>
           )
@@ -267,7 +267,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
 
   return (
     <Panel
-      className={cn(isShowConfirmAddVar && 'h-[220px]', 'relative !bg-gray-25')}
+      className={cn(isShowConfirmAddVar && (isFocus ? "" : 'h-[220px]'), 'relative !bg-gray-25 dark:!bg-neutral-700')}
       title={t('appDebug.openingStatement.title')}
       headerIcon={
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -278,7 +278,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
       hasHeaderBottomBorder={!hasValue}
       isFocus={isFocus}
     >
-      <div className='text-gray-700 text-sm'>
+      <div className='text-tgai-text-2 text-sm'>
         {(hasValue || (!hasValue && isFocus)) ? (
           <>
             {isFocus
@@ -289,7 +289,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
                     value={tempValue}
                     rows={3}
                     onChange={e => setTempValue(e.target.value)}
-                    className="w-full px-0 text-sm  border-0 bg-transparent focus:outline-none "
+                    className="w-full px-0 text-sm text-tgai-text-1 border-0 bg-transparent focus:outline-none "
                     placeholder={t('appDebug.openingStatement.placeholder') as string}
                   >
                   </textarea>
@@ -302,7 +302,7 @@ const OpeningStatement: FC<OpeningStatementProps> = ({
               )}
             {renderQuestions()}
           </>) : (
-          <div className='pt-2 pb-1 text-xs text-gray-500'>{t('appDebug.openingStatement.noDataPlaceHolder')}</div>
+          <div className='pt-2 pb-1 text-xs text-tgai-text-3'>{t('appDebug.openingStatement.noDataPlaceHolder')}</div>
         )}
 
         {isShowConfirmAddVar && (

@@ -1,7 +1,8 @@
 import { Popover, Transition } from '@headlessui/react'
 import { Fragment, cloneElement, useRef } from 'react'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
+import classNames from '../../../../utils/classnames'
 
 export type HtmlContentProps = {
   onClose?: () => void
@@ -60,7 +61,7 @@ export default function CustomPopover({
             >
               <Popover.Button
                 ref={buttonRef}
-                className={`group ${s.popupBtn} ${open ? '' : 'bg-gray-100'} ${!btnClassName
+                className={`group ${classNames(s.popupBtn, 'hover:bg-gray-100 dark:hover:!bg-zinc-600 dark:!border-stone-600')} ${open ? 'dark:!bg-zinc-600' : 'bg-gray-100 dark:bg-gray-500'} ${!btnClassName
                   ? ''
                   : typeof btnClassName === 'string'
                     ? btnClassName
@@ -88,7 +89,7 @@ export default function CustomPopover({
                 >
                   {({ close }) => (
                     <div
-                      className={cn(s.panelContainer, popupClassName)}
+                      className={cn(s.panelContainer,popupClassName)}
                       {...(trigger !== 'hover'
                         ? {}
                         : {

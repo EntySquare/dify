@@ -4,12 +4,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import copy from 'copy-to-clipboard'
 import NoData from './no-data'
-import cn from '@/utils/classnames'
-import type { SavedMessage } from '@/models/debug'
-import { Markdown } from '@/app/components/base/markdown'
-import { SimpleBtn, copyIcon } from '@/app/components/app/text-generate/item'
-import Toast from '@/app/components/base/toast'
-import AudioBtn from '@/app/components/base/audio-btn'
+import cn from '../../../../../utils/classnames'
+import type { SavedMessage } from '../../../../../models/debug'
+import { Markdown } from '../../../base/markdown'
+import { SimpleBtn, copyIcon } from '../item'
+import Toast from '../../../base/toast'
+import AudioBtn from '../../../base/audio-btn'
 
 export type ISavedItemsProps = {
   className?: string

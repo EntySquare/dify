@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { InfoCircle } from '../../base/icons/src/vender/line/general'
 import ProgressBar from '../progress-bar'
 import { NUM_INFINITE } from '../config'
-import Tooltip from '@/app/components/base/tooltip'
+import Tooltip from '../../base/tooltip'
 
 type Props = {
   className?: string

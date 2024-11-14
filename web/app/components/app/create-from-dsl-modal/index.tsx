@@ -7,19 +7,19 @@ import { useContext } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import Uploader from './uploader'
-import Button from '@/app/components/base/button'
-import Modal from '@/app/components/base/modal'
-import { ToastContext } from '@/app/components/base/toast'
+import Button from '../../base/button'
+import Modal from '../../base/modal'
+import { ToastContext } from '../../base/toast'
 import {
   importApp,
   importAppFromUrl,
-} from '@/service/apps'
-import { useAppContext } from '@/context/app-context'
-import { useProviderContext } from '@/context/provider-context'
-import AppsFull from '@/app/components/billing/apps-full-in-dialog'
-import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
-import { getRedirection } from '@/utils/app-redirection'
-import cn from '@/utils/classnames'
+} from '../../../../service/apps'
+import { useAppContext } from '../../../../context/app-context'
+import { useProviderContext } from '../../../../context/provider-context'
+import AppsFull from '../../billing/apps-full-in-dialog'
+import { NEED_REFRESH_APP_LIST_KEY } from '../../../../config'
+import { getRedirection } from '../../../../utils/app-redirection'
+import cn from '../../../../utils/classnames'
 
 type CreateFromDSLModalProps = {
   show: boolean

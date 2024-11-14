@@ -2,10 +2,10 @@ import type {
   ModelConfig,
   VisionFile,
   VisionSettings,
-} from '@/types/app'
+} from '../../../../types/app'
 
-export type { VisionFile } from '@/types/app'
-export { TransferMethod } from '@/types/app'
+export type { VisionFile } from '../../../../types/app'
+export { TransferMethod } from '../../../../types/app'
 
 export type UserInputForm = {
   default: string

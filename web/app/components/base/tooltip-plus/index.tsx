@@ -3,8 +3,8 @@ import type { FC } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useBoolean } from 'ahooks'
 import type { OffsetOptions, Placement } from '@floating-ui/react'
-import cn from '@/utils/classnames'
-import { PortalToFollowElem, PortalToFollowElemContent, PortalToFollowElemTrigger } from '@/app/components/base/portal-to-follow-elem'
+import cn from '../../../../utils/classnames'
+import { PortalToFollowElem, PortalToFollowElemContent, PortalToFollowElemTrigger } from '../portal-to-follow-elem'
 export type TooltipProps = {
   position?: Placement
   triggerMethod?: 'hover' | 'click'
@@ -92,7 +92,7 @@ const Tooltip: FC<TooltipProps> = ({
       >
         <div
           className={cn(
-            'relative px-3 py-2 text-xs font-normal text-gray-700 bg-white rounded-md shadow-lg',
+            'relative px-3 py-2 text-xs font-normal text-tgai-text-2 bg-tgai-panel-background-3 rounded-md shadow-lg',
             popupClassName,
           )}
           onMouseEnter={() => triggerMethod === 'hover' && setHoverPopup()}

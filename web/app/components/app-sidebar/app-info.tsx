@@ -6,31 +6,31 @@ import React, { useCallback, useState } from 'react'
 import AppIcon from '../base/app-icon'
 import SwitchAppModal from '../app/switch-app-modal'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
+import cn from '../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import Divider from '@/app/components/base/divider'
-import Confirm from '@/app/components/base/confirm'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import { ToastContext } from '@/app/components/base/toast'
-import AppsContext, { useAppContext } from '@/context/app-context'
-import { useProviderContext } from '@/context/provider-context'
-import { copyApp, deleteApp, exportAppConfig, updateAppInfo } from '@/service/apps'
-import DuplicateAppModal from '@/app/components/app/duplicate-modal'
-import type { DuplicateAppModalProps } from '@/app/components/app/duplicate-modal'
-import CreateAppModal from '@/app/components/explore/create-app-modal'
-import { AiText, ChatBot, CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Route } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
-import type { CreateAppModalProps } from '@/app/components/explore/create-app-modal'
-import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
-import { getRedirection } from '@/utils/app-redirection'
-import UpdateDSLModal from '@/app/components/workflow/update-dsl-modal'
-import type { EnvironmentVariable } from '@/app/components/workflow/types'
-import DSLExportConfirmModal from '@/app/components/workflow/dsl-export-confirm-modal'
-import { fetchWorkflowDraft } from '@/service/workflow'
+} from '../base/portal-to-follow-elem'
+import Divider from '../base/divider'
+import Confirm from '../base/confirm'
+import { useStore as useAppStore } from '../app/store'
+import { ToastContext } from '../base/toast'
+import AppsContext, { useAppContext } from '../../../context/app-context'
+import { useProviderContext } from '../../../context/provider-context'
+import { copyApp, deleteApp, exportAppConfig, updateAppInfo } from '../../../service/apps'
+import DuplicateAppModal from '../app/duplicate-modal'
+import type { DuplicateAppModalProps } from '../app/duplicate-modal'
+import CreateAppModal from '../explore/create-app-modal'
+import { AiText, ChatBot, CuteRobote } from '../base/icons/src/vender/solid/communication'
+import { Route } from '../base/icons/src/vender/solid/mapsAndTravel'
+import type { CreateAppModalProps } from '../explore/create-app-modal'
+import { NEED_REFRESH_APP_LIST_KEY } from '../../../config'
+import { getRedirection } from '../../../utils/app-redirection'
+import UpdateDSLModal from '../workflow/update-dsl-modal'
+import type { EnvironmentVariable } from '../workflow/types'
+import DSLExportConfirmModal from '../workflow/dsl-export-confirm-modal'
+import { fetchWorkflowDraft } from '../../../service/workflow'
 
 export type IAppInfoProps = {
   expand: boolean
@@ -195,7 +195,7 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
           }}
           className='block'
         >
-          <div className={cn('flex p-1 rounded-lg', open && 'bg-gray-100', isCurrentWorkspaceEditor && 'hover:bg-gray-100 cursor-pointer')}>
+          <div className={cn('flex p-1 rounded-lg', open && 'bg-gray-100 dark:bg-zinc-600', isCurrentWorkspaceEditor && 'hover:bg-gray-100 dark:hover:bg-zinc-600 cursor-pointer')}>
             <div className='relative shrink-0 mr-2'>
               <AppIcon
                 size={expand ? 'large' : 'small'}
@@ -205,7 +205,7 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
                 imageUrl={appDetail.icon_url}
               />
               <span className={cn(
-                'absolute bottom-[-3px] right-[-3px] w-4 h-4 p-0.5 bg-white rounded border-[0.5px] border-[rgba(0,0,0,0.02)] shadow-sm',
+                'absolute bottom-[-3px] right-[-3px] w-4 h-4 p-0.5 bg-white dark:bg-stone-600 rounded border-[0.5px] border-[rgba(0,0,0,0.02)] shadow-sm',
                 !expand && '!w-3.5 !h-3.5 !bottom-[-2px] !right-[-2px]',
               )}>
                 {appDetail.mode === 'advanced-chat' && (
@@ -229,32 +229,33 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
               <div className="grow w-0">
                 <div className='flex justify-between items-center text-sm leading-5 font-medium text-text-secondary'>
                   <div className='truncate' title={appDetail.name}>{appDetail.name}</div>
-                  {isCurrentWorkspaceEditor && <RiArrowDownSLine className='shrink-0 ml-[2px] w-3 h-3 text-gray-500' />}
+                  {isCurrentWorkspaceEditor && <RiArrowDownSLine className='shrink-0 ml-[2px] w-3 h-3 text-tgai-text-3' />}
                 </div>
-                <div className='flex items-center text-[10px] leading-[18px] font-medium text-gray-500 gap-1'>
+                <div className='flex items-center text-[10px] leading-[18px] font-medium text-tgai-text-3 gap-1'>
                   {appDetail.mode === 'advanced-chat' && (
                     <>
-                      <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
-                      <div title={t('app.newApp.advanced') || ''} className='px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.newApp.advanced').toUpperCase()}</div>
+                      <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
+                      <div title={t('app.newApp.advanced') || ''} className='px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.newApp.advanced').toUpperCase()}</div>
                     </>
                   )}
                   {appDetail.mode === 'agent-chat' && (
-                    <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.agent').toUpperCase()}</div>
+                    <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.agent').toUpperCase()}</div>
                   )}
                   {appDetail.mode === 'chat' && (
                     <>
-                      <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
-                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
+                      <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
+                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
                     </>
                   )}
                   {appDetail.mode === 'completion' && (
                     <>
-                      <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.completion').toUpperCase()}</div>
-                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
+                      <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.completion').toUpperCase()}</div>
+                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
                     </>
                   )}
                   {appDetail.mode === 'workflow' && (
-                    <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.workflow').toUpperCase()}</div>
+                    // <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.workflow').toUpperCase()}</div>
+                    <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>任务</div>
                   )}
                 </div>
               </div>
@@ -262,7 +263,7 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
           </div>
         </PortalToFollowElemTrigger>
         <PortalToFollowElemContent className='z-[1002]'>
-          <div className='relative w-[320px] bg-white rounded-2xl shadow-xl'>
+          <div className='relative w-[320px] bg-white dark:bg-tgai-panel-background-3 rounded-2xl shadow-xl'>
             {/* header */}
             <div className={cn('flex pl-4 pt-3 pr-3', !appDetail.description && 'pb-2')}>
               <div className='relative shrink-0 mr-2'>
@@ -273,7 +274,7 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
                   background={appDetail.icon_background}
                   imageUrl={appDetail.icon_url}
                 />
-                <span className='absolute bottom-[-3px] right-[-3px] w-4 h-4 p-0.5 bg-white rounded border-[0.5px] border-[rgba(0,0,0,0.02)] shadow-sm'>
+                <span className='absolute bottom-[-3px] right-[-3px] w-4 h-4 p-0.5 bg-white dark:bg-stone-600 rounded border-[0.5px] border-[rgba(0,0,0,0.02)] shadow-sm'>
                   {appDetail.mode === 'advanced-chat' && (
                     <ChatBot className='w-3 h-3 text-[#1570EF]' />
                   )}
@@ -292,59 +293,60 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
                 </span>
               </div>
               <div className='grow w-0'>
-                <div title={appDetail.name} className='flex justify-between items-center text-sm leading-5 font-medium text-gray-900 truncate'>{appDetail.name}</div>
-                <div className='flex items-center text-[10px] leading-[18px] font-medium text-gray-500 gap-1'>
+                <div title={appDetail.name} className='flex justify-between items-center text-sm leading-5 font-medium text-tgai-text-1 truncate'>{appDetail.name}</div>
+                <div className='flex items-center text-[10px] leading-[18px] font-medium text-tgai-text-3 gap-1'>
                   {appDetail.mode === 'advanced-chat' && (
                     <>
-                      <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
-                      <div title={t('app.newApp.advanced') || ''} className='px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.newApp.advanced').toUpperCase()}</div>
+                      <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
+                      <div title={t('app.newApp.advanced') || ''} className='px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.newApp.advanced').toUpperCase()}</div>
                     </>
                   )}
                   {appDetail.mode === 'agent-chat' && (
-                    <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.agent').toUpperCase()}</div>
+                    <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.agent').toUpperCase()}</div>
                   )}
                   {appDetail.mode === 'chat' && (
                     <>
-                      <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
-                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
+                      <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.chatbot').toUpperCase()}</div>
+                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
                     </>
                   )}
                   {appDetail.mode === 'completion' && (
                     <>
-                      <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.completion').toUpperCase()}</div>
-                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
+                      <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.completion').toUpperCase()}</div>
+                      <div title={t('app.newApp.basic') || ''} className='px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{(t('app.newApp.basic').toUpperCase())}</div>
                     </>
                   )}
                   {appDetail.mode === 'workflow' && (
-                    <div className='shrink-0 px-1 border bg-white border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.workflow').toUpperCase()}</div>
+                    // <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>{t('app.types.workflow').toUpperCase()}</div>
+                    <div className='shrink-0 px-1 border bg-white dark:bg-stone-600 border-[rgba(0,0,0,0.08)] rounded-[5px] truncate'>任务</div>
                   )}
                 </div>
               </div>
             </div>
             {/* desscription */}
             {appDetail.description && (
-              <div className='px-4 py-2 text-gray-500 text-xs leading-[18px]'>{appDetail.description}</div>
+              <div className='px-4 py-2 text-tgai-text-3 text-xs leading-[18px]'>{appDetail.description}</div>
             )}
             {/* operations */}
             <Divider className="!my-1" />
             <div className="w-full py-1">
-              <div className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 rounded-lg cursor-pointer' onClick={() => {
+              <div className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 dark:hover:bg-zinc-600 rounded-lg cursor-pointer' onClick={() => {
                 setOpen(false)
                 setShowEditModal(true)
               }}>
-                <span className='text-gray-700 text-sm leading-5'>{t('app.editApp')}</span>
+                <span className='text-tgai-text-2 text-sm leading-5'>{t('app.editApp')}</span>
               </div>
-              <div className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 rounded-lg cursor-pointer' onClick={() => {
+              <div className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 dark:hover:bg-zinc-600 rounded-lg cursor-pointer' onClick={() => {
                 setOpen(false)
                 setShowDuplicateModal(true)
               }}>
-                <span className='text-gray-700 text-sm leading-5'>{t('app.duplicate')}</span>
+                <span className='text-tgai-text-2 text-sm leading-5'>{t('app.duplicate')}</span>
               </div>
               {(appDetail.mode === 'completion' || appDetail.mode === 'chat') && (
                 <>
                   <Divider className="!my-1" />
                   <div
-                    className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 rounded-lg cursor-pointer'
+                    className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 dark:hover:bg-zinc-600 rounded-lg cursor-pointer'
                     onMouseEnter={() => setShowSwitchTip(appDetail.mode)}
                     onMouseLeave={() => setShowSwitchTip('')}
                     onClick={() => {
@@ -352,23 +354,23 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
                       setShowSwitchModal(true)
                     }}
                   >
-                    <span className='text-gray-700 text-sm leading-5'>{t('app.switch')}</span>
+                    <span className='text-tgai-text-2 text-sm leading-5'>{t('app.switch')}</span>
                   </div>
                 </>
               )}
               <Divider className="!my-1" />
-              <div className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 rounded-lg cursor-pointer' onClick={exportCheck}>
-                <span className='text-gray-700 text-sm leading-5'>{t('app.export')}</span>
+              <div className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 dark:hover:bg-zinc-600 rounded-lg cursor-pointer' onClick={exportCheck}>
+                <span className='text-tgai-text-2 text-sm leading-5'>{t('app.export')}</span>
               </div>
               {
                 (appDetail.mode === 'advanced-chat' || appDetail.mode === 'workflow') && (
                   <div
-                    className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 rounded-lg cursor-pointer'
+                    className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 dark:hover:bg-zinc-600 rounded-lg cursor-pointer'
                     onClick={() => {
                       setOpen(false)
                       setShowImportDSLModal(true)
                     }}>
-                    <span className='text-gray-700 text-sm leading-5'>{t('workflow.common.importDSL')}</span>
+                    <span className='text-tgai-text-2 text-sm leading-5'>{t('workflow.common.importDSL')}</span>
                   </div>
                 )
               }
@@ -377,7 +379,7 @@ const AppInfo = ({ expand }: IAppInfoProps) => {
                 setOpen(false)
                 setShowConfirmDelete(true)
               }}>
-                <span className='text-gray-700 text-sm leading-5 group-hover:text-red-500'>
+                <span className='text-tgai-text-2 text-sm leading-5 group-hover:text-red-500'>
                   {t('common.operation.delete')}
                 </span>
               </div>

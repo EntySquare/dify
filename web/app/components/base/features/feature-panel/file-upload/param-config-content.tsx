@@ -9,8 +9,8 @@ import {
   useFeaturesStore,
 } from '../../hooks'
 import RadioGroup from './radio-group'
-import { TransferMethod } from '@/types/app'
-import ParamItem from '@/app/components/base/param-item'
+import { TransferMethod } from '../../../../../../types/app'
+import ParamItem from '../../../param-item'
 
 const MIN = 1
 const MAX = 6
@@ -69,10 +69,10 @@ const ParamConfigContent = ({
   return (
     <div>
       <div>
-        <div className='leading-6 text-base font-semibold text-gray-800'>{t('common.operation.settings')}</div>
+        <div className='leading-6 text-base font-semibold text-tgai-text-1'>{t('common.operation.settings')}</div>
         <div className='pt-3 space-y-6'>
           <div>
-            <div className='mb-2 leading-[18px] text-[13px] font-semibold text-gray-800'>{t('appDebug.vision.visionSettings.uploadMethod')}</div>
+            <div className='mb-2 leading-[18px] text-[13px] font-semibold text-tgai-text-1'>{t('appDebug.vision.visionSettings.uploadMethod')}</div>
             <RadioGroup
               className='space-x-3'
               options={[

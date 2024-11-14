@@ -1,7 +1,7 @@
 import { Fragment, useCallback } from 'react'
 import type { ElementType, ReactNode } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 
 // https://headlessui.com/react/dialog
 
@@ -46,7 +46,7 @@ const CustomDialog = ({
           <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
+        <div className="fixed inset-0 overflow-y-auto tgai-custom-scrollbar">
           <div className="flex items-center justify-center min-h-full p-4 text-center">
             <Transition.Child
               as={Fragment}

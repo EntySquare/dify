@@ -8,13 +8,13 @@ import { omit } from 'lodash-es'
 import dayjs from 'dayjs'
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'react-i18next'
-import List from './list'
-import Filter from './filter'
+import Loading from '../../base/loading'
+import { fetchChatConversations, fetchCompletionConversations } from '../../../../service/log'
+import { APP_PAGE_LIMIT } from '../../../../config'
+import type { App, AppMode } from '../../../../types/app'
 import s from './style.module.css'
-import Loading from '@/app/components/base/loading'
-import { fetchChatConversations, fetchCompletionConversations } from '@/service/log'
-import { APP_PAGE_LIMIT } from '@/config'
-import type { App, AppMode } from '@/types/app'
+import Filter from './filter'
+import List from './list'
 export type ILogsProps = {
   appDetail: App
 }
@@ -37,15 +37,15 @@ const EmptyElement: FC<{ appUrl: string }> = ({ appUrl }) => {
   const pathSegments = pathname.split('/')
   pathSegments.pop()
   return <div className='flex items-center justify-center h-full'>
-    <div className='bg-gray-50 w-[560px] h-fit box-border px-5 py-4 rounded-2xl'>
+    {/* <div className='bg-gray-50 w-[560px] h-fit box-border px-5 py-4 rounded-2xl'> */}
       {/* <span className='text-gray-700 font-semibold'>{t('appLog.table.empty.element.title')}<ThreeDotsIcon className='inline relative -top-3 -left-1.5' /></span> */}
       {/* <div className='mt-2 text-gray-500 text-sm font-normal'> */}
-      {/*   <Trans */}
-      {/*     i18nKey="appLog.table.empty.element.content" */}
-      {/*     components={{ shareLink: <Link href={`${pathSegments.join('/')}/overview`} className='text-primary-600' />, testLink: <Link href={appUrl} className='text-primary-600' target='_blank' rel='noopener noreferrer' /> }} */}
-      {/*   /> */}
+      {/*  <Trans */}
+      {/*    i18nKey="appLog.table.empty.element.content" */}
+      {/*    components={{ shareLink: <Link href={`${pathSegments.join('/')}/overview`} className='text-primary-600' />, testLink: <Link href={appUrl} className='text-primary-600' target='_blank' rel='noopener noreferrer' /> }} */}
+      {/*  /> */}
       {/* </div> */}
-    </div>
+    {/* </div> */}
   </div>
 }
 
@@ -94,7 +94,7 @@ const Logs: FC<ILogsProps> = ({ appDetail }) => {
 
   return (
     <div className='flex flex-col h-full'>
-      <p className='flex text-sm font-normal text-gray-500'>{t('appLog.description')}</p>
+      <p className='flex text-sm font-normal text-tgai-text-3'>{t('appLog.description')}</p>
       <div className='flex flex-col py-4 flex-1'>
         <Filter appId={appDetail.id} queryParams={queryParams} setQueryParams={setQueryParams} />
         {total === undefined
@@ -117,20 +117,20 @@ const Logs: FC<ILogsProps> = ({ appDetail }) => {
           >
             <Pagination.PrevButton
               disabled={currPage === 0}
-              className={`flex items-center mr-2 text-gray-500  focus:outline-none ${currPage === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
+              className={`flex items-center mr-2 text-tgai-text-3 focus:outline-none ${currPage === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
               <ArrowLeftIcon className="mr-3 h-3 w-3" />
               {t('appLog.table.pagination.previous')}
             </Pagination.PrevButton>
             <div className={`flex items-center justify-center flex-grow ${s.pagination}`}>
               <Pagination.PageButton
-                activeClassName="bg-primary-50 dark:bg-opacity-0 text-primary-600 dark:text-white"
+                activeClassName="bg-primary-50 dark:bg-opacity-0 text-tgai-primary dark:text-white"
                 className="flex items-center justify-center h-8 w-8 rounded-full cursor-pointer"
                 inactiveClassName="text-gray-500"
               />
             </div>
             <Pagination.NextButton
               disabled={currPage === Math.ceil(total / APP_PAGE_LIMIT) - 1}
-              className={`flex items-center mr-2 text-gray-500 focus:outline-none ${currPage === Math.ceil(total / APP_PAGE_LIMIT) - 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
+              className={`flex items-center mr-2 text-tgai-text-3 focus:outline-none ${currPage === Math.ceil(total / APP_PAGE_LIMIT) - 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
               {t('appLog.table.pagination.next')}
               <ArrowRightIcon className="ml-3 h-3 w-3" />
             </Pagination.NextButton>

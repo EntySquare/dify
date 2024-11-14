@@ -40,16 +40,16 @@ import { useValidate } from '../../key-validator/hooks'
 import { ValidatedStatus } from '../../key-validator/declarations'
 import ModelLoadBalancingConfigs from '../provider-added-card/model-load-balancing-configs'
 import Form from './Form'
-import Button from '@/app/components/base/button'
-import { Lock01 } from '@/app/components/base/icons/src/vender/solid/security'
-import { LinkExternal02 } from '@/app/components/base/icons/src/vender/line/general'
+import Button from '../../../../base/button'
+import { Lock01 } from '../../../../base/icons/src/vender/solid/security'
+import { LinkExternal02 } from '../../../../base/icons/src/vender/line/general'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
-} from '@/app/components/base/portal-to-follow-elem'
-import { useToastContext } from '@/app/components/base/toast'
-import Confirm from '@/app/components/base/confirm'
-import { useAppContext } from '@/context/app-context'
+} from '../../../../base/portal-to-follow-elem'
+import { useToastContext } from '../../../../base/toast'
+import Confirm from '../../../../base/confirm'
+import { useAppContext } from '../../../../../../context/app-context'
 
 type ModelModalProps = {
   provider: ModelProvider
@@ -280,11 +280,11 @@ const ModelModal: FC<ModelModalProps> = ({
     <PortalToFollowElem open>
       <PortalToFollowElemContent className='w-full h-full z-[60]'>
         <div className='fixed inset-0 flex items-center justify-center bg-black/[.25]'>
-          <div className='mx-2 w-[640px] max-h-[calc(100vh-120px)] bg-white shadow-xl rounded-2xl overflow-y-auto'>
+          <div className='mx-2 w-[640px] max-h-[calc(100vh-120px)] bg-tgai-panel-background shadow-xl rounded-2xl dark:border-stone-600 dark:border overflow-y-auto'>
             <div className='px-8 pt-8'>
               <div className='flex justify-between items-center mb-2'>
-                <div className='text-xl font-semibold text-gray-900'>{renderTitlePrefix()}</div>
-                <ProviderIcon provider={provider} />
+                <div className='text-xl font-semibold text-tgai-text-1'>{renderTitlePrefix()}</div>
+                <ProviderIcon provider={provider} background />
               </div>
 
               <Form
@@ -297,7 +297,7 @@ const ModelModal: FC<ModelModalProps> = ({
                 isEditMode={isEditMode}
               />
 
-              <div className='mt-1 mb-4 border-t-[0.5px] border-t-gray-100' />
+              <div className='mt-1 mb-4 border-t-[0.5px] border-t-gray-100 dark:border-t-stone-600' />
               <ModelLoadBalancingConfigs withSwitch {...{
                 draftConfig,
                 setDraftConfig,
@@ -306,14 +306,14 @@ const ModelModal: FC<ModelModalProps> = ({
                 configurationMethod: configurateMethod,
               }} />
 
-              <div className='sticky bottom-0 flex justify-between items-center mt-2 -mx-2 pt-4 px-2 pb-6 flex-wrap gap-y-2 bg-white'>
+              <div className='sticky bottom-0 flex justify-between items-center mt-2 -mx-2 pt-4 px-2 pb-6 flex-wrap gap-y-2 bg-tgai-panel-background'>
                 {
                   (provider.help && (provider.help.title || provider.help.url))
                     ? (
                       <a
                         href={provider.help?.url[language] || provider.help?.url.en_US}
                         target='_blank' rel='noopener noreferrer'
-                        className='inline-flex items-center text-xs text-primary-600'
+                        className='inline-flex items-center text-xs text-tgai-primary'
                         onClick={e => !provider.help.url && e.preventDefault()}
                       >
                         {provider.help.title?.[language] || provider.help.url[language] || provider.help.title?.en_US || provider.help.url.en_US}
@@ -357,7 +357,7 @@ const ModelModal: FC<ModelModalProps> = ({
                 </div>
               </div>
             </div>
-            <div className='border-t-[0.5px] border-t-black/5'>
+            <div className='border-t-[0.5px] border-t-black/5 dark:border-t-stone-700'>
               {
                 (validatedStatusState.status === ValidatedStatus.Error && validatedStatusState.message)
                   ? (
@@ -367,11 +367,11 @@ const ModelModal: FC<ModelModalProps> = ({
                     </div>
                   )
                   : (
-                    <div className='flex justify-center items-center py-3 bg-gray-50 text-xs text-gray-500'>
-                      <Lock01 className='mr-1 w-3 h-3 text-gray-500' />
+                    <div className='flex justify-center items-center py-3 bg-gray-50 dark:bg-tgai-panel-background-3 text-xs text-tgai-text-2'>
+                      <Lock01 className='mr-1 w-3 h-3 text-tgai-text-2' />
                       {t('common.modelProvider.encrypted.front')}
                       <a
-                        className='text-primary-600 mx-1'
+                        className='text-tgai-primary mx-1'
                         target='_blank' rel='noopener noreferrer'
                         href='https://pycryptodome.readthedocs.io/en/latest/src/cipher/oaep.html'
                       >

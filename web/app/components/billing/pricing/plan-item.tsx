@@ -11,11 +11,11 @@ import { ALL_PLANS, NUM_INFINITE, contactSalesUrl, contractSales, unAvailable } 
 import Toast from '../../base/toast'
 import TooltipPlus from '../../base/tooltip-plus'
 import { PlanRange } from './select-plan-range'
-import cn from '@/utils/classnames'
-import { useAppContext } from '@/context/app-context'
-import { fetchSubscriptionUrls } from '@/service/billing'
-import { LanguagesSupported } from '@/i18n/language'
-import I18n from '@/context/i18n'
+import cn from '../../../../utils/classnames'
+import { useAppContext } from '../../../../context/app-context'
+import { fetchSubscriptionUrls } from '../../../../service/billing'
+import { LanguagesSupported } from '../../../../i18n/language'
+import I18n from '../../../../context/i18n'
 
 type Props = {
   currentPlan: Plan

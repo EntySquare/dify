@@ -5,9 +5,9 @@ import React, { useCallback } from 'react'
 import produce from 'immer'
 import RemoveButton from '../../../_base/components/remove-button'
 import ListNoDataPlaceholder from '../../../_base/components/list-no-data-placeholder'
-import VarReferencePicker from '@/app/components/workflow/nodes/_base/components/variable/var-reference-picker'
-import type { ValueSelector, Var } from '@/app/components/workflow/types'
-import { VarType as VarKindType } from '@/app/components/workflow/nodes/tool/types'
+import VarReferencePicker from '../../../_base/components/variable/var-reference-picker'
+import type { ValueSelector, Var } from '../../../../types'
+import { VarType as VarKindType } from '../../../tool/types'
 
 type Props = {
   readonly: boolean
@@ -74,7 +74,7 @@ const VarList: FC<Props> = ({
           />
           {!readonly && (
             <RemoveButton
-              className='!p-2 !bg-gray-100 hover:!bg-gray-200'
+              className='!p-2 !bg-gray-100 dark:!bg-tgai-input-background hover:!bg-gray-200 dark:hover:!bg-zinc-700'
               onClick={handleVarRemove(index)}
             />
           )}

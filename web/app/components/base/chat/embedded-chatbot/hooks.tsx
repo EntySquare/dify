@@ -23,15 +23,15 @@ import {
   fetchConversations,
   generationConversationName,
   updateFeedback,
-} from '@/service/share'
+} from '../../../../../service/share'
 import type {
   // AppData,
   ConversationItem,
-} from '@/models/share'
-import { addFileInfos, sortAgentSorts } from '@/app/components/tools/utils'
-import { useToastContext } from '@/app/components/base/toast'
-import { changeLanguage } from '@/i18n/i18next-config'
-import { getProcessedInputsFromUrlParams } from '@/app/components/base/chat/utils'
+} from '../../../../../models/share'
+import { addFileInfos, sortAgentSorts } from '../../../tools/utils'
+import { useToastContext } from '../../toast'
+import { changeLanguage } from '../../../../../i18n/i18next-config'
+import { getProcessedInputsFromUrlParams } from '../utils'
 
 export const useEmbeddedChatbot = () => {
   const isInstalledApp = false

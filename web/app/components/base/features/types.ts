@@ -1,4 +1,4 @@
-import type { TransferMethod, TtsAutoPlay } from '@/types/app'
+import type { TransferMethod, TtsAutoPlay } from '../../../../types/app'
 
 export type EnabledOrDisabled = {
   enabled?: boolean

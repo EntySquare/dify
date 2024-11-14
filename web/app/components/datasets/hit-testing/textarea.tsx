@@ -4,11 +4,11 @@ import Tag from '../../base/tag'
 import Tooltip from '../../base/tooltip'
 import { getIcon } from '../common/retrieval-method-info'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import type { HitTestingResponse } from '@/models/datasets'
-import { hitTesting } from '@/service/datasets'
-import { asyncRunSafe } from '@/utils'
-import { RETRIEVE_METHOD, type RetrievalConfig } from '@/types/app'
+import cn from '../../../../utils/classnames'
+import type { HitTestingResponse } from '../../../../models/datasets'
+import { hitTesting } from '../../../../service/datasets'
+import { asyncRunSafe } from '../../../../utils'
+import { RETRIEVE_METHOD, type RetrievalConfig } from '../../../../types/app'
 
 type TextAreaWithButtonIProps = {
   datasetId: string
@@ -68,9 +68,9 @@ const TextAreaWithButton = ({
   return (
     <>
       <div className={s.wrapper}>
-        <div className='pt-2 rounded-tl-xl rounded-tr-xl bg-[#EEF4FF]'>
+        <div className='pt-2 rounded-tl-xl rounded-tr-xl bg-[#EEF4FF] dark:bg-zinc-700'>
           <div className="px-4 pb-2 flex justify-between h-8 items-center">
-            <span className="text-gray-800 font-semibold text-sm">
+            <span className="text-tgai-text-1 font-semibold text-sm">
               {t('datasetHitTesting.input.title')}
             </span>
             <Tooltip
@@ -79,21 +79,21 @@ const TextAreaWithButton = ({
             >
               <div
                 onClick={onClickRetrievalMethod}
-                className='flex px-2 h-7 items-center space-x-1 bg-white hover:bg-[#ECE9FE] rounded-md shadow-sm cursor-pointer text-[#6927DA]'
+                className='flex px-2 h-7 items-center space-x-1 bg-white dark:bg-stone-800 hover:bg-[#ECE9FE] dark:hover:bg-stone-700 rounded-md shadow-sm dark:shadow-stone-800 cursor-pointer text-[#6927DA] dark:text-tgai-primary-7'
               >
                 <Icon className='w-3.5 h-3.5'></Icon>
                 <div className='text-xs font-medium'>{t(`dataset.retrieval.${retrievalMethod}.title`)}</div>
               </div>
             </Tooltip>
           </div>
-          <div className='h-2 rounded-tl-xl rounded-tr-xl bg-white'></div>
+          <div className='h-2 rounded-tl-xl rounded-tr-xl bg-tgai-panel-background'></div>
         </div>
         <div className='px-4 pb-11'>
           <textarea
             value={text}
             onChange={handleTextChange}
             placeholder={t('datasetHitTesting.input.placeholder') as string}
-            className={s.textarea}
+            className={cn(s.textarea, "dark:!bg-tgai-panel-background tgai-custom-scrollbar")}
           />
           <div className="absolute inset-x-0 bottom-0 flex items-center justify-between mx-4 mt-2 mb-2">
             {text?.length > 200
@@ -105,7 +105,7 @@ const TextAreaWithButton = ({
                   <div>
                     <Tag color="red" className="!text-red-600">
                       {text?.length}
-                      <span className="text-red-300 mx-0.5">/</span>
+                      <span className="text-red-300 dark:text-red-500 mx-0.5">/</span>
                       200
                     </Tag>
                   </div>
@@ -114,10 +114,10 @@ const TextAreaWithButton = ({
               : (
                 <Tag
                   color="gray"
-                  className={cn('!text-gray-500', text?.length ? '' : 'opacity-50')}
+                  className={cn('!text-tgai-text-2', text?.length ? '' : 'opacity-50')}
                 >
                   {text?.length}
-                  <span className="text-gray-300 mx-0.5">/</span>
+                  <span className="text-tgai-text-3 mx-0.5">/</span>
                   200
                 </Tag>
               )}

@@ -26,9 +26,9 @@ import { SimpleBtn } from '../../app/text-generate/item'
 import Toast from '../../base/toast'
 import IterationResultPanel from '../run/iteration-result-panel'
 import InputsPanel from './inputs-panel'
-import cn from '@/utils/classnames'
-import Loading from '@/app/components/base/loading'
-import type { NodeTracing } from '@/types/workflow'
+import cn from '../../../../utils/classnames'
+import Loading from '../../base/loading'
+import type { NodeTracing } from '../../../../types/workflow'
 
 const WorkflowPreview = () => {
   const { t } = useTranslation()
@@ -66,12 +66,13 @@ const WorkflowPreview = () => {
   if (isShowIterationDetail) {
     return (
       <div className={`
-      flex flex-col w-[420px] h-full rounded-l-2xl border-[0.5px] border-gray-200 shadow-xl bg-white
+      flex flex-col w-[420px] h-full rounded-l-2xl border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xl dark:shadow-stone-800 bg-white dark:bg-tgai-panel-background
     `}>
         <IterationResultPanel
           list={iterationRunResult}
           onHide={doHideIterationDetail}
           onBack={doHideIterationDetail}
+          showBorder
         />
       </div>
     )
@@ -79,12 +80,12 @@ const WorkflowPreview = () => {
 
   return (
     <div className={`
-      flex flex-col w-[420px] h-full rounded-l-2xl border-[0.5px] border-gray-200 shadow-xl bg-white
+      flex flex-col w-[420px] h-full rounded-l-2xl border-[0.5px] border-gray-200 dark:border-zinc-600 shadow-xl dark:shadow-stone-800 bg-tgai-panel-background
     `}>
-      <div className='flex items-center justify-between p-4 pb-1 text-base font-semibold text-gray-900'>
+      <div className='flex items-center justify-between p-4 pb-1 text-base font-semibold text-tgai-text-1'>
         {`Test Run${!workflowRunningData?.result.sequence_number ? '' : `#${workflowRunningData?.result.sequence_number}`}`}
         <div className='p-1 cursor-pointer' onClick={() => handleCancelDebugAndPreviewPanel()}>
-          <RiCloseLine className='w-4 h-4 text-gray-500' />
+          <RiCloseLine className='w-4 h-4 text-tgai-text-2' />
         </div>
       </div>
       <div className='grow relative flex flex-col'>
@@ -98,20 +99,20 @@ const WorkflowPreview = () => {
           )
           : (
             <>
-              <div className='shrink-0 flex items-center px-4 border-b-[0.5px] border-[rgba(0,0,0,0.05)]'>
+              <div className='shrink-0 flex items-center px-4 border-b-[0.5px] border-[rgba(0,0,0,0.05)] dark:border-b-stone-700'>
                 {showInputsPanel && (
                   <div
                     className={cn(
-                      'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-gray-400 cursor-pointer',
-                      currentTab === 'INPUT' && '!border-[rgb(21,94,239)] text-gray-700',
+                      'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-tgai-text-3 cursor-pointer',
+                      currentTab === 'INPUT' && '!border-tgai-primary text-tgai-text-2',
                     )}
                     onClick={() => switchTab('INPUT')}
                   >{t('runLog.input')}</div>
                 )}
                 <div
                   className={cn(
-                    'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-gray-400 cursor-pointer',
-                    currentTab === 'RESULT' && '!border-[rgb(21,94,239)] text-gray-700',
+                    'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-tgai-text-3 cursor-pointer',
+                    currentTab === 'RESULT' && '!border-tgai-primary text-tgai-text-2',
                     !workflowRunningData && 'opacity-30 !cursor-not-allowed',
                   )}
                   onClick={() => {
@@ -122,8 +123,8 @@ const WorkflowPreview = () => {
                 >{t('runLog.result')}</div>
                 <div
                   className={cn(
-                    'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-gray-400 cursor-pointer',
-                    currentTab === 'DETAIL' && '!border-[rgb(21,94,239)] text-gray-700',
+                    'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-tgai-text-3 cursor-pointer',
+                    currentTab === 'DETAIL' && '!border-tgai-primary text-tgai-text-2',
                     !workflowRunningData && 'opacity-30 !cursor-not-allowed',
                   )}
                   onClick={() => {
@@ -134,8 +135,8 @@ const WorkflowPreview = () => {
                 >{t('runLog.detail')}</div>
                 <div
                   className={cn(
-                    'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-gray-400 cursor-pointer',
-                    currentTab === 'TRACING' && '!border-[rgb(21,94,239)] text-gray-700',
+                    'mr-6 py-3 border-b-2 border-transparent text-[13px] font-semibold leading-[18px] text-tgai-text-3 cursor-pointer',
+                    currentTab === 'TRACING' && '!border-tgai-primary text-tgai-text-2',
                     !workflowRunningData && 'opacity-30 !cursor-not-allowed',
                   )}
                   onClick={() => {
@@ -146,8 +147,8 @@ const WorkflowPreview = () => {
                 >{t('runLog.tracing')}</div>
               </div>
               <div className={cn(
-                'grow bg-white h-0 overflow-y-auto rounded-b-2xl',
-                (currentTab === 'RESULT' || currentTab === 'TRACING') && '!bg-gray-50',
+                'grow bg-tgai-panel-background h-0 overflow-y-auto rounded-b-2xl tgai-custom-scrollbar',
+                (currentTab === 'RESULT' || currentTab === 'TRACING') && '!bg-gray-50 dark:!bg-tgai-panel-background-2',
               )}>
                 {currentTab === 'INPUT' && showInputsPanel && (
                   <InputsPanel onRun={() => switchTab('RESULT')} />
@@ -191,7 +192,7 @@ const WorkflowPreview = () => {
                   />
                 )}
                 {currentTab === 'DETAIL' && !workflowRunningData?.result && (
-                  <div className='flex h-full items-center justify-center bg-white'>
+                  <div className='flex h-full items-center justify-center bg-tgai-panel-background'>
                     <Loading />
                   </div>
                 )}
@@ -202,7 +203,7 @@ const WorkflowPreview = () => {
                   />
                 )}
                 {currentTab === 'TRACING' && !workflowRunningData?.tracing?.length && (
-                  <div className='flex h-full items-center justify-center bg-gray-50'>
+                  <div className='flex h-full items-center justify-center bg-gray-50 dark:bg-tgai-panel-background-2'>
                     <Loading />
                   </div>
                 )}

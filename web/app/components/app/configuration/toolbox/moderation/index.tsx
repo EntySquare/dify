@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import useSWR from 'swr'
 import { useContext } from 'use-context-selector'
-import { FileSearch02 } from '@/app/components/base/icons/src/vender/solid/files'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import { useModalContext } from '@/context/modal-context'
-import ConfigContext from '@/context/debug-configuration'
-import { fetchCodeBasedExtensionList } from '@/service/common'
-import I18n from '@/context/i18n'
+import { FileSearch02 } from '../../../../base/icons/src/vender/solid/files'
+import { Settings01 } from '../../../../base/icons/src/vender/line/general'
+import { useModalContext } from '../../../../../../context/modal-context'
+import ConfigContext from '../../../../../../context/debug-configuration'
+import { fetchCodeBasedExtensionList } from '../../../../../../service/common'
+import I18n from '../../../../../../context/i18n'
 const Moderation = () => {
   const { t } = useTranslation()
   const { setShowModerationSettingModal } = useModalContext()

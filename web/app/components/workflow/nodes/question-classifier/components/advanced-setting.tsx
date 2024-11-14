@@ -6,9 +6,9 @@ import {
   RiQuestionLine,
 } from '@remixicon/react'
 import MemoryConfig from '../../_base/components/memory-config'
-import Editor from '@/app/components/workflow/nodes/_base/components/prompt/editor'
-import type { Memory, Node, NodeOutPutVar } from '@/app/components/workflow/types'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import Editor from '../../_base/components/prompt/editor'
+import type { Memory, Node, NodeOutPutVar } from '../../../types'
+import TooltipPlus from '../../../../base/tooltip-plus'
 const i18nPrefix = 'workflow.nodes.questionClassifiers'
 
 type Props = {

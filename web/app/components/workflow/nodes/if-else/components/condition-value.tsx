@@ -8,10 +8,10 @@ import {
   comparisonOperatorNotRequireValue,
   isComparisonOperatorNeedTranslate,
 } from '../utils'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
-import { BubbleX, Env } from '@/app/components/base/icons/src/vender/line/others'
-import cn from '@/utils/classnames'
-import { isConversationVar, isENV, isSystemVar } from '@/app/components/workflow/nodes/_base/components/variable/utils'
+import { Variable02 } from '../../../../base/icons/src/vender/solid/development'
+import { BubbleX, Env } from '../../../../base/icons/src/vender/line/others'
+import cn from '../../../../../../utils/classnames'
+import { isConversationVar, isENV, isSystemVar } from '../../_base/components/variable/utils'
 
 type ConditionValueProps = {
   variableSelector: string[]
@@ -44,13 +44,13 @@ const ConditionValue = ({
 
   return (
     <div className='flex items-center px-1 h-6 rounded-md bg-workflow-block-parma-bg'>
-      {!isEnvVar && !isChatVar && <Variable02 className='shrink-0 mr-1 w-3.5 h-3.5 text-text-accent' />}
+      {!isEnvVar && !isChatVar && <Variable02 className='shrink-0 mr-1 w-3.5 h-3.5 text-text-accent dark:text-tgai-primary' />}
       {isEnvVar && <Env className='shrink-0 mr-1 w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
       {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
 
       <div
         className={cn(
-          'shrink-0  truncate text-xs font-medium text-text-accent',
+          'shrink-0  truncate text-xs font-medium text-text-accent dark:text-tgai-primary',
           !notHasValue && 'max-w-[70px]',
         )}
         title={variableName}

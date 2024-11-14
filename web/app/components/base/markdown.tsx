@@ -10,11 +10,11 @@ import { atelierHeathLight } from 'react-syntax-highlighter/dist/esm/styles/hljs
 import type { RefObject } from 'react'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import type { CodeComponent } from 'react-markdown/lib/ast-to-react'
-import cn from '@/utils/classnames'
-import CopyBtn from '@/app/components/base/copy-btn'
-import SVGBtn from '@/app/components/base/svg'
-import Flowchart from '@/app/components/base/mermaid'
-import ImageGallery from '@/app/components/base/image-gallery'
+import cn from '../../../utils/classnames'
+import CopyBtn from './copy-btn'
+import SVGBtn from './svg'
+import Flowchart from './mermaid'
+import ImageGallery from './image-gallery'
 
 // Available language https://github.com/react-syntax-highlighter/react-syntax-highlighter/blob/master/AVAILABLE_LANGUAGES_HLJS.MD
 const capitalizationLanguageNameMap: Record<string, string> = {
@@ -204,6 +204,7 @@ export function Markdown(props: { content: string; className?: string }) {
           },
         }}
         linkTarget='_blank'
+        className='text-tgai-text-1'
       >
         {/* Markdown detect has problem. */}
         {latexContent}

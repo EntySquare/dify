@@ -4,13 +4,13 @@ import { useEmbeddedChatbotContext } from '../context'
 import { useThemeContext } from '../theme/theme-context'
 import { CssTransform } from '../theme/utils'
 import Form from './form'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
-import AppIcon from '@/app/components/base/app-icon'
-import { MessageDotsCircle } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Edit02 } from '@/app/components/base/icons/src/vender/line/general'
-import { Star06 } from '@/app/components/base/icons/src/vender/solid/shapes'
-import LogoSite from '@/app/components/base/logo/logo-site'
+import cn from '../../../../../../utils/classnames'
+import Button from '../../../button'
+import AppIcon from '../../../app-icon'
+import { MessageDotsCircle } from '../../../icons/src/vender/solid/communication'
+import { Edit02 } from '../../../icons/src/vender/line/general'
+import { Star06 } from '../../../icons/src/vender/solid/shapes'
+import LogoSite from '../../../logo/logo-site'
 
 const ConfigPanel = () => {
   const { t } = useTranslation()
@@ -30,7 +30,7 @@ const ConfigPanel = () => {
     <div className='flex flex-col max-h-[80%] w-full max-w-[720px]'>
       <div
         className={cn(
-          'grow rounded-xl overflow-y-auto',
+          'grow rounded-xl overflow-y-auto tgai-custom-scrollbar',
           showConfigPanelBeforeChat && 'border-[0.5px] border-gray-100 shadow-lg',
           !showConfigPanelBeforeChat && collapsed && 'border border-indigo-100',
           !showConfigPanelBeforeChat && !collapsed && 'border-[0.5px] border-gray-100 shadow-lg',

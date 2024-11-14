@@ -4,11 +4,11 @@ import s from './base.module.css'
 import WorkspaceSelector from './workspace-selector'
 import SearchInput from './search-input'
 import PageSelector from './page-selector'
-import cn from '@/utils/classnames'
-import { preImportNotionPages } from '@/service/datasets'
-import { NotionConnector } from '@/app/components/datasets/create/step-one'
-import type { DataSourceNotionPageMap, DataSourceNotionWorkspace, NotionPage } from '@/models/common'
-import { useModalContext } from '@/context/modal-context'
+import cn from '../../../../utils/classnames'
+import { preImportNotionPages } from '../../../../service/datasets'
+import { NotionConnector } from '../../datasets/create/step-one'
+import type { DataSourceNotionPageMap, DataSourceNotionWorkspace, NotionPage } from '../../../../models/common'
+import { useModalContext } from '../../../../context/modal-context'
 
 type NotionPageSelectorProps = {
   value?: string[]

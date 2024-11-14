@@ -3,11 +3,11 @@ import type { FC } from 'react'
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import useAvailableVarList from '../../../../_base/hooks/use-available-var-list'
-import cn from '@/utils/classnames'
-import RemoveButton from '@/app/components/workflow/nodes/_base/components/remove-button'
-import Input from '@/app/components/workflow/nodes/_base/components/input-support-select-var'
-import type { Var } from '@/app/components/workflow/types'
-import { VarType } from '@/app/components/workflow/types'
+import cn from '../../../../../../../../utils/classnames'
+import RemoveButton from '../../../../_base/components/remove-button'
+import Input from '../../../../_base/components/input-support-select-var'
+import type { Var } from '../../../../../types'
+import { VarType } from '../../../../../types'
 type Props = {
   className?: string
   instanceId?: string
@@ -51,12 +51,12 @@ const InputItem: FC<Props> = ({
   }, [onRemove])
 
   return (
-    <div className={cn(className, 'hover:bg-gray-50 hover:cursor-text', 'relative flex h-full')}>
+    <div className={cn(className, 'hover:bg-gray-50 dark:hover:bg-zinc-700 hover:cursor-text', 'relative flex h-full')}>
       {(!readOnly)
         ? (
           <Input
             instanceId={instanceId}
-            className={cn(isFocus ? 'bg-gray-100' : 'bg-width', 'w-0 grow px-3 py-1')}
+            className={cn(isFocus ? 'bg-gray-100 dark:bg-tgai-input-background' : 'bg-width', 'w-0 grow px-3 py-1')}
             value={value}
             onChange={onChange}
             readOnly={readOnly}
@@ -72,11 +72,11 @@ const InputItem: FC<Props> = ({
         : <div
           className="pl-0.5 w-full h-[18px] leading-[18px]"
         >
-          {!hasValue && <div className='text-gray-300 text-xs font-normal'>{placeholder}</div>}
+          {!hasValue && <div className='text-tgai-text-3 text-xs font-normal'>{placeholder}</div>}
           {hasValue && (
             <Input
               instanceId={instanceId}
-              className={cn(isFocus ? 'shadow-xs bg-gray-50 border-gray-300' : 'bg-gray-100 border-gray-100', 'w-0 grow rounded-lg px-3 py-[6px] border')}
+              className={cn(isFocus ? 'shadow-xs bg-gray-50 dark:bg-zinc-700 border-gray-300 dark:border-stone-600' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-stone-700', 'w-0 grow rounded-lg px-3 py-[6px] border')}
               value={value}
               onChange={onChange}
               readOnly={readOnly}

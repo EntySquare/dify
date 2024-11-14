@@ -7,10 +7,10 @@ import {
   RiQuestionLine,
 } from '@remixicon/react'
 import RadioGroup from './radio-group'
-import ConfigContext from '@/context/debug-configuration'
-import { Resolution, TransferMethod } from '@/types/app'
-import ParamItem from '@/app/components/base/param-item'
-import Tooltip from '@/app/components/base/tooltip'
+import ConfigContext from '../../../../../context/debug-configuration'
+import { Resolution, TransferMethod } from '../../../../../types/app'
+import ParamItem from '../../../base/param-item'
+import Tooltip from '../../../base/tooltip'
 
 const MIN = 1
 const MAX = 6

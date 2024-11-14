@@ -8,9 +8,9 @@ import ProviderPanel from './provider-panel'
 import type { LangFuseConfig, LangSmithConfig } from './type'
 import { TracingProvider } from './type'
 import ProviderConfigModal from './provider-config-modal'
-import Indicator from '@/app/components/header/indicator'
-import Switch from '@/app/components/base/switch'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import Indicator from '../../../../../../components/header/indicator'
+import Switch from '../../../../../../components/base/switch'
+import TooltipPlus from '../../../../../../components/base/tooltip-plus'
 
 const I18N_PREFIX = 'app.tracing'
 
@@ -104,15 +104,15 @@ const ConfigPopup: FC<PopupProps> = ({
   )
 
   return (
-    <div className='w-[420px] p-4 rounded-2xl bg-white border-[0.5px] border-black/5 shadow-lg'>
+    <div className='w-[420px] p-4 rounded-2xl bg-white dark:bg-tgai-panel-background border-[0.5px] border-black/5 dark:border-stone-600/95 shadow-lg dark:shadow-stone-800'>
       <div className='flex justify-between items-center'>
         <div className='flex items-center'>
           <TracingIcon size='md' className='mr-2' />
-          <div className='leading-[120%] text-[18px] font-semibold text-gray-900'>{t(`${I18N_PREFIX}.tracing`)}</div>
+          <div className='leading-[120%] text-[18px] font-semibold text-tgai-text-1'>{t(`${I18N_PREFIX}.tracing`)}</div>
         </div>
         <div className='flex items-center'>
           <Indicator color={enabled ? 'green' : 'gray'} />
-          <div className='ml-1.5 text-xs font-semibold text-gray-500 uppercase'>
+          <div className='ml-1.5 text-xs font-semibold text-tgai-text-3 uppercase'>
             {t(`${I18N_PREFIX}.${enabled ? 'enabled' : 'disabled'}`)}
           </div>
           {!readOnly && (
@@ -133,15 +133,15 @@ const ConfigPopup: FC<PopupProps> = ({
         </div>
       </div>
 
-      <div className='mt-2 leading-4 text-xs font-normal text-gray-500'>
+      <div className='mt-2 leading-4 text-xs font-normal text-tgai-text-3'>
         {t(`${I18N_PREFIX}.tracingDescription`)}
       </div>
-      <div className='mt-3 h-px bg-gray-100'></div>
+      <div className='mt-3 h-px bg-gray-100 dark:bg-zinc-700'></div>
       <div className='mt-3'>
         {(providerAllConfigured || providerAllNotConfigured)
           ? (
             <>
-              <div className='leading-4 text-xs font-medium text-gray-500 uppercase'>{t(`${I18N_PREFIX}.configProviderTitle.${providerAllConfigured ? 'configured' : 'notConfigured'}`)}</div>
+              <div className='leading-4 text-xs font-medium text-tgai-text-3 uppercase'>{t(`${I18N_PREFIX}.configProviderTitle.${providerAllConfigured ? 'configured' : 'notConfigured'}`)}</div>
               <div className='mt-2 space-y-2'>
                 {langSmithPanel}
                 {langfusePanel}
@@ -150,11 +150,11 @@ const ConfigPopup: FC<PopupProps> = ({
           )
           : (
             <>
-              <div className='leading-4 text-xs font-medium text-gray-500 uppercase'>{t(`${I18N_PREFIX}.configProviderTitle.configured`)}</div>
+              <div className='leading-4 text-xs font-medium text-tgai-text-3 uppercase'>{t(`${I18N_PREFIX}.configProviderTitle.configured`)}</div>
               <div className='mt-2'>
                 {langSmithConfig ? langSmithPanel : langfusePanel}
               </div>
-              <div className='mt-3 leading-4 text-xs font-medium text-gray-500 uppercase'>{t(`${I18N_PREFIX}.configProviderTitle.moreProvider`)}</div>
+              <div className='mt-3 leading-4 text-xs font-medium text-tgai-text-3 uppercase'>{t(`${I18N_PREFIX}.configProviderTitle.moreProvider`)}</div>
               <div className='mt-2'>
                 {!langSmithConfig ? langSmithPanel : langfusePanel}
               </div>

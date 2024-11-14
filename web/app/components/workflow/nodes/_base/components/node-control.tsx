@@ -18,8 +18,8 @@ import { canRunBySingle } from '../../../utils'
 import PanelOperator from './panel-operator'
 import {
   Stop,
-} from '@/app/components/base/icons/src/vender/line/mediaAndDevices'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+} from '../../../../base/icons/src/vender/line/mediaAndDevices'
+import TooltipPlus from '../../../../base/tooltip-plus'
 
 type NodeControlProps = Pick<Node, 'id' | 'data'>
 const NodeControl: FC<NodeControlProps> = ({
@@ -45,13 +45,13 @@ const NodeControl: FC<NodeControlProps> = ({
       `}
     >
       <div
-        className='flex items-center px-0.5 h-6 bg-white rounded-lg border-[0.5px] border-gray-100 shadow-xs text-gray-500'
+        className='flex items-center px-0.5 h-6 bg-tgai-panel-background-3 rounded-lg border-[0.5px] border-gray-100 dark:border-stone-600 shadow-xs dark:shadow-stone-800 text-tgai-text-3'
         onClick={e => e.stopPropagation()}
       >
         {
           canRunBySingle(data.type) && (
             <div
-              className='flex items-center justify-center w-5 h-5 rounded-md cursor-pointer hover:bg-black/5'
+              className='flex items-center justify-center text-tgai-text-2 w-5 h-5 rounded-md cursor-pointer hover:bg-black/5 dark:hover:bg-zinc-600'
               onClick={() => {
                 handleNodeDataUpdate({
                   id,

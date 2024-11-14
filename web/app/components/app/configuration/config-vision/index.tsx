@@ -8,10 +8,10 @@ import {
 import { useContext } from 'use-context-selector'
 import Panel from '../base/feature-panel'
 import ParamConfig from './param-config'
-import Tooltip from '@/app/components/base/tooltip'
-import Switch from '@/app/components/base/switch'
-import { Eye } from '@/app/components/base/icons/src/vender/solid/general'
-import ConfigContext from '@/context/debug-configuration'
+import Tooltip from '../../../base/tooltip'
+import Switch from '../../../base/switch'
+import { Eye } from '../../../base/icons/src/vender/solid/general'
+import ConfigContext from '../../../../../context/debug-configuration'
 
 const ConfigVision: FC = () => {
   const { t } = useTranslation()

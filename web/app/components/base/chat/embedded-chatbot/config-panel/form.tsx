@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useEmbeddedChatbotContext } from '../context'
 import Input from './form-input'
-import { PortalSelect } from '@/app/components/base/select'
+import { PortalSelect } from '../../../select'
 
 const Form = () => {
   const { t } = useTranslation()

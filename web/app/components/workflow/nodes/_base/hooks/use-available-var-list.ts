@@ -3,8 +3,8 @@ import {
   useIsChatMode,
   useWorkflow,
   useWorkflowVariables,
-} from '@/app/components/workflow/hooks'
-import type { ValueSelector, Var } from '@/app/components/workflow/types'
+} from '../../../hooks'
+import type { ValueSelector, Var } from '../../../types'
 type Params = {
   onlyLeafNodeVar?: boolean
   hideEnv?: boolean

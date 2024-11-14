@@ -3,8 +3,8 @@ import { LockClosedIcon } from '@heroicons/react/24/solid'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import SerpapiPlugin from './SerpapiPlugin'
-import { fetchPluginProviders } from '@/service/common'
-import type { PluginProvider } from '@/models/common'
+import { fetchPluginProviders } from '../../../../../service/common'
+import type { PluginProvider } from '../../../../../models/common'
 
 const PluginPage = () => {
   const { t } = useTranslation()

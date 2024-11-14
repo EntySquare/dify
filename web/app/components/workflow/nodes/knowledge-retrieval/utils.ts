@@ -3,13 +3,13 @@ import type { MultipleRetrievalConfig } from './types'
 import type {
   DataSet,
   SelectedDatasetsMode,
-} from '@/models/datasets'
+} from '../../../../../models/datasets'
 import {
   DEFAULT_WEIGHTED_SCORE,
   RerankingModeEnum,
-} from '@/models/datasets'
-import { RETRIEVE_METHOD } from '@/types/app'
-import { DATASET_DEFAULT } from '@/config'
+} from '../../../../../models/datasets'
+import { RETRIEVE_METHOD } from '../../../../../types/app'
+import { DATASET_DEFAULT } from '../../../../../config'
 
 export const checkNodeValid = () => {
   return true

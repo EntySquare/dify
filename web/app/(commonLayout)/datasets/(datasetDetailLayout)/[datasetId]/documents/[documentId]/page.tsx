@@ -1,5 +1,5 @@
 import React from 'react'
-import MainDetail from '@/app/components/datasets/documents/detail'
+import MainDetail from '../../../../../../components/datasets/documents/detail'
 
 export type IDocumentDetailProps = {
   params: { datasetId: string; documentId: string }

@@ -9,7 +9,7 @@ import {
   XCircleIcon,
 } from '@heroicons/react/20/solid'
 import { createContext, useContext } from 'use-context-selector'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 
 export type IToastProps = {
   type?: 'success' | 'error' | 'warning' | 'info'

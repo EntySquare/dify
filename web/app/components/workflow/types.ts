@@ -3,12 +3,12 @@ import type {
   Node as ReactFlowNode,
   Viewport,
 } from 'reactflow'
-import type { TransferMethod } from '@/types/app'
-import type { ToolDefaultValue } from '@/app/components/workflow/block-selector/types'
-import type { VarType as VarKindType } from '@/app/components/workflow/nodes/tool/types'
-import type { NodeTracing } from '@/types/workflow'
-import type { Collection, Tool } from '@/app/components/tools/types'
-import type { ChatVarType } from '@/app/components/workflow/panel/chat-variable-panel/type'
+import type { TransferMethod } from '../../../types/app'
+import type { ToolDefaultValue } from './block-selector/types'
+import type { VarType as VarKindType } from './nodes/tool/types'
+import type { NodeTracing } from '../../../types/workflow'
+import type { Collection, Tool } from '../tools/types'
+import type { ChatVarType } from './panel/chat-variable-panel/type'
 
 export enum BlockEnum {
   Start = 'start',

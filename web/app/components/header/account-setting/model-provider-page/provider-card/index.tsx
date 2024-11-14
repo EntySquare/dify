@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { useMemo, type FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   RiAddLine,
@@ -17,9 +17,9 @@ import {
 import ModelBadge from '../model-badge'
 import ProviderIcon from '../provider-icon'
 import s from './index.module.css'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import Button from '@/app/components/base/button'
-import { useAppContext } from '@/context/app-context'
+import { Settings01 } from '../../../../base/icons/src/vender/line/general'
+import Button from '../../../../base/button'
+import { useAppContext } from '../../../../../../context/app-context'
 
 type ProviderCardProps = {
   provider: ModelProvider
@@ -35,10 +35,21 @@ const ProviderCard: FC<ProviderCardProps> = ({
   const { isCurrentWorkspaceManager } = useAppContext()
   const configurateMethods = provider.configurate_methods.filter(method => method !== ConfigurationMethodEnum.fetchFromRemote)
 
+  const background = useMemo(() => {
+    if (provider.background) {
+      if (provider.background.startsWith('#')) {
+        return (provider.background.length === 3 || provider.background.length === 7) ? provider.background : DEFAULT_BACKGROUND_COLOR
+      }
+      return provider.background
+    }
+    return DEFAULT_BACKGROUND_COLOR
+
+  }, [provider])
+
   return (
     <div
-      className='group relative flex flex-col px-4 py-3 h-[148px] border-[0.5px] border-black/5 rounded-xl shadow-xs hover:shadow-lg'
-      style={{ background: provider.background || DEFAULT_BACKGROUND_COLOR }}
+      className='group relative flex flex-col px-4 py-3 h-[148px] border-[0.5px] border-black/5 dark:border-stone-600/95 rounded-xl shadow-xs dark:shadow-stone-800 hover:shadow-lg'
+      style={{ background: background }}
     >
       <div className='grow h-0'>
         <div className='py-0.5'>

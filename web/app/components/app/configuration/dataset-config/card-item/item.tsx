@@ -6,15 +6,15 @@ import {
   RiEditLine,
 } from '@remixicon/react'
 import SettingsModal from '../settings-modal'
-import type { DataSet } from '@/models/datasets'
-import { DataSourceType } from '@/models/datasets'
-import FileIcon from '@/app/components/base/file-icon'
-import { Folder } from '@/app/components/base/icons/src/vender/solid/files'
-import { Globe06 } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
-import Drawer from '@/app/components/base/drawer'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import Badge from '@/app/components/base/badge'
-import { useKnowledge } from '@/hooks/use-knowledge'
+import type { DataSet } from '../../../../../../models/datasets'
+import { DataSourceType } from '../../../../../../models/datasets'
+import FileIcon from '../../../../base/file-icon'
+import { Folder } from '../../../../base/icons/src/vender/solid/files'
+import { Globe06 } from '../../../../base/icons/src/vender/solid/mapsAndTravel'
+import Drawer from '../../../../base/drawer'
+import useBreakpoints, { MediaType } from '../../../../../../hooks/use-breakpoints'
+import Badge from '../../../../base/badge'
+import { useKnowledge } from '../../../../../../hooks/use-knowledge'
 
 type ItemProps = {
   className?: string

@@ -58,7 +58,7 @@ import {
   UPDATE_DATASETS_EVENT_EMITTER,
   UPDATE_HISTORY_EVENT_EMITTER,
 } from './constants'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
+import { useEventEmitterContextContext } from '../../../../context/event-emitter'
 
 export type PromptEditorProps = {
   instanceId?: string
@@ -146,7 +146,7 @@ const PromptEditor: FC<PromptEditorProps> = ({
     <LexicalComposer initialConfig={{ ...initialConfig, editable }}>
       <div className='relative min-h-5'>
         <RichTextPlugin
-          contentEditable={<ContentEditable className={`${className} outline-none ${compact ? 'leading-5 text-[13px]' : 'leading-6 text-sm'} text-gray-700`} style={style || {}} />}
+          contentEditable={<ContentEditable className={`${className} outline-none ${compact ? 'leading-5 text-[13px]' : 'leading-6 text-sm'} text-tgai-text-2`} style={style || {}} />}
           placeholder={<Placeholder value={placeholder} className={placeholderClassName} compact={compact} />}
           ErrorBoundary={LexicalErrorBoundary}
         />

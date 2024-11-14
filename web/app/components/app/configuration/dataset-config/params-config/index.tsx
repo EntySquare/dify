@@ -4,20 +4,20 @@ import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
 import { RiEqualizer2Line } from '@remixicon/react'
 import ConfigContent from './config-content'
-import cn from '@/utils/classnames'
-import ConfigContext from '@/context/debug-configuration'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import { RETRIEVE_TYPE } from '@/types/app'
-import Toast from '@/app/components/base/toast'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import type { DataSet } from '@/models/datasets'
-import type { DatasetConfigs } from '@/models/debug'
+import cn from '../../../../../../utils/classnames'
+import ConfigContext from '../../../../../../context/debug-configuration'
+import Modal from '../../../../base/modal'
+import Button from '../../../../base/button'
+import { RETRIEVE_TYPE } from '../../../../../../types/app'
+import Toast from '../../../../base/toast'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '../../../../header/account-setting/model-provider-page/hooks'
+import { ModelTypeEnum } from '../../../../header/account-setting/model-provider-page/declarations'
+import type { DataSet } from '../../../../../../models/datasets'
+import type { DatasetConfigs } from '../../../../../../models/debug'
 import {
   getMultipleRetrievalConfig,
   getSelectedDatasetsMode,
-} from '@/app/components/workflow/nodes/knowledge-retrieval/utils'
+} from '../../../../workflow/nodes/knowledge-retrieval/utils'
 
 type ParamsConfigProps = {
   disabled?: boolean

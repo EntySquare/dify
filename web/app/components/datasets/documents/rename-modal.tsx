@@ -4,9 +4,9 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useBoolean } from 'ahooks'
 import Toast from '../../base/toast'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import { renameDocumentName } from '@/service/datasets'
+import Modal from '../../base/modal'
+import Button from '../../base/button'
+import { renameDocumentName } from '../../../../service/datasets'
 
 type Props = {
   datasetId: string
@@ -57,9 +57,10 @@ const RenameModal: FC<Props> = ({
       title={t('datasetDocuments.list.table.rename')}
       isShow
       onClose={onClose}
+      className='bg-tgai-panel-background-2 dark:border-zinc-600'
     >
-      <div className={'mt-6 font-medium text-sm leading-[21px] text-gray-900'}>{t('datasetDocuments.list.table.name')}</div>
-      <input className={'mt-2 w-full rounded-lg h-10 box-border px-3 text-sm leading-10 bg-gray-100'}
+      <div className={'mt-6 font-medium text-sm leading-[21px] text-tgai-text-1'}>{t('datasetDocuments.list.table.name')}</div>
+      <input className={'mt-2 w-full rounded-lg h-10 box-border px-3 text-sm text-tgai-text-1 leading-10 bg-tgai-input-background'}
         value={newName}
         onChange={e => setNewName(e.target.value)}
       />

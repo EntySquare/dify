@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import Item from './item'
-import type { ConversationItem } from '@/models/share'
+import type { ConversationItem } from '../../../../../../models/share'
 
 type ListProps = {
   isPin?: boolean

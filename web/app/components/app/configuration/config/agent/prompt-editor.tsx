@@ -4,18 +4,18 @@ import React from 'react'
 import copy from 'copy-to-clipboard'
 import { useContext } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import {
   Clipboard,
   ClipboardCheck,
-} from '@/app/components/base/icons/src/vender/line/files'
-import PromptEditor from '@/app/components/base/prompt-editor'
-import type { ExternalDataTool } from '@/models/common'
-import ConfigContext from '@/context/debug-configuration'
-import { useModalContext } from '@/context/modal-context'
-import { useToastContext } from '@/app/components/base/toast'
+} from '../../../../base/icons/src/vender/line/files'
+import PromptEditor from '../../../../base/prompt-editor'
+import type { ExternalDataTool } from '../../../../../../models/common'
+import ConfigContext from '../../../../../../context/debug-configuration'
+import { useModalContext } from '../../../../../../context/modal-context'
+import { useToastContext } from '../../../../base/toast'
 
-import s from '@/app/components/app/configuration/config-prompt/style.module.css'
+import s from '../../config-prompt/style.module.css'
 type Props = {
   className?: string
   type: 'first-prompt' | 'next-iteration'
@@ -90,7 +90,7 @@ const Editor: FC<Props> = ({
               )}
           </div>
         </div>
-        <div className={cn(editorHeight, ' px-4 min-h-[102px] overflow-y-auto text-sm text-gray-700')}>
+        <div className={cn(editorHeight, ' px-4 min-h-[102px] overflow-y-auto tgai-custom-scrollbar text-sm text-gray-700')}>
           <PromptEditor
             className={editorHeight}
             value={value}

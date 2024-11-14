@@ -20,16 +20,16 @@ import {
 import { NODES_INITIAL_DATA } from '../../constants'
 import InsertBlock from './insert-block'
 import type { IterationNodeType } from './types'
-import cn from '@/utils/classnames'
-import BlockSelector from '@/app/components/workflow/block-selector'
-import { IterationStart } from '@/app/components/base/icons/src/vender/workflow'
+import cn from '../../../../../utils/classnames'
+import BlockSelector from '../../block-selector'
+import { IterationStart } from '../../../base/icons/src/vender/workflow'
 import type {
   OnSelectBlock,
-} from '@/app/components/workflow/types'
+} from '../../types'
 import {
   BlockEnum,
-} from '@/app/components/workflow/types'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+} from '../../types'
+import TooltipPlus from '../../../base/tooltip-plus'
 
 type AddBlockProps = {
   iterationNodeId: string
@@ -87,9 +87,9 @@ const AddBlock = ({
   const renderTriggerElement = useCallback((open: boolean) => {
     return (
       <div className={cn(
-        'relative inline-flex items-center px-3 h-8 rounded-lg border-[0.5px] border-gray-50 bg-white shadow-xs cursor-pointer hover:bg-gray-200 text-[13px] font-medium text-gray-700',
+        'relative inline-flex items-center px-3 h-8 rounded-lg border-[0.5px] border-gray-50 dark:border-tgai-workflow-panel-border bg-white dark:bg-tgai-workflow-panel-background shadow-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-zinc-600 text-[13px] font-medium text-tgai-text-2',
         `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
-        open && '!bg-gray-50',
+        open && '!bg-gray-50 dark:!bg-zinc-700',
       )}>
         <RiAddLine className='mr-1 w-4 h-4' />
         {t('workflow.common.addBlock')}
@@ -100,7 +100,7 @@ const AddBlock = ({
   return (
     <div className='absolute top-12 left-6 flex items-center h-8 z-10'>
       <TooltipPlus popupContent={t('workflow.blocks.iteration-start')}>
-        <div className='flex items-center justify-center w-6 h-6 rounded-full border-[0.5px] border-black/[0.02] shadow-md bg-primary-500'>
+        <div className='flex items-center justify-center w-6 h-6 rounded-full border-[0.5px] border-black/[0.02] shadow-md bg-tgai-primary-5'>
           <IterationStart className='w-4 h-4 text-white' />
         </div>
       </TooltipPlus>
@@ -113,7 +113,7 @@ const AddBlock = ({
             />
           )
         }
-        <div className='absolute right-0 top-1/2 -translate-y-1/2 w-0.5 h-2 bg-primary-500'></div>
+        <div className='absolute right-0 top-1/2 -translate-y-1/2 w-0.5 h-2 bg-tgai-primary-5'></div>
       </div>
       {
         !iterationNodeData.startNodeType && (

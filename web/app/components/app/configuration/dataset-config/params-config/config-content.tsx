@@ -8,31 +8,31 @@ import {
   RiQuestionLine,
 } from '@remixicon/react'
 import WeightedScore from './weighted-score'
-import TopKItem from '@/app/components/base/param-item/top-k-item'
-import ScoreThresholdItem from '@/app/components/base/param-item/score-threshold-item'
-import RadioCard from '@/app/components/base/radio-card/simple'
-import { RETRIEVE_TYPE } from '@/types/app'
+import TopKItem from '../../../../base/param-item/top-k-item'
+import ScoreThresholdItem from '../../../../base/param-item/score-threshold-item'
+import RadioCard from '../../../../base/radio-card/simple'
+import { RETRIEVE_TYPE } from '../../../../../../types/app'
 import {
   MultiPathRetrieval,
   NTo1Retrieval,
-} from '@/app/components/base/icons/src/public/common'
+} from '../../../../base/icons/src/public/common'
 import type {
   DatasetConfigs,
-} from '@/models/debug'
-import ModelSelector from '@/app/components/header/account-setting/model-provider-page/model-selector'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import type { ModelConfig } from '@/app/components/workflow/types'
-import ModelParameterModal from '@/app/components/header/account-setting/model-provider-page/model-parameter-modal'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
+} from '../../../../../../models/debug'
+import ModelSelector from '../../../../header/account-setting/model-provider-page/model-selector'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '../../../../header/account-setting/model-provider-page/hooks'
+import type { ModelConfig } from '../../../../workflow/types'
+import ModelParameterModal from '../../../../header/account-setting/model-provider-page/model-parameter-modal'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import { ModelTypeEnum } from '../../../../header/account-setting/model-provider-page/declarations'
 import type {
   DataSet,
-} from '@/models/datasets'
-import { RerankingModeEnum } from '@/models/datasets'
-import cn from '@/utils/classnames'
-import { useSelectedDatasetsMode } from '@/app/components/workflow/nodes/knowledge-retrieval/hooks'
-import Switch from '@/app/components/base/switch'
-import { useGetLanguage } from '@/context/i18n'
+} from '../../../../../../models/datasets'
+import { RerankingModeEnum } from '../../../../../../models/datasets'
+import cn from '../../../../../../utils/classnames'
+import { useSelectedDatasetsMode } from '../../../../workflow/nodes/knowledge-retrieval/hooks'
+import Switch from '../../../../base/switch'
+import { useGetLanguage } from '../../../../../../context/i18n'
 
 type Props = {
   datasetConfigs: DatasetConfigs
@@ -182,7 +182,7 @@ const ConfigContent: FC<Props> = ({
                   </div>
                 )}
               >
-                <div className='ml-1 flex items-center px-[5px] h-[18px] rounded-[5px] border border-text-accent-secondary system-2xs-medium-uppercase text-text-accent-secondary'>legacy</div>
+                <div className='ml-1 flex items-center px-[5px] h-[18px] rounded-[5px] border border-text-accent-secondary dark:border-tgai-primary-5 system-2xs-medium-uppercase text-text-accent-secondary dark:text-tgai-primary-5'>legacy</div>
               </TooltipPlus>
             </div>
           )}
@@ -195,7 +195,7 @@ const ConfigContent: FC<Props> = ({
               <div className='system-xs-medium text-text-primary'>
                 {t('dataset.nTo1RetrievalLegacyLinkText')}
                 <a
-                  className='text-text-accent'
+                  className='text-text-accent dark:text-tgai-primary'
                   href={LEGACY_LINK_MAP[language]}
                   target='_blank'
                   rel='noopener noreferrer'
@@ -282,9 +282,9 @@ const ConfigContent: FC<Props> = ({
                       />
                     )
                   }
-                  <div className='ml-2 leading-[32px] text-[13px] font-medium text-gray-900'>{t('common.modelProvider.rerankModel.key')}</div>
+                  <div className='ml-2 leading-[32px] text-[13px] font-medium text-tgai-text-1'>{t('common.modelProvider.rerankModel.key')}</div>
                   <TooltipPlus popupContent={<div className="w-[200px]">{t('common.modelProvider.rerankModel.tip')}</div>}>
-                    <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-gray-400' />
+                    <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
                   </TooltipPlus>
                 </div>
                 <div>
@@ -362,11 +362,11 @@ const ConfigContent: FC<Props> = ({
       {isInWorkflow && type === RETRIEVE_TYPE.oneWay && (
         <div className='mt-4'>
           <div className='flex items-center space-x-0.5'>
-            <div className='leading-[32px] text-[13px] font-medium text-gray-900'>{t('common.modelProvider.systemReasoningModel.key')}</div>
+            <div className='leading-[32px] text-[13px] font-medium text-tgai-text-1'>{t('common.modelProvider.systemReasoningModel.key')}</div>
             <TooltipPlus
               popupContent={t('common.modelProvider.systemReasoningModel.tip')}
             >
-              <RiQuestionLine className='w-3.5 h-4.5 text-gray-400' />
+              <RiQuestionLine className='w-3.5 h-4.5 text-tgai-text-3' />
             </TooltipPlus>
           </div>
           <ModelParameterModal

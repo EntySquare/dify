@@ -18,14 +18,14 @@ import {
 import { NODES_INITIAL_DATA } from '../constants'
 import { useWorkflowStore } from '../store'
 import TipPopup from './tip-popup'
-import cn from '@/utils/classnames'
-import BlockSelector from '@/app/components/workflow/block-selector'
+import cn from '../../../../utils/classnames'
+import BlockSelector from '../block-selector'
 import type {
   OnSelectBlock,
-} from '@/app/components/workflow/types'
+} from '../types'
 import {
   BlockEnum,
-} from '@/app/components/workflow/types'
+} from '../types'
 
 type AddBlockProps = {
   renderTrigger?: (open: boolean) => React.ReactNode
@@ -78,9 +78,9 @@ const AddBlock = ({
         title={t('workflow.common.addBlock')}
       >
         <div className={cn(
-          'flex items-center justify-center w-8 h-8 rounded-lg hover:bg-black/5 hover:text-gray-700 cursor-pointer',
+          'flex items-center justify-center w-8 h-8 rounded-lg hover:bg-black/5 dark:hover:bg-zinc-600 text-tgai-text-2 hover:text-tgai-text-1 cursor-pointer',
           `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
-          open && '!bg-black/5',
+          open && '!bg-black/5 dark:!bg-zinc-600',
         )}>
           <RiAddCircleFill className='w-4 h-4' />
         </div>

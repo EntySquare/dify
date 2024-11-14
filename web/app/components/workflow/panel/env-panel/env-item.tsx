@@ -1,10 +1,10 @@
 import { memo, useState } from 'react'
 import { capitalize } from 'lodash-es'
 import { RiDeleteBinLine, RiEditLine, RiLock2Line } from '@remixicon/react'
-import { Env } from '@/app/components/base/icons/src/vender/line/others'
-import { useStore } from '@/app/components/workflow/store'
-import type { EnvironmentVariable } from '@/app/components/workflow/types'
-import cn from '@/utils/classnames'
+import { Env } from '../../../base/icons/src/vender/line/others'
+import { useStore } from '../../store'
+import type { EnvironmentVariable } from '../../types'
+import cn from '../../../../../utils/classnames'
 
 type EnvItemProps = {
   env: EnvironmentVariable

@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
 import InvitationLink from './invitation-link'
 import s from './index.module.css'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import { IS_CE_EDITION } from '@/config'
-import type { InvitationResult } from '@/models/common'
-import Tooltip from '@/app/components/base/tooltip'
+import Modal from '../../../../base/modal'
+import Button from '../../../../base/button'
+import { IS_CE_EDITION } from '../../../../../../config'
+import type { InvitationResult } from '../../../../../../models/common'
+import Tooltip from '../../../../base/tooltip'
 
 export type SuccessInvationResult = Extract<InvitationResult, { status: 'success' }>
 export type FailedInvationResult = Extract<InvitationResult, { status: 'failed' }>

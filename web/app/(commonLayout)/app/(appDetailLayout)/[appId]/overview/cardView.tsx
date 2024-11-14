@@ -3,21 +3,21 @@ import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import AppCard from '@/app/components/app/overview/appCard'
-import Loading from '@/app/components/base/loading'
-import { ToastContext } from '@/app/components/base/toast'
+import AppCard from '../../../../../components/app/overview/appCard'
+import Loading from '../../../../../components/base/loading'
+import { ToastContext } from '../../../../../components/base/toast'
 import {
   fetchAppDetail,
   updateAppSiteAccessToken,
   updateAppSiteConfig,
   updateAppSiteStatus,
-} from '@/service/apps'
-import type { App } from '@/types/app'
-import type { UpdateAppSiteCodeResponse } from '@/models/app'
-import { asyncRunSafe } from '@/utils'
-import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
-import type { IAppCardProps } from '@/app/components/app/overview/appCard'
-import { useStore as useAppStore } from '@/app/components/app/store'
+} from '../../../../../../service/apps'
+import type { App } from '../../../../../../types/app'
+import type { UpdateAppSiteCodeResponse } from '../../../../../../models/app'
+import { asyncRunSafe } from '../../../../../../utils'
+import { NEED_REFRESH_APP_LIST_KEY } from '../../../../../../config'
+import type { IAppCardProps } from '../../../../../components/app/overview/appCard'
+import { useStore as useAppStore } from '../../../../../components/app/store'
 
 export type ICardViewProps = {
   appId: string

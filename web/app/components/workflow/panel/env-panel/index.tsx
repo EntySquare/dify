@@ -8,16 +8,16 @@ import {
 } from 'reactflow'
 import { RiCloseLine } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
-import { useStore } from '@/app/components/workflow/store'
-import VariableTrigger from '@/app/components/workflow/panel/env-panel/variable-trigger'
-import EnvItem from '@/app/components/workflow/panel/env-panel/env-item'
+import { useStore } from '../../store'
+import VariableTrigger from './variable-trigger'
+import EnvItem from './env-item'
 import type {
   EnvironmentVariable,
-} from '@/app/components/workflow/types'
-import { findUsedVarNodes, updateNodeVars } from '@/app/components/workflow/nodes/_base/components/variable/utils'
-import RemoveEffectVarConfirm from '@/app/components/workflow/nodes/_base/components/remove-effect-var-confirm'
-import cn from '@/utils/classnames'
-import { useNodesSyncDraft } from '@/app/components/workflow/hooks/use-nodes-sync-draft'
+} from '../../types'
+import { findUsedVarNodes, updateNodeVars } from '../../nodes/_base/components/variable/utils'
+import RemoveEffectVarConfirm from '../../nodes/_base/components/remove-effect-var-confirm'
+import cn from '../../../../../utils/classnames'
+import { useNodesSyncDraft } from '../../hooks/use-nodes-sync-draft'
 
 const EnvPanel = () => {
   const { t } = useTranslation()
@@ -159,11 +159,11 @@ const EnvPanel = () => {
             className='flex items-center justify-center w-6 h-6 cursor-pointer'
             onClick={() => setShowEnvPanel(false)}
           >
-            <RiCloseLine className='w-4 h-4 text-text-tertiary' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       </div>
-      <div className='shrink-0 py-1 px-4 system-sm-regular text-text-tertiary'>{t('workflow.env.envDescription')}</div>
+      <div className='shrink-0 py-1 px-4 system-sm-regular text-tgai-text-3'>{t('workflow.env.envDescription')}</div>
       <div className='shrink-0 px-4 pt-2 pb-3'>
         <VariableTrigger
           open={showVariableModal}
@@ -173,7 +173,7 @@ const EnvPanel = () => {
           onClose={() => setCurrentVar(undefined)}
         />
       </div>
-      <div className='grow px-4 rounded-b-2xl overflow-y-auto'>
+      <div className='grow px-4 rounded-b-2xl overflow-y-auto tgai-custom-scrollbar'>
         {envList.map(env => (
           <EnvItem
             key={env.id}

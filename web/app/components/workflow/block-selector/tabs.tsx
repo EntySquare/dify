@@ -6,7 +6,7 @@ import type { ToolDefaultValue } from './types'
 import { TabsEnum } from './types'
 import Blocks from './blocks'
 import AllTools from './all-tools'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 
 export type TabsProps = {
   activeTab: TabsEnum
@@ -30,7 +30,7 @@ const Tabs: FC<TabsProps> = ({
     <div onClick={e => e.stopPropagation()}>
       {
         !noBlocks && (
-          <div className='flex items-center px-3 border-b-[0.5px] border-b-black/5'>
+          <div className='flex items-center px-3 border-b-[0.5px] border-b-black/5 dark:border-b-zinc-600'>
             {
               tabs.map(tab => (
                 <div
@@ -38,8 +38,8 @@ const Tabs: FC<TabsProps> = ({
                   className={cn(
                     'relative mr-4 h-[34px] text-[13px] leading-[34px] font-medium cursor-pointer',
                     activeTab === tab.key
-                      ? 'text-gray-700 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-primary-600'
-                      : 'text-gray-500',
+                      ? 'text-tgai-text-1 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-tgai-primary'
+                      : 'text-tgai-text-2',
                   )}
                   onClick={() => onActiveTabChange(tab.key)}
                 >

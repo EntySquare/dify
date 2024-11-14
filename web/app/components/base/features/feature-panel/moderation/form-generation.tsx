@@ -1,10 +1,10 @@
 import type { FC } from 'react'
 import { memo } from 'react'
 import { useContext } from 'use-context-selector'
-import type { CodeBasedExtensionForm } from '@/models/common'
-import I18n from '@/context/i18n'
-import { PortalSelect } from '@/app/components/base/select'
-import type { ModerationConfig } from '@/models/debug'
+import type { CodeBasedExtensionForm } from '../../../../../../models/common'
+import I18n from '../../../../../../context/i18n'
+import { PortalSelect } from '../../../select'
+import type { ModerationConfig } from '../../../../../../models/debug'
 
 type FormGenerationProps = {
   forms: CodeBasedExtensionForm[]

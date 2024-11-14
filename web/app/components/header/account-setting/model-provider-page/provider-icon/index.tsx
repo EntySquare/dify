@@ -5,20 +5,24 @@ import { useLanguage } from '../hooks'
 type ProviderIconProps = {
   provider: ModelProvider
   className?: string
+  background?: boolean
 }
 const ProviderIcon: FC<ProviderIconProps> = ({
   provider,
   className,
+  background
 }) => {
   const language = useLanguage()
 
   if (provider.icon_large) {
     return (
-      <img
-        alt='provider-icon'
-        src={`${provider.icon_large[language] || provider.icon_large.en_US}?_token=${localStorage.getItem('console_token')}`}
-        className={`w-auto h-6 ${className}`}
-      />
+      <div className={background ? 'dark:bg-white px-4 py-3' : ""}>
+        <img
+          alt='provider-icon'
+          src={`${provider.icon_large[language] || provider.icon_large.en_US}?_token=${localStorage.getItem('console_token')}`}
+          className={`w-auto h-6 ${className}`}
+        />
+      </div>
     )
   }
 

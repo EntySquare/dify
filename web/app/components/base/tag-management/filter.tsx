@@ -4,19 +4,19 @@ import { useTranslation } from 'react-i18next'
 import { useDebounceFn, useMount } from 'ahooks'
 import { RiArrowDownSLine } from '@remixicon/react'
 import { useStore as useTagStore } from './store'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import SearchInput from '@/app/components/base/search-input'
-import { Tag01, Tag03 } from '@/app/components/base/icons/src/vender/line/financeAndECommerce'
-import { Check } from '@/app/components/base/icons/src/vender/line/general'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import type { Tag } from '@/app/components/base/tag-management/constant'
+} from '../portal-to-follow-elem'
+import SearchInput from '../search-input'
+import { Tag01, Tag03 } from '../icons/src/vender/line/financeAndECommerce'
+import { Check } from '../icons/src/vender/line/general'
+import { XCircle } from '../icons/src/vender/solid/general'
+import type { Tag } from './constant'
 
-import { fetchTagList } from '@/service/tag'
+import { fetchTagList } from '../../../../service/tag'
 
 type TagFilterProps = {
   type: 'knowledge' | 'app'

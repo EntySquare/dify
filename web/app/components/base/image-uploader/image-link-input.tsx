@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Button from '@/app/components/base/button'
-import type { ImageFile } from '@/types/app'
-import { TransferMethod } from '@/types/app'
+import Button from '../button'
+import type { ImageFile } from '../../../../types/app'
+import { TransferMethod } from '../../../../types/app'
 
 type ImageLinkInputProps = {
   onUpload: (imageFile: ImageFile) => void
@@ -33,10 +33,10 @@ const ImageLinkInput: FC<ImageLinkInputProps> = ({
   }
 
   return (
-    <div className='flex items-center pl-1.5 pr-1 h-8 border border-gray-200 bg-white shadow-xs rounded-lg'>
+    <div className='flex items-center pl-1.5 pr-1 h-8 border border-gray-200 dark:border-zinc-600 bg-white dark:bg-tgai-input-background shadow-xs rounded-lg text-tgai-text-1'>
       <input
         type="text"
-        className='grow mr-0.5 px-1 h-[18px] text-[13px] outline-none appearance-none'
+        className='grow mr-0.5 px-1 h-[18px] text-[13px] outline-none appearance-non dark:bg-tgai-input-background'
         value={imageLink}
         onChange={e => setImageLink(e.target.value)}
         placeholder={t('common.imageUploader.pasteImageLinkInputPlaceholder') || ''}

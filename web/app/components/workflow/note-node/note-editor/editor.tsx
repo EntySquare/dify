@@ -17,15 +17,19 @@ import { useWorkflowHistoryStore } from '../../workflow-history-store'
 import LinkEditorPlugin from './plugins/link-editor-plugin'
 import FormatDetectorPlugin from './plugins/format-detector-plugin'
 // import TreeView from '@/app/components/base/prompt-editor/plugins/tree-view'
-import Placeholder from '@/app/components/base/prompt-editor/plugins/placeholder'
+import Placeholder from '../../../base/prompt-editor/plugins/placeholder'
+import { NoteTheme } from '../types'
+import classNames from '@/utils/classnames'
 
 type EditorProps = {
   placeholder?: string
   onChange?: (editorState: EditorState) => void
   containerElement: HTMLDivElement | null
+  theme: NoteTheme
 }
 const Editor = ({
   placeholder = 'write you note...',
+  theme,
   onChange,
   containerElement,
 }: EditorProps) => {
@@ -44,7 +48,7 @@ const Editor = ({
               onFocus={() => setShortcutsEnabled(false)}
               onBlur={() => setShortcutsEnabled(true)}
               spellCheck={false}
-              className='w-full h-full outline-none caret-primary-600'
+              className={classNames('w-full h-full outline-none caret-tgai-primary', theme === NoteTheme.dark ? "text-tgai-text-1" : "")}
               placeholder={placeholder}
             />
           </div>

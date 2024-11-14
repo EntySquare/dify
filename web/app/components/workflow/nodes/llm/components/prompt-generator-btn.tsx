@@ -3,13 +3,13 @@ import type { FC } from 'react'
 import React, { useCallback } from 'react'
 import { useBoolean } from 'ahooks'
 import cn from 'classnames'
-import { Generator } from '@/app/components/base/icons/src/vender/other'
-import { ActionButton } from '@/app/components/base/action-button'
-import GetAutomaticResModal from '@/app/components/app/configuration/config/automatic/get-automatic-res'
-import { AppType } from '@/types/app'
-import type { AutomaticRes } from '@/service/debug'
-import type { ModelConfig } from '@/app/components/workflow/types'
-import type { Model } from '@/types/app'
+import { Generator } from '../../../../base/icons/src/vender/other'
+import { ActionButton } from '../../../../base/action-button'
+import GetAutomaticResModal from '../../../../app/configuration/config/automatic/get-automatic-res'
+import { AppType } from '../../../../../../types/app'
+import type { AutomaticRes } from '../../../../../../service/debug'
+import type { ModelConfig } from '../../../types'
+import type { Model } from '../../../../../../types/app'
 
 type Props = {
   className?: string
@@ -30,9 +30,9 @@ const PromptGeneratorBtn: FC<Props> = ({
   return (
     <div className={cn(className)}>
       <ActionButton
-        className='hover:bg-[#155EFF]/8'
+        className='hover:bg-[#155EFF]/8 dark:hover:bg-zinc-600/85'
         onClick={showAutomaticTrue}>
-        <Generator className='w-4 h-4 text-primary-600' />
+        <Generator className='w-4 h-4 text-tgai-primary' />
       </ActionButton>
       {showAutomatic && (
         <GetAutomaticResModal

@@ -8,7 +8,7 @@ import classNames from 'classnames'
 
 import { ImagePlus } from '../icons/src/vender/line/images'
 import { useDraggableUploader } from './hooks'
-import { ALLOW_FILE_EXTENSIONS } from '@/types/app'
+import { ALLOW_FILE_EXTENSIONS } from '../../../../types/app'
 
 type UploaderProps = {
   className?: string
@@ -57,7 +57,7 @@ const Uploader: FC<UploaderProps> = ({
       <div
         className={classNames(
           isDragActive && 'border-primary-600',
-          'relative aspect-square bg-gray-50 border-[1.5px] border-gray-200 border-dashed rounded-lg flex flex-col justify-center items-center text-gray-500')}
+          'relative aspect-square bg-tgai-input-background border-[1.5px] border-gray-200 dark:border-stone-600 border-dashed rounded-lg flex flex-col justify-center items-center text-tgai-text-3')}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -69,7 +69,7 @@ const Uploader: FC<UploaderProps> = ({
               <ImagePlus className="w-[30px] h-[30px] mb-3 pointer-events-none" />
               <div className="text-sm font-medium mb-[2px]">
                 <span className="pointer-events-none">Drop your image here, or&nbsp;</span>
-                <button className="text-components-button-primary-bg" onClick={() => inputRef.current?.click()}>browse</button>
+                <button className="text-tgai-primary" onClick={() => inputRef.current?.click()}>browse</button>
                 <input
                   ref={inputRef} type="file" className="hidden"
                   onClick={e => ((e.target as HTMLInputElement).value = '')}

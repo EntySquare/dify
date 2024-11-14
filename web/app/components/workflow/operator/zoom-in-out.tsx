@@ -26,12 +26,12 @@ import {
 } from '../utils'
 import ShortcutsName from '../shortcuts-name'
 import TipPopup from './tip-popup'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../base/portal-to-follow-elem'
 
 enum ZoomType {
   zoomIn = 'zoomIn',
@@ -216,19 +216,19 @@ const ZoomInOut: FC = () => {
     >
       <PortalToFollowElemTrigger asChild onClick={handleTrigger}>
         <div className={`
-          p-0.5 h-9 cursor-pointer text-[13px] text-gray-500 font-medium rounded-lg bg-white shadow-lg border-[0.5px] border-gray-100
+          p-0.5 h-9 cursor-pointer text-[13px] text-tgai-text-2 font-medium rounded-lg bg-tgai-panel-background-3 shadow-lg border-[0.5px] border-gray-100 dark:border-stone-600
           ${workflowReadOnly && '!cursor-not-allowed opacity-50'}
         `}>
           <div className={cn(
-            'flex items-center justify-between w-[98px] h-8 hover:bg-gray-50 rounded-lg',
-            open && 'bg-gray-50',
+            'flex items-center justify-between w-[98px] h-8 hover:bg-gray-50 dark:hover:bg-zinc-700 rounded-lg',
+            open && 'bg-gray-50 dark:bg-zinc-700',
           )}>
             <TipPopup
               title={t('workflow.operator.zoomOut')}
               shortcuts={['ctrl', '-']}
             >
               <div
-                className='flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer hover:bg-black/5'
+                className='flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer hover:bg-black/5 dark:hover:bg-zinc-600'
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomOut()
@@ -243,7 +243,7 @@ const ZoomInOut: FC = () => {
               shortcuts={['ctrl', '+']}
             >
               <div
-                className='flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer hover:bg-black/5'
+                className='flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer hover:bg-black/5 dark:hover:bg-zinc-600'
                 onClick={(e) => {
                   e.stopPropagation()
                   zoomIn()
@@ -256,13 +256,13 @@ const ZoomInOut: FC = () => {
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='z-10'>
-        <div className='w-[145px] rounded-lg border-[0.5px] border-gray-200 bg-white shadow-lg'>
+        <div className='w-[145px] rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 bg-tgai-panel-background-3 shadow-lg dark:shadow-stone-800'>
           {
             ZOOM_IN_OUT_OPTIONS.map((options, i) => (
               <Fragment key={i}>
                 {
                   i !== 0 && (
-                    <div className='h-[1px] bg-gray-100' />
+                    <div className='h-[1px] bg-gray-100 dark:bg-zinc-600' />
                   )
                 }
                 <div className='p-1'>
@@ -270,7 +270,7 @@ const ZoomInOut: FC = () => {
                     options.map(option => (
                       <div
                         key={option.key}
-                        className='flex items-center justify-between px-3 h-8 rounded-lg hover:bg-gray-50 cursor-pointer text-sm text-gray-700'
+                        className='flex items-center justify-between px-3 h-8 rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-600 cursor-pointer text-sm text-tgai-text-2'
                         onClick={() => handleZoom(option.key)}
                       >
                         {option.text}

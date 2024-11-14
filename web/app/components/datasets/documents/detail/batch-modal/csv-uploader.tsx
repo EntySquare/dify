@@ -6,10 +6,10 @@ import {
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import cn from '@/utils/classnames'
-import { Csv as CSVIcon } from '@/app/components/base/icons/src/public/files'
-import { ToastContext } from '@/app/components/base/toast'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../../utils/classnames'
+import { Csv as CSVIcon } from '../../../../base/icons/src/public/files'
+import { ToastContext } from '../../../../base/toast'
+import Button from '../../../../base/button'
 
 export type Props = {
   file: File | undefined
@@ -93,29 +93,29 @@ const CSVUploader: FC<Props> = ({
       />
       <div ref={dropRef}>
         {!file && (
-          <div className={cn('flex items-center h-20 rounded-xl bg-gray-50 border border-dashed border-gray-200 text-sm font-normal', dragging && 'bg-[#F5F8FF] border border-[#B2CCFF]')}>
+          <div className={cn('flex items-center h-20 rounded-xl bg-gray-50 dark:bg-zinc-700 border border-dashed border-gray-200 dark:border-stone-600 text-sm font-normal', dragging && 'bg-[#F5F8FF] dark:bg-zinc-600 border border-[#B2CCFF] dark:border-tgai-primary-7')}>
             <div className='w-full flex items-center justify-center space-x-2'>
               <CSVIcon className="shrink-0" />
-              <div className='text-gray-500'>
+              <div className='text-tgai-text-3'>
                 {t('datasetDocuments.list.batchModal.csvUploadTitle')}
-                <span className='text-primary-400 cursor-pointer' onClick={selectHandle}>{t('datasetDocuments.list.batchModal.browse')}</span>
+                <span className='text-primary-400 dark:text-tgai-primary-7 cursor-pointer' onClick={selectHandle}>{t('datasetDocuments.list.batchModal.browse')}</span>
               </div>
             </div>
             {dragging && <div ref={dragRef} className='absolute w-full h-full top-0 left-0' />}
           </div>
         )}
         {file && (
-          <div className={cn('flex items-center h-20 px-6 rounded-xl bg-gray-50 border border-gray-200 text-sm font-normal group', 'hover:bg-[#F5F8FF] hover:border-[#B2CCFF]')}>
+          <div className={cn('flex items-center h-20 px-6 rounded-xl bg-gray-50 dark:bg-zinc-700 border border-gray-200 dark:border-stone-600 text-sm font-normal group', 'hover:bg-[#F5F8FF] dark:hover:bg-zinc-600 hover:border-[#B2CCFF] dark:hover:border-tgai-primary-7')}>
             <CSVIcon className="shrink-0" />
             <div className='flex ml-2 w-0 grow'>
-              <span className='max-w-[calc(100%_-_30px)] text-ellipsis whitespace-nowrap overflow-hidden text-gray-800'>{file.name.replace(/.csv$/, '')}</span>
-              <span className='shrink-0 text-gray-500'>.csv</span>
+              <span className='max-w-[calc(100%_-_30px)] text-ellipsis whitespace-nowrap overflow-hidden text-tgai-text-1'>{file.name.replace(/.csv$/, '')}</span>
+              <span className='shrink-0 text-tgai-text-3'>.csv</span>
             </div>
             <div className='hidden group-hover:flex items-center'>
               <Button onClick={selectHandle}>{t('datasetCreation.stepOne.uploader.change')}</Button>
-              <div className='mx-2 w-px h-4 bg-gray-200' />
+              <div className='mx-2 w-px h-4 bg-gray-200 dark:bg-zinc-600' />
               <div className='p-2 cursor-pointer' onClick={removeFile}>
-                <RiDeleteBinLine className='w-4 h-4 text-gray-500' />
+                <RiDeleteBinLine className='w-4 h-4 text-tgai-text-3' />
               </div>
             </div>
           </div>

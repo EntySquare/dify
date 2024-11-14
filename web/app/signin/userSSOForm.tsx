@@ -3,10 +3,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import Toast from '@/app/components/base/toast'
-import { getUserOAuth2SSOUrl, getUserOIDCSSOUrl, getUserSAMLSSOUrl } from '@/service/sso'
-import Button from '@/app/components/base/button'
+import cn from '../../utils/classnames'
+import Toast from '../components/base/toast'
+import { getUserOAuth2SSOUrl, getUserOIDCSSOUrl, getUserSAMLSSOUrl } from '../../service/sso'
+import Button from '../components/base/button'
 
 type UserSSOFormProps = {
   protocol: string

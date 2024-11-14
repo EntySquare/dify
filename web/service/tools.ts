@@ -7,9 +7,9 @@ import type {
   ToolCredential,
   WorkflowToolProviderRequest,
   WorkflowToolProviderResponse,
-} from '@/app/components/tools/types'
-import type { ToolWithProvider } from '@/app/components/workflow/types'
-import type { Label } from '@/app/components/tools/labels/constant'
+} from '../app/components/tools/types'
+import type { ToolWithProvider } from '../app/components/workflow/types'
+import type { Label } from '../app/components/tools/labels/constant'
 
 export const fetchCollectionList = () => {
   return get<Collection[]>('/workspaces/current/tool-providers')

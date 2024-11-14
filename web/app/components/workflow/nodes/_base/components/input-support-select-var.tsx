@@ -3,15 +3,15 @@ import type { FC } from 'react'
 import React, { useEffect } from 'react'
 import { useBoolean } from 'ahooks'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import type {
   Node,
   NodeOutPutVar,
-} from '@/app/components/workflow/types'
-import { BlockEnum } from '@/app/components/workflow/types'
-import PromptEditor from '@/app/components/base/prompt-editor'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+} from '../../../types'
+import { BlockEnum } from '../../../types'
+import PromptEditor from '../../../../base/prompt-editor'
+import { Variable02 } from '../../../../base/icons/src/vender/solid/development'
+import TooltipPlus from '../../../../base/tooltip-plus'
 
 type Props = {
   instanceId?: string
@@ -112,7 +112,7 @@ const Editor: FC<Props> = ({
             <TooltipPlus
               popupContent={`${t('workflow.common.insertVarTip')}`}
             >
-              <div className='p-0.5 rounded-[5px] shadow-lg cursor-pointer bg-white hover:bg-gray-100 border-[0.5px] border-black/5'>
+              <div className='p-0.5 rounded-[5px] shadow-lg cursor-pointer bg-white dark:bg-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-500 border-[0.5px] border-black/5 dark:border-stone-600/95'>
                 <Variable02 className='w-3.5 h-3.5 text-components-button-secondary-accent-text' />
               </div>
             </TooltipPlus>

@@ -9,11 +9,11 @@ import {
 } from '@remixicon/react'
 import type { ToolInfoInThought } from '../type'
 import Panel from './panel'
-import cn from '@/utils/classnames'
-import { CheckCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import { DataSet as DataSetIcon } from '@/app/components/base/icons/src/public/thought'
-import type { Emoji } from '@/app/components/tools/types'
-import AppIcon from '@/app/components/base/app-icon'
+import cn from '../../../../../../utils/classnames'
+import { CheckCircle } from '../../../icons/src/vender/solid/general'
+import { DataSet as DataSetIcon } from '../../../icons/src/public/thought'
+import type { Emoji } from '../../../../tools/types'
+import AppIcon from '../../../app-icon'
 
 type Props = {
   payload: ToolInfoInThought

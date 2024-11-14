@@ -4,12 +4,12 @@ import {
   DocumentProcessingPriority,
   Plan,
 } from '../type'
-import { useProviderContext } from '@/context/provider-context'
+import { useProviderContext } from '../../../../context/provider-context'
 import {
   ZapFast,
   ZapNarrow,
-} from '@/app/components/base/icons/src/vender/solid/general'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+} from '../../base/icons/src/vender/solid/general'
+import TooltipPlus from '../../base/tooltip-plus'
 
 const PriorityLabel = () => {
   const { t } = useTranslation()

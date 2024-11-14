@@ -9,22 +9,22 @@ import {
 } from 'reactflow'
 import { RiBookOpenLine, RiCloseLine } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
-import { useStore } from '@/app/components/workflow/store'
-import ActionButton, { ActionButtonState } from '@/app/components/base/action-button'
-import { BubbleX, LongArrowLeft, LongArrowRight } from '@/app/components/base/icons/src/vender/line/others'
-import BlockIcon from '@/app/components/workflow/block-icon'
-import VariableModalTrigger from '@/app/components/workflow/panel/chat-variable-panel/components/variable-modal-trigger'
-import VariableItem from '@/app/components/workflow/panel/chat-variable-panel/components/variable-item'
-import RemoveEffectVarConfirm from '@/app/components/workflow/nodes/_base/components/remove-effect-var-confirm'
+import { useStore } from '../../store'
+import ActionButton, { ActionButtonState } from '../../../base/action-button'
+import { BubbleX, LongArrowLeft, LongArrowRight } from '../../../base/icons/src/vender/line/others'
+import BlockIcon from '../../block-icon'
+import VariableModalTrigger from './components/variable-modal-trigger'
+import VariableItem from './components/variable-item'
+import RemoveEffectVarConfirm from '../../nodes/_base/components/remove-effect-var-confirm'
 import type {
   ConversationVariable,
-} from '@/app/components/workflow/types'
-import { findUsedVarNodes, updateNodeVars } from '@/app/components/workflow/nodes/_base/components/variable/utils'
-import { useNodesSyncDraft } from '@/app/components/workflow/hooks/use-nodes-sync-draft'
-import { BlockEnum } from '@/app/components/workflow/types'
-import I18n from '@/context/i18n'
-import { LanguagesSupported } from '@/i18n/language'
-import cn from '@/utils/classnames'
+} from '../../types'
+import { findUsedVarNodes, updateNodeVars } from '../../nodes/_base/components/variable/utils'
+import { useNodesSyncDraft } from '../../hooks/use-nodes-sync-draft'
+import { BlockEnum } from '../../types'
+import I18n from '../../../../../context/i18n'
+import { LanguagesSupported } from '../../../../../i18n/language'
+import cn from '../../../../../utils/classnames'
 
 const ChatVariablePanel = () => {
   const { t } = useTranslation()
@@ -139,7 +139,7 @@ const ChatVariablePanel = () => {
             <div className='inline-block py-[3px] px-[5px] rounded-[5px] border border-divider-deep text-text-tertiary system-2xs-medium-uppercase'>TIPS</div>
             <div className='mt-1 mb-4 system-sm-regular text-text-secondary'>
               {t('workflow.chatVariable.panelDescription')}
-              <a target='_blank' rel='noopener noreferrer' className='text-text-accent' href={locale !== LanguagesSupported[1] ? 'https://docs.dify.ai/guides/workflow/key_concepts#conversation-variables' : `https://docs.dify.ai/v/${locale.toLowerCase()}/guides/workflow/key_concept#hui-hua-bian-liang`}>{t('workflow.chatVariable.docLink')}</a>
+              {/* <a target='_blank' rel='noopener noreferrer' className='text-text-accent' href={locale !== LanguagesSupported[1] ? 'https://docs.dify.ai/guides/workflow/key_concepts#conversation-variables' : `https://docs.dify.ai/v/${locale.toLowerCase()}/guides/workflow/key_concept#hui-hua-bian-liang`}>{t('workflow.chatVariable.docLink')}</a> */}
             </div>
             <div className='flex items-center gap-2'>
               <div className='flex flex-col p-3 pb-4 bg-workflow-block-bg radius-lg border border-workflow-block-border shadow-md'>
@@ -180,7 +180,7 @@ const ChatVariablePanel = () => {
           onClose={() => setCurrentVar(undefined)}
         />
       </div>
-      <div className='grow px-4 rounded-b-2xl overflow-y-auto'>
+      <div className='grow px-4 rounded-b-2xl overflow-y-auto tgai-custom-scrollbar'>
         {varList.map(chatVar => (
           <VariableItem
             key={chatVar.id}

@@ -21,7 +21,7 @@ import { useStore } from '../store'
 import AddBlock from './add-block'
 import TipPopup from './tip-popup'
 import { useOperator } from './hooks'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 
 const Control = () => {
   const { t } = useTranslation()
@@ -92,12 +92,12 @@ const Control = () => {
   }
 
   return (
-    <div className='flex items-center p-0.5 rounded-lg border-[0.5px] border-gray-100 bg-white shadow-lg text-gray-500'>
+    <div className='flex items-center p-0.5 rounded-lg border-[0.5px] border-gray-100 dark:border-stone-600 bg-tgai-panel-background-3 shadow-lg dark:shadow-stone-800 text-tgai-text-2'>
       <AddBlock />
       <TipPopup title={t('workflow.nodes.note.addNote')}>
         <div
           className={cn(
-            'flex items-center justify-center ml-[1px] w-8 h-8 rounded-lg hover:bg-black/5 hover:text-gray-700 cursor-pointer',
+            'flex items-center justify-center ml-[1px] w-8 h-8 rounded-lg hover:bg-black/5 dark:hover:bg-zinc-600 text-tgai-text-2 hover:text-tgai-text-1 cursor-pointer',
             `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
           )}
           onClick={addNote}
@@ -105,12 +105,12 @@ const Control = () => {
           <RiStickyNoteAddLine className='w-4 h-4' />
         </div>
       </TipPopup>
-      <div className='mx-[3px] w-[1px] h-3.5 bg-gray-200'></div>
+      <div className='mx-[3px] w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
       <TipPopup title={t('workflow.common.pointerMode')} shortcuts={['v']}>
         <div
           className={cn(
             'flex items-center justify-center mr-[1px] w-8 h-8 rounded-lg cursor-pointer',
-            controlMode === 'pointer' ? 'bg-primary-50 text-primary-600' : 'hover:bg-black/5 hover:text-gray-700',
+            controlMode === 'pointer' ? 'bg-primary-50 dark:bg-zinc-600 text-tgai-primary' : 'hover:bg-black/5 dark:hover:bg-zinc-600 hover:text-tgai-text-1',
             `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
           )}
           onClick={handleModePointer}
@@ -122,7 +122,7 @@ const Control = () => {
         <div
           className={cn(
             'flex items-center justify-center w-8 h-8 rounded-lg cursor-pointer',
-            controlMode === 'hand' ? 'bg-primary-50 text-primary-600' : 'hover:bg-black/5 hover:text-gray-700',
+            controlMode === 'hand' ? 'bg-primary-50 dark:bg-zinc-600 text-tgai-primary' : 'hover:bg-black/5 dark:hover:bg-zinc-600 hover:text-tgai-text-1',
             `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
           )}
           onClick={handleModeHand}
@@ -130,11 +130,11 @@ const Control = () => {
           <RiHand className='w-4 h-4' />
         </div>
       </TipPopup>
-      <div className='mx-[3px] w-[1px] h-3.5 bg-gray-200'></div>
+      <div className='mx-[3px] w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
       <TipPopup title={t('workflow.panel.organizeBlocks')} shortcuts={['ctrl', 'o']}>
         <div
           className={cn(
-            'flex items-center justify-center w-8 h-8 rounded-lg hover:bg-black/5 hover:text-gray-700 cursor-pointer',
+            'flex items-center justify-center w-8 h-8 rounded-lg hover:bg-black/5 dark:hover:bg-zinc-600 hover:text-tgai-text-1 cursor-pointer',
             `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
           )}
           onClick={goLayout}

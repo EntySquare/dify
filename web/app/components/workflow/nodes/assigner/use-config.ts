@@ -5,13 +5,13 @@ import { isEqual } from 'lodash-es'
 import { VarType } from '../../types'
 import type { ValueSelector, Var } from '../../types'
 import { type AssignerNodeType, WriteMode } from './types'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
+import useNodeCrud from '../_base/hooks/use-node-crud'
 import {
   useIsChatMode,
   useNodesReadOnly,
   useWorkflow,
   useWorkflowVariables,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: AssignerNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

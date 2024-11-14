@@ -3,10 +3,10 @@ import type { FC } from 'react'
 import React, { useCallback, useEffect, useState } from 'react'
 import NoData from './no-data'
 import Firecrawl from './firecrawl'
-import { useModalContext } from '@/context/modal-context'
-import type { CrawlOptions, CrawlResultItem } from '@/models/datasets'
-import { fetchDataSources } from '@/service/datasets'
-import { type DataSourceItem, DataSourceProvider } from '@/models/common'
+import { useModalContext } from '../../../../../context/modal-context'
+import type { CrawlOptions, CrawlResultItem } from '../../../../../models/datasets'
+import { fetchDataSources } from '../../../../../service/datasets'
+import { type DataSourceItem, DataSourceProvider } from '../../../../../models/common'
 
 type Props = {
   onPreview: (payload: CrawlResultItem) => void

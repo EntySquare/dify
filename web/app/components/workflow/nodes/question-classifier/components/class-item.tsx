@@ -37,7 +37,7 @@ const ClassItem: FC<Props> = ({
       title={<div>
         <div className='w-[200px]'>
           <div
-            className='leading-4 text-xs font-semibold text-gray-700'
+            className='leading-4 text-xs font-semibold text-tgai-text-2'
           >
             {`${t(`${i18nPrefix}.class`)} ${index}`}
           </div>
@@ -48,11 +48,11 @@ const ClassItem: FC<Props> = ({
       placeholder={t(`${i18nPrefix}.topicPlaceholder`)!}
       headerRight={(
         <div className='flex items-center h-full'>
-          <div className='text-xs font-medium text-gray-500'>{payload.name.length}</div>
-          <div className='mx-3 h-3 w-px bg-gray-200'></div>
+          <div className='text-xs font-medium text-tgai-text-3'>{payload.name.length}</div>
+          <div className='mx-3 h-3 w-px bg-gray-200 dark:bg-zinc-600'></div>
           {!readonly && (
             <RiDeleteBinLine
-              className='mr-1 w-3.5 h-3.5 text-gray-500 cursor-pointer'
+              className='mr-1 w-3.5 h-3.5 text-tgai-text-3 cursor-pointer'
               onClick={onRemove}
             />
           )}

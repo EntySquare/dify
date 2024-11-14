@@ -2,9 +2,9 @@
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import type { CrawlResultItem as CrawlResultItemType } from '@/models/datasets'
-import Checkbox from '@/app/components/base/checkbox'
+import cn from '../../../../../../utils/classnames'
+import type { CrawlResultItem as CrawlResultItemType } from '../../../../../../models/datasets'
+import Checkbox from '../../../../base/checkbox'
 
 type Props = {
   payload: CrawlResultItemType

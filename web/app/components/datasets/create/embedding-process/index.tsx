@@ -9,21 +9,21 @@ import {
   RiErrorWarningFill,
 } from '@remixicon/react'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import { FieldInfo } from '@/app/components/datasets/documents/detail/metadata'
-import Button from '@/app/components/base/button'
-import type { FullDocumentDetail, IndexingStatusResponse, ProcessRuleResponse } from '@/models/datasets'
-import { formatNumber } from '@/utils/format'
-import { fetchIndexingStatusBatch as doFetchIndexingStatus, fetchIndexingEstimateBatch, fetchProcessRule } from '@/service/datasets'
-import { DataSourceType } from '@/models/datasets'
-import NotionIcon from '@/app/components/base/notion-icon'
-import PriorityLabel from '@/app/components/billing/priority-label'
-import { Plan } from '@/app/components/billing/type'
-import { ZapFast } from '@/app/components/base/icons/src/vender/solid/general'
-import UpgradeBtn from '@/app/components/billing/upgrade-btn'
-import { useProviderContext } from '@/context/provider-context'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { sleep } from '@/utils'
+import cn from '../../../../../utils/classnames'
+import { FieldInfo } from '../../documents/detail/metadata'
+import Button from '../../../base/button'
+import type { FullDocumentDetail, IndexingStatusResponse, ProcessRuleResponse } from '../../../../../models/datasets'
+import { formatNumber } from '../../../../../utils/format'
+import { fetchIndexingStatusBatch as doFetchIndexingStatus, fetchIndexingEstimateBatch, fetchProcessRule } from '../../../../../service/datasets'
+import { DataSourceType } from '../../../../../models/datasets'
+import NotionIcon from '../../../base/notion-icon'
+import PriorityLabel from '../../../billing/priority-label'
+import { Plan } from '../../../billing/type'
+import { ZapFast } from '../../../base/icons/src/vender/solid/general'
+import UpgradeBtn from '../../../billing/upgrade-btn'
+import { useProviderContext } from '../../../../../context/provider-context'
+import TooltipPlus from '../../../base/tooltip-plus'
+import { sleep } from '../../../../../utils'
 
 type Props = {
   datasetId: string
@@ -191,11 +191,11 @@ const EmbeddingProcess: FC<Props> = ({ datasetId, batchId, documents = [], index
   return (
     <>
       <div className='h-5 flex justify-between items-center mb-5'>
-        <div className={s.embeddingStatus}>
+        <div className={cn(s.embeddingStatus,"dark:!text-tgai-text-1")}>
           {isEmbedding && t('datasetDocuments.embedding.processing')}
           {isEmbeddingCompleted && t('datasetDocuments.embedding.completed')}
         </div>
-        <div className={s.cost}>
+        <div className={cn(s.cost, "dark:!text-tgai-text-3")}>
           {indexingType === 'high_quality' && (
             <div className='flex items-center'>
               <div className={cn(s.commonIcon, s.highIcon)} />
@@ -219,14 +219,14 @@ const EmbeddingProcess: FC<Props> = ({ datasetId, batchId, documents = [], index
             <div className='shrink-0 flex items-center justify-center w-8 h-8 bg-[#FFF6ED] rounded-lg'>
               <ZapFast className='w-4 h-4 text-[#FB6514]' />
             </div>
-            <div className='grow mx-3 text-[13px] font-medium text-gray-700'>
+            <div className='grow mx-3 text-[13px] font-medium text-tgai-text-2'>
               {t('billing.plansCommon.documentProcessingPriorityUpgrade')}
             </div>
             <UpgradeBtn loc='knowledge-speed-up' />
           </div>
         )
       }
-      <div className={s.progressContainer}>
+      <div className={cn(s.progressContainer, "dark:!border-b-stone-700")}>
         {indexingStatusBatchDetail.map(indexingStatusDetail => (
           <div key={indexingStatusDetail.id} className={cn(
             s.sourceItem,

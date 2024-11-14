@@ -14,7 +14,7 @@ import type {
   AppData,
   AppMeta,
   ConversationItem,
-} from '@/models/share'
+} from '../../../../../models/share'
 
 export type ChatWithHistoryContextValue = {
   appInfoError?: any

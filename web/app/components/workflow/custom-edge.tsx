@@ -21,7 +21,7 @@ import type {
   OnSelectBlock,
 } from './types'
 import { ITERATION_CHILDREN_Z_INDEX } from './constants'
-import cn from '@/utils/classnames'
+import cn from '../../../utils/classnames'
 
 const CustomEdge = ({
   id,
@@ -79,7 +79,9 @@ const CustomEdge = ({
         id={id}
         path={edgePath}
         style={{
-          stroke: (selected || data?._connectedNodeIsHovering || data?._runned) ? '#2970FF' : '#D0D5DD',
+          // stroke: (selected || data?._connectedNodeIsHovering || data?._runned) ? '#2970FF' : '#D0D5DD',
+          // stroke: (selected || data?._connectedNodeIsHovering || data?._runned) ? 'var(--tgai-primary)' : '#f8eceb',
+          stroke: (selected || data?._connectedNodeIsHovering || data?._runned) ? 'var(--tgai-primary)' : '#5c5c5c',
           strokeWidth: 2,
         }}
       />

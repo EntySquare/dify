@@ -7,11 +7,11 @@ import {
   useWorkflowStore,
 } from '../store'
 import { BlockEnum } from '../types'
-import { useWorkflowUpdate } from '../hooks'
+import { useWorkflowUpdate } from './index'
 import { useNodesReadOnly } from './use-workflow'
-import { syncWorkflowDraft } from '@/service/workflow'
-import { useFeaturesStore } from '@/app/components/base/features/hooks'
-import { API_PREFIX } from '@/config'
+import { syncWorkflowDraft } from '../../../../service/workflow'
+import { useFeaturesStore } from '../../base/features/hooks'
+import { API_PREFIX } from '../../../../config'
 
 export const useNodesSyncDraft = () => {
   const store = useStoreApi()

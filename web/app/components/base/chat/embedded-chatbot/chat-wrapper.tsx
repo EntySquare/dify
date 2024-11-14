@@ -8,13 +8,13 @@ import { useChat } from '../chat/hooks'
 import { useEmbeddedChatbotContext } from './context'
 import ConfigPanel from './config-panel'
 import { isDify } from './utils'
-import cn from '@/utils/classnames'
+import cn from '../../../../../utils/classnames'
 import {
   fetchSuggestedQuestions,
   getUrl,
   stopChatMessageResponding,
-} from '@/service/share'
-import LogoAvatar from '@/app/components/base/logo/logo-embeded-chat-avatar'
+} from '../../../../../service/share'
+import LogoAvatar from '../../logo/logo-embeded-chat-avatar'
 
 const ChatWrapper = () => {
   const {

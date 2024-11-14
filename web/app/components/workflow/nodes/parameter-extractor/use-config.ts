@@ -10,14 +10,14 @@ import {
 } from '../../hooks'
 import useOneStepRun from '../_base/hooks/use-one-step-run'
 import type { Param, ParameterExtractorNodeType, ReasoningModeType } from './types'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel, useTextGenerationCurrentProviderAndModelAndModelList } from '@/app/components/header/account-setting/model-provider-page/hooks'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel, useTextGenerationCurrentProviderAndModelAndModelList } from '../../../header/account-setting/model-provider-page/hooks'
 import {
   ModelFeatureEnum,
   ModelTypeEnum,
-} from '@/app/components/header/account-setting/model-provider-page/declarations'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import { checkHasQueryBlock } from '@/app/components/base/prompt-editor/constants'
-import useAvailableVarList from '@/app/components/workflow/nodes/_base/hooks/use-available-var-list'
+} from '../../../header/account-setting/model-provider-page/declarations'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import { checkHasQueryBlock } from '../../../base/prompt-editor/constants'
+import useAvailableVarList from '../_base/hooks/use-available-var-list'
 
 const useConfig = (id: string, payload: ParameterExtractorNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

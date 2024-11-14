@@ -1,7 +1,7 @@
-import { API_PREFIX, IS_CE_EDITION, PUBLIC_API_PREFIX } from '@/config'
-import Toast from '@/app/components/base/toast'
-import type { AnnotationReply, MessageEnd, MessageReplace, ThoughtItem } from '@/app/components/base/chat/chat/type'
-import type { VisionFile } from '@/types/app'
+import { API_PREFIX, IS_CE_EDITION, PUBLIC_API_PREFIX } from '../config'
+import Toast from '../app/components/base/toast'
+import type { AnnotationReply, MessageEnd, MessageReplace, ThoughtItem } from '../app/components/base/chat/chat/type'
+import type { VisionFile } from '../types/app'
 import type {
   IterationFinishedResponse,
   IterationNextedResponse,
@@ -12,8 +12,8 @@ import type {
   TextReplaceResponse,
   WorkflowFinishedResponse,
   WorkflowStartedResponse,
-} from '@/types/workflow'
-import { removeAccessToken } from '@/app/components/share/utils'
+} from '../types/workflow'
+import { removeAccessToken } from '../app/components/share/utils'
 const TIME_OUT = 100000
 
 const ContentType = {

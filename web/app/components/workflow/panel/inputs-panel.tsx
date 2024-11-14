@@ -17,8 +17,8 @@ import {
 import { useWorkflowRun } from '../hooks'
 import type { StartNodeType } from '../nodes/start/types'
 import { TransferMethod } from '../../base/text-generation/types'
-import Button from '@/app/components/base/button'
-import { useFeatures } from '@/app/components/base/features/hooks'
+import Button from '../../base/button'
+import { useFeatures } from '../../base/features/hooks'
 
 type Props = {
   onRun: () => void

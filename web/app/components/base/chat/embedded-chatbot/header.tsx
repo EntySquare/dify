@@ -4,7 +4,7 @@ import { RiRefreshLine } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import type { Theme } from './theme/theme-context'
 import { CssTransform } from './theme/utils'
-import Tooltip from '@/app/components/base/tooltip'
+import Tooltip from '../../tooltip'
 
 export type IHeaderProps = {
   isMobile?: boolean

@@ -3,10 +3,10 @@ import { useRef, useState } from 'react'
 import { t } from 'i18next'
 import { useParams, usePathname } from 'next/navigation'
 import s from './style.module.css'
-import Tooltip from '@/app/components/base/tooltip'
-import { randomString } from '@/utils'
-import Loading from '@/app/components/base/loading'
-import { AudioPlayerManager } from '@/app/components/base/audio-btn/audio.player.manager'
+import Tooltip from '../tooltip'
+import { randomString } from '../../../../utils'
+import Loading from '../loading'
+import { AudioPlayerManager } from './audio.player.manager'
 
 type AudioBtnProps = {
   id?: string

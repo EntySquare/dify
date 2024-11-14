@@ -17,14 +17,14 @@ import UserInput from './user-input'
 import ConversationVariableModal from './conversation-variable-modal'
 import { useChat } from './hooks'
 import type { ChatWrapperRefType } from './index'
-import Chat from '@/app/components/base/chat/chat'
-import type { OnSend } from '@/app/components/base/chat/types'
-import { useFeaturesStore } from '@/app/components/base/features/hooks'
+import Chat from '../../../base/chat/chat'
+import type { OnSend } from '../../../base/chat/types'
+import { useFeaturesStore } from '../../../base/features/hooks'
 import {
   fetchSuggestedQuestions,
   stopChatMessageResponding,
-} from '@/service/debug'
-import { useStore as useAppStore } from '@/app/components/app/store'
+} from '../../../../../service/debug'
+import { useStore as useAppStore } from '../../../app/store'
 
 type ChatWrapperProps = {
   showConversationVariableModal: boolean

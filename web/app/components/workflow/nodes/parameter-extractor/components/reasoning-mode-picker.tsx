@@ -4,7 +4,7 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ReasoningModeType } from '../types'
 import Field from '../../_base/components/field'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 
 const i18nPrefix = 'workflow.nodes.parameterExtractor'
 
@@ -21,7 +21,7 @@ const Item: FC<ItemProps> = ({
 }) => {
   return (
     <div
-      className={cn(isChosen ? 'border-[1.5px] border-primary-400 bg-white' : 'border border-gray-100 bg-gray-25', 'grow w-0 shrink-0 flex items-center h-8 justify-center rounded-lg cursor-pointer text-[13px] font-normal text-gray-900')}
+      className={cn(isChosen ? 'border-[1.5px] border-primary-400 dark:border-tgai-primary-7 bg-white dark:bg-zinc-700' : 'border border-gray-100 dark:border-stone-600 bg-gray-25 dark:bg-zinc-800', 'grow w-0 shrink-0 flex items-center h-8 justify-center rounded-lg cursor-pointer text-[13px] font-normal text-tgai-text-1')}
       onClick={() => !isChosen ? onClick() : () => { }}
     >
       {text}

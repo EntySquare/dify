@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import I18n from '@/context/i18n'
+import I18n from '../../../../../context/i18n'
 type Props = {
   onReturnToSimpleMode: () => void
 }

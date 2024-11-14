@@ -10,7 +10,7 @@ import ConditionItem from './condition-item'
 import type {
   Node,
   NodeOutPutVar,
-} from '@/app/components/workflow/types'
+} from '../../../../types'
 
 type ConditionListProps = {
   disabled?: boolean

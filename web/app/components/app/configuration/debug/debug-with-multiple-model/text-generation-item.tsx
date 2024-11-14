@@ -5,14 +5,14 @@ import { APP_CHAT_WITH_MULTIPLE_MODEL } from '../types'
 import type {
   OnSend,
   TextGenerationConfig,
-} from '@/app/components/base/text-generation/types'
-import { useTextGeneration } from '@/app/components/base/text-generation/hooks'
-import TextGeneration from '@/app/components/app/text-generate/item'
-import { useDebugConfigurationContext } from '@/context/debug-configuration'
-import { promptVariablesToUserInputsForm } from '@/utils/model-config'
-import { TransferMethod } from '@/app/components/base/chat/types'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
-import { useProviderContext } from '@/context/provider-context'
+} from '../../../../base/text-generation/types'
+import { useTextGeneration } from '../../../../base/text-generation/hooks'
+import TextGeneration from '../../../text-generate/item'
+import { useDebugConfigurationContext } from '../../../../../../context/debug-configuration'
+import { promptVariablesToUserInputsForm } from '../../../../../../utils/model-config'
+import { TransferMethod } from '../../../../base/chat/types'
+import { useEventEmitterContextContext } from '../../../../../../context/event-emitter'
+import { useProviderContext } from '../../../../../../context/provider-context'
 
 type TextGenerationItemProps = {
   modelAndParameter: ModelAndParameter
@@ -139,7 +139,7 @@ const TextGenerationItem: FC<TextGenerationItemProps> = ({
 
   return (
     <TextGeneration
-      className='flex flex-col h-full overflow-y-auto border-none'
+      className='flex flex-col h-full overflow-y-auto tgai-custom-scrollbar border-none'
       innerClassName='grow flex flex-col'
       contentClassName='grow'
       content={completion}

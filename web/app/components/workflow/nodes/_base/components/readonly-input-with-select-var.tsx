@@ -6,9 +6,9 @@ import { useWorkflow } from '../../../hooks'
 import { BlockEnum } from '../../../types'
 import { VarBlockIcon } from '../../../block-icon'
 import { getNodeInfoById, isConversationVar, isENV, isSystemVar } from './variable/utils'
-import { Line3 } from '@/app/components/base/icons/src/public/common'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
-import { BubbleX, Env } from '@/app/components/base/icons/src/vender/line/others'
+import { Line3 } from '../../../../base/icons/src/public/common'
+import { Variable02 } from '../../../../base/icons/src/vender/solid/development'
+import { BubbleX, Env } from '../../../../base/icons/src/vender/line/others'
 type Props = {
   nodeId: string
   value: string
@@ -37,7 +37,7 @@ const ReadonlyInputWithSelectVar: FC<Props> = ({
 
     const html: JSX.Element[] = strWithVarPlaceholder.split(VAR_PLACEHOLDER).map((str, index) => {
       if (!vars[index])
-        return <span className='relative top-[-3px] leading-[16px]' key={index}>{str}</span>
+        return <span className='relative top-[-3px] leading-[16px] text-tgai-text-1' key={index}>{str}</span>
 
       const value = vars[index].split('.')
       const isSystem = isSystemVar(value)
@@ -48,24 +48,24 @@ const ReadonlyInputWithSelectVar: FC<Props> = ({
 
       return (<span key={index}>
         <span className='relative top-[-3px] leading-[16px]'>{str}</span>
-        <div className=' inline-flex h-[16px] items-center px-1.5 rounded-[5px] bg-white'>
+        <div className=' inline-flex h-[16px] items-center px-1.5 rounded-[5px] bg-white dark:bg-tgai-input-background'>
           {!isEnv && !isChatVar && (
             <div className='flex items-center'>
               <div className='p-[1px]'>
                 <VarBlockIcon
-                  className='!text-gray-900'
+                  className='!text-tgai-text-1'
                   type={node?.type || BlockEnum.Start}
                 />
               </div>
-              <div className='max-w-[60px] mx-0.5 text-xs font-medium text-gray-700 truncate' title={node?.title}>{node?.title}</div>
+              <div className='max-w-[60px] mx-0.5 text-xs font-medium text-tgai-text-2 truncate' title={node?.title}>{node?.title}</div>
               <Line3 className='mr-0.5'></Line3>
             </div>
           )}
-          <div className='flex items-center text-primary-600'>
+          <div className='flex items-center text-tgai-primary'>
             {!isEnv && !isChatVar && <Variable02 className='shrink-0 w-3.5 h-3.5' />}
             {isEnv && <Env className='shrink-0 w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
             {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
-            <div className={cn('max-w-[50px] ml-0.5 text-xs font-medium truncate', (isEnv || isChatVar) && 'text-gray-900')} title={varName}>{varName}</div>
+            <div className={cn('max-w-[50px] ml-0.5 text-xs font-medium truncate', (isEnv || isChatVar) && 'text-tgai-text-1')} title={varName}>{varName}</div>
           </div>
         </div>
       </span>)

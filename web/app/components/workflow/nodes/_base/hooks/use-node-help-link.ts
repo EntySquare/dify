@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
-import { useGetLanguage } from '@/context/i18n'
-import { BlockEnum } from '@/app/components/workflow/types'
+import { useGetLanguage } from '../../../../../../context/i18n'
+import { BlockEnum } from '../../../types'
 
 export const useNodeHelpLink = (nodeType: BlockEnum) => {
   const language = useGetLanguage()

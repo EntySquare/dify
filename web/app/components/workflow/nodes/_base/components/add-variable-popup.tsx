@@ -1,11 +1,11 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import VarReferenceVars from '@/app/components/workflow/nodes/_base/components/variable/var-reference-vars'
+import VarReferenceVars from './variable/var-reference-vars'
 import type {
   NodeOutPutVar,
   ValueSelector,
   Var,
-} from '@/app/components/workflow/types'
+} from '../../../types'
 
 export type AddVariablePopupProps = {
   availableVars: NodeOutPutVar[]
@@ -18,8 +18,8 @@ export const AddVariablePopup = ({
   const { t } = useTranslation()
 
   return (
-    <div className='w-[240px] bg-white border-[0.5px] border-gray-200 rounded-lg shadow-lg'>
-      <div className='flex items-center px-4 h-[34px] text-[13px] font-semibold text-gray-700 border-b-[0.5px] border-b-gray-200'>
+    <div className='w-[240px] bg-tgai-panel-background border-[0.5px] border-gray-200 dark:border-stone-600 rounded-lg shadow-lg dark:shadow-stone-800'>
+      <div className='flex items-center px-4 h-[34px] text-[13px] font-semibold text-tgai-text-2 border-b-[0.5px] border-b-gray-200 dark:border-b-zinc-600'>
         {t('workflow.nodes.variableAssigner.setAssignVariable')}
       </div>
       <div className='p-1'>

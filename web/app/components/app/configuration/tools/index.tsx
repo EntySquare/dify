@@ -9,17 +9,17 @@ import {
   RiDeleteBinLine,
   RiQuestionLine,
 } from '@remixicon/react'
-import ConfigContext from '@/context/debug-configuration'
-import Switch from '@/app/components/base/switch'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { Tool03 } from '@/app/components/base/icons/src/vender/solid/general'
+import ConfigContext from '../../../../../context/debug-configuration'
+import Switch from '../../../base/switch'
+import TooltipPlus from '../../../base/tooltip-plus'
+import { Tool03 } from '../../../base/icons/src/vender/solid/general'
 import {
   Settings01,
-} from '@/app/components/base/icons/src/vender/line/general'
-import { useModalContext } from '@/context/modal-context'
-import type { ExternalDataTool } from '@/models/common'
-import AppIcon from '@/app/components/base/app-icon'
-import { useToastContext } from '@/app/components/base/toast'
+} from '../../../base/icons/src/vender/line/general'
+import { useModalContext } from '../../../../../context/modal-context'
+import type { ExternalDataTool } from '../../../../../models/common'
+import AppIcon from '../../../base/app-icon'
+import { useToastContext } from '../../../base/toast'
 
 const Tools = () => {
   const { t } = useTranslation()

@@ -8,18 +8,18 @@ import {
 import type { ConfigurationMethodEnum, CustomConfigurationModelFixedFields, ModelLoadBalancingConfig, ModelLoadBalancingConfigEntry, ModelProvider } from '../declarations'
 import Indicator from '../../../indicator'
 import CooldownTimer from './cooldown-timer'
-import classNames from '@/utils/classnames'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import Switch from '@/app/components/base/switch'
-import { Balance } from '@/app/components/base/icons/src/vender/line/financeAndECommerce'
-import { Edit02, Plus02 } from '@/app/components/base/icons/src/vender/line/general'
-import { AlertTriangle } from '@/app/components/base/icons/src/vender/solid/alertsAndFeedback'
-import { useModalContextSelector } from '@/context/modal-context'
-import UpgradeBtn from '@/app/components/billing/upgrade-btn'
-import s from '@/app/components/custom/style.module.css'
-import GridMask from '@/app/components/base/grid-mask'
-import { useProviderContextSelector } from '@/context/provider-context'
-import { IS_CE_EDITION } from '@/config'
+import classNames from '../../../../../../utils/classnames'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import Switch from '../../../../base/switch'
+import { Balance } from '../../../../base/icons/src/vender/line/financeAndECommerce'
+import { Edit02, Plus02 } from '../../../../base/icons/src/vender/line/general'
+import { AlertTriangle } from '../../../../base/icons/src/vender/solid/alertsAndFeedback'
+import { useModalContextSelector } from '../../../../../../context/modal-context'
+import UpgradeBtn from '../../../../billing/upgrade-btn'
+import s from '../../../../custom/style.module.css'
+import GridMask from '../../../../base/grid-mask'
+import { useProviderContextSelector } from '../../../../../../context/provider-context'
+import { IS_CE_EDITION } from '../../../../../../config'
 
 export type ModelLoadBalancingConfigsProps = {
   draftConfig?: ModelLoadBalancingConfig
@@ -146,25 +146,25 @@ const ModelLoadBalancingConfigs = ({
     <>
       <div
         className={classNames(
-          'min-h-16 bg-gray-50 border rounded-xl transition-colors',
-          (withSwitch || !draftConfig.enabled) ? 'border-gray-200' : 'border-primary-400',
+          'min-h-16 bg-gray-50 dark:bg-zinc-700 border rounded-xl transition-colors',
+          (withSwitch || !draftConfig.enabled) ? 'border-gray-200 dark:border-stone-600' : 'border-tgai-primary-5',
           (withSwitch || draftConfig.enabled) ? 'cursor-default' : 'cursor-pointer',
           className,
         )}
         onClick={(!withSwitch && !draftConfig.enabled) ? () => toggleModalBalancing(true) : undefined}
       >
         <div className='flex items-center px-[15px] py-3 gap-2 select-none'>
-          <div className='grow-0 shrink-0 flex items-center justify-center w-8 h-8 text-primary-600 bg-indigo-50 border border-indigo-100 rounded-lg'>
+          <div className='grow-0 shrink-0 flex items-center justify-center w-8 h-8 text-tgai-primary bg-indigo-50 dark:bg-slate-600 border border-indigo-100 dark:border-slate-700 rounded-lg'>
             <Balance className='w-4 h-4' />
           </div>
           <div className='grow'>
-            <div className='flex items-center gap-1 text-sm'>
+            <div className='flex items-center gap-1 text-sm text-tgai-text-1'>
               {t('common.modelProvider.loadBalancing')}
               <TooltipPlus popupContent={t('common.modelProvider.loadBalancingInfo')} popupClassName='max-w-[300px]'>
-                <RiQuestionLine className='w-3 h-3 text-gray-400' />
+                <RiQuestionLine className='w-3 h-3 text-tgai-text-3' />
               </TooltipPlus>
             </div>
-            <div className='text-xs text-gray-500'>{t('common.modelProvider.loadBalancingDescription')}</div>
+            <div className='text-xs text-tgai-text-2'>{t('common.modelProvider.loadBalancingDescription')}</div>
           </div>
           {
             withSwitch && (

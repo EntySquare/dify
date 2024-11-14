@@ -3,7 +3,7 @@ import { ChevronDoubleDownIcon } from '@heroicons/react/20/solid'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import React, { useCallback } from 'react'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import TooltipPlus from '../../../../../../components/base/tooltip-plus'
 
 const I18N_PREFIX = 'app.tracing'
 

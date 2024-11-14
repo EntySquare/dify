@@ -6,18 +6,18 @@ import {
   RiSearchLine,
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import { type NodeOutPutVar, type ValueSelector, type Var, VarType } from '@/app/components/workflow/types'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
-import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import cn from '../../../../../../../utils/classnames'
+import { type NodeOutPutVar, type ValueSelector, type Var, VarType } from '../../../../types'
+import { Variable02 } from '../../../../../base/icons/src/vender/solid/development'
+import { ChevronRight } from '../../../../../base/icons/src/vender/line/arrows'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import { BubbleX, Env } from '@/app/components/base/icons/src/vender/line/others'
-import { checkKeys } from '@/utils/var'
+} from '../../../../../base/portal-to-follow-elem'
+import { XCircle } from '../../../../../base/icons/src/vender/solid/general'
+import { BubbleX, Env } from '../../../../../base/icons/src/vender/line/others'
+import { checkKeys } from '../../../../../../../utils/var'
 
 type ObjectChildrenProps = {
   nodeId: string
@@ -98,28 +98,28 @@ const Item: FC<ItemProps> = ({
           ref={itemRef}
           className={cn(
             isObj ? ' pr-1' : 'pr-[18px]',
-            isHovering && (isObj ? 'bg-primary-50' : 'bg-gray-50'),
+            isHovering && (isObj ? 'bg-primary-50 dark:bg-zinc-600' : 'bg-gray-50 dark:bg-neutral-600'),
             'relative w-full flex items-center h-6 pl-3  rounded-md cursor-pointer')
           }
           onClick={handleChosen}
         >
           <div className='flex items-center w-0 grow'>
-            {!isEnv && !isChatVar && <Variable02 className='shrink-0 w-3.5 h-3.5 text-primary-500' />}
+            {!isEnv && !isChatVar && <Variable02 className='shrink-0 w-3.5 h-3.5 text-tgai-primary-5' />}
             {isEnv && <Env className='shrink-0 w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
             {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
             {!isEnv && !isChatVar && (
-              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-[13px] font-normal text-gray-900'>{itemData.variable}</div>
+              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-[13px] font-normal text-tgai-text-1'>{itemData.variable}</div>
             )}
             {isEnv && (
-              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-[13px] font-normal text-gray-900'>{itemData.variable.replace('env.', '')}</div>
+              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-[13px] font-normal text-tgai-text-1'>{itemData.variable.replace('env.', '')}</div>
             )}
             {isChatVar && (
-              <div title={itemData.des} className='ml-1 w-0 grow truncate text-[13px] font-normal text-gray-900'>{itemData.variable.replace('conversation.', '')}</div>
+              <div title={itemData.des} className='ml-1 w-0 grow truncate text-[13px] font-normal text-tgai-text-1'>{itemData.variable.replace('conversation.', '')}</div>
             )}
           </div>
-          <div className='ml-1 shrink-0 text-xs font-normal text-gray-500 capitalize'>{itemData.type}</div>
+          <div className='ml-1 shrink-0 text-xs font-normal text-tgai-text-3 capitalize'>{itemData.type}</div>
           {isObj && (
-            <ChevronRight className='ml-0.5 w-3 h-3 text-gray-500' />
+            <ChevronRight className='ml-0.5 w-3 h-3 text-tgai-text-3' />
           )}
         </div>
       </PortalToFollowElemTrigger>
@@ -179,11 +179,11 @@ const ObjectChildren: FC<ObjectChildrenProps> = ({
   }, [isItemHovering])
   // absolute top-[-2px]
   return (
-    <div ref={itemRef} className=' bg-white rounded-lg border border-gray-200 shadow-lg space-y-1' style={{
+    <div ref={itemRef} className=' bg-white dark:bg-zinc-600 rounded-lg border border-gray-200 dark:border-stone-600 shadow-lg dark:shadow-stone-800 space-y-1' style={{
       right: itemWidth ? itemWidth - 10 : 215,
       minWidth: 252,
     }}>
-      <div className='flex items-center h-[22px] px-3 text-xs font-normal text-gray-700'><span className='text-gray-500'>{title}.</span>{currObjPath.join('.')}</div>
+      <div className='flex items-center h-[22px] px-3 text-xs font-normal text-tgai-text-2'><span className='text-tgai-text-3'>{title}.</span>{currObjPath.join('.')}</div>
       {
         (data && data.length > 0)
         && data.map((v, i) => (
@@ -254,14 +254,14 @@ const VarReferenceVars: FC<Props> = ({
         !hideSearch && (
           <>
             <div
-              className={cn(searchBoxClassName, isFocus && 'shadow-sm bg-white', 'mb-2 mx-1 flex items-center px-2 rounded-lg bg-gray-100 ')}
+              className={cn(searchBoxClassName, isFocus && 'shadow-sm bg-white dark:bg-tgai-panel-background dark:shadow-stone-700', 'mb-2 mx-1 flex items-center px-2 rounded-lg bg-gray-100 dark:bg-tgai-input-background ')}
               onClick={e => e.stopPropagation()}
             >
 
-              <RiSearchLine className='shrink-0 ml-[1px] mr-[5px] w-3.5 h-3.5 text-gray-400' />
+              <RiSearchLine className='shrink-0 ml-[1px] mr-[5px] w-3.5 h-3.5 text-tgai-text-3' />
               <input
                 value={searchText}
-                className='grow px-0.5 py-[7px] text-[13px] text-gray-700 bg-transparent appearance-none outline-none caret-primary-600 placeholder:text-gray-400'
+                className='grow px-0.5 py-[7px] text-[13px] text-tgai-text-2 bg-transparent appearance-none outline-none caret-tgai-primary placeholder:text-gray-400'
                 placeholder={t('workflow.common.searchVar') || ''}
                 onChange={e => setSearchText(e.target.value)}
                 onFocus={setFocus}
@@ -274,12 +274,12 @@ const VarReferenceVars: FC<Props> = ({
                     className='flex items-center justify-center ml-[5px] w-[18px] h-[18px] cursor-pointer'
                     onClick={() => setSearchText('')}
                   >
-                    <XCircle className='w-[14px] h-[14px] text-gray-400' />
+                    <XCircle className='w-[14px] h-[14px] text-tgai-text-3' />
                   </div>
                 )
               }
             </div>
-            <div className='h-[0.5px] bg-black/5 relative left-[-4px]' style={{
+            <div className='h-[0.5px] bg-black/5 dark:bg-stone-600/95 relative left-[-4px]' style={{
               width: 'calc(100% + 8px)',
             }}></div>
           </>
@@ -287,13 +287,13 @@ const VarReferenceVars: FC<Props> = ({
       }
 
       {filteredVars.length > 0
-        ? <div className='max-h-[85vh] overflow-y-auto'>
+        ? <div className='max-h-[85vh] overflow-y-auto tgai-custom-scrollbar'>
 
           {
             filteredVars.map((item, i) => (
               <div key={i}>
                 <div
-                  className='leading-[22px] px-3 text-xs font-medium text-gray-500 uppercase truncate'
+                  className='leading-[22px] px-3 text-xs font-medium text-tgai-text-3 uppercase truncate'
                   title={item.title}
                 >{item.title}</div>
                 {item.vars.map((v, j) => (
@@ -310,7 +310,7 @@ const VarReferenceVars: FC<Props> = ({
               </div>))
           }
         </div>
-        : <div className='pl-3 leading-[18px] text-xs font-medium text-gray-500 uppercase'>{t('workflow.common.noVar')}</div>}
+        : <div className='pl-3 leading-[18px] text-xs font-medium text-tgai-text-3 uppercase'>{t('workflow.common.noVar')}</div>}
     </ >
   )
 }

@@ -1,8 +1,8 @@
 'use client'
 import React, { type FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import { Microphone01 } from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
+import Panel from '../../../base/feature-panel'
+import { Microphone01 } from '../../../../../base/icons/src/vender/solid/mediaAndDevices'
 
 const SpeechToTextConfig: FC = () => {
   const { t } = useTranslation()

@@ -4,14 +4,14 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import s from './style.module.css'
 import DetailPanel from './detail'
-import cn from '@/utils/classnames'
-import type { WorkflowAppLogDetail, WorkflowLogsResponse } from '@/models/log'
-import type { App } from '@/types/app'
-import Loading from '@/app/components/base/loading'
-import Drawer from '@/app/components/base/drawer'
-import Indicator from '@/app/components/header/indicator'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import useTimestamp from '@/hooks/use-timestamp'
+import cn from '../../../../utils/classnames'
+import type { WorkflowAppLogDetail, WorkflowLogsResponse } from '../../../../models/log'
+import type { App } from '../../../../types/app'
+import Loading from '../../base/loading'
+import Drawer from '../../base/drawer'
+import Indicator from '../../header/indicator'
+import useBreakpoints, { MediaType } from '../../../../hooks/use-breakpoints'
+import useTimestamp from '../../../../hooks/use-timestamp'
 
 type ILogs = {
   logs?: WorkflowLogsResponse
@@ -60,7 +60,7 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
       return (
         <div className='inline-flex items-center gap-1'>
           <Indicator color={'blue'} />
-          <span className='text-primary-600'>Running</span>
+          <span className='text-primary-600 dark:tgai-primary'>Running</span>
         </div>
       )
     }
@@ -78,7 +78,7 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
   return (
     <div className='overflow-x-auto'>
       <table className={`w-full min-w-[440px] border-collapse border-0 text-sm mt-3 ${s.logTable}`}>
-        <thead className="h-8 !pl-3 py-2 leading-[18px] border-b border-gray-200 text-xs text-gray-500 font-medium">
+        <thead className="h-8 !pl-3 py-2 leading-[18px] border-b border-gray-200 dark:border-none text-xs text-tgai-text-3 font-medium">
           <tr>
             <td className='w-[1.375rem] whitespace-nowrap'></td>
             <td className='whitespace-nowrap'>{t('appLog.table.header.startTime')}</td>
@@ -89,12 +89,12 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
             {/* <td className='whitespace-nowrap'>{t('appLog.table.header.version')}</td> */}
           </tr>
         </thead>
-        <tbody className="text-gray-700 text-[13px]">
+        <tbody className="text-tgai-text-2 text-[13px]">
           {logs.data.map((log: WorkflowAppLogDetail) => {
             const endUser = log.created_by_end_user ? log.created_by_end_user.session_id : defaultValue
             return <tr
               key={log.id}
-              className={`border-b border-gray-200 h-8 hover:bg-gray-50 cursor-pointer ${currentLog?.id !== log.id ? '' : 'bg-gray-50'}`}
+              className={`border-b border-gray-200 dark:border-none h-8 hover:bg-gray-50 dark:hover:bg-zinc-700 cursor-pointer ${currentLog?.id !== log.id ? '' : 'bg-gray-50 dark:bg-zinc-700'}`}
               onClick={() => {
                 setCurrentLog(log)
                 setShowDrawer(true)
@@ -104,12 +104,12 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
               <td>{statusTdRender(log.workflow_run.status)}</td>
               <td>
                 <div className={cn(
-                  log.workflow_run.elapsed_time === 0 && 'text-gray-400',
+                  log.workflow_run.elapsed_time === 0 && 'text-tgai-text-3',
                 )}>{`${log.workflow_run.elapsed_time.toFixed(3)}s`}</div>
               </td>
               <td>{log.workflow_run.total_tokens}</td>
               <td>
-                <div className={cn(endUser === defaultValue ? 'text-gray-400' : 'text-gray-700', 'text-sm overflow-hidden text-ellipsis whitespace-nowrap')}>
+                <div className={cn(endUser === defaultValue ? 'text-tgai-text-3' : 'text-tgai-text-2', 'text-sm overflow-hidden text-ellipsis whitespace-nowrap')}>
                   {endUser}
                 </div>
               </td>
@@ -123,7 +123,7 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
         onClose={onCloseDrawer}
         mask={isMobile}
         footer={null}
-        panelClassname='mt-16 mx-2 sm:mr-2 mb-3 !p-0 !max-w-[600px] rounded-xl border border-gray-200'
+        panelClassname='mt-16 mx-2 sm:mr-2 mb-3 !p-0 !max-w-[600px] rounded-xl border border-gray-200 dark:border-stone-600'
       >
         <DetailPanel onClose={onCloseDrawer} runID={currentLog?.workflow_run.id || ''} />
       </Drawer>

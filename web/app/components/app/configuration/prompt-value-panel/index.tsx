@@ -10,15 +10,15 @@ import {
 import {
   PlayIcon,
 } from '@heroicons/react/24/solid'
-import ConfigContext from '@/context/debug-configuration'
-import type { Inputs, PromptVariable } from '@/models/debug'
-import { AppType, ModelModeType } from '@/types/app'
-import Select from '@/app/components/base/select'
-import { DEFAULT_VALUE_MAX_LEN } from '@/config'
-import Button from '@/app/components/base/button'
-import Tooltip from '@/app/components/base/tooltip-plus'
-import TextGenerationImageUploader from '@/app/components/base/image-uploader/text-generation-image-uploader'
-import type { VisionFile, VisionSettings } from '@/types/app'
+import ConfigContext from '../../../../../context/debug-configuration'
+import type { Inputs, PromptVariable } from '../../../../../models/debug'
+import { AppType, ModelModeType } from '../../../../../types/app'
+import Select from '../../../base/select'
+import { DEFAULT_VALUE_MAX_LEN } from '../../../../../config'
+import Button from '../../../base/button'
+import Tooltip from '../../../base/tooltip-plus'
+import TextGenerationImageUploader from '../../../base/image-uploader/text-generation-image-uploader'
+import type { VisionFile, VisionSettings } from '../../../../../types/app'
 
 export type IPromptValuePanelProps = {
   appType: AppType

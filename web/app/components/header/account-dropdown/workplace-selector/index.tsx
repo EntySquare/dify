@@ -3,12 +3,12 @@ import { useContext } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
 import { Menu, Transition } from '@headlessui/react'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import { switchWorkspace } from '@/service/common'
-import { useWorkspacesContext } from '@/context/workspace-context'
-import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
-import { Check } from '@/app/components/base/icons/src/vender/line/general'
-import { ToastContext } from '@/app/components/base/toast'
+import cn from '../../../../../utils/classnames'
+import { switchWorkspace } from '../../../../../service/common'
+import { useWorkspacesContext } from '../../../../../context/workspace-context'
+import { ChevronRight } from '../../../base/icons/src/vender/line/arrows'
+import { Check } from '../../../base/icons/src/vender/line/general'
+import { ToastContext } from '../../../base/toast'
 
 const itemClassName = `
   flex items-center px-3 py-2 h-10 cursor-pointer

@@ -4,15 +4,15 @@ import { useTranslation } from 'react-i18next'
 import { RiArrowDownSLine } from '@remixicon/react'
 import type { ModelAndParameter } from '../configuration/debug/types'
 import ModelIcon from '../../header/account-setting/model-provider-page/model-icon'
-import Button from '@/app/components/base/button'
+import Button from '../../base/button'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { useProviderContext } from '@/context/provider-context'
-import type { Model, ModelItem } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
+} from '../../base/portal-to-follow-elem'
+import { useProviderContext } from '../../../../context/provider-context'
+import type { Model, ModelItem } from '../../header/account-setting/model-provider-page/declarations'
+import { useLanguage } from '../../header/account-setting/model-provider-page/hooks'
 
 type PublishWithMultipleModelProps = {
   multipleModelConfigs: ModelAndParameter[]
@@ -77,21 +77,21 @@ const PublishWithMultipleModel: FC<PublishWithMultipleModelProps> = ({
         </Button>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='mt-1 w-[288px] z-50'>
-        <div className='p-1 rounded-lg border-[0.5px] border-gray-200 shadow-lg bg-white'>
-          <div className='flex items-center px-3 h-[22px] text-xs font-medium text-gray-500'>
+        <div className='p-1 rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 shadow-lg dark:shadow-stone-800 bg-white dark:bg-tgai-input-background'>
+          <div className='flex items-center px-3 h-[22px] text-xs font-medium text-tgai-text-3'>
             {t('appDebug.publishAs')}
           </div>
           {
             validModelConfigs.map((item, index) => (
               <div
                 key={item.id}
-                className='flex items-center h-8 px-3 text-sm text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100'
+                className='flex items-center h-8 px-3 text-sm text-tgai-text-3 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-600'
                 onClick={() => handleSelect(item)}
               >
                 <span className='italic min-w-[18px]'>#{index + 1}</span>
                 <ModelIcon modelName={item.model} provider={item.providerItem} className='ml-2' />
                 <div
-                  className='ml-1 text-gray-700 truncate'
+                  className='ml-1 text-tgai-text-2 truncate'
                   title={item.modelItem.label[language]}
                 >
                   {item.modelItem.label[language]}

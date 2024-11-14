@@ -2,10 +2,10 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useContext } from 'use-context-selector'
-import ExploreContext from '@/context/explore-context'
-import TextGenerationApp from '@/app/components/share/text-generation'
-import Loading from '@/app/components/base/loading'
-import ChatWithHistory from '@/app/components/base/chat/chat-with-history'
+import ExploreContext from '../../../../context/explore-context'
+import TextGenerationApp from '../../share/text-generation'
+import Loading from '../../base/loading'
+import ChatWithHistory from '../../base/chat/chat-with-history'
 
 export type IInstalledAppProps = {
   id: string

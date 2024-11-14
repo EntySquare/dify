@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
 import Toast from '../components/base/toast'
 import Loading from '../components/base/loading'
-import Button from '@/app/components/base/button'
-import { fetchInitValidateStatus, initValidate } from '@/service/common'
-import type { InitValidateStatusResponse } from '@/models/common'
+import Button from '../components/base/button'
+import { fetchInitValidateStatus, initValidate } from '../../service/common'
+import type { InitValidateStatusResponse } from '../../models/common'
 
 const InitPasswordPopup = () => {
   const [password, setPassword] = useState('')

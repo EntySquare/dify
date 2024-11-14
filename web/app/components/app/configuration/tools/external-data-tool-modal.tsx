@@ -4,21 +4,21 @@ import useSWR from 'swr'
 import { useContext } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
 import FormGeneration from '../toolbox/moderation/form-generation'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import EmojiPicker from '@/app/components/base/emoji-picker'
-import ApiBasedExtensionSelector from '@/app/components/header/account-setting/api-based-extension-page/selector'
-import { BookOpen01 } from '@/app/components/base/icons/src/vender/line/education'
-import { fetchCodeBasedExtensionList } from '@/service/common'
-import { SimpleSelect } from '@/app/components/base/select'
-import I18n from '@/context/i18n'
-import { LanguagesSupported } from '@/i18n/language'
+import Modal from '../../../base/modal'
+import Button from '../../../base/button'
+import EmojiPicker from '../../../base/emoji-picker'
+import ApiBasedExtensionSelector from '../../../header/account-setting/api-based-extension-page/selector'
+import { BookOpen01 } from '../../../base/icons/src/vender/line/education'
+import { fetchCodeBasedExtensionList } from '../../../../../service/common'
+import { SimpleSelect } from '../../../base/select'
+import I18n from '../../../../../context/i18n'
+import { LanguagesSupported } from '../../../../../i18n/language'
 import type {
   CodeBasedExtensionItem,
   ExternalDataTool,
-} from '@/models/common'
-import { useToastContext } from '@/app/components/base/toast'
-import AppIcon from '@/app/components/base/app-icon'
+} from '../../../../../models/common'
+import { useToastContext } from '../../../base/toast'
+import AppIcon from '../../../base/app-icon'
 
 const systemTypes = ['api']
 type ExternalDataToolModalProps = {

@@ -9,8 +9,8 @@ import {
 } from '@remixicon/react'
 import Toast from '../../base/toast'
 import examples from './examples'
-import Button from '@/app/components/base/button'
-import { importSchemaFromURL } from '@/service/tools'
+import Button from '../../base/button'
+import { importSchemaFromURL } from '../../../../service/tools'
 
 type Props = {
   onChange: (value: string) => void
@@ -63,14 +63,14 @@ const GetSchema: FC<Props> = ({
           onClick={() => { setShowImportFromUrl(!showImportFromUrl) }}
         >
           <RiAddLine className='w-3 h-3' />
-          <div className='text-xs font-medium text-gray-700'>{t('tools.createTool.importFromUrl')}</div>
+          <div className='text-xs font-medium text-tgai-text-2'>{t('tools.createTool.importFromUrl')}</div>
         </Button>
         {showImportFromUrl && (
-          <div className=' absolute left-[-35px] top-[26px] p-2 rounded-lg border border-gray-200 bg-white shadow-lg'>
+          <div className=' absolute left-[-35px] top-[26px] p-2 rounded-lg border border-gray-200 dark:border-zinc-600 bg-tgai-panel-background-3 shadow-lg'>
             <div className='relative'>
               <input
                 type='text'
-                className='w-[244px] h-8 pl-1.5 pr-[44px] overflow-x-auto border border-gray-200 rounded-lg text-[13px]'
+                className='w-[244px] h-8 pl-1.5 pr-[44px] overflow-x-auto border text-tgai-text-1 border-gray-200 dark:border-zinc-600 rounded-lg text-[13px] bg-tgai-input-background'
                 placeholder={t('tools.createTool.importFromUrlPlaceHolder')!}
                 value={importUrl}
                 onChange={e => setImportUrl(e.target.value)}
@@ -95,11 +95,11 @@ const GetSchema: FC<Props> = ({
           className='space-x-1'
           onClick={() => { setShowExamples(!showExamples) }}
         >
-          <div className='text-xs font-medium text-gray-700'>{t('tools.createTool.examples')}</div>
+          <div className='text-xs font-medium text-tgai-text-2'>{t('tools.createTool.examples')}</div>
           <RiArrowDownSLine className='w-3 h-3' />
         </Button>
         {showExamples && (
-          <div className='absolute top-7 right-0 p-1 rounded-lg bg-white shadow-sm'>
+          <div className='absolute top-7 right-0 p-1 rounded-lg bg-tgai-panel-background-3 shadow-sm'>
             {examples.map(item => (
               <div
                 key={item.key}
@@ -107,7 +107,7 @@ const GetSchema: FC<Props> = ({
                   onChange(item.content)
                   setShowExamples(false)
                 }}
-                className='px-3 py-1.5 rounded-lg hover:bg-gray-50 leading-5 text-sm font-normal text-gray-700 cursor-pointer whitespace-nowrap'
+                className='px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-600 leading-5 text-sm font-normal text-tgai-text-2 cursor-pointer whitespace-nowrap'
               >
                 {t(`tools.createTool.exampleOptions.${item.key}`)}
               </div>

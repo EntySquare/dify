@@ -6,7 +6,8 @@
   font-weight: 600;
   font-size: 18px;
   line-height: 28px;
-  color: #101828;
+  /* color: #101828; */
+  color: var(--tgai-text-1);
 }
 
 .form {
@@ -16,13 +17,14 @@
 }
 
 .dataSourceItem {
-  @apply box-border relative shrink-0 flex items-center mr-3 p-3 h-14 bg-white rounded-xl cursor-pointer;
+  @apply box-border relative shrink-0 flex items-center mr-3 p-3 h-14 bg-tgai-panel-background rounded-xl cursor-pointer;
   border: 0.5px solid #EAECF0;
   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  color: #101828;
+  /* color: #101828; */
+  color: var(--tgai-text-1);
 }
 .dataSourceItem:hover {
   background-color: #f5f8ff;
@@ -95,7 +97,8 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 18px;
-  color: #155EEF;
+  /* color: #155EEF; */
+  color: var(--tgai-primary-5);
 }
 .OtherCreationOption::before {
   content: '';
@@ -136,7 +139,8 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  color: #374151;
+  /* color: #374151; */
+  color: var(--tgai-text-1);
 }
 .notionConnectionTip .title::after {
   content: '';
@@ -154,5 +158,6 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
-  color: #6B7280;
+  /* color: #6B7280; */
+  color: var(--tgai-text-2);
 }

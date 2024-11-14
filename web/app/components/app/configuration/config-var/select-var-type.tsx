@@ -2,16 +2,16 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import OperationBtn from '@/app/components/app/configuration/base/operation-btn'
+import cn from '../../../../../utils/classnames'
+import OperationBtn from '../base/operation-btn'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { ApiConnection } from '@/app/components/base/icons/src/vender/solid/development'
-import InputVarTypeIcon from '@/app/components/workflow/nodes/_base/components/input-var-type-icon'
-import { InputVarType } from '@/app/components/workflow/types'
+} from '../../../base/portal-to-follow-elem'
+import { ApiConnection } from '../../../base/icons/src/vender/solid/development'
+import InputVarTypeIcon from '../../../workflow/nodes/_base/components/input-var-type-icon'
+import { InputVarType } from '../../../workflow/types'
 
 type Props = {
   onChange: (value: string) => void

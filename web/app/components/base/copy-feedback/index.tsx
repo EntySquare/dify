@@ -6,6 +6,9 @@ import copy from 'copy-to-clipboard'
 import Tooltip from '../tooltip'
 import TooltipPlus from '../tooltip-plus'
 import copyStyle from './style.module.css'
+import Copy from '@/app/components/develop/secret-key/assets/copy.svg'
+import CopyHover from '@/app/components/develop/secret-key/assets/copy-hover.svg'
+import Copied from '@/app/components/develop/secret-key/assets/copied.svg'
 
 type Props = {
   content: string
@@ -38,17 +41,16 @@ const CopyFeedback = ({ content, selectorId, className }: Props) => {
       }
     >
       <div
-        className={`w-8 h-8 cursor-pointer hover:bg-gray-100 rounded-lg ${
-          className ?? ''
-        }`}
+        className={`w-8 h-8 cursor-pointer hover:bg-gray-100 rounded-lg ${className ?? ''
+          }`}
         onMouseLeave={onMouseLeave}
       >
         <div
           onClick={onClickCopy}
-          className={`w-full h-full ${copyStyle.copyIcon} ${
-            isCopied ? copyStyle.copied : ''
-          }`}
-        ></div>
+          className={`w-full h-full text-tgai-text-3 hover:text-tgai-text-1 flex justify-center items-center ${isCopied && '!text-tgai-text-1'}`}
+        >
+          {isCopied ? <Copied /> : <Copy />}
+        </div>
       </div>
     </Tooltip>
   )
@@ -78,17 +80,16 @@ export const CopyFeedbackNew = ({ content, className }: Pick<Props, 'className' 
       }
     >
       <div
-        className={`w-8 h-8 cursor-pointer hover:bg-gray-100 rounded-lg ${
-          className ?? ''
-        }`}
+        className={`w-8 h-8 cursor-pointer hover:bg-gray-100 rounded-lg ${className ?? ''
+          }`}
         onMouseLeave={onMouseLeave}
       >
         <div
           onClick={onClickCopy}
-          className={`w-full h-full ${copyStyle.copyIcon} ${
-            isCopied ? copyStyle.copied : ''
-          }`}
-        ></div>
+          className={`w-full h-full text-tgai-text-3 hover:text-tgai-text-1 flex justify-center items-center ${isCopied && '!text-tgai-text-1'}`}
+        >
+          {isCopied ? <Copied /> : <Copy />}
+        </div>
       </div>
     </TooltipPlus>
   )

@@ -1,12 +1,14 @@
 'use client'
 import type { FC } from 'react'
 import Editor, { loader } from '@monaco-editor/react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import Base from '../base'
-import cn from '@/utils/classnames'
-import { CodeLanguage } from '@/app/components/workflow/nodes/code/types'
+import cn from '../../../../../../../../utils/classnames'
+import { CodeLanguage } from '../../../../code/types'
 
 import './style.css'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 // load file from local instead of cdn https://github.com/suren-atoyan/monaco-react/issues/482
 loader.config({ paths: { vs: '/vs' } })
@@ -84,6 +86,8 @@ const CodeEditor: FC<Props> = ({
     }, 10)
   }
 
+  const app_theme = useTGAIGlobalStore(state => state.theme)
+
   const handleEditorDidMount = (editor: any, monaco: any) => {
     editorRef.current = editor
     resizeEditorToContent()
@@ -95,7 +99,13 @@ const CodeEditor: FC<Props> = ({
       setIsFocus(false)
     })
 
-    monaco.editor.defineTheme('default-theme', DEFAULT_THEME)
+
+    monaco.editor.defineTheme('default-theme', {
+      ...DEFAULT_THEME, 
+      // colors: {
+      //   'editor.background': app_theme === Theme.light ? "#F2F4F7" : "#323232"
+      // }
+    })
 
     monaco.editor.defineTheme('blur-theme', {
       base: 'vs',
@@ -132,12 +142,13 @@ const CodeEditor: FC<Props> = ({
     }
   })()
 
-  const theme = (() => {
+  const theme = useMemo(() => {
+    if(app_theme === Theme.dark) return 'vs-dark'
     if (noWrapper)
       return 'default-theme'
 
     return isFocus ? 'focus-theme' : 'blur-theme'
-  })()
+  },[isFocus, app_theme])
 
   const main = (
     <>
@@ -164,6 +175,7 @@ const CodeEditor: FC<Props> = ({
           unicodeHighlight: {
             ambiguousCharacters: false,
           },
+
         }}
         onMount={handleEditorDidMount}
       />

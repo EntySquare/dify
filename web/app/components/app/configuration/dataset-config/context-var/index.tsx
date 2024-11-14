@@ -7,9 +7,9 @@ import {
 } from '@remixicon/react'
 import type { Props } from './var-picker'
 import VarPicker from './var-picker'
-import cn from '@/utils/classnames'
-import { BracketsX } from '@/app/components/base/icons/src/vender/line/development'
-import Tooltip from '@/app/components/base/tooltip'
+import cn from '../../../../../../utils/classnames'
+import { BracketsX } from '../../../../base/icons/src/vender/line/development'
+import Tooltip from '../../../../base/tooltip'
 
 const ContextVar: FC<Props> = (props) => {
   const { t } = useTranslation()

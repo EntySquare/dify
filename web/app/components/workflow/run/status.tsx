@@ -1,8 +1,8 @@
 'use client'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import Indicator from '@/app/components/header/indicator'
+import cn from '../../../../utils/classnames'
+import Indicator from '../../header/indicator'
 
 type ResultProps = {
   status: string
@@ -22,20 +22,20 @@ const StatusPanel: FC<ResultProps> = ({
   return (
     <div
       className={cn(
-        'px-3 py-[10px] rounded-lg border-[0.5px] border-[rbga(0,0,0,0.05)] shadow-xs',
-        status === 'running' && '!bg-primary-50',
-        status === 'succeeded' && '!bg-[#ecfdf3]',
-        status === 'failed' && '!bg-[#fef3f2]',
-        status === 'stopped' && '!bg-[#fffaeb]',
+        'px-3 py-[10px] rounded-lg border-[0.5px] border-[rbga(0,0,0,0.05)] dark:border-stone-600/95 shadow-xs',
+        status === 'running' && '!bg-primary-50 dark:!bg-zinc-600',
+        status === 'succeeded' && '!bg-[#ecfdf3] dark:!bg-neutral-600',
+        status === 'failed' && '!bg-[#fef3f2] dark:!bg-red-800',
+        status === 'stopped' && '!bg-[#fffaeb] dark:!bg-orange-800',
       )}
     >
       <div className='flex'>
         <div className='flex-[33%] max-w-[120px]'>
-          <div className='text-xs leading-[18px] font-medium text-gray-400'>{t('runLog.resultPanel.status')}</div>
+          <div className='text-xs leading-[18px] font-medium text-gray-400 dark:tgai-text-3'>{t('runLog.resultPanel.status')}</div>
           <div
             className={cn(
               'flex items-center gap-1 h-[18px] text-xs leading-3 font-semibold',
-              status === 'running' && '!text-primary-600',
+              status === 'running' && '!text-tgai-primary',
               status === 'succeeded' && '!text-[#039855]',
               status === 'failed' && '!text-[#d92d20]',
               status === 'stopped' && '!text-[#f79009]',
@@ -65,8 +65,8 @@ const StatusPanel: FC<ResultProps> = ({
           </div>
         </div>
         <div className='flex-[33%] max-w-[152px]'>
-          <div className='text-xs leading-[18px] font-medium text-gray-400'>{t('runLog.resultPanel.time')}</div>
-          <div className='flex items-center gap-1 h-[18px] text-gray-700 text-xs leading-3 font-semibold'>
+          <div className='text-xs leading-[18px] font-medium text-gray-400 dark:text-tgai-text-3'>{t('runLog.resultPanel.time')}</div>
+          <div className='flex items-center gap-1 h-[18px] text-gray-700 dark:text-tgai-text-2 text-xs leading-3 font-semibold'>
             {status === 'running' && (
               <div className='w-16 h-2 rounded-sm bg-[rgba(0,0,0,0.05)]' />
             )}
@@ -76,8 +76,8 @@ const StatusPanel: FC<ResultProps> = ({
           </div>
         </div>
         <div className='flex-[33%]'>
-          <div className='text-xs leading-[18px] font-medium text-gray-400'>{t('runLog.resultPanel.tokens')}</div>
-          <div className='flex items-center gap-1 h-[18px] text-gray-700 text-xs leading-3 font-semibold'>
+          <div className='text-xs leading-[18px] font-medium text-gray-400 dark:text-tgai-text-3'>{t('runLog.resultPanel.tokens')}</div>
+          <div className='flex items-center gap-1 h-[18px] text-gray-700 dark:text-tgai-text-2 text-xs leading-3 font-semibold'>
             {status === 'running' && (
               <div className='w-20 h-2 rounded-sm bg-[rgba(0,0,0,0.05)]' />
             )}

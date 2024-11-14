@@ -1,5 +1,5 @@
 import React from 'react'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 
 export type ITagProps = {
   children: string | React.ReactNode
@@ -19,12 +19,12 @@ const COLOR_MAP = {
     bg: 'bg-yellow-100',
   },
   red: {
-    text: 'text-red-800',
-    bg: 'bg-red-100',
+    text: 'text-red-800 dark:text-red-50',
+    bg: 'bg-red-100 dark:bg-red-900',
   },
   gray: {
-    text: 'text-gray-800',
-    bg: 'bg-gray-100',
+    text: 'text-tgai-text-1',
+    bg: 'bg-gray-100 dark:bg-zinc-600',
   },
 }
 

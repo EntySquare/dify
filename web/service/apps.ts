@@ -1,9 +1,9 @@
 import type { Fetcher } from 'swr'
 import { del, get, patch, post, put } from './base'
-import type { ApikeysListResponse, AppDailyConversationsResponse, AppDailyEndUsersResponse, AppDetailResponse, AppListResponse, AppStatisticsResponse, AppTemplatesResponse, AppTokenCostsResponse, AppVoicesListResponse, CreateApiKeyResponse, GenerationIntroductionResponse, TracingConfig, TracingStatus, UpdateAppModelConfigResponse, UpdateAppSiteCodeResponse, UpdateOpenAIKeyResponse, ValidateOpenAIKeyResponse, WorkflowDailyConversationsResponse } from '@/models/app'
-import type { CommonResponse } from '@/models/common'
-import type { AppIconType, AppMode, ModelConfig } from '@/types/app'
-import type { TracingProvider } from '@/app/(commonLayout)/app/(appDetailLayout)/[appId]/overview/tracing/type'
+import type { ApikeysListResponse, AppDailyConversationsResponse, AppDailyEndUsersResponse, AppDetailResponse, AppListResponse, AppStatisticsResponse, AppTemplatesResponse, AppTokenCostsResponse, AppVoicesListResponse, CreateApiKeyResponse, GenerationIntroductionResponse, TracingConfig, TracingStatus, UpdateAppModelConfigResponse, UpdateAppSiteCodeResponse, UpdateOpenAIKeyResponse, ValidateOpenAIKeyResponse, WorkflowDailyConversationsResponse } from '../models/app'
+import type { CommonResponse } from '../models/common'
+import type { AppIconType, AppMode, ModelConfig } from '../types/app'
+import type { TracingProvider } from '../app/(commonLayout)/app/(appDetailLayout)/[appId]/overview/tracing/type'
 
 export const fetchAppList: Fetcher<AppListResponse, { url: string; params?: Record<string, any> }> = ({ url, params }) => {
   return get<AppListResponse>(url, { params })
@@ -23,6 +23,11 @@ export const createApp: Fetcher<AppDetailResponse, { name: string; icon_type?: A
 
 export const createAppChatOneV1: Fetcher<AppDetailResponse, { name: string; icon_type?: AppIconType; icon?: string; icon_background?: string; mode: AppMode; description?: string; config?: ModelConfig }> = ({ name, icon_type, icon, icon_background, mode, description, config }) => {
   return post<AppDetailResponse>('/create/chat_one_v1', { body: { name, icon_type, icon, icon_background, mode, description, model_config: config } })
+}
+
+//创建通用模版
+export const createGeneralV2: Fetcher<AppDetailResponse, { name: string; icon_type?: AppIconType; icon?: string; icon_background?: string; mode: AppMode; description?: string; config?: ModelConfig }> = ({ name, icon_type, icon, icon_background, mode, description, config }) => {
+    return post<AppDetailResponse>('/create/general_v2', { body: { name, icon_type, icon, icon_background, mode, description, model_config: config } })
 }
 
 export const updateAppInfo: Fetcher<AppDetailResponse, { appID: string; name: string; icon_type: AppIconType; icon: string; icon_background?: string; description: string }> = ({ appID, name, icon_type, icon, icon_background, description }) => {

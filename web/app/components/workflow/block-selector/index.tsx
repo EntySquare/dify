@@ -23,11 +23,11 @@ import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../base/portal-to-follow-elem'
 import {
   Plus02,
-} from '@/app/components/base/icons/src/vender/line/general'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
+} from '../../base/icons/src/vender/line/general'
+import { XCircle } from '../../base/icons/src/vender/solid/general'
 
 type NodeSelectorProps = {
   open?: boolean
@@ -117,7 +117,7 @@ const NodeSelector: FC<NodeSelectorProps> = ({
               <div
                 className={`
                   flex items-center justify-center 
-                  w-4 h-4 rounded-full bg-primary-600 cursor-pointer z-10
+                  w-4 h-4 rounded-full bg-tgai-primary cursor-pointer z-10
                   ${triggerClassName?.(open)}
                 `}
                 style={triggerStyle}
@@ -128,16 +128,16 @@ const NodeSelector: FC<NodeSelectorProps> = ({
         }
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='z-[1000]'>
-        <div className={`rounded-lg border-[0.5px] border-gray-200 bg-white shadow-lg ${popupClassName}`}>
+        <div className={`rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 bg-tgai-workflow-panel-background shadow-lg dark:shadow-stone-800 ${popupClassName}`}>
           <div className='px-2 pt-2'>
             <div
-              className='flex items-center px-2 rounded-lg bg-gray-100'
+              className='flex items-center px-2 rounded-lg bg-gray-100 dark:bg-tgai-input-background'
               onClick={e => e.stopPropagation()}
             >
-              <RiSearchLine className='shrink-0 ml-[1px] mr-[5px] w-3.5 h-3.5 text-gray-400' />
+              <RiSearchLine className='shrink-0 ml-[1px] mr-[5px] w-3.5 h-3.5 text-tgai-text-2' />
               <input
                 value={searchText}
-                className='grow px-0.5 py-[7px] text-[13px] text-gray-700 bg-transparent appearance-none outline-none caret-primary-600 placeholder:text-gray-400'
+                className='grow px-0.5 py-[7px] text-[13px] text-tgai-text-1 bg-transparent appearance-none outline-none caret-tgai-primary placeholder:text-tgai-text-3'
                 placeholder={searchPlaceholder}
                 onChange={e => setSearchText(e.target.value)}
                 autoFocus
@@ -148,7 +148,7 @@ const NodeSelector: FC<NodeSelectorProps> = ({
                     className='flex items-center justify-center ml-[5px] w-[18px] h-[18px] cursor-pointer'
                     onClick={() => setSearchText('')}
                   >
-                    <XCircle className='w-[14px] h-[14px] text-gray-400' />
+                    <XCircle className='w-[14px] h-[14px] text-tgai-text-3' />
                   </div>
                 )
               }

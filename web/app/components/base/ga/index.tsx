@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import Script from 'next/script'
-import { IS_CE_EDITION } from '@/config'
+import { IS_CE_EDITION } from '../../../../config'
 
 export enum GaType {
   admin = 'admin',

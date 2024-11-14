@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
+import cn from '../../../../../utils/classnames'
 
 const Placeholder = ({
   compact,

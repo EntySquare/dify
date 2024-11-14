@@ -7,20 +7,20 @@ import { useTranslation } from 'react-i18next'
 import {
   RiMoreFill,
 } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import Confirm from '@/app/components/base/confirm'
-import { ToastContext } from '@/app/components/base/toast'
-import { checkIsUsedInApp, deleteDataset } from '@/service/datasets'
-import type { DataSet } from '@/models/datasets'
-import Tooltip from '@/app/components/base/tooltip'
-import { Folder } from '@/app/components/base/icons/src/vender/solid/files'
-import type { HtmlContentProps } from '@/app/components/base/popover'
-import CustomPopover from '@/app/components/base/popover'
-import Divider from '@/app/components/base/divider'
-import RenameDatasetModal from '@/app/components/datasets/rename-modal'
-import type { Tag } from '@/app/components/base/tag-management/constant'
-import TagSelector from '@/app/components/base/tag-management/selector'
-import { useAppContext } from '@/context/app-context'
+import cn from '../../../utils/classnames'
+import Confirm from '../../components/base/confirm'
+import { ToastContext } from '../../components/base/toast'
+import { checkIsUsedInApp, deleteDataset } from '../../../service/datasets'
+import type { DataSet } from '../../../models/datasets'
+import Tooltip from '../../components/base/tooltip'
+import { Folder } from '../../components/base/icons/src/vender/solid/files'
+import type { HtmlContentProps } from '../../components/base/popover'
+import CustomPopover from '../../components/base/popover'
+import Divider from '../../components/base/divider'
+import RenameDatasetModal from '../../components/datasets/rename-modal'
+import type { Tag } from '../../components/base/tag-management/constant'
+import TagSelector from '../../components/base/tag-management/selector'
+import { useAppContext } from '../../../context/app-context'
 
 export type DatasetCardProps = {
   dataset: DataSet
@@ -83,17 +83,17 @@ const DatasetCard = ({
     }
     return (
       <div className="relative w-full py-1" onMouseLeave={onMouseLeave}>
-        <div className='h-8 py-[6px] px-3 mx-1 flex items-center gap-2 hover:bg-gray-100 rounded-lg cursor-pointer' onClick={onClickRename}>
-          <span className='text-gray-700 text-sm'>{t('common.operation.settings')}</span>
+        <div className='h-8 py-[6px] px-3 mx-1 flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-lg cursor-pointer' onClick={onClickRename}>
+          <span className='text-tgai-text-2 text-sm'>{t('common.operation.settings')}</span>
         </div>
         {props.showDelete && (
           <>
-            <Divider className="!my-1" />
+            <Divider className="!my-1 dark:!bg-zinc-600" />
             <div
-              className='group h-8 py-[6px] px-3 mx-1 flex items-center gap-2 hover:bg-red-50 rounded-lg cursor-pointer'
+              className='group h-8 py-[6px] px-3 mx-1 flex items-center gap-2 hover:bg-red-50 dark:hover:bg-red-900 rounded-lg cursor-pointer'
               onClick={onClickDelete}
             >
-              <span className={cn('text-gray-700 text-sm', 'group-hover:text-red-500')}>
+              <span className={cn('text-tgai-text-2 text-sm', 'group-hover:text-red-500')}>
                 {t('common.operation.delete')}
               </span>
             </div>
@@ -110,7 +110,7 @@ const DatasetCard = ({
   return (
     <>
       <div
-        className='group col-span-1 bg-white border-2 border-solid border-transparent rounded-xl shadow-sm min-h-[160px] flex flex-col transition-all duration-200 ease-in-out cursor-pointer hover:shadow-lg'
+        className='group col-span-1 bg-tgai-panel-background-3 border-2 border-solid border-transparent rounded-xl shadow-sm min-h-[160px] flex flex-col transition-all duration-200 ease-in-out cursor-pointer hover:shadow-lg'
         data-disable-nprogress={true}
         onClick={(e) => {
           e.preventDefault()
@@ -119,32 +119,32 @@ const DatasetCard = ({
       >
         <div className='flex pt-[14px] px-[14px] pb-3 h-[66px] items-center gap-3 grow-0 shrink-0'>
           <div className={cn(
-            'shrink-0 flex items-center justify-center p-2.5 bg-[#F5F8FF] rounded-md border-[0.5px] border-[#E0EAFF]',
+            'shrink-0 flex items-center justify-center p-2.5 bg-[#F5F8FF] dark:bg-tgai-primary rounded-md border-[0.5px] border-[#E0EAFF] dark:border-tgai-primary',
             !dataset.embedding_available && 'opacity-50 hover:opacity-100',
           )}>
-            <Folder className='w-5 h-5 text-[#444CE7]' />
+            <Folder className='w-5 h-5 dark:text-white text-tgai-primary'  />
           </div>
           <div className='grow w-0 py-[1px]'>
-            <div className='flex items-center text-sm leading-5 font-semibold text-gray-800'>
+            <div className='flex items-center text-sm leading-5 font-semibold text-tgai-text-1'>
               <div className={cn('truncate', !dataset.embedding_available && 'opacity-50 hover:opacity-100')} title={dataset.name}>{dataset.name}</div>
               {!dataset.embedding_available && (
                 <Tooltip
                   selector={`dataset-tag-${dataset.id}`}
                   htmlContent={t('dataset.unavailableTip')}
                 >
-                  <span className='shrink-0 inline-flex w-max ml-1 px-1 border boder-gray-200 rounded-md text-gray-500 text-xs font-normal leading-[18px]'>{t('dataset.unavailable')}</span>
+                  <span className='shrink-0 inline-flex w-max ml-1 px-1 border boder-gray-200 rounded-md text-tgai-text-2 text-xs font-normal leading-[18px]'>{t('dataset.unavailable')}</span>
                 </Tooltip>
               )}
             </div>
-            <div className='flex items-center mt-[1px] text-xs leading-[18px] text-gray-500'>
+            <div className='flex items-center mt-[1px] text-xs leading-[18px] text-tgai-text-2'>
               <div
                 className={cn('truncate', (!dataset.embedding_available || !dataset.document_count) && 'opacity-50')}
                 title={`${dataset.document_count}${t('dataset.documentCount')} · ${Math.round(dataset.word_count / 1000)}${t('dataset.wordCount')} · ${dataset.app_count}${t('dataset.appCount')}`}
               >
                 <span>{dataset.document_count}{t('dataset.documentCount')}</span>
-                <span className='shrink-0 mx-0.5 w-1 text-gray-400'>·</span>
+                <span className='shrink-0 mx-0.5 w-1 text-tgai-text-2'>·</span>
                 <span>{Math.round(dataset.word_count / 1000)}{t('dataset.wordCount')}</span>
-                <span className='shrink-0 mx-0.5 w-1 text-gray-400'>·</span>
+                <span className='shrink-0 mx-0.5 w-1 text-tgai-text-2'>·</span>
                 <span>{dataset.app_count}{t('dataset.appCount')}</span>
               </div>
             </div>
@@ -152,7 +152,7 @@ const DatasetCard = ({
         </div>
         <div
           className={cn(
-            'grow mb-2 px-[14px] max-h-[72px] text-xs leading-normal text-gray-500 group-hover:line-clamp-2 group-hover:max-h-[36px]',
+            'grow mb-2 px-[14px] max-h-[72px] text-xs leading-normal text-tgai-text-2 group-hover:line-clamp-2 group-hover:max-h-[36px]',
             tags.length ? 'line-clamp-2' : 'line-clamp-4',
             !dataset.embedding_available && 'opacity-50 hover:opacity-100',
           )}
@@ -192,7 +192,7 @@ const DatasetCard = ({
                 <div
                   className='flex items-center justify-center w-8 h-8 cursor-pointer rounded-md'
                 >
-                  <RiMoreFill className='w-4 h-4 text-gray-700' />
+                  <RiMoreFill className='w-4 h-4 text-tgai-text-3' />
                 </div>
               }
               btnClassName={open =>

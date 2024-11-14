@@ -1,8 +1,8 @@
-import type { CommonNodeType, ModelConfig, ValueSelector } from '@/app/components/workflow/types'
-import type { RETRIEVE_TYPE } from '@/types/app'
+import type { CommonNodeType, ModelConfig, ValueSelector } from '../../types'
+import type { RETRIEVE_TYPE } from '../../../../../types/app'
 import type {
   RerankingModeEnum,
-} from '@/models/datasets'
+} from '../../../../../models/datasets'
 
 export type MultipleRetrievalConfig = {
   top_k: number

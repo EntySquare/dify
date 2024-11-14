@@ -11,7 +11,7 @@ type Props = {
 
 const Divider: FC<Props> = ({ type = 'horizontal', className = '', style }) => {
   return (
-    <div className={`${s.divider} ${s[type]} ${className}`} style={style}></div>
+    <div className={`${s.divider} ${s[type]} ${className} dark:!bg-zinc-600`} style={style}></div>
   )
 }
 

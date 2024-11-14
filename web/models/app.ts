@@ -1,5 +1,5 @@
-import type { LangFuseConfig, LangSmithConfig, TracingProvider } from '@/app/(commonLayout)/app/(appDetailLayout)/[appId]/overview/tracing/type'
-import type { App, AppTemplate, SiteConfig } from '@/types/app'
+import type { LangFuseConfig, LangSmithConfig, TracingProvider } from '../app/(commonLayout)/app/(appDetailLayout)/[appId]/overview/tracing/type'
+import type { App, AppTemplate, SiteConfig } from '../types/app'
 
 /* export type App = {
   id: string

@@ -17,10 +17,10 @@ import {
   MODEL_STATUS_TEXT,
   ModelStatusEnum,
 } from '../declarations'
-import { Check } from '@/app/components/base/icons/src/vender/line/general'
-import { useModalContext } from '@/context/modal-context'
-import { useProviderContext } from '@/context/provider-context'
-import Tooltip from '@/app/components/base/tooltip'
+import { Check } from '../../../../base/icons/src/vender/line/general'
+import { useModalContext } from '../../../../../../context/modal-context'
+import { useProviderContext } from '../../../../../../context/provider-context'
+import Tooltip from '../../../../base/tooltip'
 
 type PopupItemProps = {
   defaultModel?: DefaultModel
@@ -64,7 +64,7 @@ const PopupItem: FC<PopupItemProps> = ({
 
   return (
     <div className='mb-1'>
-      <div className='flex items-center px-3 h-[22px] text-xs font-medium text-gray-500'>
+      <div className='flex items-center px-3 h-[22px] text-xs font-medium text-tgai-text-2'>
         {model.label[language] || model.label.en_US}
       </div>
       {
@@ -79,7 +79,7 @@ const PopupItem: FC<PopupItemProps> = ({
               key={modelItem.model}
               className={`
                 group relative flex items-center px-3 py-1.5 h-8 rounded-lg
-                ${modelItem.status === ModelStatusEnum.active ? 'cursor-pointer hover:bg-gray-50' : 'cursor-not-allowed hover:bg-gray-50/60'}
+                ${modelItem.status === ModelStatusEnum.active ? 'cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600' : 'cursor-not-allowed hover:bg-gray-50/60 dark:hover:bg-zinc-600/60'}
               `}
               onClick={() => handleSelect(model.provider, modelItem)}
             >
@@ -93,7 +93,7 @@ const PopupItem: FC<PopupItemProps> = ({
               />
               <ModelName
                 className={`
-                  grow text-sm font-normal text-gray-900
+                  grow text-sm font-normal text-tgai-text-1
                   ${modelItem.status !== ModelStatusEnum.active && 'opacity-60'}
                 `}
                 modelItem={modelItem}
@@ -102,13 +102,13 @@ const PopupItem: FC<PopupItemProps> = ({
               />
               {
                 defaultModel?.model === modelItem.model && defaultModel.provider === currentProvider.provider && (
-                  <Check className='shrink-0 w-4 h-4 text-primary-600' />
+                  <Check className='shrink-0 w-4 h-4 text-tgai-primary' />
                 )
               }
               {
                 modelItem.status === ModelStatusEnum.noConfigure && (
                   <div
-                    className='hidden group-hover:block text-xs font-medium text-primary-600 cursor-pointer'
+                    className='hidden group-hover:block text-xs font-medium text-tgai-primary cursor-pointer'
                     onClick={handleOpenModelModal}
                   >
                     {t('common.operation.add').toLocaleUpperCase()}

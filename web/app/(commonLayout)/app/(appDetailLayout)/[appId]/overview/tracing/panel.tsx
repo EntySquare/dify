@@ -8,14 +8,14 @@ import type { LangFuseConfig, LangSmithConfig } from './type'
 import { TracingProvider } from './type'
 import TracingIcon from './tracing-icon'
 import ConfigButton from './config-button'
-import cn from '@/utils/classnames'
-import { LangfuseIcon, LangsmithIcon } from '@/app/components/base/icons/src/public/tracing'
-import Indicator from '@/app/components/header/indicator'
-import { fetchTracingConfig as doFetchTracingConfig, fetchTracingStatus, updateTracingStatus } from '@/service/apps'
-import type { TracingStatus } from '@/models/app'
-import Toast from '@/app/components/base/toast'
-import { useAppContext } from '@/context/app-context'
-import Loading from '@/app/components/base/loading'
+import cn from '../../../../../../../utils/classnames'
+import { LangfuseIcon, LangsmithIcon } from '../../../../../../components/base/icons/src/public/tracing'
+import Indicator from '../../../../../../components/header/indicator'
+import { fetchTracingConfig as doFetchTracingConfig, fetchTracingStatus, updateTracingStatus } from '../../../../../../../service/apps'
+import type { TracingStatus } from '../../../../../../../models/app'
+import Toast from '../../../../../../components/base/toast'
+import { useAppContext } from '../../../../../../../context/app-context'
+import Loading from '../../../../../../components/base/loading'
 
 const I18N_PREFIX = 'app.tracing'
 
@@ -27,7 +27,7 @@ const Title = ({
   const { t } = useTranslation()
 
   return (
-    <div className={cn(className, 'flex items-center text-lg font-semibold text-gray-900')}>
+    <div className={cn(className, 'flex items-center text-lg font-semibold text-tgai-text-1')}>
       {t('common.appMenus.overview')}
     </div>
   )
@@ -135,25 +135,25 @@ const Panel: FC = () => {
   return (
     <div className={cn('mb-3 flex justify-between items-center')}>
       <Title className='h-[41px]' />
-      <div className='flex items-center p-2 rounded-xl border-[0.5px] border-gray-200 shadow-xs cursor-pointer hover:bg-gray-100' onClick={showPopup}>
+      <div className='flex items-center p-2 rounded-xl border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xs dark:shadow-stone-800 cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-600' onClick={showPopup}>
         {!inUseTracingProvider
           ? <>
             <TracingIcon size='md' className='mr-2' />
-            <div className='leading-5 text-sm font-semibold text-gray-700'>{t(`${I18N_PREFIX}.title`)}</div>
+            <div className='leading-5 text-sm font-semibold text-tgai-text-2'>{t(`${I18N_PREFIX}.title`)}</div>
           </>
           : <InUseProviderIcon className='ml-1 h-4' />}
 
         {hasConfiguredTracing && (
           <div className='ml-4 mr-1 flex items-center'>
             <Indicator color={enabled ? 'green' : 'gray'} />
-            <div className='ml-1.5 text-xs font-semibold text-gray-500 uppercase'>
+            <div className='ml-1.5 text-xs font-semibold text-tgai-text-3 uppercase'>
               {t(`${I18N_PREFIX}.${enabled ? 'enabled' : 'disabled'}`)}
             </div>
           </div>
         )}
 
         {hasConfiguredTracing && (
-          <div className='ml-2 w-px h-3.5 bg-gray-200'></div>
+          <div className='ml-2 w-px h-3.5 bg-gray-200 dark:bg-zinc-700'></div>
         )}
         <div className='flex items-center' onClick={e => e.stopPropagation()}>
           <ConfigButton

@@ -5,20 +5,20 @@ import { RiEqualizer2Line } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import type { MultipleRetrievalConfig, SingleRetrievalConfig } from '../types'
 import type { ModelConfig } from '../../../types'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import ConfigRetrievalContent from '@/app/components/app/configuration/dataset-config/params-config/config-content'
-import { RETRIEVE_TYPE } from '@/types/app'
-import { DATASET_DEFAULT } from '@/config'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import Button from '@/app/components/base/button'
-import type { DatasetConfigs } from '@/models/debug'
-import type { DataSet } from '@/models/datasets'
+} from '../../../../base/portal-to-follow-elem'
+import ConfigRetrievalContent from '../../../../app/configuration/dataset-config/params-config/config-content'
+import { RETRIEVE_TYPE } from '../../../../../../types/app'
+import { DATASET_DEFAULT } from '../../../../../../config'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '../../../../header/account-setting/model-provider-page/hooks'
+import { ModelTypeEnum } from '../../../../header/account-setting/model-provider-page/declarations'
+import Button from '../../../../base/button'
+import type { DatasetConfigs } from '../../../../../../models/debug'
+import type { DataSet } from '../../../../../../models/datasets'
 
 type Props = {
   payload: {
@@ -115,7 +115,7 @@ const RetrievalConfig: FC<Props> = ({
         </Button>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent style={{ zIndex: 1001 }}>
-        <div className='w-[404px] pt-3 pb-4 px-4 shadow-xl  rounded-2xl border border-gray-200  bg-white'>
+        <div className='w-[404px] pt-3 pb-4 px-4 shadow-xl dark:shadow-stone-800 rounded-2xl border border-gray-200 dark:border-stone-600 bg-tgai-panel-background'>
           <ConfigRetrievalContent
             datasetConfigs={
               {

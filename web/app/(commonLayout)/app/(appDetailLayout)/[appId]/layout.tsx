@@ -13,15 +13,15 @@ import {
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import { useShallow } from 'zustand/react/shallow'
+import cn from '../../../../../utils/classnames'
+import { useStore } from '../../../../components/app/store'
+import AppSideBar from '../../../../components/app-sidebar'
+import type { NavIcon } from '../../../../components/app-sidebar/navLink'
+import { fetchAppDetail } from '../../../../../service/apps'
+import { useAppContext } from '../../../../../context/app-context'
+import Loading from '../../../../components/base/loading'
+import useBreakpoints, { MediaType } from '../../../../../hooks/use-breakpoints'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import { useStore } from '@/app/components/app/store'
-import AppSideBar from '@/app/components/app-sidebar'
-import type { NavIcon } from '@/app/components/app-sidebar/navLink'
-import { fetchAppDetail } from '@/service/apps'
-import { useAppContext } from '@/context/app-context'
-import Loading from '@/app/components/base/loading'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
 
 export type IAppDetailLayoutProps = {
   children: React.ReactNode
@@ -127,7 +127,7 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
 
   if (!appDetail) {
     return (
-      <div className='flex h-full items-center justify-center bg-white'>
+      <div className='flex h-full items-center justify-center bg-tgai-panel-background'>
         <Loading />
       </div>
     )
@@ -138,7 +138,7 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
       {appDetail && (
         <AppSideBar title={appDetail.name} icon={appDetail.icon} icon_background={appDetail.icon_background} desc={appDetail.mode} navigation={navigation} />
       )}
-      <div className="bg-white grow overflow-hidden">
+      <div className="bg-tgai-panel-background grow overflow-hidden">
         {children}
       </div>
     </div>

@@ -6,31 +6,31 @@ import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiMoreFill } from '@remixicon/react'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import type { App } from '@/types/app'
-import Confirm from '@/app/components/base/confirm'
-import { ToastContext } from '@/app/components/base/toast'
-import { copyApp, deleteApp, exportAppConfig, updateAppInfo } from '@/service/apps'
-import DuplicateAppModal from '@/app/components/app/duplicate-modal'
-import type { DuplicateAppModalProps } from '@/app/components/app/duplicate-modal'
-import AppIcon from '@/app/components/base/app-icon'
-import AppsContext, { useAppContext } from '@/context/app-context'
-import type { HtmlContentProps } from '@/app/components/base/popover'
-import CustomPopover from '@/app/components/base/popover'
-import Divider from '@/app/components/base/divider'
-import { getRedirection } from '@/utils/app-redirection'
-import { useProviderContext } from '@/context/provider-context'
-import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
-import { AiText, ChatBot, CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Route } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
-import type { CreateAppModalProps } from '@/app/components/explore/create-app-modal'
-import EditAppModal from '@/app/components/explore/create-app-modal'
-import SwitchAppModal from '@/app/components/app/switch-app-modal'
-import type { Tag } from '@/app/components/base/tag-management/constant'
-import TagSelector from '@/app/components/base/tag-management/selector'
-import type { EnvironmentVariable } from '@/app/components/workflow/types'
-import DSLExportConfirmModal from '@/app/components/workflow/dsl-export-confirm-modal'
-import { fetchWorkflowDraft } from '@/service/workflow'
+import cn from '../../../utils/classnames'
+import type { App } from '../../../types/app'
+import Confirm from '../../components/base/confirm'
+import { ToastContext } from '../../components/base/toast'
+import { copyApp, deleteApp, exportAppConfig, updateAppInfo } from '../../../service/apps'
+import DuplicateAppModal from '../../components/app/duplicate-modal'
+import type { DuplicateAppModalProps } from '../../components/app/duplicate-modal'
+import AppIcon from '../../components/base/app-icon'
+import AppsContext, { useAppContext } from '../../../context/app-context'
+import type { HtmlContentProps } from '../../components/base/popover'
+import CustomPopover from '../../components/base/popover'
+import Divider from '../../components/base/divider'
+import { getRedirection } from '../../../utils/app-redirection'
+import { useProviderContext } from '../../../context/provider-context'
+import { NEED_REFRESH_APP_LIST_KEY } from '../../../config'
+import { AiText, ChatBot, CuteRobote } from '../../components/base/icons/src/vender/solid/communication'
+import { Route } from '../../components/base/icons/src/vender/solid/mapsAndTravel'
+import type { CreateAppModalProps } from '../../components/explore/create-app-modal'
+import EditAppModal from '../../components/explore/create-app-modal'
+import SwitchAppModal from '../../components/app/switch-app-modal'
+import type { Tag } from '../../components/base/tag-management/constant'
+import TagSelector from '../../components/base/tag-management/selector'
+import type { EnvironmentVariable } from '../../components/workflow/types'
+import DSLExportConfirmModal from '../../components/workflow/dsl-export-confirm-modal'
+import { fetchWorkflowDraft } from '../../../service/workflow'
 
 export type AppCardProps = {
   app: App
@@ -209,19 +209,19 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
     }
     return (
       <div className="relative w-full py-1" onMouseLeave={onMouseLeave}>
-        <button className={s.actionItem} onClick={onClickSettings}>
+        <button className={cn(s.actionItem, "hover:bg-gray-100 dark:hover:bg-zinc-600")} onClick={onClickSettings}>
           <span className={s.actionName}>{t('app.editApp')}</span>
         </button>
-        <Divider className="!my-1" />
-        <button className={s.actionItem} onClick={onClickDuplicate}>
+        <Divider className="!my-1 dark:!bg-zinc-600" />
+        <button className={cn(s.actionItem, "hover:bg-gray-100 dark:hover:bg-zinc-600")} onClick={onClickDuplicate}>
           <span className={s.actionName}>{t('app.duplicate')}</span>
         </button>
-        <button className={s.actionItem} onClick={onClickExport}>
+        <button className={cn(s.actionItem, "hover:bg-gray-100 dark:hover:bg-zinc-600")} onClick={onClickExport}>
           <span className={s.actionName}>{t('app.export')}</span>
         </button>
         {(app.mode === 'completion' || app.mode === 'chat') && (
           <>
-            <Divider className="!my-1" />
+            <Divider className="!my-1 dark:!bg-zinc-600" />
             <div
               className='h-9 py-2 px-3 mx-1 flex items-center hover:bg-gray-50 rounded-lg cursor-pointer'
               onClick={onClickSwitch}
@@ -230,9 +230,9 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
             </div>
           </>
         )}
-        <Divider className="!my-1" />
+        <Divider className="!my-1 dark:!bg-zinc-600" />
         <div
-          className={cn(s.actionItem, s.deleteActionItem, 'group')}
+          className={cn(s.actionItem, 'group hover:bg-red-50 dark:hover:bg-red-900')}
           onClick={onClickDelete}
         >
           <span className={cn(s.actionName, 'group-hover:text-red-500')}>
@@ -255,7 +255,7 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
           e.preventDefault()
           getRedirection(isCurrentWorkspaceEditor, app, push)
         }}
-        className='group flex col-span-1 bg-white border-2 border-solid border-transparent rounded-xl shadow-sm min-h-[160px] flex flex-col transition-all duration-200 ease-in-out cursor-pointer hover:shadow-lg'
+        className='group flex col-span-1 bg-tgai-panel-background-3 border-2 border-solid border-transparent rounded-xl shadow-sm min-h-[160px] flex flex-col transition-all duration-200 ease-in-out cursor-pointer hover:shadow-lg'
       >
         <div className='flex pt-[14px] px-[14px] pb-3 h-[66px] items-center gap-3 grow-0 shrink-0'>
           <div className='relative shrink-0'>
@@ -285,21 +285,22 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
             </span>
           </div>
           <div className='grow w-0 py-[1px]'>
-            <div className='flex items-center text-sm leading-5 font-semibold text-gray-800'>
+            <div className='flex items-center text-sm leading-5 font-semibold text-tgai-text-1'>
               <div className='truncate' title={app.name}>{app.name}</div>
             </div>
-            <div className='flex items-center text-[10px] leading-[18px] text-gray-500 font-medium'>
+            <div className='flex items-center text-[10px] leading-[18px] text-tgai-text-2 font-medium'>
               {app.mode === 'advanced-chat' && <div className='truncate'>{t('app.types.chatbot').toUpperCase()}</div>}
               {app.mode === 'chat' && <div className='truncate'>{t('app.types.chatbot').toUpperCase()}</div>}
               {app.mode === 'agent-chat' && <div className='truncate'>{t('app.types.agent').toUpperCase()}</div>}
-              {app.mode === 'workflow' && <div className='truncate'>{t('app.types.workflow').toUpperCase()}</div>}
+              {/* {app.mode === 'workflow' && <div className='truncate'>{t('app.types.workflow').toUpperCase()}</div>} */}
+              {app.mode === 'workflow' && <div className='truncate'>任务</div>}
               {app.mode === 'completion' && <div className='truncate'>{t('app.types.completion').toUpperCase()}</div>}
             </div>
           </div>
         </div>
         <div
           className={cn(
-            'grow mb-2 px-[14px] max-h-[72px] text-xs leading-normal text-gray-500 group-hover:line-clamp-2 group-hover:max-h-[36px]',
+            'grow mb-2 px-[14px] max-h-[72px] text-xs leading-normal text-tgai-text-2 group-hover:line-clamp-2 group-hover:max-h-[36px]',
             tags.length ? 'line-clamp-2' : 'line-clamp-4',
           )}
           title={app.description}
@@ -331,7 +332,7 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
                   />
                 </div>
               </div>
-              <div className='!hidden group-hover:!flex shrink-0 mx-1 w-[1px] h-[14px] bg-gray-200' />
+              <div className='!hidden group-hover:!flex shrink-0 mx-1 w-[1px] h-[14px] bg-tgai-text-2' />
               <div className='!hidden group-hover:!flex shrink-0'>
                 <CustomPopover
                   htmlContent={<Operations />}
@@ -341,7 +342,7 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
                     <div
                       className='flex items-center justify-center w-8 h-8 cursor-pointer rounded-md'
                     >
-                      <RiMoreFill className='w-4 h-4 text-gray-700' />
+                      <RiMoreFill className='w-4 h-4 text-tgai-text-3' />
                     </div>
                   }
                   btnClassName={open =>

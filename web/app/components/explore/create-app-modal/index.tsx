@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import AppIconPicker from '../../base/app-icon-picker'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import Toast from '@/app/components/base/toast'
-import AppIcon from '@/app/components/base/app-icon'
-import { useProviderContext } from '@/context/provider-context'
-import AppsFull from '@/app/components/billing/apps-full-in-dialog'
-import type { AppIconType } from '@/types/app'
+import Modal from '../../base/modal'
+import Button from '../../base/button'
+import Toast from '../../base/toast'
+import AppIcon from '../../base/app-icon'
+import { useProviderContext } from '../../../../context/provider-context'
+import AppsFull from '../../billing/apps-full-in-dialog'
+import type { AppIconType } from '../../../../types/app'
 
 export type CreateAppModalProps = {
   show: boolean
@@ -76,21 +76,21 @@ const CreateAppModal = ({
       <Modal
         isShow={show}
         onClose={() => {}}
-        className='relative !max-w-[480px] px-8'
+        className='relative !max-w-[480px] px-8 !bg-tgai-panel-background border-tgai-panel-border border'
       >
         <div className='absolute right-4 top-4 p-2 cursor-pointer' onClick={onHide}>
-          <RiCloseLine className='w-4 h-4 text-gray-500' />
+          <RiCloseLine className='w-4 h-4 text-tgai-text-2' />
         </div>
         {isEditModal && (
-          <div className='mb-9 font-semibold text-xl leading-[30px] text-gray-900'>{t('app.editAppTitle')}</div>
+          <div className='mb-9 font-semibold text-xl leading-[30px] text-tgai-text-1'>{t('app.editAppTitle')}</div>
         )}
         {!isEditModal && (
-          <div className='mb-9 font-semibold text-xl leading-[30px] text-gray-900'>{t('explore.appCustomize.title', { name: appName })}</div>
+          <div className='mb-9 font-semibold text-xl leading-[30px] text-tgai-text-1'>{t('explore.appCustomize.title', { name: appName })}</div>
         )}
         <div className='mb-9'>
           {/* icon & name */}
           <div className='pt-2'>
-            <div className='py-2 text-sm font-medium leading-[20px] text-gray-900'>{t('app.newApp.captionName')}</div>
+            <div className='py-2 text-sm font-medium leading-[20px] text-tgai-text-1'>{t('app.newApp.captionName')}</div>
             <div className='flex items-center justify-between space-x-2'>
               <AppIcon
                 size='large'
@@ -105,15 +105,15 @@ const CreateAppModal = ({
                 value={name}
                 onChange={e => setName(e.target.value)}
                 placeholder={t('app.newApp.appNamePlaceholder') || ''}
-                className='grow h-10 px-3 text-sm font-normal bg-gray-100 rounded-lg border border-transparent outline-none appearance-none caret-primary-600 placeholder:text-gray-400 hover:bg-gray-50 hover:border hover:border-gray-300 focus:bg-gray-50 focus:border focus:border-gray-300 focus:shadow-xs'
+                className='grow h-10 px-3 text-sm text-tgai-text-1 font-normal bg-tgai-input-background rounded-lg border border-transparent outline-none appearance-none caret-tgai-primary placeholder:text-tgai-text-3 hover:bg-tgai-input-background hover:border hover:border-gray-300 dark:hover:border-zinc-600 focus:bg-tgai-input-background focus:border focus:border-gray-300 dark:focus:border-zinc-600 focus:shadow-xs'
               />
             </div>
           </div>
           {/* description */}
           <div className='pt-2'>
-            <div className='py-2 text-sm font-medium leading-[20px] text-gray-900'>{t('app.newApp.captionDescription')}</div>
+            <div className='py-2 text-sm font-medium leading-[20px] text-tgai-text-1'>{t('app.newApp.captionDescription')}</div>
             <textarea
-              className='w-full h-10 px-3 py-2 text-sm font-normal bg-gray-100 rounded-lg border border-transparent outline-none appearance-none caret-primary-600 placeholder:text-gray-400 hover:bg-gray-50 hover:border hover:border-gray-300 focus:bg-gray-50 focus:border focus:border-gray-300 focus:shadow-xs h-[80px] resize-none'
+              className='w-full h-10 px-3 py-2 text-sm text-tgai-text-1 font-normal bg-tgai-input-background rounded-lg border border-transparent outline-none appearance-none caret-tgai-primary placeholder:text-tgai-text-3 hover:bg-tgai-input-background hover:border hover:border-gray-300 dark:hover:border-zinc-600 focus:bg-tgai-input-background focus:border focus:border-gray-300 dark:focus:border-zinc-600 focus:shadow-xs h-[80px] resize-none'
               placeholder={t('app.newApp.appDescriptionPlaceholder') || ''}
               value={description}
               onChange={e => setDescription(e.target.value)}

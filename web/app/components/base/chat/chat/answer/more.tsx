@@ -2,7 +2,7 @@ import type { FC } from 'react'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ChatItem } from '../../types'
-import { formatNumber } from '@/utils/format'
+import { formatNumber } from '../../../../../../utils/format'
 
 type MoreProps = {
   more: ChatItem['more']

@@ -5,15 +5,15 @@ import produce from 'immer'
 import { useTranslation } from 'react-i18next'
 import type { ToolVarInputs } from '../types'
 import { VarType as VarKindType } from '../types'
-import cn from '@/utils/classnames'
-import type { ValueSelector, Var } from '@/app/components/workflow/types'
-import type { CredentialFormSchema } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { FormTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import VarReferencePicker from '@/app/components/workflow/nodes/_base/components/variable/var-reference-picker'
-import Input from '@/app/components/workflow/nodes/_base/components/input-support-select-var'
-import useAvailableVarList from '@/app/components/workflow/nodes/_base/hooks/use-available-var-list'
-import { VarType } from '@/app/components/workflow/types'
+import cn from '../../../../../../utils/classnames'
+import type { ValueSelector, Var } from '../../../types'
+import type { CredentialFormSchema } from '../../../../header/account-setting/model-provider-page/declarations'
+import { FormTypeEnum } from '../../../../header/account-setting/model-provider-page/declarations'
+import { useLanguage } from '../../../../header/account-setting/model-provider-page/hooks'
+import VarReferencePicker from '../../_base/components/variable/var-reference-picker'
+import Input from '../../_base/components/input-support-select-var'
+import useAvailableVarList from '../../_base/hooks/use-available-var-list'
+import { VarType } from '../../../types'
 type Props = {
   readOnly: boolean
   nodeId: string
@@ -132,13 +132,13 @@ const InputVarList: FC<Props> = ({
           return (
             <div key={variable} className='space-y-1'>
               <div className='flex items-center h-[18px] space-x-2'>
-                <span className='text-[13px] font-medium text-gray-900'>{label[language] || label.en_US}</span>
-                <span className='text-xs font-normal text-gray-500'>{paramType(type)}</span>
+                <span className='text-[13px] font-medium text-tgai-text-1'>{label[language] || label.en_US}</span>
+                <span className='text-xs font-normal text-tgai-text-3'>{paramType(type)}</span>
                 {required && <span className='leading-[18px] text-xs font-normal text-[#EC4A0A]'>Required</span>}
               </div>
               {isString && (
                 <Input
-                  className={cn(inputsIsFocus[variable] ? 'shadow-xs bg-gray-50 border-gray-300' : 'bg-gray-100 border-gray-100', 'rounded-lg px-3 py-[6px] border')}
+                  className={cn(inputsIsFocus[variable] ? 'shadow-xs dark:shadow-stone-800 bg-gray-50 dark:bg-zinc-700 border-gray-300 dark:border-stone-500' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-stone-700', 'rounded-lg px-3 py-[6px] border')}
                   value={varInput?.value as string || ''}
                   onChange={handleMixedTypeChange(variable)}
                   readOnly={readOnly}
@@ -176,7 +176,7 @@ const InputVarList: FC<Props> = ({
                   filterVar={(varPayload: Var) => varPayload.type === VarType.arrayFile}
                 />
               )}
-              {tooltip && <div className='leading-[18px] text-xs font-normal text-gray-600'>{tooltip[language] || tooltip.en_US}</div>}
+              {tooltip && <div className='leading-[18px] text-xs font-normal text-tgai-text-2'>{tooltip[language] || tooltip.en_US}</div>}
             </div>
           )
         })

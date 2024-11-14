@@ -12,16 +12,16 @@ import {
 import { useEmbeddedChatbot } from './hooks'
 import { isDify } from './utils'
 import { useThemeContext } from './theme/theme-context'
-import cn from '@/utils/classnames'
-import { checkOrSetAccessToken } from '@/app/components/share/utils'
-import AppUnavailable from '@/app/components/base/app-unavailable'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import Loading from '@/app/components/base/loading'
-import LogoHeader from '@/app/components/base/logo/logo-embeded-chat-header'
-import Header from '@/app/components/base/chat/embedded-chatbot/header'
-import ConfigPanel from '@/app/components/base/chat/embedded-chatbot/config-panel'
-import ChatWrapper from '@/app/components/base/chat/embedded-chatbot/chat-wrapper'
-import Tooltip from '@/app/components/base/tooltip'
+import cn from '../../../../../utils/classnames'
+import { checkOrSetAccessToken } from '../../../share/utils'
+import AppUnavailable from '../../app-unavailable'
+import useBreakpoints, { MediaType } from '../../../../../hooks/use-breakpoints'
+import Loading from '../../loading'
+import LogoHeader from '../../logo/logo-embeded-chat-header'
+import Header from './header'
+import ConfigPanel from './config-panel'
+import ChatWrapper from './chat-wrapper'
+import Tooltip from '../../tooltip'
 
 const Chatbot = () => {
   const { t } = useTranslation()
@@ -74,7 +74,7 @@ const Chatbot = () => {
         onCreateNewChat={handleNewConversation}
       />
       <div className='flex bg-white overflow-hidden'>
-        <div className={cn('h-[100vh] grow flex flex-col overflow-y-auto', isMobile && '!h-[calc(100vh_-_3rem)]')}>
+        <div className={cn('h-[100vh] grow flex flex-col overflow-y-auto tgai-custom-scrollbar', isMobile && '!h-[calc(100vh_-_3rem)]')}>
           {showConfigPanelBeforeChat && !appChatListDataLoading && !appPrevChatList.length && (
             <div className={cn('flex w-full items-center justify-center h-full tablet:px-4', isMobile && 'px-4')}>
               <ConfigPanel />

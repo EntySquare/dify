@@ -12,6 +12,8 @@
 /.next/
 /out/
 
+/.idea
+
 # production
 /build
 
@@ -29,6 +31,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env.local
 
 # vercel
 .vercel
@@ -50,3 +53,5 @@ package-lock.json
 pnpm-lock.yaml
 
 .favorites.json
+
+.vscode/settings.json

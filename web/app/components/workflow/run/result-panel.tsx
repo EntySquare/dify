@@ -3,8 +3,8 @@ import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import StatusPanel from './status'
 import MetaData from './meta'
-import CodeEditor from '@/app/components/workflow/nodes/_base/components/editor/code-editor'
-import { CodeLanguage } from '@/app/components/workflow/nodes/code/types'
+import CodeEditor from '../nodes/_base/components/editor/code-editor'
+import { CodeLanguage } from '../nodes/code/types'
 
 type ResultPanelProps = {
   inputs?: string
@@ -36,7 +36,7 @@ const ResultPanel: FC<ResultPanelProps> = ({
 }) => {
   const { t } = useTranslation()
   return (
-    <div className='bg-white py-2'>
+    <div className='bg-tgai-panel-background py-2'>
       <div className='px-4 py-2'>
         <StatusPanel
           status={status}
@@ -73,7 +73,7 @@ const ResultPanel: FC<ResultPanelProps> = ({
         )}
       </div>
       <div className='px-4 py-2'>
-        <div className='h-[0.5px] bg-black opacity-5' />
+        <div className='h-[0.5px] bg-black opacity-5 dark:opacity-8' />
       </div>
       <div className='px-4 py-2'>
         <MetaData

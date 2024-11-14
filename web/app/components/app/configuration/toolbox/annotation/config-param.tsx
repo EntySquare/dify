@@ -8,14 +8,14 @@ import {
   RiQuestionLine,
 } from '@remixicon/react'
 import ConfigParamModal from './config-param-modal'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import { MessageFast } from '@/app/components/base/icons/src/vender/solid/communication'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { LinkExternal02, Settings04 } from '@/app/components/base/icons/src/vender/line/general'
-import ConfigContext from '@/context/debug-configuration'
-import type { EmbeddingModelConfig } from '@/app/components/app/annotation/type'
-import { fetchAnnotationConfig, updateAnnotationScore } from '@/service/annotation'
-import type { AnnotationReplyConfig as AnnotationReplyConfigType } from '@/models/debug'
+import Panel from '../../base/feature-panel'
+import { MessageFast } from '../../../../base/icons/src/vender/solid/communication'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import { LinkExternal02, Settings04 } from '../../../../base/icons/src/vender/line/general'
+import ConfigContext from '../../../../../../context/debug-configuration'
+import type { EmbeddingModelConfig } from '../../../annotation/type'
+import { fetchAnnotationConfig, updateAnnotationScore } from '../../../../../../service/annotation'
+import type { AnnotationReplyConfig as AnnotationReplyConfigType } from '../../../../../../models/debug'
 
 type Props = {
   onEmbeddingChange: (embeddingModel: EmbeddingModelConfig) => void

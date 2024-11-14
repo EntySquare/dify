@@ -9,8 +9,8 @@ import useSWR from 'swr'
 import dayjs from 'dayjs'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import type { QueryParam } from './index'
-import { SimpleSelect } from '@/app/components/base/select'
-import { fetchAnnotationsCount } from '@/service/log'
+import { SimpleSelect } from '../../base/select'
+import { fetchAnnotationsCount } from '../../../../service/log'
 dayjs.extend(quarterOfYear)
 
 const today = dayjs()

@@ -3,9 +3,9 @@ import React from 'react'
 import type { ParameterExtractorNodeType } from './types'
 import {
   useTextGenerationCurrentProviderAndModelAndModelList,
-} from '@/app/components/header/account-setting/model-provider-page/hooks'
-import ModelSelector from '@/app/components/header/account-setting/model-provider-page/model-selector'
-import type { NodeProps } from '@/app/components/workflow/types'
+} from '../../../header/account-setting/model-provider-page/hooks'
+import ModelSelector from '../../../header/account-setting/model-provider-page/model-selector'
+import type { NodeProps } from '../../types'
 
 const Node: FC<NodeProps<ParameterExtractorNodeType>> = ({
   data,

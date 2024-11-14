@@ -5,10 +5,10 @@ import useSWR from 'swr'
 import { useSearchParams } from 'next/navigation'
 import cn from 'classnames'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import Button from '@/app/components/base/button'
-import { changePasswordWithToken, verifyForgotPasswordToken } from '@/service/common'
-import Toast from '@/app/components/base/toast'
-import Loading from '@/app/components/base/loading'
+import Button from '../components/base/button'
+import { changePasswordWithToken, verifyForgotPasswordToken } from '../../service/common'
+import Toast from '../components/base/toast'
+import Loading from '../components/base/loading'
 
 const validPassword = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 

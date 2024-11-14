@@ -17,15 +17,15 @@ import {
   ConfigurationMethodEnum,
   ModelStatusEnum,
 } from './declarations'
-import I18n from '@/context/i18n'
+import I18n from '../../../../../context/i18n'
 import {
   fetchDefaultModal,
   fetchModelList,
   fetchModelProviderCredentials,
   fetchModelProviders,
   getPayUrl,
-} from '@/service/common'
-import { useProviderContext } from '@/context/provider-context'
+} from '../../../../../service/common'
+import { useProviderContext } from '../../../../../context/provider-context'
 
 type UseDefaultModelAndModelList = (
   defaultModel: DefaultModelResponse | undefined,

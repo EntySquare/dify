@@ -4,10 +4,10 @@ import type {
   ChatItem,
   VisionFile,
 } from '../../types'
-import { Markdown } from '@/app/components/base/markdown'
-import Thought from '@/app/components/base/chat/chat/thought'
-import ImageGallery from '@/app/components/base/image-gallery'
-import type { Emoji } from '@/app/components/tools/types'
+import { Markdown } from '../../../markdown'
+import Thought from '../thought'
+import ImageGallery from '../../../image-gallery'
+import type { Emoji } from '../../../../tools/types'
 
 type AgentContentProps = {
   item: ChatItem

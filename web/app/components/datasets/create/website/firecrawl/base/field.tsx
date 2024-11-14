@@ -5,8 +5,8 @@ import {
   RiQuestionLine,
 } from '@remixicon/react'
 import Input from './input'
-import cn from '@/utils/classnames'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import cn from '../../../../../../../utils/classnames'
+import TooltipPlus from '../../../../../base/tooltip-plus'
 
 type Props = {
   className?: string
@@ -34,13 +34,13 @@ const Field: FC<Props> = ({
   return (
     <div className={cn(className)}>
       <div className='flex py-[7px]'>
-        <div className={cn(labelClassName, 'flex items-center h-[18px] text-[13px] font-medium text-gray-900')}>{label} </div>
+        <div className={cn(labelClassName, 'flex items-center h-[18px] text-[13px] font-medium text-tgai-text-1')}>{label} </div>
         {isRequired && <span className='ml-0.5 text-xs font-semibold text-[#D92D20]'>*</span>}
         {tooltip && (
           <TooltipPlus popupContent={
             <div className='w-[200px]'>{tooltip}</div>
           }>
-            <RiQuestionLine className='relative top-[3px] w-3 h-3 ml-1 text-gray-500' />
+            <RiQuestionLine className='relative top-[3px] w-3 h-3 ml-1 text-tgai-text-2' />
           </TooltipPlus>
         )}
       </div>

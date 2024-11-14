@@ -6,18 +6,18 @@ import { useBoolean } from 'ahooks'
 import Panel from '../panel'
 import { DataSourceType } from '../panel/types'
 import ConfigFirecrawlModal from './config-firecrawl-modal'
-import cn from '@/utils/classnames'
-import { fetchDataSources, removeDataSourceApiKeyBinding } from '@/service/datasets'
+import cn from '../../../../../../utils/classnames'
+import { fetchDataSources, removeDataSourceApiKeyBinding } from '../../../../../../service/datasets'
 
 import type {
   DataSourceItem,
-} from '@/models/common'
-import { useAppContext } from '@/context/app-context'
+} from '../../../../../../models/common'
+import { useAppContext } from '../../../../../../context/app-context'
 
 import {
   DataSourceProvider,
-} from '@/models/common'
-import Toast from '@/app/components/base/toast'
+} from '../../../../../../models/common'
+import Toast from '../../../../base/toast'
 
 type Props = {}
 

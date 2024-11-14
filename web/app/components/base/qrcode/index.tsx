@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import QRCode from 'qrcode.react'
 import Tooltip from '../tooltip'
 import QrcodeStyle from './style.module.css'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 type Props = {
   content: string
@@ -49,6 +51,8 @@ const ShareQRCode = ({ content, selectorId, className }: Props) => {
     event.stopPropagation()
   }
 
+  const theme = useTGAIGlobalStore(state => state.theme)
+
   return (
     <Tooltip
       selector={`common-qrcode-show-${selectorId}`}
@@ -58,14 +62,14 @@ const ShareQRCode = ({ content, selectorId, className }: Props) => {
         className={`w-8 h-8 cursor-pointer rounded-lg ${className ?? ''}`}
         onClick={toggleQRCode}
       >
-        <div className={`w-full h-full ${QrcodeStyle.QrcodeIcon} ${isShow ? QrcodeStyle.show : ''}`} />
+        <div className={`w-full h-full ${QrcodeStyle.QrcodeIcon} ${isShow ? QrcodeStyle.show : ''} ${theme === Theme.dark && QrcodeStyle.dark}`} />
         {isShow && (
           <div
             ref={qrCodeRef}
             className={QrcodeStyle.qrcodeform}
             onClick={handlePanelClick}
           >
-            <QRCode size={160} value={content} className={QrcodeStyle.qrcodeimage}/>
+            <QRCode size={160} value={content} className={QrcodeStyle.qrcodeimage} />
             <div className={QrcodeStyle.text}>
               <div className={`text-gray-500 ${QrcodeStyle.scan}`}>{t('appOverview.overview.appInfo.qrcode.scan')}</div>
               <div className={`text-gray-500 ${QrcodeStyle.scan}`}>·</div>

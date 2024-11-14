@@ -15,16 +15,16 @@ import Metadata from './metadata'
 import SegmentAdd, { ProcessStatus } from './segment-add'
 import BatchModal from './batch-modal'
 import style from './style.module.css'
-import cn from '@/utils/classnames'
-import Divider from '@/app/components/base/divider'
-import Loading from '@/app/components/base/loading'
-import type { MetadataType } from '@/service/datasets'
-import { checkSegmentBatchImportProgress, fetchDocumentDetail, segmentBatchImport } from '@/service/datasets'
-import { ToastContext } from '@/app/components/base/toast'
-import type { DocForm } from '@/models/datasets'
-import { useDatasetDetailContext } from '@/context/dataset-detail'
-import FloatRightContainer from '@/app/components/base/float-right-container'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import cn from '../../../../../utils/classnames'
+import Divider from '../../../base/divider'
+import Loading from '../../../base/loading'
+import type { MetadataType } from '../../../../../service/datasets'
+import { checkSegmentBatchImportProgress, fetchDocumentDetail, segmentBatchImport } from '../../../../../service/datasets'
+import { ToastContext } from '../../../base/toast'
+import type { DocForm } from '../../../../../models/datasets'
+import { useDatasetDetailContext } from '../../../../../context/dataset-detail'
+import FloatRightContainer from '../../../base/float-right-container'
+import useBreakpoints, { MediaType } from '../../../../../hooks/use-breakpoints'
 
 export const DocumentContext = createContext<{ datasetId?: string; documentId?: string; docForm: string }>({ docForm: '' })
 
@@ -40,7 +40,7 @@ export const DocumentTitle: FC<DocumentTitleProps> = ({ extension, name, iconCls
   const localExtension = extension?.toLowerCase() || name?.split('.')?.pop()?.toLowerCase()
   return <div className={cn('flex items-center justify-start flex-1', wrapperCls)}>
     <div className={cn(s[`${localExtension || 'txt'}Icon`], style.titleIcon, iconCls)}></div>
-    <span className={cn('font-semibold text-lg text-gray-900 ml-1', textCls)}> {name || '--'}</span>
+    <span className={cn('font-semibold text-lg text-tgai-text-1 ml-1', textCls)}> {name || '--'}</span>
   </div>
 }
 
@@ -130,9 +130,9 @@ const DocumentDetail: FC<Props> = ({ datasetId, documentId }) => {
   return (
     <DocumentContext.Provider value={{ datasetId, documentId, docForm: documentDetail?.doc_form || '' }}>
       <div className='flex flex-col h-full'>
-        <div className='flex min-h-16 border-b-gray-100 border-b items-center p-4 justify-between flex-wrap gap-y-2'>
-          <div onClick={backToPrev} className={'shrink-0 rounded-full w-8 h-8 flex justify-center items-center border-gray-100 cursor-pointer border hover:border-gray-300 shadow-[0px_12px_16px_-4px_rgba(16,24,40,0.08),0px_4px_6px_-2px_rgba(16,24,40,0.03)]'}>
-            <ArrowLeftIcon className='text-primary-600 fill-current stroke-current h-4 w-4' />
+        <div className='flex min-h-16 border-b-gray-100 dark:border-b-zinc-600 border-b items-center p-4 justify-between flex-wrap gap-y-2'>
+          <div onClick={backToPrev} className={'shrink-0 rounded-full w-8 h-8 flex justify-center items-center border-gray-100 dark:border-zinc-600 cursor-pointer border hover:border-gray-300 dark:hover:border-zinc-500 shadow-[0px_12px_16px_-4px_rgba(16,24,40,0.08),0px_4px_6px_-2px_rgba(16,24,40,0.03)]'}>
+            <ArrowLeftIcon className='text-tgai-primary fill-current stroke-current h-4 w-4' />
           </div>
           <Divider className='!h-4' type='vertical' />
           <DocumentTitle extension={documentDetail?.data_source_info?.upload_file?.extension} name={documentDetail?.name} />
@@ -162,7 +162,7 @@ const DocumentDetail: FC<Props> = ({ datasetId, documentId }) => {
               className='!w-[216px]'
             />
             <button
-              className={cn(style.layoutRightIcon, showMetadata ? style.iconShow : style.iconClose)}
+              className={cn(style.layoutRightIcon, showMetadata ? style.iconShow : style.iconClose, 'dark:!border-zinc-600 dark:hover:!bg-zinc-600')}
               onClick={() => setShowMetadata(!showMetadata)}
             />
           </div>

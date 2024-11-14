@@ -8,13 +8,13 @@ import ConfigSelect from '../config-select'
 import ConfigString from '../config-string'
 import SelectTypeItem from '../select-type-item'
 import Field from './field'
-import Toast from '@/app/components/base/toast'
-import { checkKeys, getNewVarInWorkflow } from '@/utils/var'
-import ConfigContext from '@/context/debug-configuration'
-import type { InputVar, MoreInfo } from '@/app/components/workflow/types'
-import Modal from '@/app/components/base/modal'
-import Switch from '@/app/components/base/switch'
-import { ChangeType, InputVarType } from '@/app/components/workflow/types'
+import Toast from '../../../../base/toast'
+import { checkKeys, getNewVarInWorkflow } from '../../../../../../utils/var'
+import ConfigContext from '../../../../../../context/debug-configuration'
+import type { InputVar, MoreInfo } from '../../../../workflow/types'
+import Modal from '../../../../base/modal'
+import Switch from '../../../../base/switch'
+import { ChangeType, InputVarType } from '../../../../workflow/types'
 
 const TEXT_MAX_LENGTH = 256
 
@@ -27,7 +27,7 @@ export type IConfigModalProps = {
   onConfirm: (newValue: InputVar, moreInfo?: MoreInfo) => void
 }
 
-const inputClassName = 'w-full px-3 text-sm leading-9 text-gray-900 border-0 rounded-lg grow h-9 bg-gray-100 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200'
+const inputClassName = 'w-full px-3 text-sm leading-9 text-tgai-text-1 border-0 rounded-lg grow h-9 bg-gray-100 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600'
 
 const ConfigModal: FC<IConfigModalProps> = ({
   isCreate,
@@ -131,6 +131,7 @@ const ConfigModal: FC<IConfigModalProps> = ({
       title={t(`appDebug.variableConig.${isCreate ? 'addModalTitle' : 'editModalTitle'}`)}
       isShow={isShow}
       onClose={onClose}
+      className='dark:!bg-tgai-panel-background'
     >
       <div className='mb-8'>
         <div className='space-y-2'>

@@ -1,14 +1,14 @@
 import type { Fetcher } from 'swr'
 import { get, post } from './base'
-import type { CommonResponse } from '@/models/common'
+import type { CommonResponse } from '../models/common'
 import type {
   ChatRunHistoryResponse,
   ConversationVariableResponse,
   FetchWorkflowDraftResponse,
   NodesDefaultConfigsResponse,
   WorkflowRunHistoryResponse,
-} from '@/types/workflow'
-import type { BlockEnum } from '@/app/components/workflow/types'
+} from '../types/workflow'
+import type { BlockEnum } from '../app/components/workflow/types'
 
 export const fetchWorkflowDraft = (url: string) => {
   return get(url, {}, { silent: true }) as Promise<FetchWorkflowDraftResponse>

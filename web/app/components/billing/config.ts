@@ -1,4 +1,4 @@
-import { Plan, type PlanInfo, Priority } from '@/app/components/billing/type'
+import { Plan, type PlanInfo, Priority } from './type'
 
 const supportModelProviders = 'OpenAI/Anthropic/Azure OpenAI/  Llama2/Hugging Face/Replicate'
 

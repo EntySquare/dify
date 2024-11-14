@@ -10,9 +10,9 @@ import {
   MODEL_PROVIDER_QUOTA_GET_PAID,
 } from '../utils'
 import PriorityUseTip from './priority-use-tip'
-import { InfoCircle } from '@/app/components/base/icons/src/vender/line/general'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { formatNumber } from '@/utils/format'
+import { InfoCircle } from '../../../../base/icons/src/vender/line/general'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import { formatNumber } from '../../../../../../utils/format'
 
 type QuotaPanelProps = {
   provider: ModelProvider

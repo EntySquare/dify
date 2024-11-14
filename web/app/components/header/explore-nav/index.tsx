@@ -1,8 +1,13 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'
+import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
-
+import {
+  RiPlanetFill,
+  RiPlanetLine,
+} from '@remixicon/react'
+import classNames from '../../../../utils/classnames'
 type ExploreNavProps = {
   className?: string
 }

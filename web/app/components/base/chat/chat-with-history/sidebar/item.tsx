@@ -4,9 +4,9 @@ import {
   useRef,
 } from 'react'
 import { useHover } from 'ahooks'
-import type { ConversationItem } from '@/models/share'
-import { MessageDotsCircle } from '@/app/components/base/icons/src/vender/solid/communication'
-import ItemOperation from '@/app/components/explore/item-operation'
+import type { ConversationItem } from '../../../../../../models/share'
+import { MessageDotsCircle } from '../../../icons/src/vender/solid/communication'
+import ItemOperation from '../../../../explore/item-operation'
 
 type ItemProps = {
   isPin?: boolean

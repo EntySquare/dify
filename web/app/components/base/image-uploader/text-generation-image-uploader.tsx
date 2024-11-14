@@ -9,15 +9,15 @@ import Uploader from './uploader'
 import ImageLinkInput from './image-link-input'
 import ImageList from './image-list'
 import { useImageFiles } from './hooks'
-import { ImagePlus } from '@/app/components/base/icons/src/vender/line/images'
-import { Link03 } from '@/app/components/base/icons/src/vender/line/general'
+import { ImagePlus } from '../icons/src/vender/line/images'
+import { Link03 } from '../icons/src/vender/line/general'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import type { ImageFile, VisionSettings } from '@/types/app'
-import { TransferMethod } from '@/types/app'
+} from '../portal-to-follow-elem'
+import type { ImageFile, VisionSettings } from '../../../../types/app'
+import { TransferMethod } from '../../../../types/app'
 
 type PasteImageLinkButtonProps = {
   onUpload: (imageFile: ImageFile) => void
@@ -50,7 +50,8 @@ const PasteImageLinkButton: FC<PasteImageLinkButtonProps> = ({
     >
       <PortalToFollowElemTrigger onClick={handleToggle}>
         <div className={`
-          relative flex items-center justify-center px-3 h-8 bg-gray-100 hover:bg-gray-200 text-xs text-gray-500 rounded-lg
+          relative flex items-center justify-center px-3 h-8 bg-gray-100 hover:bg-gray-200 text-xs text-tgai-text-2 rounded-lg
+          dark:bg-tgai-input-background dark:hover:bg-zinc-600
           ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}
         `}>
           <Link03 className='mr-2 w-4 h-4' />
@@ -58,7 +59,7 @@ const PasteImageLinkButton: FC<PasteImageLinkButtonProps> = ({
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='z-10'>
-        <div className='p-2 w-[320px] bg-white border-[0.5px] border-gray-200 rounded-lg shadow-lg'>
+        <div className='p-2 w-[320px] bg-tgai-panel-background-3 border-[0.5px] border-gray-200 dark:border-zinc-600 rounded-lg shadow-lg'>
           <ImageLinkInput onUpload={handleUpload} />
         </div>
       </PortalToFollowElemContent>
@@ -98,9 +99,9 @@ const TextGenerationImageUploader: FC<TextGenerationImageUploaderProps> = ({
       {
         hovering => (
           <div className={`
-            flex items-center justify-center px-3 h-8 bg-gray-100
-            text-xs text-gray-500 rounded-lg cursor-pointer
-            ${hovering && 'bg-gray-200'}
+            flex items-center justify-center px-3 h-8 bg-gray-100 dark:bg-tgai-input-background
+            text-xs text-tgai-text-3 rounded-lg cursor-pointer 
+            ${hovering && 'bg-gray-200 dark:bg-zinc-600'}
           `}>
             <ImagePlus className='mr-2 w-4 h-4' />
             {t('common.imageUploader.uploadFromComputer')}

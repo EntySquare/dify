@@ -18,23 +18,23 @@ import TooltipPlus from '../../base/tooltip-plus'
 import { Globe01 } from '../../base/icons/src/vender/line/mapsAndTravel'
 import s from './style.module.css'
 import RenameModal from './rename-modal'
-import cn from '@/utils/classnames'
-import Switch from '@/app/components/base/switch'
-import Divider from '@/app/components/base/divider'
-import Popover from '@/app/components/base/popover'
-import Confirm from '@/app/components/base/confirm'
-import Tooltip from '@/app/components/base/tooltip'
-import { ToastContext } from '@/app/components/base/toast'
-import type { IndicatorProps } from '@/app/components/header/indicator'
-import Indicator from '@/app/components/header/indicator'
-import { asyncRunSafe } from '@/utils'
-import { formatNumber } from '@/utils/format'
-import { archiveDocument, deleteDocument, disableDocument, enableDocument, syncDocument, syncWebsite, unArchiveDocument } from '@/service/datasets'
-import NotionIcon from '@/app/components/base/notion-icon'
-import ProgressBar from '@/app/components/base/progress-bar'
-import { DataSourceType, type DocumentDisplayStatus, type SimpleDocumentDetail } from '@/models/datasets'
-import type { CommonResponse } from '@/models/common'
-import useTimestamp from '@/hooks/use-timestamp'
+import cn from '../../../../utils/classnames'
+import Switch from '../../base/switch'
+import Divider from '../../base/divider'
+import Popover from '../../base/popover'
+import Confirm from '../../base/confirm'
+import Tooltip from '../../base/tooltip'
+import { ToastContext } from '../../base/toast'
+import type { IndicatorProps } from '../../header/indicator'
+import Indicator from '../../header/indicator'
+import { asyncRunSafe } from '../../../../utils'
+import { formatNumber } from '../../../../utils/format'
+import { archiveDocument, deleteDocument, disableDocument, enableDocument, syncDocument, syncWebsite, unArchiveDocument } from '../../../../service/datasets'
+import NotionIcon from '../../base/notion-icon'
+import ProgressBar from '../../base/progress-bar'
+import { DataSourceType, type DocumentDisplayStatus, type SimpleDocumentDetail } from '../../../../models/datasets'
+import type { CommonResponse } from '../../../../models/common'
+import useTimestamp from '../../../../hooks/use-timestamp'
 
 export const SettingsIcon = ({ className }: SVGProps<SVGElement>) => {
   return <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={className ?? ''}>
@@ -87,10 +87,11 @@ export const StatusItem: FC<{
   return <div className={
     cn('flex items-center',
       reverse ? 'flex-row-reverse' : '',
-      scene === 'detail' ? s.statusItemDetail : '')
+      scene === 'detail' ? 'h-8 font-medium border border-gray-200 dark:border-zinc-600 inline-flex items-center rounded-lg pl-3 pr-4 mr-2' : ''
+    )
   }>
     <Indicator color={DOC_INDEX_STATUS_MAP[localStatus]?.color as IndicatorProps['color']} className={reverse ? 'ml-2' : 'mr-2'} />
-    <span className={cn('text-gray-700 text-sm', textCls)}>{DOC_INDEX_STATUS_MAP[localStatus]?.text}</span>
+    <span className={cn('text-tgai-text-2 text-sm', textCls)}>{DOC_INDEX_STATUS_MAP[localStatus]?.text}</span>
     {
       errorMessage && (
         <Tooltip
@@ -99,7 +100,7 @@ export const StatusItem: FC<{
             <div className='max-w-[260px] break-all'>{errorMessage}</div>
           }
         >
-          <RiQuestionLine className='ml-1 w-[14px] h-[14px] text-gray-700' />
+          <RiQuestionLine className='ml-1 w-[14px] h-[14px] text-tgai-text-2' />
         </Tooltip>
       )
     }
@@ -236,28 +237,28 @@ export const OperationAction: FC<{
                   </div>
                 </Tooltip>
               </div>
-              <div className='mx-4 pb-1 pt-0.5 text-xs text-gray-500'>
+              <div className='mx-4 pb-1 pt-0.5 text-xs text-tgai-text-3'>
                 {!archived && enabled ? t('datasetDocuments.list.index.enableTip') : t('datasetDocuments.list.index.disableTip')}
               </div>
               <Divider />
             </>}
             {!archived && (
               <>
-                <div className={s.actionItem} onClick={() => {
+                <div className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={() => {
                   handleShowRenameModal({
                     id: detail.id,
                     name: detail.name,
                   })
                 }}>
-                  <Edit03 className='w-4 h-4 text-gray-500' />
+                  <Edit03 className='w-4 h-4 text-tgai-text-3' />
                   <span className={s.actionName}>{t('datasetDocuments.list.table.rename')}</span>
                 </div>
-                <div className={s.actionItem} onClick={() => router.push(`/datasets/${datasetId}/documents/${detail.id}/settings`)}>
+                <div className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={() => router.push(`/datasets/${datasetId}/documents/${detail.id}/settings`)}>
                   <SettingsIcon />
                   <span className={s.actionName}>{t('datasetDocuments.list.action.settings')}</span>
                 </div>
                 {['notion_import', DataSourceType.WEB].includes(data_source_type) && (
-                  <div className={s.actionItem} onClick={() => onOperate('sync')}>
+                  <div className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={() => onOperate('sync')}>
                     <SyncIcon />
                     <span className={s.actionName}>{t('datasetDocuments.list.action.sync')}</span>
                   </div>
@@ -265,18 +266,18 @@ export const OperationAction: FC<{
                 <Divider className='my-1' />
               </>
             )}
-            {!archived && <div className={s.actionItem} onClick={() => onOperate('archive')}>
+            {!archived && <div className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={() => onOperate('archive')}>
               <ArchiveIcon />
               <span className={s.actionName}>{t('datasetDocuments.list.action.archive')}</span>
             </div>}
             {archived && (
-              <div className={s.actionItem} onClick={() => onOperate('un_archive')}>
+              <div className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={() => onOperate('un_archive')}>
                 <ArchiveIcon />
                 <span className={s.actionName}>{t('datasetDocuments.list.action.unarchive')}</span>
               </div>
             )}
-            <div className={cn(s.actionItem, s.deleteActionItem, 'group')} onClick={() => setShowModal(true)}>
-              <TrashIcon className={'w-4 h-4 stroke-current text-gray-500 stroke-2 group-hover:text-red-500'} />
+            <div className={cn(s.actionItem, s.deleteActionItem, 'group hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={() => setShowModal(true)}>
+              <TrashIcon className={'w-4 h-4 stroke-current text-tgai-text-3 stroke-2 group-hover:text-red-500'} />
               <span className={cn(s.actionName, 'group-hover:text-red-500')}>{t('datasetDocuments.list.action.delete')}</span>
             </div>
           </div>
@@ -285,10 +286,10 @@ export const OperationAction: FC<{
         position='br'
         btnElement={
           <div className={cn(s.commonIcon)}>
-            <RiMoreFill className='w-4 h-4 text-gray-700' />
+            <RiMoreFill className='w-4 h-4 text-tgai-text-2' />
           </div>
         }
-        btnClassName={open => cn(isListScene ? s.actionIconWrapperList : s.actionIconWrapperDetail, open ? '!bg-gray-100 !shadow-none' : '!bg-transparent')}
+        btnClassName={open => cn(isListScene ? 'h-6 w-6 rounded-md border-none p-1 hover:bg-gray-50 dark:hover:!bg-zinc-600' : 'h-8 w-8 p-2 hover:bg-gray-50 dark:hover:bg-zinc-600 border border-gray-200 hover:border-gray-300 hover:shadow-[0_1px_2px_rgba(16,24,40,0.05)]', open ? '!shadow-none' : '!bg-transparent')}
         className={`flex justify-end !w-[200px] h-fit !z-20 ${className}`}
       />
     )}
@@ -382,7 +383,7 @@ const DocumentList: FC<IDocumentListProps> = ({ embeddingAvailable, documents = 
   return (
     <div className='w-full h-full overflow-x-auto'>
       <table className={`min-w-[700px] max-w-full w-full border-collapse border-0 text-sm mt-3 ${s.documentTable}`}>
-        <thead className="h-8 leading-8 border-b border-gray-200 text-gray-500 font-medium text-xs uppercase">
+        <thead className="h-8 leading-8 border-b border-gray-200 dark:border-zinc-600 text-tgai-text-2 font-medium text-xs uppercase">
           <tr>
             <td className='w-12'>#</td>
             <td>
@@ -402,17 +403,17 @@ const DocumentList: FC<IDocumentListProps> = ({ embeddingAvailable, documents = 
             <td className='w-20'>{t('datasetDocuments.list.table.header.action')}</td>
           </tr>
         </thead>
-        <tbody className="text-gray-700">
+        <tbody className="text-tgai-text-1">
           {localDocs.map((doc) => {
             const isFile = doc.data_source_type === DataSourceType.FILE
             const fileType = isFile ? doc.data_source_detail_dict?.upload_file.extension : ''
             return <tr
               key={doc.id}
-              className={'border-b border-gray-200 h-8 hover:bg-gray-50 cursor-pointer'}
+              className={'border-b border-gray-200 dark:border-zinc-600 h-8 hover:bg-gray-50 dark:hover:bg-stone-700 cursor-pointer'}
               onClick={() => {
                 router.push(`/datasets/${datasetId}/documents/${doc.id}`)
               }}>
-              <td className='text-left align-middle text-gray-500 text-xs'>{doc.position}</td>
+              <td className='text-left align-middle text-tgai-text-2 text-xs'>{doc.position}</td>
               <td>
                 <div className='group flex items-center justify-between'>
                   <span className={s.tdValue}>
@@ -434,7 +435,7 @@ const DocumentList: FC<IDocumentListProps> = ({ embeddingAvailable, documents = 
                           handleShowRenameModal(doc)
                         }}
                       >
-                        <Edit03 className='w-4 h-4 text-gray-500' />
+                        <Edit03 className='w-4 h-4 text-tgai-text-3' />
                       </div>
                     </TooltipPlus>
                   </div>
@@ -443,7 +444,7 @@ const DocumentList: FC<IDocumentListProps> = ({ embeddingAvailable, documents = 
               </td>
               <td>{renderCount(doc.word_count)}</td>
               <td>{renderCount(doc.hit_count)}</td>
-              <td className='text-gray-500 text-[13px]'>
+              <td className='text-tgai-text-2 text-[13px]'>
                 {formatTime(doc.created_at, t('datasetHitTesting.dateTimeFormat') as string)}
               </td>
               <td>

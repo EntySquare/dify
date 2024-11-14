@@ -3,10 +3,10 @@ import type { FC } from 'react'
 import React from 'react'
 import { useContext } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
-import OperationBtn from '@/app/components/app/configuration/base/operation-btn'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import { MessageClockCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import I18n from '@/context/i18n'
+import OperationBtn from '../../base/operation-btn'
+import Panel from '../../base/feature-panel'
+import { MessageClockCircle } from '../../../../base/icons/src/vender/solid/general'
+import I18n from '../../../../../../context/i18n'
 
 type Props = {
   showWarning: boolean

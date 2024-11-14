@@ -4,7 +4,7 @@ import type {
   ValueSelector,
   Var,
   VarType,
-} from '@/app/components/workflow/types'
+} from '../../types'
 
 export enum LogicalOperator {
   and = 'and',

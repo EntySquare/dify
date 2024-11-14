@@ -1,6 +1,6 @@
 import { createStore } from 'zustand'
 import type { Features } from './types'
-import { TransferMethod } from '@/types/app'
+import { TransferMethod } from '../../../../types/app'
 
 export type FeaturesModal = {
   showFeaturesModal: boolean

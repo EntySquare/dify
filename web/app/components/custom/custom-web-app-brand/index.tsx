@@ -5,19 +5,19 @@ import {
   RiLoader2Line,
 } from '@remixicon/react'
 import s from './style.module.css'
-import LogoSite from '@/app/components/base/logo/logo-site'
-import Switch from '@/app/components/base/switch'
-import Button from '@/app/components/base/button'
-import { MessageDotsCircle } from '@/app/components/base/icons/src/vender/solid/communication'
-import { ImagePlus } from '@/app/components/base/icons/src/vender/line/images'
-import { useProviderContext } from '@/context/provider-context'
-import { Plan } from '@/app/components/billing/type'
-import { imageUpload } from '@/app/components/base/image-uploader/utils'
-import { useToastContext } from '@/app/components/base/toast'
+import LogoSite from '../../base/logo/logo-site'
+import Switch from '../../base/switch'
+import Button from '../../base/button'
+import { MessageDotsCircle } from '../../base/icons/src/vender/solid/communication'
+import { ImagePlus } from '../../base/icons/src/vender/line/images'
+import { useProviderContext } from '../../../../context/provider-context'
+import { Plan } from '../../billing/type'
+import { imageUpload } from '../../base/image-uploader/utils'
+import { useToastContext } from '../../base/toast'
 import {
   updateCurrentWorkspace,
-} from '@/service/common'
-import { useAppContext } from '@/context/app-context'
+} from '../../../../service/common'
+import { useAppContext } from '../../../../context/app-context'
 
 const ALLOW_FILE_EXTENSIONS = ['svg', 'png']
 

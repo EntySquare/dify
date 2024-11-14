@@ -1,8 +1,10 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import './weighted-score.css'
-import Slider from '@/app/components/base/slider'
-import cn from '@/utils/classnames'
+import Slider from '../../../../base/slider'
+import cn from '../../../../../../utils/classnames'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const formatNumber = (value: number) => {
   if (value > 0 && value < 1)
@@ -23,9 +25,11 @@ type WeightedScoreProps = {
 }
 const WeightedScore = ({
   value,
-  onChange = () => {},
+  onChange = () => { },
 }: WeightedScoreProps) => {
   const { t } = useTranslation()
+
+  const theme = useTGAIGlobalStore(state => state.theme)
 
   return (
     <div>
@@ -37,10 +41,10 @@ const WeightedScore = ({
           step={0.1}
           value={value.value[0]}
           onChange={v => onChange({ value: [v, (10 - v * 10) / 10] })}
-          trackClassName='weightedScoreSliderTrack'
+          trackClassName={theme === Theme.light ? 'weightedScoreSliderTrack' : 'weightedScoreSliderTrack-dark'}
         />
         <div className='flex justify-between mt-1'>
-          <div className='shrink-0 flex items-center w-[90px] system-xs-semibold-uppercase text-util-colors-blue-light-blue-light-500'>
+          <div className='shrink-0 flex items-center w-[90px] system-xs-semibold-uppercase text-util-colors-blue-light-blue-light-500 dark:text-tgai-primary-5'>
             <div className='mr-1 truncate uppercase' title={t('dataset.weightedScore.semantic') || ''}>
               {t('dataset.weightedScore.semantic')}
             </div>

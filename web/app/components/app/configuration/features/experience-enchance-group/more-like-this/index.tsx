@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useLocalStorageState } from 'ahooks'
 import MoreLikeThisIcon from '../../../base/icons/more-like-this-icon'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
+import Panel from '../../../base/feature-panel'
 
 const GENERATE_NUM = 1
 

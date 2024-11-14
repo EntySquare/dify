@@ -13,10 +13,10 @@ import { VarType as ToolVarType } from '../../../tool/types'
 import type { ToolNodeType } from '../../../tool/types'
 import type { ParameterExtractorNodeType } from '../../../parameter-extractor/types'
 import type { IterationNodeType } from '../../../iteration/types'
-import { BlockEnum, InputVarType, VarType } from '@/app/components/workflow/types'
-import type { StartNodeType } from '@/app/components/workflow/nodes/start/types'
-import type { ConversationVariable, EnvironmentVariable, Node, NodeOutPutVar, ValueSelector, Var } from '@/app/components/workflow/types'
-import type { VariableAssignerNodeType } from '@/app/components/workflow/nodes/variable-assigner/types'
+import { BlockEnum, InputVarType, VarType } from '../../../../types'
+import type { StartNodeType } from '../../../start/types'
+import type { ConversationVariable, EnvironmentVariable, Node, NodeOutPutVar, ValueSelector, Var } from '../../../../types'
+import type { VariableAssignerNodeType } from '../../../variable-assigner/types'
 import {
   HTTP_REQUEST_OUTPUT_STRUCT,
   KNOWLEDGE_RETRIEVAL_OUTPUT_STRUCT,
@@ -26,9 +26,9 @@ import {
   SUPPORT_OUTPUT_VARS_NODE,
   TEMPLATE_TRANSFORM_OUTPUT_STRUCT,
   TOOL_OUTPUT_STRUCT,
-} from '@/app/components/workflow/constants'
-import type { PromptItem } from '@/models/debug'
-import { VAR_REGEX } from '@/config'
+} from '../../../../constants'
+import type { PromptItem } from '../../../../../../../models/debug'
+import { VAR_REGEX } from '../../../../../../../config'
 
 export const isSystemVar = (valueSelector: ValueSelector) => {
   return valueSelector[0] === 'sys' || valueSelector[1] === 'sys'

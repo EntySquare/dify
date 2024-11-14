@@ -1,6 +1,6 @@
 import React from 'react'
-import Main from '@/app/components/app/log-annotation'
-import { PageType } from '@/app/components/app/configuration/toolbox/annotation/type'
+import Main from '../../../../../components/app/log-annotation'
+import { PageType } from '../../../../../components/app/configuration/toolbox/annotation/type'
 
 export type IProps = {
   params: { appId: string }

@@ -8,8 +8,8 @@ import Selector from '../../_base/components/selector'
 import useAvailableVarList from '../../_base/hooks/use-available-var-list'
 import { VarType } from '../../../types'
 import type { Var } from '../../../types'
-import cn from '@/utils/classnames'
-import Input from '@/app/components/workflow/nodes/_base/components/input-support-select-var'
+import cn from '../../../../../../utils/classnames'
+import Input from '../../_base/components/input-support-select-var'
 
 const MethodOptions = [
   { label: 'GET', value: Method.get },
@@ -53,9 +53,9 @@ const ApiInput: FC<Props> = ({
         onChange={onMethodChange}
         options={MethodOptions}
         trigger={
-          <div className={cn(readonly && 'cursor-pointer', 'h-8 shrink-0 flex items-center px-2.5 bg-gray-100 border-black/5 rounded-lg')} >
-            <div className='w-12 pl-0.5 leading-[18px] text-xs font-medium text-gray-900 uppercase'>{method}</div>
-            {!readonly && <RiArrowDownSLine className='ml-1 w-3.5 h-3.5 text-gray-700' />}
+          <div className={cn(readonly && 'cursor-pointer', 'h-8 shrink-0 flex items-center px-2.5 bg-gray-100 dark:bg-tgai-input-background border-black/5 rounded-lg')} >
+            <div className='w-12 pl-0.5 leading-[18px] text-xs font-medium text-tgai-text-1 uppercase'>{method}</div>
+            {!readonly && <RiArrowDownSLine className='ml-1 w-3.5 h-3.5 text-tgai-text-2' />}
           </div>
         }
         popupClassName='top-[34px] w-[108px]'
@@ -65,7 +65,7 @@ const ApiInput: FC<Props> = ({
 
       <Input
         instanceId='http-api-url'
-        className={cn(isFocus ? 'shadow-xs bg-gray-50 border-gray-300' : 'bg-gray-100 border-gray-100', 'w-0 grow rounded-lg px-3 py-[6px] border')}
+        className={cn(isFocus ? 'shadow-xs bg-gray-50 dark:bg-zinc-700 border-gray-300 dark:border-stone-600' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-tgai-input-background', 'w-0 grow rounded-lg px-3 py-[6px] border')}
         value={url}
         onChange={onUrlChange}
         readOnly={readonly}

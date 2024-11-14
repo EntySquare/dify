@@ -6,15 +6,15 @@ import {
   RiDeleteBinLine,
   RiEditLine,
 } from '@remixicon/react'
-import type { DataSet } from '@/models/datasets'
-import { DataSourceType } from '@/models/datasets'
-import FileIcon from '@/app/components/base/file-icon'
-import { Folder } from '@/app/components/base/icons/src/vender/solid/files'
-import SettingsModal from '@/app/components/app/configuration/dataset-config/settings-modal'
-import Drawer from '@/app/components/base/drawer'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import Badge from '@/app/components/base/badge'
-import { useKnowledge } from '@/hooks/use-knowledge'
+import type { DataSet } from '../../../../../../models/datasets'
+import { DataSourceType } from '../../../../../../models/datasets'
+import FileIcon from '../../../../base/file-icon'
+import { Folder } from '../../../../base/icons/src/vender/solid/files'
+import SettingsModal from '../../../../app/configuration/dataset-config/settings-modal'
+import Drawer from '../../../../base/drawer'
+import useBreakpoints, { MediaType } from '../../../../../../hooks/use-breakpoints'
+import Badge from '../../../../base/badge'
+import { useKnowledge } from '../../../../../../hooks/use-knowledge'
 
 type Props = {
   payload: DataSet
@@ -44,7 +44,7 @@ const DatasetItem: FC<Props> = ({
   }, [hideSettingsModal, onChange])
 
   return (
-    <div className='flex items-center h-10 justify-between rounded-xl px-2 bg-white border border-gray-200  cursor-pointer group/dataset-item'>
+    <div className='flex items-center h-10 justify-between rounded-xl px-2 bg-white dark:bg-tgai-input-background border border-gray-200 dark:border-stone-600  cursor-pointer group/dataset-item'>
       <div className='w-0 grow flex items-center space-x-1.5'>
         {
           payload.data_source_type === DataSourceType.NOTION
@@ -57,21 +57,21 @@ const DatasetItem: FC<Props> = ({
               <Folder className='w-4 h-4 text-[#444CE7]' />
             </div>
         }
-        <div className='w-0 grow text-[13px] font-normal text-gray-800 truncate'>{payload.name}</div>
+        <div className='w-0 grow text-[13px] font-normal text-tgai-text-1 truncate'>{payload.name}</div>
       </div>
       {!readonly && (
-        <div className='hidden group-hover/dataset-item:flex shrink-0 ml-2  items-center space-x-1'>
+        <div className='hidden group-hover/dataset-item:flex shrink-0 ml-2 items-center space-x-1'>
           <div
             className='flex items-center justify-center w-6 h-6 hover:bg-black/5 rounded-md cursor-pointer'
             onClick={showSettingsModal}
           >
-            <RiEditLine className='w-4 h-4 text-gray-500' />
+            <RiEditLine className='w-4 h-4 text-tgai-text-3' />
           </div>
           <div
             className='flex items-center justify-center w-6 h-6 hover:bg-black/5 rounded-md cursor-pointer'
             onClick={onRemove}
           >
-            <RiDeleteBinLine className='w-4 h-4 text-gray-500' />
+            <RiDeleteBinLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       )}

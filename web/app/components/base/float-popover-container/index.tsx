@@ -3,8 +3,8 @@ import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import type { PortalToFollowElemOptions } from '@/app/components/base/portal-to-follow-elem'
+} from '../portal-to-follow-elem'
+import type { PortalToFollowElemOptions } from '../portal-to-follow-elem'
 
 type IFloatRightContainerProps = {
   isMobile: boolean

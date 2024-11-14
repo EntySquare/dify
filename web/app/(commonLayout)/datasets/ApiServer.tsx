@@ -2,9 +2,9 @@
 
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import CopyFeedback from '@/app/components/base/copy-feedback'
-import SecretKeyButton from '@/app/components/develop/secret-key/secret-key-button'
-import { randomString } from '@/utils'
+import CopyFeedback from '../../components/base/copy-feedback'
+import SecretKeyButton from '../../components/develop/secret-key/secret-key-button'
+import { randomString } from '../../../utils'
 
 type ApiServerProps = {
   apiBaseUrl: string

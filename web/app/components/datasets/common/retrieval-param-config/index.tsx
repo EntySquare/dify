@@ -5,22 +5,22 @@ import { useTranslation } from 'react-i18next'
 import {
   RiQuestionLine,
 } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import TopKItem from '@/app/components/base/param-item/top-k-item'
-import ScoreThresholdItem from '@/app/components/base/param-item/score-threshold-item'
-import { RETRIEVE_METHOD } from '@/types/app'
-import Switch from '@/app/components/base/switch'
-import Tooltip from '@/app/components/base/tooltip-plus'
-import type { RetrievalConfig } from '@/types/app'
-import ModelSelector from '@/app/components/header/account-setting/model-provider-page/model-selector'
-import { useModelListAndDefaultModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
+import cn from '../../../../../utils/classnames'
+import TopKItem from '../../../base/param-item/top-k-item'
+import ScoreThresholdItem from '../../../base/param-item/score-threshold-item'
+import { RETRIEVE_METHOD } from '../../../../../types/app'
+import Switch from '../../../base/switch'
+import Tooltip from '../../../base/tooltip-plus'
+import type { RetrievalConfig } from '../../../../../types/app'
+import ModelSelector from '../../../header/account-setting/model-provider-page/model-selector'
+import { useModelListAndDefaultModel } from '../../../header/account-setting/model-provider-page/hooks'
+import { ModelTypeEnum } from '../../../header/account-setting/model-provider-page/declarations'
 import {
   DEFAULT_WEIGHTED_SCORE,
   RerankingModeEnum,
   WeightedScoreEnum,
-} from '@/models/datasets'
-import WeightedScore from '@/app/components/app/configuration/dataset-config/params-config/weighted-score'
+} from '../../../../../models/datasets'
+import WeightedScore from '../../../app/configuration/dataset-config/params-config/weighted-score'
 
 type Props = {
   type: RETRIEVE_METHOD
@@ -99,7 +99,7 @@ const RetrievalParamConfig: FC<Props> = ({
     <div>
       {!isEconomical && !isHybridSearch && (
         <div>
-          <div className='flex h-8 items-center text-[13px] font-medium text-gray-900 space-x-2'>
+          <div className='flex h-8 items-center text-[13px] font-medium text-tgai-text-1 space-x-2'>
             {canToggleRerankModalEnable && (
               <Switch
                 size='md'
@@ -115,7 +115,7 @@ const RetrievalParamConfig: FC<Props> = ({
             <div className='flex items-center'>
               <span className='mr-0.5'>{t('common.modelProvider.rerankModel.key')}</span>
               <Tooltip popupContent={<div className="w-[200px]">{t('common.modelProvider.rerankModel.tip')}</div>}>
-                <RiQuestionLine className='w-[14px] h-[14px] text-gray-400' />
+                <RiQuestionLine className='w-[14px] h-[14px] text-tgai-text-3' />
               </Tooltip>
             </div>
           </div>
@@ -183,8 +183,8 @@ const RetrievalParamConfig: FC<Props> = ({
                     key={option.value}
                     className={cn(
                       'flex items-center justify-center mb-4 w-[calc((100%-8px)/2)] h-8 rounded-lg border border-components-option-card-option-border bg-components-option-card-option-bg cursor-pointer system-sm-medium text-text-secondary',
-                      value.reranking_mode === RerankingModeEnum.WeightedScore && option.value === RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border bg-components-option-card-option-selected-bg text-text-primary',
-                      value.reranking_mode !== RerankingModeEnum.WeightedScore && option.value !== RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border bg-components-option-card-option-selected-bg text-text-primary',
+                      value.reranking_mode === RerankingModeEnum.WeightedScore && option.value === RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border dark:border-tgai-primary bg-components-option-card-option-selected-bg text-text-primary',
+                      value.reranking_mode !== RerankingModeEnum.WeightedScore && option.value !== RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border dark:border-tgai-primary bg-components-option-card-option-selected-bg text-text-primary',
                     )}
                     onClick={() => handleChangeRerankMode(option.value)}
                   >

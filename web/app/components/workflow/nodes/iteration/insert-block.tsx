@@ -9,7 +9,7 @@ import type {
   OnSelectBlock,
 } from '../../types'
 import BlockSelector from '../../block-selector'
-import cn from '@/utils/classnames'
+import cn from '../../../../../utils/classnames'
 
 type InsertBlockProps = {
   startNodeId: string

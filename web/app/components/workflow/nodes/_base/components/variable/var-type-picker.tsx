@@ -2,14 +2,14 @@
 import type { FC } from 'react'
 import React, { useCallback, useState } from 'react'
 import { RiArrowDownSLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { Check } from '@/app/components/base/icons/src/vender/line/general'
-import { VarType } from '@/app/components/workflow/types'
+} from '../../../../../base/portal-to-follow-elem'
+import { Check } from '../../../../../base/icons/src/vender/line/general'
+import { VarType } from '../../../../types'
 
 type Props = {
   className?: string
@@ -43,23 +43,23 @@ const VarReferencePicker: FC<Props> = ({
         offset={4}
       >
         <PortalToFollowElemTrigger onClick={() => setOpen(!open)} className='w-[120px] cursor-pointer'>
-          <div className='flex items-center h-8 justify-between px-2.5 rounded-lg border-0 bg-gray-100 text-gray-900 text-[13px]'>
+          <div className='flex items-center h-8 justify-between px-2.5 rounded-lg border-0 bg-gray-100 dark:bg-tgai-input-background text-tgai-text-1 text-[13px]'>
             <div className='capitalize grow w-0 truncate' title={value}>{value}</div>
-            <RiArrowDownSLine className='shrink-0 w-3.5 h-3.5 text-gray-700' />
+            <RiArrowDownSLine className='shrink-0 w-3.5 h-3.5 text-tgai-text-2' />
           </div>
         </PortalToFollowElemTrigger>
         <PortalToFollowElemContent style={{
           zIndex: 100,
         }}>
-          <div className='w-[120px] p-1 bg-white rounded-lg shadow-sm'>
+          <div className='w-[120px] p-1 bg-tgai-panel-background-3 rounded-lg shadow-sm'>
             {TYPES.map(type => (
               <div
                 key={type}
-                className='flex items-center h-[30px] justify-between pl-3 pr-2 rounded-lg hover:bg-gray-100 text-gray-900 text-[13px] cursor-pointer'
+                className='flex items-center h-[30px] justify-between pl-3 pr-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-700 text-tgai-text-1 text-[13px] cursor-pointer'
                 onClick={handleChange(type)}
               >
                 <div className='w-0 grow capitalize truncate'>{type}</div>
-                {type === value && <Check className='shrink-0 w-4 h-4 text-primary-600' />}
+                {type === value && <Check className='shrink-0 w-4 h-4 text-tgai-primary' />}
               </div>
             ))}
           </div>

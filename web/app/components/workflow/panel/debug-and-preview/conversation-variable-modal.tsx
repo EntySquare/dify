@@ -5,22 +5,22 @@ import { useTranslation } from 'react-i18next'
 import { capitalize } from 'lodash-es'
 import copy from 'copy-to-clipboard'
 import { RiCloseLine } from '@remixicon/react'
-import Modal from '@/app/components/base/modal'
-import { BubbleX } from '@/app/components/base/icons/src/vender/line/others'
-import CodeEditor from '@/app/components/workflow/nodes/_base/components/editor/code-editor'
+import Modal from '../../../base/modal'
+import { BubbleX } from '../../../base/icons/src/vender/line/others'
+import CodeEditor from '../../nodes/_base/components/editor/code-editor'
 import {
   Clipboard,
   ClipboardCheck,
-} from '@/app/components/base/icons/src/vender/line/files'
-import { useStore } from '@/app/components/workflow/store'
+} from '../../../base/icons/src/vender/line/files'
+import { useStore } from '../../store'
 import type {
   ConversationVariable,
-} from '@/app/components/workflow/types'
-import { ChatVarType } from '@/app/components/workflow/panel/chat-variable-panel/type'
-import { CodeLanguage } from '@/app/components/workflow/nodes/code/types'
-import useTimestamp from '@/hooks/use-timestamp'
-import { fetchCurrentValueOfConversationVariable } from '@/service/workflow'
-import cn from '@/utils/classnames'
+} from '../../types'
+import { ChatVarType } from '../chat-variable-panel/type'
+import { CodeLanguage } from '../../nodes/code/types'
+import useTimestamp from '../../../../../hooks/use-timestamp'
+import { fetchCurrentValueOfConversationVariable } from '../../../../../service/workflow'
+import cn from '../../../../../utils/classnames'
 
 export type Props = {
   conversationID: string
@@ -86,7 +86,7 @@ const ConversationVariableModal = ({
         {/* LEFT */}
         <div className='shrink-0 flex flex-col w-[224px] h-full bg-background-sidenav-bg border-r border-divider-burn'>
           <div className='shrink-0 pt-5 pl-5 pr-4 pb-3 text-text-primary system-xl-semibold'>{t('workflow.chatVariable.panelTitle')}</div>
-          <div className='grow overflow-y-auto px-3 py-2'>
+          <div className='grow overflow-y-auto tgai-custom-scrollbar px-3 py-2'>
             {varList.map(chatVar => (
               <div key={chatVar.id} className={cn('group mb-0.5 p-2 flex items-center radius-md hover:bg-state-base-hover cursor-pointer', currentVar.id === chatVar.id && 'bg-state-base-hover')} onClick={() => setCurrentVar(chatVar)}>
                 <BubbleX className={cn('shrink-0 mr-1 w-4 h-4 text-text-tertiary group-hover:text-util-colors-teal-teal-700', currentVar.id === chatVar.id && 'text-util-colors-teal-teal-700')} />
@@ -142,7 +142,7 @@ const ConversationVariableModal = ({
                 </div>
               )}
               {(currentVar.value_type === ChatVarType.Number || currentVar.value_type === ChatVarType.String) && (
-                <div className='h-full px-4 py-3 rounded-lg bg-components-input-bg-normal text-components-input-text-filled system-md-regular overflow-y-auto'>{latestValueMap[currentVar.id] || ''}</div>
+                <div className='h-full px-4 py-3 rounded-lg bg-components-input-bg-normal text-components-input-text-filled system-md-regular overflow-y-auto tgai-custom-scrollbar'>{latestValueMap[currentVar.id] || ''}</div>
               )}
             </div>
           </div>

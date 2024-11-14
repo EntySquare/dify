@@ -12,7 +12,7 @@ import {
   fetchSuggestedQuestions,
   getUrl,
   stopChatMessageResponding,
-} from '@/service/share'
+} from '../../../../../service/share'
 
 const ChatWrapper = () => {
   const {

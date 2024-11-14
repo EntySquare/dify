@@ -6,9 +6,9 @@ import { debounce } from 'lodash-es'
 import { useTranslation } from 'react-i18next'
 import NewDatasetCard from './NewDatasetCard'
 import DatasetCard from './DatasetCard'
-import type { DataSetListResponse } from '@/models/datasets'
-import { fetchDatasets } from '@/service/datasets'
-import { useAppContext } from '@/context/app-context'
+import type { DataSetListResponse } from '../../../models/datasets'
+import { fetchDatasets } from '../../../service/datasets'
+import { useAppContext } from '../../../context/app-context'
 
 const getKey = (
   pageIndex: number,

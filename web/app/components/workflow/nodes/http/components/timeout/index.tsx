@@ -4,8 +4,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useBoolean } from 'ahooks'
 import type { Timeout as TimeoutPayloadType } from '../../types'
-import cn from '@/utils/classnames'
-import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import cn from '../../../../../../../utils/classnames'
+import { ChevronRight } from '../../../../../base/icons/src/vender/line/arrows'
 
 type Props = {
   readonly: boolean
@@ -29,10 +29,10 @@ const InputField: FC<{
   return (
     <div className="space-y-1">
       <div className="flex items-center h-[18px] space-x-2">
-        <span className="text-[13px] font-medium text-gray-900">{title}</span>
-        <span className="text-xs font-normal text-gray-500">{description}</span>
+        <span className="text-[13px] font-medium text-tgai-text-1">{title}</span>
+        <span className="text-xs font-normal text-tgai-text-3">{description}</span>
       </div>
-      <input className="w-full px-3 text-sm leading-9 text-gray-900 border-0 rounded-lg grow h-9 bg-gray-100 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200" value={value} onChange={(e) => {
+      <input className="w-full px-3 text-sm leading-9 text-tgai-text-1 border-0 rounded-lg grow h-9 bg-gray-100 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600" value={value} onChange={(e) => {
         const value = Math.max(min, Math.min(max, parseInt(e.target.value, 10)))
         onChange(value)
       }} placeholder={placeholder} type='number' readOnly={readOnly} min={min} max={max} />
@@ -53,9 +53,9 @@ const Timeout: FC<Props> = ({ readonly, payload, onChange }) => {
       <div>
         <div
           onClick={toggleFold}
-          className={cn('flex justify-between leading-[18px] text-[13px] font-semibold text-gray-700 uppercase cursor-pointer')}>
+          className={cn('flex justify-between leading-[18px] text-[13px] font-semibold text-tgai-text-2 uppercase cursor-pointer')}>
           <div>{t(`${i18nPrefix}.timeout.title`)}</div>
-          <ChevronRight className='w-4 h-4 text-gray-500 transform transition-transform' style={{ transform: isFold ? 'rotate(0deg)' : 'rotate(90deg)' }} />
+          <ChevronRight className='w-4 h-4 text-tgai-text-3 transform transition-transform' style={{ transform: isFold ? 'rotate(0deg)' : 'rotate(90deg)' }} />
         </div>
         {!isFold && (
           <div className='mt-2 space-y-1'>

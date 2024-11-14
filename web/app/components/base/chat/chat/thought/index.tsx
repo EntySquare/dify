@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React from 'react'
 import type { ThoughtItem, ToolInfoInThought } from '../type'
-import Tool from '@/app/components/base/chat/chat/thought/tool'
-import type { Emoji } from '@/app/components/tools/types'
+import Tool from './tool'
+import type { Emoji } from '../../../../tools/types'
 
 export type IThoughtProps = {
   thought: ThoughtItem

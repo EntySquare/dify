@@ -9,17 +9,17 @@ import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import FileIcon from '@/app/components/base/file-icon'
+} from '../../../portal-to-follow-elem'
+import FileIcon from '../../../file-icon'
 import {
   Hash02,
   Target04,
-} from '@/app/components/base/icons/src/vender/line/general'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
+} from '../../../icons/src/vender/line/general'
+import { ArrowUpRight } from '../../../icons/src/vender/line/arrows'
 import {
   BezierCurve03,
   TypeSquare,
-} from '@/app/components/base/icons/src/vender/line/editor'
+} from '../../../icons/src/vender/line/editor'
 
 type PopupProps = {
   data: Resources

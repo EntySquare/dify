@@ -8,8 +8,8 @@ import TemplateWorkflowEn from './template/template_workflow.en.mdx'
 import TemplateWorkflowZh from './template/template_workflow.zh.mdx'
 import TemplateChatEn from './template/template_chat.en.mdx'
 import TemplateChatZh from './template/template_chat.zh.mdx'
-import I18n from '@/context/i18n'
-import { LanguagesSupported } from '@/i18n/language'
+import I18n from '../../../context/i18n'
+import { LanguagesSupported } from '../../../i18n/language'
 
 type IDocProps = {
   appDetail: any
@@ -25,7 +25,7 @@ const Doc = ({ appDetail }: IDocProps) => {
   }, {})
 
   return (
-    <article className="prose prose-xl" >
+    <article className="prose prose-xl dark:prose-invert" >
       {(appDetail?.mode === 'chat' || appDetail?.mode === 'agent-chat') && (
         locale !== LanguagesSupported[1] ? <TemplateChatEn appDetail={appDetail} variables={variables} inputs={inputs} /> : <TemplateChatZh appDetail={appDetail} variables={variables} inputs={inputs} />
       )}

@@ -7,11 +7,11 @@ import type { Var } from '../../types'
 import { useStore } from '../../store'
 import type { Authorization, Body, HttpNodeType, Method, Timeout } from './types'
 import useKeyValueList from './hooks/use-key-value-list'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import useOneStepRun from '../_base/hooks/use-one-step-run'
 import {
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: HttpNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

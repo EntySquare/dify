@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import { ArrowNarrowLeft } from '../../base/icons/src/vender/line/arrows'
 import NodePanel from './node'
-import cn from '@/utils/classnames'
-import type { NodeTracing } from '@/types/workflow'
+import cn from '../../../../utils/classnames'
+import type { NodeTracing } from '../../../../types/workflow'
 const i18nPrefix = 'workflow.singleRun'
 
 type Props = {
@@ -14,6 +14,7 @@ type Props = {
   onHide: () => void
   onBack: () => void
   noWrap?: boolean
+  showBorder?: boolean
 }
 
 const IterationResultPanel: FC<Props> = ({
@@ -21,6 +22,7 @@ const IterationResultPanel: FC<Props> = ({
   onHide,
   onBack,
   noWrap,
+  showBorder
 }) => {
   const { t } = useTranslation()
 
@@ -28,27 +30,26 @@ const IterationResultPanel: FC<Props> = ({
     <>
       <div className={cn(!noWrap && 'shrink-0 ', 'pl-4 pr-3 pt-3')}>
         <div className='shrink-0 flex justify-between items-center h-8'>
-          <div className='text-base font-semibold text-gray-900 truncate'>
+          <div className='text-base font-semibold text-tgai-text-1 truncate'>
             {t(`${i18nPrefix}.testRunIteration`)}
           </div>
           <div className='ml-2 shrink-0 p-1 cursor-pointer' onClick={onHide}>
-            <RiCloseLine className='w-4 h-4 text-gray-500 ' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
-        <div className='flex items-center py-2 space-x-1 text-primary-600 cursor-pointer' onClick={onBack}>
+        <div className='flex items-center py-2 space-x-1 text-primary-600 dark:text-tgai-primary cursor-pointer' onClick={onBack}>
           <ArrowNarrowLeft className='w-4 h-4' />
           <div className='leading-[18px] text-[13px] font-medium'>{t(`${i18nPrefix}.back`)}</div>
         </div>
       </div>
       {/* List */}
-      <div className={cn(!noWrap ? 'h-0 grow' : 'max-h-full', 'overflow-y-auto px-4 pb-4 bg-gray-50')}>
+      <div className={cn(!noWrap ? 'h-0 grow' : 'max-h-full', 'overflow-y-auto tgai-custom-scrollbar px-4 pb-4 bg-gray-50 dark:bg-tgai-panel-background')}>
         {list.map((iteration, index) => (
           <div key={index} className={cn('my-4', index === 0 && 'mt-2')}>
             <div className='flex items-center'>
-              <div className='shrink-0 leading-[18px] text-xs font-semibold text-gray-500 uppercase'>{t(`${i18nPrefix}.iteration`)} {index + 1}</div>
+              <div className='shrink-0 leading-[18px] text-xs font-semibold text-tgai-text-3 uppercase'>{t(`${i18nPrefix}.iteration`)} {index + 1}</div>
               <div
-                className='ml-3 grow w-0 h-px'
-                style={{ background: 'linear-gradient(to right, #F3F4F6, rgba(243, 244, 246, 0))' }}
+                className='ml-3 grow w-0 h-px bg-gradient-to-r from-[#F3F4F6] to-[rgba(243,244,246,0)] dark:from-zinc-600'
               ></div>
             </div>
             <div className='mt-0.5 space-y-1'>
@@ -77,13 +78,13 @@ const IterationResultPanel: FC<Props> = ({
 
   return (
     <div
-      className='absolute inset-0 z-10 rounded-2xl pt-10'
+      className={cn('absolute inset-0 z-10 rounded-2xl pt-10 overflow-hidden', showBorder && "inset-[1px]")}
       style={{
         backgroundColor: 'rgba(16, 24, 40, 0.20)',
       }}
       onClick={handleNotBubble}
     >
-      <div className='h-full rounded-2xl bg-white flex flex-col'>
+      <div className='h-full rounded-2xl flex flex-col'>
         {main}
       </div>
     </div >

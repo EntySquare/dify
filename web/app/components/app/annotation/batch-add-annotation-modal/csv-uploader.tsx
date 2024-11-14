@@ -4,10 +4,10 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
 import { RiDeleteBinLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import { Csv as CSVIcon } from '@/app/components/base/icons/src/public/files'
-import { ToastContext } from '@/app/components/base/toast'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../utils/classnames'
+import { Csv as CSVIcon } from '../../../base/icons/src/public/files'
+import { ToastContext } from '../../../base/toast'
+import Button from '../../../base/button'
 
 export type Props = {
   file: File | undefined

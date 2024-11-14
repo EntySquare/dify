@@ -1,9 +1,9 @@
 import { memo, useState } from 'react'
 import { capitalize } from 'lodash-es'
 import { RiDeleteBinLine, RiEditLine } from '@remixicon/react'
-import { BubbleX } from '@/app/components/base/icons/src/vender/line/others'
-import type { ConversationVariable } from '@/app/components/workflow/types'
-import cn from '@/utils/classnames'
+import { BubbleX } from '../../../../base/icons/src/vender/line/others'
+import type { ConversationVariable } from '../../../types'
+import cn from '../../../../../../utils/classnames'
 
 type VariableItemProps = {
   item: ConversationVariable

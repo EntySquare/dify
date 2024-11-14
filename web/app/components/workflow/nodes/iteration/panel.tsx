@@ -10,9 +10,9 @@ import ResultPanel from '../../run/result-panel'
 import IterationResultPanel from '../../run/iteration-result-panel'
 import type { IterationNodeType } from './types'
 import useConfig from './use-config'
-import { InputVarType, type NodePanelProps } from '@/app/components/workflow/types'
-import Field from '@/app/components/workflow/nodes/_base/components/field'
-import BeforeRunForm from '@/app/components/workflow/nodes/_base/components/before-run-form'
+import { InputVarType, type NodePanelProps } from '../../types'
+import Field from '../_base/components/field'
+import BeforeRunForm from '../_base/components/before-run-form'
 
 const i18nPrefix = 'workflow.nodes.iteration'
 
@@ -55,7 +55,7 @@ const Panel: FC<NodePanelProps<IterationNodeType>> = ({
         <Field
           title={t(`${i18nPrefix}.input`)}
           operations={(
-            <div className='flex items-center h-[18px] px-1 border border-black/8 rounded-[5px] text-xs font-medium text-gray-500 capitalize'>Array</div>
+            <div className='flex items-center h-[18px] px-1 border border-black/8 dark:border-stone-600/[92] rounded-[5px] text-xs font-medium text-tgai-text-3 capitalize'>Array</div>
           )}
         >
           <VarReferencePicker
@@ -73,7 +73,7 @@ const Panel: FC<NodePanelProps<IterationNodeType>> = ({
         <Field
           title={t(`${i18nPrefix}.output`)}
           operations={(
-            <div className='flex items-center h-[18px] px-1 border border-black/8 rounded-[5px] text-xs font-medium text-gray-500 capitalize'>Array</div>
+            <div className='flex items-center h-[18px] px-1 border border-black/8 dark:border-stone-600/[92] rounded-[5px] text-xs font-medium text-tgai-text-3 capitalize'>Array</div>
           )}
         >
           <VarReferencePicker
@@ -115,9 +115,9 @@ const Panel: FC<NodePanelProps<IterationNodeType>> = ({
           result={
             <div className='mt-3'>
               <div className='px-4'>
-                <div className='flex items-center h-[34px] justify-between px-3 bg-gray-100 border-[0.5px] border-gray-200 rounded-lg cursor-pointer' onClick={showIterationDetail}>
-                  <div className='leading-[18px] text-[13px] font-medium text-gray-700'>{t(`${i18nPrefix}.iteration`, { count: iterationRunResult.length })}</div>
-                  <RiArrowRightSLine className='w-3.5 h-3.5 text-gray-500' />
+                <div className='flex items-center h-[34px] justify-between px-3 bg-gray-100 dark:bg-tgai-panel-background-3 border-[0.5px] border-gray-200 dark:border-stone-600 rounded-lg cursor-pointer' onClick={showIterationDetail}>
+                  <div className='leading-[18px] text-[13px] font-medium text-tgai-text-2'>{t(`${i18nPrefix}.iteration`, { count: iterationRunResult.length })}</div>
+                  <RiArrowRightSLine className='w-3.5 h-3.5 text-tgai-text-3' />
                 </div>
                 <Split className='mt-3' />
               </div>

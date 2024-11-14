@@ -3,8 +3,8 @@ import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ArtificialBrain } from '../../base/icons/src/vender/line/development'
-import UsageInfo from '../usage-info'
-import { useProviderContext } from '@/context/provider-context'
+import UsageInfo from './index'
+import { useProviderContext } from '../../../../context/provider-context'
 
 type Props = {
   className?: string

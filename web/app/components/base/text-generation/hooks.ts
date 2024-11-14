@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useToastContext } from '@/app/components/base/toast'
-import { ssePost } from '@/service/base'
+import { useToastContext } from '../toast'
+import { ssePost } from '../../../../service/base'
 
 export const useTextGeneration = () => {
   const { t } = useTranslation()

@@ -45,12 +45,11 @@ const FeaturePanel = ({
         showAdvanceFeature && (
           <div>
             <div className='flex items-center'>
-              <div className='shrink-0 text-xs font-semibold text-gray-500'>
+              <div className='shrink-0 text-xs font-semibold text-tgai-text-2'>
                 {t('appDebug.feature.groupChat.title')}
               </div>
               <div
-                className='grow ml-3 h-[1px]'
-                style={{ background: 'linear-gradient(270deg, rgba(243, 244, 246, 0) 0%, #F3F4F6 100%)' }}
+                className='grow ml-3 h-[1px] bg-gradient-to-l from-[rgba(243,_244,_246,_0)] to-[#F3F4F6] dark:to-zinc-600'
               ></div>
             </div>
             <div className='py-2 space-y-2'>
@@ -91,12 +90,11 @@ const FeaturePanel = ({
         showToolFeature && (
           <div>
             <div className='flex items-center'>
-              <div className='shrink-0 text-xs font-semibold text-gray-500'>
+              <div className='shrink-0 text-xs font-semibold text-tgai-text-2'>
                 {t('appDebug.feature.groupChat.title')}
               </div>
               <div
-                className='grow ml-3 h-[1px]'
-                style={{ background: 'linear-gradient(270deg, rgba(243, 244, 246, 0) 0%, #F3F4F6 100%)' }}
+                className='grow ml-3 h-[1px] bg-gradient-to-l from-[rgba(243,_244,_246,_0)] to-[#F3F4F6] dark:to-zinc-600'
               ></div>
             </div>
             <div className='py-2 space-y-2'>

@@ -21,8 +21,8 @@ import {
   TitleInput,
 } from './components/title-description-input'
 import { useResizePanel } from './hooks/use-resize-panel'
-import cn from '@/utils/classnames'
-import BlockIcon from '@/app/components/workflow/block-icon'
+import cn from '../../../../../utils/classnames'
+import BlockIcon from '../../block-icon'
 import {
   WorkflowHistoryEvent,
   useAvailableBlocks,
@@ -33,12 +33,12 @@ import {
   useToolIcon,
   useWorkflow,
   useWorkflowHistory,
-} from '@/app/components/workflow/hooks'
-import { canRunBySingle } from '@/app/components/workflow/utils'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import type { Node } from '@/app/components/workflow/types'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import { useStore } from '@/app/components/workflow/store'
+} from '../../hooks'
+import { canRunBySingle } from '../../utils'
+import TooltipPlus from '../../../base/tooltip-plus'
+import type { Node } from '../../types'
+import { useStore as useAppStore } from '../../../app/store'
+import { useStore } from '../../store'
 
 type BasePanelProps = {
   children: ReactElement
@@ -98,21 +98,21 @@ const BasePanel: FC<BasePanelProps> = ({
   return (
     <div className={cn(
       'relative mr-2 h-full',
-      showMessageLogModal && '!absolute !mr-0 w-[384px] overflow-hidden -top-[5px] right-[416px] z-0 shadow-lg border-[0.5px] border-components-panel-border rounded-2xl transition-all',
+      showMessageLogModal && '!absolute !mr-0 w-[384px] overflow-hidden -top-[5px] right-[416px] z-0 shadow-lg dark:shadow-stone-800 border-[0.5px] border-components-panel-border dark:border-stone-600 rounded-2xl transition-all',
     )}>
       <div
         ref={triggerRef}
         className='absolute top-1/2 -translate-y-1/2 -left-2 w-3 h-6 cursor-col-resize resize-x'>
-        <div className='w-1 h-6 bg-divider-regular rounded-sm'></div>
+        <div className='w-1 h-6 bg-divider-regular rounded-sm dark:bg-neutral-500'></div>
       </div>
       <div
         ref={containerRef}
-        className={cn('h-full bg-components-panel-bg shadow-lg border-[0.5px] border-components-panel-border rounded-2xl', showSingleRunPanel ? 'overflow-hidden' : 'overflow-y-auto')}
+        className={cn('h-full bg-components-panel-bg dark:bg-tgai-workflow-panel-background shadow-lg dark:shadow-stone-800 border-[0.5px] border-components-panel-border dark:border-stone-600 rounded-2xl', showSingleRunPanel ? 'overflow-hidden' : 'overflow-y-auto tgai-custom-scrollbar')}
         style={{
           width: `${panelWidth}px`,
         }}
       >
-        <div className='sticky top-0 bg-components-panel-bg border-b-[0.5px] border-black/5 z-10'>
+        <div className='sticky top-0 bg-components-panel-bg dark:bg-tgai-workflow-panel-background border-b-[0.5px] border-black/5 dark:border-stone-600/95 z-10'>
           <div className='flex items-center px-4 pt-4 pb-1'>
             <BlockIcon
               className='shrink-0 mr-1'
@@ -124,14 +124,14 @@ const BasePanel: FC<BasePanelProps> = ({
               value={data.title || ''}
               onBlur={handleTitleBlur}
             />
-            <div className='shrink-0 flex items-center text-gray-500'>
+            <div className='shrink-0 flex items-center text-tgai-text-3'>
               {
                 canRunBySingle(data.type) && !nodesReadOnly && (
                   <TooltipPlus
                     popupContent={t('workflow.panel.runThisStep')}
                   >
                     <div
-                      className='flex items-center justify-center mr-1 w-6 h-6 rounded-md hover:bg-black/5 cursor-pointer'
+                      className='flex items-center justify-center mr-1 w-6 h-6 rounded-md hover:bg-black/5 dark:hover:bg-zinc-600/95 cursor-pointer'
                       onClick={() => {
                         handleNodeDataUpdate({ id, data: { _isSingleRun: true } })
                         handleSyncWorkflowDraft(true)
@@ -144,7 +144,7 @@ const BasePanel: FC<BasePanelProps> = ({
               }
               <HelpLink nodeType={data.type} />
               <PanelOperator id={id} data={data} showHelpLink={false} />
-              <div className='mx-3 w-[1px] h-3.5 bg-divider-regular' />
+              <div className='mx-3 w-[1px] h-3.5 bg-divider-regular dark:bg-neutral-500' />
               <div
                 className='flex items-center justify-center w-6 h-6 cursor-pointer'
                 onClick={() => handleNodeSelect(id, true)}
@@ -165,7 +165,7 @@ const BasePanel: FC<BasePanelProps> = ({
         </div>
         {
           !!availableNextBlocks.length && (
-            <div className='p-4 border-t-[0.5px] border-t-black/5'>
+            <div className='p-4 border-t-[0.5px] border-t-black/5 dark:border-t-stone-600/95'>
               <div className='flex items-center mb-1 system-sm-semibold-uppercase text-text-secondary'>
                 {t('workflow.panel.nextStep').toLocaleUpperCase()}
               </div>

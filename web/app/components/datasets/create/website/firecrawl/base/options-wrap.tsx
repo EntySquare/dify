@@ -3,9 +3,9 @@ import { useBoolean } from 'ahooks'
 import type { FC } from 'react'
 import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import { Settings04 } from '@/app/components/base/icons/src/vender/line/general'
-import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import cn from '../../../../../../../utils/classnames'
+import { Settings04 } from '../../../../../base/icons/src/vender/line/general'
+import { ChevronRight } from '../../../../../base/icons/src/vender/line/arrows'
 const I18N_PREFIX = 'datasetCreation.stepOne.website'
 
 type Props = {

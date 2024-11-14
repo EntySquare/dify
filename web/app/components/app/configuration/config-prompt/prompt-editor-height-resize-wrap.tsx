@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { FC } from 'react'
 import { useDebounceFn } from 'ahooks'
-import cn from '@/utils/classnames'
+import cn from '../../../../../utils/classnames'
 
 type Props = {
   className?: string
@@ -73,7 +73,7 @@ const PromptEditorHeightResizeWrap: FC<Props> = ({
     <div
       className='relative'
     >
-      <div className={cn(className, 'overflow-y-auto')}
+      <div className={cn(className, 'overflow-y-auto tgai-custom-scrollbar')}
         style={{
           height,
         }}
@@ -86,7 +86,7 @@ const PromptEditorHeightResizeWrap: FC<Props> = ({
         <div
           className='absolute bottom-0 left-0 w-full flex justify-center h-2 cursor-row-resize'
           onMouseDown={handleStartResize}>
-          <div className='w-5 h-[3px] rounded-sm bg-gray-300'></div>
+          <div className='w-5 h-[3px] rounded-sm bg-gray-300 dark:bg-neutral-500'></div>
         </div>
       )}
     </div>

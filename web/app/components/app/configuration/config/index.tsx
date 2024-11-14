@@ -16,17 +16,17 @@ import AddFeatureBtn from './feature/add-feature-btn'
 import ChooseFeature from './feature/choose-feature'
 import useFeature from './feature/use-feature'
 import AgentTools from './agent/agent-tools'
-import ConfigContext from '@/context/debug-configuration'
-import ConfigPrompt from '@/app/components/app/configuration/config-prompt'
-import ConfigVar from '@/app/components/app/configuration/config-var'
-import { type CitationConfig, type ModelConfig, type ModerationConfig, type MoreLikeThisConfig, type PromptVariable, type SpeechToTextConfig, type SuggestedQuestionsAfterAnswerConfig, type TextToSpeechConfig } from '@/models/debug'
-import type { AppType } from '@/types/app'
-import { ModelModeType } from '@/types/app'
-import { useModalContext } from '@/context/modal-context'
-import ConfigParamModal from '@/app/components/app/configuration/toolbox/annotation/config-param-modal'
-import AnnotationFullModal from '@/app/components/billing/annotation-full/modal'
-import { useDefaultModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
+import ConfigContext from '../../../../../context/debug-configuration'
+import ConfigPrompt from '../config-prompt'
+import ConfigVar from '../config-var'
+import { type CitationConfig, type ModelConfig, type ModerationConfig, type MoreLikeThisConfig, type PromptVariable, type SpeechToTextConfig, type SuggestedQuestionsAfterAnswerConfig, type TextToSpeechConfig } from '../../../../../models/debug'
+import type { AppType } from '../../../../../types/app'
+import { ModelModeType } from '../../../../../types/app'
+import { useModalContext } from '../../../../../context/modal-context'
+import ConfigParamModal from '../toolbox/annotation/config-param-modal'
+import AnnotationFullModal from '../../../billing/annotation-full/modal'
+import { useDefaultModel } from '../../../header/account-setting/model-provider-page/hooks'
+import { ModelTypeEnum } from '../../../header/account-setting/model-provider-page/declarations'
 
 const Config: FC = () => {
   const {
@@ -207,7 +207,7 @@ const Config: FC = () => {
     <>
       <div
         ref={wrapRef}
-        className="grow h-0 relative px-6 pb-[50px] overflow-y-auto"
+        className="grow h-0 relative px-6 pb-[50px] overflow-y-auto tgai-custom-scrollbar"
       >
         <AddFeatureBtn toBottomHeight={toBottomHeight} onClick={showChooseFeatureTrue} />
         {showChooseFeature && (

@@ -10,9 +10,9 @@ import OperationBtn from '../base/operation-btn'
 import CardItem from './card-item/item'
 import ParamsConfig from './params-config'
 import ContextVar from './context-var'
-import ConfigContext from '@/context/debug-configuration'
-import { AppType } from '@/types/app'
-import type { DataSet } from '@/models/datasets'
+import ConfigContext from '../../../../../context/debug-configuration'
+import { AppType } from '../../../../../types/app'
+import type { DataSet } from '../../../../../models/datasets'
 
 const Icon = (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

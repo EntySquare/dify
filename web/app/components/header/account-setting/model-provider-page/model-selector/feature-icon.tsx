@@ -10,8 +10,8 @@ import {
   MagicEyes,
   // MagicWand,
   // Robot,
-} from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+} from '../../../../base/icons/src/vender/solid/mediaAndDevices'
+import TooltipPlus from '../../../../base/tooltip-plus'
 
 type FeatureIconProps = {
   feature: ModelFeatureEnum
@@ -64,7 +64,7 @@ const FeatureIcon: FC<FeatureIconProps> = ({
       <TooltipPlus
         popupContent={t('common.modelProvider.featureSupported', { feature: ModelFeatureTextEnum.vision })}
       >
-        <ModelBadge className={`mr-0.5 !px-0 w-[18px] justify-center text-gray-500 ${className}`}>
+        <ModelBadge className={`mr-0.5 !px-0 w-[18px] justify-center text-tgai-text-2 ${className}`}>
           <MagicEyes className='w-3 h-3' />
         </ModelBadge>
       </TooltipPlus>

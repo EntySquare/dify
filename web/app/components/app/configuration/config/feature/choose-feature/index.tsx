@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next'
 import FeatureGroup from '../feature-group'
 import MoreLikeThisIcon from '../../../base/icons/more-like-this-icon'
 import FeatureItem from './feature-item'
-import Modal from '@/app/components/base/modal'
-import SuggestedQuestionsAfterAnswerIcon from '@/app/components/app/configuration/base/icons/suggested-questions-after-answer-icon'
-import { Microphone01, Speaker } from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
-import { Citations } from '@/app/components/base/icons/src/vender/solid/editor'
-import { FileSearch02 } from '@/app/components/base/icons/src/vender/solid/files'
-import { MessageFast } from '@/app/components/base/icons/src/vender/solid/communication'
+import Modal from '../../../../../base/modal'
+import SuggestedQuestionsAfterAnswerIcon from '../../../base/icons/suggested-questions-after-answer-icon'
+import { Microphone01, Speaker } from '../../../../../base/icons/src/vender/solid/mediaAndDevices'
+import { Citations } from '../../../../../base/icons/src/vender/solid/editor'
+import { FileSearch02 } from '../../../../../base/icons/src/vender/solid/files'
+import { MessageFast } from '../../../../../base/icons/src/vender/solid/communication'
 type IConfig = {
   openingStatement: boolean
   moreLikeThis: boolean

@@ -13,7 +13,7 @@ const Field: FC<Props> = ({
 }) => {
   return (
     <div>
-      <div className='leading-8 text-[13px] font-medium text-gray-700'>{title}</div>
+      <div className='leading-8 text-[13px] font-medium text-tgai-text-2'>{title}</div>
       <div>{children}</div>
     </div>
   )

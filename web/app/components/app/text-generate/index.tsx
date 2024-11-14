@@ -1,7 +1,7 @@
 'use client'
 import type { FC } from 'react'
 import React from 'react'
-import { format } from '@/service/base'
+import { format } from '../../../../service/base'
 
 export type ITextGenerationProps = {
   value: string

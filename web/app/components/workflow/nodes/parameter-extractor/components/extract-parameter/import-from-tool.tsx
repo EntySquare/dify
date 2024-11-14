@@ -7,13 +7,13 @@ import {
 import { useTranslation } from 'react-i18next'
 import BlockSelector from '../../../../block-selector'
 import type { Param, ParamType } from '../../types'
-import cn from '@/utils/classnames'
-import { useStore } from '@/app/components/workflow/store'
-import type { ToolDefaultValue } from '@/app/components/workflow/block-selector/types'
-import type { ToolParameter } from '@/app/components/tools/types'
-import { CollectionType } from '@/app/components/tools/types'
-import type { BlockEnum } from '@/app/components/workflow/types'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
+import cn from '../../../../../../../utils/classnames'
+import { useStore } from '../../../../store'
+import type { ToolDefaultValue } from '../../../../block-selector/types'
+import type { ToolParameter } from '../../../../../tools/types'
+import { CollectionType } from '../../../../../tools/types'
+import type { BlockEnum } from '../../../../types'
+import { useLanguage } from '../../../../../header/account-setting/model-provider-page/hooks'
 
 const i18nPrefix = 'workflow.nodes.parameterExtractor'
 
@@ -67,8 +67,8 @@ const ImportFromTool: FC<Props> = ({
     return (
       <div>
         <div className={cn(
-          'flex items-center h-6 px-2 cursor-pointer rounded-md hover:bg-gray-100 text-xs font-medium text-gray-500',
-          open && 'bg-gray-100',
+          'flex items-center h-6 px-2 cursor-pointer rounded-md hover:bg-gray-100 dark:hover:bg-tgai-input-background text-xs font-medium text-tgai-text-3',
+          open && 'bg-gray-100 dark:bg-tgai-input-background',
         )}>
           {t(`${i18nPrefix}.importFromTool`)}
         </div>

@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import ImagePreview from '@/app/components/base/image-uploader/image-preview'
+import cn from '../../../../utils/classnames'
+import ImagePreview from '../image-uploader/image-preview'
 
 type Props = {
   srcs: string[]

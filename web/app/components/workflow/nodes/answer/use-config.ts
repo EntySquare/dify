@@ -4,10 +4,10 @@ import useVarList from '../_base/hooks/use-var-list'
 import type { Var } from '../../types'
 import { VarType } from '../../types'
 import type { AnswerNodeType } from './types'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
+import useNodeCrud from '../_base/hooks/use-node-crud'
 import {
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: AnswerNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

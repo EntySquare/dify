@@ -5,7 +5,7 @@ import type {
   Edge,
   EnvironmentVariable,
   Node,
-} from '@/app/components/workflow/types'
+} from '../app/components/workflow/types'
 
 export type NodeTracing = {
   id: string

@@ -2,14 +2,14 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiAddLine } from '@remixicon/react'
-import Button from '@/app/components/base/button'
-import VariableModal from '@/app/components/workflow/panel/chat-variable-panel/components/variable-modal'
+import Button from '../../../../base/button'
+import VariableModal from './variable-modal'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import type { ConversationVariable } from '@/app/components/workflow/types'
+} from '../../../../base/portal-to-follow-elem'
+import type { ConversationVariable } from '../../../types'
 
 type Props = {
   open: boolean

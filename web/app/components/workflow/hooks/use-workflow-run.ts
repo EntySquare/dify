@@ -7,21 +7,21 @@ import produce from 'immer'
 import { v4 as uuidV4 } from 'uuid'
 import { usePathname } from 'next/navigation'
 import { useWorkflowStore } from '../store'
-import { useNodesSyncDraft } from '../hooks'
+import { useNodesSyncDraft } from './index'
 import {
   NodeRunningStatus,
   WorkflowRunningStatus,
 } from '../types'
 import { useWorkflowUpdate } from './use-workflow-interactions'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import type { IOtherOptions } from '@/service/base'
-import { ssePost } from '@/service/base'
+import { useStore as useAppStore } from '../../app/store'
+import type { IOtherOptions } from '../../../../service/base'
+import { ssePost } from '../../../../service/base'
 import {
   fetchPublishedWorkflow,
   stopWorkflowRun,
-} from '@/service/workflow'
-import { useFeaturesStore } from '@/app/components/base/features/hooks'
-import { AudioPlayerManager } from '@/app/components/base/audio-btn/audio.player.manager'
+} from '../../../../service/workflow'
+import { useFeaturesStore } from '../../base/features/hooks'
+import { AudioPlayerManager } from '../../base/audio-btn/audio.player.manager'
 
 export const useWorkflowRun = () => {
   const store = useStoreApi()

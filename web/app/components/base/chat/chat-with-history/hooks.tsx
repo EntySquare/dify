@@ -28,16 +28,16 @@ import {
   renameConversation,
   unpinConversation,
   updateFeedback,
-} from '@/service/share'
-import type { InstalledApp } from '@/models/explore'
+} from '../../../../../service/share'
+import type { InstalledApp } from '../../../../../models/explore'
 import type {
   AppData,
   ConversationItem,
-} from '@/models/share'
-import { addFileInfos, sortAgentSorts } from '@/app/components/tools/utils'
-import { useToastContext } from '@/app/components/base/toast'
-import { changeLanguage } from '@/i18n/i18next-config'
-import { useAppFavicon } from '@/hooks/use-app-favicon'
+} from '../../../../../models/share'
+import { addFileInfos, sortAgentSorts } from '../../../tools/utils'
+import { useToastContext } from '../../toast'
+import { changeLanguage } from '../../../../../i18n/i18next-config'
+import { useAppFavicon } from '../../../../../hooks/use-app-favicon'
 
 export const useChatWithHistory = (installedAppInfo?: InstalledApp) => {
   const isInstalledApp = useMemo(() => !!installedAppInfo, [installedAppInfo])

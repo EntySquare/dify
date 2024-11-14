@@ -12,18 +12,18 @@ import Textarea from './textarea'
 import s from './style.module.css'
 import HitDetail from './hit-detail'
 import ModifyRetrievalModal from './modify-retrieval-modal'
-import cn from '@/utils/classnames'
-import type { HitTestingResponse, HitTesting as HitTestingType } from '@/models/datasets'
-import Loading from '@/app/components/base/loading'
-import Modal from '@/app/components/base/modal'
-import Drawer from '@/app/components/base/drawer'
-import Pagination from '@/app/components/base/pagination'
-import FloatRightContainer from '@/app/components/base/float-right-container'
-import { fetchTestingRecords } from '@/service/datasets'
-import DatasetDetailContext from '@/context/dataset-detail'
-import type { RetrievalConfig } from '@/types/app'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import useTimestamp from '@/hooks/use-timestamp'
+import cn from '../../../../utils/classnames'
+import type { HitTestingResponse, HitTesting as HitTestingType } from '../../../../models/datasets'
+import Loading from '../../base/loading'
+import Modal from '../../base/modal'
+import Drawer from '../../base/drawer'
+import Pagination from '../../base/pagination'
+import FloatRightContainer from '../../base/float-right-container'
+import { fetchTestingRecords } from '../../../../service/datasets'
+import DatasetDetailContext from '../../../../context/dataset-detail'
+import type { RetrievalConfig } from '../../../../types/app'
+import useBreakpoints, { MediaType } from '../../../../hooks/use-breakpoints'
+import useTimestamp from '../../../../hooks/use-timestamp'
 
 const limit = 10
 
@@ -33,11 +33,11 @@ type Props = {
 
 const RecordsEmpty: FC = () => {
   const { t } = useTranslation()
-  return <div className='bg-gray-50 rounded-2xl p-5'>
-    <div className={s.clockWrapper}>
+  return <div className='bg-gray-50 dark:bg-tgai-panel-background-3 rounded-2xl p-5'>
+    <div className={cn(s.clockWrapper, "dark:!border-stone-600")}>
       <div className={cn(s.clockIcon, 'w-5 h-5')}></div>
     </div>
-    <div className='my-2 text-gray-500 text-sm'>{t('datasetHitTesting.noRecentTip')}</div>
+    <div className='my-2 text-tgai-text-3 text-sm'>{t('datasetHitTesting.noRecentTip')}</div>
   </div>
 }
 
@@ -77,8 +77,8 @@ const HitTesting: FC<Props> = ({ datasetId }: Props) => {
   }, [isMobile, setShowRightPanel])
 
   return (
-    <div className={s.container}>
-      <div className={s.leftDiv}>
+    <div className={cn(s.container, "tgai-custom-scrollbar")}>
+      <div className={cn(s.leftDiv, "dark:!border-stone-700")}>
         <div className={s.titleWrapper}>
           <h1 className={s.title}>{t('datasetHitTesting.title')}</h1>
           <p className={s.desc}>{t('datasetHitTesting.desc')}</p>
@@ -104,20 +104,20 @@ const HitTesting: FC<Props> = ({ datasetId }: Props) => {
           : recordsRes?.data?.length
             ? (
               <>
-                <div className='grow overflow-y-auto'>
+                <div className='grow overflow-y-auto tgai-custom-scrollbar'>
                   <table className={`w-full border-collapse border-0 mt-3 ${s.table}`}>
-                    <thead className="sticky top-0 h-8 bg-white leading-8 border-b border-gray-200 text-gray-500 font-bold">
+                    <thead className="sticky top-0 h-8 bg-white dark:bg-tgai-panel-background leading-8 border-b border-gray-200 dark:border-stone-600 text-tgai-text-3 font-bold">
                       <tr>
                         <td className='w-28'>{t('datasetHitTesting.table.header.source')}</td>
                         <td>{t('datasetHitTesting.table.header.text')}</td>
                         <td className='w-48'>{t('datasetHitTesting.table.header.time')}</td>
                       </tr>
                     </thead>
-                    <tbody className="text-gray-500">
+                    <tbody className="text-text-2">
                       {recordsRes?.data?.map((record) => {
                         return <tr
                           key={record.id}
-                          className='group border-b border-gray-200 h-8 hover:bg-gray-50 cursor-pointer'
+                          className='group border-b border-gray-200 dark:border-stone-600 h-8 hover:bg-gray-50 dark:hover:bg-zinc-700 cursor-pointer'
                           onClick={() => setText(record.content)}
                         >
                           <td className='w-24'>
@@ -126,7 +126,7 @@ const HitTesting: FC<Props> = ({ datasetId }: Props) => {
                               <span className='capitalize'>{record.source.replace('_', ' ')}</span>
                             </div>
                           </td>
-                          <td className='max-w-xs group-hover:text-primary-600'>{record.content}</td>
+                          <td className='max-w-xs group-hover:text-tgai-primary'>{record.content}</td>
                           <td className='w-36'>
                             {formatTime(record.created_at, t('datasetHitTesting.dateTimeFormat') as string)}
                           </td>
@@ -170,7 +170,7 @@ const HitTesting: FC<Props> = ({ datasetId }: Props) => {
               )
               : (
                 <>
-                  <div className='text-gray-600 font-semibold mb-4'>{t('datasetHitTesting.hit.title')}</div>
+                  <div className='text-tgai-text-2 font-semibold mb-4'>{t('datasetHitTesting.hit.title')}</div>
                   <div className='overflow-auto flex-1'>
                     <div className={s.cardWrapper}>
                       {hitResult?.records.map((record, idx) => {

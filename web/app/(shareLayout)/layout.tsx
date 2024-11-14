@@ -1,6 +1,6 @@
 import React from 'react'
 import type { FC } from 'react'
-import GA, { GaType } from '@/app/components/base/ga'
+import GA, { GaType } from '../components/base/ga'
 
 const Layout: FC<{
   children: React.ReactNode

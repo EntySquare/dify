@@ -1,4 +1,4 @@
-import { upload } from '@/service/base'
+import { upload } from '../../../../service/base'
 
 type ImageUploadParams = {
   file: File

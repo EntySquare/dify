@@ -1,8 +1,8 @@
 'use client'
 import React, { type FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import Panel from '@/app/components/app/configuration/base/feature-panel'
-import { Citations } from '@/app/components/base/icons/src/vender/solid/editor'
+import Panel from '../../../base/feature-panel'
+import { Citations } from '../../../../../base/icons/src/vender/solid/editor'
 
 const Citation: FC = () => {
   const { t } = useTranslation()

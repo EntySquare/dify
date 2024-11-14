@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import { memo } from 'react'
 import type { ChatItem } from '../../types'
-import { Markdown } from '@/app/components/base/markdown'
+import { Markdown } from '../../../markdown'
 
 type BasicContentProps = {
   item: ChatItem

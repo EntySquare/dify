@@ -7,12 +7,12 @@ import ModelIcon from '../model-icon'
 import ModelName from '../model-name'
 import { savePredefinedLoadBalancingConfig } from '../utils'
 import ModelLoadBalancingConfigs from './model-load-balancing-configs'
-import classNames from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import { fetchModelLoadBalancingConfig } from '@/service/common'
-import Loading from '@/app/components/base/loading'
-import { useToastContext } from '@/app/components/base/toast'
+import classNames from '../../../../../../utils/classnames'
+import Modal from '../../../../base/modal'
+import Button from '../../../../base/button'
+import { fetchModelLoadBalancingConfig } from '../../../../../../service/common'
+import Loading from '../../../../base/loading'
+import { useToastContext } from '../../../../base/toast'
 
 export type ModelLoadBalancingModalProps = {
   provider: ModelProvider
@@ -119,7 +119,7 @@ const ModelLoadBalancingModal = ({ provider, model, open = false, onClose, onSav
                 modelName={model!.model}
               />
               <ModelName
-                className='grow text-sm font-normal text-gray-900'
+                className='grow text-sm font-normal'
                 modelItem={model!}
                 showModelType
                 showMode
@@ -137,20 +137,20 @@ const ModelLoadBalancingModal = ({ provider, model, open = false, onClose, onSav
             <div className='py-2'>
               <div
                 className={classNames(
-                  'min-h-16 bg-gray-50 border rounded-xl transition-colors',
-                  draftConfig.enabled ? 'border-gray-200 cursor-pointer' : 'border-primary-400 cursor-default',
+                  'min-h-16 bg-gray-50 dark:bg-zinc-700 border rounded-xl transition-colors',
+                  draftConfig.enabled ? 'border-gray-200 dark:border-stone-600 cursor-pointer' : 'border-tgai-primary-5 cursor-default',
                 )}
                 onClick={draftConfig.enabled ? () => toggleModalBalancing(false) : undefined}
               >
                 <div className='flex items-center px-[15px] py-3 gap-2 select-none'>
-                  <div className='grow-0 shrink-0 flex items-center justify-center w-8 h-8 bg-white border rounded-lg'>
+                  <div className='grow-0 shrink-0 flex items-center justify-center w-8 h-8 bg-white dark:bg-zinc-600 border dark:border-zinc-700 rounded-lg'>
                     {Boolean(model) && (
                       <ModelIcon className='shrink-0' provider={provider} modelName={model!.model} />
                     )}
                   </div>
                   <div className='grow'>
-                    <div className='text-sm'>{t('common.modelProvider.providerManaged')}</div>
-                    <div className='text-xs text-gray-500'>{t('common.modelProvider.providerManagedDescription')}</div>
+                    <div className='text-sm text-tgai-text-1'>{t('common.modelProvider.providerManaged')}</div>
+                    <div className='text-xs text-tgai-text-2'>{t('common.modelProvider.providerManagedDescription')}</div>
                   </div>
                 </div>
               </div>

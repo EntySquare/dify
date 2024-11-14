@@ -5,3 +5,11 @@
 .weightedScoreSliderTrack-1 {
   background: transparent !important;
 }
+
+.weightedScoreSliderTrack-dark {
+  background: var(--tgai-primary-5) !important;
+}
+
+.weightedScoreSliderTrack-dark-1 {
+  background: transparent !important;
+}

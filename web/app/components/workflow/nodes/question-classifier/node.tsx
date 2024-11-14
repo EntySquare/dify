@@ -7,8 +7,8 @@ import { NodeSourceHandle } from '../_base/components/node-handle'
 import type { QuestionClassifierNodeType } from './types'
 import {
   useTextGenerationCurrentProviderAndModelAndModelList,
-} from '@/app/components/header/account-setting/model-provider-page/hooks'
-import ModelSelector from '@/app/components/header/account-setting/model-provider-page/model-selector'
+} from '../../../header/account-setting/model-provider-page/hooks'
+import ModelSelector from '../../../header/account-setting/model-provider-page/model-selector'
 
 const i18nPrefix = 'workflow.nodes.questionClassifiers'
 

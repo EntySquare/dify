@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation'
 import { useContext } from 'use-context-selector'
 import { Menu } from '@headlessui/react'
 import AccountAbout from '../account-about'
-import I18n from '@/context/i18n'
-import { logout } from '@/service/common'
-import { useAppContext } from '@/context/app-context'
-import { useModalContext } from '@/context/modal-context'
-import { useProviderContext } from '@/context/provider-context'
-import { Plan } from '@/app/components/billing/type'
+import I18n from '../../../../context/i18n'
+import { logout } from '../../../../service/common'
+import { useAppContext } from '../../../../context/app-context'
+import { useModalContext } from '../../../../context/modal-context'
+import { useProviderContext } from '../../../../context/provider-context'
+import { Plan } from '../../billing/type'
 
 export type IAppSelecotr = {
   isMobile: boolean
@@ -18,8 +18,8 @@ export type IAppSelecotr = {
 
 export default function AppSelector({ isMobile }: IAppSelecotr) {
   const itemClassName = `
-    flex items-center w-full h-9 px-3 text-gray-700 text-[14px]
-    rounded-lg font-normal hover:bg-gray-50 cursor-pointer
+    flex items-center w-full h-9 px-3 text-tgai-text-2 text-[14px]
+    rounded-lg font-normal hover:bg-gray-50 dark:hover:bg-zinc-600 cursor-pointer
   `
   const router = useRouter()
   const [aboutVisible, setAboutVisible] = useState(false)

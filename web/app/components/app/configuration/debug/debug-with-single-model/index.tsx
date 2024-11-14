@@ -9,19 +9,19 @@ import {
   useConfigFromDebugContext,
   useFormattingChangedSubscription,
 } from '../hooks'
-import Chat from '@/app/components/base/chat/chat'
-import { useChat } from '@/app/components/base/chat/chat/hooks'
-import { useDebugConfigurationContext } from '@/context/debug-configuration'
-import type { OnSend } from '@/app/components/base/chat/types'
-import { useProviderContext } from '@/context/provider-context'
+import Chat from '../../../../base/chat/chat'
+import { useChat } from '../../../../base/chat/chat/hooks'
+import { useDebugConfigurationContext } from '../../../../../../context/debug-configuration'
+import type { OnSend } from '../../../../base/chat/types'
+import { useProviderContext } from '../../../../../../context/provider-context'
 import {
   fetchConversationMessages,
   fetchSuggestedQuestions,
   stopChatMessageResponding,
-} from '@/service/debug'
-import Avatar from '@/app/components/base/avatar'
-import { useAppContext } from '@/context/app-context'
-import { ModelFeatureEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
+} from '../../../../../../service/debug'
+import Avatar from '../../../../base/avatar'
+import { useAppContext } from '../../../../../../context/app-context'
+import { ModelFeatureEnum } from '../../../../header/account-setting/model-provider-page/declarations'
 
 type DebugWithSingleModelProps = {
   checkCanSend?: () => boolean

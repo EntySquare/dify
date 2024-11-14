@@ -1,5 +1,5 @@
 import React from 'react'
-import AppList from '@/app/components/explore/app-list'
+import AppList from '../../../components/explore/app-list'
 
 const Apps = () => {
   return <AppList />

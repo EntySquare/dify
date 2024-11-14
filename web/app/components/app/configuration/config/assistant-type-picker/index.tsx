@@ -4,18 +4,18 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiArrowDownSLine } from '@remixicon/react'
 import AgentSetting from '../agent/agent-setting'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { BubbleText } from '@/app/components/base/icons/src/vender/solid/education'
-import Radio from '@/app/components/base/radio/ui'
-import { CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Settings04 } from '@/app/components/base/icons/src/vender/line/general'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
-import type { AgentConfig } from '@/models/debug'
+} from '../../../../base/portal-to-follow-elem'
+import { BubbleText } from '../../../../base/icons/src/vender/solid/education'
+import Radio from '../../../../base/radio/ui'
+import { CuteRobote } from '../../../../base/icons/src/vender/solid/communication'
+import { Settings04 } from '../../../../base/icons/src/vender/line/general'
+import { ArrowUpRight } from '../../../../base/icons/src/vender/line/arrows'
+import type { AgentConfig } from '../../../../../../models/debug'
 
 type Props = {
   value: string

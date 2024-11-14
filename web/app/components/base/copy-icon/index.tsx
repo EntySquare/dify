@@ -7,7 +7,7 @@ import TooltipPlus from '../tooltip-plus'
 import {
   Clipboard,
   ClipboardCheck,
-} from '@/app/components/base/icons/src/vender/line/files'
+} from '../icons/src/vender/line/files'
 
 type Props = {
   content: string

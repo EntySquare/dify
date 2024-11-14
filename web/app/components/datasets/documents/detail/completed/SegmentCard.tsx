@@ -9,13 +9,15 @@ import { StatusItem } from '../../list'
 import { DocumentTitle } from '../index'
 import s from './style.module.css'
 import { SegmentIndexTag } from './index'
-import cn from '@/utils/classnames'
-import Confirm from '@/app/components/base/confirm'
-import Switch from '@/app/components/base/switch'
-import Divider from '@/app/components/base/divider'
-import Indicator from '@/app/components/header/indicator'
-import { formatNumber } from '@/utils/format'
-import type { SegmentDetailModel } from '@/models/datasets'
+import cn from '../../../../../../utils/classnames'
+import Confirm from '../../../../base/confirm'
+import Switch from '../../../../base/switch'
+import Divider from '../../../../base/divider'
+import Indicator from '../../../../header/indicator'
+import { formatNumber } from '../../../../../../utils/format'
+import type { SegmentDetailModel } from '../../../../../../models/datasets'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const ProgressBar: FC<{ percent: number; loading: boolean }> = ({ percent, loading }) => {
   return (
@@ -77,11 +79,11 @@ const SegmentCard: FC<ISegmentCardProps> = ({
       return (
         <>
           <div className='flex mb-2'>
-            <div className='mr-2 text-[13px] font-semibold text-gray-400'>Q</div>
+            <div className='mr-2 text-[13px] font-semibold text-tgai-text-3'>Q</div>
             <div className='text-[13px]'>{content}</div>
           </div>
           <div className='flex'>
-            <div className='mr-2 text-[13px] font-semibold text-gray-400'>A</div>
+            <div className='mr-2 text-[13px] font-semibold text-tgai-text-3'>A</div>
             <div className='text-[13px]'>{answer}</div>
           </div>
         </>
@@ -91,11 +93,13 @@ const SegmentCard: FC<ISegmentCardProps> = ({
     return content
   }
 
+  const theme = useTGAIGlobalStore(state=>state.theme)
+
   return (
     <div
       className={cn(
-        s.segWrapper,
-        (isDocScene && !enabled) ? 'bg-gray-25' : '',
+        'box-border h-[180px] w-full xl:min-w-[290px] bg-gray-50 dark:bg-tgai-panel-background-4 px-4 pt-4 flex flex-col text-opacity-50 rounded-xl border border-transparent hover:border-gray-200 dark:hover:border-stone-500 hover:shadow-lg hover:cursor-pointer hover:bg-white dark:hover:bg-zinc-600',
+        (isDocScene && !enabled) ? 'bg-gray-25 dark:bg-tgai-panel-background-3' : '',
         'group',
         !loading ? 'pb-4 hover:pb-[10px]' : '',
         className,
@@ -111,12 +115,12 @@ const SegmentCard: FC<ISegmentCardProps> = ({
                 ? (
                   <Indicator
                     color="gray"
-                    className="bg-gray-200 border-gray-300 shadow-none"
+                    className="bg-gray-200 border-gray-300 dark:bg-zinc-600 dark:border-stone-500 shadow-none"
                   />
                 )
                 : (
                   <>
-                    <StatusItem status={enabled ? 'enabled' : 'disabled'} reverse textCls="text-gray-500 text-xs" />
+                    <StatusItem status={enabled ? 'enabled' : 'disabled'} reverse textCls="text-tgai-text-2 text-xs" />
                     {embeddingAvailable && (
                       <div className="hidden group-hover:inline-flex items-center">
                         <Divider type="vertical" className="!h-2" />
@@ -154,8 +158,9 @@ const SegmentCard: FC<ISegmentCardProps> = ({
       </div>
       {loading
         ? (
-          <div className={cn(s.cardLoadingWrapper, s.cardLoadingIcon)}>
-            <div className={cn(s.cardLoadingBg)} />
+          <div className={cn(s.cardLoadingWrapper, theme === Theme.light ? s.cardLoadingIcon : s.cardLoadingIconDark)}>
+            <div className={cn(s.cardLoadingBg, "bg-gradient-to-t to-[rgba(252,_252,_253,_0)] from-[0%] from-[#fcfcfd] to-[74.15%] dark:to-zinc-600/0 dark:from-tgai-panel-background-3", 
+            )} />
           </div>
         )
         : (
@@ -164,13 +169,14 @@ const SegmentCard: FC<ISegmentCardProps> = ({
               <div
                 className={cn(
                   s.segContent,
+                  'flex-1 h-0 min-h-0 mt-2 text-sm text-tgai-text-1 overflow-ellipsis overflow-hidden from-gray-800 to-white dark:from-white dark:to-zinc-600',
                   enabled ? '' : 'opacity-50',
                   'group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-b',
                 )}
               >
                 {renderContent()}
               </div>
-              <div className={cn('group-hover:flex', s.segData)}>
+              <div className={cn('group-hover:flex', 'hidden text-tgai-text-2 text-xs pt-2')}>
                 <div className="flex items-center mr-6">
                   <div className={cn(s.commonIcon, s.typeSquareIcon)}></div>
                   <div className={s.segDataText}>{formatNumber(word_count)}</div>
@@ -188,16 +194,16 @@ const SegmentCard: FC<ISegmentCardProps> = ({
                     e.stopPropagation()
                     setShowModal(true)
                   }}>
-                    <RiDeleteBinLine className='w-[14px] h-[14px] text-gray-500 group-hover/delete:text-red-600' />
+                    <RiDeleteBinLine className='w-[14px] h-[14px] text-tgai-text-3 group-hover/delete:text-red-600' />
                   </div>
                 )}
               </div>
             </>
             : <>
-              <div className="h-[140px] overflow-hidden text-ellipsis text-sm font-normal text-gray-800">
+              <div className="h-[140px] overflow-hidden text-ellipsis text-sm font-normal text-tgai-text-1">
                 {renderContent()}
               </div>
-              <div className={cn('w-full bg-gray-50 group-hover:bg-white')}>
+              <div className={cn('w-full bg-gray-50 dark:bg-tgai-panel-background-4 dark:group-hover:bg-zinc-600 group-hover:bg-white')}>
                 <Divider />
                 <div className="relative flex items-center w-full">
                   <DocumentTitle
@@ -205,9 +211,12 @@ const SegmentCard: FC<ISegmentCardProps> = ({
                     extension={(detail?.document?.name || '').split('.').pop() || 'txt'}
                     wrapperCls='w-full'
                     iconCls="!h-4 !w-4 !bg-contain"
-                    textCls="text-xs text-gray-700 !font-normal overflow-hidden whitespace-nowrap text-ellipsis"
+                    textCls="text-xs text-tgai-text-2 !font-normal overflow-hidden whitespace-nowrap text-ellipsis"
                   />
-                  <div className={cn(s.chartLinkText, 'group-hover:inline-flex')}>
+  {/* /* background: linear-gradient(to left, white, 90%, transparent); */}
+                  <div className={cn(s.chartLinkText,"dark:!text-tgai-primary", 'group-hover:inline-flex',
+                    "bg-gradient-to-l from-white dark:from-zinc-600 from-[90%] to-transparent"
+                  )}>
                     {t('datasetHitTesting.viewChart')}
                     <ArrowUpRightIcon className="w-3 h-3 ml-1 stroke-current stroke-2" />
                   </div>

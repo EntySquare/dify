@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext } from 'use-context-selector'
-import type { DataSet } from '@/models/datasets'
+import type { DataSet } from '../models/datasets'
 
 export type DatasetsContextValue = {
   datasets: DataSet[]

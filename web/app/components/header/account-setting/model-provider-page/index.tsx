@@ -17,10 +17,10 @@ import {
   useUpdateModelList,
   useUpdateModelProviders,
 } from './hooks'
-import { AlertTriangle } from '@/app/components/base/icons/src/vender/solid/alertsAndFeedback'
-import { useProviderContext } from '@/context/provider-context'
-import { useModalContextSelector } from '@/context/modal-context'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
+import { AlertTriangle } from '../../../base/icons/src/vender/solid/alertsAndFeedback'
+import { useProviderContext } from '../../../../../context/provider-context'
+import { useModalContextSelector } from '../../../../../context/modal-context'
+import { useEventEmitterContextContext } from '../../../../../context/event-emitter'
 
 const ModelProviderPage = () => {
   const { t } = useTranslation()
@@ -90,16 +90,16 @@ const ModelProviderPage = () => {
 
   return (
     <div className='relative pt-1 -mt-2'>
-      <div className={`flex items-center justify-between mb-2 h-8 ${defaultModelNotConfigured && 'px-3 bg-[#FFFAEB] rounded-lg border border-[#FEF0C7]'}`}>
+      <div className={`flex items-center justify-between mb-2 h-8 ${defaultModelNotConfigured && 'px-3 bg-[#FFFAEB] dark:bg-red-800 rounded-lg border border-[#FEF0C7] dark:border-red-800/90'}`}>
         {
           defaultModelNotConfigured
             ? (
-              <div className='flex items-center text-xs font-medium text-gray-700'>
+              <div className='flex items-center text-xs font-medium text-tgai-text-1'>
                 <AlertTriangle className='mr-1 w-3 h-3 text-[#F79009]' />
                 {t('common.modelProvider.notConfigured')}
               </div>
             )
-            : <div className='text-sm font-medium text-gray-800'>{t('common.modelProvider.models')}</div>
+            : <div className='text-sm font-medium text-tgai-text-1'>{t('common.modelProvider.models')}</div>
         }
         <SystemModelSelector
           textGenerationDefaultModel={textGenerationDefaultModel}
@@ -127,9 +127,9 @@ const ModelProviderPage = () => {
       {
         !!notConfigedProviders?.length && (
           <>
-            <div className='flex items-center mb-2 text-xs font-semibold text-gray-500'>
+            <div className='flex items-center mb-2 text-xs font-semibold text-tgai-text-3'>
               + {t('common.modelProvider.addMoreModelProvider')}
-              <span className='grow ml-3 h-[1px] bg-gradient-to-r from-[#f3f4f6]' />
+              <span className='grow ml-3 h-[1px] bg-gradient-to-r from-[#f3f4f6] dark:from-zinc-500' />
             </div>
             <div className='grid grid-cols-3 gap-2'>
               {

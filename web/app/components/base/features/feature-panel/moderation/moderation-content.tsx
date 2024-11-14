@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import Switch from '@/app/components/base/switch'
-import type { ModerationContentConfig } from '@/models/debug'
+import Switch from '../../../switch'
+import type { ModerationContentConfig } from '../../../../../../models/debug'
 
 type ModerationContentProps = {
   title: string

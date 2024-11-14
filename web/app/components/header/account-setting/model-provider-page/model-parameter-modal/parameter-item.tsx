@@ -6,13 +6,13 @@ import {
 import type { ModelParameterRule } from '../declarations'
 import { useLanguage } from '../hooks'
 import { isNullOrUndefined } from '../utils'
-import cn from '@/utils/classnames'
-import Switch from '@/app/components/base/switch'
-import Tooltip from '@/app/components/base/tooltip'
-import Slider from '@/app/components/base/slider'
-import Radio from '@/app/components/base/radio'
-import { SimpleSelect } from '@/app/components/base/select'
-import TagInput from '@/app/components/base/tag-input'
+import cn from '../../../../../../utils/classnames'
+import Switch from '../../../../base/switch'
+import Tooltip from '../../../../base/tooltip'
+import Slider from '../../../../base/slider'
+import Radio from '../../../../base/radio'
+import { SimpleSelect } from '../../../../base/select'
+import TagInput from '../../../../base/tag-input'
 
 export type ParameterValue = number | string | string[] | boolean | undefined
 
@@ -155,7 +155,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
           />}
           <input
             ref={numberInputRef}
-            className='shrink-0 block ml-4 pl-3 w-16 h-8 appearance-none outline-none rounded-lg bg-gray-100 text-[13px] text-gra-900'
+            className='shrink-0 block ml-4 pl-3 w-16 h-8 appearance-none outline-none rounded-lg bg-gray-100 dark:bg-tgai-input-background text-[13px] text-tgai-text-1'
             type='number'
             max={parameterRule.max}
             min={parameterRule.min}
@@ -183,7 +183,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
     if (parameterRule.type === 'string' && !parameterRule.options?.length) {
       return (
         <input
-          className={cn(isInWorkflow ? 'w-[200px]' : 'w-full', 'ml-4 flex items-center px-3 h-8 appearance-none outline-none rounded-lg bg-gray-100 text-[13px] text-gra-900')}
+          className={cn(isInWorkflow ? 'w-[200px]' : 'w-full', 'ml-4 flex items-center px-3 h-8 appearance-none outline-none rounded-lg bg-gray-100 dark:bg-tgai-input-background text-[13px] text-tgai-text-1')}
           value={renderValue as string}
           onChange={handleStringInputChange}
         />
@@ -193,7 +193,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
     if (parameterRule.type === 'text') {
       return (
         <textarea
-          className='w-full h-20 ml-4 px-1 rounded-lg bg-gray-100 outline-none text-[12px] text-gray-900'
+          className='w-full h-20 ml-4 px-1 rounded-lg bg-gray-100 dark:bg-tgai-input-background outline-none text-[12px] text-tgai-text-1'
           value={renderValue as string}
           onChange={handleStringInputChange}
         />
@@ -233,7 +233,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
       <div>
         <div className={cn(isInWorkflow ? 'w-[140px]' : 'w-full', 'ml-4 shrink-0 flex items-center')}>
           <div
-            className='mr-0.5 text-[13px] font-medium text-gray-700 truncate'
+            className='mr-0.5 text-[13px] font-medium text-tgai-text-2 truncate'
             title={parameterRule.label[language] || parameterRule.label.en_US}
           >
             {parameterRule.label[language] || parameterRule.label.en_US}
@@ -246,7 +246,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
                   <div className='w-[200px] whitespace-pre-wrap'>{parameterRule.help[language] || parameterRule.help.en_US}</div>
                 )}
               >
-                <RiQuestionLine className='mr-1.5 w-3.5 h-3.5 text-gray-400' />
+                <RiQuestionLine className='mr-1.5 w-3.5 h-3.5 text-tgai-text-3' />
               </Tooltip>
             )
           }
@@ -262,7 +262,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
         </div>
         {
           parameterRule.type === 'tag' && (
-            <div className={cn(!isInWorkflow && 'w-[200px]', 'text-gray-400 text-xs font-normal')}>
+            <div className={cn(!isInWorkflow && 'w-[200px]', 'text-tgai-text-3 text-xs font-normal')}>
               {parameterRule?.tagPlaceholder?.[language]}
             </div>
           )

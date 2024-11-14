@@ -43,21 +43,21 @@ import { useNodesExtraData } from './use-nodes-data'
 import { useWorkflowTemplate } from './use-workflow-template'
 import { useNodesSyncDraft } from './use-nodes-sync-draft'
 import { WorkflowHistoryEvent, useWorkflowHistory } from './use-workflow-history'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import { useStore as useAppStore } from '../../app/store'
 import {
   fetchNodesDefaultConfigs,
   fetchPublishedWorkflow,
   fetchWorkflowDraft,
   syncWorkflowDraft,
-} from '@/service/workflow'
-import type { FetchWorkflowDraftResponse } from '@/types/workflow'
+} from '../../../../service/workflow'
+import type { FetchWorkflowDraftResponse } from '../../../../types/workflow'
 import {
   fetchAllBuiltInTools,
   fetchAllCustomTools,
   fetchAllWorkflowTools,
-} from '@/service/tools'
-import I18n from '@/context/i18n'
-import { CollectionType } from '@/app/components/tools/types'
+} from '../../../../service/tools'
+import I18n from '../../../../context/i18n'
+import { CollectionType } from '../../tools/types'
 
 export const useIsChatMode = () => {
   const appDetail = useAppStore(s => s.appDetail)

@@ -4,28 +4,28 @@ import type { Dispatch, SetStateAction } from 'react'
 import { useCallback, useState } from 'react'
 import { createContext, useContext, useContextSelector } from 'use-context-selector'
 import { useRouter, useSearchParams } from 'next/navigation'
-import AccountSetting from '@/app/components/header/account-setting'
-import ApiBasedExtensionModal from '@/app/components/header/account-setting/api-based-extension-page/modal'
-import ModerationSettingModal from '@/app/components/app/configuration/toolbox/moderation/moderation-setting-modal'
-import ExternalDataToolModal from '@/app/components/app/configuration/tools/external-data-tool-modal'
-import AnnotationFullModal from '@/app/components/billing/annotation-full/modal'
-import ModelModal from '@/app/components/header/account-setting/model-provider-page/model-modal'
+import AccountSetting from '../app/components/header/account-setting'
+import ApiBasedExtensionModal from '../app/components/header/account-setting/api-based-extension-page/modal'
+import ModerationSettingModal from '../app/components/app/configuration/toolbox/moderation/moderation-setting-modal'
+import ExternalDataToolModal from '../app/components/app/configuration/tools/external-data-tool-modal'
+import AnnotationFullModal from '../app/components/billing/annotation-full/modal'
+import ModelModal from '../app/components/header/account-setting/model-provider-page/model-modal'
 import type {
   ConfigurationMethodEnum,
   CustomConfigurationModelFixedFields,
   ModelLoadBalancingConfigEntry,
   ModelProvider,
-} from '@/app/components/header/account-setting/model-provider-page/declarations'
+} from '../app/components/header/account-setting/model-provider-page/declarations'
 
-import Pricing from '@/app/components/billing/pricing'
-import type { ModerationConfig } from '@/models/debug'
+import Pricing from '../app/components/billing/pricing'
+import type { ModerationConfig } from '../models/debug'
 import type {
   ApiBasedExtension,
   ExternalDataTool,
-} from '@/models/common'
-import ModelLoadBalancingEntryModal from '@/app/components/header/account-setting/model-provider-page/model-modal/model-load-balancing-entry-modal'
-import type { ModelLoadBalancingModalProps } from '@/app/components/header/account-setting/model-provider-page/provider-added-card/model-load-balancing-modal'
-import ModelLoadBalancingModal from '@/app/components/header/account-setting/model-provider-page/provider-added-card/model-load-balancing-modal'
+} from '../models/common'
+import ModelLoadBalancingEntryModal from '../app/components/header/account-setting/model-provider-page/model-modal/model-load-balancing-entry-modal'
+import type { ModelLoadBalancingModalProps } from '../app/components/header/account-setting/model-provider-page/provider-added-card/model-load-balancing-modal'
+import ModelLoadBalancingModal from '../app/components/header/account-setting/model-provider-page/provider-added-card/model-load-balancing-modal'
 
 export type ModalState<T> = {
   payload: T

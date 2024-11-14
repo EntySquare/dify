@@ -11,7 +11,7 @@ import {
   useWorkflowInteractions,
   useWorkflowRun,
 } from './index'
-import { useFeaturesStore } from '@/app/components/base/features/hooks'
+import { useFeaturesStore } from '../../base/features/hooks'
 
 export const useWorkflowStartRun = () => {
   const store = useStoreApi()

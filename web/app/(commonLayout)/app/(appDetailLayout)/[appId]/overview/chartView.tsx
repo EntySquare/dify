@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import quarterOfYear from 'dayjs/plugin/quarterOfYear'
 import { useTranslation } from 'react-i18next'
-import type { PeriodParams } from '@/app/components/app/overview/appChart'
-import { AvgResponseTime, AvgSessionInteractions, AvgUserInteractions, ConversationsChart, CostChart, EndUsersChart, TokenPerSecond, UserSatisfactionRate, WorkflowCostChart, WorkflowDailyTerminalsChart, WorkflowMessagesChart } from '@/app/components/app/overview/appChart'
-import type { Item } from '@/app/components/base/select'
-import { SimpleSelect } from '@/app/components/base/select'
-import { TIME_PERIOD_LIST } from '@/app/components/app/log/filter'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import type { PeriodParams } from '../../../../../components/app/overview/appChart'
+import { AvgResponseTime, AvgSessionInteractions, AvgUserInteractions, ConversationsChart, CostChart, EndUsersChart, TokenPerSecond, UserSatisfactionRate, WorkflowCostChart, WorkflowDailyTerminalsChart, WorkflowMessagesChart } from '../../../../../components/app/overview/appChart'
+import type { Item } from '../../../../../components/base/select'
+import { SimpleSelect } from '../../../../../components/base/select'
+import { TIME_PERIOD_LIST } from '../../../../../components/app/log/filter'
+import { useStore as useAppStore } from '../../../../../components/app/store'
 
 dayjs.extend(quarterOfYear)
 
@@ -46,7 +46,7 @@ export default function ChartView({ appId }: IChartViewProps) {
 
   return (
     <div>
-      <div className='flex flex-row items-center mt-8 mb-4 text-gray-900 text-base'>
+      <div className='flex flex-row items-center mt-8 mb-4 text-tgai-text-1 text-base'>
         <span className='mr-3'>{t('appOverview.analysis.title')}</span>
         <SimpleSelect
           items={TIME_PERIOD_LIST.map(item => ({ value: item.value, name: t(`appLog.filter.period.${item.name}`) }))}

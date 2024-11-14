@@ -4,8 +4,8 @@ import type {
   ModelProvider,
 } from '../declarations'
 import { useLanguage } from '../hooks'
-import { CubeOutline } from '@/app/components/base/icons/src/vender/line/shapes'
-import { OpenaiViolet } from '@/app/components/base/icons/src/public/llm'
+import { CubeOutline } from '../../../../base/icons/src/vender/line/shapes'
+import { OpenaiViolet } from '../../../../base/icons/src/public/llm'
 
 type ModelIconProps = {
   provider?: Model | ModelProvider
@@ -34,10 +34,10 @@ const ModelIcon: FC<ModelIconProps> = ({
 
   return (
     <div className={`
-      flex items-center justify-center w-6 h-6 rounded border-[0.5px] border-black/5 bg-gray-50
+      flex items-center justify-center w-6 h-6 rounded border-[0.5px] border-black/5 bg-gray-50 dark:bg-tgai-primary dark:border-stone-600
       ${className}
     `}>
-      <CubeOutline className='w-4 h-4 text-gray-400' />
+      <CubeOutline className='w-4 h-4 text-tgai-text-3' />
     </div>
   )
 }

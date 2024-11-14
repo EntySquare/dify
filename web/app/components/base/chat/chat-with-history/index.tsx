@@ -14,11 +14,11 @@ import Sidebar from './sidebar'
 import HeaderInMobile from './header-in-mobile'
 import ConfigPanel from './config-panel'
 import ChatWrapper from './chat-wrapper'
-import type { InstalledApp } from '@/models/explore'
-import Loading from '@/app/components/base/loading'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import { checkOrSetAccessToken } from '@/app/components/share/utils'
-import AppUnavailable from '@/app/components/base/app-unavailable'
+import type { InstalledApp } from '../../../../../models/explore'
+import Loading from '../../loading'
+import useBreakpoints, { MediaType } from '../../../../../hooks/use-breakpoints'
+import { checkOrSetAccessToken } from '../../../share/utils'
+import AppUnavailable from '../../app-unavailable'
 
 type ChatWithHistoryProps = {
   className?: string

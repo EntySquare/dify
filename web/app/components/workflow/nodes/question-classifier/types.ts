@@ -1,4 +1,4 @@
-import type { CommonNodeType, Memory, ModelConfig, ValueSelector } from '@/app/components/workflow/types'
+import type { CommonNodeType, Memory, ModelConfig, ValueSelector } from '../../types'
 
 export type Topic = {
   id: string

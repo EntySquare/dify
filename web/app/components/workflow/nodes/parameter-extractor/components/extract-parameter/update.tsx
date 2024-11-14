@@ -5,21 +5,21 @@ import { useBoolean } from 'ahooks'
 import { useTranslation } from 'react-i18next'
 import type { Param } from '../../types'
 import { ParamType } from '../../types'
-import cn from '@/utils/classnames'
-import AddButton from '@/app/components/base/button/add-button'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import Field from '@/app/components/app/configuration/config-var/config-modal/field'
-import Select from '@/app/components/base/select'
-import Switch from '@/app/components/base/switch'
-import Toast from '@/app/components/base/toast'
-import ConfigSelect from '@/app/components/app/configuration/config-var/config-select'
-import { ChangeType, type MoreInfo } from '@/app/components/workflow/types'
-import { checkKeys } from '@/utils/var'
+import cn from '../../../../../../../utils/classnames'
+import AddButton from '../../../../../base/button/add-button'
+import Modal from '../../../../../base/modal'
+import Button from '../../../../../base/button'
+import Field from '../../../../../app/configuration/config-var/config-modal/field'
+import Select from '../../../../../base/select'
+import Switch from '../../../../../base/switch'
+import Toast from '../../../../../base/toast'
+import ConfigSelect from '../../../../../app/configuration/config-var/config-select'
+import { ChangeType, type MoreInfo } from '../../../../types'
+import { checkKeys } from '../../../../../../../utils/var'
 
 const i18nPrefix = 'workflow.nodes.parameterExtractor'
 const errorI18nPrefix = 'workflow.errorMsg'
-const inputClassName = 'w-full px-3 text-sm leading-9 text-gray-900 border-0 rounded-lg grow h-9 bg-gray-100 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200'
+const inputClassName = 'w-full px-3 text-sm leading-9 text-tgai-text-1 border-0 rounded-lg grow h-9 bg-gray-100 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600'
 
 const DEFAULT_PARAM: Param = {
   name: '',
@@ -131,7 +131,7 @@ const AddExtractParameter: FC<Props> = ({
           title={t(`${i18nPrefix}.addExtractParameter`)}
           isShow
           onClose={hideModal}
-          className='!w-[400px] !max-w-[400px] !p-4'
+          className='!w-[400px] !max-w-[400px] !p-4 dark:!bg-tgai-panel-background'
         >
           <div>
             <div className='space-y-2'>
@@ -148,7 +148,7 @@ const AddExtractParameter: FC<Props> = ({
                 <Select
                   defaultValue={param.type}
                   allowSearch={false}
-                  bgClassName='bg-gray-100'
+                  bgClassName='bg-gray-100 dark:bg-tgai-input-background'
                   onSelect={v => handleParamChange('type')(v.value)}
                   optionClassName='capitalize'
                   items={
@@ -174,7 +174,7 @@ const AddExtractParameter: FC<Props> = ({
               </Field>
               <Field title={t(`${i18nPrefix}.addExtractParameterContent.required`)}>
                 <>
-                  <div className='mb-1.5 leading-[18px] text-xs font-normal text-gray-500'>{t(`${i18nPrefix}.addExtractParameterContent.requiredContent`)}</div>
+                  <div className='mb-1.5 leading-[18px] text-xs font-normal text-tgai-text-3'>{t(`${i18nPrefix}.addExtractParameterContent.requiredContent`)}</div>
                   <Switch size='l' defaultValue={param.required} onChange={handleParamChange('required')} />
                 </>
               </Field>

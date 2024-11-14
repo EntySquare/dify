@@ -1,7 +1,7 @@
-import type { AgentStrategy, ModelModeType, RETRIEVE_TYPE, ToolItem, TtsAutoPlay } from '@/types/app'
+import type { AgentStrategy, ModelModeType, RETRIEVE_TYPE, ToolItem, TtsAutoPlay } from '../types/app'
 import type {
   RerankingModeEnum,
-} from '@/models/datasets'
+} from './datasets'
 export type Inputs = Record<string, string | number | object>
 
 export enum PromptMode {

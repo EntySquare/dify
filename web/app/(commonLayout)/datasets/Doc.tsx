@@ -4,8 +4,8 @@ import type { FC } from 'react'
 import { useContext } from 'use-context-selector'
 import TemplateEn from './template/template.en.mdx'
 import TemplateZh from './template/template.zh.mdx'
-import I18n from '@/context/i18n'
-import { LanguagesSupported } from '@/i18n/language'
+import I18n from '../../../context/i18n'
+import { LanguagesSupported } from '../../../i18n/language'
 
 type DocProps = {
   apiBaseUrl: string

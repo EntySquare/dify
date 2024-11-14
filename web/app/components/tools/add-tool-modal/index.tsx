@@ -13,15 +13,15 @@ import type { Collection, CustomCollectionBackend, Tool } from '../types'
 import Type from './type'
 import Category from './category'
 import Tools from './tools'
-import cn from '@/utils/classnames'
-import I18n from '@/context/i18n'
-import { getLanguage } from '@/i18n/language'
-import Drawer from '@/app/components/base/drawer'
-import Button from '@/app/components/base/button'
-import Loading from '@/app/components/base/loading'
-import SearchInput from '@/app/components/base/search-input'
-import EditCustomToolModal from '@/app/components/tools/edit-custom-collection-modal'
-import ConfigCredential from '@/app/components/tools/setting/build-in/config-credentials'
+import cn from '../../../../utils/classnames'
+import I18n from '../../../../context/i18n'
+import { getLanguage } from '../../../../i18n/language'
+import Drawer from '../../base/drawer'
+import Button from '../../base/button'
+import Loading from '../../base/loading'
+import SearchInput from '../../base/search-input'
+import EditCustomToolModal from '../edit-custom-collection-modal'
+import ConfigCredential from '../setting/build-in/config-credentials'
 import {
   createCustomCollection,
   fetchAllBuiltInTools,
@@ -29,11 +29,11 @@ import {
   fetchAllWorkflowTools,
   removeBuiltInToolCredential,
   updateBuiltInToolCredential,
-} from '@/service/tools'
-import type { ToolWithProvider } from '@/app/components/workflow/types'
-import Toast from '@/app/components/base/toast'
-import ConfigContext from '@/context/debug-configuration'
-import type { ModelConfig } from '@/models/debug'
+} from '../../../../service/tools'
+import type { ToolWithProvider } from '../../workflow/types'
+import Toast from '../../base/toast'
+import ConfigContext from '../../../../context/debug-configuration'
+import type { ModelConfig } from '../../../../models/debug'
 
 type Props = {
   onHide: () => void
@@ -175,7 +175,7 @@ const AddToolModal: FC<Props> = ({
             height: 'calc(100vh - 16px)',
           }}
         >
-          <div className='relative shrink-0 w-[200px] pb-3 bg-gray-100 rounded-l-xl border-r-[0.5px] border-black/2 overflow-y-auto'>
+          <div className='relative shrink-0 w-[200px] pb-3 bg-gray-100 rounded-l-xl border-r-[0.5px] border-black/2 overflow-y-auto tgai-custom-scrollbar'>
             <div className='sticky top-0 left-0 right-0'>
               <div className='sticky top-0 left-0 right-0 px-5 py-3 text-md font-semibold text-gray-900'>{t('tools.addTool')}</div>
               <div className='px-3 pt-2 pb-4'>
@@ -190,7 +190,7 @@ const AddToolModal: FC<Props> = ({
               <Category value={currentCategory} onSelect={setCurrentCategory} />
             </div>
           </div>
-          <div className='relative grow bg-white rounded-r-xl overflow-y-auto'>
+          <div className='relative grow bg-white rounded-r-xl overflow-y-auto tgai-custom-scrollbar'>
             <div className='z-10 sticky top-0 left-0 right-0 p-2 flex items-center gap-1 bg-white'>
               <div className='grow'>
                 <SearchInput className='w-full' value={keywords} onChange={handleKeywordsChange} />

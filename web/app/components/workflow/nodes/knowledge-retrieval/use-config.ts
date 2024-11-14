@@ -17,14 +17,14 @@ import {
   getMultipleRetrievalConfig,
   getSelectedDatasetsMode,
 } from './utils'
-import { RETRIEVE_TYPE } from '@/types/app'
-import { DATASET_DEFAULT } from '@/config'
-import type { DataSet } from '@/models/datasets'
-import { fetchDatasets } from '@/service/datasets'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
+import { RETRIEVE_TYPE } from '../../../../../types/app'
+import { DATASET_DEFAULT } from '../../../../../config'
+import type { DataSet } from '../../../../../models/datasets'
+import { fetchDatasets } from '../../../../../service/datasets'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import useOneStepRun from '../_base/hooks/use-one-step-run'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '../../../header/account-setting/model-provider-page/hooks'
+import { ModelTypeEnum } from '../../../header/account-setting/model-provider-page/declarations'
 
 const useConfig = (id: string, payload: KnowledgeRetrievalNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

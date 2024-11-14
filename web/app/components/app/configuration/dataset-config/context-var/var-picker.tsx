@@ -4,14 +4,14 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import type { IInputTypeIconProps } from '@/app/components/app/configuration/config-var/input-type-icon'
-import IconTypeIcon from '@/app/components/app/configuration/config-var/input-type-icon'
+} from '../../../../base/portal-to-follow-elem'
+import type { IInputTypeIconProps } from '../../config-var/input-type-icon'
+import IconTypeIcon from '../../config-var/input-type-icon'
 
 type Option = { name: string; value: string; type: string }
 export type Props = {
@@ -78,7 +78,7 @@ const VarPicker: FC<Props> = ({
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent style={{ zIndex: 1000 }}>
         {options.length > 0
-          ? (<div className='w-[240px] max-h-[50vh] overflow-y-auto p-1  border bg-white border-gray-200 rounded-lg shadow-lg'>
+          ? (<div className='w-[240px] max-h-[50vh] overflow-y-auto tgai-custom-scrollbar p-1  border bg-white border-gray-200 rounded-lg shadow-lg'>
             {options.map(({ name, value, type }, index) => (
               <div
                 key={index}

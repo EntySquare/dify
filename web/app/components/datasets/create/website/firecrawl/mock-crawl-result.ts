@@ -1,4 +1,4 @@
-import type { CrawlResultItem } from '@/models/datasets'
+import type { CrawlResultItem } from '../../../../../../models/datasets'
 
 const result: CrawlResultItem[] = [
   {

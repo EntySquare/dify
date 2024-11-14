@@ -1,7 +1,7 @@
 'use client'
 import type { FC } from 'react'
 import NodePanel from './node'
-import type { NodeTracing } from '@/types/workflow'
+import type { NodeTracing } from '../../../../types/workflow'
 
 type TracingPanelProps = {
   list: NodeTracing[]
@@ -10,7 +10,7 @@ type TracingPanelProps = {
 
 const TracingPanel: FC<TracingPanelProps> = ({ list, onShowIterationDetail }) => {
   return (
-    <div className='bg-gray-50 py-2'>
+    <div className='bg-gray-50 dark:bg-tgai-panel-background-2 py-2'>
       {list.map(node => (
         <NodePanel
           key={node.id}

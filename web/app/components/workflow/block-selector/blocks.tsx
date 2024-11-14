@@ -14,7 +14,7 @@ import {
 import { BLOCK_CLASSIFICATIONS } from './constants'
 import { useBlocks } from './hooks'
 import type { ToolDefaultValue } from './types'
-import Tooltip from '@/app/components/base/tooltip'
+import Tooltip from '../../base/tooltip'
 
 type BlocksProps = {
   searchText: string
@@ -58,7 +58,7 @@ const Blocks = ({
       >
         {
           classification !== '-' && !!list.length && (
-            <div className='flex items-start px-3 h-[22px] text-xs font-medium text-gray-500'>
+            <div className='flex items-start px-3 h-[22px] text-xs font-medium text-tgai-text-3'>
               {t(`workflow.tabs.${classification}`)}
             </div>
           )
@@ -69,7 +69,7 @@ const Blocks = ({
               key={block.type}
               selector={`workflow-block-${block.type}`}
               position='right'
-              className='!p-0 !px-3 !py-2.5 !w-[200px] !leading-[18px] !text-xs !text-gray-700 !border-[0.5px] !border-black/5 !rounded-xl !shadow-lg'
+              className='!p-0 !px-3 !py-2.5 !w-[200px] !leading-[18px] !text-xs !text-tgai-text-2 !border-[0.5px] !border-black/5 dark:!border-stone-600 !rounded-xl !shadow-lg dark:!shadow-stone-800'
               htmlContent={(
                 <div>
                   <BlockIcon
@@ -77,22 +77,22 @@ const Blocks = ({
                     className='mb-2'
                     type={block.type}
                   />
-                  <div className='mb-1 text-sm leading-5 text-gray-900'>{block.title}</div>
-                  <div className='text-xs text-gray-700 leading-[18px]'>{nodesExtraData[block.type].about}</div>
+                  <div className='mb-1 text-sm leading-5 text-tgai-text-1'>{block.title}</div>
+                  <div className='text-xs text-tgai-text-2 leading-[18px]'>{nodesExtraData[block.type].about}</div>
                 </div>
               )}
               noArrow
             >
               <div
                 key={block.type}
-                className='flex items-center px-3 w-full h-8 rounded-lg hover:bg-gray-50 cursor-pointer'
+                className='flex items-center px-3 w-full h-8 rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-600 cursor-pointer'
                 onClick={() => onSelect(block.type)}
               >
                 <BlockIcon
                   className='mr-2 shrink-0'
                   type={block.type}
                 />
-                <div className='text-sm text-gray-900'>{block.title}</div>
+                <div className='text-sm text-tgai-text-1'>{block.title}</div>
               </div>
             </Tooltip>
           ))
@@ -105,7 +105,7 @@ const Blocks = ({
     <div className='p-1'>
       {
         isEmpty && (
-          <div className='flex items-center px-3 h-[22px] text-xs font-medium text-gray-500'>{t('workflow.tabs.noResult')}</div>
+          <div className='flex items-center px-3 h-[22px] text-xs font-medium text-tgai-text-3'>{t('workflow.tabs.noResult')}</div>
         )
       }
       {

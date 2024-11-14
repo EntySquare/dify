@@ -19,12 +19,12 @@ import {
   branchNameCorrect,
   getOperators,
 } from './utils'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
+import useNodeCrud from '../_base/hooks/use-node-crud'
 import {
   useEdgesInteractions,
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
-import useAvailableVarList from '@/app/components/workflow/nodes/_base/hooks/use-available-var-list'
+} from '../../hooks'
+import useAvailableVarList from '../_base/hooks/use-available-var-list'
 
 const useConfig = (id: string, payload: IfElseNodeType) => {
   const updateNodeInternals = useUpdateNodeInternals()

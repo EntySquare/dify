@@ -5,15 +5,15 @@ import Split from '../_base/components/split'
 import type { ToolNodeType } from './types'
 import useConfig from './use-config'
 import InputVarList from './components/input-var-list'
-import Button from '@/app/components/base/button'
-import Field from '@/app/components/workflow/nodes/_base/components/field'
-import type { NodePanelProps } from '@/app/components/workflow/types'
-import Form from '@/app/components/header/account-setting/model-provider-page/model-modal/Form'
-import ConfigCredential from '@/app/components/tools/setting/build-in/config-credentials'
-import Loading from '@/app/components/base/loading'
-import BeforeRunForm from '@/app/components/workflow/nodes/_base/components/before-run-form'
-import OutputVars, { VarItem } from '@/app/components/workflow/nodes/_base/components/output-vars'
-import ResultPanel from '@/app/components/workflow/run/result-panel'
+import Button from '../../../base/button'
+import Field from '../_base/components/field'
+import type { NodePanelProps } from '../../types'
+import Form from '../../../header/account-setting/model-provider-page/model-modal/Form'
+import ConfigCredential from '../../../tools/setting/build-in/config-credentials'
+import Loading from '../../../base/loading'
+import BeforeRunForm from '../_base/components/before-run-form'
+import OutputVars, { VarItem } from '../_base/components/output-vars'
+import ResultPanel from '../../run/result-panel'
 
 const i18nPrefix = 'workflow.nodes.tool'
 
@@ -96,14 +96,14 @@ const Panel: FC<NodePanelProps<ToolNodeType>> = ({
           <Form
             className='space-y-4'
             itemClassName='!py-0'
-            fieldLabelClassName='!text-[13px] !font-semibold !text-gray-700 uppercase'
+            fieldLabelClassName='!text-[13px] !font-semibold !text-tgai-text-2 uppercase'
             value={toolSettingValue}
             onChange={setToolSettingValue}
             formSchemas={toolSettingSchema as any}
             isEditMode={false}
             showOnVariableMap={{}}
             validating={false}
-            inputClassName='!bg-gray-50'
+            inputClassName='!bg-gray-50 dark:!bg-tgai-input-background'
             readonly={readOnly}
           />
         </div>

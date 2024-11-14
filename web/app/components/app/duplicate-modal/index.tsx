@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import AppIconPicker from '../../base/app-icon-picker'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
-import Toast from '@/app/components/base/toast'
-import AppIcon from '@/app/components/base/app-icon'
-import { useProviderContext } from '@/context/provider-context'
-import AppsFull from '@/app/components/billing/apps-full-in-dialog'
-import type { AppIconType } from '@/types/app'
+import cn from '../../../../utils/classnames'
+import Modal from '../../base/modal'
+import Button from '../../base/button'
+import Toast from '../../base/toast'
+import AppIcon from '../../base/app-icon'
+import { useProviderContext } from '../../../../context/provider-context'
+import AppsFull from '../../billing/apps-full-in-dialog'
+import type { AppIconType } from '../../../../types/app'
 
 export type DuplicateAppModalProps = {
   appName: string
@@ -71,12 +71,12 @@ const DuplicateAppModal = ({
       <Modal
         isShow={show}
         onClose={() => { }}
-        className={cn(s.modal, '!max-w-[480px]', 'px-8')}
+        className={cn(s.modal, '!max-w-[480px]', 'px-8', '!bg-tgai-panel-background border-tgai-panel-border border')}
       >
         <span className={s.close} onClick={onHide} />
-        <div className={s.title}>{t('app.duplicateTitle')}</div>
+        <div className={cn(s.title, "!text-tgai-text-1")}>{t('app.duplicateTitle')}</div>
         <div className={s.content}>
-          <div className={s.subTitle}>{t('explore.appCustomize.subTitle')}</div>
+          <div className={cn(s.subTitle,"!text-tgai-text-1")}>{t('explore.appCustomize.subTitle')}</div>
           <div className='flex items-center justify-between space-x-2'>
             <AppIcon
               size='large'
@@ -90,7 +90,7 @@ const DuplicateAppModal = ({
             <input
               value={name}
               onChange={e => setName(e.target.value)}
-              className='h-10 px-3 text-sm font-normal bg-gray-100 rounded-lg grow'
+              className='h-10 px-3 text-sm font-normal bg-tgai-input-background text-tgai-text-1 rounded-lg grow'
             />
           </div>
           {isAppsFull && <AppsFull loc='app-duplicate-create' />}

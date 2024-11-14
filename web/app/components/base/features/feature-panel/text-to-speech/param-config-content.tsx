@@ -14,13 +14,13 @@ import {
   useFeaturesStore,
 } from '../../hooks'
 import type { OnFeaturesChange } from '../../types'
-import classNames from '@/utils/classnames'
-import type { Item } from '@/app/components/base/select'
-import { fetchAppVoices } from '@/service/apps'
-import Tooltip from '@/app/components/base/tooltip'
-import { languages } from '@/i18n/language'
-import RadioGroup from '@/app/components/app/configuration/config-vision/radio-group'
-import { TtsAutoPlay } from '@/types/app'
+import classNames from '../../../../../../utils/classnames'
+import type { Item } from '../../../select'
+import { fetchAppVoices } from '../../../../../../service/apps'
+import Tooltip from '../../../tooltip'
+import { languages } from '../../../../../../i18n/language'
+import RadioGroup from '../../../../app/configuration/config-vision/radio-group'
+import { TtsAutoPlay } from '../../../../../../types/app'
 
 type VoiceParamConfigProps = {
   onChange?: OnFeaturesChange
@@ -68,18 +68,18 @@ const VoiceParamConfig = ({
   return (
     <div>
       <div>
-        <div className='leading-6 text-base font-semibold text-gray-800'>{t('appDebug.voice.voiceSettings.title')}</div>
+        <div className='leading-6 text-base font-semibold text-tgai-text-1'>{t('appDebug.voice.voiceSettings.title')}</div>
         <div className='pt-3 space-y-6'>
           <div>
             <div className='mb-2 flex items-center  space-x-1'>
               <div
-                className='leading-[18px] text-[13px] font-semibold text-gray-800'>{t('appDebug.voice.voiceSettings.language')}</div>
+                className='leading-[18px] text-[13px] font-semibold text-tgai-text-1'>{t('appDebug.voice.voiceSettings.language')}</div>
               <Tooltip htmlContent={<div className='w-[180px]'>
                 {t('appDebug.voice.voiceSettings.resolutionTooltip').split('\n').map(item => (
                   <div key={item}>{item}</div>
                 ))}
               </div>} selector='config-resolution-tooltip'>
-                <RiQuestionLine className='w-[14px] h-[14px] text-gray-400'/>
+                <RiQuestionLine className='w-[14px] h-[14px] text-tgai-text-3'/>
               </Tooltip>
             </div>
             <Listbox
@@ -92,13 +92,13 @@ const VoiceParamConfig = ({
             >
               <div className={'relative h-9'}>
                 <Listbox.Button
-                  className={'w-full h-full rounded-lg border-0 bg-gray-100 py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6 focus-visible:outline-none focus-visible:bg-gray-200 group-hover:bg-gray-200 cursor-pointer'}>
-                  <span className={classNames('block truncate text-left', !languageItem?.name && 'text-gray-400')}>
+                  className={'w-full h-full rounded-lg border-0 text-tgai-text-1 bg-gray-100 dark:bg-tgai-input-background py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6 focus-visible:outline-none focus-visible:bg-gray-200 dark:focus-visible:bg-zinc-600 group-hover:bg-gray-200 dark:group-hover:bg-zinc-600 cursor-pointer'}>
+                  <span className={classNames('block truncate text-left', !languageItem?.name && 'text-tgai-text-3')}>
                     {languageItem?.name ? t(`common.voice.language.${languageItem?.value.replace('-', '')}`) : localLanguagePlaceholder}
                   </span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                     <ChevronDownIcon
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-tgai-text-3"
                       aria-hidden="true"
                     />
                   </span>
@@ -111,12 +111,12 @@ const VoiceParamConfig = ({
                 >
 
                   <Listbox.Options
-                    className="absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg border-gray-200 border-[0.5px] focus:outline-none sm:text-sm">
+                    className="absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto rounded-md bg-tgai-panel-background-3 py-1 text-base shadow-lg border-gray-200 dark:border-stone-600 border-[0.5px] focus:outline-none sm:text-sm">
                     {languages.map((item: Item) => (
                       <Listbox.Option
                         key={item.value}
                         className={({ active }) =>
-                          `relative cursor-pointer select-none py-2 pl-3 pr-9 rounded-lg hover:bg-gray-100 text-gray-700 ${active ? 'bg-gray-100' : ''
+                          `relative cursor-pointer select-none py-2 pl-3 pr-9 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-600 text-tgai-text-2 ${active ? 'bg-gray-100 dark:bg-zinc-600' : ''
                           }`
                         }
                         value={item}
@@ -129,7 +129,7 @@ const VoiceParamConfig = ({
                             {(selected || item.value === text2speech?.language) && (
                               <span
                                 className={classNames(
-                                  'absolute inset-y-0 right-0 flex items-center pr-4 text-gray-700',
+                                  'absolute inset-y-0 right-0 flex items-center pr-4 text-tgai-text-2',
                                 )}
                               >
                                 <CheckIcon className="h-5 w-5" aria-hidden="true"/>
@@ -147,7 +147,7 @@ const VoiceParamConfig = ({
 
           <div>
             <div
-              className='mb-2 leading-[18px] text-[13px] font-semibold text-gray-800'>{t('appDebug.voice.voiceSettings.voice')}</div>
+              className='mb-2 leading-[18px] text-[13px] font-semibold text-tgai-text-1'>{t('appDebug.voice.voiceSettings.voice')}</div>
             <Listbox
               value={voiceItem ?? {}}
               disabled={!languageItem}
@@ -159,12 +159,12 @@ const VoiceParamConfig = ({
             >
               <div className={'relative h-9'}>
                 <Listbox.Button
-                  className={'w-full h-full rounded-lg border-0 bg-gray-100 py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6 focus-visible:outline-none focus-visible:bg-gray-200 group-hover:bg-gray-200 cursor-pointer'}>
+                  className={'w-full h-full rounded-lg border-0 text-tgai-text-1 bg-gray-100 dark:bg-tgai-input-background py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6 focus-visible:outline-none focus-visible:bg-gray-200 dark:focus-visible:bg-zinc-600 group-hover:bg-gray-200 dark:group-hover:bg-zinc-600 cursor-pointer'}>
                   <span
-                    className={classNames('block truncate text-left', !voiceItem?.name && 'text-gray-400')}>{voiceItem?.name ?? localVoicePlaceholder}</span>
+                    className={classNames('block truncate text-left', !voiceItem?.name && 'text-tgai-text-3')}>{voiceItem?.name ?? localVoicePlaceholder}</span>
                   <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                     <ChevronDownIcon
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-tgai-text-3"
                       aria-hidden="true"
                     />
                   </span>
@@ -177,12 +177,12 @@ const VoiceParamConfig = ({
                 >
 
                   <Listbox.Options
-                    className="absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg border-gray-200 border-[0.5px] focus:outline-none sm:text-sm">
+                    className="absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto rounded-md bg-tgai-panel-background-3 py-1 text-base shadow-lg border-gray-200 dark:border-stone-600 border-[0.5px] focus:outline-none sm:text-sm">
                     {voiceItems?.map((item: Item) => (
                       <Listbox.Option
                         key={item.value}
                         className={({ active }) =>
-                          `relative cursor-pointer select-none py-2 pl-3 pr-9 rounded-lg hover:bg-gray-100 text-gray-700 ${active ? 'bg-gray-100' : ''
+                          `relative cursor-pointer select-none py-2 pl-3 pr-9 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-600 text-tgai-text-2 ${active ? 'bg-gray-100 dark:bg-zinc-600' : ''
                           }`
                         }
                         value={item}
@@ -194,7 +194,7 @@ const VoiceParamConfig = ({
                             {(selected || item.value === text2speech?.voice) && (
                               <span
                                 className={classNames(
-                                  'absolute inset-y-0 right-0 flex items-center pr-4 text-gray-700',
+                                  'absolute inset-y-0 right-0 flex items-center pr-4 text-tgai-text-2',
                                 )}
                               >
                                 <CheckIcon className="h-5 w-5" aria-hidden="true"/>
@@ -211,7 +211,7 @@ const VoiceParamConfig = ({
           </div>
           <div>
             <div
-              className='mb-2 leading-[18px] text-[13px] font-semibold text-gray-800'>{t('appDebug.voice.voiceSettings.autoPlay')}</div>
+              className='mb-2 leading-[18px] text-[13px] font-semibold text-tgai-text-1'>{t('appDebug.voice.voiceSettings.autoPlay')}</div>
             <RadioGroup
               className='space-x-3'
               options={[

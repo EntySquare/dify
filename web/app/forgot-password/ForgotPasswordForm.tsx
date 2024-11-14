@@ -8,14 +8,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Loading from '../components/base/loading'
-import Button from '@/app/components/base/button'
+import Button from '../components/base/button'
 
 import {
   fetchInitValidateStatus,
   fetchSetupStatus,
   sendForgotPasswordEmail,
-} from '@/service/common'
-import type { InitValidateStatusResponse, SetupStatusResponse } from '@/models/common'
+} from '../../service/common'
+import type { InitValidateStatusResponse, SetupStatusResponse } from '../../models/common'
 
 const accountFormSchema = z.object({
   email: z

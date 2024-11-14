@@ -1,8 +1,8 @@
 'use client'
 import type { FC } from 'react'
 import React from 'react'
-import cn from '@/utils/classnames'
-import Checkbox from '@/app/components/base/checkbox'
+import cn from '../../../../../../../utils/classnames'
+import Checkbox from '../../../../../base/checkbox'
 
 type Props = {
   className?: string

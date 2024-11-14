@@ -1,0 +1,7 @@
+.menuDemo::-webkit-scrollbar {
+  display: none; /* 隐藏滚动条 */
+}
+
+.menuDemo .arco-menu-inner {
+  overflow-y: auto;
+}

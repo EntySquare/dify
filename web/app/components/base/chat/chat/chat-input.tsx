@@ -17,21 +17,21 @@ import { TransferMethod } from '../types'
 import { useChatWithHistoryContext } from '../chat-with-history/context'
 import type { Theme } from '../embedded-chatbot/theme/theme-context'
 import { CssTransform } from '../embedded-chatbot/theme/utils'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { ToastContext } from '@/app/components/base/toast'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import VoiceInput from '@/app/components/base/voice-input'
-import { Microphone01 } from '@/app/components/base/icons/src/vender/line/mediaAndDevices'
-import { Microphone01 as Microphone01Solid } from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import { Send03 } from '@/app/components/base/icons/src/vender/solid/communication'
-import ChatImageUploader from '@/app/components/base/image-uploader/chat-image-uploader'
-import ImageList from '@/app/components/base/image-uploader/image-list'
+import TooltipPlus from '../../tooltip-plus'
+import { ToastContext } from '../../toast'
+import useBreakpoints, { MediaType } from '../../../../../hooks/use-breakpoints'
+import VoiceInput from '../../voice-input'
+import { Microphone01 } from '../../icons/src/vender/line/mediaAndDevices'
+import { Microphone01 as Microphone01Solid } from '../../icons/src/vender/solid/mediaAndDevices'
+import { XCircle } from '../../icons/src/vender/solid/general'
+import { Send03 } from '../../icons/src/vender/solid/communication'
+import ChatImageUploader from '../../image-uploader/chat-image-uploader'
+import ImageList from '../../image-uploader/image-list'
 import {
   useClipboardUploader,
   useDraggableUploader,
   useImageFiles,
-} from '@/app/components/base/image-uploader/hooks'
+} from '../../image-uploader/hooks'
 
 type ChatInputProps = {
   visionConfig?: VisionConfig
@@ -149,7 +149,7 @@ const ChatInput: FC<ChatInputProps> = ({
       <div className='relative'>
         <div
           className={`
-            p-[5.5px] max-h-[150px] bg-white border-[1.5px] border-gray-200 rounded-xl overflow-y-auto
+            p-[5.5px] max-h-[150px] bg-white border-[1.5px] border-gray-200 rounded-xl overflow-y-auto tgai-custom-scrollbar
             ${isDragActive && 'border-primary-600'} mb-2
           `}
         >

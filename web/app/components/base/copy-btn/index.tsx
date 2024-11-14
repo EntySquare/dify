@@ -3,8 +3,8 @@ import { useRef, useState } from 'react'
 import { t } from 'i18next'
 import copy from 'copy-to-clipboard'
 import s from './style.module.css'
-import Tooltip from '@/app/components/base/tooltip'
-import { randomString } from '@/utils'
+import Tooltip from '../tooltip'
+import { randomString } from '../../../../utils'
 
 type ICopyBtnProps = {
   value: string

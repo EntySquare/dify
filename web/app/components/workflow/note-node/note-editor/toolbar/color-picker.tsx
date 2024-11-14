@@ -4,12 +4,12 @@ import {
 } from 'react'
 import { NoteTheme } from '../../types'
 import { THEME_MAP } from '../../constants'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../../../base/portal-to-follow-elem'
 
 export const COLOR_LIST = [
   {
@@ -42,6 +42,11 @@ export const COLOR_LIST = [
     inner: THEME_MAP[NoteTheme.violet].title,
     outer: THEME_MAP[NoteTheme.violet].outer,
   },
+  {
+    key: NoteTheme.dark,
+    inner: THEME_MAP[NoteTheme.dark].title,
+    outer: THEME_MAP[NoteTheme.dark].outer,
+  },
 ]
 
 export type ColorPickerProps = {
@@ -67,13 +72,13 @@ const ColorPicker = ({
           open && 'bg-black/5',
         )}>
           <div
-            className='w-4 h-4 rounded-full border border-black/5'
+            className='w-4 h-4 rounded-full border border-black/5 dark:border-stone-600'
             style={{ backgroundColor: THEME_MAP[theme].title }}
           ></div>
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent>
-        <div className='grid grid-cols-3 grid-rows-2 gap-0.5 p-0.5 rounded-lg border-[0.5px] border-black/8 bg-white shadow-lg'>
+        <div className='grid grid-cols-3 grid-rows-2 gap-0.5 p-0.5 rounded-lg border-[0.5px] border-black/8 dark:border-stone-600 bg-white dark:bg-tgai-panel-background-3 shadow-lg dark:shadow-stone-800'>
           {
             COLOR_LIST.map(color => (
               <div

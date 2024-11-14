@@ -1,4 +1,4 @@
-import type { CommonNodeType, VarType, Variable } from '@/app/components/workflow/types'
+import type { CommonNodeType, VarType, Variable } from '../../types'
 
 export enum CodeLanguage {
   python3 = 'python3',

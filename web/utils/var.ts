@@ -1,6 +1,6 @@
-import { MAX_VAR_KEY_LENGHT, VAR_ITEM_TEMPLATE, VAR_ITEM_TEMPLATE_IN_WORKFLOW, getMaxVarNameLength } from '@/config'
-import { CONTEXT_PLACEHOLDER_TEXT, HISTORY_PLACEHOLDER_TEXT, PRE_PROMPT_PLACEHOLDER_TEXT, QUERY_PLACEHOLDER_TEXT } from '@/app/components/base/prompt-editor/constants'
-import { InputVarType } from '@/app/components/workflow/types'
+import { MAX_VAR_KEY_LENGHT, VAR_ITEM_TEMPLATE, VAR_ITEM_TEMPLATE_IN_WORKFLOW, getMaxVarNameLength } from '../config'
+import { CONTEXT_PLACEHOLDER_TEXT, HISTORY_PLACEHOLDER_TEXT, PRE_PROMPT_PLACEHOLDER_TEXT, QUERY_PLACEHOLDER_TEXT } from '../app/components/base/prompt-editor/constants'
+import { InputVarType } from '../app/components/workflow/types'
 
 const otherAllowedRegex = /^[a-zA-Z0-9_]+$/
 

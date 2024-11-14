@@ -12,8 +12,8 @@ import useSWRInfinite from 'swr/infinite'
 import { flatten } from 'lodash-es'
 import Nav from '../nav'
 import type { NavItem } from '../nav/nav-selector'
-import { fetchDatasetDetail, fetchDatasets } from '@/service/datasets'
-import type { DataSetListResponse } from '@/models/datasets'
+import { fetchDatasetDetail, fetchDatasets } from '../../../../service/datasets'
+import type { DataSetListResponse } from '../../../../models/datasets'
 
 const getKey = (pageIndex: number, previousPageData: DataSetListResponse) => {
   if (!pageIndex || previousPageData.has_more)
@@ -44,7 +44,8 @@ const DatasetNav = () => {
     <Nav
       icon={<RiBook2Line className='w-4 h-4' />}
       activeIcon={<RiBook2Fill className='w-4 h-4' />}
-      text={t('common.menus.datasets')}
+      // text={t('common.menus.datasets')}
+      text={'向量记录'}
       activeSegment='datasets'
       link='/datasets'
       curNav={currentDataset as Omit<NavItem, 'link'>}

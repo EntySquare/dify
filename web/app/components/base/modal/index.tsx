@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 // https://headlessui.com/react/dialog
 
 type IModal = {
@@ -43,7 +43,7 @@ export default function Modal({
         </Transition.Child>
 
         <div
-          className="fixed inset-0 overflow-y-auto"
+          className="fixed inset-0 overflow-y-auto tgai-custom-scrollbar"
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
@@ -60,22 +60,22 @@ export default function Modal({
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className={classNames(
-                'modal-panel',
+                'modal-panel dark:shadow-zinc-800',
                 overflowVisible ? 'overflow-visible' : 'overflow-hidden',
                 className,
               )}>
                 {title && <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg font-medium leading-6 text-tgai-text-1"
                 >
                   {title}
                 </Dialog.Title>}
-                {description && <Dialog.Description className='text-gray-500 text-xs font-normal mt-2'>
+                {description && <Dialog.Description className='text-tgai-text-3 text-xs font-normal mt-2'>
                   {description}
                 </Dialog.Description>}
                 {closable
-                  && <div className='absolute z-10 top-6 right-6 w-5 h-5 rounded-2xl flex items-center justify-center hover:cursor-pointer hover:bg-gray-100'>
-                    <XMarkIcon className='w-4 h-4 text-gray-500' onClick={
+                  && <div className='absolute z-10 top-6 right-6 w-5 h-5 rounded-2xl flex items-center justify-center hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-600'>
+                    <XMarkIcon className='w-4 h-4 text-tgai-text-3 ' onClick={
                       (e) => {
                         e.stopPropagation()
                         onClose()

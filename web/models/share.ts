@@ -1,5 +1,5 @@
-import type { Locale } from '@/i18n'
-import type { AppIconType } from '@/types/app'
+import type { Locale } from '../i18n'
+import type { AppIconType } from '../types/app'
 
 export type ResponseHolder = {}
 

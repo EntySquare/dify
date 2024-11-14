@@ -5,19 +5,19 @@ import {
 } from 'react'
 import { useVariableAssigner } from '../../hooks'
 import type { VariableAssignerNodeType } from '../../types'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { Plus02 } from '@/app/components/base/icons/src/vender/line/general'
-import AddVariablePopup from '@/app/components/workflow/nodes/_base/components/add-variable-popup'
+} from '../../../../../base/portal-to-follow-elem'
+import { Plus02 } from '../../../../../base/icons/src/vender/line/general'
+import AddVariablePopup from '../../../_base/components/add-variable-popup'
 import type {
   NodeOutPutVar,
   ValueSelector,
   Var,
-} from '@/app/components/workflow/types'
+} from '../../../../types'
 
 export type AddVariableProps = {
   variableAssignerNodeId: string
@@ -62,13 +62,13 @@ const AddVariable = ({
             className={cn(
               'group/addvariable flex items-center justify-center',
               'w-4 h-4 cursor-pointer',
-              'hover:rounded-full hover:bg-primary-600',
-              open && '!rounded-full !bg-primary-600',
+              'hover:rounded-full hover:bg-primary-600 dark:hover:bg-tgai-primary',
+              open && '!rounded-full !bg-primary-600 dark:!bg-tgai-primary',
             )}
           >
             <Plus02
               className={cn(
-                'w-2.5 h-2.5 text-gray-500',
+                'w-2.5 h-2.5 text-tgai-text-3',
                 'group-hover/addvariable:text-white',
                 open && '!text-white',
               )}

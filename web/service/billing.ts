@@ -1,5 +1,5 @@
 import { get } from './base'
-import type { CurrentPlanInfoBackend, SubscriptionUrlsBackend } from '@/app/components/billing/type'
+import type { CurrentPlanInfoBackend, SubscriptionUrlsBackend } from '../app/components/billing/type'
 
 export const fetchCurrentPlanInfo = () => {
   return get<CurrentPlanInfoBackend>('/features')

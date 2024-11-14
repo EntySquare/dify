@@ -5,13 +5,13 @@ import {
   RiCloseLine,
   RiLoader2Line,
 } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import { RefreshCcw01 } from '@/app/components/base/icons/src/vender/line/arrows'
-import { AlertTriangle } from '@/app/components/base/icons/src/vender/solid/alertsAndFeedback'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import type { ImageFile } from '@/types/app'
-import { TransferMethod } from '@/types/app'
-import ImagePreview from '@/app/components/base/image-uploader/image-preview'
+import cn from '../../../../utils/classnames'
+import { RefreshCcw01 } from '../icons/src/vender/line/arrows'
+import { AlertTriangle } from '../icons/src/vender/solid/alertsAndFeedback'
+import TooltipPlus from '../tooltip-plus'
+import type { ImageFile } from '../../../../types/app'
+import { TransferMethod } from '../../../../types/app'
+import ImagePreview from './image-preview'
 
 type ImageListProps = {
   list: ImageFile[]

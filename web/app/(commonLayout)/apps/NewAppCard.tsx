@@ -6,11 +6,11 @@ import {
   useSearchParams,
 } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
-import CreateAppTemplateDialog from '@/app/components/app/create-app-dialog'
-import CreateAppModal from '@/app/components/app/create-app-modal'
-import CreateFromDSLModal, { CreateFromDSLModalTab } from '@/app/components/app/create-from-dsl-modal'
-import { useProviderContext } from '@/context/provider-context'
-import { FileArrow01, FilePlus01, FilePlus02 } from '@/app/components/base/icons/src/vender/line/files'
+import CreateAppTemplateDialog from '../../components/app/create-app-dialog'
+import CreateAppModal from '../../components/app/create-app-modal'
+import CreateFromDSLModal, { CreateFromDSLModalTab } from '../../components/app/create-from-dsl-modal'
+import { useProviderContext } from '../../../context/provider-context'
+import { FileArrow01, FilePlus01, FilePlus02 } from '../../components/base/icons/src/vender/line/files'
 
 export type CreateAppCardProps = {
   onSuccess?: () => void

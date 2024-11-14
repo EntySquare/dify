@@ -12,11 +12,11 @@ import {
 } from '../../store'
 import { useWorkflowRun } from '../../hooks'
 import UserInput from './user-input'
-import Chat from '@/app/components/base/chat/chat'
-import type { ChatItem } from '@/app/components/base/chat/types'
-import { fetchConversationMessages } from '@/service/debug'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import Loading from '@/app/components/base/loading'
+import Chat from '../../../base/chat/chat'
+import type { ChatItem } from '../../../base/chat/types'
+import { fetchConversationMessages } from '../../../../../service/debug'
+import { useStore as useAppStore } from '../../../app/store'
+import Loading from '../../../base/loading'
 
 const ChatRecord = () => {
   const [fetched, setFetched] = useState(false)

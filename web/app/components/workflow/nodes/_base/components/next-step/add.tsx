@@ -10,12 +10,12 @@ import {
   useAvailableBlocks,
   useNodesInteractions,
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
-import BlockSelector from '@/app/components/workflow/block-selector'
+} from '../../../../hooks'
+import BlockSelector from '../../../../block-selector'
 import type {
   CommonNodeType,
   OnSelectBlock,
-} from '@/app/components/workflow/types'
+} from '../../../../types'
 
 type AddProps = {
   nodeId: string

@@ -8,8 +8,8 @@ import {
   useFeaturesStore,
 } from '../../hooks'
 import ParamConfig from './param-config'
-import Switch from '@/app/components/base/switch'
-import { File05 } from '@/app/components/base/icons/src/vender/solid/files'
+import Switch from '../../../switch'
+import { File05 } from '../../../icons/src/vender/solid/files'
 
 type FileUploadProps = {
   onChange?: OnFeaturesChange
@@ -39,17 +39,17 @@ const FileUpload = ({
   }, [featuresStore, onChange])
 
   return (
-    <div className='flex items-center px-3 h-12 bg-gray-50 rounded-xl overflow-hidden'>
+    <div className='flex items-center px-3 h-12 bg-gray-50 dark:bg-neutral-700 rounded-xl overflow-hidden'>
       <div className='shrink-0 flex items-center justify-center mr-1 w-6 h-6'>
         <File05 className='shrink-0 w-4 h-4 text-[#6938EF]' />
       </div>
-      <div className='shrink-0 mr-2 whitespace-nowrap text-sm text-gray-800 font-semibold'>
+      <div className='shrink-0 mr-2 whitespace-nowrap text-sm text-tgai-text-1 font-semibold'>
         {t('common.imageUploader.imageUpload')}
       </div>
       <div className='grow' />
       <div className='flex items-center'>
         <ParamConfig onChange={onChange} disabled={disabled} />
-        <div className='ml-4 mr-3 w-[1px] h-3.5 bg-gray-200'></div>
+        <div className='ml-4 mr-3 w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
         <Switch
           defaultValue={file?.image?.enabled}
           onChange={handleSwitch}

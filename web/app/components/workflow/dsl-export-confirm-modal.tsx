@@ -2,12 +2,12 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine, RiLock2Line } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import { Env } from '@/app/components/base/icons/src/vender/line/others'
-import Modal from '@/app/components/base/modal'
-import Checkbox from '@/app/components/base/checkbox'
-import Button from '@/app/components/base/button'
-import type { EnvironmentVariable } from '@/app/components/workflow/types'
+import cn from '../../../utils/classnames'
+import { Env } from '../base/icons/src/vender/line/others'
+import Modal from '../base/modal'
+import Checkbox from '../base/checkbox'
+import Button from '../base/button'
+import type { EnvironmentVariable } from './types'
 
 export type DSLExportConfirmModalProps = {
   envList: EnvironmentVariable[]
@@ -35,7 +35,7 @@ const DSLExportConfirmModal = ({
       onClose={() => { }}
       className={cn('max-w-[480px] w-[480px]')}
     >
-      <div className='relative pb-6 title-2xl-semi-bold text-text-primary'>{t('workflow.env.export.title')}</div>
+      <div className='relative pb-6 title-2xl-semi-bold text-tgai-text-1'>{t('workflow.env.export.title')}</div>
       <div className='absolute right-4 top-4 p-2 cursor-pointer' onClick={onClose}>
         <RiCloseLine className='w-4 h-4 text-text-tertiary' />
       </div>
@@ -72,7 +72,7 @@ const DSLExportConfirmModal = ({
           checked={exportSecrets}
           onCheck={() => setExportSecrets(!exportSecrets)}
         />
-        <div className='text-text-primary system-sm-medium cursor-pointer' onClick={() => setExportSecrets(!exportSecrets)}>{t('workflow.env.export.checkbox')}</div>
+        <div className='text-tgai-text-1 system-sm-medium cursor-pointer' onClick={() => setExportSecrets(!exportSecrets)}>{t('workflow.env.export.checkbox')}</div>
       </div>
       <div className='flex flex-row-reverse pt-6'>
         <Button className='ml-2' variant='primary' onClick={submit}>{exportSecrets ? t('workflow.env.export.export') : t('workflow.env.export.ignore')}</Button>

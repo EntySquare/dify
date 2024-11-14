@@ -7,7 +7,7 @@ import {
   RiArrowDownSLine,
   RiArrowRightSLine,
 } from '@remixicon/react'
-import ImagePreview from '@/app/components/base/image-uploader/image-preview'
+import ImagePreview from '../../base/image-uploader/image-preview'
 
 type Props = {
   varList: { label: string; value: string }[]

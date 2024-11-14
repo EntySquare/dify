@@ -7,8 +7,8 @@ import {
 } from '@remixicon/react'
 import { useBoolean } from 'ahooks'
 import type { DefaultTFuncReturn } from 'i18next'
-import cn from '@/utils/classnames'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import cn from '../../../../../../utils/classnames'
+import TooltipPlus from '../../../../base/tooltip-plus'
 
 type Props = {
   className?: string

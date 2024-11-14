@@ -30,37 +30,37 @@ import type {
   PromptConfig,
   PromptVariable,
   TextToSpeechConfig,
-} from '@/models/debug'
-import type { ExternalDataTool } from '@/models/common'
-import type { DataSet } from '@/models/datasets'
-import type { ModelConfig as BackendModelConfig, VisionSettings } from '@/types/app'
-import ConfigContext from '@/context/debug-configuration'
-import Config from '@/app/components/app/configuration/config'
-import Debug from '@/app/components/app/configuration/debug'
-import Confirm from '@/app/components/base/confirm'
-import { ModelFeatureEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { ToastContext } from '@/app/components/base/toast'
-import { fetchAppDetail, updateAppModelConfig } from '@/service/apps'
-import { promptVariablesToUserInputsForm, userInputsFormToPromptVariables } from '@/utils/model-config'
-import { fetchDatasets } from '@/service/datasets'
-import { useProviderContext } from '@/context/provider-context'
-import { AgentStrategy, AppType, ModelModeType, RETRIEVE_TYPE, Resolution, TransferMethod } from '@/types/app'
-import { PromptMode } from '@/models/debug'
-import { ANNOTATION_DEFAULT, DATASET_DEFAULT, DEFAULT_AGENT_SETTING, DEFAULT_CHAT_PROMPT_CONFIG, DEFAULT_COMPLETION_PROMPT_CONFIG } from '@/config'
-import SelectDataSet from '@/app/components/app/configuration/dataset-config/select-dataset'
-import { useModalContext } from '@/context/modal-context'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import Drawer from '@/app/components/base/drawer'
-import ModelParameterModal from '@/app/components/header/account-setting/model-provider-page/model-parameter-modal'
-import type { FormValue } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { useTextGenerationCurrentProviderAndModelAndModelList } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { fetchCollectionList } from '@/service/tools'
-import { type Collection } from '@/app/components/tools/types'
-import { useStore as useAppStore } from '@/app/components/app/store'
+} from '../../../../models/debug'
+import type { ExternalDataTool } from '../../../../models/common'
+import type { DataSet } from '../../../../models/datasets'
+import type { ModelConfig as BackendModelConfig, VisionSettings } from '../../../../types/app'
+import ConfigContext from '../../../../context/debug-configuration'
+import Config from './config'
+import Debug from './debug'
+import Confirm from '../../base/confirm'
+import { ModelFeatureEnum } from '../../header/account-setting/model-provider-page/declarations'
+import { ToastContext } from '../../base/toast'
+import { fetchAppDetail, updateAppModelConfig } from '../../../../service/apps'
+import { promptVariablesToUserInputsForm, userInputsFormToPromptVariables } from '../../../../utils/model-config'
+import { fetchDatasets } from '../../../../service/datasets'
+import { useProviderContext } from '../../../../context/provider-context'
+import { AgentStrategy, AppType, ModelModeType, RETRIEVE_TYPE, Resolution, TransferMethod } from '../../../../types/app'
+import { PromptMode } from '../../../../models/debug'
+import { ANNOTATION_DEFAULT, DATASET_DEFAULT, DEFAULT_AGENT_SETTING, DEFAULT_CHAT_PROMPT_CONFIG, DEFAULT_COMPLETION_PROMPT_CONFIG } from '../../../../config'
+import SelectDataSet from './dataset-config/select-dataset'
+import { useModalContext } from '../../../../context/modal-context'
+import useBreakpoints, { MediaType } from '../../../../hooks/use-breakpoints'
+import Drawer from '../../base/drawer'
+import ModelParameterModal from '../../header/account-setting/model-provider-page/model-parameter-modal'
+import type { FormValue } from '../../header/account-setting/model-provider-page/declarations'
+import { useTextGenerationCurrentProviderAndModelAndModelList } from '../../header/account-setting/model-provider-page/hooks'
+import { fetchCollectionList } from '../../../../service/tools'
+import { type Collection } from '../../tools/types'
+import { useStore as useAppStore } from '../store'
 import {
   getMultipleRetrievalConfig,
   getSelectedDatasetsMode,
-} from '@/app/components/workflow/nodes/knowledge-retrieval/utils'
+} from '../../workflow/nodes/knowledge-retrieval/utils'
 
 type PublishConfig = {
   modelConfig: ModelConfig
@@ -857,7 +857,7 @@ const Configuration: FC = () => {
             <div className={`w-full sm:w-1/2 shrink-0 flex flex-col h-full ${debugWithMultipleModel && 'max-w-[560px]'}`}>
               <Config />
             </div>
-            {!isMobile && <div className="relative flex flex-col w-1/2 h-full overflow-y-auto grow " style={{ borderColor: 'rgba(0, 0, 0, 0.02)' }}>
+            {!isMobile && <div className="relative flex flex-col w-1/2 h-full overflow-y-auto tgai-custom-scrollbar grow " style={{ borderColor: 'rgba(0, 0, 0, 0.02)' }}>
               <div className='flex flex-col h-0 border-t border-l grow rounded-tl-2xl bg-gray-50 '>
                 <Debug
                   isAPIKeySet={isAPIKeySet}

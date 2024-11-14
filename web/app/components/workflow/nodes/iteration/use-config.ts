@@ -13,7 +13,7 @@ import useNodeCrud from '../_base/hooks/use-node-crud'
 import { getNodeInfoById, getNodeUsedVarPassToServerKey, getNodeUsedVars, isSystemVar, toNodeOutputVars } from '../_base/components/variable/utils'
 import useOneStepRun from '../_base/hooks/use-one-step-run'
 import type { IterationNodeType } from './types'
-import type { VarType as VarKindType } from '@/app/components/workflow/nodes/tool/types'
+import type { VarType as VarKindType } from '../tool/types'
 
 const DELIMITER = '@@@@@'
 const useConfig = (id: string, payload: IterationNodeType) => {

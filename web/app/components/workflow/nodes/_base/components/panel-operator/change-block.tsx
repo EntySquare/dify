@@ -5,15 +5,15 @@ import {
 } from 'react'
 import { useTranslation } from 'react-i18next'
 import { intersection } from 'lodash-es'
-import BlockSelector from '@/app/components/workflow/block-selector'
+import BlockSelector from '../../../../block-selector'
 import {
   useAvailableBlocks,
   useNodesInteractions,
-} from '@/app/components/workflow/hooks'
+} from '../../../../hooks'
 import type {
   Node,
   OnSelectBlock,
-} from '@/app/components/workflow/types'
+} from '../../../../types'
 
 type ChangeBlockProps = {
   nodeId: string
@@ -47,7 +47,7 @@ const ChangeBlock = ({
 
   const renderTrigger = useCallback(() => {
     return (
-      <div className='flex items-center px-3 w-[232px] h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'>
+      <div className='flex items-center px-3 w-[232px] h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'>
         {t('workflow.panel.changeBlock')}
       </div>
     )

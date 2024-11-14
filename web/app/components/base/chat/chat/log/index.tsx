@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { File02 } from '@/app/components/base/icons/src/vender/line/files'
-import type { IChatItem } from '@/app/components/base/chat/chat/type'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import { File02 } from '../../../icons/src/vender/line/files'
+import type { IChatItem } from '../type'
+import { useStore as useAppStore } from '../../../../app/store'
 
 type LogProps = {
   logItem: IChatItem

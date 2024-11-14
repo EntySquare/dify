@@ -6,11 +6,11 @@ import {
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import cn from '@/utils/classnames'
-import { Yaml as YamlIcon } from '@/app/components/base/icons/src/public/files'
-import { ToastContext } from '@/app/components/base/toast'
-import { UploadCloud01 } from '@/app/components/base/icons/src/vender/line/general'
-import Button from '@/app/components/base/button'
+import cn from '../../../../utils/classnames'
+import { Yaml as YamlIcon } from '../../base/icons/src/public/files'
+import { ToastContext } from '../../base/toast'
+import { UploadCloud01 } from '../../base/icons/src/vender/line/general'
+import Button from '../../base/button'
 
 export type Props = {
   file: File | undefined
@@ -96,29 +96,29 @@ const Uploader: FC<Props> = ({
       />
       <div ref={dropRef}>
         {!file && (
-          <div className={cn('flex items-center h-20 rounded-xl bg-gray-50 border border-dashed border-gray-200 text-sm font-normal', dragging && 'bg-[#F5F8FF] border border-[#B2CCFF]')}>
+          <div className={cn('flex items-center h-20 rounded-xl bg-gray-50 dark:bg-tgai-input-background border border-dashed border-gray-200 dark:border-stone-600 text-sm font-normal', dragging && 'bg-[#F5F8FF] dark:bg-zinc-700 border border-[#B2CCFF] dark:border-tgai-primary')}>
             <div className='w-full flex items-center justify-center space-x-2'>
-              <UploadCloud01 className='w-6 h-6 mr-2' />
-              <div className='text-gray-500'>
+              <UploadCloud01 className='w-6 h-6 mr-2 text-tgai-text-2' />
+              <div className='text-tgai-text-2'>
                 {t('datasetCreation.stepOne.uploader.button')}
-                <span className='pl-1 text-[#155eef] cursor-pointer' onClick={selectHandle}>{t('datasetDocuments.list.batchModal.browse')}</span>
+                <span className='pl-1 text-tgai-primary cursor-pointer' onClick={selectHandle}>{t('datasetDocuments.list.batchModal.browse')}</span>
               </div>
             </div>
             {dragging && <div ref={dragRef} className='absolute w-full h-full top-0 left-0' />}
           </div>
         )}
         {file && (
-          <div className={cn('flex items-center h-20 px-6 rounded-xl bg-gray-50 border border-gray-200 text-sm font-normal group', 'hover:bg-[#F5F8FF] hover:border-[#B2CCFF]')}>
+          <div className={cn('flex items-center h-20 px-6 rounded-xl bg-gray-50 dark:bg-zinc-700 border border-gray-200 dark:border-stone-600 text-sm font-normal group', 'hover:bg-[#F5F8FF] dark:hover:bg-zinc-600 hover:border-[#B2CCFF] dark:hover:border-tgai-primary')}>
             <YamlIcon className="shrink-0" />
             <div className='flex ml-2 w-0 grow'>
-              <span className='max-w-[calc(100%_-_30px)] text-ellipsis whitespace-nowrap overflow-hidden text-gray-800'>{file.name.replace(/(.yaml|.yml)$/, '')}</span>
-              <span className='shrink-0 text-gray-500'>.yml</span>
+              <span className='max-w-[calc(100%_-_30px)] text-ellipsis whitespace-nowrap overflow-hidden text-tgai-text-1'>{file.name.replace(/(.yaml|.yml)$/, '')}</span>
+              <span className='shrink-0 text-tgai-text-3'>.yml</span>
             </div>
             <div className='hidden group-hover:flex items-center'>
               <Button onClick={selectHandle}>{t('datasetCreation.stepOne.uploader.change')}</Button>
-              <div className='mx-2 w-px h-4 bg-gray-200' />
+              <div className='mx-2 w-px h-4 bg-gray-200 dark:bg-zinc-400' />
               <div className='p-2 cursor-pointer' onClick={removeFile}>
-                <RiDeleteBinLine className='w-4 h-4 text-gray-500' />
+                <RiDeleteBinLine className='w-4 h-4 text-tgai-text-3' />
               </div>
             </div>
           </div>

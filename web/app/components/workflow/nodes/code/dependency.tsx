@@ -24,7 +24,7 @@ const Dependencies: FC<Props> = ({
             onChange={dependency => handleChange(index, dependency)}
           />
           <RemoveButton
-            className='!p-2 !bg-gray-100 hover:!bg-gray-200'
+            className='!p-2 !bg-gray-100 dark:!bg-tgai-input-background hover:!bg-gray-200 dark:hover:!bg-zinc-700'
             onClick={() => handleRemove(index)}
           />
         </div>

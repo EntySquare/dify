@@ -1,10 +1,10 @@
 import { type FC, useEffect, useRef, useState } from 'react'
 import React from 'react'
 import type { KnowledgeRetrievalNodeType } from './types'
-import { Folder } from '@/app/components/base/icons/src/vender/solid/files'
-import type { NodeProps } from '@/app/components/workflow/types'
-import { fetchDatasets } from '@/service/datasets'
-import type { DataSet } from '@/models/datasets'
+import { Folder } from '../../../base/icons/src/vender/solid/files'
+import type { NodeProps } from '../../types'
+import { fetchDatasets } from '../../../../../service/datasets'
+import type { DataSet } from '../../../../../models/datasets'
 
 const Node: FC<NodeProps<KnowledgeRetrievalNodeType>> = ({
   data,
@@ -36,11 +36,11 @@ const Node: FC<NodeProps<KnowledgeRetrievalNodeType>> = ({
     <div className='mb-1 px-3 py-1'>
       <div className='space-y-0.5'>
         {selectedDatasets.map(({ id, name }) => (
-          <div key={id} className='flex items-center h-[26px] bg-gray-100 rounded-md  px-1 text-xs font-normal text-gray-700'>
+          <div key={id} className='flex items-center h-[26px] bg-gray-100 dark:bg-tgai-input-background rounded-md  px-1 text-xs font-normal text-tgai-text-2'>
             <div className='mr-1 shrink-0 p-1 bg-[#F5F8FF] rounded-md border-[0.5px] border-[#E0EAFF]'>
               <Folder className='w-3 h-3 text-[#444CE7]' />
             </div>
-            <div className='grow w-0 text-xs font-normal text-gray-700 truncate'>
+            <div className='grow w-0 text-xs font-normal text-tgai-text-2 truncate'>
               {name}
             </div>
           </div>

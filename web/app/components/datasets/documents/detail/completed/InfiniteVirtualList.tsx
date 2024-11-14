@@ -4,7 +4,7 @@ import { FixedSizeList as List } from 'react-window'
 import InfiniteLoader from 'react-window-infinite-loader'
 import SegmentCard from './SegmentCard'
 import s from './style.module.css'
-import type { SegmentDetailModel } from '@/models/datasets'
+import type { SegmentDetailModel } from '../../../../../../models/datasets'
 
 type IInfiniteVirtualListProps = {
   hasNextPage?: boolean // Are there more items to load? (This information comes from the most recent API request.)
@@ -82,7 +82,7 @@ const InfiniteVirtualList: FC<IInfiniteVirtualListProps> = ({
       {({ onItemsRendered, ref }) => (
         <List
           ref={ref}
-          className="List"
+          className="List tgai-custom-scrollbar"
           height={800}
           width={'100%'}
           itemSize={200}

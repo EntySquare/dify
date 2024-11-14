@@ -8,9 +8,9 @@ import {
 } from '@remixicon/react'
 import PlanComp from '../plan'
 import { ReceiptList } from '../../base/icons/src/vender/line/financeAndECommerce'
-import { fetchBillingUrl } from '@/service/billing'
-import { useAppContext } from '@/context/app-context'
-import { useProviderContext } from '@/context/provider-context'
+import { fetchBillingUrl } from '../../../../service/billing'
+import { useAppContext } from '../../../../context/app-context'
+import { useProviderContext } from '../../../../context/provider-context'
 
 const Billing: FC = () => {
   const { t } = useTranslation()

@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import s from './style.module.css'
-import Button from '@/app/components/base/button'
-import { Grid01 } from '@/app/components/base/icons/src/vender/solid/layout'
-import { Container, Database01 } from '@/app/components/base/icons/src/vender/line/development'
-import { ImagePlus } from '@/app/components/base/icons/src/vender/line/images'
-import { useProviderContext } from '@/context/provider-context'
-import { Plan } from '@/app/components/billing/type'
+import Button from '../../base/button'
+import { Grid01 } from '../../base/icons/src/vender/solid/layout'
+import { Container, Database01 } from '../../base/icons/src/vender/line/development'
+import { ImagePlus } from '../../base/icons/src/vender/line/images'
+import { useProviderContext } from '../../../../context/provider-context'
+import { Plan } from '../../billing/type'
 
 const CustomAppHeaderBrand = () => {
   const { t } = useTranslation()

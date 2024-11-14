@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 
 import NormalForm from './normalForm'
 import OneMoreStep from './oneMoreStep'
-import cn from '@/utils/classnames'
+import cn from '../../utils/classnames'
 
 const Forms = () => {
   const searchParams = useSearchParams()

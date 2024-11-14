@@ -2,9 +2,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../utils/classnames'
+import Modal from '../../../base/modal'
+import Button from '../../../base/button'
 
 type IProps = {
   show: boolean

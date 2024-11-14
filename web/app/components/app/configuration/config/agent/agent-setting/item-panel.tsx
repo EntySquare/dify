@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React from 'react'
 import { RiQuestionLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import Tooltip from '@/app/components/base/tooltip'
+import cn from '../../../../../../../utils/classnames'
+import Tooltip from '../../../../../base/tooltip'
 type Props = {
   className?: string
   icon: JSX.Element

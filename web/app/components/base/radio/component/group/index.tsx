@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
 import RadioGroupContext from '../../context'
 import s from '../../style.module.css'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 
 export type TRadioGroupProps = {
   children?: ReactElement | ReactElement[]
@@ -15,7 +15,7 @@ export default function Group({ children, value, onChange, className = '' }: TRa
     onChange?.(value)
   }
   return (
-    <div className={cn('flex items-center bg-gray-50', s.container, className)}>
+    <div className={cn('flex items-center bg-tgai-input-background', s.container, className)}>
       <RadioGroupContext.Provider value={{ value, onChange: onRadioChange }}>
         {children}
       </RadioGroupContext.Provider>

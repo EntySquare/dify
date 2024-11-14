@@ -5,18 +5,18 @@ import { useContext } from 'use-context-selector'
 import { AuthHeaderPrefix, AuthType, CollectionType } from '../types'
 import type { Collection, CustomCollectionBackend, Tool, WorkflowToolProviderRequest, WorkflowToolProviderResponse } from '../types'
 import ToolItem from './tool-item'
-import cn from '@/utils/classnames'
-import I18n from '@/context/i18n'
-import { getLanguage } from '@/i18n/language'
-import Confirm from '@/app/components/base/confirm'
-import AppIcon from '@/app/components/base/app-icon'
-import Button from '@/app/components/base/button'
-import Indicator from '@/app/components/header/indicator'
-import { LinkExternal02, Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import ConfigCredential from '@/app/components/tools/setting/build-in/config-credentials'
-import EditCustomToolModal from '@/app/components/tools/edit-custom-collection-modal'
-import WorkflowToolModal from '@/app/components/tools/workflow-tool'
-import Toast from '@/app/components/base/toast'
+import cn from '../../../../utils/classnames'
+import I18n from '../../../../context/i18n'
+import { getLanguage } from '../../../../i18n/language'
+import Confirm from '../../base/confirm'
+import AppIcon from '../../base/app-icon'
+import Button from '../../base/button'
+import Indicator from '../../header/indicator'
+import { LinkExternal02, Settings01 } from '../../base/icons/src/vender/line/general'
+import ConfigCredential from '../setting/build-in/config-credentials'
+import EditCustomToolModal from '../edit-custom-collection-modal'
+import WorkflowToolModal from '../workflow-tool'
+import Toast from '../../base/toast'
 import {
   deleteWorkflowTool,
   fetchBuiltInToolList,
@@ -29,12 +29,12 @@ import {
   saveWorkflowToolProvider,
   updateBuiltInToolCredential,
   updateCustomCollection,
-} from '@/service/tools'
-import { useModalContext } from '@/context/modal-context'
-import { useProviderContext } from '@/context/provider-context'
-import { ConfigurationMethodEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import Loading from '@/app/components/base/loading'
-import { useAppContext } from '@/context/app-context'
+} from '../../../../service/tools'
+import { useModalContext } from '../../../../context/modal-context'
+import { useProviderContext } from '../../../../context/provider-context'
+import { ConfigurationMethodEnum } from '../../header/account-setting/model-provider-page/declarations'
+import Loading from '../../base/loading'
+import { useAppContext } from '../../../../context/app-context'
 
 type Props = {
   collection: Collection
@@ -228,17 +228,17 @@ const ProviderDetail = ({
           )}
         </div>
         <div className='grow w-0 py-[1px]'>
-          <div className='flex items-center text-md leading-6 font-semibold text-gray-900'>
+          <div className='flex items-center text-md leading-6 font-semibold text-tgai-text-1'>
             <div className='truncate' title={collection.label[language]}>{collection.label[language]}</div>
           </div>
         </div>
       </div>
-      <div className='mt-2 min-h-[36px] text-gray-500 text-sm leading-[18px]'>{collection.description[language]}</div>
+      <div className='mt-2 min-h-[36px] text-tgai-text-2 text-sm leading-[18px]'>{collection.description[language]}</div>
       <div className='flex gap-1 border-b-[0.5px] border-black/5'>
         {(collection.type === CollectionType.builtIn) && needAuth && (
           <Button
             variant={isAuthed ? 'secondary' : 'primary'}
-            className={cn('shrink-0 my-3 w-full', isAuthed && 'bg-white')}
+            className={cn('shrink-0 my-3 w-full', isAuthed && 'bg-white dark:bg-zinc-600')}
             onClick={() => {
               if (collection.type === CollectionType.builtIn || collection.type === CollectionType.model)
                 showSettingAuthModal()
@@ -246,7 +246,7 @@ const ProviderDetail = ({
             disabled={!isCurrentWorkspaceManager}
           >
             {isAuthed && <Indicator className='mr-2' color={'green'} />}
-            <div className={cn('text-white leading-[18px] text-[13px] font-medium', isAuthed && '!text-gray-700')}>
+            <div className={cn('text-white leading-[18px] text-[13px] font-medium', isAuthed && '!text-tgai-text-2')}>
               {isAuthed ? t('tools.auth.authorized') : t('tools.auth.unauthorized')}
             </div>
           </Button>
@@ -256,8 +256,8 @@ const ProviderDetail = ({
             className={cn('shrink-0 my-3 w-full')}
             onClick={() => setIsShowEditCustomCollectionModal(true)}
           >
-            <Settings01 className='mr-1 w-4 h-4 text-gray-500' />
-            <div className='leading-5 text-sm font-medium text-gray-700'>{t('tools.createTool.editAction')}</div>
+            <Settings01 className='mr-1 w-4 h-4 text-tgai-text-2' />
+            <div className='leading-5 text-sm font-medium text-tgai-text-2'>{t('tools.createTool.editAction')}</div>
           </Button>
         )}
         {collection.type === CollectionType.workflow && !isDetailLoading && customCollection && (
@@ -266,7 +266,7 @@ const ProviderDetail = ({
               variant='primary'
               className={cn('shrink-0 my-3 w-[183px]')}
             >
-              <a className='flex items-center text-white' href={`/app/${(customCollection as WorkflowToolProviderResponse).workflow_app_id}/workflow`} rel='noreferrer' target='_blank'>
+              <a className='flex items-center text-tgai-text-1' href={`/app/${(customCollection as WorkflowToolProviderResponse).workflow_app_id}/workflow`} rel='noreferrer' target='_blank'>
                 <div className='leading-5 text-sm font-medium'>{t('tools.openInStudio')}</div>
                 <LinkExternal02 className='ml-1 w-4 h-4' />
               </a>
@@ -276,7 +276,7 @@ const ProviderDetail = ({
               onClick={() => setIsShowEditWorkflowToolModal(true)}
               disabled={!isCurrentWorkspaceManager}
             >
-              <div className='leading-5 text-sm font-medium text-gray-700'>{t('tools.createTool.editAction')}</div>
+              <div className='leading-5 text-sm font-medium text-tgai-text-2'>{t('tools.createTool.editAction')}</div>
             </Button>
           </>
         )}
@@ -285,7 +285,7 @@ const ProviderDetail = ({
       <div className='pt-3'>
         {isDetailLoading && <div className='flex h-[200px]'><Loading type='app' /></div>}
         {!isDetailLoading && (
-          <div className='text-xs font-medium leading-6 text-gray-500'>
+          <div className='text-xs font-medium leading-6 text-tgai-text-2'>
             {collection.type === CollectionType.workflow && <span className=''>{t('tools.createTool.toolInput.title').toLocaleUpperCase()}</span>}
             {collection.type !== CollectionType.workflow && <span className=''>{t('tools.includeToolNum', { num: toolList.length }).toLocaleUpperCase()}</span>}
             {needAuth && (isBuiltIn || isModel) && !isAuthed && (
@@ -309,13 +309,13 @@ const ProviderDetail = ({
               />
             ))}
             {collection.type === CollectionType.workflow && (customCollection as WorkflowToolProviderResponse)?.tool?.parameters.map(item => (
-              <div key={item.name} className='mb-2 px-4 py-3 rounded-xl bg-gray-25 border-[0.5px] border-gray-200'>
+              <div key={item.name} className='mb-2 px-4 py-3 rounded-xl bg-gray-25 dark:bg-neutral-700 border-[0.5px] border-gray-200 dark:border-stone-600'>
                 <div className='flex items-center gap-2'>
-                  <span className='font-medium text-sm text-gray-900'>{item.name}</span>
-                  <span className='text-xs leading-[18px] text-gray-500'>{item.type}</span>
+                  <span className='font-medium text-sm text-tgai-text-1'>{item.name}</span>
+                  <span className='text-xs leading-[18px] text-tgai-text-2'>{item.type}</span>
                   <span className='font-medium text-xs leading-[18px] text-[#ec4a0a]'>{item.required ? t('tools.createTool.toolInput.required') : ''}</span>
                 </div>
-                <div className='h-[18px] leading-[18px] text-gray-500 text-xs'>{item.llm_description}</div>
+                <div className='h-[18px] leading-[18px] text-tgai-text-2 text-xs'>{item.llm_description}</div>
               </div>
             ))}
           </div>

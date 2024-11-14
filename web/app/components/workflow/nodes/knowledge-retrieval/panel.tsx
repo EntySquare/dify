@@ -10,12 +10,12 @@ import RetrievalConfig from './components/retrieval-config'
 import AddKnowledge from './components/add-dataset'
 import DatasetList from './components/dataset-list'
 import type { KnowledgeRetrievalNodeType } from './types'
-import Field from '@/app/components/workflow/nodes/_base/components/field'
-import Split from '@/app/components/workflow/nodes/_base/components/split'
-import OutputVars, { VarItem } from '@/app/components/workflow/nodes/_base/components/output-vars'
-import { InputVarType, type NodePanelProps } from '@/app/components/workflow/types'
-import BeforeRunForm from '@/app/components/workflow/nodes/_base/components/before-run-form'
-import ResultPanel from '@/app/components/workflow/run/result-panel'
+import Field from '../_base/components/field'
+import Split from '../_base/components/split'
+import OutputVars, { VarItem } from '../_base/components/output-vars'
+import { InputVarType, type NodePanelProps } from '../../types'
+import BeforeRunForm from '../_base/components/before-run-form'
+import ResultPanel from '../../run/result-panel'
 
 const i18nPrefix = 'workflow.nodes.knowledgeRetrieval'
 
@@ -89,7 +89,7 @@ const Panel: FC<NodePanelProps<KnowledgeRetrievalNodeType>> = ({
                 onOpenFromPropsChange={handleOpenFromPropsChange}
                 selectedDatasets={selectedDatasets}
               />
-              {!readOnly && (<div className='w-px h-3 bg-gray-200'></div>)}
+              {!readOnly && (<div className='w-px h-3 bg-gray-200 dark:bg-zinc-600'></div>)}
               {!readOnly && (
                 <AddKnowledge
                   selectedIds={inputs.dataset_ids}

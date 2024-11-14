@@ -14,24 +14,24 @@ import { DocumentContext } from '../index'
 import { ProcessStatus } from '../segment-add'
 import s from './style.module.css'
 import InfiniteVirtualList from './InfiniteVirtualList'
-import cn from '@/utils/classnames'
-import { formatNumber } from '@/utils/format'
-import Modal from '@/app/components/base/modal'
-import Switch from '@/app/components/base/switch'
-import Divider from '@/app/components/base/divider'
-import Input from '@/app/components/base/input'
-import { ToastContext } from '@/app/components/base/toast'
-import type { Item } from '@/app/components/base/select'
-import { SimpleSelect } from '@/app/components/base/select'
-import { deleteSegment, disableSegment, enableSegment, fetchSegments, updateSegment } from '@/service/datasets'
-import type { SegmentDetailModel, SegmentUpdator, SegmentsQuery, SegmentsResponse } from '@/models/datasets'
-import { asyncRunSafe } from '@/utils'
-import type { CommonResponse } from '@/models/common'
-import AutoHeightTextarea from '@/app/components/base/auto-height-textarea/common'
-import Button from '@/app/components/base/button'
-import NewSegmentModal from '@/app/components/datasets/documents/detail/new-segment-modal'
-import TagInput from '@/app/components/base/tag-input'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
+import cn from '../../../../../../utils/classnames'
+import { formatNumber } from '../../../../../../utils/format'
+import Modal from '../../../../base/modal'
+import Switch from '../../../../base/switch'
+import Divider from '../../../../base/divider'
+import Input from '../../../../base/input'
+import { ToastContext } from '../../../../base/toast'
+import type { Item } from '../../../../base/select'
+import { SimpleSelect } from '../../../../base/select'
+import { deleteSegment, disableSegment, enableSegment, fetchSegments, updateSegment } from '../../../../../../service/datasets'
+import type { SegmentDetailModel, SegmentUpdator, SegmentsQuery, SegmentsResponse } from '../../../../../../models/datasets'
+import { asyncRunSafe } from '../../../../../../utils'
+import type { CommonResponse } from '../../../../../../models/common'
+import AutoHeightTextarea from '../../../../base/auto-height-textarea/common'
+import Button from '../../../../base/button'
+import NewSegmentModal from '../new-segment-modal'
+import TagInput from '../../../../base/tag-input'
+import { useEventEmitterContextContext } from '../../../../../../context/event-emitter'
 
 export const SegmentIndexTag: FC<{ positionId: string | number; className?: string }> = ({ positionId, className }) => {
   const localPositionId = useMemo(() => {
@@ -41,8 +41,8 @@ export const SegmentIndexTag: FC<{ positionId: string | number; className?: stri
     return positionIdStr.padStart(3, '0')
   }, [positionId])
   return (
-    <div className={`text-gray-500 border border-gray-200 box-border flex items-center rounded-md italic text-[11px] pl-1 pr-1.5 font-medium ${className ?? ''}`}>
-      <HashtagIcon className='w-3 h-3 text-gray-400 fill-current mr-1 stroke-current stroke-1' />
+    <div className={`text-tgai-text-2 border border-gray-200 dark:border-stone-600 box-border flex items-center rounded-md italic text-[11px] pl-1 pr-1.5 font-medium ${className ?? ''}`}>
+      <HashtagIcon className='w-3 h-3 text-tgai-text-3 fill-current mr-1 stroke-current stroke-1' />
       {localPositionId}
     </div>
   )
@@ -96,19 +96,19 @@ const SegmentDetailComponent: FC<ISegmentDetailProps> = ({
     if (segInfo?.answer) {
       return (
         <>
-          <div className='mb-1 text-xs font-medium text-gray-500'>QUESTION</div>
+          <div className='mb-1 text-xs font-medium text-tgai-text-2'>QUESTION</div>
           <AutoHeightTextarea
             outerClassName='mb-4'
-            className='leading-6 text-md text-gray-800'
+            className='leading-6 text-md text-tgai-text-1 dark:bg-tgai-input-background'
             value={question}
             placeholder={t('datasetDocuments.segment.questionPlaceholder') || ''}
             onChange={e => setQuestion(e.target.value)}
             disabled={!isEditing}
           />
-          <div className='mb-1 text-xs font-medium text-gray-500'>ANSWER</div>
+          <div className='mb-1 text-xs font-medium text-tgai-text-2'>ANSWER</div>
           <AutoHeightTextarea
             outerClassName='mb-4'
-            className='leading-6 text-md text-gray-800'
+            className='leading-6 text-md text-tgai-text-1 dark:bg-tgai-input-background'
             value={answer}
             placeholder={t('datasetDocuments.segment.answerPlaceholder') || ''}
             onChange={e => setAnswer(e.target.value)}
@@ -121,7 +121,7 @@ const SegmentDetailComponent: FC<ISegmentDetailProps> = ({
 
     return (
       <AutoHeightTextarea
-        className='leading-6 text-md text-gray-800'
+        className='leading-6 text-md text-tgai-text-1 dark:bg-tgai-input-background'
         value={question}
         placeholder={t('datasetDocuments.segment.contentPlaceholder') || ''}
         onChange={e => setQuestion(e.target.value)}
@@ -152,19 +152,19 @@ const SegmentDetailComponent: FC<ISegmentDetailProps> = ({
         )}
         {!isEditing && !archived && embeddingAvailable && (
           <>
-            <div className='group relative flex justify-center items-center w-6 h-6 hover:bg-gray-100 rounded-md cursor-pointer'>
-              <div className={cn(s.editTip, 'hidden items-center absolute -top-10 px-3 h-[34px] bg-white rounded-lg whitespace-nowrap text-xs font-semibold text-gray-700 group-hover:flex')}>{t('common.operation.edit')}</div>
-              <RiEditLine className='w-4 h-4 text-gray-500' onClick={() => setIsEditing(true)} />
+            <div className='group relative flex justify-center items-center w-6 h-6 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-md cursor-pointer'>
+              <div className={cn(s.editTip, 'hidden items-center absolute -top-10 px-3 h-[34px] bg-white dark:bg-neutral-700 rounded-lg whitespace-nowrap text-xs font-semibold text-tgai-text-2 group-hover:flex')}>{t('common.operation.edit')}</div>
+              <RiEditLine className='w-4 h-4 text-tgai-text-3' onClick={() => setIsEditing(true)} />
             </div>
-            <div className='mx-3 w-[1px] h-3 bg-gray-200' />
+            <div className='mx-3 w-[1px] h-3 bg-gray-200 dark:bg-zinc-600' />
           </>
         )}
         <div className='flex justify-center items-center w-6 h-6 cursor-pointer' onClick={onCancel}>
-          <RiCloseLine className='w-4 h-4 text-gray-500' />
+          <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
         </div>
       </div>
-      <SegmentIndexTag positionId={segInfo?.position || ''} className='w-fit mt-[2px] mb-6' />
-      <div className={s.segModalContent}>{renderContent()}</div>
+      <SegmentIndexTag positionId={segInfo?.position || ''} className='w-fit mt-[2px] mb-6 ' />
+      <div className={cn(s.segModalContent, "tgai-custom-scrollbar")}>{renderContent()}</div>
       <div className={s.keywordTitle}>{t('datasetDocuments.segment.keywords')}</div>
       <div className={s.keywordWrapper}>
         {!segInfo?.keywords?.length
@@ -179,7 +179,7 @@ const SegmentDetailComponent: FC<ISegmentDetailProps> = ({
           )
         }
       </div>
-      <div className={cn(s.footer, s.numberInfo)}>
+      <div className={cn(s.footer, s.numberInfo, "dark:!border-zinc-600")}>
         <div className='flex items-center flex-wrap gap-y-2'>
           <div className={cn(s.commonIcon, s.typeSquareIcon)} /><span className='mr-8'>{formatNumber(segInfo?.word_count as number)} {t('datasetDocuments.segment.characters')}</span>
           <div className={cn(s.commonIcon, s.targetIcon)} /><span className='mr-8'>{formatNumber(segInfo?.hit_count as number)} {t('datasetDocuments.segment.hitCount')}</span>
@@ -379,8 +379,8 @@ const Completed: FC<ICompletedProps> = ({
 
   return (
     <>
-      <div className={s.docSearchWrapper}>
-        <div className={s.totalText}>{total ? formatNumber(total) : '--'} {t('datasetDocuments.segment.paragraphs')}</div>
+      <div className={'sticky w-full py-1 -top-3 flex items-center mb-3 justify-between z-10 flex-wrap gap-y-1'}>
+        <div className={'text-tgai-text-1 font-medium text-base flex-1'}>{total ? formatNumber(total) : '--'} {t('datasetDocuments.segment.paragraphs')}</div>
         <SimpleSelect
           onSelect={onChangeStatus}
           items={[
@@ -389,7 +389,7 @@ const Completed: FC<ICompletedProps> = ({
             { value: 1, name: t('datasetDocuments.list.status.enabled') },
           ]}
           defaultValue={'all'}
-          className={s.select}
+          className={'!h-8 !py-0 text-tgai-text-1 bg-gray-50 hover:bg-gray-100 rounded-lg shadow-none dark:hover:bg-zinc-600 dark:bg-tgai-input-background'}
           wrapperClassName='h-fit w-[120px] mr-2' />
         <Input showPrefix wrapperClassName='!w-52' className='!h-8' onChange={debounce(setSearchValue, 500)} />
       </div>
@@ -404,7 +404,7 @@ const Completed: FC<ICompletedProps> = ({
         onClick={onClickCard}
         archived={archived}
       />
-      <Modal isShow={currSegment.showModal} onClose={() => { }} className='!max-w-[640px] !overflow-visible'>
+      <Modal isShow={currSegment.showModal} onClose={() => { }} className='!max-w-[640px] !overflow-visible bg-tgai-panel-background-3'>
         <SegmentDetail
           embeddingAvailable={embeddingAvailable}
           segInfo={currSegment.segInfo ?? { id: '' }}

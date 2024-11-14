@@ -5,13 +5,13 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import useSWR from 'swr'
 import { useContext } from 'use-context-selector'
-import I18n from '@/context/i18n'
+import I18n from '../context/i18n'
 import {
   fetchDataSourceNotionBinding,
   fetchFreeQuotaVerify,
-} from '@/service/common'
-import type { IConfirm } from '@/app/components/base/confirm'
-import Confirm from '@/app/components/base/confirm'
+} from '../service/common'
+import type { IConfirm } from '../app/components/base/confirm'
+import Confirm from '../app/components/base/confirm'
 
 export type ConfirmType = Pick<IConfirm, 'type' | 'title' | 'content'>
 

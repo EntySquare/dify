@@ -32,15 +32,15 @@ import { useValidate } from '../../key-validator/hooks'
 import { ValidatedStatus } from '../../key-validator/declarations'
 import { validateLoadBalancingCredentials } from '../utils'
 import Form from './Form'
-import Button from '@/app/components/base/button'
-import { Lock01 } from '@/app/components/base/icons/src/vender/solid/security'
-import { LinkExternal02 } from '@/app/components/base/icons/src/vender/line/general'
+import Button from '../../../../base/button'
+import { Lock01 } from '../../../../base/icons/src/vender/solid/security'
+import { LinkExternal02 } from '../../../../base/icons/src/vender/line/general'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
-} from '@/app/components/base/portal-to-follow-elem'
-import { useToastContext } from '@/app/components/base/toast'
-import Confirm from '@/app/components/base/confirm'
+} from '../../../../base/portal-to-follow-elem'
+import { useToastContext } from '../../../../base/toast'
+import Confirm from '../../../../base/confirm'
 
 type ModelModalProps = {
   provider: ModelProvider

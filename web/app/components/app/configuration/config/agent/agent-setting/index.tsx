@@ -4,12 +4,12 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import ItemPanel from './item-panel'
-import Button from '@/app/components/base/button'
-import { CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Unblur } from '@/app/components/base/icons/src/vender/solid/education'
-import Slider from '@/app/components/base/slider'
-import type { AgentConfig } from '@/models/debug'
-import { DEFAULT_AGENT_PROMPT } from '@/config'
+import Button from '../../../../../base/button'
+import { CuteRobote } from '../../../../../base/icons/src/vender/solid/communication'
+import { Unblur } from '../../../../../base/icons/src/vender/solid/education'
+import Slider from '../../../../../base/slider'
+import type { AgentConfig } from '../../../../../../../models/debug'
+import { DEFAULT_AGENT_PROMPT } from '../../../../../../../config'
 
 type Props = {
   isChatModel: boolean
@@ -58,7 +58,7 @@ const AgentSetting: FC<Props> = ({
           </div>
         </div>
         {/* Body */}
-        <div className='grow p-6 pt-5 border-b overflow-y-auto pb-[68px]' style={{
+        <div className='grow p-6 pt-5 border-b overflow-y-auto tgai-custom-scrollbar pb-[68px]' style={{
           borderBottom: 'rgba(0, 0, 0, 0.05)',
         }}>
           {/* Agent Mode */}
@@ -119,7 +119,7 @@ const AgentSetting: FC<Props> = ({
           {!isFunctionCall && (
             <div className='py-2 bg-gray-50 rounded-xl shadow-xs'>
               <div className='flex items-center h-8 px-4 leading-6 text-sm font-semibold text-gray-700'>{t('tools.builtInPromptTitle')}</div>
-              <div className='h-[396px] px-4 overflow-y-auto leading-5 text-sm font-normal text-gray-700 whitespace-pre-line'>
+              <div className='h-[396px] px-4 overflow-y-auto tgai-custom-scrollbar leading-5 text-sm font-normal text-gray-700 whitespace-pre-line'>
                 {isChatModel ? DEFAULT_AGENT_PROMPT.chat : DEFAULT_AGENT_PROMPT.completion}
               </div>
               <div className='px-4'>

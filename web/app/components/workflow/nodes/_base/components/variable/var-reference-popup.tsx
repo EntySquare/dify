@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import VarReferenceVars from './var-reference-vars'
-import type { NodeOutPutVar, ValueSelector, Var } from '@/app/components/workflow/types'
+import type { NodeOutPutVar, ValueSelector, Var } from '../../../../types'
 
 type Props = {
   vars: NodeOutPutVar[]
@@ -16,7 +16,7 @@ const VarReferencePopup: FC<Props> = ({
 }) => {
   // max-h-[300px] overflow-y-auto todo: use portal to handle long list
   return (
-    <div className='p-1 bg-white rounded-lg border border-gray-200 shadow-lg space-y-1' style={{
+    <div className='p-1 bg-tgai-panel-background rounded-lg border border-gray-200 dark:border-stone-600 shadow-lg dark:shadow-stone-800 space-y-1' style={{
       width: itemWidth || 228,
     }}>
       <VarReferenceVars

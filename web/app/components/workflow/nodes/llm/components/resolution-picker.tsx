@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import OptionCard from '@/app/components/workflow/nodes/_base/components/option-card'
-import { Resolution } from '@/types/app'
+import OptionCard from '../../_base/components/option-card'
+import { Resolution } from '../../../../../../types/app'
 
 const i18nPrefix = 'workflow.nodes.llm'
 
@@ -25,7 +25,7 @@ const ResolutionPicker: FC<Props> = ({
   }, [onChange])
   return (
     <div className='flex items-center justify-between'>
-      <div className='mr-2 text-xs font-medium text-gray-500 uppercase'>{t(`${i18nPrefix}.resolution.name`)}</div>
+      <div className='mr-2 text-xs font-medium text-tgai-text-3 uppercase'>{t(`${i18nPrefix}.resolution.name`)}</div>
       <div className='flex items-center space-x-1'>
         <OptionCard
           title={t(`${i18nPrefix}.resolution.high`)}

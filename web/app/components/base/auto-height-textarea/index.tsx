@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useRef } from 'react'
-import cn from '@/utils/classnames'
-import { sleep } from '@/utils'
+import cn from '../../../../utils/classnames'
+import { sleep } from '../../../../utils'
 
 type IProps = {
   placeholder?: string
@@ -54,7 +54,7 @@ const AutoHeightTextarea = forwardRef(
 
     return (
       <div className={`relative ${wrapperClassName}`}>
-        <div className={cn(className, 'invisible whitespace-pre-wrap break-all  overflow-y-auto')} style={{
+        <div className={cn(className, 'invisible whitespace-pre-wrap break-all overflow-y-auto tgai-custom-scrollbar')} style={{
           minHeight,
           maxHeight,
           paddingRight: (value && value.trim().length > 10000) ? 140 : 130,
@@ -64,7 +64,7 @@ const AutoHeightTextarea = forwardRef(
         <textarea
           ref={ref}
           autoFocus={autoFocus}
-          className={cn(className, 'absolute inset-0 resize-none overflow-auto')}
+          className={cn(className, 'absolute inset-0 resize-none overflow-auto text-tgai-text-1 caret-tgai-primary bg-tgai-input-background hover:bg-zinc-600 focus:bg-zinc-600')}
           style={{
             paddingRight: (value && value.trim().length > 10000) ? 140 : 130,
           }}

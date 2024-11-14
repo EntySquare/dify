@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { v4 as uuid4 } from 'uuid'
 import { RiCloseLine, RiQuestionLine } from '@remixicon/react'
 import { useContext } from 'use-context-selector'
-import Button from '@/app/components/base/button'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { ToastContext } from '@/app/components/base/toast'
-import { useStore } from '@/app/components/workflow/store'
-import type { EnvironmentVariable } from '@/app/components/workflow/types'
-import cn from '@/utils/classnames'
+import Button from '../../../base/button'
+import TooltipPlus from '../../../base/tooltip-plus'
+import { ToastContext } from '../../../base/toast'
+import { useStore } from '../../store'
+import type { EnvironmentVariable } from '../../types'
+import cn from '../../../../../utils/classnames'
 
 export type ModalPropsType = {
   env?: EnvironmentVariable
@@ -73,7 +73,7 @@ const VariableModal = ({
             className='flex items-center justify-center w-6 h-6 cursor-pointer'
             onClick={onClose}
           >
-            <RiCloseLine className='w-4 h-4 text-text-tertiary' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       </div>
@@ -84,11 +84,13 @@ const VariableModal = ({
           <div className='flex gap-2'>
             <div className={cn(
               'w-[106px] flex items-center justify-center p-2 radius-md bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary system-sm-regular cursor-pointer hover:shadow-xs hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
-              type === 'string' && 'text-text-primary system-sm-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border hover:border-components-option-card-option-selected-border',
+              type === 'string' && 'text-text-primary system-sm-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg' &&
+              'border-tgai-primary hover:border-tgai-primary',
             )} onClick={() => setType('string')}>String</div>
             <div className={cn(
               'w-[106px] flex items-center justify-center p-2 radius-md bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary system-sm-regular cursor-pointer hover:shadow-xs hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
-              type === 'number' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border hover:border-components-option-card-option-selected-border',
+              type === 'number' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg' && 
+              'border-tgai-primary hover:border-tgai-primary',
             )} onClick={() => {
               setType('number')
               if (!(/^[0-9]$/).test(value))
@@ -96,7 +98,8 @@ const VariableModal = ({
             }}>Number</div>
             <div className={cn(
               'w-[106px] flex items-center justify-center p-2 radius-md bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary system-sm-regular cursor-pointer hover:shadow-xs hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
-              type === 'secret' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border hover:border-components-option-card-option-selected-border',
+              type === 'secret' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg' && 
+              'border-tgai-primary hover:border-tgai-primary',
             )} onClick={() => setType('secret')}>
               <span>Secret</span>
               <TooltipPlus popupContent={
@@ -104,7 +107,7 @@ const VariableModal = ({
                   {t('workflow.env.modal.secretTip')}
                 </div>
               }>
-                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-text-quaternary' />
+                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
               </TooltipPlus>
             </div>
           </div>
@@ -115,7 +118,7 @@ const VariableModal = ({
           <div className='flex'>
             <input
               tabIndex={0}
-              className='block px-3 w-full h-8 bg-components-input-bg-normal system-sm-regular radius-md border border-transparent appearance-none outline-none caret-primary-600 hover:border-components-input-border-hover hover:bg-components-input-bg-hover focus:bg-components-input-bg-active focus:border-components-input-border-active focus:shadow-xs placeholder:system-sm-regular placeholder:text-components-input-text-placeholder'
+              className='block px-3 w-full h-8 bg-components-input-bg-normal text-tgai-text-1 system-sm-regular radius-md border border-transparent appearance-none outline-none caret-primary-600 hover:border-components-input-border-hover hover:bg-components-input-bg-hover focus:bg-components-input-bg-active focus:border-components-input-border-active focus:shadow-xs placeholder:system-sm-regular placeholder:text-components-input-text-placeholder'
               placeholder={t('workflow.env.modal.namePlaceholder') || ''}
               value={name}
               onChange={e => handleNameChange(e.target.value)}
@@ -129,7 +132,7 @@ const VariableModal = ({
           <div className='flex'>
             <input
               tabIndex={0}
-              className='block px-3 w-full h-8 bg-components-input-bg-normal system-sm-regular radius-md border border-transparent appearance-none outline-none caret-primary-600 hover:border-components-input-border-hover hover:bg-components-input-bg-hover focus:bg-components-input-bg-active focus:border-components-input-border-active focus:shadow-xs placeholder:system-sm-regular placeholder:text-components-input-text-placeholder'
+              className='block px-3 w-full h-8 bg-components-input-bg-normal text-tgai-text-1 system-sm-regular radius-md border border-transparent appearance-none outline-none caret-primary-600 hover:border-components-input-border-hover hover:bg-components-input-bg-hover focus:bg-components-input-bg-active focus:border-components-input-border-active focus:shadow-xs placeholder:system-sm-regular placeholder:text-components-input-text-placeholder'
               placeholder={t('workflow.env.modal.valuePlaceholder') || ''}
               value={value}
               onChange={e => setValue(e.target.value)}

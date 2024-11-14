@@ -7,9 +7,9 @@ import { RiCloseLine } from '@remixicon/react'
 import { Plan } from '../type'
 import SelectPlanRange, { PlanRange } from './select-plan-range'
 import PlanItem from './plan-item'
-import { useProviderContext } from '@/context/provider-context'
-import GridMask from '@/app/components/base/grid-mask'
-import { useAppContext } from '@/context/app-context'
+import { useProviderContext } from '../../../../context/provider-context'
+import GridMask from '../../base/grid-mask'
+import { useAppContext } from '../../../../context/app-context'
 
 type Props = {
   onCancel: () => void

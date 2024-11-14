@@ -3,18 +3,18 @@ import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
 import { v4 as uuid4 } from 'uuid'
 import { RiCloseLine, RiDraftLine, RiInputField } from '@remixicon/react'
-import VariableTypeSelector from '@/app/components/workflow/panel/chat-variable-panel/components/variable-type-select'
-import ObjectValueList from '@/app/components/workflow/panel/chat-variable-panel/components/object-value-list'
-import { DEFAULT_OBJECT_VALUE } from '@/app/components/workflow/panel/chat-variable-panel/components/object-value-item'
-import ArrayValueList from '@/app/components/workflow/panel/chat-variable-panel/components/array-value-list'
-import Button from '@/app/components/base/button'
-import CodeEditor from '@/app/components/workflow/nodes/_base/components/editor/code-editor'
-import { ToastContext } from '@/app/components/base/toast'
-import { useStore } from '@/app/components/workflow/store'
-import type { ConversationVariable } from '@/app/components/workflow/types'
-import { CodeLanguage } from '@/app/components/workflow/nodes/code/types'
-import { ChatVarType } from '@/app/components/workflow/panel/chat-variable-panel/type'
-import cn from '@/utils/classnames'
+import VariableTypeSelector from './variable-type-select'
+import ObjectValueList from './object-value-list'
+import { DEFAULT_OBJECT_VALUE } from './object-value-item'
+import ArrayValueList from './array-value-list'
+import Button from '../../../../base/button'
+import CodeEditor from '../../../nodes/_base/components/editor/code-editor'
+import { ToastContext } from '../../../../base/toast'
+import { useStore } from '../../../store'
+import type { ConversationVariable } from '../../../types'
+import { CodeLanguage } from '../../../nodes/code/types'
+import { ChatVarType } from '../type'
+import cn from '../../../../../../utils/classnames'
 
 export type ModalPropsType = {
   chatVar?: ConversationVariable
@@ -262,7 +262,7 @@ const ChatVariableModal = ({
           </div>
         </div>
       </div>
-      <div className='px-4 py-2 max-h-[480px] overflow-y-auto'>
+      <div className='px-4 py-2 max-h-[480px] overflow-y-auto tgai-custom-scrollbar'>
         {/* name */}
         <div className='mb-4'>
           <div className='mb-1 h-6 flex items-center text-text-secondary system-sm-semibold'>{t('workflow.chatVariable.modal.name')}</div>

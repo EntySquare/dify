@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 
 type Option = {
   value: string
@@ -25,8 +25,8 @@ const TabSliderNew: FC<TabSliderProps> = ({
           key={option.value}
           onClick={() => onChange(option.value)}
           className={cn(
-            'mr-1 px-3 py-[7px] h-[32px] flex items-center rounded-lg border-[0.5px] border-transparent text-gray-700 text-[13px] font-medium leading-[18px] cursor-pointer hover:bg-gray-200',
-            value === option.value && 'bg-white border-gray-200 shadow-xs text-primary-600 hover:bg-white',
+            'mr-1 px-3 py-[7px] h-[32px] flex items-center rounded-lg border-[0.5px] border-transparent text-tgai-text-2 text-[13px] font-medium leading-[18px] cursor-pointer hover:bg-gray-200 dark:hover:bg-zinc-800',
+            value === option.value && 'bg-white dark:bg-zinc-600 border-gray-200 dark:border-zinc-600 shadow-xs text-tgai-primary hover:bg-white dark:hover:bg-zinc-600',
           )}
         >
           {option.icon}

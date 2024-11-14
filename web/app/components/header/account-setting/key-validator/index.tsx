@@ -3,8 +3,8 @@ import Operate from './Operate'
 import KeyInput from './KeyInput'
 import { useValidate } from './hooks'
 import type { Form, KeyFrom, Status, ValidateValue } from './declarations'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
-import { LinkExternal02 } from '@/app/components/base/icons/src/vender/line/general'
+import { useEventEmitterContextContext } from '../../../../../context/event-emitter'
+import { LinkExternal02 } from '../../../base/icons/src/vender/line/general'
 
 export type KeyValidatorProps = {
   type: string

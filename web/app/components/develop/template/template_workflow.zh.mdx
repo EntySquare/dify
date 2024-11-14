@@ -1,9 +1,10 @@
 import { CodeGroup } from '../code.tsx'
 import { Row, Col, Properties, Property, Heading, SubProperty, Paragraph } from '../md.tsx'
 
-# Workflow 应用 API
+{/* Arrangement -> Workflow; arrangement -> workflow */}
+# Arrangement 应用 API
 
-Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等等。
+Arrangement 应用无会话支持，适合用于翻译/文章写作/总结 AI 等等。
 
 <div>
   ### Base URL
@@ -14,7 +15,7 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
 
   ### Authentication
 
-  Dify Service API 使用 `API-Key` 进行鉴权。
+   Service API 使用 `API-Key` 进行鉴权。
   <i>**强烈建议开发者把 `API-Key` 放在后端存储，而非分享或者放在客户端存储，以免 `API-Key` 泄露，导致财产损失。**</i>
   所有 API 请求都应在 **`Authorization`** HTTP Header 中包含您的 `API-Key`，如下所示：
 
@@ -31,12 +32,12 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
 <Heading
   url='/workflows/run'
   method='POST'
-  title='执行 workflow'
-  name='#Execute-Workflow'
+  title='执行 arrangement'
+  name='#Execute-Arrangement'
 />
 <Row>
   <Col>
-    执行 workflow，没有已发布的 workflow，不可执行。
+    执行 arrangement，没有已发布的 arrangement，不可执行。
 
     ### Request Body
       - `inputs` (object) Required
@@ -63,11 +64,11 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
 
     ### CompletionResponse
     返回完整的 App 结果，`Content-Type` 为 `application/json` 。
-    - `workflow_run_id` (string) workflow 执行 ID
+    - `workflow_run_id` (string) arrangement 执行 ID
     - `task_id` (string) 任务 ID，用于请求跟踪和下方的停止响应接口
     - `data` (object) 详细内容
-      - `id` (string) workflow 执行 ID
-      - `workflow_id` (string) 关联 Workflow ID
+      - `id` (string) arrangement 执行 ID
+      - `workflow_id` (string) 关联 Arrangement ID
       - `status` (string) 执行状态, `running` / `succeeded` / `failed` / `stopped`
       - `outputs` (json) Optional 输出内容
       - `error` (string) Optional 错误原因
@@ -86,21 +87,21 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
     ```
     </CodeGroup>
     流式块中根据 `event` 不同，结构也不同，包含以下类型：
-    - `event: workflow_started` workflow 开始执行
+    - `event: workflow_started` arrangement 开始执行
       - `task_id` (string) 任务 ID，用于请求跟踪和下方的停止响应接口
-      - `workflow_run_id` (string) workflow 执行 ID
+      - `workflow_run_id` (string) arrangement 执行 ID
       - `event` (string) 固定为 `workflow_started`
       - `data` (object) 详细内容
-        - `id` (string) workflow 执行 ID
-        - `workflow_id` (string) 关联 Workflow ID
+        - `id` (string) arrangement 执行 ID
+        - `workflow_id` (string) 关联 Arrangement ID
         - `sequence_number` (int) 自增序号，App 内自增，从 1 开始
         - `created_at` (timestamp) 开始时间
     - `event: node_started` node 开始执行
       - `task_id` (string) 任务 ID，用于请求跟踪和下方的停止响应接口
-      - `workflow_run_id` (string) workflow 执行 ID
+      - `workflow_run_id` (string) arrangement 执行 ID
       - `event` (string) 固定为 `node_started`
       - `data` (object) 详细内容
-        - `id` (string) workflow 执行 ID
+        - `id` (string) arrangement 执行 ID
         - `node_id` (string) 节点 ID
         - `node_type` (string) 节点类型
         - `title` (string) 节点名称
@@ -110,7 +111,7 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
         - `created_at` (timestamp) 开始时间
     - `event: node_finished` node 执行结束，成功失败同一事件中不同状态
       - `task_id` (string) 任务 ID，用于请求跟踪和下方的停止响应接口
-      - `workflow_run_id` (string) workflow 执行 ID
+      - `workflow_run_id` (string) arrangement 执行 ID
       - `event` (string) 固定为 `node_finished`
       - `data` (object) 详细内容
         - `id` (string) node 执行 ID
@@ -128,13 +129,13 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
           - `total_price` (decimal) optional 总费用
           - `currency` (string) optional 货币，如 `USD` / `RMB`
         - `created_at` (timestamp) 开始时间
-    - `event: workflow_finished` workflow 执行结束，成功失败同一事件中不同状态
+    - `event: workflow_finished` arrangement 执行结束，成功失败同一事件中不同状态
       - `task_id` (string) 任务 ID，用于请求跟踪和下方的停止响应接口
-      - `workflow_run_id` (string) workflow 执行 ID
+      - `workflow_run_id` (string) arrangement 执行 ID
       - `event` (string) 固定为 `workflow_finished`
       - `data` (object) 详细内容
-        - `id` (string) workflow 执行 ID
-        - `workflow_id` (string) 关联 Workflow ID
+        - `id` (string) arrangement 执行 ID
+        - `workflow_id` (string) 关联 Arrangement ID
         - `status` (string)  执行状态 `running` / `succeeded` / `failed` / `stopped`
         - `outputs` (json) Optional 输出内容
         - `error` (string) Optional 错误原因
@@ -161,7 +162,7 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
     - 400，`provider_not_initialize`，无可用模型凭据配置
     - 400，`provider_quota_exceeded`，模型调用额度不足
     - 400，`model_currently_not_support`，当前模型不可用
-    - 400，`workflow_request_error`，workflow 执行失败
+    - 400，`workflow_request_error`，arrangement 执行失败
     - 500，服务内部异常
 
   </Col>
@@ -223,17 +224,17 @@ Workflow 应用无会话支持，适合用于翻译/文章写作/总结 AI 等�
 <Heading
   url='/workflows/run/:workflow_id'
   method='GET'
-  title='获取workflow执行情况'
-  name='#get-workflow-run-detail'
+  title='获取arrangement执行情况'
+  name='#get-arrangement-run-detail'
 />
 <Row>
   <Col>
-    根据 workflow 执行 ID 获取 workflow 任务当前执行结果
+    根据 arrangement 执行 ID 获取 arrangement 任务当前执行结果
     ### Path
-    - `workflow_id` (string) workflow 执行 ID，可在流式返回 Chunk 中获取
+    - `workflow_id` (string) arrangement 执行 ID，可在流式返回 Chunk 中获取
     ### Response
-    - `id` (string) workflow 执行 ID
-    - `workflow_id` (string) 关联的 Workflow ID
+    - `id` (string) arrangement 执行 ID
+    - `workflow_id` (string) 关联的 Arrangement ID
     - `status` (string) 执行状态 `running` / `succeeded` / `failed` / `stopped`
     - `inputs` (json) 任务输入内容
     - `outputs` (json) 任务输出内容

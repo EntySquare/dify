@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import { BookOpen01 } from '@/app/components/base/icons/src/vender/line/education'
+import { Settings01 } from '../../../../base/icons/src/vender/line/general'
+import { BookOpen01 } from '../../../../base/icons/src/vender/line/education'
 
 const I18N_PREFIX = 'datasetCreation.stepOne.website'
 

@@ -7,13 +7,13 @@ import type { Var } from '../../types'
 import { useStore } from '../../store'
 import type { CodeDependency, CodeNodeType, OutputVar } from './types'
 import { CodeLanguage } from './types'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
-import { fetchNodeDefault } from '@/service/workflow'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import useOneStepRun from '../_base/hooks/use-one-step-run'
+import { fetchNodeDefault } from '../../../../../service/workflow'
+import { useStore as useAppStore } from '../../../app/store'
 import {
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: CodeNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

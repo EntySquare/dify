@@ -21,11 +21,11 @@ import type {
   ProviderAzureToken,
   SetupStatusResponse,
   UserProfileOriginResponse,
-} from '@/models/common'
+} from '../models/common'
 import type {
   UpdateOpenAIKeyResponse,
   ValidateOpenAIKeyResponse,
-} from '@/models/app'
+} from '../models/app'
 import type {
   DefaultModelResponse,
   Model,
@@ -34,9 +34,9 @@ import type {
   ModelParameterRule,
   ModelProvider,
   ModelTypeEnum,
-} from '@/app/components/header/account-setting/model-provider-page/declarations'
-import type { RETRIEVE_METHOD } from '@/types/app'
-import type { SystemFeatures } from '@/types/feature'
+} from '../app/components/header/account-setting/model-provider-page/declarations'
+import type { RETRIEVE_METHOD } from '../types/app'
+import type { SystemFeatures } from '../types/feature'
 
 export const login: Fetcher<CommonResponse & { data: string }, { url: string; body: Record<string, any> }> = ({ url, body }) => {
   return post(url, { body }) as Promise<CommonResponse & { data: string }>

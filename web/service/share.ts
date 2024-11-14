@@ -3,15 +3,15 @@ import {
   del as consoleDel, get as consoleGet, patch as consolePatch, post as consolePost,
   delPublic as del, getPublic as get, patchPublic as patch, postPublic as post, ssePost,
 } from './base'
-import type { Feedbacktype } from '@/app/components/base/chat/chat/type'
+import type { Feedbacktype } from '../app/components/base/chat/chat/type'
 import type {
   AppConversationData,
   AppData,
   AppMeta,
   ConversationItem,
-} from '@/models/share'
-import type { ChatConfig } from '@/app/components/base/chat/types'
-import type { SystemFeatures } from '@/types/feature'
+} from '../models/share'
+import type { ChatConfig } from '../app/components/base/chat/types'
+import type { SystemFeatures } from '../types/feature'
 
 function getAction(action: 'get' | 'post' | 'del' | 'patch', isInstalledApp: boolean) {
   switch (action) {

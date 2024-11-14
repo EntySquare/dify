@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { Github } from '@/app/components/base/icons/src/public/common'
-import type { GithubRepo } from '@/models/common'
+import { Github } from '../../base/icons/src/public/common'
+import type { GithubRepo } from '../../../../models/common'
 
 const getStar = async () => {
   const res = await fetch('https://api.github.com/repos/langgenius/dify')

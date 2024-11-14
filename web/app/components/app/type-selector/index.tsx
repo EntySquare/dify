@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import React, { useState } from 'react'
 import { RiArrowDownSLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import { Check, DotsGrid } from '@/app/components/base/icons/src/vender/line/general'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import { ChatBot, CuteRobote } from '@/app/components/base/icons/src/vender/solid/communication'
-import { Route } from '@/app/components/base/icons/src/vender/solid/mapsAndTravel'
+} from '../../base/portal-to-follow-elem'
+import { Check, DotsGrid } from '../../base/icons/src/vender/line/general'
+import { XCircle } from '../../base/icons/src/vender/solid/general'
+import { ChatBot, CuteRobote } from '../../base/icons/src/vender/solid/communication'
+import { Route } from '../../base/icons/src/vender/solid/mapsAndTravel'
 export type AppSelectorProps = {
   value: string
   onChange: (value: string) => void

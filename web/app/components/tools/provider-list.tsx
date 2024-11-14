@@ -3,20 +3,22 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import type { Collection } from './types'
-import cn from '@/utils/classnames'
-import { useTabSearchParams } from '@/hooks/use-tab-searchparams'
-import TabSliderNew from '@/app/components/base/tab-slider-new'
-import LabelFilter from '@/app/components/tools/labels/filter'
-import SearchInput from '@/app/components/base/search-input'
-import { DotsGrid } from '@/app/components/base/icons/src/vender/line/general'
-import { Colors } from '@/app/components/base/icons/src/vender/line/others'
-import { Route } from '@/app/components/base/icons/src/vender/line/mapsAndTravel'
-import CustomCreateCard from '@/app/components/tools/provider/custom-create-card'
-import ContributeCard from '@/app/components/tools/provider/contribute'
-import ProviderCard from '@/app/components/tools/provider/card'
-import ProviderDetail from '@/app/components/tools/provider/detail'
-import Empty from '@/app/components/tools/add-tool-modal/empty'
-import { fetchCollectionList } from '@/service/tools'
+import cn from '../../../utils/classnames'
+import { useTabSearchParams } from '../../../hooks/use-tab-searchparams'
+import TabSliderNew from '../base/tab-slider-new'
+import LabelFilter from './labels/filter'
+import SearchInput from '../base/search-input'
+import { DotsGrid } from '../base/icons/src/vender/line/general'
+import { Colors } from '../base/icons/src/vender/line/others'
+import { Route } from '../base/icons/src/vender/line/mapsAndTravel'
+import CustomCreateCard from './provider/custom-create-card'
+import ContributeCard from './provider/contribute'
+import ProviderCard from './provider/card'
+import ProviderDetail from './provider/detail'
+import Empty from './add-tool-modal/empty'
+import { fetchCollectionList } from '../../../service/tools'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const ProviderList = () => {
   const { t } = useTranslation()
@@ -27,7 +29,8 @@ const ProviderList = () => {
   const options = [
     { value: 'builtin', text: t('tools.type.builtIn'), icon: <DotsGrid className='w-[14px] h-[14px] mr-1' /> },
     { value: 'api', text: t('tools.type.custom'), icon: <Colors className='w-[14px] h-[14px] mr-1' /> },
-    { value: 'workflow', text: t('tools.type.workflow'), icon: <Route className='w-[14px] h-[14px] mr-1' /> },
+    // { value: 'workflow', text: t('tools.type.workflow'), icon: <Route className='w-[14px] h-[14px] mr-1' /> },
+    { value: 'workflow', text: '任务', icon: <Route className='w-[14px] h-[14px] mr-1' /> },
   ]
   const [tagFilterValue, setTagFilterValue] = useState<string[]>([])
   const handleTagsChange = (value: string[]) => {
@@ -66,11 +69,13 @@ const ProviderList = () => {
     }
   }, [collectionList, currentProvider])
 
+  const theme = useTGAIGlobalStore(state => state.theme)
+
   return (
-    <div className='relative flex overflow-hidden bg-gray-100 shrink-0 h-0 grow'>
-      <div className='relative flex flex-col overflow-y-auto bg-gray-100 grow'>
+    <div className='relative flex overflow-hidden bg-tgai-section-background shrink-0 h-0 grow'>
+      <div className='relative flex flex-col overflow-y-auto bg-tgai-section-background grow tgai-custom-scrollbar'>
         <div className={cn(
-          'sticky top-0 flex justify-between items-center pt-4 px-12 pb-2 leading-[56px] bg-gray-100 z-20 flex-wrap gap-y-2',
+          'sticky top-0 flex justify-between items-center pt-4 px-12 pb-2 leading-[56px] bg-tgai-section-background z-20 flex-wrap gap-y-2',
           currentProvider && 'pr-6',
         )}>
           <TabSliderNew
@@ -84,7 +89,7 @@ const ProviderList = () => {
           />
           <div className='flex items-center gap-2'>
             <LabelFilter value={tagFilterValue} onChange={handleTagsChange} />
-            <SearchInput className='w-[200px]' value={keywords} onChange={handleKeywordsChange} />
+            <SearchInput white={theme === Theme.light} dark={theme === Theme.dark} className='w-[200px]' value={keywords} onChange={handleKeywordsChange} />
           </div>
         </div>
         <div className={cn(
@@ -105,12 +110,12 @@ const ProviderList = () => {
         </div>
       </div>
       <div className={cn(
-        'shrink-0 w-0 border-l-[0.5px] border-black/8 overflow-y-auto transition-all duration-200 ease-in-out',
+        'shrink-0 w-0 border-l-[0.5px] border-black/8 dark:border-stone-600/[92] overflow-y-auto transition-all duration-200 ease-in-out tgai-custom-scrollbar',
         currentProvider && 'w-[420px]',
       )}>
         {currentProvider && <ProviderDetail collection={currentProvider} onRefreshData={getProviderList} />}
       </div>
-      <div className='absolute top-5 right-5 p-1 cursor-pointer' onClick={() => setCurrentProvider(undefined)}><RiCloseLine className='w-4 h-4' /></div>
+      <div className='absolute top-5 right-5 p-1 cursor-pointer' onClick={() => setCurrentProvider(undefined)}><RiCloseLine className='w-4 h-4 text-tgai-text-2' /></div>
     </div>
   )
 }

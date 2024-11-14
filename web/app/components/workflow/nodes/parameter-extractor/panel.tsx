@@ -14,14 +14,14 @@ import ExtractParameter from './components/extract-parameter/list'
 import ImportFromTool from './components/extract-parameter/import-from-tool'
 import AddExtractParameter from './components/extract-parameter/update'
 import ReasoningModePicker from './components/reasoning-mode-picker'
-import Field from '@/app/components/workflow/nodes/_base/components/field'
-import Split from '@/app/components/workflow/nodes/_base/components/split'
-import ModelParameterModal from '@/app/components/header/account-setting/model-provider-page/model-parameter-modal'
-import OutputVars, { VarItem } from '@/app/components/workflow/nodes/_base/components/output-vars'
-import { InputVarType, type NodePanelProps } from '@/app/components/workflow/types'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import BeforeRunForm from '@/app/components/workflow/nodes/_base/components/before-run-form'
-import { VarType } from '@/app/components/workflow/types'
+import Field from '../_base/components/field'
+import Split from '../_base/components/split'
+import ModelParameterModal from '../../../header/account-setting/model-provider-page/model-parameter-modal'
+import OutputVars, { VarItem } from '../_base/components/output-vars'
+import { InputVarType, type NodePanelProps } from '../../types'
+import TooltipPlus from '../../../base/tooltip-plus'
+import BeforeRunForm from '../_base/components/before-run-form'
+import { VarType } from '../../types'
 
 const i18nPrefix = 'workflow.nodes.parameterExtractor'
 const i18nCommonPrefix = 'workflow.common'
@@ -109,7 +109,7 @@ const Panel: FC<NodePanelProps<ParameterExtractorNodeType>> = ({
                   {!readOnly && (
                     <ImportFromTool onImport={handleImportFromTool} />
                   )}
-                  {!readOnly && (<div className='w-px h-3 bg-gray-200'></div>)}
+                  {!readOnly && (<div className='w-px h-3 bg-gray-200 dark:bg-zinc-600'></div>)}
                   <AddExtractParameter type='add' onSave={addExtractParameter} />
                 </div>
               )
@@ -130,7 +130,7 @@ const Panel: FC<NodePanelProps<ParameterExtractorNodeType>> = ({
                 <div className='w-[120px]'>
                   {t(`${i18nPrefix}.instructionTip`)}
                 </div>}>
-                <RiQuestionLine className='w-3.5 h-3.5 ml-0.5 text-gray-400' />
+                <RiQuestionLine className='w-3.5 h-3.5 ml-0.5 text-tgai-text-3' />
               </TooltipPlus>
             </div>
           }

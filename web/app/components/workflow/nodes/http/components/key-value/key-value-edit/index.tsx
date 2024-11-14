@@ -55,9 +55,9 @@ const KeyValueList: FC<Props> = ({
     return null
 
   return (
-    <div className='border border-gray-200 rounded-lg overflow-hidden'>
-      <div className='flex items-center h-7 leading-7 text-xs font-medium text-gray-500 uppercase'>
-        <div className='w-1/2 h-full pl-3 border-r border-gray-200'>{t(`${i18nPrefix}.key`)}</div>
+    <div className='border border-gray-200 dark:border-stone-600 rounded-lg overflow-hidden'>
+      <div className='flex items-center h-7 leading-7 text-xs font-medium text-tgai-text-3 uppercase'>
+        <div className='w-1/2 h-full pl-3 border-r border-gray-200 dark:border-stone-600'>{t(`${i18nPrefix}.key`)}</div>
         <div className='flex w-1/2 h-full pl-3 pr-1 items-center justify-between'>
           <div>{t(`${i18nPrefix}.value`)}</div>
           {/* {!readonly && (

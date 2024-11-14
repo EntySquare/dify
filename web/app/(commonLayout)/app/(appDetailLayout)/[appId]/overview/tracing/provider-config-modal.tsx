@@ -10,13 +10,13 @@ import { docURL } from './config'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
-} from '@/app/components/base/portal-to-follow-elem'
-import { Lock01 } from '@/app/components/base/icons/src/vender/solid/security'
-import Button from '@/app/components/base/button'
-import { LinkExternal02 } from '@/app/components/base/icons/src/vender/line/general'
-import Confirm from '@/app/components/base/confirm'
-import { addTracingConfig, removeTracingConfig, updateTracingConfig } from '@/service/apps'
-import Toast from '@/app/components/base/toast'
+} from '../../../../../../components/base/portal-to-follow-elem'
+import { Lock01 } from '../../../../../../components/base/icons/src/vender/solid/security'
+import Button from '../../../../../../components/base/button'
+import { LinkExternal02 } from '../../../../../../components/base/icons/src/vender/line/general'
+import Confirm from '../../../../../../components/base/confirm'
+import { addTracingConfig, removeTracingConfig, updateTracingConfig } from '../../../../../../../service/apps'
+import Toast from '../../../../../../components/base/toast'
 
 type Props = {
   appId: string
@@ -153,10 +153,10 @@ const ProviderConfigModal: FC<Props> = ({
           <PortalToFollowElem open>
             <PortalToFollowElemContent className='w-full h-full z-[60]'>
               <div className='fixed inset-0 flex items-center justify-center bg-black/[.25]'>
-                <div className='mx-2 w-[640px] max-h-[calc(100vh-120px)] bg-white shadow-xl rounded-2xl overflow-y-auto'>
+                <div className='mx-2 w-[640px] max-h-[calc(100vh-120px)] bg-white dark:bg-tgai-panel-background shadow-xl dark:shadow-stone-800 rounded-2xl overflow-y-auto tgai-custom-scrollbar'>
                   <div className='px-8 pt-8'>
                     <div className='flex justify-between items-center mb-4'>
-                      <div className='text-xl font-semibold text-gray-900'>{t(`${I18N_PREFIX}.title`)}{t(`app.tracing.${type}.title`)}</div>
+                      <div className='text-xl font-semibold text-tgai-text-1'>{t(`${I18N_PREFIX}.title`)}{t(`app.tracing.${type}.title`)}</div>
                     </div>
 
                     <div className='space-y-4'>
@@ -219,7 +219,7 @@ const ProviderConfigModal: FC<Props> = ({
                     </div>
                     <div className='my-8 flex justify-between items-center h-8'>
                       <a
-                        className='flex items-center space-x-1 leading-[18px] text-xs font-normal text-[#155EEF]'
+                        className='flex items-center space-x-1 leading-[18px] text-xs font-normal text-[#155EEF] dark:text-tgai-primary'
                         target='_blank'
                         href={docURL[type]}
                       >
@@ -230,16 +230,16 @@ const ProviderConfigModal: FC<Props> = ({
                         {isEdit && (
                           <>
                             <Button
-                              className='h-9 text-sm font-medium text-gray-700'
+                              className='h-9 text-sm font-medium text-tgai-text-2'
                               onClick={showRemoveConfirm}
                             >
                               <span className='text-[#D92D20]'>{t('common.operation.remove')}</span>
                             </Button>
-                            <div className='mx-3 w-px h-[18px] bg-gray-200'></div>
+                            <div className='mx-3 w-px h-[18px] bg-gray-200 dark:bg-tgai-panel-background-4'></div>
                           </>
                         )}
                         <Button
-                          className='mr-2 h-9 text-sm font-medium text-gray-700'
+                          className='mr-2 h-9 text-sm font-medium text-tgai-text-2'
                           onClick={onCancel}
                         >
                           {t('common.operation.cancel')}
@@ -256,12 +256,12 @@ const ProviderConfigModal: FC<Props> = ({
 
                     </div>
                   </div>
-                  <div className='border-t-[0.5px] border-t-black/5'>
-                    <div className='flex justify-center items-center py-3 bg-gray-50 text-xs text-gray-500'>
-                      <Lock01 className='mr-1 w-3 h-3 text-gray-500' />
+                  <div className='border-t-[0.5px] border-t-black/5 dark:border-t-stone-600/95'>
+                    <div className='flex justify-center items-center py-3 bg-gray-50 dark:bg-neutral-900 text-xs text-tgai-text-3'>
+                      <Lock01 className='mr-1 w-3 h-3 text-tgai-text-3' />
                       {t('common.modelProvider.encrypted.front')}
                       <a
-                        className='text-primary-600 mx-1'
+                        className='text-primary-600 dark:text-tgai-primary mx-1'
                         target='_blank' rel='noopener noreferrer'
                         href='https://pycryptodome.readthedocs.io/en/latest/src/cipher/oaep.html'
                       >

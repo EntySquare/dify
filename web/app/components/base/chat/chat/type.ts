@@ -1,6 +1,6 @@
-import type { TypeWithI18N } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import type { Annotation, MessageRating } from '@/models/log'
-import type { VisionFile } from '@/types/app'
+import type { TypeWithI18N } from '../../../header/account-setting/model-provider-page/declarations'
+import type { Annotation, MessageRating } from '../../../../../models/log'
+import type { VisionFile } from '../../../../../types/app'
 
 export type MessageMore = {
   time: string

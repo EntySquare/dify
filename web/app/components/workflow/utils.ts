@@ -27,8 +27,10 @@ import type { QuestionClassifierNodeType } from './nodes/question-classifier/typ
 import type { IfElseNodeType } from './nodes/if-else/types'
 import { branchNameCorrect } from './nodes/if-else/utils'
 import type { ToolNodeType } from './nodes/tool/types'
-import { CollectionType } from '@/app/components/tools/types'
-import { toolParametersToFormSchemas } from '@/app/components/tools/utils/to-form-schema'
+import { CollectionType } from '../tools/types'
+import { toolParametersToFormSchemas } from '../tools/utils/to-form-schema'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const WHITE = 'WHITE'
 const GRAY = 'GRAY'
@@ -291,7 +293,7 @@ export const getNodesConnectedSourceOrTargetHandleIdsMap = (changes: ConnectedSo
   return nodesConnectedSourceOrTargetHandleIdsMap
 }
 
-export const generateNewNode = ({ data, position, id, zIndex, type, ...rest }: Omit<Node, 'id'> & { id?: string }) => {
+export const generateNewNode = ({ data, position, id, zIndex, type, ...rest }: Omit<Node, 'id'> & { id?: string}) => {
   return {
     id: id || `${Date.now()}`,
     type: type || CUSTOM_NODE,

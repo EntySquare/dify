@@ -11,28 +11,28 @@ import { useStoreApi } from 'reactflow'
 import VarReferencePopup from './var-reference-popup'
 import { getNodeInfoById, isConversationVar, isENV, isSystemVar } from './utils'
 import ConstantField from './constant-field'
-import cn from '@/utils/classnames'
-import type { Node, NodeOutPutVar, ValueSelector, Var } from '@/app/components/workflow/types'
-import type { CredentialFormSchema } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { BlockEnum } from '@/app/components/workflow/types'
-import { VarBlockIcon } from '@/app/components/workflow/block-icon'
-import { Line3 } from '@/app/components/base/icons/src/public/common'
-import { BubbleX, Env } from '@/app/components/base/icons/src/vender/line/others'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
+import cn from '../../../../../../../utils/classnames'
+import type { Node, NodeOutPutVar, ValueSelector, Var } from '../../../../types'
+import type { CredentialFormSchema } from '../../../../../header/account-setting/model-provider-page/declarations'
+import { BlockEnum } from '../../../../types'
+import { VarBlockIcon } from '../../../../block-icon'
+import { Line3 } from '../../../../../base/icons/src/public/common'
+import { BubbleX, Env } from '../../../../../base/icons/src/vender/line/others'
+import { Variable02 } from '../../../../../base/icons/src/vender/solid/development'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../../../../base/portal-to-follow-elem'
 import {
   useIsChatMode,
   useWorkflow,
   useWorkflowVariables,
-} from '@/app/components/workflow/hooks'
-import { VarType as VarKindType } from '@/app/components/workflow/nodes/tool/types'
-import TypeSelector from '@/app/components/workflow/nodes/_base/components/selector'
-import AddButton from '@/app/components/base/button/add-button'
-import Badge from '@/app/components/base/badge'
+} from '../../../../hooks'
+import { VarType as VarKindType } from '../../../tool/types'
+import TypeSelector from '../selector'
+import AddButton from '../../../../../base/button/add-button'
+import Badge from '../../../../../base/badge'
 const TRIGGER_DEFAULT_WIDTH = 227
 
 type Props = {
@@ -250,7 +250,7 @@ const VarReferencePicker: FC<Props> = ({
                 <AddButton onClick={() => { }}></AddButton>
               </div>
             )
-            : (<div ref={!isSupportConstantValue ? triggerRef : null} className={cn((open || isFocus) ? 'border-gray-300' : 'border-gray-100', 'relative group/wrap flex items-center w-full h-8', !isSupportConstantValue && 'p-1 rounded-lg bg-gray-100 border')}>
+            : (<div ref={!isSupportConstantValue ? triggerRef : null} className={cn((open || isFocus) ? 'border-gray-300 dark:border-stone-600' : 'border-gray-100 dark:border-tgai-input-background', 'relative group/wrap flex items-center w-full h-8', !isSupportConstantValue && 'p-1 rounded-lg bg-gray-100 dark:bg-tgai-input-background border')}>
               {isSupportConstantValue
                 ? <div onClick={(e) => {
                   e.stopPropagation()
@@ -274,7 +274,7 @@ const VarReferencePicker: FC<Props> = ({
                   />
                 </div>
                 : (!hasValue && <div className='ml-1.5 mr-1'>
-                  <Variable02 className='w-3.5 h-3.5 text-gray-400' />
+                  <Variable02 className='w-3.5 h-3.5 text-tgai-text-3' />
                 </div>)}
               {isConstant
                 ? (
@@ -294,8 +294,8 @@ const VarReferencePicker: FC<Props> = ({
                     }}
                     className='grow h-full'
                   >
-                    <div ref={isSupportConstantValue ? triggerRef : null} className={cn('h-full', isSupportConstantValue && 'flex items-center pl-1 py-1 rounded-lg bg-gray-100')}>
-                      <div className={cn('h-full items-center px-1.5 rounded-[5px]', hasValue ? 'bg-white inline-flex' : 'flex')}>
+                    <div ref={isSupportConstantValue ? triggerRef : null} className={cn('h-full', isSupportConstantValue && 'flex items-center pl-1 py-1 rounded-lg bg-gray-100 dark:bg-tgai-input-background')}>
+                      <div className={cn('h-full items-center px-1.5 rounded-[5px]', hasValue ? 'bg-white dark:bg-neutral-600 inline-flex' : 'flex')}>
                         {hasValue
                           ? (
                             <>
@@ -303,17 +303,17 @@ const VarReferencePicker: FC<Props> = ({
                                 <div className='flex items-center'>
                                   <div className='p-[1px]'>
                                     <VarBlockIcon
-                                      className='!text-gray-900'
+                                      className='!text-tgai-text-1'
                                       type={outputVarNode?.type || BlockEnum.Start}
                                     />
                                   </div>
-                                  <div className='mx-0.5 text-xs font-medium text-gray-700 truncate' title={outputVarNode?.title} style={{
+                                  <div className='mx-0.5 text-xs font-medium text-tgai-text-2 truncate' title={outputVarNode?.title} style={{
                                     maxWidth: maxNodeNameWidth,
                                   }}>{outputVarNode?.title}</div>
                                   <Line3 className='mr-0.5'></Line3>
                                 </div>
                               )}
-                              <div className='flex items-center text-primary-600'>
+                              <div className='flex items-center text-tgai-primary'>
                                 {!hasValue && <Variable02 className='w-3.5 h-3.5' />}
                                 {isEnv && <Env className='w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
                                 {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
@@ -321,12 +321,12 @@ const VarReferencePicker: FC<Props> = ({
                                   maxWidth: maxVarNameWidth,
                                 }}>{varName}</div>
                               </div>
-                              <div className='ml-0.5 text-xs font-normal text-gray-500 capitalize truncate' title={type} style={{
+                              <div className='ml-0.5 text-xs font-normal text-tgai-text-3 capitalize truncate' title={type} style={{
                                 maxWidth: maxTypeWidth,
                               }}>{type}</div>
                             </>
                           )
-                          : <div className='text-[13px] font-normal text-gray-400'>{t('workflow.common.setVarValuePlaceholder')}</div>}
+                          : <div className='text-[13px] font-normal text-tgai-text-3'>{t('workflow.common.setVarValuePlaceholder')}</div>}
                       </div>
                     </div>
 
@@ -336,7 +336,7 @@ const VarReferencePicker: FC<Props> = ({
                 className='invisible group-hover/wrap:visible absolute h-5 right-1 top-[50%] translate-y-[-50%] group p-1 rounded-md hover:bg-black/5 cursor-pointer'
                 onClick={handleClearVar}
               >
-                <RiCloseLine className='w-3.5 h-3.5 text-gray-500 group-hover:text-gray-800' />
+                <RiCloseLine className='w-3.5 h-3.5 text-tgai-text-3 group-hover:text-tgai-text-1' />
               </div>)}
               {!hasValue && valueTypePlaceHolder && (
                 <Badge

@@ -1,5 +1,5 @@
 import { CONVERSATION_ID_INFO } from '../base/chat/constants'
-import { fetchAccessToken } from '@/service/share'
+import { fetchAccessToken } from '../../../service/share'
 
 export const checkOrSetAccessToken = async () => {
   const sharedToken = globalThis.location.pathname.split('/').slice(-1)[0]

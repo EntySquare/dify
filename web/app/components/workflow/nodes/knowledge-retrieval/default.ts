@@ -1,10 +1,10 @@
 import { BlockEnum } from '../../types'
 import type { NodeDefault } from '../../types'
 import type { KnowledgeRetrievalNodeType } from './types'
-import { RerankingModeEnum } from '@/models/datasets'
-import { ALL_CHAT_AVAILABLE_BLOCKS, ALL_COMPLETION_AVAILABLE_BLOCKS } from '@/app/components/workflow/constants'
-import { DATASET_DEFAULT } from '@/config'
-import { RETRIEVE_TYPE } from '@/types/app'
+import { RerankingModeEnum } from '../../../../../models/datasets'
+import { ALL_CHAT_AVAILABLE_BLOCKS, ALL_COMPLETION_AVAILABLE_BLOCKS } from '../../constants'
+import { DATASET_DEFAULT } from '../../../../../config'
+import { RETRIEVE_TYPE } from '../../../../../types/app'
 const i18nPrefix = 'workflow'
 
 const nodeDefault: NodeDefault<KnowledgeRetrievalNodeType> = {

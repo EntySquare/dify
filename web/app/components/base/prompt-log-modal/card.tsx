@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { CopyFeedbackNew } from '@/app/components/base/copy-feedback'
+import { CopyFeedbackNew } from '../copy-feedback'
 
 type CardProps = {
   log: { role: string; text: string }[]

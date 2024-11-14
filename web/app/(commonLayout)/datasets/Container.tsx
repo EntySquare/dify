@@ -10,16 +10,20 @@ import useSWR from 'swr'
 // Components
 import Datasets from './Datasets'
 import DatasetFooter from './DatasetFooter'
+import ApiServer from './ApiServer'
 import Doc from './Doc'
-import TagManagementModal from '@/app/components/base/tag-management'
+import TabSliderNew from '../../components/base/tab-slider-new'
+import SearchInput from '../../components/base/search-input'
+import TagManagementModal from '../../components/base/tag-management'
+import TagFilter from '../../components/base/tag-management/filter'
 
 // Services
-import { fetchDatasetApiBaseUrl } from '@/service/datasets'
+import { fetchDatasetApiBaseUrl } from '../../../service/datasets'
 
 // Hooks
-import { useTabSearchParams } from '@/hooks/use-tab-searchparams'
-import { useStore as useTagStore } from '@/app/components/base/tag-management/store'
-import { useAppContext } from '@/context/app-context'
+import { useTabSearchParams } from '../../../hooks/use-tab-searchparams'
+import { useStore as useTagStore } from '../../components/base/tag-management/store'
+import { useAppContext } from '../../../context/app-context'
 
 const Container = () => {
   const { t } = useTranslation()
@@ -65,20 +69,20 @@ const Container = () => {
   }, [currentWorkspace])
 
   return (
-    <div ref={containerRef} className='grow relative flex flex-col bg-gray-100 overflow-y-auto'>
+    <div ref={containerRef} className='grow relative flex flex-col bg-tgai-section-background overflow-y-auto tgai-custom-scrollbar'>
       {/* <div className='sticky top-0 flex justify-between pt-4 px-12 pb-2 leading-[56px] bg-gray-100 z-10 flex-wrap gap-y-2'> */}
-      {/*   <TabSliderNew */}
-      {/*     value={activeTab} */}
-      {/*     onChange={newActiveTab => setActiveTab(newActiveTab)} */}
-      {/*     options={options} */}
-      {/*   /> */}
-      {/*   {activeTab === 'dataset' && ( */}
-      {/*     <div className='flex items-center gap-2'> */}
-      {/*       <TagFilter type='knowledge' value={tagFilterValue} onChange={handleTagsChange} /> */}
-      {/*       <SearchInput className='w-[200px]' value={keywords} onChange={handleKeywordsChange} /> */}
-      {/*     </div> */}
-      {/*   )} */}
-      {/*   {activeTab === 'api' && data && <ApiServer apiBaseUrl={data.api_base_url || ''} />} */}
+      {/*  <TabSliderNew */}
+      {/*    value={activeTab} */}
+      {/*    onChange={newActiveTab => setActiveTab(newActiveTab)} */}
+      {/*    options={options} */}
+      {/*  /> */}
+      {/*  {activeTab === 'dataset' && ( */}
+      {/*    <div className='flex items-center gap-2'> */}
+      {/*      <TagFilter type='knowledge' value={tagFilterValue} onChange={handleTagsChange} /> */}
+      {/*      <SearchInput className='w-[200px]' value={keywords} onChange={handleKeywordsChange} /> */}
+      {/*    </div> */}
+      {/*  )} */}
+      {/*  {activeTab === 'api' && data && <ApiServer apiBaseUrl={data.api_base_url || ''} />} */}
       {/* </div> */}
 
       {activeTab === 'dataset' && (

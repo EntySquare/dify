@@ -11,13 +11,13 @@ import { ORCHESTRATE_CHANGED } from './types'
 import type {
   ChatConfig,
   ChatItem,
-} from '@/app/components/base/chat/types'
+} from '../../../base/chat/types'
 import {
   AgentStrategy,
-} from '@/types/app'
-import { promptVariablesToUserInputsForm } from '@/utils/model-config'
-import { useDebugConfigurationContext } from '@/context/debug-configuration'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
+} from '../../../../../types/app'
+import { promptVariablesToUserInputsForm } from '../../../../../utils/model-config'
+import { useDebugConfigurationContext } from '../../../../../context/debug-configuration'
+import { useEventEmitterContextContext } from '../../../../../context/event-emitter'
 
 export const useDebugWithSingleOrMultipleModel = (appId: string) => {
   const localeDebugWithSingleOrMultipleModelConfigs = localStorage.getItem('app-debug-with-single-or-multiple-models')

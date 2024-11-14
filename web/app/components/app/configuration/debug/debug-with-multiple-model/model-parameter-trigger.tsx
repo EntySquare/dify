@@ -4,18 +4,18 @@ import { useTranslation } from 'react-i18next'
 import { RiArrowDownSLine } from '@remixicon/react'
 import type { ModelAndParameter } from '../types'
 import { useDebugWithMultipleModelContext } from './context'
-import ModelParameterModal from '@/app/components/header/account-setting/model-provider-page/model-parameter-modal'
-import ModelIcon from '@/app/components/header/account-setting/model-provider-page/model-icon'
-import ModelName from '@/app/components/header/account-setting/model-provider-page/model-name'
+import ModelParameterModal from '../../../../header/account-setting/model-provider-page/model-parameter-modal'
+import ModelIcon from '../../../../header/account-setting/model-provider-page/model-icon'
+import ModelName from '../../../../header/account-setting/model-provider-page/model-name'
 import {
   MODEL_STATUS_TEXT,
   ModelStatusEnum,
-} from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { useDebugConfigurationContext } from '@/context/debug-configuration'
-import { CubeOutline } from '@/app/components/base/icons/src/vender/line/shapes'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { AlertTriangle } from '@/app/components/base/icons/src/vender/line/alertsAndFeedback'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
+} from '../../../../header/account-setting/model-provider-page/declarations'
+import { useDebugConfigurationContext } from '../../../../../../context/debug-configuration'
+import { CubeOutline } from '../../../../base/icons/src/vender/line/shapes'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import { AlertTriangle } from '../../../../base/icons/src/vender/line/alertsAndFeedback'
+import { useLanguage } from '../../../../header/account-setting/model-provider-page/hooks'
 
 type ModelParameterTriggerProps = {
   modelAndParameter: ModelAndParameter

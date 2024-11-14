@@ -4,20 +4,20 @@ import produce from 'immer'
 import { useBoolean } from 'ahooks'
 import { useStore } from '../../store'
 import { type ToolNodeType, type ToolVarInputs, VarType } from './types'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import { CollectionType } from '@/app/components/tools/types'
-import { updateBuiltInToolCredential } from '@/service/tools'
-import { addDefaultValue, toolParametersToFormSchemas } from '@/app/components/tools/utils/to-form-schema'
-import Toast from '@/app/components/base/toast'
-import type { Props as FormProps } from '@/app/components/workflow/nodes/_base/components/before-run-form/form'
-import { VarType as VarVarType } from '@/app/components/workflow/types'
-import type { InputVar, ValueSelector, Var } from '@/app/components/workflow/types'
-import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
+import { useLanguage } from '../../../header/account-setting/model-provider-page/hooks'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import { CollectionType } from '../../../tools/types'
+import { updateBuiltInToolCredential } from '../../../../../service/tools'
+import { addDefaultValue, toolParametersToFormSchemas } from '../../../tools/utils/to-form-schema'
+import Toast from '../../../base/toast'
+import type { Props as FormProps } from '../_base/components/before-run-form/form'
+import { VarType as VarVarType } from '../../types'
+import type { InputVar, ValueSelector, Var } from '../../types'
+import useOneStepRun from '../_base/hooks/use-one-step-run'
 import {
   useFetchToolsData,
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: ToolNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

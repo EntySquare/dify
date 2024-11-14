@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next'
 import {
   PlayIcon,
 } from '@heroicons/react/24/solid'
-import Select from '@/app/components/base/select'
-import type { SiteInfo } from '@/models/share'
-import type { PromptConfig } from '@/models/debug'
-import Button from '@/app/components/base/button'
-import { DEFAULT_VALUE_MAX_LEN } from '@/config'
-import TextGenerationImageUploader from '@/app/components/base/image-uploader/text-generation-image-uploader'
-import type { VisionFile, VisionSettings } from '@/types/app'
+import Select from '../../../base/select'
+import type { SiteInfo } from '../../../../../models/share'
+import type { PromptConfig } from '../../../../../models/debug'
+import Button from '../../../base/button'
+import { DEFAULT_VALUE_MAX_LEN } from '../../../../../config'
+import TextGenerationImageUploader from '../../../base/image-uploader/text-generation-image-uploader'
+import type { VisionFile, VisionSettings } from '../../../../../types/app'
 
 export type IRunOnceProps = {
   siteInfo: SiteInfo

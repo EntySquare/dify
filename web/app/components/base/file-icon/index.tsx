@@ -10,8 +10,8 @@ import {
   Txt,
   Unknow,
   Xlsx,
-} from '@/app/components/base/icons/src/public/files'
-import { Notion } from '@/app/components/base/icons/src/public/common'
+} from '../icons/src/public/files'
+import { Notion } from '../icons/src/public/common'
 
 type FileIconProps = {
   type: string

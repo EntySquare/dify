@@ -6,16 +6,16 @@ import { ConfigurationMethodEnum, ModelStatusEnum } from '../declarations'
 import ModelBadge from '../model-badge'
 import ModelIcon from '../model-icon'
 import ModelName from '../model-name'
-import classNames from '@/utils/classnames'
-import Button from '@/app/components/base/button'
-import { Balance } from '@/app/components/base/icons/src/vender/line/financeAndECommerce'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import Switch from '@/app/components/base/switch'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { useProviderContext, useProviderContextSelector } from '@/context/provider-context'
-import { disableModel, enableModel } from '@/service/common'
-import { Plan } from '@/app/components/billing/type'
-import { useAppContext } from '@/context/app-context'
+import classNames from '../../../../../../utils/classnames'
+import Button from '../../../../base/button'
+import { Balance } from '../../../../base/icons/src/vender/line/financeAndECommerce'
+import { Settings01 } from '../../../../base/icons/src/vender/line/general'
+import Switch from '../../../../base/switch'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import { useProviderContext, useProviderContextSelector } from '../../../../../../context/provider-context'
+import { disableModel, enableModel } from '../../../../../../service/common'
+import { Plan } from '../../../../billing/type'
+import { useAppContext } from '../../../../../../context/app-context'
 
 export type ModelListItemProps = {
   model: ModelItem
@@ -59,7 +59,7 @@ const ModelListItem = ({ model, provider, isConfigurable, onConfig, onModifyLoad
         modelName={model.model}
       />
       <ModelName
-        className='grow text-sm font-normal text-gray-900'
+        className='grow text-sm font-normal !text-gray-900'
         modelItem={model}
         showModelType
         showMode

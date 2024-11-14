@@ -2,8 +2,8 @@ import {
   createContext,
   useContext,
 } from 'use-context-selector'
-import type { Locale } from '@/i18n'
-import { getLanguage } from '@/i18n/language'
+import type { Locale } from '../i18n'
+import { getLanguage } from '../i18n/language'
 
 type II18NContext = {
   locale: Locale

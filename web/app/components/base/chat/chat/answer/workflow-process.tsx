@@ -11,11 +11,11 @@ import {
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import type { ChatItem, WorkflowProcess } from '../../types'
-import cn from '@/utils/classnames'
-import { CheckCircle } from '@/app/components/base/icons/src/vender/solid/general'
-import { WorkflowRunningStatus } from '@/app/components/workflow/types'
-import NodePanel from '@/app/components/workflow/run/node'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import cn from '../../../../../../utils/classnames'
+import { CheckCircle } from '../../../icons/src/vender/solid/general'
+import { WorkflowRunningStatus } from '../../../../workflow/types'
+import NodePanel from '../../../../workflow/run/node'
+import { useStore as useAppStore } from '../../../../app/store'
 
 type WorkflowProcessProps = {
   data: WorkflowProcess

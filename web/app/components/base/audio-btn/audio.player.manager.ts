@@ -1,4 +1,4 @@
-import AudioPlayer from '@/app/components/base/audio-btn/audio'
+import AudioPlayer from './audio'
 declare global {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface AudioPlayerManager {

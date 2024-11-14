@@ -8,20 +8,20 @@ import { useNodeHelpLink } from '../../hooks/use-node-help-link'
 import ChangeBlock from './change-block'
 import {
   canRunBySingle,
-} from '@/app/components/workflow/utils'
-import { useStore } from '@/app/components/workflow/store'
+} from '../../../../utils'
+import { useStore } from '../../../../store'
 import {
   useNodeDataUpdate,
   useNodesExtraData,
   useNodesInteractions,
   useNodesReadOnly,
   useNodesSyncDraft,
-} from '@/app/components/workflow/hooks'
-import ShortcutsName from '@/app/components/workflow/shortcuts-name'
-import type { Node } from '@/app/components/workflow/types'
-import { BlockEnum } from '@/app/components/workflow/types'
-import { useGetLanguage } from '@/context/i18n'
-import { CollectionType } from '@/app/components/tools/types'
+} from '../../../../hooks'
+import ShortcutsName from '../../../../shortcuts-name'
+import type { Node } from '../../../../types'
+import { BlockEnum } from '../../../../types'
+import { useGetLanguage } from '../../../../../../../context/i18n'
+import { CollectionType } from '../../../../../tools/types'
 
 type PanelOperatorPopupProps = {
   id: string
@@ -83,7 +83,7 @@ const PanelOperatorPopup = ({
   const link = useNodeHelpLink(data.type)
 
   return (
-    <div className='w-[240px] border-[0.5px] border-gray-200 rounded-lg shadow-xl bg-white'>
+    <div className='w-[240px] border-[0.5px] border-gray-200 dark:border-stone-600 rounded-lg shadow-xl dark:shadow-stone-800 bg-tgai-panel-background-3'>
       {
         (showChangeBlock || canRunBySingle(data.type)) && (
           <>
@@ -92,8 +92,8 @@ const PanelOperatorPopup = ({
                 canRunBySingle(data.type) && (
                   <div
                     className={`
-                      flex items-center px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer
-                      hover:bg-gray-50
+                      flex items-center px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer
+                      hover:bg-gray-50 dark:hover:bg-zinc-600
                     `}
                     onClick={() => {
                       handleNodeSelect(id)
@@ -116,7 +116,7 @@ const PanelOperatorPopup = ({
                 )
               }
             </div>
-            <div className='h-[1px] bg-gray-100'></div>
+            <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div>
           </>
         )
       }
@@ -125,7 +125,7 @@ const PanelOperatorPopup = ({
           <>
             <div className='p-1'>
               <div
-                className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+                className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
                 onClick={() => {
                   onClosePopup()
                   handleNodesCopy()
@@ -135,7 +135,7 @@ const PanelOperatorPopup = ({
                 <ShortcutsName keys={['ctrl', 'c']} />
               </div>
               <div
-                className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+                className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
                 onClick={() => {
                   onClosePopup()
                   handleNodesDuplicate()
@@ -145,11 +145,11 @@ const PanelOperatorPopup = ({
                 <ShortcutsName keys={['ctrl', 'd']} />
               </div>
             </div>
-            <div className='h-[1px] bg-gray-100'></div>
+            <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div>
             <div className='p-1'>
               <div
                 className={`
-                flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer
+                flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer
                 hover:bg-rose-50 hover:text-red-500
                 `}
                 onClick={() => handleNodeDelete(id)}
@@ -158,7 +158,7 @@ const PanelOperatorPopup = ({
                 <ShortcutsName keys={['del']} />
               </div>
             </div>
-            <div className='h-[1px] bg-gray-100'></div>
+            {/* <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div> */}
           </>
         )
       }
@@ -166,28 +166,28 @@ const PanelOperatorPopup = ({
         showHelpLink && (
           <>
             {/* <div className='p-1'> */}
-            {/*   <a */}
-            {/*     href={link} */}
-            {/*     target='_blank' */}
-            {/*     className='flex items-center px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50' */}
-            {/*   > */}
-            {/*     {t('workflow.panel.helpLink')} */}
-            {/*   </a> */}
+            {/*  <a */}
+            {/*    href={link} */}
+            {/*    target='_blank' */}
+            {/*    className='flex items-center px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50' */}
+            {/*  > */}
+            {/*    {t('workflow.panel.helpLink')} */}
+            {/*  </a> */}
             {/* </div> */}
-            <div className='h-[1px] bg-gray-100'></div>
+            {/* <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div> */}
           </>
         )
       }
       {/* <div className='p-1'> */}
-      {/*   <div className='px-3 py-2 text-xs text-gray-500'> */}
-      {/*     <div className='flex items-center mb-1 h-[22px] font-medium'> */}
-      {/*       {t('workflow.panel.about').toLocaleUpperCase()} */}
-      {/*     </div> */}
-      {/*     <div className='mb-1 text-gray-700 leading-[18px]'>{about}</div> */}
-      {/*     <div className='leading-[18px]'> */}
-      {/*       {t('workflow.panel.createdBy')} {author} */}
-      {/*     </div> */}
-      {/*   </div> */}
+      {/*  <div className='px-3 py-2 text-xs text-gray-500'> */}
+      {/*    <div className='flex items-center mb-1 h-[22px] font-medium'> */}
+      {/*      {t('workflow.panel.about').toLocaleUpperCase()} */}
+      {/*    </div> */}
+      {/*    <div className='mb-1 text-gray-700 leading-[18px]'>{about}</div> */}
+      {/*    <div className='leading-[18px]'> */}
+      {/*      {t('workflow.panel.createdBy')} {author} */}
+      {/*    </div> */}
+      {/*  </div> */}
       {/* </div> */}
     </div>
   )

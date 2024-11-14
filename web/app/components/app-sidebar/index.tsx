@@ -4,12 +4,12 @@ import NavLink from './navLink'
 import type { NavIcon } from './navLink'
 import AppBasic from './basic'
 import AppInfo from './app-info'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import useBreakpoints, { MediaType } from '../../../hooks/use-breakpoints'
 import {
   AlignLeft01,
   AlignRight01,
-} from '@/app/components/base/icons/src/vender/line/layout'
-import { useStore as useAppStore } from '@/app/components/app/store'
+} from '../base/icons/src/vender/line/layout'
+import { useStore as useAppStore } from '../app/store'
 
 export type IAppDetailNavProps = {
   iconType?: 'app' | 'dataset' | 'notion'
@@ -49,7 +49,7 @@ const AppDetailNav = ({ title, desc, icon, icon_background, navigation, extraInf
   return (
     <div
       className={`
-        shrink-0 flex flex-col bg-background-default-subtle border-r border-divider-burn transition-all
+        shrink-0 flex flex-col bg-background-default-subtle dark:bg-tgai-panel-background-3 border-r border-divider-burn dark:border-stone-600 transition-all
         ${expand ? 'w-[216px]' : 'w-14'}
       `}
     >
@@ -98,7 +98,7 @@ const AppDetailNav = ({ title, desc, icon, icon_background, navigation, extraInf
             `}
           >
             <div
-              className='flex items-center justify-center w-6 h-6 text-gray-500 cursor-pointer'
+              className='flex items-center justify-center w-6 h-6 text-tgai-text-3 cursor-pointer'
               onClick={() => handleToggle(appSidebarExpand)}
             >
               {

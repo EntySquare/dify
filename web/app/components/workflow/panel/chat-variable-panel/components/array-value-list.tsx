@@ -4,8 +4,8 @@ import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiAddLine } from '@remixicon/react'
 import produce from 'immer'
-import RemoveButton from '@/app/components/workflow/nodes/_base/components/remove-button'
-import Button from '@/app/components/base/button'
+import RemoveButton from '../../../nodes/_base/components/remove-button'
+import Button from '../../../../base/button'
 
 type Props = {
   isString: boolean

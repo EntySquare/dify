@@ -15,18 +15,18 @@ import type {
   DefaultModelResponse,
 } from '../declarations'
 import { ModelTypeEnum } from '../declarations'
-import Tooltip from '@/app/components/base/tooltip'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
+import Tooltip from '../../../../base/tooltip'
+import { Settings01 } from '../../../../base/icons/src/vender/line/general'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import Button from '@/app/components/base/button'
-import { useProviderContext } from '@/context/provider-context'
-import { updateDefaultModel } from '@/service/common'
-import { useToastContext } from '@/app/components/base/toast'
-import { useAppContext } from '@/context/app-context'
+} from '../../../../base/portal-to-follow-elem'
+import Button from '../../../../base/button'
+import { useProviderContext } from '../../../../../../context/provider-context'
+import { updateDefaultModel } from '../../../../../../service/common'
+import { useToastContext } from '../../../../base/toast'
+import { useAppContext } from '../../../../../../context/app-context'
 
 type SystemModelSelectorProps = {
   textGenerationDefaultModel: DefaultModelResponse | undefined
@@ -132,26 +132,26 @@ const SystemModel: FC<SystemModelSelectorProps> = ({
     >
       <PortalToFollowElemTrigger onClick={() => setOpen(v => !v)}>
         <div className={`
-          flex items-center px-2 h-6 text-xs text-gray-700 cursor-pointer bg-white rounded-md border-[0.5px] border-gray-200 shadow-xs
-          hover:bg-gray-100 hover:shadow-none
-          ${open && 'bg-gray-100 shadow-none'}
+          flex items-center px-2 h-6 text-xs text-tgai-text-2 cursor-pointer bg-tgai-panel-background-4 rounded-md border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xs dark:shadow-stone-800
+          hover:bg-gray-100 dark:hover:bg-zinc-600 hover:shadow-none
+          ${open && 'bg-gray-100 dark:bg-zinc-600 shadow-none'}
         `}>
-          <Settings01 className='mr-1 w-3 h-3 text-gray-500' />
+          <Settings01 className='mr-1 w-3 h-3 text-tgai-text-3' />
           {t('common.modelProvider.systemModelSettings')}
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='z-50'>
-        <div className='pt-4 w-[360px] rounded-xl border-[0.5px] border-black/5 bg-white shadow-xl'>
+        <div className='pt-4 w-[360px] rounded-xl border-[0.5px] border-black/5 dark:border-stone-700 bg-tgai-panel-background-4 shadow-xl dark:shadow-stone-800'>
           <div className='px-6 py-1'>
-            <div className='flex items-center h-8 text-[13px] font-medium text-gray-900'>
+            <div className='flex items-center h-8 text-[13px] font-medium text-tgai-text-1'>
               {t('common.modelProvider.systemReasoningModel.key')}
               <Tooltip
                 selector='model-page-system-reasoning-model-tip'
                 htmlContent={
-                  <div className='w-[261px] text-gray-500'>{t('common.modelProvider.systemReasoningModel.tip')}</div>
+                  <div className='w-[261px] text-tgai-text-2'>{t('common.modelProvider.systemReasoningModel.tip')}</div>
                 }
               >
-                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-gray-400' />
+                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
               </Tooltip>
             </div>
             <div>
@@ -163,15 +163,15 @@ const SystemModel: FC<SystemModelSelectorProps> = ({
             </div>
           </div>
           <div className='px-6 py-1'>
-            <div className='flex items-center h-8 text-[13px] font-medium text-gray-900'>
+            <div className='flex items-center h-8 text-[13px] font-medium text-tgai-text-1'>
               {t('common.modelProvider.embeddingModel.key')}
               <Tooltip
                 selector='model-page-system-embedding-model-tip'
                 htmlContent={
-                  <div className='w-[261px] text-gray-500'>{t('common.modelProvider.embeddingModel.tip')}</div>
+                  <div className='w-[261px] text-tgai-text-2'>{t('common.modelProvider.embeddingModel.tip')}</div>
                 }
               >
-                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-gray-400' />
+                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
               </Tooltip>
             </div>
             <div>
@@ -183,15 +183,15 @@ const SystemModel: FC<SystemModelSelectorProps> = ({
             </div>
           </div>
           <div className='px-6 py-1'>
-            <div className='flex items-center h-8 text-[13px] font-medium text-gray-900'>
+            <div className='flex items-center h-8 text-[13px] font-medium text-tgai-text-1'>
               {t('common.modelProvider.rerankModel.key')}
               <Tooltip
                 selector='model-page-system-rerankModel-model-tip'
                 htmlContent={
-                  <div className='w-[261px] text-gray-500'>{t('common.modelProvider.rerankModel.tip')}</div>
+                  <div className='w-[261px] text-tgai-text-2'>{t('common.modelProvider.rerankModel.tip')}</div>
                 }
               >
-                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-gray-400' />
+                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
               </Tooltip>
             </div>
             <div>
@@ -203,15 +203,15 @@ const SystemModel: FC<SystemModelSelectorProps> = ({
             </div>
           </div>
           <div className='px-6 py-1'>
-            <div className='flex items-center h-8 text-[13px] font-medium text-gray-900'>
+            <div className='flex items-center h-8 text-[13px] font-medium text-tgai-text-1'>
               {t('common.modelProvider.speechToTextModel.key')}
               <Tooltip
                 selector='model-page-system-speechToText-model-tip'
                 htmlContent={
-                  <div className='w-[261px] text-gray-500'>{t('common.modelProvider.speechToTextModel.tip')}</div>
+                  <div className='w-[261px] text-tgai-text-2'>{t('common.modelProvider.speechToTextModel.tip')}</div>
                 }
               >
-                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-gray-400' />
+                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
               </Tooltip>
             </div>
             <div>
@@ -223,15 +223,15 @@ const SystemModel: FC<SystemModelSelectorProps> = ({
             </div>
           </div>
           <div className='px-6 py-1'>
-            <div className='flex items-center h-8 text-[13px] font-medium text-gray-900'>
+            <div className='flex items-center h-8 text-[13px] font-medium text-tgai-text-1'>
               {t('common.modelProvider.ttsModel.key')}
               <Tooltip
                 selector='model-page-system-tts-model-tip'
                 htmlContent={
-                  <div className='w-[261px] text-gray-500'>{t('common.modelProvider.ttsModel.tip')}</div>
+                  <div className='w-[261px] text-tgai-text-2'>{t('common.modelProvider.ttsModel.tip')}</div>
                 }
               >
-                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-gray-400' />
+                <RiQuestionLine className='ml-0.5 w-[14px] h-[14px] text-tgai-text-3' />
               </Tooltip>
             </div>
             <div>

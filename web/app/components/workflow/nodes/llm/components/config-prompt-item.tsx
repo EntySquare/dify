@@ -7,10 +7,10 @@ import { RiQuestionLine } from '@remixicon/react'
 import type { ModelConfig, PromptItem, Variable } from '../../../types'
 import { EditionType } from '../../../types'
 import { useWorkflowStore } from '../../../store'
-import Editor from '@/app/components/workflow/nodes/_base/components/prompt/editor'
-import TypeSelector from '@/app/components/workflow/nodes/_base/components/selector'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
-import { PromptRole } from '@/models/debug'
+import Editor from '../../_base/components/prompt/editor'
+import TypeSelector from '../../_base/components/selector'
+import TooltipPlus from '../../../../base/tooltip-plus'
+import { PromptRole } from '../../../../../../models/debug'
 
 const i18nPrefix = 'workflow.nodes.llm'
 
@@ -104,7 +104,7 @@ const ConfigPromptItem: FC<Props> = ({
       title={
         <div className='relative left-1 flex items-center'>
           {payload.role === PromptRole.system
-            ? (<div className='relative left-[-4px] text-xs font-semibold text-gray-700 uppercase'>
+            ? (<div className='relative left-[-4px] text-xs font-semibold text-tgai-text-2 uppercase'>
               SYSTEM
             </div>)
             : (
@@ -113,8 +113,8 @@ const ConfigPromptItem: FC<Props> = ({
                 allOptions={roleOptions}
                 options={canNotChooseSystemRole ? roleOptionsWithoutSystemRole : roleOptions}
                 onChange={handleChatModeMessageRoleChange}
-                triggerClassName='text-xs font-semibold text-gray-700 uppercase'
-                itemClassName='text-[13px] font-medium text-gray-700'
+                triggerClassName='text-xs font-semibold text-tgai-text-2 uppercase'
+                itemClassName='text-[13px] font-medium text-tgai-text-2'
               />
             )}
 
@@ -123,7 +123,7 @@ const ConfigPromptItem: FC<Props> = ({
               <div className='max-w-[180px]'>{t(`${i18nPrefix}.roleDescription.${payload.role}`)}</div>
             }
           >
-            <RiQuestionLine className='w-3.5 h-3.5 text-gray-400' />
+            <RiQuestionLine className='w-3.5 h-3.5 text-tgai-text-3' />
           </TooltipPlus>
         </div>
       }

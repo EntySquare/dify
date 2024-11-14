@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip' // fixed version to 5.8.3 https://github.com/ReactTooltip/react-tooltip/issues/972
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 import 'react-tooltip/dist/react-tooltip.css'
 
 type TooltipProps = {
@@ -37,7 +37,7 @@ const Tooltip: FC<TooltipProps> = ({
       <ReactTooltip
         id={selector}
         content={content}
-        className={classNames('!z-[999] !bg-white !text-xs !font-normal !text-gray-700 !shadow-lg !opacity-100', className)}
+        className={classNames('!z-[999] !bg-tgai-panel-background-3 !text-xs !font-normal !text-tgai-text-2 !shadow-lg !opacity-100', className)}
         place={position}
         clickable={clickable}
         isOpen={disabled ? false : undefined}

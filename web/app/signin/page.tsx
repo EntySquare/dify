@@ -6,12 +6,12 @@ import Forms from './forms'
 import Header from './_header'
 import style from './page.module.css'
 import UserSSOForm from './userSSOForm'
-import cn from '@/utils/classnames'
-import { IS_CE_EDITION } from '@/config'
+import cn from '../../utils/classnames'
+import { IS_CE_EDITION } from '../../config'
 
-import type { SystemFeatures } from '@/types/feature'
-import { defaultSystemFeatures } from '@/types/feature'
-import { getSystemFeatures } from '@/service/common'
+import type { SystemFeatures } from '../../types/feature'
+import { defaultSystemFeatures } from '../../types/feature'
+import { getSystemFeatures } from '../../service/common'
 
 const SignIn = () => {
   const [loading, setLoading] = useState<boolean>(true)
@@ -53,7 +53,7 @@ gtag('config', 'AW-11217955271"');
       )}>
         <div className={
           cn(
-            'flex w-full flex-col bg-white shadow rounded-2xl shrink-0',
+            'flex w-full flex-col bg-tgai-panel-background shadow rounded-2xl shrink-0',
             'space-between',
           )
         }>

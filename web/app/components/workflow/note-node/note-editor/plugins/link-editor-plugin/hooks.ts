@@ -17,7 +17,7 @@ import { escape } from 'lodash-es'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useNoteEditorStore } from '../../store'
 import { urlRegExp } from '../../utils'
-import { useToastContext } from '@/app/components/base/toast'
+import { useToastContext } from '../../../../../base/toast'
 
 export const useOpenLink = () => {
   const [editor] = useLexicalComposerContext()

@@ -1,7 +1,7 @@
 'use client'
 import type { FC } from 'react'
 import React from 'react'
-import GroupName from '@/app/components/app/configuration/base/group-name'
+import GroupName from '../../../base/group-name'
 
 export type IFeatureGroupProps = {
   title: string

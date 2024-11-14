@@ -22,13 +22,13 @@ import type {
   SegmentsQuery,
   SegmentsResponse,
   createDocumentResponse,
-} from '@/models/datasets'
-import type { CommonResponse, DataSourceNotionWorkspace } from '@/models/common'
+} from '../models/datasets'
+import type { CommonResponse, DataSourceNotionWorkspace } from '../models/common'
 import type {
   ApikeysListResponse,
   CreateApiKeyResponse,
-} from '@/models/app'
-import type { RetrievalConfig } from '@/types/app'
+} from '../models/app'
+import type { RetrievalConfig } from '../types/app'
 
 // apis for documents in a dataset
 

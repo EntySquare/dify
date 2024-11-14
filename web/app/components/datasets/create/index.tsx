@@ -7,13 +7,13 @@ import StepsNavBar from './steps-nav-bar'
 import StepOne from './step-one'
 import StepTwo from './step-two'
 import StepThree from './step-three'
-import { DataSourceType } from '@/models/datasets'
-import type { CrawlOptions, CrawlResultItem, DataSet, FileItem, createDocumentResponse } from '@/models/datasets'
-import { fetchDataSource } from '@/service/common'
-import { fetchDatasetDetail } from '@/service/datasets'
-import type { NotionPage } from '@/models/common'
-import { useModalContext } from '@/context/modal-context'
-import { useDefaultModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
+import { DataSourceType } from '../../../../models/datasets'
+import type { CrawlOptions, CrawlResultItem, DataSet, FileItem, createDocumentResponse } from '../../../../models/datasets'
+import { fetchDataSource } from '../../../../service/common'
+import { fetchDatasetDetail } from '../../../../service/datasets'
+import type { NotionPage } from '../../../../models/common'
+import { useModalContext } from '../../../../context/modal-context'
+import { useDefaultModel } from '../../header/account-setting/model-provider-page/hooks'
 
 type DatasetUpdateFormProps = {
   datasetId?: string
@@ -117,10 +117,10 @@ const DatasetUpdateForm = ({ datasetId }: DatasetUpdateFormProps) => {
 
   return (
     <div className='flex' style={{ height: 'calc(100vh - 56px)' }}>
-      <div className="flex flex-col w-11 sm:w-56 overflow-y-auto bg-white border-r border-gray-200 shrink-0">
+      <div className="flex flex-col w-11 sm:w-56 overflow-y-auto tgai-custom-scrollbar bg-tgai-panel-background border-r border-gray-200 dark:border-stone-600 shrink-0 tgai-custom-scrollbar">
         <StepsNavBar step={step} datasetId={datasetId} />
       </div>
-      <div className="grow bg-white">
+      <div className="grow bg-tgai-panel-background">
         <div className={step === 1 ? 'block h-full' : 'hidden'}>
           <StepOne
             hasConnection={hasConnection}

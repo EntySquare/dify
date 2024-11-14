@@ -31,20 +31,21 @@ import ApiBasedExtensionPage from './api-based-extension-page'
 import DataSourcePage from './data-source-page'
 import ModelProviderPage from './model-provider-page'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import BillingPage from '@/app/components/billing/billing-page'
-import CustomPage from '@/app/components/custom/custom-page'
-import Modal from '@/app/components/base/modal'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import { useProviderContext } from '@/context/provider-context'
-import { useAppContext } from '@/context/app-context'
+import cn from '../../../../utils/classnames'
+import BillingPage from '../../billing/billing-page'
+import CustomPage from '../../custom/custom-page'
+import Modal from '../../base/modal'
+import useBreakpoints, { MediaType } from '../../../../hooks/use-breakpoints'
+import { useProviderContext } from '../../../../context/provider-context'
+import { useAppContext } from '../../../../context/app-context'
+import classNames from '../../../../utils/classnames'
 
 const iconClassName = `
   w-4 h-4 ml-3 mr-2
 `
 
 const scrolledClassName = `
-  border-b shadow-xs bg-white/[.98]
+  border-b shadow-xs bg-tgai-panel-background-3 opacity-[0.98] dark:border-b-stone-600
 `
 
 type IAccountSettingProps = {
@@ -169,18 +170,18 @@ export default function AccountSetting({
     <Modal
       isShow
       onClose={() => { }}
-      className={s.modal}
+      className={classNames(s.modal, 'border border-gray-100 dark:border-stone-600')}
       wrapperClassName='pt-[60px]'
     >
       <div className='flex'>
-        <div className='w-[44px] sm:w-[200px] px-[1px] py-4 sm:p-4 border border-gray-100 shrink-0 sm:shrink-1 flex flex-col items-center sm:items-start'>
-          <div className='mb-8 ml-0 sm:ml-2 text-sm sm:text-base font-medium leading-6 text-gray-900'>{t('common.userProfile.settings')}</div>
+        <div className='w-[44px] sm:w-[200px] border-r border-r-gray-100 dark:border-r-stone-600 px-[1px] py-4 sm:p-4  shrink-0 sm:shrink-1 flex flex-col items-center sm:items-start'>
+          <div className='mb-8 ml-0 sm:ml-2 text-sm sm:text-base font-medium leading-6 text-tgai-text-1'>{t('common.userProfile.settings')}</div>
           <div className='w-full'>
             {
               menuItems.map(menuItem => (
                 <div key={menuItem.key} className='mb-4'>
                   {!isCurrentWorkspaceDatasetOperator && (
-                    <div className='px-2 mb-[6px] text-[10px] sm:text-xs font-medium text-gray-500'>{menuItem.name}</div>
+                    <div className='px-2 mb-[6px] text-[10px] sm:text-xs font-medium text-tgai-text-3'>{menuItem.name}</div>
                   )}
                   <div>
                     {
@@ -189,7 +190,7 @@ export default function AccountSetting({
                           key={item.key}
                           className={`
                             flex items-center h-[37px] mb-[2px] text-sm cursor-pointer rounded-lg
-                            ${activeMenu === item.key ? 'font-semibold text-primary-600 bg-primary-50' : 'font-light text-gray-700'}
+                            ${activeMenu === item.key ? 'font-semibold text-tgai-primary bg-primary-50 dark:bg-tgai-panel-background-3' : 'font-light text-tgai-text-2'}
                           `}
                           title={item.name}
                           onClick={() => setActiveMenu(item.key)}
@@ -205,17 +206,17 @@ export default function AccountSetting({
             }
           </div>
         </div>
-        <div ref={scrollRef} className='relative w-[824px] h-[720px] pb-4 overflow-y-auto'>
-          <div className={cn('sticky top-0 px-6 py-4 flex items-center h-14 mb-4 bg-white text-base font-medium text-gray-900 z-20', scrolled && scrolledClassName)}>
+        <div ref={scrollRef} className='relative w-[824px] h-[720px] pb-4 overflow-y-auto tgai-custom-scrollbar'>
+          <div className={cn('sticky top-0 px-6 py-4 flex items-center h-14 mb-4 bg-tgai-panel-background-3 text-base font-medium text-tgai-text-1 z-20', scrolled && scrolledClassName)}>
             <div className='shrink-0'>{activeItem?.name}</div>
             {
               activeItem?.description && (
-                <div className='shrink-0 ml-2 text-xs text-gray-600'>{activeItem?.description}</div>
+                <div className='shrink-0 ml-2 text-xs text-tgai-text-2'>{activeItem?.description}</div>
               )
             }
             <div className='grow flex justify-end'>
               <div className='flex items-center justify-center -mr-4 w-6 h-6 cursor-pointer' onClick={onCancel}>
-                <RiCloseLine className='w-4 h-4 text-gray-400' />
+                <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
               </div>
             </div>
           </div>

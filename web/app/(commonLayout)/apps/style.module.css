@@ -10,14 +10,14 @@
   mask-image: url(~@/assets/action.svg);
 }
 .actionItem {
-  @apply h-8 py-[6px] px-3 mx-1 flex items-center gap-2 hover:bg-gray-100 rounded-lg cursor-pointer;
+  @apply h-8 py-[6px] px-3 mx-1 flex items-center gap-2 rounded-lg cursor-pointer;
   width: calc(100% - 0.5rem);
 }
 .deleteActionItem {
   @apply hover:bg-red-50 !important;
 }
 .actionName {
-  @apply text-gray-700 text-sm;
+  @apply text-tgai-text-2 text-sm;
 }
 
 /* .completionPic {

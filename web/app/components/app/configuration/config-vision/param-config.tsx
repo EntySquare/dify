@@ -3,13 +3,13 @@ import type { FC } from 'react'
 import { memo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import VoiceParamConfig from './param-config-content'
-import cn from '@/utils/classnames'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
+import cn from '../../../../../utils/classnames'
+import { Settings01 } from '../../../base/icons/src/vender/line/general'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../../base/portal-to-follow-elem'
 
 const ParamsConfig: FC = () => {
   const { t } = useTranslation()

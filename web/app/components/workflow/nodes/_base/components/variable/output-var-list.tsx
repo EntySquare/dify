@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next'
 import type { OutputVar } from '../../../code/types'
 import RemoveButton from '../remove-button'
 import VarTypePicker from './var-type-picker'
-import type { VarType } from '@/app/components/workflow/types'
-import { checkKeys } from '@/utils/var'
-import Toast from '@/app/components/base/toast'
+import type { VarType } from '../../../../types'
+import { checkKeys } from '../../../../../../../utils/var'
+import Toast from '../../../../../base/toast'
 
 type Props = {
   readonly: boolean
@@ -89,7 +89,7 @@ const OutputVarList: FC<Props> = ({
             readOnly={readonly}
             value={item.variable}
             onChange={handleVarNameChange(index)}
-            className='w-0 grow h-8 leading-8 px-2.5 rounded-lg border-0 bg-gray-100  text-gray-900 text-[13px] placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200'
+            className='w-0 grow h-8 leading-8 px-2.5 rounded-lg border-0 bg-gray-100 dark:bg-tgai-input-background text-tgai-text-1 text-[13px] placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600'
             type='text' />
           <VarTypePicker
             readonly={readonly}
@@ -97,7 +97,7 @@ const OutputVarList: FC<Props> = ({
             onChange={handleVarTypeChange(index)}
           />
           <RemoveButton
-            className='!p-2 !bg-gray-100 hover:!bg-gray-200'
+            className='!p-2 !bg-gray-100 dark:!bg-tgai-input-background hover:!bg-gray-200 dark:hover:!bg-zinc-700'
             onClick={handleVarRemove(index)}
           />
         </div>

@@ -6,7 +6,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid'
 import useSWR from 'swr'
-import { fetchAnnotationsCount } from '@/service/log'
+import { fetchAnnotationsCount } from '../../../../service/log'
 
 export type QueryParam = {
   keyword?: string

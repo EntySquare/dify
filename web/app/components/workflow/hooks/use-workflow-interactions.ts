@@ -14,11 +14,11 @@ import {
 import { useEdgesInteractions } from './use-edges-interactions'
 import { useNodesInteractions } from './use-nodes-interactions'
 import { useNodesSyncDraft } from './use-nodes-sync-draft'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
-import { fetchWorkflowDraft } from '@/service/workflow'
-import { exportAppConfig } from '@/service/apps'
-import { useToastContext } from '@/app/components/base/toast'
-import { useStore as useAppStore } from '@/app/components/app/store'
+import { useEventEmitterContextContext } from '../../../../context/event-emitter'
+import { fetchWorkflowDraft } from '../../../../service/workflow'
+import { exportAppConfig } from '../../../../service/apps'
+import { useToastContext } from '../../base/toast'
+import { useStore as useAppStore } from '../../app/store'
 
 export const useWorkflowInteractions = () => {
   const workflowStore = useWorkflowStore()

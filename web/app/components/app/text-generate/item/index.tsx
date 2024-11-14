@@ -11,25 +11,25 @@ import { HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/outline'
 import { useBoolean } from 'ahooks'
 import { HashtagIcon } from '@heroicons/react/24/solid'
 import ResultTab from './result-tab'
-import cn from '@/utils/classnames'
-import { Markdown } from '@/app/components/base/markdown'
-import Loading from '@/app/components/base/loading'
-import Toast from '@/app/components/base/toast'
-import AudioBtn from '@/app/components/base/audio-btn'
-import type { Feedbacktype } from '@/app/components/base/chat/chat/type'
-import { fetchMoreLikeThis, updateFeedback } from '@/service/share'
-import { File02 } from '@/app/components/base/icons/src/vender/line/files'
-import { Bookmark } from '@/app/components/base/icons/src/vender/line/general'
-import { Stars02 } from '@/app/components/base/icons/src/vender/line/weather'
-import { RefreshCcw01 } from '@/app/components/base/icons/src/vender/line/arrows'
-import { fetchTextGenerationMessge } from '@/service/debug'
-import AnnotationCtrlBtn from '@/app/components/app/configuration/toolbox/annotation/annotation-ctrl-btn'
-import EditReplyModal from '@/app/components/app/annotation/edit-annotation-modal'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import WorkflowProcessItem from '@/app/components/base/chat/chat/answer/workflow-process'
-import type { WorkflowProcess } from '@/app/components/base/chat/types'
-import type { SiteInfo } from '@/models/share'
-import { useChatContext } from '@/app/components/base/chat/chat/context'
+import cn from '../../../../../utils/classnames'
+import { Markdown } from '../../../base/markdown'
+import Loading from '../../../base/loading'
+import Toast from '../../../base/toast'
+import AudioBtn from '../../../base/audio-btn'
+import type { Feedbacktype } from '../../../base/chat/chat/type'
+import { fetchMoreLikeThis, updateFeedback } from '../../../../../service/share'
+import { File02 } from '../../../base/icons/src/vender/line/files'
+import { Bookmark } from '../../../base/icons/src/vender/line/general'
+import { Stars02 } from '../../../base/icons/src/vender/line/weather'
+import { RefreshCcw01 } from '../../../base/icons/src/vender/line/arrows'
+import { fetchTextGenerationMessge } from '../../../../../service/debug'
+import AnnotationCtrlBtn from '../../configuration/toolbox/annotation/annotation-ctrl-btn'
+import EditReplyModal from '../../annotation/edit-annotation-modal'
+import { useStore as useAppStore } from '../../store'
+import WorkflowProcessItem from '../../../base/chat/chat/answer/workflow-process'
+import type { WorkflowProcess } from '../../../base/chat/types'
+import type { SiteInfo } from '../../../../../models/share'
+import { useChatContext } from '../../../base/chat/chat/context'
 
 const MAX_DEPTH = 3
 
@@ -74,7 +74,7 @@ export const SimpleBtn = ({ className, isDisabled, onClick, children }: {
   children: React.ReactNode
 }) => (
   <div
-    className={cn(isDisabled ? 'border-gray-100 text-gray-300' : 'border-gray-200 text-gray-700 cursor-pointer hover:border-gray-300 hover:shadow-sm', 'flex items-center h-7 px-3 rounded-md border text-xs  font-medium', className)}
+    className={cn(isDisabled ? 'border-gray-100 dark:border-stone-700 text-tgai-text-3' : 'border-gray-200 dark:border-stone-600 text-tgai-text-2 cursor-pointer hover:border-gray-300 dark:hover:border-stone-500 hover:shadow-sm dark:hover:shadow-stone-800', 'flex items-center h-7 px-3 rounded-md border text-xs  font-medium', className)}
     onClick={() => !isDisabled && onClick?.()}
   >
     {children}

@@ -1,18 +1,18 @@
 import { useMemo } from 'react'
 import { useNodes } from 'reactflow'
 import { capitalize } from 'lodash-es'
-import { VarBlockIcon } from '@/app/components/workflow/block-icon'
+import { VarBlockIcon } from '../../../block-icon'
 import type {
   CommonNodeType,
   ValueSelector,
   VarType,
-} from '@/app/components/workflow/types'
-import { BlockEnum } from '@/app/components/workflow/types'
-import { Line3 } from '@/app/components/base/icons/src/public/common'
-import { Variable02 } from '@/app/components/base/icons/src/vender/solid/development'
-import { BubbleX, Env } from '@/app/components/base/icons/src/vender/line/others'
-import { isConversationVar, isENV, isSystemVar } from '@/app/components/workflow/nodes/_base/components/variable/utils'
-import cn from '@/utils/classnames'
+} from '../../../types'
+import { BlockEnum } from '../../../types'
+import { Line3 } from '../../../../base/icons/src/public/common'
+import { Variable02 } from '../../../../base/icons/src/vender/solid/development'
+import { BubbleX, Env } from '../../../../base/icons/src/vender/line/others'
+import { isConversationVar, isENV, isSystemVar } from './variable/utils'
+import cn from '../../../../../../utils/classnames'
 
 type VariableTagProps = {
   valueSelector: ValueSelector
@@ -35,7 +35,7 @@ const VariableTag = ({
   const variableName = isSystemVar(valueSelector) ? valueSelector.slice(0).join('.') : valueSelector.slice(1).join('.')
 
   return (
-    <div className='inline-flex items-center px-1.5 max-w-full h-6 text-xs rounded-md border-[0.5px] border-[rgba(16, 2440,0.08)] bg-white shadow-xs'>
+    <div className='inline-flex items-center px-1.5 max-w-full h-6 text-xs rounded-md border-[0.5px] border-[rgba(16, 2440,0.08)] dark:border-stone-700 bg-white dark:bg-neutral-600 shadow-xs dark:shadow-stone-800'>
       {!isEnv && !isChatVar && (
         <>
           {node && (
@@ -51,13 +51,13 @@ const VariableTag = ({
             {node?.data.title}
           </div>
           <Line3 className='shrink-0 mx-0.5' />
-          <Variable02 className='shrink-0 mr-0.5 w-3.5 h-3.5 text-text-accent' />
+          <Variable02 className='shrink-0 mr-0.5 w-3.5 h-3.5 text-text-accent dark:text-tgai-primary' />
         </>
       )}
       {isEnv && <Env className='shrink-0 mr-0.5 w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
       {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
       <div
-        className={cn('truncate text-text-accent font-medium', (isEnv || isChatVar) && 'text-text-secondary')}
+        className={cn('truncate text-text-accent dark:text-tgai-primary font-medium', (isEnv || isChatVar) && 'text-text-secondary')}
         title={variableName}
       >
         {variableName}

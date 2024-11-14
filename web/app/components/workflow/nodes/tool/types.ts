@@ -1,5 +1,5 @@
-import type { CollectionType } from '@/app/components/tools/types'
-import type { CommonNodeType, ValueSelector } from '@/app/components/workflow/types'
+import type { CollectionType } from '../../../tools/types'
+import type { CommonNodeType, ValueSelector } from '../../types'
 
 export enum VarType {
   variable = 'variable',

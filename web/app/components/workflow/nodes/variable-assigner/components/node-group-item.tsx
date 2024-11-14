@@ -19,8 +19,8 @@ import {
 import { filterVar } from '../utils'
 import AddVariable from './add-variable'
 import NodeVariableItem from './node-variable-item'
-import { isConversationVar, isENV, isSystemVar } from '@/app/components/workflow/nodes/_base/components/variable/utils'
-import cn from '@/utils/classnames'
+import { isConversationVar, isENV, isSystemVar } from '../../_base/components/variable/utils'
+import cn from '../../../../../../utils/classnames'
 
 const i18nPrefix = 'workflow.nodes.variableAssigner'
 type GroupItem = {
@@ -82,16 +82,16 @@ const NodeGroupItem = ({
       className={cn(
         'relative pt-1 px-1.5 pb-1.5 rounded-lg border-[1.5px] border-transparent',
         showSelectionBorder && '!border-gray-300 !border-dashed bg-black/[0.02]',
-        showSelectedBorder && '!border-primary-600 !bg-primary-50',
+        showSelectedBorder && '!border-primary-600 dark:!border-tgai-primary !bg-primary-50 dark:!bg-tgai-input-background',
       )}
       onMouseEnter={() => groupEnabled && handleGroupItemMouseEnter(item.targetHandleId)}
       onMouseLeave={handleGroupItemMouseLeave}
     >
-      <div className='flex items-center justify-between h-4 text-[10px] font-medium text-gray-500'>
+      <div className='flex items-center justify-between h-4 text-[10px] font-medium text-tgai-text-3'>
         <span
           className={cn(
             'grow uppercase truncate',
-            showSelectedBorder && 'text-primary-600',
+            showSelectedBorder && 'text-primary-600 dark:text-tgai-primary',
           )}
           title={item.title}
         >
@@ -99,7 +99,7 @@ const NodeGroupItem = ({
         </span>
         <div className='flex items-center'>
           <span className='shrink-0 ml-2'>{item.type}</span>
-          <div className='ml-2 mr-1 w-[1px] h-2.5 bg-gray-200'></div>
+          <div className='ml-2 mr-1 w-[1px] h-2.5 bg-gray-200 dark:bg-zinc-600'></div>
           <AddVariable
             availableVars={availableVars}
             variableAssignerNodeId={item.variableAssignerNodeId}
@@ -112,7 +112,7 @@ const NodeGroupItem = ({
         !item.variables.length && (
           <div
             className={cn(
-              'relative flex items-center px-1 h-[22px] justify-between bg-gray-100 rounded-md space-x-1 text-[10px] font-normal text-gray-400 uppercase',
+              'relative flex items-center px-1 h-[22px] justify-between bg-gray-100 dark:bg-tgai-input-background rounded-md space-x-1 text-[10px] font-normal text-tgai-text-3 uppercase',
               (showSelectedBorder || showSelectionBorder) && '!bg-black/[0.02]',
             )}
           >

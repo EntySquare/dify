@@ -39,3 +39,11 @@ export const getPurifyHref = (href: string) => {
 
   return escape(href)
 }
+
+
+export const allTokenRemove = () => {
+  if (typeof window !== undefined) {
+    localStorage.removeItem('console_token')
+    localStorage.removeItem('tgai_token')
+}
+}

@@ -4,10 +4,10 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ClipboardDocumentIcon, HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/outline'
 import copy from 'copy-to-clipboard'
-import type { Feedbacktype } from '@/app/components/base/chat/chat/type'
-import Button from '@/app/components/base/button'
-import Toast from '@/app/components/base/toast'
-import Tooltip from '@/app/components/base/tooltip'
+import type { Feedbacktype } from '../../../base/chat/chat/type'
+import Button from '../../../base/button'
+import Toast from '../../../base/toast'
+import Tooltip from '../../../base/tooltip'
 
 type IResultHeaderProps = {
   result: string

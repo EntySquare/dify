@@ -4,14 +4,14 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { PopupProps } from './config-popup'
 import ConfigPopup from './config-popup'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
-import { Settings04 } from '@/app/components/base/icons/src/vender/line/general'
+import cn from '../../../../../../../utils/classnames'
+import Button from '../../../../../../components/base/button'
+import { Settings04 } from '../../../../../../components/base/icons/src/vender/line/general'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../../../../../components/base/portal-to-follow-elem'
 
 const I18N_PREFIX = 'app.tracing'
 
@@ -52,8 +52,8 @@ const ConfigBtn: FC<Props> = ({
 
   const triggerContent = hasConfigured
     ? (
-      <div className={cn(className, 'p-1 rounded-md hover:bg-black/5 cursor-pointer')}>
-        <Settings04 className='w-4 h-4 text-gray-500' />
+      <div className={cn(className, 'p-1 rounded-md hover:bg-black/5 dark:hover:bg-zinc-500/95 cursor-pointer')}>
+        <Settings04 className='w-4 h-4 text-tgai-text-3' />
       </div>
     )
     : (

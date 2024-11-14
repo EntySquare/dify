@@ -1,5 +1,7 @@
 'use client'
 
+import { useRouter } from "next/navigation"
+
 class StorageMock {
   data: Record<string, string>
 
@@ -46,6 +48,8 @@ Object.defineProperty(globalThis, 'sessionStorage', {
 const BrowerInitor = ({
   children,
 }: { children: React.ReactElement }) => {
+
+  const router = useRouter()
   return children
 }
 

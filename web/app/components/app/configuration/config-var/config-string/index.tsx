@@ -36,7 +36,7 @@ const ConfigString: FC<IConfigStringProps> = ({
 
           onChange(value)
         }}
-        className="w-full px-3 text-sm leading-9 text-gray-900 border-0 rounded-lg grow h-9 bg-gray-100 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200"
+        className="w-full px-3 text-sm leading-9 text-tgai-text-1 border-0 rounded-lg grow h-9 bg-gray-100 dark:bg-tgai-input-background focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600"
       />
     </div>
   )

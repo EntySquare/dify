@@ -2,8 +2,8 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import { RowStruct } from '@/app/components/base/icons/src/public/other'
+import cn from '../../../../../../utils/classnames'
+import { RowStruct } from '../../../../base/icons/src/public/other'
 
 type Props = {
   className?: string

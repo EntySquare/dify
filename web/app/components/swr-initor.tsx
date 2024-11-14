@@ -14,12 +14,26 @@ const SwrInitor = ({
   const router = useRouter()
   const searchParams = useSearchParams()
   const consoleToken = searchParams.get('console_token')
+  const TGAIToken = localStorage?.getItem('tgai_token')
   const consoleTokenFromLocalStorage = localStorage?.getItem('console_token')
   const [init, setInit] = useState(false)
 
   useEffect(() => {
-    if (!(consoleToken || consoleTokenFromLocalStorage))
+    if (!(consoleToken || consoleTokenFromLocalStorage)) {
+      if (typeof window !== undefined) {
+        localStorage.removeItem('console_token')
+        localStorage.removeItem('tgai_token')
+      }
       router.replace('/signin')
+    }
+
+    if (!TGAIToken || TGAIToken === 'undefined') {
+      if (typeof window !== undefined) {
+        localStorage.removeItem('console_token')
+        localStorage.removeItem('tgai_token')
+      }
+      router.replace('/signin')
+    }
 
     if (consoleToken) {
       localStorage?.setItem('console_token', consoleToken!)
@@ -27,6 +41,7 @@ const SwrInitor = ({
     }
     setInit(true)
   }, [])
+
 
   return init
     ? (

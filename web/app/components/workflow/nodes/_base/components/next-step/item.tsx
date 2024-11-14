@@ -7,16 +7,16 @@ import { intersection } from 'lodash-es'
 import type {
   CommonNodeType,
   OnSelectBlock,
-} from '@/app/components/workflow/types'
-import BlockIcon from '@/app/components/workflow/block-icon'
-import BlockSelector from '@/app/components/workflow/block-selector'
+} from '../../../../types'
+import BlockIcon from '../../../../block-icon'
+import BlockSelector from '../../../../block-selector'
 import {
   useAvailableBlocks,
   useNodesInteractions,
   useNodesReadOnly,
   useToolIcon,
-} from '@/app/components/workflow/hooks'
-import Button from '@/app/components/base/button'
+} from '../../../../hooks'
+import Button from '../../../../../base/button'
 
 type ItemProps = {
   nodeId: string
@@ -48,7 +48,7 @@ const Item = ({
         size='small'
         className={`
           hidden group-hover:flex
-          ${open && '!bg-gray-100 !flex'}
+          ${open && '!bg-gray-100 dark:!bg-zinc-600 !flex'}
         `}
       >
         {t('workflow.panel.change')}
@@ -63,10 +63,10 @@ const Item = ({
       {
         branchName && (
           <div
-            className='absolute left-1 right-1 -top-[7.5px] flex items-center h-3 text-[10px] text-gray-500 font-semibold'
+            className='absolute left-1 right-1 -top-[7.5px] flex items-center h-3 text-[10px] text-tgai-text-2 font-semibold'
             title={branchName.toLocaleUpperCase()}
           >
-            <div className='inline-block px-0.5 rounded-[5px] bg-white truncate'>{branchName.toLocaleUpperCase()}</div>
+            <div className='inline-block px-0.5 rounded-[5px] bg-white dark:bg-background-default truncate'>{branchName.toLocaleUpperCase()}</div>
           </div>
         )
       }
@@ -75,7 +75,7 @@ const Item = ({
         toolIcon={toolIcon}
         className='shrink-0 mr-1.5'
       />
-      <div className='grow system-xs-medium text-text-secondary'>{data.title}</div>
+      <div className='grow system-xs-medium text-tgai-text-1'>{data.title}</div>
       {
         !nodesReadOnly && (
           <BlockSelector

@@ -4,10 +4,10 @@ import React, { useCallback, useMemo } from 'react'
 import produce from 'immer'
 import type { InputVar } from '../../../../types'
 import FormItem from './form-item'
-import cn from '@/utils/classnames'
-import { InputVarType } from '@/app/components/workflow/types'
-import AddButton from '@/app/components/base/button/add-button'
-import { RETRIEVAL_OUTPUT_STRUCT } from '@/app/components/workflow/constants'
+import cn from '../../../../../../../utils/classnames'
+import { InputVarType } from '../../../../types'
+import AddButton from '../../../../../base/button/add-button'
+import { RETRIEVAL_OUTPUT_STRUCT } from '../../../../constants'
 
 export type Props = {
   className?: string
@@ -71,7 +71,7 @@ const Form: FC<Props> = ({
     <div className={cn(className, 'space-y-2')}>
       {label && (
         <div className='mb-1 flex items-center justify-between'>
-          <div className='flex items-center h-6 text-xs font-medium text-gray-500 uppercase'>{label}</div>
+          <div className='flex items-center h-6 text-xs font-medium text-tgai-text-3 uppercase'>{label}</div>
           {isArrayLikeType && (
             <AddButton onClick={handleAddContext} />
           )}

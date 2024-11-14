@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import type { App } from '@/types/app'
-import type { IChatItem } from '@/app/components/base/chat/chat/type'
+import type { App } from '../../../types/app'
+import type { IChatItem } from '../base/chat/chat/type'
 
 type State = {
   appDetail?: App

@@ -3,19 +3,19 @@ import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import cn from '@/utils/classnames'
-import Drawer from '@/app/components/base/drawer-plus'
-import Form from '@/app/components/header/account-setting/model-provider-page/model-modal/Form'
-import { addDefaultValue, toolParametersToFormSchemas } from '@/app/components/tools/utils/to-form-schema'
-import type { Collection, Tool } from '@/app/components/tools/types'
-import { CollectionType } from '@/app/components/tools/types'
-import { fetchBuiltInToolList, fetchCustomToolList, fetchModelToolList, fetchWorkflowToolList } from '@/service/tools'
-import I18n from '@/context/i18n'
-import Button from '@/app/components/base/button'
-import Loading from '@/app/components/base/loading'
-import { DiagonalDividingLine } from '@/app/components/base/icons/src/public/common'
-import { getLanguage } from '@/i18n/language'
-import AppIcon from '@/app/components/base/app-icon'
+import cn from '../../../../../../../utils/classnames'
+import Drawer from '../../../../../base/drawer-plus'
+import Form from '../../../../../header/account-setting/model-provider-page/model-modal/Form'
+import { addDefaultValue, toolParametersToFormSchemas } from '../../../../../tools/utils/to-form-schema'
+import type { Collection, Tool } from '../../../../../tools/types'
+import { CollectionType } from '../../../../../tools/types'
+import { fetchBuiltInToolList, fetchCustomToolList, fetchModelToolList, fetchWorkflowToolList } from '../../../../../../../service/tools'
+import I18n from '../../../../../../../context/i18n'
+import Button from '../../../../../base/button'
+import Loading from '../../../../../base/loading'
+import { DiagonalDividingLine } from '../../../../../base/icons/src/public/common'
+import { getLanguage } from '../../../../../../../i18n/language'
+import AppIcon from '../../../../../base/app-icon'
 
 type Props = {
   collection: Collection
@@ -98,16 +98,16 @@ const SettingBuiltInTool: FC<Props> = ({
 
   const infoUI = (
     <div className='pt-2'>
-      <div className='leading-5 text-sm font-medium text-gray-900'>
+      <div className='leading-5 text-sm font-medium text-tgai-text-1'>
         {t('tools.setBuiltInTools.toolDescription')}
       </div>
-      <div className='mt-1 leading-[18px] text-xs font-normal text-gray-600'>
+      <div className='mt-1 leading-[18px] text-xs font-normal text-tgai-text-2'>
         {currTool?.description[language]}
       </div>
 
       {infoSchemas.length > 0 && (
         <div className='mt-6'>
-          <div className='flex items-center mb-4 leading-[18px] text-xs font-semibold text-gray-500 uppercase'>
+          <div className='flex items-center mb-4 leading-[18px] text-xs font-semibold text-tgai-text-2 uppercase'>
             <div className='mr-3'>{t('tools.setBuiltInTools.parameters')}</div>
             <div className='grow w-0 h-px bg-[#f3f4f6]'></div>
           </div>
@@ -115,14 +115,14 @@ const SettingBuiltInTool: FC<Props> = ({
             {infoSchemas.map((item: any, index) => (
               <div key={index}>
                 <div className='flex items-center space-x-2 leading-[18px]'>
-                  <div className='text-[13px] font-semibold text-gray-900'>{item.label[language]}</div>
-                  <div className='text-xs font-medium text-gray-500'>{item.type === 'number-input' ? t('tools.setBuiltInTools.number') : t('tools.setBuiltInTools.string')}</div>
+                  <div className='text-[13px] font-semibold text-tgai-text-1'>{item.label[language]}</div>
+                  <div className='text-xs font-medium text-tgai-text-2'>{item.type === 'number-input' ? t('tools.setBuiltInTools.number') : t('tools.setBuiltInTools.string')}</div>
                   {item.required && (
                     <div className='text-xs font-medium text-[#EC4A0A]'>{t('tools.setBuiltInTools.required')}</div>
                   )}
                 </div>
                 {item.human_description && (
-                  <div className='mt-1 leading-[18px] text-xs font-normal text-gray-600'>
+                  <div className='mt-1 leading-[18px] text-xs font-normal text-tgai-text-2'>
                     {item.human_description?.[language]}
                   </div>
                 )}
@@ -171,22 +171,22 @@ const SettingBuiltInTool: FC<Props> = ({
               />
             )}
 
-          <div className='ml-2 leading-6 text-base font-semibold text-gray-900'>{currTool?.label[language]}</div>
+          <div className='ml-2 leading-6 text-base font-semibold text-tgai-text-1'>{currTool?.label[language]}</div>
           {(hasSetting && !readonly) && (<>
             <DiagonalDividingLine className='mx-4' />
             <div className='flex space-x-6'>
               <div
-                className={cn(isInfoActive ? 'text-gray-900 font-semibold' : 'font-normal text-gray-600 cursor-pointer', 'relative text-base')}
+                className={cn(isInfoActive ? 'text-tgai-text-1 font-semibold' : 'font-normal text-tgai-text-2 cursor-pointer', 'relative text-base')}
                 onClick={() => setCurrType('info')}
               >
                 {t('tools.setBuiltInTools.info')}
-                {isInfoActive && <div className='absolute left-0 bottom-[-16px] w-full h-0.5 bg-primary-600'></div>}
+                {isInfoActive && <div className='absolute left-0 bottom-[-16px] w-full h-0.5 bg-tgai-primary'></div>}
               </div>
-              <div className={cn(!isInfoActive ? 'text-gray-900 font-semibold' : 'font-normal text-gray-600 cursor-pointer', 'relative text-base ')}
+              <div className={cn(!isInfoActive ? 'text-tgai-text-1 font-semibold' : 'font-normal text-tgai-text-2 cursor-pointer', 'relative text-base')}
                 onClick={() => setCurrType('setting')}
               >
                 {t('tools.setBuiltInTools.setting')}
-                {!isInfoActive && <div className='absolute left-0 bottom-[-16px] w-full h-0.5 bg-primary-600'></div>}
+                {!isInfoActive && <div className='absolute left-0 bottom-[-16px] w-full h-0.5 bg-tgai-primary'></div>}
               </div>
             </div>
           </>)}
@@ -203,12 +203,12 @@ const SettingBuiltInTool: FC<Props> = ({
               <Loading type='app' />
             </div>
             : (<div className='flex flex-col h-full'>
-              <div className='grow h-0 overflow-y-auto  px-6'>
+              <div className='grow h-0 overflow-y-auto tgai-custom-scrollbar px-6'>
                 {isInfoActive ? infoUI : settingUI}
               </div>
               {!readonly && !isInfoActive && (
-                <div className='mt-2 shrink-0 flex justify-end py-4 px-6  space-x-2 rounded-b-[10px] bg-gray-50 border-t border-black/5'>
-                  <Button className='flex items-center h-8 !px-3 !text-[13px] font-medium !text-gray-700' onClick={onHide}>{t('common.operation.cancel')}</Button>
+                <div className='mt-2 shrink-0 flex justify-end py-4 px-6  space-x-2 rounded-b-[10px] bg-tgai-section-background border-t border-black/5'>
+                  <Button className='flex items-center h-8 !px-3 !text-[13px] font-medium !text-tgai-text-2' onClick={onHide}>{t('common.operation.cancel')}</Button>
                   <Button className='flex items-center h-8 !px-3 !text-[13px] font-medium' variant='primary' disabled={!isValid} onClick={() => onSave?.(addDefaultValue(tempSetting, formSchemas))}>{t('common.operation.save')}</Button>
                 </div>
               )}

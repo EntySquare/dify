@@ -1,8 +1,8 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLatest } from 'ahooks'
-import SimplePieChart from '@/app/components/base/simple-pie-chart'
-import TooltipPlus from '@/app/components/base/tooltip-plus'
+import SimplePieChart from '../../../../base/simple-pie-chart'
+import TooltipPlus from '../../../../base/tooltip-plus'
 
 export type CooldownTimerProps = {
   secondsRemaining?: number
