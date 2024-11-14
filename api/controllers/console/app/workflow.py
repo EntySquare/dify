@@ -7,6 +7,7 @@ from flask_restful import Resource, marshal_with, reqparse
 from werkzeug.exceptions import Forbidden, InternalServerError, NotFound
 
 import services
+from configs import dify_config
 from controllers.console import api
 from controllers.console.app.error import ConversationCompletedError, DraftWorkflowNotExist, DraftWorkflowNotSync
 from controllers.console.app.wraps import get_app_model
@@ -26,7 +27,7 @@ from services.app_dsl_service import AppDslService
 from services.app_generate_service import AppGenerateService
 from services.errors.app import WorkflowHashNotEqualError
 from services.workflow_service import WorkflowService
-from configs import dify_config
+
 logger = logging.getLogger(__name__)
 
 TG_API_SERVICE_3011 = dify_config.TG_API_SERVICE_3011
