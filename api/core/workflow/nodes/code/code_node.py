@@ -239,7 +239,7 @@ class CodeNode(BaseNode):
                 else:
                     if len(result[output_name]) > MAX_NUMBER_ARRAY_LENGTH:
                         raise ValueError(
-                            f'The length of output variable `{prefix}{dot}{output_name}` must be less than {MAX_NUMBER_ARRAY_LENGTH} elements.'
+                            f'The length of output variable `{prefix}{dot}{output_name}` must be less than {MAX_NUMBER_ARRAY_LENGTH} elements. 003'
                         )
 
                     transformed_result[output_name] = [
@@ -261,7 +261,7 @@ class CodeNode(BaseNode):
                 else:
                     if len(result[output_name]) > MAX_STRING_ARRAY_LENGTH:
                         raise ValueError(
-                            f'The length of output variable `{prefix}{dot}{output_name}` must be less than {MAX_STRING_ARRAY_LENGTH} elements.'
+                            f'The length of output variable `{prefix}{dot}{output_name}` must be less than {MAX_STRING_ARRAY_LENGTH} elements. 002'
                         )
 
                     transformed_result[output_name] = [
@@ -283,7 +283,7 @@ class CodeNode(BaseNode):
                 else:
                     if len(result[output_name]) > MAX_OBJECT_ARRAY_LENGTH:
                         raise ValueError(
-                            f'The length of output variable `{prefix}{dot}{output_name}` must be less than {MAX_OBJECT_ARRAY_LENGTH} elements.'
+                            f'The length of output variable `{prefix}{dot}{output_name}` must be less than {MAX_OBJECT_ARRAY_LENGTH} elements. 001'
                         )
                     
                     for i, value in enumerate(result[output_name]):

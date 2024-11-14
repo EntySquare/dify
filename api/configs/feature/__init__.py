@@ -242,7 +242,7 @@ class WorkflowConfig(BaseSettings):
 
     WORKFLOW_MAX_EXECUTION_STEPS: PositiveInt = Field(
         description='max execution steps in single workflow execution',
-        default=500,
+        default=10000,
     )
 
     WORKFLOW_MAX_EXECUTION_TIME: PositiveInt = Field(

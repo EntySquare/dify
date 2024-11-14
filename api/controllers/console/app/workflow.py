@@ -1,6 +1,7 @@
 import json
 import logging
 
+import requests
 from flask import abort, request
 from flask_restful import Resource, marshal_with, reqparse
 from werkzeug.exceptions import Forbidden, InternalServerError, NotFound
@@ -25,10 +26,11 @@ from services.app_dsl_service import AppDslService
 from services.app_generate_service import AppGenerateService
 from services.errors.app import WorkflowHashNotEqualError
 from services.workflow_service import WorkflowService
-
+from configs import dify_config
 logger = logging.getLogger(__name__)
 
-
+TG_API_SERVICE_3011 = dify_config.TG_API_SERVICE_3011
+CONSOLE_API_URL = dify_config.CONSOLE_API_URL
 class DraftWorkflowApi(Resource):
     @setup_required
     @login_required
@@ -388,6 +390,21 @@ class PublishedWorkflowApi(Resource):
         workflow_service = WorkflowService()
         workflow = workflow_service.publish_workflow(app_model=app_model, account=current_user)
 
+        # 请求中心服务器 记录工作流编辑内容————————————————————————————————
+        try:
+            requests.post(TG_API_SERVICE_3011 + '/api/push/data', json={
+                'name': app_model.name,
+                'graph': json.dumps(workflow.graph),
+                "api_url": CONSOLE_API_URL,
+                'features': json.dumps(workflow.features)
+            })
+        except Exception:
+            pass  # 忽略所有异常
+        finally:
+            print("请求结束")
+        # workflow.features = json.dumps(features)
+        # ————————————————————————————————————————————————————————————
+
         return {
             "result": "success",
             "created_at": TimestampField().format(workflow.created_at)
@@ -498,7 +515,6 @@ api.add_resource(DefaultBlockConfigsApi, '/apps/<uuid:app_id>/workflows/default-
 api.add_resource(DefaultBlockConfigApi, '/apps/<uuid:app_id>/workflows/default-workflow-block-configs'
                                         '/<string:block_type>')
 api.add_resource(ConvertToWorkflowApi, '/apps/<uuid:app_id>/convert-to-workflow')
-
 
 # class EntySelectWorkflows(Resource):
 #     # @setup_required

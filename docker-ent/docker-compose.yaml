@@ -10,6 +10,7 @@ x-shared-env: &shared-api-worker-env
   SERVICE_API_URL: ${SERVICE_API_URL:-}
   TG_API_3010: ${TG_API_3010:-}
   TG_API_WS_3010: ${TG_API_WS_3010:-}
+  TG_API_SERVICE_3011: ${TG_API_SERVICE_3011:-}
   APP_WEB_URL: ${APP_WEB_URL:-}
   CHECK_UPDATE_URL: ${CHECK_UPDATE_URL:-https://updates.dify.ai}
   OPENAI_API_BASE: ${OPENAI_API_BASE:-https://api.openai.com/v1}
