@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next'
 import useSWR from 'swr'
 import Link from 'next/link'
 import s from './index.module.css'
-import classNames from '@/utils/classnames'
-import { fetchAccountIntegrates } from '@/service/common'
+import classNames from '../../../../../utils/classnames'
+import { fetchAccountIntegrates } from '../../../../../service/common'
 
 const titleClassName = `
   mb-2 text-sm font-medium text-gray-900

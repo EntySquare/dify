@@ -3,12 +3,12 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
-import { LinkExternal02 } from '@/app/components/base/icons/src/vender/line/general'
-import { IS_CE_EDITION } from '@/config'
-import { useProviderContext } from '@/context/provider-context'
-import { useModalContext } from '@/context/modal-context'
+import cn from '../../../../../utils/classnames'
+import Button from '../../../base/button'
+import { LinkExternal02 } from '../../../base/icons/src/vender/line/general'
+import { IS_CE_EDITION } from '../../../../../config'
+import { useProviderContext } from '../../../../../context/provider-context'
+import { useModalContext } from '../../../../../context/modal-context'
 
 const APIKeyInfoPanel: FC = () => {
   const isCloud = !IS_CE_EDITION
@@ -55,7 +55,8 @@ const APIKeyInfoPanel: FC = () => {
       {!isCloud && (
         <a
           className='mt-2 flex items-center h-[26px] text-xs  font-medium text-[#155EEF] p-1 space-x-1'
-          href='https://cloud.dify.ai/apps'
+          href=''
+          // href='https://cloud.dify.ai/apps'
           target='_blank' rel='noopener noreferrer'
         >
           <div>{t('appOverview.apiKeyInfo.tryCloud')}</div>

@@ -10,11 +10,11 @@ import { useStore } from '../../store'
 import useAvailableVarList from '../_base/hooks/use-available-var-list'
 import useConfigVision from '../../hooks/use-config-vision'
 import type { QuestionClassifierNodeType } from './types'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
-import useOneStepRun from '@/app/components/workflow/nodes/_base/hooks/use-one-step-run'
-import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '@/app/components/header/account-setting/model-provider-page/hooks'
-import { ModelTypeEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
-import { checkHasQueryBlock } from '@/app/components/base/prompt-editor/constants'
+import useNodeCrud from '../_base/hooks/use-node-crud'
+import useOneStepRun from '../_base/hooks/use-one-step-run'
+import { useModelListAndDefaultModelAndCurrentProviderAndModel } from '../../../header/account-setting/model-provider-page/hooks'
+import { ModelTypeEnum } from '../../../header/account-setting/model-provider-page/declarations'
+import { checkHasQueryBlock } from '../../../base/prompt-editor/constants'
 
 const useConfig = (id: string, payload: QuestionClassifierNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

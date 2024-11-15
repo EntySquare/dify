@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import InfoPanel from '../_base/components/info-panel'
 import ReadonlyInputWithSelectVar from '../_base/components/readonly-input-with-select-var'
 import type { AnswerNodeType } from './types'
-import type { NodeProps } from '@/app/components/workflow/types'
+import type { NodeProps } from '../../types'
 const Node: FC<NodeProps<AnswerNodeType>> = ({
   id,
   data,

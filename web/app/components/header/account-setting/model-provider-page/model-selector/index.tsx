@@ -14,7 +14,7 @@ import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
+} from '../../../../base/portal-to-follow-elem'
 
 type ModelSelectorProps = {
   defaultModel?: DefaultModel

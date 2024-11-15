@@ -16,7 +16,7 @@ import {
   setModelProvider,
   validateModelLoadBalancingCredentials,
   validateModelProvider,
-} from '@/service/common'
+} from '../../../../../service/common'
 
 export const MODEL_PROVIDER_QUOTA_GET_PAID = ['anthropic', 'openai', 'azure_openai']
 

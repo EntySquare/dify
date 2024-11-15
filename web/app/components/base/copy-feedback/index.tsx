@@ -5,6 +5,9 @@ import { debounce } from 'lodash-es'
 import copy from 'copy-to-clipboard'
 import copyStyle from './style.module.css'
 import Tooltip from '@/app/components/base/tooltip'
+import Copy from '@/app/components/develop/secret-key/assets/copy.svg'
+import CopyHover from '@/app/components/develop/secret-key/assets/copy-hover.svg'
+import Copied from '@/app/components/develop/secret-key/assets/copied.svg'
 
 type Props = {
   content: string
@@ -42,9 +45,9 @@ const CopyFeedback = ({ content, className }: Props) => {
         <div
           onClick={onClickCopy}
           onMouseLeave={onMouseLeave}
-          className={`w-full h-full ${copyStyle.copyIcon} ${
-            isCopied ? copyStyle.copied : ''
-          }`}
+          className={`w-full h-full text-tgai-text-3 hover:text-tgai-text-1 flex justify-center items-center ${isCopied && '!text-tgai-text-1'}`}
+        >
+          {isCopied ? <Copied /> : <Copy />}
         ></div>
       </div>
     </Tooltip>
@@ -82,10 +85,10 @@ export const CopyFeedbackNew = ({ content, className }: Pick<Props, 'className' 
         <div
           onClick={onClickCopy}
           onMouseLeave={onMouseLeave}
-          className={`w-full h-full ${copyStyle.copyIcon} ${
-            isCopied ? copyStyle.copied : ''
-          }`}
-        ></div>
+          className={`w-full h-full text-tgai-text-3 hover:text-tgai-text-1 flex justify-center items-center ${isCopied && '!text-tgai-text-1'}`}
+        >
+          {isCopied ? <Copied /> : <Copy />}
+        </div>
       </div>
     </Tooltip>
   )

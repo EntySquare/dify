@@ -132,7 +132,7 @@ const VarGroupItem: FC<Props> = ({
           </div>
           {canRemove && (
             <div
-              className='group-hover:block hidden ml-0.5 p-1 rounded-md text-gray-500 cursor-pointer hover:bg-[#FEE4E2] hover:text-[#D92D20]'
+              className='group-hover:block hidden ml-0.5 p-1 rounded-md text-tgai-text-3 cursor-pointer hover:bg-[#FEE4E2] hover:text-[#D92D20]'
               onClick={onRemove}
             >
               <RiDeleteBinLine
@@ -145,7 +145,7 @@ const VarGroupItem: FC<Props> = ({
       operations={
         <div className='flex items-center h-6  space-x-2'>
           {payload.variables.length > 0 && (
-            <div className='flex items-center h-[18px] px-1 border border-divider-deep rounded-[5px] text-text-tertiary system-2xs-medium-uppercase'>{payload.output_type}</div>
+            <div className='flex items-center h-[18px] px-1 border border-divider-deep dark:border-stone-700/[92] rounded-[5px] text-text-tertiary dark:text-tgai-text-3 system-2xs-medium-uppercase'>{payload.output_type}</div>
           )}
           {
             !readOnly

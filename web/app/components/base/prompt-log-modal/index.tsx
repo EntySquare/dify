@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'ahooks'
 import { RiCloseLine } from '@remixicon/react'
 import Card from './card'
-import { CopyFeedbackNew } from '@/app/components/base/copy-feedback'
-import type { IChatItem } from '@/app/components/base/chat/chat/type'
+import { CopyFeedbackNew } from '../copy-feedback'
+import type { IChatItem } from '../chat/chat/type'
 
 type PromptLogModalProps = {
   currentLogItem?: IChatItem
@@ -62,7 +62,7 @@ const PromptLogModal: FC<PromptLogModalProps> = ({
           </div>
         </div>
       </div>
-      <div className='grow p-2 overflow-y-auto'>
+      <div className='grow p-2 overflow-y-auto tgai-custom-scrollbar'>
         <Card log={currentLogItem.log} />
       </div>
     </div>

@@ -8,25 +8,25 @@ import { useContext } from 'use-context-selector'
 import ConfirmAddVar from './confirm-add-var'
 import s from './style.module.css'
 import PromptEditorHeightResizeWrap from './prompt-editor-height-resize-wrap'
-import cn from '@/utils/classnames'
-import { type PromptVariable } from '@/models/debug'
-import Tooltip from '@/app/components/base/tooltip'
-import type { CompletionParams } from '@/types/app'
-import { AppType } from '@/types/app'
-import { getNewVar, getVars } from '@/utils/var'
-import AutomaticBtn from '@/app/components/app/configuration/config/automatic/automatic-btn'
-import type { AutomaticRes } from '@/service/debug'
-import GetAutomaticResModal from '@/app/components/app/configuration/config/automatic/get-automatic-res'
-import PromptEditor from '@/app/components/base/prompt-editor'
-import ConfigContext from '@/context/debug-configuration'
-import { useModalContext } from '@/context/modal-context'
-import type { ExternalDataTool } from '@/models/common'
-import { useToastContext } from '@/app/components/base/toast'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
-import { ADD_EXTERNAL_DATA_TOOL } from '@/app/components/app/configuration/config-var'
-import { INSERT_VARIABLE_VALUE_BLOCK_COMMAND } from '@/app/components/base/prompt-editor/plugins/variable-block'
-import { PROMPT_EDITOR_UPDATE_VALUE_BY_EVENT_EMITTER } from '@/app/components/base/prompt-editor/plugins/update-block'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import cn from '../../../../../utils/classnames'
+import { type PromptVariable } from '../../../../../models/debug'
+import Tooltip from '../../../base/tooltip'
+import type { CompletionParams } from '../../../../../types/app'
+import { AppType } from '../../../../../types/app'
+import { getNewVar, getVars } from '../../../../../utils/var'
+import AutomaticBtn from '../config/automatic/automatic-btn'
+import type { AutomaticRes } from '../../../../../service/debug'
+import GetAutomaticResModal from '../config/automatic/get-automatic-res'
+import PromptEditor from '../../../base/prompt-editor'
+import ConfigContext from '../../../../../context/debug-configuration'
+import { useModalContext } from '../../../../../context/modal-context'
+import type { ExternalDataTool } from '../../../../../models/common'
+import { useToastContext } from '../../../base/toast'
+import { useEventEmitterContextContext } from '../../../../../context/event-emitter'
+import { ADD_EXTERNAL_DATA_TOOL } from '../config-var'
+import { INSERT_VARIABLE_VALUE_BLOCK_COMMAND } from '../../../base/prompt-editor/plugins/variable-block'
+import { PROMPT_EDITOR_UPDATE_VALUE_BY_EVENT_EMITTER } from '../../../base/prompt-editor/plugins/update-block'
+import useBreakpoints, { MediaType } from '../../../../../hooks/use-breakpoints'
 
 export type ISimplePromptInput = {
   mode: AppType
@@ -145,8 +145,8 @@ const Prompt: FC<ISimplePromptInput> = ({
   const [editorHeight, setEditorHeight] = useState(minHeight)
 
   return (
-    <div className={cn((!readonly || gradientBorder) ? `${s.gradientBorder}` : 'bg-gray-50', ' relative shadow-md')}>
-      <div className='rounded-xl bg-[#EEF4FF]'>
+    <div className={cn((!readonly || gradientBorder) ? `${s.gradientBorder}` : 'bg-gray-50 dark:bg-tgai-panel-background', ' relative shadow-md')}>
+      <div className='rounded-xl bg-[#EEF4FF] dark:bg-tgai-panel-background'>
         {!noTitle && (
           <div className="flex justify-between items-center h-11 pl-3 pr-6">
             <div className="flex items-center space-x-1">
@@ -170,14 +170,14 @@ const Prompt: FC<ISimplePromptInput> = ({
         )}
 
         <PromptEditorHeightResizeWrap
-          className='px-4 pt-2 min-h-[228px] bg-white rounded-t-xl text-sm text-gray-700'
+          className='px-4 pt-2 min-h-[228px] bg-white dark:bg-tgai-input-background rounded-t-xl text-sm text-tgai-text-2'
           height={editorHeight}
           minHeight={minHeight}
           onHeightChange={setEditorHeight}
           hideResize={noResize}
           footer={(
-            <div className='pl-4 pb-2 flex bg-white rounded-b-xl'>
-              <div className="h-[18px] leading-[18px] px-1 rounded-md bg-gray-100 text-xs text-gray-500">{promptTemplate.length}</div>
+            <div className='pl-4 pb-2 flex bg-white dark:bg-tgai-input-background rounded-b-xl'>
+              <div className="h-[18px] leading-[18px] px-1 rounded-md bg-gray-100 dark:bg-neutral-700 text-xs text-tgai-text-3">{promptTemplate.length}</div>
             </div>
           )}
         >

@@ -58,7 +58,7 @@ const AgentSetting: FC<Props> = ({
           </div>
         </div>
         {/* Body */}
-        <div className='grow p-6 pt-5 border-b overflow-y-auto pb-[68px]' style={{
+        <div className='grow p-6 pt-5 border-b overflow-y-auto tgai-custom-scrollbar pb-[68px]' style={{
           borderBottom: 'rgba(0, 0, 0, 0.05)',
         }}>
           {/* Agent Mode */}
@@ -119,7 +119,7 @@ const AgentSetting: FC<Props> = ({
           {!isFunctionCall && (
             <div className='py-2 bg-gray-50 rounded-xl shadow-xs'>
               <div className='flex items-center h-8 px-4 leading-6 text-sm font-semibold text-gray-700'>{t('tools.builtInPromptTitle')}</div>
-              <div className='h-[396px] px-4 overflow-y-auto leading-5 text-sm font-normal text-gray-700 whitespace-pre-line'>
+              <div className='h-[396px] px-4 overflow-y-auto tgai-custom-scrollbar leading-5 text-sm font-normal text-gray-700 whitespace-pre-line'>
                 {isChatModel ? DEFAULT_AGENT_PROMPT.chat : DEFAULT_AGENT_PROMPT.completion}
               </div>
               <div className='px-4'>

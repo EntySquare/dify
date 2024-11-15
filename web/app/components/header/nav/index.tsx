@@ -39,15 +39,15 @@ const Nav = ({
   return (
     <div className={`
       flex items-center h-8 mr-0 sm:mr-3 px-0.5 rounded-xl text-sm shrink-0 font-medium
-      ${isActivated && 'bg-components-main-nav-nav-button-bg-active shadow-md font-semibold'}
-      ${!curNav && !isActivated && 'hover:bg-components-main-nav-nav-button-bg-hover'}
+      ${isActived && 'bg-components-main-nav-nav-button-bg-active dark:bg-zinc-600 shadow-md dark:shadow-stone-800 font-semibold'}
+      ${!curNav && !isActived && 'hover:bg-components-main-nav-nav-button-bg-hover dark:hover:bg-zinc-800'}
     `}>
       <Link href={link}>
         <div
           onClick={() => setAppDetail()}
           className={classNames(`
             flex items-center h-7 px-2.5 cursor-pointer rounded-[10px]
-            ${isActivated ? 'text-components-main-nav-nav-button-text-active' : 'text-components-main-nav-nav-button-text'}
+            ${isActivated ? 'text-components-main-nav-nav-button-text-active dark:text-tgai-primary' : 'text-components-main-nav-nav-button-text dark:text-tgai-text-2'}
             ${curNav && isActivated && 'hover:bg-components-main-nav-nav-button-bg-active-hover'}
           `)}
           onMouseEnter={() => setHovered(true)}
@@ -68,7 +68,7 @@ const Nav = ({
       {
         curNav && isActivated && (
           <>
-            <div className='font-light text-gray-300 '>/</div>
+            <div className='font-light text-tgai-text-3'>/</div>
             <NavSelector
               isApp={isApp}
               curNav={curNav}

@@ -7,11 +7,11 @@ import { useSelectedLayoutSegments } from 'next/navigation'
 import Link from 'next/link'
 import Toast from '../../base/toast'
 import Item from './app-nav-item'
-import cn from '@/utils/classnames'
-import { fetchInstalledAppList as doFetchInstalledAppList, uninstallApp, updatePinStatus } from '@/service/explore'
-import ExploreContext from '@/context/explore-context'
-import Confirm from '@/app/components/base/confirm'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
+import cn from '../../../../utils/classnames'
+import { fetchInstalledAppList as doFetchInstalledAppList, uninstallApp, updatePinStatus } from '../../../../service/explore'
+import ExploreContext from '../../../../context/explore-context'
+import Confirm from '../../base/confirm'
+import useBreakpoints, { MediaType } from '../../../../hooks/use-breakpoints'
 
 const SelectedDiscoveryIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

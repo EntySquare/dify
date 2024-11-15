@@ -14,7 +14,7 @@ import {
   $createWorkflowVariableBlockNode,
   WorkflowVariableBlockNode,
 } from './node'
-import type { Node } from '@/app/components/workflow/types'
+import type { Node } from '../../../../workflow/types'
 
 export const INSERT_WORKFLOW_VARIABLE_BLOCK_COMMAND = createCommand('INSERT_WORKFLOW_VARIABLE_BLOCK_COMMAND')
 export const DELETE_WORKFLOW_VARIABLE_BLOCK_COMMAND = createCommand('DELETE_WORKFLOW_VARIABLE_BLOCK_COMMAND')

@@ -58,8 +58,9 @@ const RenameModal: FC<Props> = ({
       title={t('datasetDocuments.list.table.rename')}
       isShow
       onClose={onClose}
+      className='bg-tgai-panel-background-2 dark:border-zinc-600'
     >
-      <div className={'mt-6 font-medium text-sm leading-[21px] text-gray-900'}>{t('datasetDocuments.list.table.name')}</div>
+      <div className={'mt-6 font-medium text-sm leading-[21px] text-tgai-text-1'}>{t('datasetDocuments.list.table.name')}</div>
       <Input
         className='mt-2 h-10'
         value={newName}

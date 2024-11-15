@@ -3,11 +3,11 @@ import type { FC } from 'react'
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
-import ExploreContext from '@/context/explore-context'
-import Sidebar from '@/app/components/explore/sidebar'
-import { useAppContext } from '@/context/app-context'
-import { fetchMembers } from '@/service/common'
-import type { InstalledApp } from '@/models/explore'
+import ExploreContext from '../../../context/explore-context'
+import { useAppContext } from '../../../context/app-context'
+import { fetchMembers } from '../../../service/common'
+import type { InstalledApp } from '../../../models/explore'
+import Sidebar from './sidebar'
 
 export type IExploreProps = {
   children: React.ReactNode
@@ -24,7 +24,7 @@ const Explore: FC<IExploreProps> = ({
   const [installedApps, setInstalledApps] = useState<InstalledApp[]>([])
 
   useEffect(() => {
-    document.title = `${t('explore.title')} -  Dify`;
+    document.title = `${t('explore.title')} -  TGAI`;
     (async () => {
       const { accounts } = await fetchMembers({ url: '/workspaces/current/members', params: {} })
       if (!accounts)

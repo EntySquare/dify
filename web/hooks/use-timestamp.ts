@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
-import { useAppContext } from '@/context/app-context'
+import { useAppContext } from '../context/app-context'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)

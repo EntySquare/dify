@@ -6,12 +6,12 @@ import type { ValueSelector, Var } from '../../types'
 import { VarType } from '../../types'
 import type { VarGroupItem, VariableAssignerNodeType } from './types'
 import { useGetAvailableVars } from './hooks'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
+import useNodeCrud from '../_base/hooks/use-node-crud'
 
 import {
   useNodesReadOnly,
   useWorkflow,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: VariableAssignerNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

@@ -77,7 +77,7 @@ const VariableModal = ({
             className='flex items-center justify-center w-6 h-6 cursor-pointer'
             onClick={onClose}
           >
-            <RiCloseLine className='w-4 h-4 text-text-tertiary' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       </div>
@@ -88,11 +88,13 @@ const VariableModal = ({
           <div className='flex gap-2'>
             <div className={cn(
               'w-[106px] flex items-center justify-center p-2 radius-md bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary system-sm-regular cursor-pointer hover:shadow-xs hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
-              type === 'string' && 'text-text-primary system-sm-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border hover:border-components-option-card-option-selected-border',
+              type === 'string' && 'text-text-primary system-sm-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg' &&
+              'border-tgai-primary hover:border-tgai-primary',
             )} onClick={() => setType('string')}>String</div>
             <div className={cn(
               'w-[106px] flex items-center justify-center p-2 radius-md bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary system-sm-regular cursor-pointer hover:shadow-xs hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
-              type === 'number' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border hover:border-components-option-card-option-selected-border',
+              type === 'number' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg' &&
+              'border-tgai-primary hover:border-tgai-primary',
             )} onClick={() => {
               setType('number')
               if (!(/^[0-9]$/).test(value))
@@ -100,7 +102,8 @@ const VariableModal = ({
             }}>Number</div>
             <div className={cn(
               'w-[106px] flex items-center justify-center p-2 radius-md bg-components-option-card-option-bg border border-components-option-card-option-border text-text-secondary system-sm-regular cursor-pointer hover:shadow-xs hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
-              type === 'secret' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border hover:border-components-option-card-option-selected-border',
+              type === 'secret' && 'text-text-primary font-medium border-[1.5px] shadow-xs bg-components-option-card-option-selected-bg' &&
+              'border-tgai-primary hover:border-tgai-primary',
             )} onClick={() => setType('secret')}>
               <span>Secret</span>
               <Tooltip

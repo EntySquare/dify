@@ -7,14 +7,16 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: #344054;
+  /* color: #344054; */
+  color: var(--tgai-text-1);
 }
 
 .fileUploader .tip {
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  color: #667085;
+  /* color: #667085; */
+  color:var(--tgai-text-3);
 }
 
 .uploader {
@@ -28,7 +30,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: #667085;
+  color: var(--tgai-text-3);
 }
 
 .uploader.dragging {
@@ -50,13 +52,14 @@
   margin-right: 8px;
   width: 24px;
   height: 24px;
-  background: center no-repeat url(../assets/upload-cloud-01.svg);
+  /* background: center no-repeat url(../assets/upload-cloud-01.svg); */
   background-size: contain;
 }
 
 .uploader .browse {
   @apply pl-1 cursor-pointer;
-  color: #155eef;
+  /* color: #155eef; */
+  color: var(--tgai-primary);
 }
 
 .fileList {
@@ -159,7 +162,8 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 18px;
-  color: #1D2939;
+  /* color: #1D2939; */
+  color: var(--tgai-text-1);
 }
 
 .size {
@@ -167,7 +171,8 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  color: #667085;
+  /* color: #667085; */
+  color: var(--tgai-text-3);
 }
 
 .actionWrapper {

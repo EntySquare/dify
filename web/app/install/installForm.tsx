@@ -10,11 +10,11 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Loading from '../components/base/loading'
-import classNames from '@/utils/classnames'
-import Button from '@/app/components/base/button'
+import classNames from '../../utils/classnames'
+import Button from '../components/base/button'
 
-import { fetchInitValidateStatus, fetchSetupStatus, setup } from '@/service/common'
-import type { InitValidateStatusResponse, SetupStatusResponse } from '@/models/common'
+import { fetchInitValidateStatus, fetchSetupStatus, setup } from '../../service/common'
+import type { InitValidateStatusResponse, SetupStatusResponse } from '../../models/common'
 
 const validPassword = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 
@@ -160,7 +160,8 @@ const InstallForm = () => {
               <Link
                 className='text-primary-600'
                 target='_blank' rel='noopener noreferrer'
-                href={'https://docs.dify.ai/user-agreement/open-source'}
+                href=""
+                // href={'https://docs.dify.ai/user-agreement/open-source'}
               >{t('login.license.link')}</Link>
             </div>
           </div>

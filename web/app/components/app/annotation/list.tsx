@@ -6,8 +6,8 @@ import { RiDeleteBinLine } from '@remixicon/react'
 import { Edit02 } from '../../base/icons/src/vender/line/general'
 import type { AnnotationItem } from './type'
 import RemoveAnnotationConfirmModal from './remove-annotation-confirm-modal'
-import cn from '@/utils/classnames'
-import useTimestamp from '@/hooks/use-timestamp'
+import cn from '../../../../utils/classnames'
+import useTimestamp from '../../../../hooks/use-timestamp'
 
 type Props = {
   list: AnnotationItem[]

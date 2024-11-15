@@ -9,7 +9,7 @@ import {
 } from 'react'
 import { Tab } from '@headlessui/react'
 import { Tag } from './tag'
-import classNames from '@/utils/classnames'
+import classNames from '../../../utils/classnames'
 
 const languageNames = {
   js: 'JavaScript',
@@ -140,7 +140,7 @@ function CodePanel({ tag, label, code, children, targetCode }: ICodePanelProps) 
         {/* <pre className="p-4 overflow-x-auto text-xs text-white">{children}</pre> */}
         {/* <CopyButton code={child.props.code ?? code} /> */}
         {/* <CopyButton code={child.props.children.props.children} /> */}
-        <pre className="p-4 overflow-x-auto text-xs text-white">{targetCode || children}</pre>
+        <pre className="p-4 overflow-x-auto tgai-custom-hor-scrollbar text-xs text-white">{targetCode || children}</pre>
         <CopyButton code={targetCode || child.props.children.props.children} />
       </div>
     </div>

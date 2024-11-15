@@ -64,9 +64,9 @@ const DocumentSettings = ({ datasetId, documentId }: DocumentSettingsProps) => {
     return <AppUnavailable code={500} unknownReason={t('datasetCreation.error.unavailable') as string} />
 
   return (
-    <div className='flex' style={{ height: 'calc(100vh - 56px)' }}>
-      <div className="grow bg-white">
-        {!documentDetail && <Loading type='app' />}
+    <div className="flex" style={{ height: "calc(100vh - 56px)" }}>
+      <div className="grow bg-white dark:bg-tgai-panel-background-2">
+        {!documentDetail && <Loading type="app" />}
         {dataset && documentDetail && (
           <StepTwo
             isAPIKeySet={!!embeddingsDefaultModel}

@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { CheckCircle } from '@/app/components/base/icons/src/vender/solid/general'
+import { CheckCircle } from '../../../../base/icons/src/vender/solid/general'
 
 type InputProps = {
   value?: string
@@ -41,10 +41,10 @@ const Input: FC<InputProps> = ({
       <input
         tabIndex={0}
         className={`
-          block px-3 w-full h-9 bg-gray-100 text-sm rounded-lg border border-transparent
-          appearance-none outline-none caret-primary-600
-          hover:border-[rgba(0,0,0,0.08)] hover:bg-gray-50
-          focus:bg-white focus:border-gray-300 focus:shadow-xs
+          block px-3 w-full h-9 bg-tgai-input-background text-sm rounded-lg border border-transparent text-tgai-text-1
+          appearance-none outline-none caret-tgai-primary
+          hover:border-[rgba(0,0,0,0.08)] hover:bg-gray-50 dark:hover:bg-zinc-600 dark:hover:border-stone-700
+          focus:bg-white focus:border-gray-300 focus:shadow-xs dark:focus:bg-zinc-600 dark:focus:border-stone-700
           placeholder:text-sm placeholder:text-gray-400
           ${validated && 'pr-[30px]'}
           ${className}

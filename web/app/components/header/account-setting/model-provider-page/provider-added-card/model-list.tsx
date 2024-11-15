@@ -12,9 +12,9 @@ import {
 // import Tab from './tab'
 import AddModelButton from './add-model-button'
 import ModelListItem from './model-list-item'
-import { ChevronDownDouble } from '@/app/components/base/icons/src/vender/line/arrows'
-import { useModalContextSelector } from '@/context/modal-context'
-import { useAppContext } from '@/context/app-context'
+import { ChevronDownDouble } from '../../../../base/icons/src/vender/line/arrows'
+import { useModalContextSelector } from '../../../../../../context/modal-context'
+import { useAppContext } from '../../../../../../context/app-context'
 
 type ModelListProps = {
   provider: ModelProvider

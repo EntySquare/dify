@@ -10,8 +10,8 @@ import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import type { Node } from '@/app/components/workflow/types'
+} from '../../../../../base/portal-to-follow-elem'
+import type { Node } from '../../../../types'
 
 type PanelOperatorProps = {
   id: string
@@ -54,12 +54,12 @@ const PanelOperator = ({
         <div
           className={`
             flex items-center justify-center w-6 h-6 rounded-md cursor-pointer
-            hover:bg-black/5
-            ${open && 'bg-black/5'}
+            hover:bg-black/5 dark:hover:bg-zinc-600
+            ${open && 'bg-black/5 dark:bg-zinc-600'}
             ${triggerClassName}
           `}
         >
-          <RiMoreFill className={`w-4 h-4 ${inNode ? 'text-gray-500' : 'text-gray-700'}`} />
+          <RiMoreFill className={`w-4 h-4 ${inNode ? 'text-tgai-text-3' : 'text-tgai-text-2'}`} />
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='z-[11]'>

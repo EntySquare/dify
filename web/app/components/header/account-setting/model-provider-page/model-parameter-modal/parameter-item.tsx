@@ -150,7 +150,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
           />}
           <input
             ref={numberInputRef}
-            className='shrink-0 block ml-4 pl-3 w-16 h-8 appearance-none outline-none rounded-lg bg-gray-100 text-[13px] text-gra-900'
+            className='shrink-0 block ml-4 pl-3 w-16 h-8 appearance-none outline-none rounded-lg bg-gray-100 dark:bg-tgai-input-background text-[13px] text-tgai-text-1'
             type='number'
             max={parameterRule.max}
             min={parameterRule.min}
@@ -203,7 +203,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
     if (parameterRule.type === 'string' && !parameterRule.options?.length) {
       return (
         <input
-          className={cn(isInWorkflow ? 'w-[200px]' : 'w-full', 'ml-4 flex items-center px-3 h-8 appearance-none outline-none rounded-lg bg-gray-100 text-[13px] text-gra-900')}
+          className={cn(isInWorkflow ? 'w-[200px]' : 'w-full', 'ml-4 flex items-center px-3 h-8 appearance-none outline-none rounded-lg bg-gray-100 dark:bg-tgai-input-background text-[13px] text-tgai-text-1')}
           value={renderValue as string}
           onChange={handleStringInputChange}
         />
@@ -213,7 +213,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
     if (parameterRule.type === 'text') {
       return (
         <textarea
-          className='w-full h-20 ml-4 px-1 rounded-lg bg-gray-100 outline-none text-[12px] text-gray-900'
+          className='w-full h-20 ml-4 px-1 rounded-lg bg-gray-100 dark:bg-tgai-input-background outline-none text-[12px] text-tgai-text-1'
           value={renderValue as string}
           onChange={handleStringInputChange}
         />
@@ -253,7 +253,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
       <div>
         <div className={cn(isInWorkflow ? 'w-[140px]' : 'w-full', 'ml-4 shrink-0 flex items-center')}>
           <div
-            className='mr-0.5 text-[13px] font-medium text-gray-700 truncate'
+            className='mr-0.5 text-[13px] font-medium text-tgai-text-2 truncate'
             title={parameterRule.label[language] || parameterRule.label.en_US}
           >
             {parameterRule.label[language] || parameterRule.label.en_US}
@@ -282,7 +282,7 @@ const ParameterItem: FC<ParameterItemProps> = ({
         </div>
         {
           parameterRule.type === 'tag' && (
-            <div className={cn(!isInWorkflow && 'w-[200px]', 'text-gray-400 text-xs font-normal')}>
+            <div className={cn(!isInWorkflow && 'w-[200px]', 'text-tgai-text-3 text-xs font-normal')}>
               {parameterRule?.tagPlaceholder?.[language]}
             </div>
           )

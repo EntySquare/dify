@@ -3,9 +3,9 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import AgentSetting from './agent/agent-setting'
-import Button from '@/app/components/base/button'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import type { AgentConfig } from '@/models/debug'
+import Button from '../../../base/button'
+import { Settings01 } from '../../../base/icons/src/vender/line/general'
+import type { AgentConfig } from '../../../../../models/debug'
 
 type Props = {
   isFunctionCall: boolean

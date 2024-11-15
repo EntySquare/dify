@@ -180,6 +180,7 @@ const ConfigModal: FC<IConfigModalProps> = ({
       title={t(`appDebug.variableConfig.${isCreate ? 'addModalTitle' : 'editModalTitle'}`)}
       isShow={isShow}
       onClose={onClose}
+      className='dark:!bg-tgai-panel-background'
     >
       <div className='mb-8' ref={modalRef} tabIndex={-1}>
         <div className='space-y-2'>

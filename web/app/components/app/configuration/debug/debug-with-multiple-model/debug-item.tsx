@@ -6,11 +6,11 @@ import ModelParameterTrigger from './model-parameter-trigger'
 import ChatItem from './chat-item'
 import TextGenerationItem from './text-generation-item'
 import { useDebugWithMultipleModelContext } from './context'
-import { useDebugConfigurationContext } from '@/context/debug-configuration'
-import Dropdown from '@/app/components/base/dropdown'
-import type { Item } from '@/app/components/base/dropdown'
-import { useProviderContext } from '@/context/provider-context'
-import { ModelStatusEnum } from '@/app/components/header/account-setting/model-provider-page/declarations'
+import { useDebugConfigurationContext } from '../../../../../../context/debug-configuration'
+import Dropdown from '../../../../base/dropdown'
+import type { Item } from '../../../../base/dropdown'
+import { useProviderContext } from '../../../../../../context/provider-context'
+import { ModelStatusEnum } from '../../../../header/account-setting/model-provider-page/declarations'
 
 type DebugItemProps = {
   modelAndParameter: ModelAndParameter

@@ -3,14 +3,14 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
-import { useAppContext } from '@/context/app-context'
-import { SimpleSelect } from '@/app/components/base/select'
-import type { Item } from '@/app/components/base/select'
-import { updateUserProfile } from '@/service/common'
-import { ToastContext } from '@/app/components/base/toast'
-import I18n from '@/context/i18n'
-import { timezones } from '@/utils/timezone'
-import { languages } from '@/i18n/language'
+import { useAppContext } from '../../../../../context/app-context'
+import { SimpleSelect } from '../../../base/select'
+import type { Item } from '../../../base/select'
+import { updateUserProfile } from '../../../../../service/common'
+import { ToastContext } from '../../../base/toast'
+import I18n from '../../../../../context/i18n'
+import { timezones } from '../../../../../utils/timezone'
+import { languages } from '../../../../../i18n/language'
 
 const titleClassName = `
   mb-2 text-sm font-medium text-gray-900

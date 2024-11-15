@@ -5,18 +5,18 @@ import {
 import { useTranslation } from 'react-i18next'
 import { RiAddLine } from '@remixicon/react'
 import type { HandleAddCondition } from '../types'
-import Button from '@/app/components/base/button'
+import Button from '../../../../base/button'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import VarReferenceVars from '@/app/components/workflow/nodes/_base/components/variable/var-reference-vars'
+} from '../../../../base/portal-to-follow-elem'
+import VarReferenceVars from '../../_base/components/variable/var-reference-vars'
 import type {
   NodeOutPutVar,
   ValueSelector,
   Var,
-} from '@/app/components/workflow/types'
+} from '../../../types'
 
 type ConditionAddProps = {
   className?: string

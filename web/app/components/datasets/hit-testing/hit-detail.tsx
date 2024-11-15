@@ -18,15 +18,15 @@ const HitDetail: FC<IHitDetailProps> = ({ segInfo }) => {
     if (segInfo?.answer) {
       return (
         <>
-          <div className='mt-2 mb-1 text-xs font-medium text-gray-500'>QUESTION</div>
-          <div className='mb-4 text-md text-gray-800'>{segInfo.content}</div>
-          <div className='mb-1 text-xs font-medium text-gray-500'>ANSWER</div>
-          <div className='text-md text-gray-800'>{segInfo.answer}</div>
+          <div className='mt-2 mb-1 text-xs font-medium text-tgai-text-3'>QUESTION</div>
+          <div className='mb-4 text-md text-tgai-text-1'>{segInfo.content}</div>
+          <div className='mb-1 text-xs font-medium text-tgai-text-3'>ANSWER</div>
+          <div className='text-md text-tgai-text-1'>{segInfo.answer}</div>
         </>
       )
     }
 
-    return <div className='mb-4 text-md text-gray-800 h-full'>{segInfo?.content}</div>
+    return <div className='mb-4 text-md text-tgai-text-1 h-full'>{segInfo?.content}</div>
   }
 
   return (
@@ -50,7 +50,7 @@ const HitDetail: FC<IHitDetailProps> = ({ segInfo }) => {
           </span>
         </div>
         <Divider />
-        <div className={s.segModalContent}>{renderContent()}</div>
+        <div className={cn(s.segModalContent, "tgai-custom-scrollbar")}>{renderContent()}</div>
         <div className={s.keywordTitle}>
           {t('datasetDocuments.segment.keywords')}
         </div>
@@ -58,7 +58,7 @@ const HitDetail: FC<IHitDetailProps> = ({ segInfo }) => {
           {!segInfo?.keywords?.length
             ? '-'
             : segInfo?.keywords?.map((word, index) => {
-              return <div key={index} className={s.keyword}>{word}</div>
+              return <div key={index} className={cn(s.keyword, "dark:!border-stone-700")}>{word}</div>
             })}
         </div>
       </div>

@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import { RiDeleteBinLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 
 type Props = {
   className?: string
@@ -15,7 +15,7 @@ const Remove: FC<Props> = ({
 }) => {
   return (
     <div
-      className={cn(className, 'p-1 cursor-pointer rounded-md hover:bg-black/5 text-gray-500 hover:text-gray-800')}
+      className={cn(className, 'p-1 cursor-pointer rounded-md hover:bg-black/5 dark:hover:bg-zinc-600/5 text-tgai-text-3 hover:text-tgai-text-2')}
       onClick={onClick}
     >
       <RiDeleteBinLine className='w-4 h-4' />

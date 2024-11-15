@@ -14,13 +14,13 @@
   @apply flex flex-col justify-center gap-1 mb-5;
 }
 .title {
-  @apply text-xl font-medium text-gray-900;
+  @apply text-xl font-medium text-tgai-text-1;
 }
 .desc {
-  @apply text-sm font-normal text-gray-500;
+  @apply text-sm font-normal text-tgai-text-3;
 }
 .table {
-  @apply text-[13px] text-gray-500;
+  @apply text-[13px] text-tgai-text-3;
 }
 .table td {
   @apply whitespace-nowrap overflow-hidden text-ellipsis;
@@ -42,7 +42,7 @@
 }
 
 .wrapper {
-  @apply relative border border-primary-600 rounded-xl;
+  @apply relative border border-tgai-primary rounded-xl;
 }
 
 .cardWrapper {
@@ -57,5 +57,5 @@
 }
 .clockIcon {
   mask-image: url(./assets/clock.svg);
-  @apply bg-gray-500;
+  @apply bg-tgai-text-2;
 }

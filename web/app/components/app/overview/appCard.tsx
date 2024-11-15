@@ -92,9 +92,9 @@ function AppCard({
   const appUrl = `${app_base_url}/${appMode}/${access_token}`
   const apiUrl = appInfo?.api_base_url
 
-  let bgColor = 'bg-primary-50 bg-opacity-40'
+  let bgColor = 'bg-primary-50 dark:bg-neutral-700 bg-opacity-40'
   if (cardType === 'api')
-    bgColor = 'bg-purple-50'
+    bgColor = 'bg-purple-50 dark:bg-gray-800'
 
   const genClickFuncByName = (opName: string) => {
     switch (opName) {
@@ -135,7 +135,7 @@ function AppCard({
   return (
     <div
       className={
-        `shadow-xs border-[0.5px] rounded-lg border-gray-200 ${className ?? ''}`}
+        `shadow-xs dark:shadow-stone-800 border-[0.5px] rounded-lg border-gray-200 dark:border-stone-500 ${className ?? ''}`}
     >
       <div className={`px-6 py-5 ${customBgColor ?? bgColor} rounded-lg`}>
         <div className="mb-2.5 flex flex-row items-start justify-between">
@@ -161,22 +161,22 @@ function AppCard({
         </div>
         <div className="flex flex-col justify-center py-2">
           <div className="py-1">
-            <div className="pb-1 text-xs text-gray-500">
+            <div className="pb-1 text-xs text-tgai-text-3">
               {isApp
                 ? t('appOverview.overview.appInfo.accessibleAddress')
                 : t('appOverview.overview.apiInfo.accessibleAddress')}
             </div>
-            <div className="w-full h-9 pl-2 pr-0.5 py-0.5 bg-black bg-opacity-2 rounded-lg border border-black border-opacity-5 justify-start items-center inline-flex">
+            <div className="w-full h-9 pl-2 pr-0.5 py-0.5 bg-black bg-opacity-2 dark:bg-tgai-input-background dark:bg-opacity-[98] rounded-lg border border-black border-opacity-5 dark:border-stone-600 dark:border-opacity-95 justify-start items-center inline-flex">
               <div className="h-4 px-2 justify-start items-start gap-2 flex flex-1 min-w-0">
-                <div className="text-gray-700 text-xs font-medium text-ellipsis overflow-hidden whitespace-nowrap">
+                <div className="text-tgai-text-2 text-xs font-medium text-ellipsis overflow-hidden whitespace-nowrap">
                   {isApp ? appUrl : apiUrl}
                 </div>
               </div>
               <Divider type="vertical" className="!h-3.5 shrink-0 !mx-0.5" />
-              {isApp && <ShareQRCode content={isApp ? appUrl : apiUrl} selectorId={randomString(8)} className={'hover:bg-gray-200'} />}
+              {isApp && <ShareQRCode content={isApp ? appUrl : apiUrl} selectorId={randomString(8)} className={'hover:bg-gray-200 dark:hover:bg-zinc-600'} />}
               <CopyFeedback
                 content={isApp ? appUrl : apiUrl}
-                className={'hover:bg-gray-200'}
+                className={'hover:bg-gray-200 dark:hover:bg-zinc-600'}
               />
               {/* button copy link/ button regenerate */}
               {showConfirmDelete && (
@@ -211,7 +211,7 @@ function AppCard({
           </div>
         </div>
         <div className={'pt-2 flex flex-row items-center flex-wrap gap-y-2'}>
-          {!isApp && <SecretKeyButton className='flex-shrink-0 !h-8 bg-white mr-2' textCls='!text-gray-700 font-medium' iconCls='stroke-[1.2px]' appId={appInfo.id} />}
+          {!isApp && <SecretKeyButton className='flex-shrink-0 !h-8 bg-white mr-2' textCls='!text-tgai-text-2 font-medium' iconCls='stroke-[1.2px]' appId={appInfo.id} />}
           {OPERATIONS_MAP[cardType].map((op) => {
             const disabled
               = op.opName === t('appOverview.overview.appInfo.settings.entry')

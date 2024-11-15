@@ -13,6 +13,8 @@ import type { ICurrentWorkspace, LangGeniusVersionResponse, UserProfileResponse 
 import MaintenanceNotice from '@/app/components/header/maintenance-notice'
 import type { SystemFeatures } from '@/types/feature'
 import { defaultSystemFeatures } from '@/types/feature'
+import { useTGAIGlobalStore } from "./tgai-global-context";
+import { useShallow } from "zustand/react/shallow";
 
 export type AppContextValue = {
   theme: Theme
@@ -125,24 +127,29 @@ export const AppContextProvider: FC<AppContextProviderProps> = ({ children }) =>
       setCurrentWorkspace(currentWorkspaceResponse)
   }, [currentWorkspaceResponse])
 
-  const [theme, setTheme] = useState<Theme>(Theme.light)
-  const handleSetTheme = useCallback((theme: Theme) => {
-    setTheme(theme)
-    globalThis.document.documentElement.setAttribute('data-theme', theme)
-  }, [])
+  // const [theme, setTheme] = useState<Theme>(Theme.light)
+  // const handleSetTheme = useCallback((theme: Theme) => {
+  //   setTheme(theme)
+  //   globalThis.document.documentElement.setAttribute('data-theme', theme)
+  // }, [])
+  //
+  // useEffect(() => {
+  //   globalThis.document.documentElement.setAttribute('data-theme', theme)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
 
-  useEffect(() => {
-    globalThis.document.documentElement.setAttribute('data-theme', theme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { theme, setTheme } = useTGAIGlobalStore(useShallow(state => ({
+    theme: state.theme,
+    setTheme: state.setTheme
+  })))
 
-  if (!appList || !userProfile)
-    return <Loading type='app' />
+  if (!appList || !userProfile) return <Loading type="app" />;
 
   return (
     <AppContext.Provider value={{
       theme,
-      setTheme: handleSetTheme,
+      // setTheme: handleSetTheme,
+      setTheme,
       apps: appList.data,
       systemFeatures,
       mutateApps,
@@ -158,9 +165,9 @@ export const AppContextProvider: FC<AppContextProviderProps> = ({ children }) =>
       isCurrentWorkspaceDatasetOperator,
       mutateCurrentWorkspace,
     }}>
-      <div className='flex flex-col h-full overflow-y-auto'>
+      <div className='flex flex-col h-full overflow-hidden'>
         {globalThis.document?.body?.getAttribute('data-public-maintenance-notice') && <MaintenanceNotice />}
-        <div ref={pageContainerRef} className='grow relative flex flex-col overflow-y-auto overflow-x-hidden bg-background-body'>
+        <div ref={pageContainerRef} className='grow relative flex flex-col overflow-hidden h-full overflow-x-hidden bg-background-body'>
           {children}
         </div>
       </div>

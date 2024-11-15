@@ -420,7 +420,7 @@ class WorkflowConfig(BaseSettings):
 
     WORKFLOW_MAX_EXECUTION_STEPS: PositiveInt = Field(
         description="Maximum number of steps allowed in a single workflow execution",
-        default=500,
+        default=10000,
     )
 
     WORKFLOW_MAX_EXECUTION_TIME: PositiveInt = Field(

@@ -287,7 +287,7 @@ const ConfigContent: FC<Props> = ({
                       </div>
                     )
                   }
-                  <div className='leading-[32px] ml-1 text-text-secondary system-sm-semibold'>{t('common.modelProvider.rerankModel.key')}</div>
+                  <div className='leading-[32px] ml-1 text-tgai-text-1 system-sm-semibold'>{t('common.modelProvider.rerankModel.key')}</div>
                   <Tooltip
                     popupContent={
                       <div className="w-[200px]">
@@ -373,7 +373,7 @@ const ConfigContent: FC<Props> = ({
       {isInWorkflow && type === RETRIEVE_TYPE.oneWay && (
         <div className='mt-4'>
           <div className='flex items-center space-x-0.5'>
-            <div className='leading-[32px] text-[13px] font-medium text-gray-900'>{t('common.modelProvider.systemReasoningModel.key')}</div>
+            <div className='leading-[32px] text-[13px] font-medium text-tgai-text-1'>{t('common.modelProvider.systemReasoningModel.key')}</div>
             <Tooltip
               popupContent={t('common.modelProvider.systemReasoningModel.tip')}
             />

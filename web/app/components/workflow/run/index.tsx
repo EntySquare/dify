@@ -200,35 +200,35 @@ const RunPanel: FC<RunProps> = ({ hideResult, activeTab = 'RESULT', runID, getRe
   return (
     <div className='grow relative flex flex-col'>
       {/* tab */}
-      <div className='shrink-0 flex items-center px-4 border-b-[0.5px] border-divider-subtle'>
+      <div className='shrink-0 flex items-center px-4 border-b-[0.5px] border-divider-subtle dark:border-stone-600/95'>
         {!hideResult && (
           <div
             className={cn(
-              'mr-6 py-3 border-b-2 border-transparent system-sm-semibold-uppercase text-text-tertiary cursor-pointer',
-              currentTab === 'RESULT' && '!border-util-colors-blue-brand-blue-brand-600 text-text-primary',
+              'mr-6 py-3 border-b-2 border-transparent system-sm-semibold-uppercase text-text-tertiary dark:text-tgai-text-3 cursor-pointer',
+              currentTab === 'RESULT' && '!border-util-colors-blue-brand-blue-brand-600 dark:!border-tgai-primary text-text-primary dark:text-tgai-text-1',
             )}
             onClick={() => switchTab('RESULT')}
           >{t('runLog.result')}</div>
         )}
         <div
           className={cn(
-            'mr-6 py-3 border-b-2 border-transparent system-sm-semibold-uppercase text-text-tertiary cursor-pointer',
-            currentTab === 'DETAIL' && '!border-util-colors-blue-brand-blue-brand-600 text-text-primary',
+            'mr-6 py-3 border-b-2 border-transparent system-sm-semibold-uppercase text-text-tertiary dark:text-tgai-text-3 cursor-pointer',
+            currentTab === 'DETAIL' && '!border-util-colors-blue-brand-blue-brand-600 dark:!border-tgai-primary text-text-primary dark:text-tgai-text-1',
           )}
           onClick={() => switchTab('DETAIL')}
         >{t('runLog.detail')}</div>
         <div
           className={cn(
-            'mr-6 py-3 border-b-2 border-transparent system-sm-semibold-uppercase text-text-tertiary cursor-pointer',
-            currentTab === 'TRACING' && '!border-util-colors-blue-brand-blue-brand-600 text-text-primary',
+            'mr-6 py-3 border-b-2 border-transparent system-sm-semibold-uppercase text-text-tertiary dark:text-tgai-text-3 cursor-pointer',
+            currentTab === 'TRACING' && '!border-util-colors-blue-brand-blue-brand-600 dark:!border-tgai-primary text-text-primary dark:text-tgai-text-1',
           )}
           onClick={() => switchTab('TRACING')}
         >{t('runLog.tracing')}</div>
       </div>
       {/* panel detail */}
-      <div ref={ref} className={cn('grow bg-components-panel-bg h-0 overflow-y-auto rounded-b-2xl', currentTab !== 'DETAIL' && '!bg-background-section-burn')}>
+      <div ref={ref} className={cn('grow bg-components-panel-bg dark:bg-tgai-panel-background  h-0 overflow-y-auto tgai-custom-scrollbar rounded-b-2xl', currentTab !== 'DETAIL' && '!bg-background-section-burn dark:!bg-tgai-panel-background-2')}>
         {loading && (
-          <div className='flex h-full items-center justify-center bg-components-panel-bg'>
+          <div className='flex h-full items-center justify-center bg-components-panel-bg dark:bg-tgai-panel-background'>
             <Loading />
           </div>
         )}

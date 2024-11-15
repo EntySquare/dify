@@ -163,7 +163,7 @@ class AdvancedChatDraftWorkflowRunApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-
+        
         parser = reqparse.RequestParser()
         parser.add_argument("inputs", type=dict, location="json")
         parser.add_argument("query", type=str, required=True, location="json", default="")
@@ -188,7 +188,6 @@ class AdvancedChatDraftWorkflowRunApi(Resource):
         except Exception as e:
             logging.exception("internal server error.")
             raise InternalServerError()
-
 
 class AdvancedChatDraftRunIterationNodeApi(Resource):
     @setup_required
@@ -363,7 +362,7 @@ class PublishedWorkflowApi(Resource):
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
             raise Forbidden()
-
+        
         workflow_service = WorkflowService()
         workflow = workflow_service.publish_workflow(app_model=app_model, account=current_user)
 

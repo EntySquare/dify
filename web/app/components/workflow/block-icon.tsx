@@ -18,8 +18,9 @@ import {
   QuestionClassifier,
   TemplatingTransform,
   VariableX,
-} from '@/app/components/base/icons/src/vender/workflow'
-import AppIcon from '@/app/components/base/app-icon'
+} from '../base/icons/src/vender/workflow'
+import AppIcon from '../base/app-icon'
+import classNames from '@/utils/classnames'
 
 type BlockIconProps = {
   type: BlockEnum
@@ -100,7 +101,9 @@ const BlockIcon: FC<BlockIconProps> = ({
               typeof toolIcon === 'string'
                 ? (
                   <div
-                    className='shrink-0 w-full h-full bg-cover bg-center rounded-md'
+                    className={classNames('shrink-0 w-full h-full bg-cover bg-center rounded-md',
+                      "dark:bg-rose-100"
+                    )}
                     style={{
                       backgroundImage: `url(${toolIcon})`,
                     }}

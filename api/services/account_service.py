@@ -127,9 +127,9 @@ class AccountService:
         exp = int(exp_dt.timestamp())
         payload = {
             "user_id": account.id,
-            "exp": exp,
-            "iss": dify_config.EDITION,
-            "sub": "Console API Passport",
+#             "exp": exp,
+#             "iss": dify_config.EDITION,
+#             "sub": "Console API Passport",
         }
 
         token = PassportService().issue(payload)

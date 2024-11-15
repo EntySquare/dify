@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { Switch as OriginalSwitch } from '@headlessui/react'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 
 type SwitchProps = {
   onChange?: (value: boolean) => void
@@ -47,7 +47,7 @@ const Switch = ({ onChange, size = 'md', defaultValue = false, disabled = false,
       }}
       className={classNames(
         wrapStyle[size],
-        enabled ? 'bg-components-toggle-bg' : 'bg-components-toggle-bg-unchecked',
+        enabled ? 'bg-components-toggle-bg dark:bg-tgai-primary' : 'bg-components-toggle-bg-unchecked',
         'relative inline-flex  flex-shrink-0 cursor-pointer rounded-[5px] border-2 border-transparent transition-colors duration-200 ease-in-out',
         disabled ? '!opacity-50 !cursor-not-allowed' : '',
         className,

@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import ParamItem from '.'
+import ParamItem from './index'
 
 type Props = {
   className?: string

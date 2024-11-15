@@ -74,7 +74,7 @@ export const NodeTargetHandle = memo(({
         position={Position.Left}
         className={`
           !w-4 !h-4 !bg-transparent !rounded-none !outline-none !border-none z-[1]
-          after:absolute after:w-0.5 after:h-2 after:left-1.5 after:top-1 after:bg-primary-500
+          after:absolute after:w-0.5 after:h-2 after:left-1.5 after:top-1 after:bg-tgai-primary
           hover:scale-125 transition-all
           ${!connected && 'after:opacity-0'}
           ${data.type === BlockEnum.Start && 'opacity-0'}
@@ -159,7 +159,7 @@ export const NodeSourceHandle = memo(({
       position={Position.Right}
       className={`
         group/handle !w-4 !h-4 !bg-transparent !rounded-none !outline-none !border-none z-[1]
-        after:absolute after:w-0.5 after:h-2 after:right-1.5 after:top-1 after:bg-primary-500
+        after:absolute after:w-0.5 after:h-2 after:right-1.5 after:top-1 after:bg-primary-500 dark:after:bg-tgai-primary
         hover:scale-125 transition-all
         ${!connected && 'after:opacity-0'}
         ${handleClassName}

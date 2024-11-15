@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import produce from 'immer'
 import type { VariableAssignerNodeType } from '../../types'
-import type { ValueSelector } from '@/app/components/workflow/types'
+import type { ValueSelector } from '../../../../types'
 
 type Params = {
   id: string

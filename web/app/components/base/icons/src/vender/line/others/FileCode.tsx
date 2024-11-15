@@ -3,8 +3,8 @@
 
 import * as React from 'react'
 import data from './FileCode.json'
-import IconBase from '@/app/components/base/icons/IconBase'
-import type { IconBaseProps, IconData } from '@/app/components/base/icons/IconBase'
+import IconBase from '../../../../IconBase'
+import type { IconBaseProps, IconData } from '../../../../IconBase'
 
 const Icon = React.forwardRef<React.MutableRefObject<SVGElement>, Omit<IconBaseProps, 'data'>>((
   props,

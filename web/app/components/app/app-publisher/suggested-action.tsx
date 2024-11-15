@@ -1,6 +1,6 @@
 import type { HTMLProps, PropsWithChildren } from 'react'
-import classNames from '@/utils/classnames'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import classNames from '../../../../utils/classnames'
+import { ArrowUpRight } from '../../base/icons/src/vender/line/arrows'
 
 export type SuggestedActionProps = PropsWithChildren<HTMLProps<HTMLAnchorElement> & {
   icon?: React.ReactNode

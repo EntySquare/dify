@@ -1,13 +1,13 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStore } from '../store'
-import { getVarType, toNodeAvailableVars } from '@/app/components/workflow/nodes/_base/components/variable/utils'
+import { getVarType, toNodeAvailableVars } from '../nodes/_base/components/variable/utils'
 import type {
   Node,
   NodeOutPutVar,
   ValueSelector,
   Var,
-} from '@/app/components/workflow/types'
+} from '../types'
 
 export const useWorkflowVariables = () => {
   const { t } = useTranslation()

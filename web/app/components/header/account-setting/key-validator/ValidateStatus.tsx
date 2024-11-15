@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import {
   RiErrorWarningFill,
 } from '@remixicon/react'
-import { CheckCircle } from '@/app/components/base/icons/src/vender/solid/general'
+import { CheckCircle } from '../../../base/icons/src/vender/solid/general'
 
 export const ValidatedErrorIcon = () => {
   return <RiErrorWarningFill className='w-4 h-4 text-[#D92D20]' />

@@ -7,7 +7,7 @@ import type { Param } from '../../types'
 import ListNoDataPlaceholder from '../../../_base/components/list-no-data-placeholder'
 import Item from './item'
 import EditParam from './update'
-import type { MoreInfo } from '@/app/components/workflow/types'
+import type { MoreInfo } from '../../../../types'
 
 const i18nPrefix = 'workflow.nodes.parameterExtractor'
 

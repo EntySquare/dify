@@ -1,5 +1,5 @@
 import type { CurrentPlanInfoBackend } from '../type'
-import { NUM_INFINITE } from '@/app/components/billing/config'
+import { NUM_INFINITE } from '../config'
 
 const parseLimit = (limit: number) => {
   if (limit === 0)

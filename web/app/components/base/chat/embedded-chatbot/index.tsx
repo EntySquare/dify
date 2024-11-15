@@ -49,7 +49,7 @@ const Chatbot = () => {
       if (customConfig)
         document.title = `${site.title}`
       else
-        document.title = `${site.title} - Powered by Dify`
+        document.title = `${site.title} - Powered by TGAI`
     }
   }, [site, customConfig, themeBuilder])
 
@@ -74,7 +74,7 @@ const Chatbot = () => {
         onCreateNewChat={handleNewConversation}
       />
       <div className='flex bg-white overflow-hidden'>
-        <div className={cn('h-[100vh] grow flex flex-col overflow-y-auto', isMobile && '!h-[calc(100vh_-_3rem)]')}>
+        <div className={cn('h-[100vh] grow flex flex-col overflow-y-auto tgai-custom-scrollbar', isMobile && '!h-[calc(100vh_-_3rem)]')}>
           {showConfigPanelBeforeChat && !appChatListDataLoading && !appPrevChatList.length && (
             <div className={cn('flex w-full items-center justify-center h-full tablet:px-4', isMobile && 'px-4')}>
               <ConfigPanel />

@@ -27,8 +27,8 @@ const SelectTypeItem: FC<ISelectTypeItemProps> = ({
   return (
     <div
       className={cn(
-        'flex flex-col justify-center items-center h-[58px] rounded-lg border border-components-option-card-option-border bg-components-option-card-option-bg space-y-1',
-        selected ? 'border-[1.5px] border-components-option-card-option-selected-border bg-components-option-card-option-selected-bg shadow-xs system-xs-medium' : ' hover:border-components-option-card-option-border-hover hover:bg-components-option-card-option-bg-hover hover:shadow-xs cursor-pointer system-xs-regular')}
+        'flex flex-col justify-center items-center h-[58px] rounded-lg border border-components-option-card-option-border bg-components-option-card-option-bg dark:bg-tgai-panel-background dark:border-stone-600 space-y-1',
+        selected ? 'border-[1.5px] border-components-option-card-option-selected-border dark:border-tgai-primary bg-components-option-card-option-selected-bg dark:bg-stone-700 shadow-xs dark:!shadow-stone-600 system-xs-medium' : ' hover:border-components-option-card-option-border-hover dark:hover:border-tgai-primary-5 hover:bg-components-option-card-option-bg-hover dark:hover:bg-stone-700 hover:shadow-xs dark:hover:shadow-stone-600 cursor-pointer system-xs-regular')}
       onClick={onClick}
     >
       <div className='shrink-0'>

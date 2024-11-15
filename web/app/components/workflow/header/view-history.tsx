@@ -87,9 +87,9 @@ const ViewHistory = ({
           {
             withText && (
               <div className={cn(
-                'flex items-center px-3 h-8 rounded-lg border-[0.5px] border-gray-200 bg-white shadow-xs',
-                'text-[13px] font-medium text-primary-600 cursor-pointer',
-                open && '!bg-primary-50',
+                'flex items-center px-3 h-8 rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 bg-white dark:bg-tgai-panel-background-3 shadow-xs dark:shadow-stone-800',
+                'text-[13px] font-medium text-tgai-primary cursor-pointer',
+                open && '!bg-primary-50 dark:!bg-zinc-600',
               )}>
                 <ClockPlay
                   className={'mr-1 w-4 h-4'}
@@ -104,13 +104,13 @@ const ViewHistory = ({
                 popupContent={t('workflow.common.viewRunHistory')}
               >
                 <div
-                  className={cn('group flex items-center justify-center w-7 h-7 rounded-md hover:bg-state-accent-hover cursor-pointer', open && 'bg-state-accent-hover')}
+                  className={cn('group flex items-center justify-center w-7 h-7 rounded-md hover:bg-state-accent-hover dark:hover:bg-zinc-600 cursor-pointer', open && 'bg-state-accent-hover dark:bg-zinc-600')}
                   onClick={() => {
                     setCurrentLogItem()
                     setShowMessageLogModal(false)
                   }}
                 >
-                  <ClockPlay className={cn('w-4 h-4 group-hover:text-components-button-secondary-accent-text', open ? 'text-components-button-secondary-accent-text' : 'text-components-button-ghost-text')} />
+                  <ClockPlay className={cn('w-4 h-4 group-hover:text-components-button-secondary-accent-text dark:group-hover:text-tgai-primary', open ? 'text-components-button-secondary-accent-text dark:text-tgai-primary' : 'text-components-button-ghost-text')} />
                 </div>
               </Tooltip>
             )
@@ -118,12 +118,12 @@ const ViewHistory = ({
         </PortalToFollowElemTrigger>
         <PortalToFollowElemContent className='z-[12]'>
           <div
-            className='flex flex-col ml-2 w-[240px] bg-white border-[0.5px] border-gray-200 shadow-xl rounded-xl overflow-y-auto'
+            className='flex flex-col ml-2 w-[240px] bg-tgai-panel-background-3 border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xl dark:shadow-stone-800 rounded-xl overflow-y-auto tgai-custom-scrollbar'
             style={{
               maxHeight: 'calc(2 / 3 * 100vh)',
             }}
           >
-            <div className='sticky top-0 bg-white flex items-center justify-between px-4 pt-3 text-base font-semibold text-gray-900'>
+            <div className='sticky top-0 bg-tgai-panel-background-3 flex items-center justify-between px-4 pt-3 text-base font-semibold text-tgai-text-1'>
               <div className='grow'>{t('workflow.common.runHistory')}</div>
               <div
                 className='shrink-0 flex items-center justify-center w-6 h-6 cursor-pointer'
@@ -133,7 +133,7 @@ const ViewHistory = ({
                   setOpen(false)
                 }}
               >
-                <RiCloseLine className='w-4 h-4 text-gray-500' />
+                <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
               </div>
             </div>
             {
@@ -149,8 +149,8 @@ const ViewHistory = ({
                   {
                     !data?.data.length && (
                       <div className='py-12'>
-                        <ClockPlaySlim className='mx-auto mb-2 w-8 h-8 text-gray-300' />
-                        <div className='text-center text-[13px] text-gray-400'>
+                        <ClockPlaySlim className='mx-auto mb-2 w-8 h-8 text-tgai-text-3' />
+                        <div className='text-center text-[13px] text-tgai-text-2'>
                           {t('workflow.common.notRunning')}
                         </div>
                       </div>
@@ -161,8 +161,8 @@ const ViewHistory = ({
                       <div
                         key={item.id}
                         className={cn(
-                          'flex mb-0.5 px-2 py-[7px] rounded-lg hover:bg-primary-50 cursor-pointer',
-                          item.id === historyWorkflowData?.id && 'bg-primary-50',
+                          'flex mb-0.5 px-2 py-[7px] rounded-lg hover:bg-primary-50 dark:hover:bg-zinc-600 cursor-pointer',
+                          item.id === historyWorkflowData?.id && 'bg-primary-50 dark:!bg-zinc-600',
                         )}
                         onClick={() => {
                           workflowStore.setState({
@@ -195,13 +195,13 @@ const ViewHistory = ({
                         <div>
                           <div
                             className={cn(
-                              'flex items-center text-[13px] font-medium leading-[18px]',
-                              item.id === historyWorkflowData?.id && 'text-primary-600',
+                              'flex items-center text-[13px] font-medium leading-[18px] text-tgai-text-1',
+                              item.id === historyWorkflowData?.id && '!text-tgai-primary',
                             )}
                           >
                             {`Test ${isChatMode ? 'Chat' : 'Run'}#${item.sequence_number}`}
                           </div>
-                          <div className='flex items-center text-xs text-gray-500 leading-[18px]'>
+                          <div className='flex items-center text-xs text-tgai-text-3 leading-[18px]'>
                             {item.created_by_account.name} · {formatTimeFromNow((item.finished_at || item.created_at) * 1000)}
                           </div>
                         </div>

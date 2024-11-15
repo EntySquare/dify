@@ -22,6 +22,7 @@ type Props = {
   onBack: () => void
   noWrap?: boolean
   iterDurationMap?: IterationDurationMap
+  showBorder?: boolean
 }
 
 const IterationResultPanel: FC<Props> = ({
@@ -30,6 +31,7 @@ const IterationResultPanel: FC<Props> = ({
   onBack,
   noWrap,
   iterDurationMap,
+  showBorder
 }) => {
   const { t } = useTranslation()
   const [expandedIterations, setExpandedIterations] = useState<Record<number, boolean>>({})
@@ -79,20 +81,20 @@ const IterationResultPanel: FC<Props> = ({
     <>
       <div className={cn(!noWrap && 'shrink-0 ', 'px-4 pt-3')}>
         <div className='shrink-0 flex justify-between items-center h-8'>
-          <div className='system-xl-semibold text-text-primary truncate'>
+          <div className='system-xl-semibold text-text-primary dark:text-tgai-text-1 truncate'>
             {t(`${i18nPrefix}.testRunIteration`)}
           </div>
           <div className='ml-2 shrink-0 p-1 cursor-pointer' onClick={onHide}>
-            <RiCloseLine className='w-4 h-4 text-text-tertiary' />
+            <RiCloseLine className='w-4 h-4 text-text-tertiary dark:text-tgai-text-3' />
           </div>
         </div>
-        <div className='flex items-center py-2 space-x-1 text-text-accent-secondary cursor-pointer' onClick={onBack}>
+        <div className='flex items-center py-2 space-x-1 text-text-accent-secondary dark:text-tgai-primary cursor-pointer' onClick={onBack}>
           <ArrowNarrowLeft className='w-4 h-4' />
           <div className='system-sm-medium'>{t(`${i18nPrefix}.back`)}</div>
         </div>
       </div>
       {/* List */}
-      <div className={cn(!noWrap ? 'flex-grow overflow-auto' : 'max-h-full', 'p-2 bg-components-panel-bg')}>
+      <div className={cn(!noWrap ? 'flex-grow overflow-auto tgai-custom-scrollbar' : 'max-h-full', 'p-2 bg-components-panel-bg dark:bg-tgai-panel-background')}>
         {list.map((iteration, index) => (
           <div key={index} className={cn('mb-1 overflow-hidden rounded-xl bg-background-section-burn border-none')}>
             <div
@@ -141,7 +143,7 @@ const IterationResultPanel: FC<Props> = ({
 
   return (
     <div
-      className='absolute inset-0 z-10 rounded-2xl pt-10'
+      className={cn('absolute inset-0 z-10 rounded-2xl pt-10 overflow-hidden', showBorder && "inset-[1px]")}
       style={{
         backgroundColor: 'rgba(16, 24, 40, 0.20)',
       }}

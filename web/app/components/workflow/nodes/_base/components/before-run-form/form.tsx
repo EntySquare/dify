@@ -71,7 +71,7 @@ const Form: FC<Props> = ({
     <div className={cn(className, 'space-y-2')}>
       {label && (
         <div className='mb-1 flex items-center justify-between'>
-          <div className='flex items-center h-6 system-xs-medium-uppercase text-text-tertiary'>{label}</div>
+          <div className='flex items-center h-6 system-xs-medium-uppercase text-text-tertiary dark:text-tgai-text-3'>{label}</div>
           {isArrayLikeType && (
             <AddButton onClick={handleAddContext} />
           )}

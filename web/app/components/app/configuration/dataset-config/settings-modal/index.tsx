@@ -44,7 +44,7 @@ const rowClass = `
 `
 
 const labelClass = `
-  flex w-[168px] shrink-0
+  flex w-[168px] shrink-0 text-tgai-text-1
 `
 
 const SettingsModal: FC<SettingsModalProps> = ({
@@ -179,14 +179,14 @@ const SettingsModal: FC<SettingsModalProps> = ({
 
   return (
     <div
-      className='overflow-hidden w-full flex flex-col bg-white border-[0.5px] border-gray-200 rounded-xl shadow-xl'
+      className='overflow-hidden w-full flex flex-col bg-tgai-panel-background border-[0.5px] border-gray-200 dark:border-stone-600 rounded-xl shadow-xl dark:shadow-stone-800'
       style={{
         height: 'calc(100vh - 72px)',
       }}
       ref={ref}
     >
-      <div className='shrink-0 flex justify-between items-center pl-6 pr-5 h-14 border-b border-b-gray-100'>
-        <div className='flex flex-col text-base font-semibold text-gray-900'>
+      <div className='shrink-0 flex justify-between items-center pl-6 pr-5 h-14 border-b border-b-gray-100 dark:border-b-zinc-700'>
+        <div className='flex flex-col text-base font-semibold text-tgai-text-1'>
           <div className='leading-6'>{t('datasetSettings.title')}</div>
         </div>
         <div className='flex items-center'>
@@ -194,12 +194,12 @@ const SettingsModal: FC<SettingsModalProps> = ({
             onClick={onCancel}
             className='flex justify-center items-center w-6 h-6 cursor-pointer'
           >
-            <RiCloseLine className='w-4 h-4 text-gray-500' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       </div>
       {/* Body */}
-      <div className='p-6 pt-5 border-b overflow-y-auto pb-[68px]' style={{
+      <div className='p-6 pt-5 border-b overflow-y-auto tgai-custom-scrollbar pb-[68px]' style={{
         borderBottom: 'rgba(0, 0, 0, 0.05)',
       }}>
         <div className={cn(rowClass, 'items-center')}>
@@ -224,7 +224,7 @@ const SettingsModal: FC<SettingsModalProps> = ({
               className='resize-none'
               placeholder={t('datasetSettings.form.descPlaceholder') || ''}
             />
-            <a className='mt-2 flex items-center h-[18px] px-3 text-xs text-gray-500' href="https://docs.dify.ai/features/datasets#how-to-write-a-good-dataset-description" target='_blank' rel='noopener noreferrer'>
+            <a className='mt-2 flex items-center h-[18px] px-3 text-xs text-tgai-text-3' href="" target='_blank' rel='noopener noreferrer'>
               <BookOpenIcon className='w-3 h-[18px] mr-1' />
               {t('datasetSettings.form.descWrite')}
             </a>
@@ -276,9 +276,9 @@ const SettingsModal: FC<SettingsModalProps> = ({
                   modelList={embeddingsModelList}
                 />
               </div>
-              <div className='mt-2 w-full text-xs leading-6 text-gray-500'>
+              <div className='mt-2 w-full text-xs leading-6 text-tgai-text-3'>
                 {t('datasetSettings.form.embeddingModelTip')}
-                <span className='text-[#155eef] cursor-pointer' onClick={() => setShowAccountSettingModal({ payload: 'provider' })}>{t('datasetSettings.form.embeddingModelTipLink')}</span>
+                <span className='text-[#155eef] dark:text-tgai-primary cursor-pointer' onClick={() => setShowAccountSettingModal({ payload: 'provider' })}>{t('datasetSettings.form.embeddingModelTipLink')}</span>
               </div>
             </div>
           </div>
@@ -333,7 +333,7 @@ const SettingsModal: FC<SettingsModalProps> = ({
               <div>
                 <div className='text-text-secondary system-sm-semibold'>{t('datasetSettings.form.retrievalSetting.title')}</div>
                 <div className='leading-[18px] text-xs font-normal text-gray-500'>
-                  <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-4-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
+                  <a target='_blank' rel='noopener noreferrer' href='#' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
                   {t('datasetSettings.form.retrievalSetting.description')}
                 </div>
               </div>
@@ -372,10 +372,7 @@ const SettingsModal: FC<SettingsModalProps> = ({
       )}
 
       <div
-        className='sticky z-[5] bottom-0 w-full flex justify-end py-4 px-6 border-t bg-white '
-        style={{
-          borderColor: 'rgba(0, 0, 0, 0.05)',
-        }}
+        className='sticky z-[5] bottom-0 w-full flex justify-end py-4 px-6 border-t border-t-[rgba(0,_0,_0,_0.05)] bg-tgai-panel-background dark:border-t-zinc-700'
       >
         <Button
           onClick={onCancel}

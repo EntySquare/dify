@@ -67,18 +67,18 @@ const ModifyRetrievalModal: FC<Props> = ({
 
   return (
     <div
-      className='w-full flex flex-col bg-white border-[0.5px] border-gray-200 rounded-xl shadow-xl'
+      className='w-full flex flex-col bg-tgai-panel-background border-[0.5px] border-gray-200 dark:border-stone-600 rounded-xl shadow-xl dark:shadow-stone-800'
       style={{
         height: 'calc(100vh - 72px)',
       }}
       ref={ref}
     >
-      <div className='shrink-0 flex justify-between items-center pl-6 pr-5 h-14 border-b border-b-gray-100'>
-        <div className='text-base font-semibold text-gray-900'>
+      <div className='shrink-0 flex justify-between items-center pl-6 pr-5 h-14 border-b border-b-gray-100 dark:border-b-stone-700'>
+        <div className='text-base font-semibold text-tgai-text-1'>
           <div>{t('datasetSettings.form.retrievalSetting.title')}</div>
-          <div className='leading-[18px] text-xs font-normal text-gray-500'>
-            <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-4-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
-            {t('datasetSettings.form.retrievalSetting.description')}
+          <div className='leading-[18px] text-xs font-normal text-tgai-text-3'>
+          {/*  <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-6-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>*/}
+           {t('datasetSettings.form.retrievalSetting.description')}
           </div>
         </div>
         <div className='flex items-center'>
@@ -86,7 +86,7 @@ const ModifyRetrievalModal: FC<Props> = ({
             onClick={onHide}
             className='flex justify-center items-center w-6 h-6 cursor-pointer'
           >
-            <RiCloseLine className='w-4 h-4 text-gray-500' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       </div>

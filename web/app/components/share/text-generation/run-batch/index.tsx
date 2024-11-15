@@ -10,8 +10,8 @@ import {
 } from '@remixicon/react'
 import CSVReader from './csv-reader'
 import CSVDownload from './csv-download'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../utils/classnames'
+import Button from '../../../base/button'
 export type IRunBatchProps = {
   vars: { name: string }[]
   onSend: (data: string[][]) => void

@@ -10,7 +10,7 @@ import type {
 } from '../declarations'
 import { useLanguage } from '../hooks'
 import PopupItem from './popup-item'
-import { XCircle } from '@/app/components/base/icons/src/vender/solid/general'
+import { XCircle } from '../../../../base/icons/src/vender/solid/general'
 
 type PopupProps = {
   defaultModel?: DefaultModel
@@ -43,20 +43,20 @@ const Popup: FC<PopupProps> = ({
   )
 
   return (
-    <div className='w-[320px] max-h-[480px] rounded-lg border-[0.5px] border-gray-200 bg-white shadow-lg overflow-y-auto'>
-      <div className='sticky top-0 pl-3 pt-3 pr-2 pb-1 bg-white z-10'>
+    <div className='w-[320px] max-h-[480px] rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 bg-tgai-panel-background shadow-lg dark:shadow-stone-800 overflow-y-auto tgai-custom-scrollbar'>
+      <div className='sticky top-0 pl-3 pt-3 pr-2 pb-1 bg-tgai-panel-background z-10'>
         <div className={`
           flex items-center pl-[9px] pr-[10px] h-8 rounded-lg border
-          ${searchText ? 'bg-white border-gray-300 shadow-xs' : 'bg-gray-100 border-transparent'}
+          ${searchText ? 'bg-tgai-panel-background border-gray-300 dark:border-stone-500 shadow-xs' : 'bg-tgai-input-background border-transparent'}
         `}>
           <RiSearchLine
             className={`
               shrink-0 mr-[7px] w-[14px] h-[14px]
-              ${searchText ? 'text-gray-500' : 'text-gray-400'}
+              ${searchText ? 'text-tgai-text-2' : 'text-tgai-text-3'}
             `}
           />
           <input
-            className='block grow h-[18px] text-[13px] appearance-none outline-none bg-transparent'
+            className='block grow h-[18px] text-[13px] text-tgai-text-1 appearance-none outline-none bg-transparent'
             placeholder='Search model'
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
@@ -64,7 +64,7 @@ const Popup: FC<PopupProps> = ({
           {
             searchText && (
               <XCircle
-                className='shrink-0 ml-1.5 w-[14px] h-[14px] text-gray-400 cursor-pointer'
+                className='shrink-0 ml-1.5 w-[14px] h-[14px] text-tgai-text-3 cursor-pointer'
                 onClick={() => setSearchText('')}
               />
             )
@@ -84,7 +84,7 @@ const Popup: FC<PopupProps> = ({
         }
         {
           !filteredModelList.length && (
-            <div className='px-3 py-1.5 leading-[18px] text-center text-xs text-gray-500 break-all'>
+            <div className='px-3 py-1.5 leading-[18px] text-center text-xs text-tgai-text-3 break-all'>
               {`No model found for “${searchText}”`}
             </div>
           )

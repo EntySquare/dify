@@ -14,29 +14,29 @@ import { checkOrSetAccessToken } from '../utils'
 import s from './style.module.css'
 import RunBatch from './run-batch'
 import ResDownload from './run-batch/res-download'
-import cn from '@/utils/classnames'
-import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
-import RunOnce from '@/app/components/share/text-generation/run-once'
-import { fetchSavedMessage as doFetchSavedMessage, fetchAppInfo, fetchAppParams, removeMessage, saveMessage } from '@/service/share'
-import type { SiteInfo } from '@/models/share'
+import cn from '../../../../utils/classnames'
+import useBreakpoints, { MediaType } from '../../../../hooks/use-breakpoints'
+import RunOnce from './run-once'
+import { fetchSavedMessage as doFetchSavedMessage, fetchAppInfo, fetchAppParams, removeMessage, saveMessage } from '../../../../service/share'
+import type { SiteInfo } from '../../../../models/share'
 import type {
   MoreLikeThisConfig,
   PromptConfig,
   SavedMessage,
   TextToSpeechConfig,
-} from '@/models/debug'
-import AppIcon from '@/app/components/base/app-icon'
-import { changeLanguage } from '@/i18n/i18next-config'
-import Loading from '@/app/components/base/loading'
-import { userInputsFormToPromptVariables } from '@/utils/model-config'
-import Res from '@/app/components/share/text-generation/result'
-import SavedItems from '@/app/components/app/text-generate/saved-items'
-import type { InstalledApp } from '@/models/explore'
-import { DEFAULT_VALUE_MAX_LEN, appDefaultIconBackground } from '@/config'
-import Toast from '@/app/components/base/toast'
-import type { VisionFile, VisionSettings } from '@/types/app'
-import { Resolution, TransferMethod } from '@/types/app'
-import { useAppFavicon } from '@/hooks/use-app-favicon'
+} from '../../../../models/debug'
+import AppIcon from '../../base/app-icon'
+import { changeLanguage } from '../../../../i18n/i18next-config'
+import Loading from '../../base/loading'
+import { userInputsFormToPromptVariables } from '../../../../utils/model-config'
+import Res from './result'
+import SavedItems from '../../app/text-generate/saved-items'
+import type { InstalledApp } from '../../../../models/explore'
+import { DEFAULT_VALUE_MAX_LEN, appDefaultIconBackground } from '../../../../config'
+import Toast from '../../base/toast'
+import type { VisionFile, VisionSettings } from '../../../../types/app'
+import { Resolution, TransferMethod } from '../../../../types/app'
+import { useAppFavicon } from '../../../../hooks/use-app-favicon'
 
 const GROUP_SIZE = 5 // to avoid RPM(Request per minute) limit. The group task finished then the next group.
 enum TaskStatus {
@@ -409,7 +409,7 @@ const TextGeneration: FC<IMainProps> = ({
       if (canReplaceLogo)
         document.title = `${siteInfo.title}`
       else
-        document.title = `${siteInfo.title} - Powered by Dify`
+        document.title = `${siteInfo.title} - Powered by TGAI`
     }
   }, [siteInfo?.title, canReplaceLogo])
 

@@ -27,11 +27,11 @@ const MetaData: FC<Props> = ({
 
   return (
     <div className='relative'>
-      <div className='h-6 py-1 text-text-tertiary system-xs-medium-uppercase'>{t('runLog.meta.title')}</div>
+      <div className='h-6 py-1 text-text-tertiary dark:text-tgai-text-3 system-xs-medium-uppercase'>{t('runLog.meta.title')}</div>
       <div className='py-1'>
         <div className='flex'>
-          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary system-xs-regular truncate'>{t('runLog.meta.status')}</div>
-          <div className='grow px-2 py-1.5 text-text-secondary system-xs-regular'>
+          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary dark:text-tgai-text-3 system-xs-regular truncate'>{t('runLog.meta.status')}</div>
+          <div className='grow px-2 py-1.5 text-text-secondary dark:text-tgai-text-2 system-xs-regular'>
             {status === 'running' && (
               <div className='my-1 w-16 h-2 rounded-sm bg-text-quaternary'/>
             )}
@@ -47,8 +47,8 @@ const MetaData: FC<Props> = ({
           </div>
         </div>
         <div className='flex'>
-          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary system-xs-regular truncate'>{t('runLog.meta.executor')}</div>
-          <div className='grow px-2 py-1.5 text-text-secondary system-xs-regular'>
+          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary dark:text-tgai-text-3 system-xs-regular truncate'>{t('runLog.meta.executor')}</div>
+          <div className='grow px-2 py-1.5 text-text-secondary dark:text-tgai-text-2 system-xs-regular'>
             {status === 'running' && (
               <div className='my-1 w-[88px] h-2 rounded-sm bg-text-quaternary'/>
             )}
@@ -58,8 +58,8 @@ const MetaData: FC<Props> = ({
           </div>
         </div>
         <div className='flex'>
-          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary system-xs-regular truncate'>{t('runLog.meta.startTime')}</div>
-          <div className='grow px-2 py-1.5 text-text-secondary system-xs-regular'>
+          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary dark:text-tgai-text-3 system-xs-regular truncate'>{t('runLog.meta.startTime')}</div>
+          <div className='grow px-2 py-1.5 text-text-secondary dark:text-tgai-text-2 system-xs-regular'>
             {status === 'running' && (
               <div className='my-1 w-[72px] h-2 rounded-sm bg-text-quaternary'/>
             )}
@@ -69,8 +69,8 @@ const MetaData: FC<Props> = ({
           </div>
         </div>
         <div className='flex'>
-          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary system-xs-regular truncate'>{t('runLog.meta.time')}</div>
-          <div className='grow px-2 py-1.5 text-text-secondary system-xs-regular'>
+          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary dark:text-tgai-text-3 system-xs-regular truncate'>{t('runLog.meta.time')}</div>
+          <div className='grow px-2 py-1.5 text-text-secondary dark:text-tgai-text-2 system-xs-regular'>
             {status === 'running' && (
               <div className='my-1 w-[72px] h-2 rounded-sm bg-text-quaternary'/>
             )}
@@ -80,8 +80,8 @@ const MetaData: FC<Props> = ({
           </div>
         </div>
         <div className='flex'>
-          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary system-xs-regular truncate'>{t('runLog.meta.tokens')}</div>
-          <div className='grow px-2 py-1.5 text-text-secondary system-xs-regular'>
+          <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary dark:text-tgai-text-3 system-xs-regular truncate'>{t('runLog.meta.tokens')}</div>
+          <div className='grow px-2 py-1.5 text-text-secondary dark:text-tgai-text-2 system-xs-regular'>
             {status === 'running' && (
               <div className='my-1 w-[48px] h-2 rounded-sm bg-text-quaternary'/>
             )}
@@ -92,8 +92,8 @@ const MetaData: FC<Props> = ({
         </div>
         {showSteps && (
           <div className='flex'>
-            <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary system-xs-regular truncate'>{t('runLog.meta.steps')}</div>
-            <div className='grow px-2 py-1.5 text-text-secondary system-xs-regular'>
+            <div className='shrink-0 w-[104px] px-2 py-1.5 text-text-tertiary dark:text-tgai-text-3 system-xs-regular truncate'>{t('runLog.meta.steps')}</div>
+            <div className='grow px-2 py-1.5 text-text-secondary dark:text-tgai-text-2 system-xs-regular'>
               {status === 'running' && (
                 <div className='my-1 w-[24px] h-2 rounded-sm bg-text-quaternary'/>
               )}

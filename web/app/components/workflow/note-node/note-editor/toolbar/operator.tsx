@@ -4,14 +4,14 @@ import {
 } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiMoreFill } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import ShortcutsName from '@/app/components/workflow/shortcuts-name'
+import cn from '../../../../../../utils/classnames'
+import ShortcutsName from '../../../shortcuts-name'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import Switch from '@/app/components/base/switch'
+} from '../../../../base/portal-to-follow-elem'
+import Switch from '../../../../base/switch'
 
 export type OperatorProps = {
   onCopy: () => void
@@ -40,18 +40,18 @@ const Operator = ({
       <PortalToFollowElemTrigger onClick={() => setOpen(!open)}>
         <div
           className={cn(
-            'flex items-center justify-center w-8 h-8 cursor-pointer rounded-lg hover:bg-black/5',
+            'flex items-center justify-center w-8 h-8 cursor-pointer rounded-lg hover:bg-black/5 dark:hover:bg-zinc-600',
             open && 'bg-black/5',
           )}
         >
-          <RiMoreFill className='w-4 h-4 text-gray-500' />
+          <RiMoreFill className='w-4 h-4 text-tgai-text-3' />
         </div>
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent>
-        <div className='min-w-[192px] bg-white rounded-md border-[0.5px] border-gray-200 shadow-xl'>
+        <div className='min-w-[192px] bg-tgai-panel-background-3 rounded-md border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xl dark:shadow-stone-800'>
           <div className='p-1'>
             <div
-              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-gray-700 hover:bg-black/5'
+              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-tgai-text-2 hover:bg-black/5 dark:hover:bg-zinc-600'
               onClick={() => {
                 onCopy()
                 setOpen(false)
@@ -61,7 +61,7 @@ const Operator = ({
               <ShortcutsName keys={['ctrl', 'c']} />
             </div>
             <div
-              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-gray-700 hover:bg-black/5'
+              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-tgai-text-2 hover:bg-black/5 dark:hover:bg-zinc-600'
               onClick={() => {
                 onDuplicate()
                 setOpen(false)
@@ -71,10 +71,10 @@ const Operator = ({
               <ShortcutsName keys={['ctrl', 'd']} />
             </div>
           </div>
-          <div className='h-[1px] bg-gray-100'></div>
+          <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div>
           <div className='p-1'>
             <div
-              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-gray-700 hover:bg-black/5'
+              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-tgai-text-2 hover:bg-black/5 dark:hover:bg-zinc-600'
               onClick={e => e.stopPropagation()}
             >
               <div>{t('workflow.nodes.note.editor.showAuthor')}</div>
@@ -85,10 +85,10 @@ const Operator = ({
               />
             </div>
           </div>
-          <div className='h-[1px] bg-gray-100'></div>
+          <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div>
           <div className='p-1'>
             <div
-              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-gray-700 hover:text-[#D92D20] hover:bg-[#FEF3F2]'
+              className='flex items-center justify-between px-3 h-8 cursor-pointer rounded-md text-sm text-tgai-text-2 hover:text-[#D92D20] hover:bg-[#FEF3F2]'
               onClick={() => {
                 onDelete()
                 setOpen(false)

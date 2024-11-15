@@ -52,14 +52,14 @@ const AllTools = ({
   }, [activeTab, buildInTools, customTools, workflowTools, searchText])
   return (
     <div>
-      <div className='flex items-center px-3 h-8 space-x-1 bg-gray-25 border-b-[0.5px] border-black/[0.08] shadow-xs'>
+      <div className='flex items-center px-3 h-8 space-x-1 bg-gray-25 dark:bg-tgai-panel-background-3 border-b-[0.5px] border-black/[0.08] dark:border-stone-800 shadow-xs dark:shadow-stone-800'>
         {
           tabs.map(tab => (
             <div
               className={cn(
-                'flex items-center px-2 h-6 rounded-md hover:bg-gray-100 cursor-pointer',
-                'text-xs font-medium text-gray-700',
-                activeTab === tab.key && 'bg-gray-200',
+                'flex items-center px-2 h-6 rounded-md hover:bg-gray-100 dark:hover:bg-zinc-700 cursor-pointer',
+                'text-xs font-medium text-tgai-text-2',
+                activeTab === tab.key && 'bg-gray-200 dark:bg-zinc-600',
               )}
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}

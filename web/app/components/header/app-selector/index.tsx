@@ -5,10 +5,10 @@ import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/solid'
 import { Menu, Transition } from '@headlessui/react'
 import { useRouter } from 'next/navigation'
 import Indicator from '../indicator'
-import type { AppDetailResponse } from '@/models/app'
-import CreateAppDialog from '@/app/components/app/create-app-dialog'
-import AppIcon from '@/app/components/base/app-icon'
-import { useAppContext } from '@/context/app-context'
+import type { AppDetailResponse } from '../../../../models/app'
+import CreateAppDialog from '../../app/create-app-dialog'
+import AppIcon from '../../base/app-icon'
+import { useAppContext } from '../../../../context/app-context'
 
 type IAppSelectorProps = {
   appItems: AppDetailResponse[]

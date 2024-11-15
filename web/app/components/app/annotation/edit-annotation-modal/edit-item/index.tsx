@@ -4,11 +4,11 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Textarea from 'rc-textarea'
 import { RiDeleteBinLine } from '@remixicon/react'
-import cn from '@/utils/classnames'
-import { Robot, User } from '@/app/components/base/icons/src/public/avatar'
-import { Edit04 } from '@/app/components/base/icons/src/vender/line/general'
-import { Edit04 as EditSolid } from '@/app/components/base/icons/src/vender/solid/general'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../../utils/classnames'
+import { Robot, User } from '../../../../base/icons/src/public/avatar'
+import { Edit04 } from '../../../../base/icons/src/vender/line/general'
+import { Edit04 as EditSolid } from '../../../../base/icons/src/vender/solid/general'
+import Button from '../../../../base/button'
 
 export enum EditItemType {
   Query = 'query',

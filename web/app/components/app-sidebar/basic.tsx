@@ -71,7 +71,7 @@ export default function AppBasic({ icon, icon_background, name, isExternal, type
 
       }
       {mode === 'expand' && <div className="group">
-        <div className={`flex flex-row items-center text-sm font-semibold text-gray-700 group-hover:text-gray-900 break-all ${textStyle?.main ?? ''}`}>
+        <div className={`flex flex-row items-center text-sm font-semibold text-tgai-text-2 group-hover:text-tgai-text-1 break-all ${textStyle?.main ?? ''}`}>
           {name}
           {hoverTip
             && <Tooltip
@@ -81,13 +81,13 @@ export default function AppBasic({ icon, icon_background, name, isExternal, type
                 </div>
               }
               popupClassName='ml-1'
-              triggerClassName='w-4 h-4 ml-1'
+              triggerClassName='w-4 h-4 ml-1 text-tgai-text-3'
               position='top'
             />
           }
         </div>
-        <div className={`text-xs font-normal text-gray-500 group-hover:text-gray-700 break-all ${textStyle?.extra ?? ''}`}>{type}</div>
-        <div className='text-text-tertiary system-2xs-medium-uppercase'>{isExternal ? t('dataset.externalTag') : ''}</div>
+        <div className={`text-xs font-normal text-tgai-text-3 group-hover:text-tgai-text-2 break-all ${textStyle?.extra ?? ''}`}>{type}</div>
+        <div className='text-tgai-text-3 system-2xs-medium-uppercase'>{isExternal ? t('dataset.externalTag') : ''}</div>
       </div>}
     </div>
   )

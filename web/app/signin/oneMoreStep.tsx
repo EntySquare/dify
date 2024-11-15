@@ -157,7 +157,8 @@ const OneMoreStep = () => {
             <Link
               className='system-xs-medium text-text-accent-secondary'
               target='_blank' rel='noopener noreferrer'
-              href={'https://docs.dify.ai/user-agreement/open-source'}
+              href=""
+              // href={'https://docs.dify.ai/user-agreement/open-source'}
             >{t('login.license.link')}</Link>
           </div>
         </div>

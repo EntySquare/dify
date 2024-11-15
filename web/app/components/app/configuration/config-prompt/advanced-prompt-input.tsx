@@ -14,23 +14,23 @@ import s from './style.module.css'
 import MessageTypeSelector from './message-type-selector'
 import ConfirmAddVar from './confirm-add-var'
 import PromptEditorHeightResizeWrap from './prompt-editor-height-resize-wrap'
-import cn from '@/utils/classnames'
-import type { PromptRole, PromptVariable } from '@/models/debug'
+import cn from '../../../../../utils/classnames'
+import type { PromptRole, PromptVariable } from '../../../../../models/debug'
 import {
   Clipboard,
   ClipboardCheck,
-} from '@/app/components/base/icons/src/vender/line/files'
-import Tooltip from '@/app/components/base/tooltip'
-import PromptEditor from '@/app/components/base/prompt-editor'
-import ConfigContext from '@/context/debug-configuration'
-import { getNewVar, getVars } from '@/utils/var'
-import { AppType } from '@/types/app'
-import { useModalContext } from '@/context/modal-context'
-import type { ExternalDataTool } from '@/models/common'
-import { useToastContext } from '@/app/components/base/toast'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
-import { ADD_EXTERNAL_DATA_TOOL } from '@/app/components/app/configuration/config-var'
-import { INSERT_VARIABLE_VALUE_BLOCK_COMMAND } from '@/app/components/base/prompt-editor/plugins/variable-block'
+} from '../../../base/icons/src/vender/line/files'
+import Tooltip from '../../../base/tooltip'
+import PromptEditor from '../../../base/prompt-editor'
+import ConfigContext from '../../../../../context/debug-configuration'
+import { getNewVar, getVars } from '../../../../../utils/var'
+import { AppType } from '../../../../../types/app'
+import { useModalContext } from '../../../../../context/modal-context'
+import type { ExternalDataTool } from '../../../../../models/common'
+import { useToastContext } from '../../../base/toast'
+import { useEventEmitterContextContext } from '../../../../../context/event-emitter'
+import { ADD_EXTERNAL_DATA_TOOL } from '../config-var'
+import { INSERT_VARIABLE_VALUE_BLOCK_COMMAND } from '../../../base/prompt-editor/plugins/variable-block'
 type Props = {
   type: PromptRole
   isChatMode: boolean
@@ -199,7 +199,7 @@ const AdvancedPromptInput: FC<Props> = ({
           )}
 
         <PromptEditorHeightResizeWrap
-          className='px-4 min-h-[102px] overflow-y-auto text-sm text-gray-700'
+          className='px-4 min-h-[102px] overflow-y-auto tgai-custom-scrollbar text-sm text-gray-700'
           height={editorHeight}
           minHeight={minHeight}
           onHeightChange={setEditorHeight}

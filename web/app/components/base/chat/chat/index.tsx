@@ -209,7 +209,7 @@ const Chat: FC<ChatProps> = ({
       <div className='relative h-full'>
         <div
           ref={chatContainerRef}
-          className={cn('relative h-full overflow-y-auto overflow-x-hidden', chatContainerClassName)}
+          className={cn('relative h-full overflow-y-auto overflow-x-hidden tgai-custom-scrollbar', chatContainerClassName)}
         >
           {chatNode}
           <div

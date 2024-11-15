@@ -86,7 +86,7 @@ const ConversationVariableModal = ({
         {/* LEFT */}
         <div className='shrink-0 flex flex-col w-[224px] h-full bg-background-sidenav-bg border-r border-divider-burn'>
           <div className='shrink-0 pt-5 pl-5 pr-4 pb-3 text-text-primary system-xl-semibold'>{t('workflow.chatVariable.panelTitle')}</div>
-          <div className='grow overflow-y-auto px-3 py-2'>
+          <div className='grow overflow-y-auto tgai-custom-scrollbar px-3 py-2'>
             {varList.map(chatVar => (
               <div key={chatVar.id} className={cn('group mb-0.5 p-2 flex items-center radius-md hover:bg-state-base-hover cursor-pointer', currentVar.id === chatVar.id && 'bg-state-base-hover')} onClick={() => setCurrentVar(chatVar)}>
                 <BubbleX className={cn('shrink-0 mr-1 w-4 h-4 text-text-tertiary group-hover:text-util-colors-teal-teal-700', currentVar.id === chatVar.id && 'text-util-colors-teal-teal-700')} />
@@ -142,7 +142,7 @@ const ConversationVariableModal = ({
                 </div>
               )}
               {(currentVar.value_type === ChatVarType.Number || currentVar.value_type === ChatVarType.String) && (
-                <div className='h-full px-4 py-3 rounded-lg bg-components-input-bg-normal text-components-input-text-filled system-md-regular overflow-y-auto overflow-x-hidden'>{latestValueMap[currentVar.id] || ''}</div>
+                <div className='h-full px-4 py-3 rounded-lg bg-components-input-bg-normal text-components-input-text-filled system-md-regular overflow-y-auto overflow-x-hidden tgai-custom-scrollbar'>{latestValueMap[currentVar.id] || ''}</div>
               )}
             </div>
           </div>

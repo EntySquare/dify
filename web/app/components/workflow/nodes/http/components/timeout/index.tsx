@@ -30,8 +30,8 @@ const InputField: FC<{
   return (
     <div className="space-y-1">
       <div className="flex items-center h-[18px] space-x-2">
-        <span className="text-[13px] font-medium text-gray-900">{title}</span>
-        <span className="text-xs font-normal text-gray-500">{description}</span>
+        <span className="text-[13px] font-medium text-tgai-text-1">{title}</span>
+        <span className="text-xs font-normal text-tgai-text-3">{description}</span>
       </div>
       <Input
         type='number'
@@ -62,9 +62,9 @@ const Timeout: FC<Props> = ({ readonly, payload, onChange }) => {
       <div>
         <div
           onClick={toggleFold}
-          className={cn('flex justify-between leading-[18px] text-[13px] font-semibold text-gray-700 uppercase cursor-pointer')}>
+          className={cn('flex justify-between leading-[18px] text-[13px] font-semibold text-tgai-text-2 uppercase cursor-pointer')}>
           <div>{t(`${i18nPrefix}.timeout.title`)}</div>
-          <ChevronRight className='w-4 h-4 text-gray-500 transform transition-transform' style={{ transform: isFold ? 'rotate(0deg)' : 'rotate(90deg)' }} />
+          <ChevronRight className='w-4 h-4 text-tgai-text-3 transform transition-transform' style={{ transform: isFold ? 'rotate(0deg)' : 'rotate(90deg)' }} />
         </div>
         {!isFold && (
           <div className='mt-2 space-y-1'>

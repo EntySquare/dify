@@ -5,7 +5,7 @@
   grid-auto-rows: 180px;
 } */
 .totalText {
-  @apply text-gray-900 font-medium text-base flex-1;
+  @apply text-tgai-text-1 font-medium text-base flex-1;
 }
 .docSearchWrapper {
   @apply sticky w-full py-1 -top-3 bg-white flex items-center mb-3 justify-between z-10 flex-wrap gap-y-1;
@@ -28,36 +28,36 @@
 }
 .segContent {
   white-space: wrap;
-  @apply flex-1 h-0 min-h-0 mt-2 text-sm text-gray-800 overflow-ellipsis overflow-hidden from-gray-800 to-white;
+  /* @apply flex-1 h-0 min-h-0 mt-2 text-sm text-gray-800 overflow-ellipsis overflow-hidden from-gray-800 to-white; */
 }
 .segData {
-  @apply hidden text-gray-500 text-xs pt-2;
+  @apply hidden text-tgai-text-3 text-xs pt-2;
 }
 .segDataText {
   @apply max-w-[80px] truncate;
 }
 .chartLinkText {
-  background: linear-gradient(to left, white, 90%, transparent);
-  @apply text-primary-600 font-semibold text-xs absolute right-0 hidden h-12 pl-12 items-center;
+  /* background: linear-gradient(to left, white, 90%, transparent); */
+  @apply text-tgai-primary font-semibold text-xs absolute right-0 hidden h-12 pl-12 items-center;
 }
 .select {
   @apply h-8 py-0 bg-gray-50 hover:bg-gray-100 rounded-lg shadow-none !important;
 }
 .segModalContent {
-  @apply h-96 text-gray-800 text-base break-all overflow-y-scroll;
+  @apply h-96 text-tgai-text-1 text-base break-all overflow-y-scroll;
   white-space: pre-line;
 }
 .footer {
   @apply flex items-center justify-between box-border border-t-gray-200 border-t-[0.5px] pt-3 mt-4 flex-wrap gap-y-2;
 }
 .numberInfo {
-  @apply text-gray-500 text-xs font-medium;
+  @apply text-tgai-text-3 text-xs font-medium;
 }
 .keywordTitle {
-  @apply text-gray-500 mb-2 mt-1 text-xs uppercase;
+  @apply text-tgai-text-3 mb-2 mt-1 text-xs uppercase;
 }
 .keywordWrapper {
-  @apply text-gray-700 w-full max-h-[200px] overflow-auto flex flex-wrap;
+  @apply text-tgai-text-2 w-full max-h-[200px] overflow-auto flex flex-wrap;
 }
 .keyword {
   @apply text-sm border border-gray-200 max-w-[200px] max-h-[100px] whitespace-pre-line overflow-y-auto mr-1 mb-2 last:mr-0 px-2 py-1 rounded-lg;
@@ -66,7 +66,7 @@
   @apply w-48 inline-block truncate;
 }
 .commonIcon {
-  @apply w-3 h-3 inline-block align-middle mr-1 bg-gray-500;
+  @apply w-3 h-3 inline-block align-middle mr-1 bg-tgai-text-3;
   mask-repeat: no-repeat;
   mask-size: contain;
   mask-position: center center;
@@ -90,6 +90,10 @@
 .cardLoadingIcon {
   background-image: url(../../assets/cardLoading.svg);
 }
+
+.cardLoadingIconDark {
+  background-image: url(../../assets/cardLoading-dark.svg);
+}
 /* .hitLoadingIcon {
   background-image: url(../../assets/hitLoading.svg);
 } */
@@ -98,11 +102,11 @@
   left: calc(-1rem - 1px);
   width: calc(100% + 2rem + 2px);
   height: calc(100% - 1rem + 1px);
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     rgba(252, 252, 253, 0) 0%,
     #fcfcfd 74.15%
-  );
+  ); */
 }
 
 .hitTitleWrapper {

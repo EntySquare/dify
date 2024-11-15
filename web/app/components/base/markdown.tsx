@@ -277,6 +277,7 @@ export function Markdown(props: { content: string; className?: string }) {
           form: MarkdownForm,
         }}
         linkTarget='_blank'
+        className='text-tgai-text-1'
       >
         {/* Markdown detect has problem. */}
         {latexContent}

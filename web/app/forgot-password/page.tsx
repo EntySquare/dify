@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import Header from '../signin/_header'
 import style from '../signin/page.module.css'
 import ForgotPasswordForm from './ForgotPasswordForm'
-import ChangePasswordForm from '@/app/forgot-password/ChangePasswordForm'
+import ChangePasswordForm from './ChangePasswordForm'
 
 const ForgotPassword = () => {
   const searchParams = useSearchParams()

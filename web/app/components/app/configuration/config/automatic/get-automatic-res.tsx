@@ -54,11 +54,11 @@ const TryLabel: FC<{
 }> = ({ Icon, text, onClick }) => {
   return (
     <div
-      className='mt-2 mr-1 shrink-0 flex h-7 items-center px-2 bg-gray-100 rounded-lg cursor-pointer'
+      className='mt-2 mr-1 shrink-0 flex h-7 items-center px-2 bg-gray-100 dark:bg-neutral-700 rounded-lg cursor-pointer'
       onClick={onClick}
     >
-      <Icon className='w-4 h-4 text-gray-500'></Icon>
-      <div className='ml-1 text-xs font-medium text-gray-700'>{text}</div>
+      <Icon className='w-4 h-4 text-tgai-text-3'></Icon>
+      <div className='ml-1 text-xs font-medium text-tgai-text-2'>{text}</div>
     </div>
   )
 }
@@ -140,14 +140,14 @@ const GetAutomaticRes: FC<IGetAutomaticResProps> = ({
   const renderLoading = (
     <div className='w-0 grow flex flex-col items-center justify-center h-full space-y-3'>
       <Loading />
-      <div className='text-[13px] text-gray-400'>{t('appDebug.generate.loading')}</div>
+      <div className='text-[13px] text-tgai-text-3'>{t('appDebug.generate.loading')}</div>
     </div>
   )
 
   const renderNoData = (
     <div className='w-0 grow flex flex-col items-center px-8 justify-center h-full space-y-3'>
-      <Generator className='w-14 h-14 text-gray-300' />
-      <div className='leading-5 text-center text-[13px] font-normal text-gray-400'>
+      <Generator className='w-14 h-14 text-tgai-text-3' />
+      <div className='leading-5 text-center text-[13px] font-normal text-tgai-text-3'>
         <div>{t('appDebug.generate.noDataLine1')}</div>
         <div>{t('appDebug.generate.noDataLine2')}</div>
       </div>
@@ -189,14 +189,14 @@ const GetAutomaticRes: FC<IGetAutomaticResProps> = ({
     <Modal
       isShow={isShow}
       onClose={onClose}
-      className='!p-0 min-w-[1140px]'
+      className='!p-0 min-w-[1140px] dark:!bg-tgai-panel-background dark:!border-stone-600 dark:!border'
       closable
     >
       <div className='flex h-[680px] flex-wrap'>
-        <div className='w-[570px] shrink-0 p-6 h-full overflow-y-auto border-r border-gray-100'>
+        <div className='w-[570px] shrink-0 p-6 h-full overflow-y-auto tgai-custom-scrollbar border-r border-gray-100 dark:border-stone-700'>
           <div className='mb-8'>
             <div className={`leading-[28px] text-lg font-bold ${s.textGradient}`}>{t('appDebug.generate.title')}</div>
-            <div className='mt-1 text-[13px] font-normal text-gray-500'>{t('appDebug.generate.description')}</div>
+            <div className='mt-1 text-[13px] font-normal text-tgai-text-3'>{t('appDebug.generate.description')}</div>
           </div>
           <div className='flex items-center mb-8'>
             <ModelIcon
@@ -213,10 +213,8 @@ const GetAutomaticRes: FC<IGetAutomaticResProps> = ({
           </div>
           <div >
             <div className='flex items-center'>
-              <div className='mr-3 shrink-0 leading-[18px] text-xs font-semibold text-gray-500 uppercase'>{t('appDebug.generate.tryIt')}</div>
-              <div className='grow h-px' style={{
-                background: 'linear-gradient(to right, rgba(243, 244, 246, 1), rgba(243, 244, 246, 0))',
-              }}></div>
+              <div className='mr-3 shrink-0 leading-[18px] text-xs font-semibold text-tgai-text-3 uppercase'>{t('appDebug.generate.tryIt')}</div>
+              <div className='grow h-px bg-gradient-to-r from-[rgba(243,_244,_246,_1) to-[rgba(243,_244,_246,_0)] dark:from-zinc-600 dark:to-zinc-600/0'></div>
             </div>
             <div className='flex flex-wrap'>
               {tryList.map(item => (
@@ -232,7 +230,9 @@ const GetAutomaticRes: FC<IGetAutomaticResProps> = ({
           {/* inputs */}
           <div className='mt-6'>
             <div className='text-[0px]'>
-              <div className='mb-2 leading-5 text-sm font-medium text-gray-900'>{t('appDebug.generate.instruction')}</div>
+              <div className='mb-2 leading-5 text-sm font-medium text-tgai-text-1'>{t('appDebug.generate.instruction')}</div>
+              {/* TODO: CHECK STYLE CHANGED*/}
+              {/*w-full h-[200px] overflow-y-auto tgai-custom-scrollbar px-3 py-2 text-sm bg-gray-50 dark:bg-tgai-input-background text-tgai-text-1 rounded-lg*/}
               <Textarea
                 className="h-[200px] resize-none"
                 placeholder={t('appDebug.generate.instructionPlaceHolder') as string}
@@ -256,8 +256,8 @@ const GetAutomaticRes: FC<IGetAutomaticResProps> = ({
 
         {(!isLoading && res) && (
           <div className='w-0 grow p-6 pb-0 h-full'>
-            <div className='shrink-0 mb-3 leading-[160%] text-base font-semibold text-gray-800'>{t('appDebug.generate.resTitle')}</div>
-            <div className={cn('max-h-[555px] overflow-y-auto', !isInLLMNode && 'pb-2')}>
+            <div className='shrink-0 mb-3 leading-[160%] text-base font-semibold text-tgai-text-1'>{t('appDebug.generate.resTitle')}</div>
+            <div className={cn('max-h-[555px] overflow-y-auto tgai-custom-scrollbar', !isInLLMNode && 'pb-2')}>
               <ConfigPrompt
                 mode={mode}
                 promptTemplate={res?.prompt || ''}
@@ -301,7 +301,7 @@ const GetAutomaticRes: FC<IGetAutomaticResProps> = ({
               )}
             </div>
 
-            <div className='flex justify-end py-4 bg-white'>
+            <div className='flex justify-end py-4 bg-white dark:bg-tgai-panel-background'>
               <Button onClick={onClose}>{t('common.operation.cancel')}</Button>
               <Button variant='primary' className='ml-2' onClick={() => {
                 setShowConfirmOverwrite(true)

@@ -9,9 +9,9 @@ import UpgradeBtn from '../upgrade-btn'
 import { User01 } from '../../base/icons/src/vender/line/users'
 import { MessageFastPlus } from '../../base/icons/src/vender/line/communication'
 import { FileUpload } from '../../base/icons/src/vender/line/files'
-import cn from '@/utils/classnames'
-import { useProviderContext } from '@/context/provider-context'
-import UsageInfo from '@/app/components/billing/usage-info'
+import cn from '../../../../utils/classnames'
+import { useProviderContext } from '../../../../context/provider-context'
+import UsageInfo from '../usage-info'
 
 const typeStyle = {
   [Plan.sandbox]: {

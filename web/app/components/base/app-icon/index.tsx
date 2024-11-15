@@ -4,8 +4,8 @@ import type { FC } from 'react'
 import { init } from 'emoji-mart'
 import data from '@emoji-mart/data'
 import style from './style.module.css'
-import classNames from '@/utils/classnames'
-import type { AppIconType } from '@/types/app'
+import classNames from '../../../../utils/classnames'
+import type { AppIconType } from '../../../../types/app'
 
 init({ data })
 

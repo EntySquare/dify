@@ -1,7 +1,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import type { CodeNodeType } from './types'
-import type { NodeProps } from '@/app/components/workflow/types'
+import type { NodeProps } from '../../types'
 
 const Node: FC<NodeProps<CodeNodeType>> = () => {
   return (

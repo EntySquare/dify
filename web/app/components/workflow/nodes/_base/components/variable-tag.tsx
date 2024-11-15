@@ -49,7 +49,7 @@ const VariableTag = ({
   const { t } = useTranslation()
   return (
     <Tooltip popupContent={!isValid && t('workflow.errorMsg.invalidVariable')}>
-      <div className={cn('inline-flex items-center px-1.5 max-w-full h-6 text-xs rounded-md border-[0.5px] border-[rgba(16, 2440,0.08)] bg-white shadow-xs',
+      <div className={cn('inline-flex items-center px-1.5 max-w-full h-6 text-xs rounded-md border-[0.5px] border-[rgba(16, 2440,0.08)] dark:border-stone-700 bg-white dark:bg-neutral-600 shadow-xs dark:shadow-stone-800',
         !isValid && 'border-red-400 !bg-[#FEF3F2]',
       )}>
         {(!isEnv && !isChatVar && <>
@@ -67,12 +67,12 @@ const VariableTag = ({
             </>
           )}
           <Line3 className='shrink-0 mx-0.5' />
-          <Variable02 className='shrink-0 mr-0.5 w-3.5 h-3.5 text-text-accent' />
+          <Variable02 className='shrink-0 mr-0.5 w-3.5 h-3.5 text-text-accent dark:text-tgai-primary' />
         </>)}
         {isEnv && <Env className='shrink-0 mr-0.5 w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
         {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
         <div
-          className={cn('truncate text-text-accent font-medium', (isEnv || isChatVar) && 'text-text-secondary')}
+          className={cn('truncate text-text-accent dark:text-tgai-primary font-medium', (isEnv || isChatVar) && 'text-text-secondary')}
           title={variableName}
         >
           {variableName}

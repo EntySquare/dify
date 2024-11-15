@@ -25,7 +25,7 @@ const ResultText: FC<ResultTextProps> = ({
 }) => {
   const { t } = useTranslation()
   return (
-    <div className='bg-background-section-burn py-2'>
+    <div className='bg-background-section-burn dark:dark:bg-tgai-panel-background-2 py-2'>
       {isRunning && !outputs && (
         <div className='pt-4 pl-[26px]'>
           <LoadingAnim type='text' />
@@ -39,12 +39,12 @@ const ResultText: FC<ResultTextProps> = ({
         </div>
       )}
       {!isRunning && !outputs && !error && (
-        <div className='mt-[120px] px-4 py-2 flex flex-col items-center text-[13px] leading-[18px] text-gray-500'>
-          <ImageIndentLeft className='w-6 h-6 text-gray-400' />
+        <div className='mt-[120px] px-4 py-2 flex flex-col items-center text-[13px] leading-[18px] text-tgai-text-2'>
+          <ImageIndentLeft className='w-6 h-6 text-tgai-text-3' />
           <div className='mr-2'>{t('runLog.resultEmpty.title')}</div>
           <div>
             {t('runLog.resultEmpty.tipLeft')}
-            <span onClick={onClick} className='cursor-pointer text-primary-600'>{t('runLog.resultEmpty.link')}</span>
+            <span onClick={onClick} className='cursor-pointer text-tgai-primary'>{t('runLog.resultEmpty.link')}</span>
             {t('runLog.resultEmpty.tipRight')}
           </div>
         </div>

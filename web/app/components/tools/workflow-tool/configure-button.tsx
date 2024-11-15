@@ -2,18 +2,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRouter } from 'next/navigation'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
-import { ArrowUpRight } from '@/app/components/base/icons/src/vender/line/arrows'
-import { Tools } from '@/app/components/base/icons/src/vender/line/others'
-import Indicator from '@/app/components/header/indicator'
-import WorkflowToolModal from '@/app/components/tools/workflow-tool'
-import Loading from '@/app/components/base/loading'
-import Toast from '@/app/components/base/toast'
-import { createWorkflowToolProvider, fetchWorkflowToolDetailByAppID, saveWorkflowToolProvider } from '@/service/tools'
-import type { Emoji, WorkflowToolProviderParameter, WorkflowToolProviderRequest, WorkflowToolProviderResponse } from '@/app/components/tools/types'
-import type { InputVar } from '@/app/components/workflow/types'
-import { useAppContext } from '@/context/app-context'
+import cn from '../../../../utils/classnames'
+import Button from '../../base/button'
+import { ArrowUpRight } from '../../base/icons/src/vender/line/arrows'
+import { Tools } from '../../base/icons/src/vender/line/others'
+import Indicator from '../../header/indicator'
+import WorkflowToolModal from './index'
+import Loading from '../../base/loading'
+import Toast from '../../base/toast'
+import { createWorkflowToolProvider, fetchWorkflowToolDetailByAppID, saveWorkflowToolProvider } from '../../../../service/tools'
+import type { Emoji, WorkflowToolProviderParameter, WorkflowToolProviderRequest, WorkflowToolProviderResponse } from '../types'
+import type { InputVar } from '../../workflow/types'
+import { useAppContext } from '../../../../context/app-context'
 
 type Props = {
   disabled: boolean
@@ -170,35 +170,35 @@ const WorkflowToolConfigureButton = ({
 
   return (
     <>
-      <div className='mt-2 pt-2 border-t-[0.5px] border-t-black/5'>
+      <div className='mt-2 !mt-0 pt-2 border-t-[0.5px] border-t-transparent'>
         {(!published || !isLoading) && (
           <div className={cn(
-            'group bg-gray-100 rounded-lg transition-colors',
-            disabled ? 'shadow-xs opacity-30 cursor-not-allowed' : 'cursor-pointer',
-            !published && 'hover:bg-primary-50',
+            'group bg-gray-100 dark:bg-neutral-700 rounded-lg transition-colors',
+            disabled ? 'shadow-xs dark:shadow-neutral-600 opacity-30 cursor-not-allowed' : 'cursor-pointer',
+            !published && 'hover:bg-primary-50 dark:hover:bg-neutral-600',
           )}>
             {isCurrentWorkspaceManager
               ? (
                 <div
-                  className='flex justify-start items-center gap-2 px-2.5 py-2'
+                  className='flex justify-start items-center gap-2 px-2.5 py-2 text-tgai-text-1'
                   onClick={() => !published && setShowModal(true)}
                 >
-                  <Tools className={cn('relative w-4 h-4', !published && 'group-hover:text-primary-600')} />
-                  <div title={t('workflow.common.workflowAsTool') || ''} className={cn('grow shrink basis-0 text-[13px] font-medium leading-[18px] truncate', !published && 'group-hover:text-primary-600')}>{t('workflow.common.workflowAsTool')}</div>
+                  <Tools className={cn('relative w-4 h-4', !published && 'group-hover:text-tgai-primary')} />
+                  <div title={t('workflow.common.workflowAsTool') || ''} className={cn('grow shrink basis-0 text-[13px] text-tgai-text-1 font-medium leading-[18px] truncate', !published && 'group-hover:text-tgai-primary')}>{t('workflow.common.workflowAsTool')}</div>
                   {!published && (
-                    <span className='shrink-0 px-1 border border-black/8 rounded-[5px] bg-white text-[10px] font-medium leading-[18px] text-gray-500'>{t('workflow.common.configureRequired').toLocaleUpperCase()}</span>
+                    <span className='shrink-0 px-1 border border-black/8 dark:border-stone-600/95 rounded-[5px] bg-white dark:bg-tgai-input-background text-[10px] font-medium leading-[18px] text-tgai-text-2'>{t('workflow.common.configureRequired').toLocaleUpperCase()}</span>
                   )}
                 </div>)
               : (
                 <div
                   className='flex justify-start items-center gap-2 px-2.5 py-2'
                 >
-                  <Tools className='w-4 h-4 text-gray-500' />
-                  <div title={t('workflow.common.workflowAsTool') || ''} className='grow shrink basis-0 text-[13px] font-medium leading-[18px] truncate text-gray-500'>{t('workflow.common.workflowAsTool')}</div>
+                  <Tools className='w-4 h-4 text-tgai-text-3' />
+                  <div title={t('workflow.common.workflowAsTool') || ''} className='grow shrink basis-0 text-[13px] font-medium leading-[18px] truncate text-tgai-text-3'>{t('workflow.common.workflowAsTool')}</div>
                 </div>
               )}
             {published && (
-              <div className='px-2.5 py-2 border-t-[0.5px] border-black/5'>
+              <div className='px-2.5 py-2 border-t-[0.5px] border-black/5 dark:border-stone-600/95'>
                 <div className='flex justify-between'>
                   <Button
                     size='small'

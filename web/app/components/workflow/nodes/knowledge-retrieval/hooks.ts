@@ -3,7 +3,7 @@ import { getSelectedDatasetsMode } from './utils'
 import type {
   DataSet,
   SelectedDatasetsMode,
-} from '@/models/datasets'
+} from '../../../../../models/datasets'
 
 export const useSelectedDatasetsMode = (datasets: DataSet[]) => {
   const selectedDatasetsMode: SelectedDatasetsMode = useMemo(() => {

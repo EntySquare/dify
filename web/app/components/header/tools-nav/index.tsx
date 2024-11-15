@@ -22,15 +22,16 @@ const ToolsNav = ({
   return (
     <Link href="/tools" className={classNames(
       className, 'group',
-      activated && 'bg-white shadow-md',
-      activated ? 'text-primary-600' : 'text-gray-500 hover:bg-gray-200',
+      activated && 'bg-white dark:bg-zinc-600 shadow-md dark:shadow-stone-800',
+      activated ? 'text-primary-600 dark:text-tgai-primary' : 'text-tgai-text-2 hover:bg-gray-200 dark:hover:bg-zinc-800',
     )}>
       {
         activated
           ? <RiHammerFill className='mr-2 w-4 h-4' />
           : <RiHammerLine className='mr-2 w-4 h-4' />
       }
-      {t('common.menus.tools')}
+      {/* {t('common.menus.tools')} */}
+      能力
     </Link>
   )
 }

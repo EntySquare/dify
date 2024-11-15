@@ -16,6 +16,8 @@ const SwrInitor = ({
   const searchParams = useSearchParams()
   const consoleToken = decodeURIComponent(searchParams.get('access_token') || '')
   const refreshToken = decodeURIComponent(searchParams.get('refresh_token') || '')
+  const consoleToken = searchParams.get('console_token')
+  const TGAIToken = localStorage?.getItem('tgai_token')
   const consoleTokenFromLocalStorage = localStorage?.getItem('console_token')
   const refreshTokenFromLocalStorage = localStorage?.getItem('refresh_token')
   const pathname = usePathname()
@@ -78,3 +80,64 @@ const SwrInitor = ({
 }
 
 export default SwrInitor
+
+
+// TODO: CHECK PREVIOUS TOKEN
+// 'use client'
+//
+// import { SWRConfig } from 'swr'
+// import { useEffect, useState } from 'react'
+// import type { ReactNode } from 'react'
+// import { useRouter, useSearchParams } from 'next/navigation'
+//
+// type SwrInitorProps = {
+//   children: ReactNode
+// }
+// const SwrInitor = ({
+//                      children,
+//                    }: SwrInitorProps) => {
+//   const router = useRouter()
+//   const searchParams = useSearchParams()
+//   const consoleToken = searchParams.get('console_token')
+//   const TGAIToken = localStorage?.getItem('tgai_token')
+//   const consoleTokenFromLocalStorage = localStorage?.getItem('console_token')
+//   const [init, setInit] = useState(false)
+//
+//   useEffect(() => {
+//     if (!(consoleToken || consoleTokenFromLocalStorage)) {
+//       if (typeof window !== undefined) {
+//         localStorage.removeItem('console_token')
+//         localStorage.removeItem('tgai_token')
+//       }
+//       router.replace('/signin')
+//     }
+//
+//     if (!TGAIToken || TGAIToken === 'undefined') {
+//       if (typeof window !== undefined) {
+//         localStorage.removeItem('console_token')
+//         localStorage.removeItem('tgai_token')
+//       }
+//       router.replace('/signin')
+//     }
+//
+//     if (consoleToken) {
+//       localStorage?.setItem('console_token', consoleToken!)
+//       router.replace('/apps', { forceOptimisticNavigation: false } as any)
+//     }
+//     setInit(true)
+//   }, [])
+//
+//
+//   return init
+//     ? (
+//       <SWRConfig value={{
+//         shouldRetryOnError: false,
+//         revalidateOnFocus: false,
+//       }}>
+//         {children}
+//       </SWRConfig>
+//     )
+//     : null
+// }
+//
+// export default SwrInitor

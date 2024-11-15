@@ -15,10 +15,10 @@ import {
 import { WorkflowRunningStatus } from '../types'
 import ViewHistory from './view-history'
 import Checklist from './checklist'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 import {
   StopCircle,
-} from '@/app/components/base/icons/src/vender/line/mediaAndDevices'
+} from '../../base/icons/src/vender/line/mediaAndDevices'
 
 const RunMode = memo(() => {
   const { t } = useTranslation()
@@ -31,9 +31,9 @@ const RunMode = memo(() => {
     <>
       <div
         className={cn(
-          'flex items-center px-2.5 h-7 rounded-md text-[13px] font-medium text-components-button-secondary-accent-text',
-          'hover:bg-state-accent-hover cursor-pointer',
-          isRunning && 'bg-state-accent-hover !cursor-not-allowed',
+          'flex items-center px-2.5 h-7 rounded-md text-[13px] font-medium text-components-button-secondary-accent-text dark:text-tgai-primary',
+          'hover:bg-state-accent-hover dark:hover:bg-zinc-600 cursor-pointer',
+          isRunning && 'bg-state-accent-hover dark:bg-zinc-600 !cursor-not-allowed',
         )}
         onClick={() => {
           handleWorkflowStartRunInWorkflow()
@@ -58,7 +58,7 @@ const RunMode = memo(() => {
       {
         isRunning && (
           <div
-            className='flex items-center justify-center ml-0.5 w-7 h-7 cursor-pointer hover:bg-black/5 rounded-md'
+            className='flex items-center justify-center ml-0.5 w-7 h-7 cursor-pointer hover:bg-black/5 dark:hover:bg-zinc-600/95 rounded-md'
             onClick={() => handleStopRun(workflowRunningData?.task_id || '')}
           >
             <StopCircle className='w-4 h-4 text-components-button-ghost-text' />
@@ -77,8 +77,8 @@ const PreviewMode = memo(() => {
   return (
     <div
       className={cn(
-        'flex items-center px-2.5 h-7 rounded-md text-[13px] font-medium text-components-button-secondary-accent-text',
-        'hover:bg-state-accent-hover cursor-pointer',
+        'flex items-center px-2.5 h-7 rounded-md text-[13px] font-medium text-components-button-secondary-accent-text dark:text-tgai-primary',
+        'hover:bg-state-accent-hover dark:hover:bg-zinc-600 cursor-pointer',
       )}
       onClick={() => handleWorkflowStartRunInChatflow()}
     >
@@ -94,7 +94,7 @@ const RunAndHistory: FC = () => {
   const { nodesReadOnly } = useNodesReadOnly()
 
   return (
-    <div className='flex items-center px-0.5 h-8 rounded-lg border-[0.5px] border-components-button-secondary-border bg-components-button-secondary-bg shadow-xs'>
+    <div className='flex items-center px-0.5 h-8 rounded-lg border-[0.5px] border-components-button-secondary-border bg-components-button-secondary-bg !bg-tgai-panel-background-3 shadow-xs'>
       {
         !isChatMode && <RunMode />
       }

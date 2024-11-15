@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 import {
   RiDeleteBinLine,
 } from '@remixicon/react'
-import { Edit02 } from '@/app/components/base/icons/src/vender/line/general'
-import type { ApiBasedExtension } from '@/models/common'
-import { useModalContext } from '@/context/modal-context'
-import { deleteApiBasedExtension } from '@/service/common'
-import Confirm from '@/app/components/base/confirm'
+import { Edit02 } from '../../../base/icons/src/vender/line/general'
+import type { ApiBasedExtension } from '../../../../../models/common'
+import { useModalContext } from '../../../../../context/modal-context'
+import { deleteApiBasedExtension } from '../../../../../service/common'
+import Confirm from '../../../base/confirm'
 
 type ItemProps = {
   data: ApiBasedExtension

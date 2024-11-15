@@ -261,7 +261,7 @@ const TracingPanel: FC<TracingPanelProps> = ({
   }
 
   return (
-    <div className={cn(className || 'bg-components-panel-bg', 'py-2')}>
+    <div className={cn(className || 'bg-components-panel-bg dark:bg-tgai-panel-background-2', 'py-2')}>
       {treeNodes.map(renderNode)}
     </div>
   )

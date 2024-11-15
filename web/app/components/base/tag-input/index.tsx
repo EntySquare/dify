@@ -3,9 +3,9 @@ import type { ChangeEvent, FC, KeyboardEvent } from 'react'
 import { } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
 import AutosizeInput from 'react-18-input-autosize'
-import cn from '@/utils/classnames'
-import { X } from '@/app/components/base/icons/src/vender/line/general'
-import { useToastContext } from '@/app/components/base/toast'
+import cn from '../../../../utils/classnames'
+import { X } from '../icons/src/vender/line/general'
+import { useToastContext } from '../toast'
 
 type TagInputProps = {
   items: string[]
@@ -70,17 +70,17 @@ const TagInput: FC<TagInputProps> = ({
   }
 
   return (
-    <div className={cn('flex flex-wrap', !isInWorkflow && 'min-w-[200px]', isSpecialMode ? 'bg-gray-100 rounded-lg pb-1 pl-1' : '')}>
+    <div className={cn('flex flex-wrap', !isInWorkflow && 'min-w-[200px]', isSpecialMode ? 'bg-gray-100 dark:bg-tgai-input-background rounded-lg pb-1 pl-1' : '')}>
       {
         (items || []).map((item, index) => (
           <div
             key={item}
-            className={cn('flex items-center mr-1 mt-1 px-2 py-1 text-sm text-gray-700 border border-gray-200', isSpecialMode ? 'bg-white rounded-md' : 'rounded-lg')}>
+            className={cn('flex items-center mr-1 mt-1 px-2 py-1 text-sm text-tgai-text-2 border border-gray-200 dark:border-zinc-600', isSpecialMode ? 'bg-white dark:bg-zinc-500 rounded-md' : 'rounded-lg')}>
             {item}
             {
               !disableRemove && (
                 <X
-                  className='ml-0.5 w-3 h-3 text-gray-500 cursor-pointer'
+                  className='ml-0.5 w-3 h-3 text-tgai-text-3 cursor-pointer'
                   onClick={() => handleRemove(index)}
                 />
               )
@@ -91,13 +91,13 @@ const TagInput: FC<TagInputProps> = ({
       {
         !disableAdd && (
           <AutosizeInput
-            inputClassName={cn('outline-none appearance-none placeholder:text-gray-300 caret-primary-600 hover:placeholder:text-gray-400', isSpecialMode ? 'bg-transparent' : '')}
+            inputClassName={cn('outline-none appearance-none placeholder:text-gray-300 dark:text-tgai-text-1 caret-tgai-primary hover:placeholder:text-gray-400', isSpecialMode ? 'bg-transparent text-tgai-text-1' : 'dark:bg-tgai-input-background')}
             className={cn(
               !isInWorkflow && 'max-w-[300px]',
               isInWorkflow && 'max-w-[146px]',
               `
-              mt-1 py-1 rounded-lg border border-transparent text-sm  overflow-hidden
-              ${focused && 'px-2 border !border-dashed !border-gray-200'}
+              mt-1 py-1 rounded-lg border border-transparent text-sm overflow-hidden
+              ${focused && 'px-2 border !border-dashed !border-gray-200 dark:!border-stone-600'}
             `)}
             onFocus={() => setFocused(true)}
             onBlur={handleBlur}

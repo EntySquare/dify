@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react'
 import React from 'react'
 import { type VariantProps, cva } from 'class-variance-authority'
 import Spinner from '../spinner'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../utils/classnames'
 
 const buttonVariants = cva(
   'btn disabled:btn-disabled',
@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         'primary': 'btn-primary',
         'warning': 'btn-warning',
-        'secondary': 'btn-secondary',
+        'secondary': 'btn-secondary dark:bg-black/70 dark:hover:bg-black/60 dark:border-stone-600',
         'secondary-accent': 'btn-secondary-accent',
         'ghost': 'btn-ghost',
         'ghost-accent': 'btn-ghost-accent',

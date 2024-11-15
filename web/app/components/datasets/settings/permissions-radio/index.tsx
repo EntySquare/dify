@@ -1,8 +1,8 @@
 'use client'
 import { useTranslation } from 'react-i18next'
 import s from './index.module.css'
-import classNames from '@/utils/classnames'
-import type { DataSet } from '@/models/datasets'
+import classNames from '../../../../../utils/classnames'
+import type { DataSet } from '../../../../../models/datasets'
 
 const itemClass = `
   flex items-center w-full sm:w-[234px] h-12 px-3 rounded-xl bg-gray-25 border border-gray-100 cursor-pointer

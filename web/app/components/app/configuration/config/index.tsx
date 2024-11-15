@@ -56,7 +56,7 @@ const Config: FC = () => {
   return (
     <>
       <div
-        className="grow h-0 relative px-6 pb-[50px] overflow-y-auto"
+        className="grow h-0 relative px-6 pb-[50px] overflow-y-auto tgai-custom-scrollbar"
       >
         {/* Template */}
         <ConfigPrompt

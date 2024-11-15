@@ -57,3 +57,11 @@ export async function fetchWithRetry<T = any>(fn: Promise<T>, retries = 3): Prom
     return [null, res]
   }
 }
+
+
+export const allTokenRemove = () => {
+  if (typeof window !== undefined) {
+    localStorage.removeItem('console_token')
+    localStorage.removeItem('tgai_token')
+}
+}

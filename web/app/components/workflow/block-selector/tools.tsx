@@ -37,7 +37,7 @@ const Blocks = ({
         key={toolWithProvider.id}
         className='mb-1 last-of-type:mb-0'
       >
-        <div className='flex items-start px-3 h-[22px] text-xs font-medium text-gray-500'>
+        <div className='flex items-start px-3 h-[22px] text-xs font-medium text-tgai-text-2'>
           {toolWithProvider.label[language]}
         </div>
         {
@@ -54,13 +54,13 @@ const Blocks = ({
                     type={BlockEnum.Tool}
                     toolIcon={toolWithProvider.icon}
                   />
-                  <div className='mb-1 text-sm leading-5 text-gray-900'>{tool.label[language]}</div>
-                  <div className='text-xs text-gray-700 leading-[18px]'>{tool.description[language]}</div>
+                  <div className='mb-1 text-sm leading-5 text-tgai-text-1'>{tool.label[language]}</div>
+                  <div className='text-xs text-tgai-text-2 leading-[18px]'>{tool.description[language]}</div>
                 </div>
               )}
             >
               <div
-                className='flex items-center px-3 w-full h-8 rounded-lg hover:bg-gray-50 cursor-pointer'
+                className='flex items-center px-3 w-full h-8 rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-600 cursor-pointer'
                 onClick={() => onSelect(BlockEnum.Tool, {
                   provider_id: toolWithProvider.id,
                   provider_type: toolWithProvider.type,
@@ -75,7 +75,7 @@ const Blocks = ({
                   type={BlockEnum.Tool}
                   toolIcon={toolWithProvider.icon}
                 />
-                <div className='text-sm text-gray-900 flex-1 min-w-0 truncate'>{tool.label[language]}</div>
+                <div className='text-sm text-tgai-text-1 flex-1 min-w-0 truncate'>{tool.label[language]}</div>
               </div>
             </Tooltip>
           ))
@@ -97,10 +97,10 @@ const Blocks = ({
   }
 
   return (
-    <div className='p-1 max-w-[320px] max-h-[464px] overflow-y-auto'>
+    <div className='p-1 max-w-[320px] max-h-[464px] overflow-y-auto tgai-custom-scrollbar'>
       {
         !tools.length && !showWorkflowEmpty && (
-          <div className='flex items-center px-3 h-[22px] text-xs font-medium text-gray-500'>{t('workflow.tabs.noResult')}</div>
+          <div className='flex items-center px-3 h-[22px] text-xs font-medium text-tgai-text-2'>{t('workflow.tabs.noResult')}</div>
         )
       }
       {!tools.length && showWorkflowEmpty && (

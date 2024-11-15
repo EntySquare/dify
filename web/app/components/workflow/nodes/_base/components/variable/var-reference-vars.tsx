@@ -103,28 +103,28 @@ const Item: FC<ItemProps> = ({
           ref={itemRef}
           className={cn(
             isObj ? ' pr-1' : 'pr-[18px]',
-            isHovering && (isObj ? 'bg-primary-50' : 'bg-state-base-hover'),
+            isHovering && (isObj ? 'bg-primary-50 dark:bg-zinc-600' : 'bg-state-base-hover dark:bg-neutral-600'),
             'relative w-full flex items-center h-6 pl-3  rounded-md cursor-pointer')
           }
           onClick={handleChosen}
         >
           <div className='flex items-center w-0 grow'>
-            {!isEnv && !isChatVar && <Variable02 className='shrink-0 w-3.5 h-3.5 text-text-accent' />}
+            {!isEnv && !isChatVar && <Variable02 className='shrink-0 w-3.5 h-3.5 text-text-accent dark:text-tgai-primary-5' />}
             {isEnv && <Env className='shrink-0 w-3.5 h-3.5 text-util-colors-violet-violet-600' />}
             {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
             {!isEnv && !isChatVar && (
-              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-text-secondary system-sm-medium'>{itemData.variable}</div>
+              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-text-secondary dark:text-tgai-text-2 system-sm-medium'>{itemData.variable}</div>
             )}
             {isEnv && (
-              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-text-secondary system-sm-medium'>{itemData.variable.replace('env.', '')}</div>
+              <div title={itemData.variable} className='ml-1 w-0 grow truncate text-tgai-text-2 system-sm-medium'>{itemData.variable.replace('env.', '')}</div>
             )}
             {isChatVar && (
-              <div title={itemData.des} className='ml-1 w-0 grow truncate text-text-secondary system-sm-medium'>{itemData.variable.replace('conversation.', '')}</div>
+              <div title={itemData.des} className='ml-1 w-0 grow truncate text-tgai-text-2 system-sm-medium'>{itemData.variable.replace('conversation.', '')}</div>
             )}
           </div>
-          <div className='ml-1 shrink-0 text-xs font-normal text-text-tertiary capitalize'>{itemData.type}</div>
+          <div className='ml-1 shrink-0 text-xs font-normal text-tgai-text-3 capitalize'>{itemData.type}</div>
           {isObj && (
-            <ChevronRight className={cn('ml-0.5 w-3 h-3 text-text-quaternary', isHovering && 'text-text-tertiary')} />
+            <ChevronRight className={cn('ml-0.5 w-3 h-3 text-tgai-text-4', isHovering && 'text-tgai-text-3')} />
           )}
         </div>
       </PortalToFollowElemTrigger>
@@ -199,11 +199,11 @@ const ObjectChildren: FC<ObjectChildrenProps> = ({
   }, [isItemHovering])
   // absolute top-[-2px]
   return (
-    <div ref={itemRef} className=' bg-white rounded-lg border border-gray-200 shadow-lg space-y-1' style={{
+    <div ref={itemRef} className=' bg-white dark:bg-zinc-600 rounded-lg border border-gray-200 dark:border-stone-600 shadow-lg dark:shadow-stone-800 space-y-1' style={{
       right: itemWidth ? itemWidth - 10 : 215,
       minWidth: 252,
     }}>
-      <div className='flex items-center h-[22px] px-3 text-xs font-normal text-gray-700'><span className='text-gray-500'>{title}.</span>{currObjPath.join('.')}</div>
+      <div className='flex items-center h-[22px] px-3 text-xs font-normal text-tgai-text-2'><span className='text-tgai-text-3'>{title}.</span>{currObjPath.join('.')}</div>
       {
         (data && data.length > 0)
         && data.map((v, i) => (
@@ -274,6 +274,7 @@ const VarReferenceVars: FC<Props> = ({
       {
         !hideSearch && (
           <>
+            {/*className={cn(searchBoxClassName, isFocus && 'shadow-sm bg-white dark:bg-tgai-panel-background dark:shadow-stone-700', 'mb-2 mx-1 flex items-center px-2 rounded-lg bg-gray-100 dark:bg-tgai-input-background ')}*/}
             <div className={cn('mb-2 mx-1', searchBoxClassName)} onClick={e => e.stopPropagation()}>
               <Input
                 showLeftIcon
@@ -285,7 +286,7 @@ const VarReferenceVars: FC<Props> = ({
                 autoFocus
               />
             </div>
-            <div className='h-[0.5px] bg-black/5 relative left-[-4px]' style={{
+            <div className='h-[0.5px] bg-black/5 dark:bg-stone-600/95 relative left-[-4px]' style={{
               width: 'calc(100% + 8px)',
             }}></div>
           </>
@@ -293,13 +294,13 @@ const VarReferenceVars: FC<Props> = ({
       }
 
       {filteredVars.length > 0
-        ? <div className={cn('max-h-[85vh] overflow-y-auto', maxHeightClass)}>
+        ? <div className={cn('max-h-[85vh] overflow-y-auto tgai-custom-scrollbar', maxHeightClass)}>
 
           {
             filteredVars.map((item, i) => (
               <div key={i}>
                 <div
-                  className='leading-[22px] px-3 text-text-tertiary system-xs-medium-uppercase truncate'
+                  className='leading-[22px] px-3 text-text-tertiary dark:text-tgai-text-3 system-xs-medium-uppercase truncate'
                   title={item.title}
                 >{item.title}</div>
                 {item.vars.map((v, j) => (
@@ -317,7 +318,7 @@ const VarReferenceVars: FC<Props> = ({
               </div>))
           }
         </div>
-        : <div className='pl-3 leading-[18px] text-xs font-medium text-gray-500 uppercase'>{t('workflow.common.noVar')}</div>}
+        : <div className='pl-3 leading-[18px] text-xs font-medium text-tgai-text-3 uppercase'>{t('workflow.common.noVar')}</div>}
     </ >
   )
 }

@@ -61,24 +61,24 @@ const ProviderPanel: FC<Props> = ({
   }, [hasConfigured, isChosen, onChoose, readOnly])
   return (
     <div
-      className={cn(isChosen ? 'border-primary-400' : 'border-transparent', !isChosen && hasConfigured && !readOnly && 'cursor-pointer', 'px-4 py-3 rounded-xl border-[1.5px]  bg-gray-100')}
+      className={cn(isChosen ? 'border-primary-400 dark:border-tgai-primary-7' : 'border-transparent', !isChosen && hasConfigured && !readOnly && 'cursor-pointer', 'px-4 py-3 rounded-xl border-[1.5px]  bg-gray-100 dark:bg-tgai-input-background')}
       onClick={handleChosen}
     >
       <div className={'flex justify-between items-center space-x-1'}>
         <div className='flex items-center'>
           <Icon className='h-6' />
-          {isChosen && <div className='ml-1 flex items-center h-4  px-1 rounded-[4px] border border-primary-500 leading-4 text-xs font-medium text-primary-500 uppercase '>{t(`${I18N_PREFIX}.inUse`)}</div>}
+          {isChosen && <div className='ml-1 flex items-center h-4  px-1 rounded-[4px] border border-primary-500 dark:border-tgai-primary-5 leading-4 text-xs font-medium text-primary-500 dark:text-tgai-primary-5 uppercase'>{t(`${I18N_PREFIX}.inUse`)}</div>}
         </div>
         {!readOnly && (
           <div className={'flex justify-between items-center space-x-1'}>
             {hasConfigured && (
-              <div className='flex px-2 items-center h-6 bg-white rounded-md border-[0.5px] border-gray-200 shadow-xs cursor-pointer text-gray-700 space-x-1' onClick={viewBtnClick} >
+              <div className='flex px-2 items-center h-6 bg-white dark:bg-neutral-700 rounded-md border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xs dark:shadow-stone-800 cursor-pointer text-tgai-text-2 space-x-1' onClick={viewBtnClick} >
                 <View className='w-3 h-3'/>
                 <div className='text-xs font-medium'>{t(`${I18N_PREFIX}.view`)}</div>
               </div>
             )}
             <div
-              className='flex px-2 items-center h-6 bg-white rounded-md border-[0.5px] border-gray-200 shadow-xs cursor-pointer text-gray-700 space-x-1'
+              className='flex px-2 items-center h-6 bg-white dark:bg-neutral-700 rounded-md border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xs dark:shadow-stone-800 cursor-pointer text-tgai-text-2 space-x-1'
               onClick={handleConfigBtnClick}
             >
               <Settings04 className='w-3 h-3' />
@@ -88,7 +88,7 @@ const ProviderPanel: FC<Props> = ({
         )}
 
       </div>
-      <div className='mt-2 leading-4 text-xs font-normal text-gray-500'>
+      <div className='mt-2 leading-4 text-xs font-normal text-tgai-text-3'>
         {t(`${I18N_PREFIX}.${type}.description`)}
       </div>
     </div>

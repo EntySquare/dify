@@ -5,7 +5,7 @@ import {
   RiCollapseDiagonalLine,
   RiExpandDiagonalLine,
 } from '@remixicon/react'
-import ActionButton from '@/app/components/base/action-button'
+import ActionButton from '../../../../base/action-button'
 
 type Props = {
   isExpand: boolean

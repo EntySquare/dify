@@ -9,18 +9,19 @@ import { groupBy, omit } from 'lodash-es'
 import { PlusIcon } from '@heroicons/react/24/solid'
 import List from './list'
 import s from './style.module.css'
-import Loading from '@/app/components/base/loading'
-import Button from '@/app/components/base/button'
-import Input from '@/app/components/base/input'
-import Pagination from '@/app/components/base/pagination'
-import { get } from '@/service/base'
-import { createDocument, fetchDocuments } from '@/service/datasets'
-import { useDatasetDetailContext } from '@/context/dataset-detail'
-import { NotionPageSelectorModal } from '@/app/components/base/notion-page-selector'
-import type { NotionPage } from '@/models/common'
-import type { CreateDocumentReq } from '@/models/datasets'
-import { DataSourceType } from '@/models/datasets'
-import RetryButton from '@/app/components/base/retry-button'
+import Loading from '../../base/loading'
+import Button from '../../base/button'
+import Input from '../../base/input'
+import Pagination from '../../base/pagination'
+import { get } from '../../../../service/base'
+import { createDocument, fetchDocuments } from '../../../../service/datasets'
+import { useDatasetDetailContext } from '../../../../context/dataset-detail'
+import { NotionPageSelectorModal } from '../../base/notion-page-selector'
+import type { NotionPage } from '../../../../models/common'
+import type { CreateDocumentReq } from '../../../../models/datasets'
+import { DataSourceType } from '../../../../models/datasets'
+import RetryButton from '../../base/retry-button'
+import classNames from '@/utils/classnames'
 // Custom page count is not currently supported.
 const limit = 15
 
@@ -55,7 +56,7 @@ const EmptyElement: FC<{ canAdd: boolean; onClick: () => void; type?: 'upload' |
   const { t } = useTranslation()
   return <div className={s.emptyWrapper}>
     <div className={s.emptyElement}>
-      <div className={s.emptySymbolIconWrapper}>
+      <div className={classNames(s.emptySymbolIconWrapper, 'dark:!border-zinc-600')}>
         {type === 'upload' ? <FolderPlusIcon /> : <NotionIcon />}
       </div>
       <span className={s.emptyTitle}>{t('datasetDocuments.list.empty.title')}<ThreeDotsIcon className='inline relative -top-3 -left-1.5' /></span>
@@ -206,7 +207,7 @@ const Documents: FC<IDocumentsProps> = ({ datasetId }) => {
   }
 
   return (
-    <div className='flex flex-col h-full overflow-y-auto'>
+    <div className='flex flex-col h-full overflow-y-auto tgai-custom-scrollbar'>
       <div className='flex flex-col justify-center gap-1 px-6 pt-4'>
         <h1 className={s.title}>{t('datasetDocuments.list.title')}</h1>
         <p className={s.desc}>{t('datasetDocuments.list.desc')}</p>

@@ -1,7 +1,7 @@
 'use client'
 import type { FC } from 'react'
-import classNames from '@/utils/classnames'
-import { useSelector } from '@/context/app-context'
+import classNames from '../../../../utils/classnames'
+import { useSelector } from '../../../../context/app-context'
 
 type LogoSiteProps = {
   className?: string

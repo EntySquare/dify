@@ -16,6 +16,8 @@ import AddBlock from './add-block'
 import cn from '@/utils/classnames'
 import type { NodeProps } from '@/app/components/workflow/types'
 import Toast from '@/app/components/base/toast'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const i18nPrefix = 'workflow.nodes.iteration'
 
@@ -27,6 +29,8 @@ const Node: FC<NodeProps<IterationNodeType>> = ({
   const nodesInitialized = useNodesInitialized()
   const { handleNodeIterationRerender } = useNodeIterationInteractions()
   const { t } = useTranslation()
+
+  const theme = useTGAIGlobalStore(state => state.theme)
 
   useEffect(() => {
     if (nodesInitialized)
@@ -43,14 +47,14 @@ const Node: FC<NodeProps<IterationNodeType>> = ({
 
   return (
     <div className={cn(
-      'relative min-w-[240px] min-h-[90px] w-full h-full rounded-2xl bg-[#F0F2F7]/90',
+      'relative min-w-[240px] min-h-[90px] w-full h-full rounded-2xl bg-[#F0F2F7]/90 dark:bg-[#141414]/90',
     )}>
       <Background
         id={`iteration-background-${id}`}
         className='rounded-2xl !z-0'
         gap={[14 / zoom, 14 / zoom]}
         size={2 / zoom}
-        color='#E4E5E7'
+        color={theme === Theme.light ? "#E4E5E7" : "#9e0047"}
       />
       {
         data._isCandidate && (

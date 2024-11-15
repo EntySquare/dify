@@ -20,8 +20,8 @@ import type {
   WorkflowLogsRequest,
   WorkflowLogsResponse,
   WorkflowRunDetailResponse,
-} from '@/models/log'
-import type { NodeTracingListResponse } from '@/types/workflow'
+} from '../models/log'
+import type { NodeTracingListResponse } from '../types/workflow'
 
 export const fetchConversationList: Fetcher<ConversationListResponse, { name: string; appId: string; params?: Record<string, any> }> = ({ appId, params }) => {
   return get<ConversationListResponse>(`/console/api/apps/${appId}/messages`, params)

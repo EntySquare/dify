@@ -5,8 +5,8 @@ import type { ListChildComponentProps } from 'react-window'
 import Checkbox from '../../checkbox'
 import NotionIcon from '../../notion-icon'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import type { DataSourceNotionPage, DataSourceNotionPageMap } from '@/models/common'
+import cn from '../../../../../utils/classnames'
+import type { DataSourceNotionPage, DataSourceNotionPageMap } from '../../../../../models/common'
 
 type PageSelectorProps = {
   value: Set<string>

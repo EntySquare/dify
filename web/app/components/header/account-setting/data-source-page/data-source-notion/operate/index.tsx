@@ -9,8 +9,8 @@ import {
   RiStickyNoteAddLine,
 } from '@remixicon/react'
 import { Menu, Transition } from '@headlessui/react'
-import { syncDataSourceNotion, updateDataSourceNotionAction } from '@/service/common'
-import Toast from '@/app/components/base/toast'
+import { syncDataSourceNotion, updateDataSourceNotionAction } from '../../../../../../../service/common'
+import Toast from '../../../../../base/toast'
 
 type OperateProps = {
   payload: {

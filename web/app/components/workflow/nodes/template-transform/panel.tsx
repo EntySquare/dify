@@ -7,15 +7,15 @@ import {
 import { CodeLanguage } from '../code/types'
 import useConfig from './use-config'
 import type { TemplateTransformNodeType } from './types'
-import VarList from '@/app/components/workflow/nodes/_base/components/variable/var-list'
-import AddButton from '@/app/components/base/button/add-button'
-import Field from '@/app/components/workflow/nodes/_base/components/field'
-import Split from '@/app/components/workflow/nodes/_base/components/split'
-import CodeEditor from '@/app/components/workflow/nodes/_base/components/editor/code-editor/editor-support-vars'
-import OutputVars, { VarItem } from '@/app/components/workflow/nodes/_base/components/output-vars'
-import type { NodePanelProps } from '@/app/components/workflow/types'
-import BeforeRunForm from '@/app/components/workflow/nodes/_base/components/before-run-form'
-import ResultPanel from '@/app/components/workflow/run/result-panel'
+import VarList from '../_base/components/variable/var-list'
+import AddButton from '../../../base/button/add-button'
+import Field from '../_base/components/field'
+import Split from '../_base/components/split'
+import CodeEditor from '../_base/components/editor/code-editor/editor-support-vars'
+import OutputVars, { VarItem } from '../_base/components/output-vars'
+import type { NodePanelProps } from '../../types'
+import BeforeRunForm from '../_base/components/before-run-form'
+import ResultPanel from '../../run/result-panel'
 
 const i18nPrefix = 'workflow.nodes.templateTransform'
 
@@ -80,13 +80,13 @@ const Panel: FC<NodePanelProps<TemplateTransformNodeType>> = ({
           headerRight={
             <div className='flex items-center'>
               <a
-                className='flex items-center space-x-0.5 h-[18px] text-xs font-normal text-gray-500'
+                className='flex items-center space-x-0.5 h-[18px] text-xs font-normal text-tgai-text-3'
                 href="https://jinja.palletsprojects.com/en/3.1.x/templates/"
                 target='_blank'>
                 <span>{t(`${i18nPrefix}.codeSupportTip`)}</span>
                 <RiQuestionLine className='w-3 h-3' />
               </a>
-              <div className='mx-1.5 w-px h-3 bg-gray-200'></div>
+              <div className='mx-1.5 w-px h-3 bg-gray-200 dark:bg-zinc-600'></div>
             </div>
           }
           value={inputs.template}

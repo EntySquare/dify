@@ -72,12 +72,12 @@ const DuplicateAppModal = ({
       <Modal
         isShow={show}
         onClose={() => { }}
-        className={cn(s.modal, '!max-w-[480px]', 'px-8')}
+        className={cn(s.modal, '!max-w-[480px]', 'px-8', '!bg-tgai-panel-background border-tgai-panel-border border')}
       >
         <span className={s.close} onClick={onHide} />
-        <div className={s.title}>{t('app.duplicateTitle')}</div>
+        <div className={cn(s.title, "!text-tgai-text-1")}>{t('app.duplicateTitle')}</div>
         <div className={s.content}>
-          <div className={s.subTitle}>{t('explore.appCustomize.subTitle')}</div>
+          <div className={cn(s.subTitle,"!text-tgai-text-1")}>{t('explore.appCustomize.subTitle')}</div>
           <div className='flex items-center justify-between space-x-2'>
             <AppIcon
               size='large'

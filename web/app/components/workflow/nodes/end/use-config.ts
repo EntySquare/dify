@@ -1,9 +1,9 @@
 import useVarList from '../_base/hooks/use-var-list'
 import type { EndNodeType } from './types'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
+import useNodeCrud from '../_base/hooks/use-node-crud'
 import {
   useNodesReadOnly,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 const useConfig = (id: string, payload: EndNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()
   const { inputs, setInputs } = useNodeCrud<EndNodeType>(id, payload)

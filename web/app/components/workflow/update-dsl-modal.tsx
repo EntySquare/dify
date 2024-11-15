@@ -137,15 +137,15 @@ const UpdateDSLModal = ({
       onClose={() => {}}
     >
       <div className='flex items-center justify-between mb-6'>
-        <div className='text-2xl font-semibold text-[#101828]'>{t('workflow.common.importDSL')}</div>
+        <div className='text-2xl font-semibold text-tgai-text-1'>{t('workflow.common.importDSL')}</div>
         <div className='flex items-center justify-center w-[22px] h-[22px] cursor-pointer' onClick={onCancel}>
-          <RiCloseLine className='w-5 h-5 text-gray-500' />
+          <RiCloseLine className='w-5 h-5 text-tgai-text-3' />
         </div>
       </div>
-      <div className='flex mb-4 px-4 py-3 bg-[#FFFAEB] rounded-xl border border-[#FEDF89]'>
+      <div className='flex mb-4 px-4 py-3 bg-[#FFFAEB] dark:bg-yellow-900 rounded-xl border border-[#FEDF89] dark:border-yellow-800'>
         <RiAlertLine className='shrink-0 mt-0.5 mr-2 w-4 h-4 text-[#F79009]' />
         <div>
-          <div className='mb-2 text-sm font-medium text-[#354052]'>{t('workflow.common.importDSLTip')}</div>
+          <div className='mb-2 text-sm font-medium text-tgai-text-3'>{t('workflow.common.importDSLTip')}</div>
           <Button
             variant='secondary-accent'
             onClick={onBackup}
@@ -155,7 +155,7 @@ const UpdateDSLModal = ({
         </div>
       </div>
       <div className='mb-8'>
-        <div className='mb-1 text-[13px] font-semibold text-[#354052]'>
+        <div className='mb-1 text-[13px] font-semibold text-tgai-text-3'>
           {t('workflow.common.chooseDSL')}
         </div>
         <Uploader

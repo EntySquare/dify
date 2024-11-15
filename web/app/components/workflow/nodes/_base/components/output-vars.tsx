@@ -6,7 +6,7 @@ import { useBoolean } from 'ahooks'
 import {
   RiArrowDownSLine,
 } from '@remixicon/react'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 
 type Props = {
   className?: string
@@ -65,7 +65,7 @@ export const VarItem: FC<VarItemProps> = ({
       <div className='mt-0.5 system-xs-regular text-text-tertiary'>
         {description}
         {subItems && (
-          <div className='ml-2 border-l border-gray-200 pl-2'>
+          <div className='ml-2 border-l border-gray-200 dark:border-stone-600 pl-2'>
             {subItems.map((item, index) => (
               <VarItem
                 key={index}

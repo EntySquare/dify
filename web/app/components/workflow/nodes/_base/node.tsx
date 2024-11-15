@@ -83,7 +83,7 @@ const BaseNode: FC<BaseNodeProps> = ({
     <div
       className={cn(
         'flex border-[2px] rounded-2xl',
-        showSelectedBorder ? 'border-components-option-card-option-selected-border' : 'border-transparent',
+        showSelectedBorder ? 'border-components-option-card-option-selected-border dark:border-tgai-primary' : 'border-transparent',
         !showSelectedBorder && data._inParallelHovering && 'border-workflow-block-border-highlight',
       )}
       ref={nodeRef}
@@ -96,10 +96,10 @@ const BaseNode: FC<BaseNodeProps> = ({
         className={cn(
           'group relative pb-1 shadow-xs',
           'border border-transparent rounded-[15px]',
-          data.type !== BlockEnum.Iteration && 'w-[240px] bg-workflow-block-bg',
-          data.type === BlockEnum.Iteration && 'flex flex-col w-full h-full bg-[#fcfdff]/80',
+          data.type !== BlockEnum.Iteration && 'w-[240px] bg-workflow-block-bg dark:bg-tgai-workflow-panel-background',
+          data.type === BlockEnum.Iteration && 'flex flex-col w-full h-full bg-[#fcfdff]/80 dark:bg-[#1e1e1e]/80',
           !data._runningStatus && 'hover:shadow-lg',
-          showRunningBorder && '!border-primary-500',
+          showRunningBorder && '!border-tgai-primary-5',
           showSuccessBorder && '!border-[#12B76A]',
           showFailedBorder && '!border-[#F04438]',
           data._isBundled && '!shadow-lg',
@@ -158,7 +158,7 @@ const BaseNode: FC<BaseNodeProps> = ({
         }
         <div className={cn(
           'flex items-center px-3 pt-3 pb-2 rounded-t-2xl',
-          data.type === BlockEnum.Iteration && 'bg-[rgba(250,252,255,0.9)]',
+          data.type === BlockEnum.Iteration && 'bg-[rgba(250,252,255,0.9)] dark:bg-[#1e1e1e]/90',
         )}>
           <BlockIcon
             className='shrink-0 mr-2'
@@ -168,7 +168,7 @@ const BaseNode: FC<BaseNodeProps> = ({
           />
           <div
             title={data.title}
-            className='grow mr-1 system-sm-semibold-uppercase text-text-primary truncate flex items-center'
+            className='grow mr-1 system-sm-semibold-uppercase text-tgai-text-1 truncate flex items-center'
           >
             <div>
               {data.title}
@@ -192,14 +192,14 @@ const BaseNode: FC<BaseNodeProps> = ({
           </div>
           {
             data._iterationLength && data._iterationIndex && data._runningStatus === NodeRunningStatus.Running && (
-              <div className='mr-1.5 text-xs font-medium text-primary-600'>
+              <div className='mr-1.5 text-xs font-medium text-primary-600 dark:text-tgai-primary'>
                 {data._iterationIndex > data._iterationLength ? data._iterationLength : data._iterationIndex}/{data._iterationLength}
               </div>
             )
           }
           {
             (data._runningStatus === NodeRunningStatus.Running || data._singleRunningStatus === NodeRunningStatus.Running) && (
-              <RiLoader2Line className='w-3.5 h-3.5 text-primary-600 animate-spin' />
+              <RiLoader2Line className='w-3.5 h-3.5 text-tgai-primary animate-spin' />
             )
           }
           {
@@ -227,7 +227,7 @@ const BaseNode: FC<BaseNodeProps> = ({
         }
         {
           data.desc && data.type !== BlockEnum.Iteration && (
-            <div className='px-3 pt-1 pb-2 system-xs-regular text-text-tertiary whitespace-pre-line break-words'>
+            <div className='px-3 pt-1 pb-2 system-xs-regular text-tgai-text-2 whitespace-pre-line break-words'>
               {data.desc}
             </div>
           )

@@ -1,10 +1,12 @@
 /* eslint-disable import/no-mutable-exports */
-import { InputVarType } from '@/app/components/workflow/types'
-import { AgentStrategy } from '@/types/app'
-import { PromptRole } from '@/models/debug'
+import { InputVarType } from '../app/components/workflow/types'
+import { AgentStrategy } from '../types/app'
+import { PromptRole } from '../models/debug'
 
 export let apiPrefix = ''
 export let publicApiPrefix = ''
+export let TGAIApiPrefix = ''
+export let TGAIWsPrefix = ''
 
 // NEXT_PUBLIC_API_PREFIX=/console/api NEXT_PUBLIC_PUBLIC_API_PREFIX=/api npm run start
 if (process.env.NEXT_PUBLIC_API_PREFIX && process.env.NEXT_PUBLIC_PUBLIC_API_PREFIX) {
@@ -23,9 +25,35 @@ else {
   // const domainParts = globalThis.location?.host?.split('.');
   // in production env, the host is dify.app . In other env, the host is [dev].dify.app
   // const env = domainParts.length === 2 ? 'ai' : domainParts?.[0];
-  apiPrefix = 'http://localhost:5001/console/api'
-  publicApiPrefix = 'http://localhost:5001/api' // avoid browser private mode api cross origin
+  // apiPrefix = 'http://54.255.214.62:5001/console/api'
+  // publicApiPrefix = 'http://54.255.214.62:5001/api' // avoid browser private mode api cross origin
+  apiPrefix = 'http://127.0.0.1:5001/console/api'
+  publicApiPrefix = 'http://127.0.0.1:5001/api' // avoid browser private mode api cross origin
 }
+
+if (process.env.NEXT_PUBLIC_TGAI_API_PREFIX && process.env.NEXT_PUBLIC_TGAI_WS_PREFIX) {
+  TGAIApiPrefix = process.env.NEXT_PUBLIC_TGAI_API_PREFIX
+  TGAIWsPrefix = process.env.NEXT_PUBLIC_TGAI_WS_PREFIX
+}
+else if (
+  globalThis.document?.body?.getAttribute('tgai-http-url')
+    && globalThis.document?.body?.getAttribute('tgai-ws-url')
+) {
+  // Not build can not get env from process.env.NEXT_PUBLIC_ in browser https://nextjs.org/docs/basic-features/environment-variables#exposing-environment-variables-to-the-browser
+  TGAIApiPrefix = globalThis.document.body.getAttribute('tgai-http-url') as string
+  TGAIWsPrefix = globalThis.document.body.getAttribute('tgai-ws-url') as string
+}
+else {
+  // const domainParts = globalThis.location?.host?.split('.');
+  // in production env, the host is dify.app . In other env, the host is [dev].dify.app
+  // const env = domainParts.length === 2 ? 'ai' : domainParts?.[0];
+  // apiPrefix = 'http://54.255.214.62:5001/console/api'
+  // publicApiPrefix = 'http://54.255.214.62:5001/api' // avoid browser private mode api cross origin
+  apiPrefix = 'http://127.0.0.1:3010/api'
+  publicApiPrefix = 'ws://127.0.0.1:3010/api/channelJoinOrLeaveWS' // avoid browser private mode api cross origin
+}
+export const TGAI_API_PREFIX: string = TGAIApiPrefix
+export const TGAI_WS_PREFIX: string = TGAIWsPrefix
 
 export const API_PREFIX: string = apiPrefix
 export const PUBLIC_API_PREFIX: string = publicApiPrefix

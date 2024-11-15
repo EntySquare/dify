@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 export enum PlanRange {
   monthly = 'monthly',
   yearly = 'yearly',

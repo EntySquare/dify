@@ -40,15 +40,15 @@ const EmptyElement: FC<{ appUrl: string }> = ({ appUrl }) => {
   const pathSegments = pathname.split('/')
   pathSegments.pop()
   return <div className='flex items-center justify-center h-full'>
-    <div className='bg-background-section-burn w-[560px] h-fit box-border px-5 py-4 rounded-2xl'>
-      <span className='text-text-secondary system-md-semibold'>{t('appLog.table.empty.element.title')}<ThreeDotsIcon className='inline relative -top-3 -left-1.5' /></span>
-      <div className='mt-2 text-text-tertiary system-sm-regular'>
-        <Trans
-          i18nKey="appLog.table.empty.element.content"
-          components={{ shareLink: <Link href={`${pathSegments.join('/')}/overview`} className='text-util-colors-blue-blue-600' />, testLink: <Link href={appUrl} className='text-util-colors-blue-blue-600' target='_blank' rel='noopener noreferrer' /> }}
-        />
-      </div>
-    </div>
+    {/*<div className='bg-background-section-burn w-[560px] h-fit box-border px-5 py-4 rounded-2xl'>*/}
+    {/*  <span className='text-text-secondary system-md-semibold'>{t('appLog.table.empty.element.title')}<ThreeDotsIcon className='inline relative -top-3 -left-1.5' /></span>*/}
+    {/*  <div className='mt-2 text-text-tertiary system-sm-regular'>*/}
+    {/*    <Trans*/}
+    {/*      i18nKey="appLog.table.empty.element.content"*/}
+    {/*      components={{ shareLink: <Link href={`${pathSegments.join('/')}/overview`} className='text-util-colors-blue-blue-600' />, testLink: <Link href={appUrl} className='text-util-colors-blue-blue-600' target='_blank' rel='noopener noreferrer' /> }}*/}
+    {/*    />*/}
+    {/*  </div>*/}
+    {/*</div>*/}
   </div>
 }
 
@@ -103,7 +103,7 @@ const Logs: FC<ILogsProps> = ({ appDetail }) => {
 
   return (
     <div className='flex flex-col h-full'>
-      <p className='text-text-tertiary system-sm-regular'>{t('appLog.description')}</p>
+      <p className='text-text-tertiary dark:text-tgai-text-3 system-sm-regular'>{t('appLog.description')}</p>
       <div className='flex flex-col py-4 flex-1'>
         <Filter isChatMode={isChatMode} appId={appDetail.id} queryParams={queryParams} setQueryParams={setQueryParams} />
         {total === undefined
@@ -126,20 +126,20 @@ const Logs: FC<ILogsProps> = ({ appDetail }) => {
           >
             <Pagination.PrevButton
               disabled={currPage === 0}
-              className={`flex items-center mr-2 text-gray-500  focus:outline-none ${currPage === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
+              className={`flex items-center mr-2 text-tgai-text-3 focus:outline-none ${currPage === 0 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
               <ArrowLeftIcon className="mr-3 h-3 w-3" />
               {t('appLog.table.pagination.previous')}
             </Pagination.PrevButton>
             <div className={`flex items-center justify-center flex-grow ${s.pagination}`}>
               <Pagination.PageButton
-                activeClassName="bg-primary-50 dark:bg-opacity-0 text-primary-600 dark:text-white"
+                activeClassName="bg-primary-50 dark:bg-opacity-0 text-tgai-primary dark:text-white"
                 className="flex items-center justify-center h-8 w-8 rounded-full cursor-pointer"
                 inactiveClassName="text-gray-500"
               />
             </div>
             <Pagination.NextButton
               disabled={currPage === Math.ceil(total / APP_PAGE_LIMIT) - 1}
-              className={`flex items-center mr-2 text-gray-500 focus:outline-none ${currPage === Math.ceil(total / APP_PAGE_LIMIT) - 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
+              className={`flex items-center mr-2 text-tgai-text-3 focus:outline-none ${currPage === Math.ceil(total / APP_PAGE_LIMIT) - 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:text-gray-600 dark:hover:text-gray-200'}`} >
               {t('appLog.table.pagination.next')}
               <ArrowRightIcon className="ml-3 h-3 w-3" />
             </Pagination.NextButton>

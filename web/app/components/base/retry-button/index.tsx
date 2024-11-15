@@ -4,10 +4,10 @@ import React, { useEffect, useReducer } from 'react'
 import { useTranslation } from 'react-i18next'
 import useSWR from 'swr'
 import s from './style.module.css'
-import classNames from '@/utils/classnames'
-import Divider from '@/app/components/base/divider'
-import { getErrorDocs, retryErrorDocs } from '@/service/datasets'
-import type { IndexingStatusResponse } from '@/models/datasets'
+import classNames from '../../../../utils/classnames'
+import Divider from '../divider'
+import { getErrorDocs, retryErrorDocs } from '../../../../service/datasets'
+import type { IndexingStatusResponse } from '../../../../models/datasets'
 
 const WarningIcon = () =>
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000 /svg">
@@ -64,16 +64,16 @@ const RetryButton: FC<Props> = ({ datasetId }) => {
     return null
 
   return (
-    <div className={classNames('inline-flex justify-center items-center gap-2', s.retryBtn)}>
+    <div className={classNames('inline-flex justify-center items-center gap-2', s.retryBtn, "dark:!border-stone-600 dark:hover:!border-stone-500 dark:!bg-zinc-600 dark:shadow-stone-800")}>
       <WarningIcon />
-      <span className='flex shrink-0 text-sm text-gray-500'>
+      <span className='flex shrink-0 text-sm text-tgai-text-3'>
         {errorDocs?.total} {t('dataset.docsFailedNotice')}
       </span>
       <Divider type='vertical' className='!h-4' />
       <span
         className={classNames(
-          'text-primary-600 font-semibold text-sm cursor-pointer',
-          indexState.value === 'retry' && '!text-gray-500 !cursor-not-allowed',
+          'text-tgai-primary font-semibold text-sm cursor-pointer',
+          indexState.value === 'retry' && '!text-tgai-text-3 !cursor-not-allowed',
         )}
         onClick={indexState.value === 'error' ? onRetryErrorDocs : undefined}
       >

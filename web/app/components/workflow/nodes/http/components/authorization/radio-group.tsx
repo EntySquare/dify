@@ -1,7 +1,7 @@
 'use client'
 import type { FC } from 'react'
 import React, { useCallback } from 'react'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../../utils/classnames'
 
 type Option = {
   value: string
@@ -21,8 +21,8 @@ const Item: FC<ItemProps> = ({
   return (
     <div
       className={cn(
-        isSelected ? 'border-[2px] border-primary-400 bg-white shadow-xs' : 'border border-gray-100 bg-gray-25',
-        'w-0 grow flex items-center justify-center h-8 cursor-pointer rounded-lg text-[13px] font-normal text-gray-900')
+        isSelected ? 'border-[2px] border-primary-400 dark:border-tgai-primary-7 bg-white dark:bg-zinc-700 shadow-xs' : 'border border-gray-100 dark:border-stone-600 bg-gray-25 dark:bg-neutral-800',
+        'w-0 grow flex items-center justify-center h-8 cursor-pointer rounded-lg text-[13px] font-normal text-tgai-text-1')
       }
       onClick={onClick}
     >

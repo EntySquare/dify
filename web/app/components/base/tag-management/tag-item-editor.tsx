@@ -103,15 +103,15 @@ const TagItemEditor: FC<TagItemEditorProps> = ({
 
   return (
     <>
-      <div className={cn('shrink-0 flex items-center gap-0.5 pr-1 pl-2 py-1 rounded-lg border border-gray-200 text-sm leading-5 text-gray-700')}>
+      <div className={cn('shrink-0 flex items-center gap-0.5 pr-1 pl-2 py-1 rounded-lg border border-gray-200 dark:border-zinc-600 text-sm leading-5 text-tgai-text-1')}>
         {!isEditing && (
           <>
-            <div className='text-sm leading-5 text-gray-700'>
+            <div className='text-sm leading-5 text-tgai-text-1'>
               {tag.name}
             </div>
-            <div className='shrink-0 px-1 text-sm leading-4.5 text-gray-500 font-medium'>{tag.binding_count}</div>
+            <div className='shrink-0 px-1 text-sm leading-4.5 text-tgai-text-2 font-medium'>{tag.binding_count}</div>
             <div className='group/edit shrink-0 p-1 rounded-md cursor-pointer hover:bg-black/5' onClick={() => setIsEditing(true)}>
-              <RiEditLine className='w-3 h-3 text-gray-500 group-hover/edit:text-gray-800' />
+              <RiEditLine className='w-3 h-3 text-tgai-text-2 group-hover/edit:text-tgai-text-1' />
             </div>
             <div className='group/remove shrink-0 p-1 rounded-md cursor-pointer hover:bg-black/5' onClick={() => {
               if (tag.binding_count)
@@ -119,13 +119,13 @@ const TagItemEditor: FC<TagItemEditorProps> = ({
               else
                 handleRemove()
             }}>
-              <RiDeleteBinLine className='w-3 h-3 text-gray-500 group-hover/remove:text-gray-800' />
+              <RiDeleteBinLine className='w-3 h-3 text-tgai-text-2 group-hover/remove:text-tgai-text-1' />
             </div>
           </>
         )}
         {isEditing && (
           <input
-            className='shrink-0 outline-none appearance-none placeholder:text-gray-300 caret-primary-600'
+            className='shrink-0 outline-none appearance-none bg-tgai-input-background text-tgai-text-1 placeholder:text-tgai-text-2 caret-tgai-primary'
             autoFocus
             value={name}
             onChange={e => setName(e.target.value)}

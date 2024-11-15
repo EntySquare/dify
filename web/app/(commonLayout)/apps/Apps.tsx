@@ -25,6 +25,7 @@ import Input from '@/app/components/base/input'
 import { useStore as useTagStore } from '@/app/components/base/tag-management/store'
 import TagManagementModal from '@/app/components/base/tag-management'
 import TagFilter from '@/app/components/base/tag-management/filter'
+import CreateAppCardEntyTgAi from './NewAppCard_EntyTgAi'
 
 const getKey = (
   pageIndex: number,
@@ -82,7 +83,7 @@ const Apps = () => {
   ]
 
   useEffect(() => {
-    document.title = `${t('common.menus.apps')} -  Dify`
+    document.title = `${t('common.menus.apps')} -  TGAI`
     if (localStorage.getItem(NEED_REFRESH_APP_LIST_KEY) === '1') {
       localStorage.removeItem(NEED_REFRESH_APP_LIST_KEY)
       mutate()
@@ -125,8 +126,8 @@ const Apps = () => {
 
   return (
     <>
-      <div className='sticky top-0 flex justify-between items-center pt-4 px-12 pb-2 leading-[56px] bg-gray-100 z-10 flex-wrap gap-y-2'>
-        <TabSliderNew
+      <div className='sticky top-0 flex justify-between items-center pt-4 px-4 pb-2 leading-[56px] bg-tgai-section-background z-10 flex-wrap gap-y-2'>
+        {/* <TabSliderNew
           value={activeTab}
           onChange={setActiveTab}
           options={options}
@@ -141,12 +142,15 @@ const Apps = () => {
             onChange={e => handleKeywordsChange(e.target.value)}
             onClear={() => handleKeywordsChange('')}
           />
-        </div>
+        </div> */}
       </div>
       <nav className='grid content-start grid-cols-1 gap-4 px-12 pt-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grow shrink-0'>
         {isCurrentWorkspaceEditor
-          && <NewAppCard onSuccess={mutate} />}
-        {data?.map(({ data: apps }) => apps.map(app => (
+          && <>
+            {/* <NewAppCard onSuccess={mutate} /> */}
+            <CreateAppCardEntyTgAi onSuccess={mutate} />
+          </>}
+        {data?.map(({ data: apps }: any) => apps.map((app: any) => (
           <AppCard key={app.id} app={app} onRefresh={mutate} />
         )))}
         <CheckModal />

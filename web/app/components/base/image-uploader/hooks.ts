@@ -3,9 +3,9 @@ import type { ClipboardEvent } from 'react'
 import { useParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { imageUpload } from './utils'
-import { useToastContext } from '@/app/components/base/toast'
-import { ALLOW_FILE_EXTENSIONS, TransferMethod } from '@/types/app'
-import type { ImageFile, VisionSettings } from '@/types/app'
+import { useToastContext } from '../toast'
+import { ALLOW_FILE_EXTENSIONS, TransferMethod } from '../../../../types/app'
+import type { ImageFile, VisionSettings } from '../../../../types/app'
 
 export const useImageFiles = () => {
   const params = useParams()

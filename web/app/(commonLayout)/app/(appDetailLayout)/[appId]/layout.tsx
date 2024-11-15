@@ -83,19 +83,19 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
         }]
         : []
       ),
-      {
-        name: t('common.appMenus.overview'),
-        href: `/app/${appId}/overview`,
-        icon: RiDashboard2Line,
-        selectedIcon: RiDashboard2Fill,
-      },
+      // {
+      //   name: t('common.appMenus.overview'),
+      //   href: `/app/${appId}/overview`,
+      //   icon: RiDashboard2Line,
+      //   selectedIcon: RiDashboard2Fill,
+      // },
     ]
     return navs
   }, [t])
 
   useEffect(() => {
     if (appDetail) {
-      document.title = `${(appDetail.name || 'App')} - Dify`
+      document.title = `${(appDetail.name || 'App')} - TGAI`
       const localeMode = localStorage.getItem('app-detail-collapse-or-expand') || 'expand'
       const mode = isMobile ? 'collapse' : 'expand'
       setAppSiderbarExpand(isMobile ? mode : localeMode)
@@ -141,7 +141,7 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
 
   if (!appDetail) {
     return (
-      <div className='flex h-full items-center justify-center bg-white'>
+      <div className='flex h-full items-center justify-center bg-tgai-panel-background'>
         <Loading />
       </div>
     )
@@ -152,7 +152,7 @@ const AppDetailLayout: FC<IAppDetailLayoutProps> = (props) => {
       {appDetail && (
         <AppSideBar title={appDetail.name} icon={appDetail.icon} icon_background={appDetail.icon_background} desc={appDetail.mode} navigation={navigation} />
       )}
-      <div className="bg-white grow overflow-hidden">
+      <div className="bg-tgai-panel-background grow overflow-hidden">
         {children}
       </div>
     </div>

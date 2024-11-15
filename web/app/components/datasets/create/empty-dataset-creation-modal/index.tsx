@@ -4,13 +4,13 @@ import { useRouter } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'use-context-selector'
 import s from './index.module.css'
-import cn from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import Input from '@/app/components/base/input'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../utils/classnames'
+import Modal from '../../../base/modal'
+import Input from '../../../base/input'
+import Button from '../../../base/button'
 
-import { ToastContext } from '@/app/components/base/toast'
-import { createEmptyDataset } from '@/service/datasets'
+import { ToastContext } from '../../../base/toast'
+import { createEmptyDataset } from '../../../../../service/datasets'
 
 type IProps = {
   show: boolean
@@ -49,7 +49,7 @@ const EmptyDatasetCreationModal = ({
     <Modal
       isShow={show}
       onClose={onHide}
-      className={cn(s.modal, '!max-w-[520px]', 'px-8')}
+      className={cn(s.modal, '!max-w-[520px]', 'px-8', 'dark:!bg-tgai-panel-background')}
     >
       <div className={s.modalHeader}>
         <div className={s.title}>{t('datasetCreation.stepOne.modal.title')}</div>

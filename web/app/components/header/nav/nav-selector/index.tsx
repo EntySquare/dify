@@ -58,7 +58,7 @@ const NavSelector = ({ curNav, navs, createText, isApp, onCreate, onLoadmore }: 
         {({ open }) => (
           <>
             <Menu.Button className={cn(
-              'group inline-flex items-center w-full h-7 justify-center rounded-[10px] pl-2 pr-2.5 text-[14px] font-semibold text-components-main-nav-nav-button-text-active hover:hover:bg-components-main-nav-nav-button-bg-active-hover',
+              'group inline-flex items-center w-full h-7 justify-center rounded-[10px] pl-2 pr-2.5 text-[14px] font-semibold text-tgai-primary hover:bg-components-main-nav-nav-button-bg-active-hover',
               open && 'bg-components-main-nav-nav-button-bg-active',
             )}>
               <div className='max-w-[180px] truncate' title={curNav?.name}>{curNav?.name}</div>
@@ -70,7 +70,7 @@ const NavSelector = ({ curNav, navs, createText, isApp, onCreate, onLoadmore }: 
             <Menu.Items
               className="
                 absolute -left-11 right-0 mt-1.5 w-60 max-w-80
-                divide-y divide-gray-100 origin-top-right rounded-lg bg-white
+                divide-y divide-gray-100 dark:divide-zinc-600 origin-top-right rounded-lg bg-tgai-panel-background-3
                 shadow-lg
               "
             >
@@ -78,7 +78,7 @@ const NavSelector = ({ curNav, navs, createText, isApp, onCreate, onLoadmore }: 
                 {
                   navs.map(nav => (
                     <Menu.Item key={nav.id}>
-                      <div className='flex items-center w-full px-3 py-[6px] text-gray-700 text-[14px] rounded-lg font-normal hover:bg-gray-100 cursor-pointer truncate' onClick={() => {
+                      <div className='flex items-center w-full px-3 py-[6px] text-tgai-text-2 text-[14px] rounded-lg font-normal hover:bg-gray-100 dark:hover:bg-zinc-600 cursor-pointer truncate' onClick={() => {
                         if (curNav?.id === nav.id)
                           return
                         setAppDetail()
@@ -119,12 +119,12 @@ const NavSelector = ({ curNav, navs, createText, isApp, onCreate, onLoadmore }: 
               {!isApp && isCurrentWorkspaceEditor && (
                 <Menu.Button className='p-1 w-full'>
                   <div onClick={() => onCreate('')} className={cn(
-                    'flex items-center gap-2 px-3 py-[6px] rounded-lg cursor-pointer hover:bg-gray-100',
+                    'flex items-center gap-2 px-3 py-[6px] rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-600 text-tgai-text-2',
                   )}>
                     <div className='shrink-0 flex justify-center items-center w-6 h-6 bg-gray-50 rounded-[6px] border-[0.5px] border-gray-200 border'>
                       <RiAddLine className='w-4 h-4 text-gray-500' />
                     </div>
-                    <div className='grow text-left font-normal text-[14px] text-gray-700'>{createText}</div>
+                    <div className='grow text-left font-normal text-[14px] text-tgai-text-2'>{createText}</div>
                   </div>
                 </Menu.Button>
               )}

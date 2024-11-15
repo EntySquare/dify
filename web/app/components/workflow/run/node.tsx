@@ -94,7 +94,7 @@ const NodePanel: FC<Props> = ({
   }
   return (
     <div className={cn('px-2 py-1', className)}>
-      <div className='group transition-all bg-background-default border border-components-panel-border rounded-[10px] shadow-xs hover:shadow-md'>
+      <div className='group transition-all bg-background-default dark:bg-tgai-panel-background border border-components-panel-border dark:border-stone-700 rounded-[10px] shadow-xs dark:shadow-stone-800 hover:shadow-md'>
         <div
           className={cn(
             'flex items-center pl-1 pr-3 cursor-pointer',
@@ -106,18 +106,18 @@ const NodePanel: FC<Props> = ({
           {!hideProcessDetail && (
             <RiArrowRightSLine
               className={cn(
-                'shrink-0 w-4 h-4 mr-1 text-text-quaternary transition-all group-hover:text-text-tertiary',
+                'shrink-0 w-4 h-4 mr-1 text-text-quaternary text-tgai-text-4 transition-all group-hover:text-text-tertiary dark:group-hover:text-tgai-text-3',
                 !collapseState && 'rotate-90',
               )}
             />
           )}
           <BlockIcon size={inMessage ? 'xs' : 'sm'} className={cn('shrink-0 mr-2', inMessage && '!mr-1')} type={nodeInfo.node_type} toolIcon={nodeInfo.extras?.icon || nodeInfo.extras} />
           <div className={cn(
-            'grow text-text-secondary system-xs-semibold-uppercase truncate',
+            'grow text-text-secondary dark:text-tgai-text-2 system-xs-semibold-uppercase truncate',
             hideInfo && '!text-xs',
           )} title={nodeInfo.title}>{nodeInfo.title}</div>
           {nodeInfo.status !== 'running' && !hideInfo && (
-            <div className='shrink-0 text-text-tertiary system-xs-regular'>{nodeInfo.execution_metadata?.total_tokens ? `${getTokenCount(nodeInfo.execution_metadata?.total_tokens || 0)} tokens · ` : ''}{`${getTime(nodeInfo.elapsed_time || 0)}`}</div>
+            <div className='shrink-0 text-text-tertiary dark:text-tgai-text-3 system-xs-regular'>{nodeInfo.execution_metadata?.total_tokens ? `${getTokenCount(nodeInfo.execution_metadata?.total_tokens || 0)} tokens · ` : ''}{`${getTime(nodeInfo.elapsed_time || 0)}`}</div>
           )}
           {nodeInfo.status === 'succeeded' && (
             <RiCheckboxCircleFill className='shrink-0 ml-2 w-3.5 h-3.5 text-text-success' />
@@ -129,7 +129,7 @@ const NodePanel: FC<Props> = ({
             <RiAlertFill className={cn('shrink-0 ml-2 w-4 h-4 text-text-warning-secondary', inMessage && 'w-3.5 h-3.5')} />
           )}
           {nodeInfo.status === 'running' && (
-            <div className='shrink-0 flex items-center text-text-accent text-[13px] leading-[16px] font-medium'>
+            <div className='shrink-0 flex items-center text-text-accent dark:text-tgai-primary text-[13px] leading-[16px] font-medium'>
               <span className='mr-2 text-xs font-normal'>Running</span>
               <RiLoader2Line className='w-3.5 h-3.5 animate-spin' />
             </div>
@@ -141,7 +141,7 @@ const NodePanel: FC<Props> = ({
             {isIterationNode && !notShowIterationNav && (
               <div className='mt-2 mb-1 !px-2'>
                 <Button
-                  className='flex items-center w-full self-stretch gap-2 px-3 py-2 bg-components-button-tertiary-bg-hover hover:bg-components-button-tertiary-bg-hover rounded-lg cursor-pointer border-none'
+                  className='flex items-center w-full self-stretch gap-2 px-3 py-2 bg-components-button-tertiary-bg-hover dark:bg-tgai-input-background hover:bg-components-button-tertiary-bg-hover dark:hover:bg-tgai-input-background rounded-lg cursor-pointer border-none'
                   onClick={handleOnShowIterationDetail}
                 >
                   <Iteration className='w-4 h-4 text-components-button-tertiary-text flex-shrink-0' />
@@ -153,10 +153,10 @@ const NodePanel: FC<Props> = ({
                   )}</div>
                   {justShowIterationNavArrow
                     ? (
-                      <RiArrowRightSLine className='w-4 h-4 text-components-button-tertiary-text flex-shrink-0' />
+                      <RiArrowRightSLine className='w-4 h-4 text-components-button-tertiary-text dark:text-tgai-text-3 flex-shrink-0' />
                     )
                     : (
-                      <div className='flex items-center space-x-1 text-[#155EEF]'>
+                      <div className='flex items-center space-x-1 text-tgai-primary'>
                         <div className='text-[13px] font-normal '>{t('workflow.common.viewDetailInTracingPanel')}</div>
                         <RiArrowRightSLine className='w-4 h-4 text-components-button-tertiary-text flex-shrink-0' />
                       </div>

@@ -95,6 +95,8 @@ import { useEventEmitterContextContext } from '@/context/event-emitter'
 import Confirm from '@/app/components/base/confirm'
 import { FILE_EXTS } from '@/app/components/base/prompt-editor/constants'
 import { fetchFileUploadConfig } from '@/service/common'
+import { useTGAIGlobalStore } from "@/context/tgai-global-context";
+import { Theme } from "@/types/app";
 
 const nodeTypes = {
   [CUSTOM_NODE]: CustomNode,
@@ -274,13 +276,14 @@ const Workflow: FC<WorkflowProps> = memo(({
         return
       console.warn(message)
     }
-  }
+
+    const theme = useTGAIGlobalStore(state => state.theme)
 
   return (
     <div
       id='workflow-container'
       className={`
-        relative w-full min-w-[960px] h-full bg-[#F0F2F7]
+        relative w-full min-w-[960px] h-full bg-[#F0F2F7] dark:bg-tgai-workflow-background
         ${workflowReadOnly && 'workflow-panel-animation'}
         ${nodeAnimation && 'workflow-node-animation'}
       `}
@@ -371,7 +374,7 @@ const Workflow: FC<WorkflowProps> = memo(({
         <Background
           gap={[14, 14]}
           size={2}
-          color='#E4E5E7'
+          color={theme === Theme.light ? "#E4E5E7" : "#693046"}
         />
       </ReactFlow>
     </div>
@@ -401,7 +404,7 @@ const WorkflowWrap = memo(() => {
 
   if (!data || isLoading) {
     return (
-      <div className='flex justify-center items-center relative w-full h-full bg-[#F0F2F7]'>
+      <div className='flex justify-center items-center relative w-full h-full bg-[#F0F2F7] dark:bg-tgai-panel-background'>
         <Loading />
       </div>
     )

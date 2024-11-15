@@ -40,6 +40,7 @@ ENV CONSOLE_API_URL=http://127.0.0.1:5001
 ENV CONSOLE_WEB_URL=http://127.0.0.1:3000
 ENV SERVICE_API_URL=http://127.0.0.1:5001
 ENV APP_WEB_URL=http://127.0.0.1:3000
+ENV TG_API_SERVICE_3011=http://127.0.0.1:3011
 
 EXPOSE 5001
 
@@ -47,6 +48,9 @@ EXPOSE 5001
 ENV TZ=UTC
 
 WORKDIR /app/api
+
+#  Enty 老版本
+#  && apt-get install -y --no-install-recommends zlib1g=1:1.3.dfsg+really1.3.1-1 expat libldap-2.5-0 perl=5.38.2-5 libsqlite3-0=3.46.0-1 \
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl nodejs libgmp-dev libmpfr-dev libmpc-dev \

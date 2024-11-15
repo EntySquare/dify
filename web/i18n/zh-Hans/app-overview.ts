@@ -45,8 +45,10 @@ const translation = {
         webDescPlaceholder: '请输入 WebApp 的描述',
         language: '语言',
         workflow: {
-          title: '工作流',
-          subTitle: '工作流详情',
+          // title: '工作流详情',
+          title: '任务详情',
+          // subTitle: '工作流详情',
+          subTitle: '任务详情',
           show: '显示',
           hide: '隐藏',
           showDesc: '在 WebApp 中展示或者隐藏工作流详情',

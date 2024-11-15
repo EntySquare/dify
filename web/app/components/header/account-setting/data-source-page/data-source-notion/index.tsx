@@ -4,10 +4,10 @@ import React, { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import Panel from '../panel'
 import { DataSourceType } from '../panel/types'
-import type { DataSourceNotion as TDataSourceNotion } from '@/models/common'
-import { useAppContext } from '@/context/app-context'
-import { fetchNotionConnection } from '@/service/common'
-import NotionIcon from '@/app/components/base/notion-icon'
+import type { DataSourceNotion as TDataSourceNotion } from '../../../../../../models/common'
+import { useAppContext } from '../../../../../../context/app-context'
+import { fetchNotionConnection } from '../../../../../../service/common'
+import NotionIcon from '../../../../base/notion-icon'
 
 const Icon: FC<{
   src: string

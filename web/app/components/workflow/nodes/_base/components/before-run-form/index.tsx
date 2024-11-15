@@ -8,14 +8,14 @@ import {
 } from '@remixicon/react'
 import type { Props as FormProps } from './form'
 import Form from './form'
-import cn from '@/utils/classnames'
-import Button from '@/app/components/base/button'
-import { StopCircle } from '@/app/components/base/icons/src/vender/solid/mediaAndDevices'
-import Split from '@/app/components/workflow/nodes/_base/components/split'
-import { InputVarType, NodeRunningStatus } from '@/app/components/workflow/types'
-import ResultPanel from '@/app/components/workflow/run/result-panel'
-import Toast from '@/app/components/base/toast'
-import { TransferMethod } from '@/types/app'
+import cn from '../../../../../../../utils/classnames'
+import Button from '../../../../../base/button'
+import { StopCircle } from '../../../../../base/icons/src/vender/solid/mediaAndDevices'
+import Split from '../split'
+import { InputVarType, NodeRunningStatus } from '../../../../types'
+import ResultPanel from '../../../../run/result-panel'
+import Toast from '../../../../../base/toast'
+import { TransferMethod } from '../../../../../../../types/app'
 
 const i18nPrefix = 'workflow.singleRun'
 
@@ -111,17 +111,17 @@ const BeforeRunForm: FC<BeforeRunFormProps> = ({
     <div className='absolute inset-0 z-10 rounded-2xl pt-10' style={{
       backgroundColor: 'rgba(16, 24, 40, 0.20)',
     }}>
-      <div className='h-full rounded-2xl bg-white flex flex-col'>
+      <div className='h-full rounded-2xl bg-white dark:bg-tgai-panel-background flex flex-col dark:border-stone-600 dark:border dark:shadow-stone-800 dark:shadow-md'>
         <div className='shrink-0 flex justify-between items-center h-8 pl-4 pr-3 pt-3'>
-          <div className='text-base font-semibold text-gray-900 truncate'>
+          <div className='text-base font-semibold text-tgai-text-1 truncate'>
             {t(`${i18nPrefix}.testRun`)} {nodeName}
           </div>
           <div className='ml-2 shrink-0 p-1 cursor-pointer' onClick={onHide}>
-            <RiCloseLine className='w-4 h-4 text-gray-500 ' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3 ' />
           </div>
         </div>
 
-        <div className='h-0 grow overflow-y-auto pb-4'>
+        <div className='h-0 grow overflow-y-auto tgai-custom-scrollbar pb-4'>
           <div className='mt-3 px-4 space-y-4'>
             {forms.map((form, index) => (
               <div key={index}>
@@ -138,10 +138,10 @@ const BeforeRunForm: FC<BeforeRunFormProps> = ({
           <div className='mt-4 flex justify-between space-x-2 px-4' >
             {isRunning && (
               <div
-                className='p-2 rounded-lg border border-gray-200 bg-white shadow-xs cursor-pointer'
+                className='p-2 rounded-lg border border-gray-200 dark:border-stone-600 bg-white dark:bg-tgai-panel-background shadow-xs cursor-pointer dark:shadow-stone-800'
                 onClick={onStop}
               >
-                <StopCircle className='w-4 h-4 text-gray-500' />
+                <StopCircle className='w-4 h-4 text-tgai-text-3' />
               </div>
             )}
             <Button disabled={!isFileLoaded || isRunning} variant='primary' className='w-0 grow space-x-2' onClick={handleRun}>

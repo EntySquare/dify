@@ -5,9 +5,9 @@ import {
   useCSVDownloader,
 } from 'react-papaparse'
 import { useTranslation } from 'react-i18next'
-import cn from '@/utils/classnames'
-import { Download02 as DownloadIcon } from '@/app/components/base/icons/src/vender/solid/general'
-import Button from '@/app/components/base/button'
+import cn from '../../../../../../utils/classnames'
+import { Download02 as DownloadIcon } from '../../../../base/icons/src/vender/solid/general'
+import Button from '../../../../base/button'
 export type IResDownloadProps = {
   isMobile: boolean
   values: Record<string, string>[]

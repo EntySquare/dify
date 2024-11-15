@@ -72,15 +72,15 @@ const FormItem: FC<Props> = ({
               <div className='p-[1px]'>
                 <VarBlockIcon type={nodeType || BlockEnum.Start} />
               </div>
-              <div className='mx-0.5 text-xs font-medium text-gray-700 max-w-[150px] truncate' title={nodeName}>
+              <div className='mx-0.5 text-xs font-medium text-tgai-text-2 max-w-[150px] truncate' title={nodeName}>
                 {nodeName}
               </div>
               <Line3 className='mr-0.5'></Line3>
             </div>
           )}
-          <div className='flex items-center text-primary-600'>
+          <div className='flex items-center text-primary-600 dark:text-tgai-primary'>
             {!isChatVar && <Variable02 className='w-3.5 h-3.5' />}
-            {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700' />}
+            {isChatVar && <BubbleX className='w-3.5 h-3.5 text-util-colors-teal-teal-700 dark:text-util-colors-teal-teal-100' />}
             <div className={cn('ml-0.5 text-xs font-medium max-w-[150px] truncate', isChatVar && 'text-text-secondary')} title={variable} >
               {variable}
             </div>
@@ -248,7 +248,7 @@ const FormItem: FC<Props> = ({
                     (value as any).length > 1
                       ? (<RiDeleteBinLine
                         onClick={handleArrayItemRemove(index)}
-                        className='mr-1 w-3.5 h-3.5 text-text-tertiary cursor-pointer'
+                        className='mr-1 w-3.5 h-3.5 text-text-tertiary dark:text-tgai-text-3 cursor-pointer'
                       />)
                       : undefined
                   }
@@ -274,7 +274,7 @@ const FormItem: FC<Props> = ({
                     (value as any).length > 1
                       ? (<RiDeleteBinLine
                         onClick={handleArrayItemRemove(index)}
-                        className='mr-1 w-3.5 h-3.5 text-text-tertiary cursor-pointer'
+                        className='mr-1 w-3.5 h-3.5 text-text-tertiary dark:text-tgai-text-3 cursor-pointer'
                       />)
                       : undefined
                   }

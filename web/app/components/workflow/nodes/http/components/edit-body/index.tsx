@@ -143,8 +143,9 @@ const EditBody: FC<Props> = ({
               checked={type === t}
               onChange={handleTypeChange}
               disabled={readonly}
+              className='accent-tgai-primary'
             />
-            <div className='leading-[18px] text-[13px] font-normal text-gray-700'>{bodyTextMap[t]}</div>
+            <div className='leading-[18px] text-[13px] font-normal text-tgai-text-2'>{bodyTextMap[t]}</div>
           </label>
         ))}
       </div>

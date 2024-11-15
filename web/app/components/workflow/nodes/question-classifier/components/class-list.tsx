@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useEdgesInteractions } from '../../../hooks'
 import AddButton from '../../_base/components/add-button'
 import Item from './class-item'
-import type { Topic } from '@/app/components/workflow/nodes/question-classifier/types'
+import type { Topic } from '../types'
 
 const i18nPrefix = 'workflow.nodes.questionClassifiers'
 

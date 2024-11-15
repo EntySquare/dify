@@ -66,7 +66,7 @@ export const FieldInfo: FC<IFieldInfoProps> = ({
               onSelect={({ value }) => onUpdate && onUpdate(value as string)}
               items={selectOptions}
               defaultValue={value}
-              className={s.select}
+              className={'!h-7 !py-0 !pl-2 !text-xs !rounded-md !shadow-none'}
               wrapperClassName={s.selectWrapper}
               placeholder={`${t('datasetDocuments.metadata.placeholder.select')}${label}`}
             />
@@ -74,7 +74,7 @@ export const FieldInfo: FC<IFieldInfoProps> = ({
               ? <AutoHeightTextarea
                 onChange={e => onUpdate && onUpdate(e.target.value)}
                 value={value}
-                className={s.textArea}
+                className={'!px-2 !py-1 !rounded-md !hover:shadow-[0_1px_2px_rgba(16,24,40,0.05)]'}
                 placeholder={`${t('datasetDocuments.metadata.placeholder.add')}${label}`}
               />
               : <Input
@@ -104,7 +104,9 @@ const IconButton: FC<{
     <Tooltip
       popupContent={metadataMap[type].text}
     >
-      <button className={cn(s.iconWrapper, 'group', isChecked ? s.iconCheck : '')}>
+      <button className={cn('border-[#EAECF5] dark:border-zinc-600 border rounded-lg hover:border-primary-200 hover:bg-primary-25 hover:shadow-md',
+        'box-border cursor-pointer h-8 w-8 inline-flex items-center justify-center',
+        'group', isChecked ? s.iconCheck : '')}>
         <TypeIcon
           iconName={metadataMap[type].iconName || ''}
           className={`group-hover:bg-primary-600 ${isChecked ? '!bg-primary-600' : ''}`}
@@ -307,7 +309,7 @@ const Metadata: FC<IMetadataProps> = ({ docDetail, loading, onUpdate }) => {
   }
 
   return (
-    <div className={`${s.main} ${editStatus ? 'bg-white' : 'bg-gray-25'}`}>
+    <div className={`${s.main} ${editStatus ? 'bg-white dark:bg-tgai-panel-background' : 'bg-gray-25 dark:bg-stone-800'}`}>
       {loading
         ? (<Loading type='app' />)
         : (
@@ -322,7 +324,9 @@ const Metadata: FC<IMetadataProps> = ({ docDetail, loading, onUpdate }) => {
                 : showDocTypes
                   ? null
                   : <div className={s.opBtnWrapper}>
-                    <Button onClick={onCancel} className={`${s.opBtn} ${s.opCancelBtn}`}>{t('common.operation.cancel')}</Button>
+                    <Button onClick={onCancel} className={cn('h-6 w-14 px-0 text-xs font-medium rounded-md',
+                      'border-none bg-gray-50 dark:bg-zinc-600 font-medium text-tgai-text-2 hover:bg-gray-100 dark:hover:bg-zinc-500'
+                    )}>{t('common.operation.cancel')}</Button>
                     <Button onClick={onSave}
                       className={`${s.opBtn} ${s.opSaveBtn}`}
                       variant='primary'

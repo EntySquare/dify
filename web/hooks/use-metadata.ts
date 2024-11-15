@@ -1,8 +1,8 @@
 'use client'
 import { useTranslation } from 'react-i18next'
-import { formatFileSize, formatNumber, formatTime } from '@/utils/format'
-import type { DocType } from '@/models/datasets'
-import useTimestamp from '@/hooks/use-timestamp'
+import { formatFileSize, formatNumber, formatTime } from '../utils/format'
+import type { DocType } from '../models/datasets'
+import useTimestamp from './use-timestamp'
 
 export type inputType = 'input' | 'select' | 'textarea'
 export type metadataType = DocType | 'originInfo' | 'technicalParameters'

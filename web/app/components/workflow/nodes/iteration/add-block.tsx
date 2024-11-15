@@ -49,9 +49,9 @@ const AddBlock = ({
   const renderTriggerElement = useCallback((open: boolean) => {
     return (
       <div className={cn(
-        'relative inline-flex items-center px-3 h-8 rounded-lg border-[0.5px] border-gray-50 bg-white shadow-xs cursor-pointer hover:bg-gray-200 text-[13px] font-medium text-gray-700',
+        'relative inline-flex items-center px-3 h-8 rounded-lg border-[0.5px] border-gray-50 dark:border-tgai-workflow-panel-border bg-white dark:bg-tgai-workflow-panel-background shadow-xs cursor-pointer hover:bg-gray-200 dark:hover:bg-zinc-600 text-[13px] font-medium text-tgai-text-2',
         `${nodesReadOnly && '!cursor-not-allowed opacity-50'}`,
-        open && '!bg-gray-50',
+        open && '!bg-gray-50 dark:!bg-zinc-700',
       )}>
         <RiAddLine className='mr-1 w-4 h-4' />
         {t('workflow.common.addBlock')}

@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import NotionPageSelector from '../base'
 import s from './index.module.css'
-import type { NotionPage } from '@/models/common'
-import cn from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
+import type { NotionPage } from '../../../../../models/common'
+import cn from '../../../../../utils/classnames'
+import Modal from '../../modal'
 
 type NotionPageSelectorModalProps = {
   isShow: boolean

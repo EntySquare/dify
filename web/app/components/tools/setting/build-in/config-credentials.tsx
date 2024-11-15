@@ -4,15 +4,15 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { addDefaultValue, toolCredentialToFormSchemas } from '../../utils/to-form-schema'
 import type { Collection } from '../../types'
-import cn from '@/utils/classnames'
-import Drawer from '@/app/components/base/drawer-plus'
-import Button from '@/app/components/base/button'
-import Toast from '@/app/components/base/toast'
-import { fetchBuiltInToolCredential, fetchBuiltInToolCredentialSchema } from '@/service/tools'
-import Loading from '@/app/components/base/loading'
-import Form from '@/app/components/header/account-setting/model-provider-page/model-modal/Form'
-import { LinkExternal02 } from '@/app/components/base/icons/src/vender/line/general'
-import { useLanguage } from '@/app/components/header/account-setting/model-provider-page/hooks'
+import cn from '../../../../../utils/classnames'
+import Drawer from '../../../base/drawer-plus'
+import Button from '../../../base/button'
+import Toast from '../../../base/toast'
+import { fetchBuiltInToolCredential, fetchBuiltInToolCredentialSchema } from '../../../../../service/tools'
+import Loading from '../../../base/loading'
+import Form from '../../../header/account-setting/model-provider-page/model-modal/Form'
+import { LinkExternal02 } from '../../../base/icons/src/vender/line/general'
+import { useLanguage } from '../../../header/account-setting/model-provider-page/hooks'
 
 type Props = {
   collection: Collection
@@ -64,7 +64,7 @@ const ConfigCredential: FC<Props> = ({
       panelClassName='mt-2 !w-[405px]'
       maxWidthClassName='!max-w-[405px]'
       height='calc(100vh - 16px)'
-      contentClassName='!bg-gray-100'
+      contentClassName=''
       headerClassName='!border-b-black/5'
       body={
 
@@ -82,12 +82,12 @@ const ConfigCredential: FC<Props> = ({
                   isEditMode={true}
                   showOnVariableMap={{}}
                   validating={false}
-                  inputClassName='!bg-gray-50'
+                  inputClassName=''
                   fieldMoreInfo={item => item.url
                     ? (<a
                       href={item.url}
                       target='_blank' rel='noopener noreferrer'
-                      className='inline-flex items-center text-xs text-primary-600'
+                      className='inline-flex items-center text-xs text-tgai-primary'
                     >
                       {t('tools.howToGet')}
                       <LinkExternal02 className='ml-1 w-3 h-3' />

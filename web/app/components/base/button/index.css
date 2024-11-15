@@ -24,9 +24,11 @@
   .btn-primary {
     @apply 
     shadow
-    bg-components-button-primary-bg
+    /* bg-components-button-primary-bg */
+    bg-tgai-primary
+    hover:bg-tgai-primary-5
     border-components-button-primary-border
-    hover:bg-components-button-primary-bg-hover
+    /* hover:bg-components-button-primary-bg-hover */
     hover:border-components-button-primary-border-hover
     text-components-button-primary-text;
   }
@@ -43,7 +45,8 @@
   .btn-primary.btn-disabled {
     @apply 
     shadow-none
-    bg-components-button-primary-bg-disabled
+    /* bg-components-button-primary-bg-disabled */
+    bg-tgai-primary-3
     border-components-button-primary-border-disabled
     text-components-button-primary-text-disabled;
   }

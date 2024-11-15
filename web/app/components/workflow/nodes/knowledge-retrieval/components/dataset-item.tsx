@@ -53,6 +53,7 @@ const DatasetItem: FC<Props> = ({
   }, [onRemove])
 
   return (
+    // flex items-center h-10 justify-between rounded-xl px-2 bg-white dark:bg-tgai-input-background border border-gray-200 dark:border-stone-600  cursor-pointer group/dataset-item
     <div className={`flex items-center h-10 justify-between rounded-xl px-2 border-[0.5px] 
       border-components-panel-border-subtle cursor-pointer group/dataset-item 
       ${isDeleteHovered
@@ -71,7 +72,7 @@ const DatasetItem: FC<Props> = ({
               <Folder className='w-4 h-4 text-[#444CE7]' />
             </div>
         }
-        <div className='w-0 grow text-text-secondary system-sm-medium truncate'>{payload.name}</div>
+        <div className='w-0 grow text-text-secondary dark:text-tgai-text-2 system-sm-medium truncate'>{payload.name}</div>
       </div>
       {!readonly && (
         <div className='hidden group-hover/dataset-item:flex shrink-0 ml-2  items-center space-x-1'>
@@ -81,7 +82,7 @@ const DatasetItem: FC<Props> = ({
               showSettingsModal()
             }}
           >
-            <RiEditLine className='w-4 h-4 flex-shrink-0 text-text-tertiary' />
+            <RiEditLine className='w-4 h-4 flex-shrink-0 text-text-tertiary dark:text-tgai-text-3' />
           </ActionButton>
           <ActionButton
             onClick={handleRemove}
@@ -89,7 +90,7 @@ const DatasetItem: FC<Props> = ({
             onMouseEnter={() => setIsDeleteHovered(true)}
             onMouseLeave={() => setIsDeleteHovered(false)}
           >
-            <RiDeleteBinLine className={`w-4 h-4 flex-shrink-0 ${isDeleteHovered ? 'text-text-destructive' : 'text-text-tertiary'}`} />
+            <RiDeleteBinLine className={`w-4 h-4 flex-shrink-0 ${isDeleteHovered ? 'text-text-destructive' : 'text-text-tertiary dark:text-tgai-text-3'}`} />
           </ActionButton>
         </div>
       )}

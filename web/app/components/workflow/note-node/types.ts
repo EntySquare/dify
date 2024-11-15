@@ -7,6 +7,7 @@ export enum NoteTheme {
   yellow = 'yellow',
   pink = 'pink',
   violet = 'violet',
+  dark = 'dark'
 }
 
 export type NoteNodeType = CommonNodeType & {

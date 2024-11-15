@@ -50,7 +50,7 @@ const Input: FC<Props> = ({
       {...otherOption}
       value={value}
       onChange={handleChange}
-      className='flex h-9 w-full py-1 px-2 rounded-lg text-xs leading-normal bg-gray-100 caret-primary-600 hover:bg-gray-100 focus:ring-1 focus:ring-inset focus:ring-gray-200 focus-visible:outline-none focus:bg-gray-50 placeholder:text-gray-400'
+      className='flex h-9 w-full py-1 px-2 text-tgai-text-1 rounded-lg text-xs leading-normal bg-gray-100 dark:bg-tgai-input-background caret-tgai-primary hover:bg-gray-100 dark:hover:bg-zinc-600 focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-zinc-500 focus-visible:outline-none focus:bg-gray-50 dark:focus:bg-zinc-600 placeholder:text-gray-400'
       placeholder={placeholder}
     />
   )

@@ -13,12 +13,12 @@ import {
 import PrioritySelector from './priority-selector'
 import PriorityUseTip from './priority-use-tip'
 import { UPDATE_MODEL_PROVIDER_CUSTOM_MODEL_LIST } from './index'
-import Indicator from '@/app/components/header/indicator'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import Button from '@/app/components/base/button'
-import { changeModelProviderPriority } from '@/service/common'
-import { useToastContext } from '@/app/components/base/toast'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
+import Indicator from '../../../indicator'
+import { Settings01 } from '../../../../base/icons/src/vender/line/general'
+import Button from '../../../../base/button'
+import { changeModelProviderPriority } from '../../../../../../service/common'
+import { useToastContext } from '../../../../base/toast'
+import { useEventEmitterContextContext } from '../../../../../../context/event-emitter'
 
 type CredentialPanelProps = {
   provider: ModelProvider

@@ -1,6 +1,6 @@
 'use client'
 
-import Workflow from '@/app/components/workflow'
+import Workflow from '../../../../../components/workflow'
 
 const Page = () => {
   return (

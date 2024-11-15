@@ -47,7 +47,7 @@ const Item = ({
         className='shrink-0 mr-1.5'
       />
       <div
-        className='grow system-xs-medium text-text-secondary truncate'
+        className='grow system-xs-medium text-text-secondary dark:text-tgai-text-2 truncate'
         title={data.title}
       >
         {data.title}

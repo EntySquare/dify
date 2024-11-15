@@ -3,7 +3,7 @@ import { Dialog } from '@headlessui/react'
 import { useTranslation } from 'react-i18next'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import Button from '../button'
-import cn from '@/utils/classnames'
+import cn from '../../../../utils/classnames'
 
 export type IDrawerProps = {
   title?: string
@@ -42,14 +42,14 @@ export default function Drawer({
       unmount={false}
       open={isOpen}
       onClose={() => !clickOutsideNotOpen && onClose()}
-      className="fixed z-30 inset-0 overflow-y-auto"
+      className="fixed z-30 inset-0 overflow-y-auto tgai-custom-scrollbar"
     >
       <div className={cn('flex w-screen h-screen justify-end', positionCenter && '!justify-center')}>
         {/* mask */}
         <Dialog.Overlay
           className={cn('z-40 fixed inset-0', mask && 'bg-black bg-opacity-30')}
         />
-        <div className={cn('relative z-50 flex flex-col justify-between bg-white w-full max-w-sm p-6 overflow-hidden text-left align-middle shadow-xl', panelClassname)}>
+        <div className={cn('relative z-50 flex flex-col justify-between bg-tgai-panel-background-3 w-full max-w-sm p-6 overflow-hidden text-left align-middle shadow-xl', panelClassname)}>
           <>
             {title && <Dialog.Title
               as="h3"

@@ -241,7 +241,7 @@ const ConditionItem = ({
         </div>
         {
           !comparisonOperatorNotRequireValue(condition.comparison_operator) && !isNotInput && condition.varType !== VarType.number && (
-            <div className='px-2 py-1 max-h-[100px] border-t border-t-divider-subtle overflow-y-auto'>
+            <div className='px-2 py-1 max-h-[100px] border-t border-t-divider-subtle overflow-y-auto tgai-custom-scrollbar'>
               <ConditionInput
                 disabled={disabled}
                 value={condition.value as string}

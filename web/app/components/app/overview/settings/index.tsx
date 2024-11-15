@@ -195,9 +195,9 @@ const SettingsModal: FC<ISettingsModalProps> = ({
         title={t(`${prefixSettings}.title`)}
         isShow={isShow}
         onClose={onHide}
-        className={`${s.settingsModal}`}
+        className={`${s.settingsModal} dark:!bg-tgai-panel-background`}
       >
-        <div className={`mt-6 font-medium ${s.settingTitle} text-gray-900`}>{t(`${prefixSettings}.webName`)}</div>
+        <div className={`mt-6 font-medium ${s.settingTitle} text-tgai-text-1`}>{t(`${prefixSettings}.webName`)}</div>
         <div className='flex mt-2'>
           <AppIcon size='large'
             onClick={() => { setShowAppIconPicker(true) }}
@@ -214,8 +214,8 @@ const SettingsModal: FC<ISettingsModalProps> = ({
             placeholder={t('app.appNamePlaceholder') || ''}
           />
         </div>
-        <div className={`mt-6 font-medium ${s.settingTitle} text-gray-900 `}>{t(`${prefixSettings}.webDesc`)}</div>
-        <p className={`mt-1 ${s.settingsTip} text-gray-500`}>{t(`${prefixSettings}.webDescTip`)}</p>
+        <div className={`mt-6 font-medium ${s.settingTitle} text-tgai-text-1 `}>{t(`${prefixSettings}.webDesc`)}</div>
+        <p className={`mt-1 ${s.settingsTip} text-tgai-text-3`}>{t(`${prefixSettings}.webDescTip`)}</p>
         <Textarea
           className='mt-2'
           value={inputInfo.desc}
@@ -225,36 +225,36 @@ const SettingsModal: FC<ISettingsModalProps> = ({
         {isChatBot && (
           <div className='w-full mt-4'>
             <div className='flex justify-between items-center'>
-              <div className={`font-medium ${s.settingTitle} text-gray-900 `}>{t('app.answerIcon.title')}</div>
+              <div className={`font-medium ${s.settingTitle} text-tgai-text-1`}>{t('app.answerIcon.title')}</div>
               <Switch
                 defaultValue={inputInfo.use_icon_as_answer_icon}
                 onChange={v => setInputInfo({ ...inputInfo, use_icon_as_answer_icon: v })}
               />
             </div>
-            <p className='body-xs-regular text-gray-500'>{t('app.answerIcon.description')}</p>
+            <p className='body-xs-regular text-tgai-text-3'>{t('app.answerIcon.description')}</p>
           </div>
         )}
-        <div className={`mt-6 mb-2 font-medium ${s.settingTitle} text-gray-900 `}>{t(`${prefixSettings}.language`)}</div>
+        <div className={`mt-6 mb-2 font-medium ${s.settingTitle} text-tgai-text-1 `}>{t(`${prefixSettings}.language`)}</div>
         <SimpleSelect
           items={languages.filter(item => item.supported)}
           defaultValue={language}
           onSelect={item => setLanguage(item.value as Language)}
         />
         <div className='w-full mt-8'>
-          <p className='system-xs-medium text-gray-500'>{t(`${prefixSettings}.workflow.title`)}</p>
+          <p className='system-xs-medium text-tgai-text-3'>{t(`${prefixSettings}.workflow.title`)}</p>
           <div className='flex justify-between items-center'>
-            <div className='font-medium system-sm-semibold flex-grow text-gray-900'>{t(`${prefixSettings}.workflow.subTitle`)}</div>
+            <div className='font-medium system-sm-semibold flex-grow text-tgai-text-1'>{t(`${prefixSettings}.workflow.subTitle`)}</div>
             <Switch
               disabled={!(appInfo.mode === 'workflow' || appInfo.mode === 'advanced-chat')}
               defaultValue={inputInfo.show_workflow_steps}
               onChange={v => setInputInfo({ ...inputInfo, show_workflow_steps: v })}
             />
           </div>
-          <p className='body-xs-regular text-gray-500'>{t(`${prefixSettings}.workflow.showDesc`)}</p>
+          <p className='body-xs-regular text-tgai-text-3'>{t(`${prefixSettings}.workflow.showDesc`)}</p>
         </div>
 
-        {isChat && <> <div className={`mt-8 font-medium ${s.settingTitle} text-gray-900`}>{t(`${prefixSettings}.chatColorTheme`)}</div>
-          <p className={`mt-1 ${s.settingsTip} text-gray-500`}>{t(`${prefixSettings}.chatColorThemeDesc`)}</p>
+        {isChat && <> <div className={`mt-8 font-medium ${s.settingTitle} text-tgai-text-1`}>{t(`${prefixSettings}.chatColorTheme`)}</div>
+          <p className={`mt-1 ${s.settingsTip} text-tgai-text-3`}>{t(`${prefixSettings}.chatColorThemeDesc`)}</p>
           <Input
             className='mt-2 h-10'
             value={inputInfo.chatColorTheme ?? ''}
@@ -262,14 +262,14 @@ const SettingsModal: FC<ISettingsModalProps> = ({
             placeholder='E.g #A020F0'
           />
           <div className="mt-1 flex justify-between items-center">
-            <p className={`ml-2 ${s.settingsTip} text-gray-500`}>{t(`${prefixSettings}.chatColorThemeInverted`)}</p>
+            <p className={`ml-2 ${s.settingsTip} text-tgai-text-3`}>{t(`${prefixSettings}.chatColorThemeInverted`)}</p>
             <Switch defaultValue={inputInfo.chatColorThemeInverted} onChange={v => setInputInfo({ ...inputInfo, chatColorThemeInverted: v })}></Switch>
           </div>
         </>}
         {systemFeatures.enable_web_sso_switch_component && <div className='w-full mt-8'>
-          <p className='system-xs-medium text-gray-500'>{t(`${prefixSettings}.sso.label`)}</p>
+          <p className='system-xs-medium text-tgai-text-3'>{t(`${prefixSettings}.sso.label`)}</p>
           <div className='flex justify-between items-center'>
-            <div className='font-medium system-sm-semibold flex-grow text-gray-900'>{t(`${prefixSettings}.sso.title`)}</div>
+            <div className='font-medium system-sm-semibold flex-grow text-tgai-text-1'>{t(`${prefixSettings}.sso.title`)}</div>
             <Tooltip
               disabled={systemFeatures.sso_enforced_for_web}
               popupContent={
@@ -280,31 +280,34 @@ const SettingsModal: FC<ISettingsModalProps> = ({
               <Switch disabled={!systemFeatures.sso_enforced_for_web || !isCurrentWorkspaceEditor} defaultValue={systemFeatures.sso_enforced_for_web && inputInfo.enable_sso} onChange={v => setInputInfo({ ...inputInfo, enable_sso: v })}></Switch>
             </Tooltip>
           </div>
-          <p className='body-xs-regular text-gray-500'>{t(`${prefixSettings}.sso.description`)}</p>
+          <p className='body-xs-regular text-tgai-text-3'>{t(`${prefixSettings}.sso.description`)}</p>
         </div>}
         {!isShowMore && <div className='w-full cursor-pointer mt-8' onClick={() => setIsShowMore(true)}>
           <div className='flex justify-between'>
-            <div className={`font-medium ${s.settingTitle} flex-grow text-gray-900`}>{t(`${prefixSettings}.more.entry`)}</div>
-            <div className='flex-shrink-0 w-4 h-4 text-gray-500'>
+            <div className={`font-medium ${s.settingTitle} flex-grow text-tgai-text-1`}>{t(`${prefixSettings}.more.entry`)}</div>
+            <div className='flex-shrink-0 w-4 h-4 text-tgai-text-3'>
               <ChevronRightIcon />
             </div>
           </div>
-          <p className={`mt-1 ${s.policy} text-gray-500`}>{t(`${prefixSettings}.more.copyright`)} & {t(`${prefixSettings}.more.privacyPolicy`)}</p>
+          <p className={`mt-1 ${s.policy} text-tgai-text-3`}>{t(`${prefixSettings}.more.copyright`)} & {t(`${prefixSettings}.more.privacyPolicy`)}</p>
         </div>}
         {isShowMore && <>
-          <hr className='w-full mt-6' />
-          <div className={`mt-6 font-medium ${s.settingTitle} text-gray-900`}>{t(`${prefixSettings}.more.copyright`)}</div>
+          <hr className='w-full mt-6 dark:border-zinc-600' />
+          <div className={`mt-6 font-medium ${s.settingTitle} text-tgai-text-1`}>{t(`${prefixSettings}.more.copyright`)}</div>
           <Input
             className='mt-2 h-10'
             value={inputInfo.copyright}
             onChange={onChange('copyright')}
             placeholder={t(`${prefixSettings}.more.copyRightPlaceholder`) as string}
           />
-          <div className={`mt-8 font-medium ${s.settingTitle} text-gray-900`}>{t(`${prefixSettings}.more.privacyPolicy`)}</div>
-          <p className={`mt-1 ${s.settingsTip} text-gray-500`}>
+          <div className={`mt-8 font-medium ${s.settingTitle} text-tgai-text-1`}>{t(`${prefixSettings}.more.privacyPolicy`)}</div>
+          <p className={`mt-1 ${s.settingsTip} text-tgai-text-3`}>
+            {/* <Trans */}
+            {/*   i18nKey={`${prefixSettings}.more.privacyPolicyTip`} */}
+            {/*   components={{ privacyPolicyLink: <Link href={'https://docs.dify.ai/user-agreement/privacy-policy'} target='_blank' rel='noopener noreferrer' className='text-primary-600' /> }} */}
+            {/* /> */}
             <Trans
               i18nKey={`${prefixSettings}.more.privacyPolicyTip`}
-              components={{ privacyPolicyLink: <Link href={'https://docs.dify.ai/user-agreement/privacy-policy'} target='_blank' rel='noopener noreferrer' className='text-primary-600' /> }}
             />
           </p>
           <Input
@@ -313,8 +316,8 @@ const SettingsModal: FC<ISettingsModalProps> = ({
             onChange={onChange('privacyPolicy')}
             placeholder={t(`${prefixSettings}.more.privacyPolicyPlaceholder`) as string}
           />
-          <div className={`mt-8 font-medium ${s.settingTitle} text-gray-900`}>{t(`${prefixSettings}.more.customDisclaimer`)}</div>
-          <p className={`mt-1 ${s.settingsTip} text-gray-500`}>{t(`${prefixSettings}.more.customDisclaimerTip`)}</p>
+          <div className={`mt-8 font-medium ${s.settingTitle} text-tgai-text-1`}>{t(`${prefixSettings}.more.customDisclaimer`)}</div>
+          <p className={`mt-1 ${s.settingsTip} text-tgai-text-3`}>{t(`${prefixSettings}.more.customDisclaimerTip`)}</p>
           <Input
             className='mt-2 h-10'
             value={inputInfo.customDisclaimer}

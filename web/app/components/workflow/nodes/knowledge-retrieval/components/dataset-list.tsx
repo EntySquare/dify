@@ -4,7 +4,7 @@ import React, { useCallback } from 'react'
 import produce from 'immer'
 import { useTranslation } from 'react-i18next'
 import Item from './dataset-item'
-import type { DataSet } from '@/models/datasets'
+import type { DataSet } from '../../../../../../models/datasets'
 type Props = {
   list: DataSet[]
   onChange: (list: DataSet[]) => void
@@ -50,7 +50,7 @@ const DatasetList: FC<Props> = ({
           )
         })
         : (
-          <div className='p-3 text-xs text-center text-gray-500 rounded-lg cursor-default select-none bg-gray-50'>
+          <div className='p-3 text-xs text-center text-tgai-text-3 rounded-lg cursor-default select-none bg-tgai-panel-background-2'>
             {t('appDebug.datasetConfig.knowledgeTip')}
           </div>
         )

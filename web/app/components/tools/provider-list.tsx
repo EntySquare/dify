@@ -17,6 +17,8 @@ import ProviderCard from '@/app/components/tools/provider/card'
 import ProviderDetail from '@/app/components/tools/provider/detail'
 import Empty from '@/app/components/tools/add-tool-modal/empty'
 import { fetchCollectionList } from '@/service/tools'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const ProviderList = () => {
   const { t } = useTranslation()
@@ -27,7 +29,8 @@ const ProviderList = () => {
   const options = [
     { value: 'builtin', text: t('tools.type.builtIn'), icon: <DotsGrid className='w-[14px] h-[14px] mr-1' /> },
     { value: 'api', text: t('tools.type.custom'), icon: <Colors className='w-[14px] h-[14px] mr-1' /> },
-    { value: 'workflow', text: t('tools.type.workflow'), icon: <Route className='w-[14px] h-[14px] mr-1' /> },
+    // { value: 'workflow', text: t('tools.type.workflow'), icon: <Route className='w-[14px] h-[14px] mr-1' /> },
+    { value: 'workflow', text: '任务', icon: <Route className='w-[14px] h-[14px] mr-1' /> },
   ]
   const [tagFilterValue, setTagFilterValue] = useState<string[]>([])
   const handleTagsChange = (value: string[]) => {
@@ -66,11 +69,13 @@ const ProviderList = () => {
     }
   }, [collectionList, currentProvider])
 
+  const theme = useTGAIGlobalStore(state => state.theme)
+
   return (
-    <div className='relative flex overflow-hidden bg-gray-100 shrink-0 h-0 grow'>
-      <div className='relative flex flex-col overflow-y-auto bg-gray-100 grow'>
+    <div className='relative flex overflow-hidden bg-tgai-section-background shrink-0 h-0 grow'>
+      <div className='relative flex flex-col overflow-y-auto bg-tgai-section-background grow tgai-custom-scrollbar'>
         <div className={cn(
-          'sticky top-0 flex justify-between items-center pt-4 px-12 pb-2 leading-[56px] bg-gray-100 z-20 flex-wrap gap-y-2',
+          'sticky top-0 flex justify-between items-center pt-4 px-12 pb-2 leading-[56px] bg-tgai-section-background z-20 flex-wrap gap-y-2',
           currentProvider && 'pr-6',
         )}>
           <TabSliderNew
@@ -91,6 +96,8 @@ const ProviderList = () => {
               value={keywords}
               onChange={e => handleKeywordsChange(e.target.value)}
               onClear={() => handleKeywordsChange('')}
+              white={theme === Theme.light}
+              dark={theme === Theme.dark}
             />
           </div>
         </div>
@@ -112,12 +119,12 @@ const ProviderList = () => {
         </div>
       </div>
       <div className={cn(
-        'shrink-0 w-0 border-l-[0.5px] border-black/8 overflow-y-auto transition-all duration-200 ease-in-out',
+        'shrink-0 w-0 border-l-[0.5px] border-black/8 dark:border-stone-600/[92] overflow-y-auto transition-all duration-200 ease-in-out tgai-custom-scrollbar',
         currentProvider && 'w-[420px]',
       )}>
         {currentProvider && <ProviderDetail collection={currentProvider} onRefreshData={getProviderList} />}
       </div>
-      <div className='absolute top-5 right-5 p-1 cursor-pointer' onClick={() => setCurrentProvider(undefined)}><RiCloseLine className='w-4 h-4' /></div>
+      <div className='absolute top-5 right-5 p-1 cursor-pointer' onClick={() => setCurrentProvider(undefined)}><RiCloseLine className='w-4 h-4 text-tgai-text-2' /></div>
     </div>
   )
 }

@@ -15,18 +15,18 @@ const HelpLink = ({
   const link = useNodeHelpLink(nodeType)
 
   return (
-    <TooltipPlus
-      popupContent={t('common.userProfile.helpCenter')}
-    >
-      <a
-        href={link}
-        target='_blank'
-        className='flex items-center justify-center mr-1 w-6 h-6'
-      >
-        <RiBookOpenLine className='w-4 h-4 text-gray-500' />
-      </a>
-    </TooltipPlus>
-
+    // <TooltipPlus
+    //   popupContent={t('common.userProfile.helpCenter')}
+    // >
+    //   <a
+    //     href={link}
+    //     target='_blank'
+    //     className='flex items-center justify-center mr-1 w-6 h-6'
+    //   >
+    //     <RiBookOpenLine className='w-4 h-4 text-gray-500' />
+    //   </a>
+    // </TooltipPlus>
+    <></>
   )
 }
 

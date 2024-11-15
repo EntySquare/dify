@@ -60,7 +60,7 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
       return (
         <div className='inline-flex items-center gap-1 system-xs-semibold-uppercase'>
           <Indicator color={'blue'} />
-          <span className='text-util-colors-blue-light-blue-light-600'>Running</span>
+          <span className='text-util-colors-blue-light-blue-light-600 dark:text-tgai-primary'>Running</span>
         </div>
       )
     }
@@ -78,7 +78,7 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
   return (
     <div className='overflow-x-auto'>
       <table className={cn('mt-2 w-full min-w-[440px] border-collapse border-0')}>
-        <thead className='system-xs-medium-uppercase text-text-tertiary'>
+        <thead className='system-xs-medium-uppercase text-tgai-text-3'>
           <tr>
             <td className='pl-2 pr-1 w-5 rounded-l-lg bg-background-section-burn whitespace-nowrap'></td>
             <td className='pl-3 py-1.5 bg-background-section-burn whitespace-nowrap'>{t('appLog.table.header.startTime')}</td>
@@ -88,12 +88,12 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
             <td className='pl-3 py-1.5 rounded-r-lg bg-background-section-burn whitespace-nowrap'>{t('appLog.table.header.user')}</td>
           </tr>
         </thead>
-        <tbody className="text-text-secondary system-sm-regular">
+        <tbody className="text-tgai-text-2 system-sm-regular">
           {logs.data.map((log: WorkflowAppLogDetail) => {
             const endUser = log.created_by_end_user ? log.created_by_end_user.session_id : log.created_by_account ? log.created_by_account.name : defaultValue
             return <tr
               key={log.id}
-              className={cn('border-b border-divider-subtle hover:bg-background-default-hover cursor-pointer', currentLog?.id !== log.id ? '' : 'bg-background-default-hover')}
+              className={cn('border-b border-divider-subtle dark:border-none hover:bg-background-default-hover dark:hover:bg-zinc-700 cursor-pointer', currentLog?.id !== log.id ? '' : 'bg-background-default-hover dark:bg-zinc-700')}
               onClick={() => {
                 setCurrentLog(log)
                 setShowDrawer(true)
@@ -109,12 +109,12 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
               <td className='p-3 pr-2'>{statusTdRender(log.workflow_run.status)}</td>
               <td className='p-3 pr-2'>
                 <div className={cn(
-                  log.workflow_run.elapsed_time === 0 && 'text-text-quaternary',
+                  log.workflow_run.elapsed_time === 0 && 'text-tgai-text-3',
                 )}>{`${log.workflow_run.elapsed_time.toFixed(3)}s`}</div>
               </td>
               <td className='p-3 pr-2'>{log.workflow_run.total_tokens}</td>
               <td className='p-3 pr-2'>
-                <div className={cn(endUser === defaultValue ? 'text-text-quaternary' : 'text-text-secondary', 'overflow-hidden text-ellipsis whitespace-nowrap')}>
+                <div className={cn(endUser === defaultValue ? 'text-tgai-text-3' : 'text-tgai-text-2', 'overflow-hidden text-ellipsis whitespace-nowrap')}>
                   {endUser}
                 </div>
               </td>
@@ -127,7 +127,7 @@ const WorkflowAppLogList: FC<ILogs> = ({ logs, appDetail, onRefresh }) => {
         onClose={onCloseDrawer}
         mask={isMobile}
         footer={null}
-        panelClassname='mt-16 mx-2 sm:mr-2 mb-3 !p-0 !max-w-[600px] rounded-xl border border-components-panel-border'
+        panelClassname='mt-16 mx-2 sm:mr-2 mb-3 !p-0 !max-w-[600px] rounded-xl border border-components-panel-border dark:border-stone-600'
       >
         <DetailPanel onClose={onCloseDrawer} runID={currentLog?.workflow_run.id || ''} />
       </Drawer>

@@ -1,4 +1,4 @@
-# Dify Frontend
+# Frontend
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -16,7 +16,7 @@ npm install
 yarn install --frozen-lockfile
 ```
 
-Then, configure the environment variables. Create a file named `.env.local` in the current directory and copy the contents from `.env.example`. Modify the values of these environment variables according to your requirements:
+Then, configure the environment variables. Create a file named `.env.local` in the current directory and copy the contents from `.env.example`. Mo the values of these environment variables according to your requirements:
 
 ```bash
 cp .env.example .env.local
@@ -29,7 +29,6 @@ NEXT_PUBLIC_DEPLOY_ENV=DEVELOPMENT
 NEXT_PUBLIC_EDITION=SELF_HOSTED
 # The base URL of console application, refers to the Console base URL of WEB service if console domain is
 # different from api or web app domain.
-# example: http://cloud.dify.ai/console/api
 NEXT_PUBLIC_API_PREFIX=http://localhost:5001/console/api
 # The URL for Web APP, refers to the Web App base URL of WEB service if web app domain is different from
 # console or api domain.
@@ -103,16 +102,29 @@ npm run test
 ```
 
 If you are not familiar with writing tests, here is some code to refer to:
+
 * [classnames.spec.ts](./utils/classnames.spec.ts)
 * [index.spec.tsx](./app/components/base/button/index.spec.tsx)
 
-
-
-
 ## Documentation
 
-Visit <https://docs.dify.ai/getting-started/readme> to view the full documentation.
+Visit [https://docs.dify.ai/getting-started/readme](https://docs.dify.ai/getting-started/readme) to view the full documentation.
 
 ## Community
 
 The Dify community can be found on [Discord community](https://discord.gg/5AEfbxcd9k), where you can ask questions, voice ideas, and share your projects.
+
+docker build . -t  11153123/enty-web:0.0.2
+
+docker run -it -p 3000:3000 -e CONSOLE_API_URL=http://127.0.0.1:5001 -e APP_API_URL=http://127.0.0.1:5001 -e TG_API_3010=http://127.0.0.1:5001 -e TG_API_WS_3010=http://127.0.0.1:5001 11153123/enty-web:0.0.2
+
+docker run -it -p 3000:3000
+-e CONSOLE_API_URL=http://54.255.214.62:5001
+-e APP_API_URL=http://54.255.214.62:5001
+-e TG_API_3010=http://54.255.214.62:3010
+-e TG_API_WS_3010=ws://54.255.214.62:3010
+11153123/enty-web:0.0.3
+
+# Version History
+
+2024/08/19 fbf31b5d5269db67bed7dae4d3e9a09ded89dd0c

@@ -47,7 +47,7 @@ const Trigger: FC<TriggerProps> = ({
         'relative flex items-center px-2 h-8 rounded-lg  cursor-pointer',
         !isInWorkflow && 'border hover:border-[1.5px]',
         !isInWorkflow && (disabled ? 'border-[#F79009] bg-[#FFFAEB]' : 'border-[#444CE7] bg-primary-50'),
-        isInWorkflow && 'pr-[30px] bg-gray-100 border border-gray-100  hover:border-gray-200',
+        isInWorkflow && 'pr-[30px] bg-gray-100 dark:bg-tgai-input-background border border-gray-100 dark:border-tgai-input-background hover:border-gray-200 dark:hover:border-stone-600',
       )}
     >
       {
@@ -71,18 +71,18 @@ const Trigger: FC<TriggerProps> = ({
       {
         currentModel && (
           <ModelName
-            className='mr-1.5 text-gray-900'
+            className='mr-1.5 text-tgai-text-1'
             modelItem={currentModel}
             showMode
-            modeClassName={cn(!isInWorkflow ? '!text-[#444CE7] !border-[#A4BCFD]' : '!text-gray-500 !border-black/8')}
+            modeClassName={cn(!isInWorkflow ? '!text-[#444CE7] !border-[#A4BCFD]' : '!text-gray-500 !border-black/8 dark:!border-stone-600/92')}
             showFeatures
-            featuresClassName={cn(!isInWorkflow ? '!text-[#444CE7] !border-[#A4BCFD]' : '!text-gray-500 !border-black/8')}
+            featuresClassName={cn(!isInWorkflow ? '!text-[#444CE7] !border-[#A4BCFD]' : '!text-gray-500 !border-black/8 dark:!border-stone-600/92')}
           />
         )
       }
       {
         !currentModel && (
-          <div className='mr-1 text-[13px] font-medium text-gray-900 truncate'>
+          <div className='mr-1 text-[13px] font-medium text-tgai-text-1 truncate'>
             {modelId}
           </div>
         )
@@ -103,10 +103,10 @@ const Trigger: FC<TriggerProps> = ({
             </Tooltip>
           )
           : (
-            <SlidersH className={cn(!isInWorkflow ? 'text-indigo-600' : 'text-gray-500', 'shrink-0 w-4 h-4')} />
+            <SlidersH className={cn(!isInWorkflow ? 'text-indigo-600' : 'text-tgai-text-3', 'shrink-0 w-4 h-4')} />
           )
       }
-      {isInWorkflow && (<RiArrowDownSLine className='absolute top-[9px] right-2 w-3.5 h-3.5 text-gray-500' />)}
+      {isInWorkflow && (<RiArrowDownSLine className='absolute top-[9px] right-2 w-3.5 h-3.5 text-tgai-text-3' />)}
     </div>
   )
 }

@@ -146,13 +146,13 @@ const InputVarList: FC<Props> = ({
           return (
             <div key={variable} className='space-y-1'>
               <div className='flex items-center h-[18px] space-x-2'>
-                <span className='text-text-secondary code-sm-semibold'>{label[language] || label.en_US}</span>
-                <span className='text-text-tertiary system-xs-regular'>{paramType(type)}</span>
+                <span className='text-text-secondary dark:text-tgai-text-2 code-sm-semibold'>{label[language] || label.en_US}</span>
+                <span className='text-text-tertiary dark:text-tgai-text-3 system-xs-regular'>{paramType(type)}</span>
                 {required && <span className='text-util-colors-orange-dark-orange-dark-600 system-xs-regular'>Required</span>}
               </div>
               {isString && (
                 <Input
-                  className={cn(inputsIsFocus[variable] ? 'shadow-xs bg-gray-50 border-gray-300' : 'bg-gray-100 border-gray-100', 'rounded-lg px-3 py-[6px] border')}
+                  className={cn(inputsIsFocus[variable] ? 'shadow-xs dark:shadow-stone-800 bg-gray-50 dark:bg-zinc-700 border-gray-300 dark:border-stone-500' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-stone-700', 'rounded-lg px-3 py-[6px] border')}
                   value={varInput?.value as string || ''}
                   onChange={handleMixedTypeChange(variable)}
                   readOnly={readOnly}
@@ -201,7 +201,7 @@ const InputVarList: FC<Props> = ({
                   filterVar={(varPayload: Var) => varPayload.type === VarType.arrayFile}
                 />
               )}
-              {tooltip && <div className='text-text-tertiary body-xs-regular'>{tooltip[language] || tooltip.en_US}</div>}
+              {tooltip && <div className='text-text-tertiary dark:text-tgai-text-3 body-xs-regular'>{tooltip[language] || tooltip.en_US}</div>}
             </div>
           )
         })

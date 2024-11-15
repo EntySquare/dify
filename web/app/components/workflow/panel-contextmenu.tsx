@@ -15,7 +15,7 @@ import {
 } from './hooks'
 import AddBlock from './operator/add-block'
 import { useOperator } from './operator/hooks'
-import cn from '@/utils/classnames'
+import cn from '../../../utils/classnames'
 
 const PanelContextmenu = () => {
   const { t } = useTranslation()
@@ -41,7 +41,7 @@ const PanelContextmenu = () => {
   const renderTrigger = () => {
     return (
       <div
-        className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+        className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
       >
         {t('workflow.common.addBlock')}
       </div>
@@ -53,7 +53,7 @@ const PanelContextmenu = () => {
 
   return (
     <div
-      className='absolute w-[200px] rounded-lg border-[0.5px] border-gray-200 bg-white shadow-xl z-[9]'
+      className='absolute w-[200px] rounded-lg border-[0.5px] border-gray-200 bg-tgai-panel-background-3 dark:border-stone-600 shadow-xl dark:shadow-stone-800 z-[9]'
       style={{
         left: panelMenu.left,
         top: panelMenu.top,
@@ -69,7 +69,7 @@ const PanelContextmenu = () => {
           }}
         />
         <div
-          className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+          className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
           onClick={(e) => {
             e.stopPropagation()
             handleAddNote()
@@ -79,7 +79,7 @@ const PanelContextmenu = () => {
           {t('workflow.nodes.note.addNote')}
         </div>
         <div
-          className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+          className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
           onClick={() => {
             handleStartWorkflowRun()
             handlePaneContextmenuCancel()
@@ -89,12 +89,12 @@ const PanelContextmenu = () => {
           <ShortcutsName keys={['alt', 'r']} />
         </div>
       </div>
-      <div className='h-[1px] bg-gray-100'></div>
+      <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div>
       <div className='p-1'>
         <div
           className={cn(
-            'flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer',
-            !clipboardElements.length ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50',
+            'flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer',
+            !clipboardElements.length ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50 dark:hover:bg-zinc-600',
           )}
           onClick={() => {
             if (clipboardElements.length) {
@@ -107,16 +107,16 @@ const PanelContextmenu = () => {
           <ShortcutsName keys={['ctrl', 'v']} />
         </div>
       </div>
-      <div className='h-[1px] bg-gray-100'></div>
+      <div className='h-[1px] bg-gray-100 dark:bg-zinc-600'></div>
       <div className='p-1'>
         <div
-          className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+          className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
           onClick={() => exportCheck()}
         >
           {t('app.export')}
         </div>
         <div
-          className='flex items-center justify-between px-3 h-8 text-sm text-gray-700 rounded-lg cursor-pointer hover:bg-gray-50'
+          className='flex items-center justify-between px-3 h-8 text-sm text-tgai-text-2 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-600'
           onClick={() => setShowImportDSLModal(true)}
         >
           {t('workflow.common.importDSL')}

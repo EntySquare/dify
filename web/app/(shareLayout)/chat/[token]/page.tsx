@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import ChatWithHistoryWrap from '@/app/components/base/chat/chat-with-history'
+import ChatWithHistoryWrap from '../../../components/base/chat/chat-with-history'
 
 const Chat = () => {
   return (

@@ -19,8 +19,8 @@ import {
 } from './note-editor'
 import { THEME_MAP } from './constants'
 import { useNote } from './hooks'
-import type { NoteNodeType } from './types'
-import cn from '@/utils/classnames'
+import { NoteTheme, type NoteNodeType } from './types'
+import cn from '../../../../utils/classnames'
 
 const Icon = () => {
   return (
@@ -100,12 +100,13 @@ const NoteNode = ({
               </div>
             )
           }
-          <div className='grow px-3 py-2.5 overflow-y-auto'>
+          <div className='grow px-3 py-2.5 overflow-y-auto tgai-custom-scrollbar'>
             <div className={cn(
               data.selected && 'nodrag nopan nowheel cursor-text',
             )}>
               <NoteEditor
                 containerElement={ref.current}
+                theme={theme}
                 placeholder={t('workflow.nodes.note.editor.placeholder') || ''}
                 onChange={handleEditorChange}
               />
@@ -113,7 +114,7 @@ const NoteNode = ({
           </div>
           {
             data.showAuthor && (
-              <div className='p-3 pt-0 text-xs text-black/[0.32]'>
+              <div className={cn('p-3 pt-0 text-xs text-black/[0.32]', theme === NoteTheme.dark && "!text-tgai-text-4")}>
                 {data.author}
               </div>
             )

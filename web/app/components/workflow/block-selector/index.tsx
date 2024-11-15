@@ -114,7 +114,7 @@ const NodeSelector: FC<NodeSelectorProps> = ({
               <div
                 className={`
                   flex items-center justify-center 
-                  w-4 h-4 rounded-full bg-primary-600 cursor-pointer z-10
+                  w-4 h-4 rounded-full bg-tgai-primary cursor-pointer z-10
                   ${triggerClassName?.(open)}
                 `}
                 style={triggerStyle}
@@ -125,7 +125,7 @@ const NodeSelector: FC<NodeSelectorProps> = ({
         }
       </PortalToFollowElemTrigger>
       <PortalToFollowElemContent className='z-[1000]'>
-        <div className={`rounded-lg border-[0.5px] border-gray-200 bg-white shadow-lg ${popupClassName}`}>
+        <div className={`rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 bg-tgai-workflow-panel-background shadow-lg dark:shadow-stone-800 ${popupClassName}`}>
           <div className='px-2 pt-2' onClick={e => e.stopPropagation()}>
             <Input
               showLeftIcon

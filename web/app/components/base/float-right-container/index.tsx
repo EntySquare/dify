@@ -1,6 +1,6 @@
 'use client'
-import Drawer from '@/app/components/base/drawer'
-import type { IDrawerProps } from '@/app/components/base/drawer'
+import Drawer from '../drawer'
+import type { IDrawerProps } from '../drawer'
 
 type IFloatRightContainerProps = {
   isMobile: boolean

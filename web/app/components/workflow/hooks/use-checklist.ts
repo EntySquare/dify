@@ -21,9 +21,9 @@ import {
 import type { ToolNodeType } from '../nodes/tool/types'
 import { useIsChatMode } from './use-workflow'
 import { useNodesExtraData } from './use-nodes-data'
-import { useToastContext } from '@/app/components/base/toast'
-import { CollectionType } from '@/app/components/tools/types'
-import { useGetLanguage } from '@/context/i18n'
+import { useToastContext } from '../../base/toast'
+import { CollectionType } from '../../tools/types'
+import { useGetLanguage } from '../../../../context/i18n'
 
 export const useChecklist = (nodes: Node[], edges: Edge[]) => {
   const { t } = useTranslation()

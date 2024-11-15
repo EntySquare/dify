@@ -4,11 +4,15 @@ import { useWorkflowStore } from '../store'
 import type { NoteNodeType } from '../note-node/types'
 import { CUSTOM_NOTE_NODE } from '../note-node/constants'
 import { NoteTheme } from '../note-node/types'
-import { useAppContext } from '@/context/app-context'
+import { useAppContext } from '../../../../context/app-context'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 export const useOperator = () => {
   const workflowStore = useWorkflowStore()
   const { userProfile } = useAppContext()
+
+  const theme = useTGAIGlobalStore(state => state.theme)
 
   const handleAddNote = useCallback(() => {
     const { newNode } = generateNewNode({
@@ -18,7 +22,7 @@ export const useOperator = () => {
         desc: '',
         type: '' as any,
         text: '',
-        theme: NoteTheme.blue,
+        theme: theme === Theme.light ? NoteTheme.blue : NoteTheme.dark,
         author: userProfile?.name || '',
         showAuthor: true,
         width: 240,
@@ -33,7 +37,7 @@ export const useOperator = () => {
     workflowStore.setState({
       candidateNode: newNode,
     })
-  }, [workflowStore, userProfile])
+  }, [workflowStore, userProfile,theme])
 
   return {
     handleAddNote,

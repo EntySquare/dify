@@ -238,14 +238,14 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
     <Modal
       isShow
       onClose={() => { }}
-      className='!p-6 !mt-14 !max-w-none !w-[600px]'
+      className='!p-6 !mt-14 !max-w-none !w-[600x] dark:!bg-tgai-panel-background'
     >
       <div className='flex items-center justify-between'>
-        <div className='text-text-primary title-2xl-semi-bold'>{t('appDebug.feature.moderation.modal.title')}</div>
-        <div className='p-1 cursor-pointer' onClick={onCancel}><RiCloseLine className='w-4 h-4 text-text-tertiary'/></div>
+        <div className='text-tgai-text-1 title-2xl-semi-bold'>{t('appDebug.feature.moderation.modal.title')}</div>
+        <div className='p-1 cursor-pointer' onClick={onCancel}><RiCloseLine className='w-4 h-4 text-tgai-text-3'/></div>
       </div>
       <div className='py-2'>
-        <div className='leading-9 text-sm font-medium text-gray-900'>
+        <div className='leading-9 text-sm font-medium text-tgai-text-1'>
           {t('appDebug.feature.moderation.modal.provider.title')}
         </div>
         <div className='grid gap-2.5 grid-cols-3'>
@@ -254,15 +254,15 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
               <div
                 key={provider.key}
                 className={`
-                  flex items-center px-3 py-2 rounded-lg text-sm text-gray-900 cursor-pointer
-                  ${localeData.type === provider.key ? 'bg-white border-[1.5px] border-primary-400 shadow-sm' : 'border border-gray-100 bg-gray-25'}
+                  flex items-center px-3 py-2 rounded-lg text-sm text-tgai-text-1 cursor-pointer
+                  ${localeData.type === provider.key ? 'bg-white dark:bg-neutral-600 border-[1.5px] border-tgai-primary-5 shadow-sm dark:shadow-stone-800' : 'border border-gray-100 dark:border-stone-600 bg-gray-25 dark:bg-neutral-700'}
                   ${localeData.type === 'openai_moderation' && provider.key === 'openai_moderation' && !isOpenAIProviderConfigured && 'opacity-50'}
                 `}
                 onClick={() => handleDataTypeChange(provider.key)}
               >
                 <div className={`
                   mr-2 w-4 h-4 rounded-full border
-                  ${localeData.type === provider.key ? 'border-[5px] border-primary-600' : 'border border-gray-300'}`} />
+                  ${localeData.type === provider.key ? 'border-[5px] border-tgai-primary' : 'border border-gray-300 dark:border-stone-500'}`} />
                 {provider.name}
               </div>
             ))
@@ -270,12 +270,12 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
         </div>
         {
           !isLoading && !isOpenAIProviderConfigured && localeData.type === 'openai_moderation' && (
-            <div className='flex items-center mt-2 px-3 py-2 bg-[#FFFAEB] rounded-lg border border-[#FEF0C7]'>
+            <div className='flex items-center mt-2 px-3 py-2 bg-[#FFFAEB] dark:bg-red-800 rounded-lg border border-[#FEF0C7] dark:border-red-700'>
               <InfoCircle className='mr-1 w-4 h-4 text-[#F79009]' />
-              <div className='flex items-center text-xs font-medium text-gray-700'>
+              <div className='flex items-center text-xs font-medium text-tgai-text-2'>
                 {t('appDebug.feature.moderation.modal.openaiNotConfig.before')}
                 <span
-                  className='text-primary-600 cursor-pointer'
+                  className='text-tgai-primary cursor-pointer'
                   onClick={handleOpenSettingsModal}
                 >
                   &nbsp;{t('common.settings.provider')}&nbsp;
@@ -289,17 +289,17 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
       {
         localeData.type === 'keywords' && (
           <div className='py-2'>
-            <div className='mb-1 text-sm font-medium text-gray-900'>{t('appDebug.feature.moderation.modal.provider.keywords')}</div>
-            <div className='mb-2 text-xs text-gray-500'>{t('appDebug.feature.moderation.modal.keywords.tip')}</div>
-            <div className='relative px-3 py-2 h-[88px] bg-gray-100 rounded-lg'>
+            <div className='mb-1 text-sm font-medium text-tgai-text-1'>{t('appDebug.feature.moderation.modal.provider.keywords')}</div>
+            <div className='mb-2 text-xs text-tgai-text-2'>{t('appDebug.feature.moderation.modal.keywords.tip')}</div>
+            <div className='relative px-3 py-2 h-[88px] bg-gray-100 dark:bg-tgai-input-background rounded-lg'>
               <textarea
                 value={localeData.config?.keywords || ''}
                 onChange={handleDataKeywordsChange}
-                className='block w-full h-full bg-transparent text-sm outline-none appearance-none resize-none'
+                className='block w-full h-full bg-transparent text-sm text-tgai-text-1 outline-none appearance-none resize-none tgai-custom-scrollbar'
                 placeholder={t('appDebug.feature.moderation.modal.keywords.placeholder') || ''}
               />
-              <div className='absolute bottom-2 right-2 flex items-center px-1 h-5 rounded-md bg-gray-50 text-xs font-medium text-gray-300'>
-                <span>{(localeData.config?.keywords || '').split('\n').filter(Boolean).length}</span>/<span className='text-gray-500'>100 {t('appDebug.feature.moderation.modal.keywords.line')}</span>
+              <div className='absolute bottom-2 right-2 flex items-center px-1 h-5 rounded-md bg-gray-50 dark:bg-zinc-600 text-xs font-medium text-tgai-text-3'>
+                <span>{(localeData.config?.keywords || '').split('\n').filter(Boolean).length}</span>/<span className='text-tgai-text-2'>100 {t('appDebug.feature.moderation.modal.keywords.line')}</span>
               </div>
             </div>
           </div>
@@ -309,13 +309,13 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
         localeData.type === 'api' && (
           <div className='py-2'>
             <div className='flex items-center justify-between h-9'>
-              <div className='text-sm font-medium text-gray-900'>{t('common.apiBasedExtension.selector.title')}</div>
+              <div className='text-sm font-medium text-tgai-text-1'>{t('common.apiBasedExtension.selector.title')}</div>
               <a
                 href={t('common.apiBasedExtension.linkUrl') || '/'}
                 target='_blank' rel='noopener noreferrer'
-                className='group flex items-center text-xs text-gray-500 hover:text-primary-600'
+                className='group flex items-center text-xs text-tgai-text-3 hover:text-tgai-primary'
               >
-                <BookOpen01 className='mr-1 w-3 h-3 text-gray-500 group-hover:text-primary-600' />
+                <BookOpen01 className='mr-1 w-3 h-3 text-tgai-text-3 group-hover:text-tgai-primary' />
                 {t('common.apiBasedExtension.link')}
               </a>
             </div>
@@ -337,7 +337,7 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
           />
         )
       }
-      <div className='my-3 h-[1px] bg-gradient-to-r from-[#F3F4F6]'></div>
+      <div className='my-3 h-[1px] bg-gradient-to-r from-[#F3F4F6] dark:from-zinc-600'></div>
       <ModerationContent
         title={t('appDebug.feature.moderation.modal.content.input') || ''}
         config={localeData.config?.inputs_config || { enabled: false, preset_response: '' }}
@@ -352,7 +352,7 @@ const ModerationSettingModal: FC<ModerationSettingModalProps> = ({
         info={(localeData.type === 'api' && t('appDebug.feature.moderation.modal.content.fromApi')) || ''}
         showPreset={!(localeData.type === 'api')}
       />
-      <div className='mt-1 mb-8 text-xs font-medium text-gray-500'>{t('appDebug.feature.moderation.modal.content.condition')}</div>
+      <div className='mt-1 mb-8 text-xs font-medium text-tgai-text-3'>{t('appDebug.feature.moderation.modal.content.condition')}</div>
       <div className='flex items-center justify-end'>
         <Button
           onClick={onCancel}

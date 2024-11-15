@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Generator } from '@/app/components/base/icons/src/vender/other'
+import { Generator } from '../../../../base/icons/src/vender/other'
 
 export type IAutomaticBtnProps = {
   onClick: () => void

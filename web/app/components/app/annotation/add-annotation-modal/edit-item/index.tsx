@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Textarea from 'rc-textarea'
-import { Robot, User } from '@/app/components/base/icons/src/public/avatar'
+import { Robot, User } from '../../../../base/icons/src/public/avatar'
 
 export enum EditItemType {
   Query = 'query',

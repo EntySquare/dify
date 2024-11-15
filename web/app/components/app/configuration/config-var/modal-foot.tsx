@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import Button from '@/app/components/base/button'
+import Button from '../../../base/button'
 
 export type IModalFootProps = {
   onConfirm: () => void

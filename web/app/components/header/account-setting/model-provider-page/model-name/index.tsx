@@ -7,7 +7,7 @@ import { useLanguage } from '../hooks'
 import type { ModelItem } from '../declarations'
 import ModelBadge from '../model-badge'
 import FeatureIcon from '../model-selector/feature-icon'
-import classNames from '@/utils/classnames'
+import classNames from '../../../../../../utils/classnames'
 
 type ModelNameProps = PropsWithChildren<{
   modelItem: ModelItem
@@ -39,7 +39,7 @@ const ModelName: FC<ModelNameProps> = ({
   return (
     <div
       className={`
-        flex items-center truncate text-[13px] font-medium text-gray-800
+        flex items-center truncate text-[13px] font-medium text-tgai-text-1
         ${className}
       `}
     >

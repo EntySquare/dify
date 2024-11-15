@@ -78,19 +78,19 @@ const NewSegmentModal: FC<NewSegmentModalProps> = ({
     if (docForm === 'qa_model') {
       return (
         <>
-          <div className='mb-1 text-xs font-medium text-gray-500'>QUESTION</div>
+          <div className='mb-1 text-xs font-medium text-tgai-text-3'>QUESTION</div>
           <AutoHeightTextarea
             outerClassName='mb-4'
-            className='leading-6 text-md text-gray-800'
+            className='leading-6 text-md text-tgai-text-1 dark:bg-tgai-input-background'
             value={question}
             placeholder={t('datasetDocuments.segment.questionPlaceholder') || ''}
             onChange={e => setQuestion(e.target.value)}
             autoFocus
           />
-          <div className='mb-1 text-xs font-medium text-gray-500'>ANSWER</div>
+          <div className='mb-1 text-xs font-medium text-tgai-text-3'>ANSWER</div>
           <AutoHeightTextarea
             outerClassName='mb-4'
-            className='leading-6 text-md text-gray-800'
+            className='leading-6 text-md text-tgai-text-1 dark:bg-tgai-input-background'
             value={answer}
             placeholder={t('datasetDocuments.segment.answerPlaceholder') || ''}
             onChange={e => setAnswer(e.target.value)}
@@ -101,7 +101,7 @@ const NewSegmentModal: FC<NewSegmentModalProps> = ({
 
     return (
       <AutoHeightTextarea
-        className='leading-6 text-md text-gray-800'
+        className='leading-6 text-md text-tgai-text-1 dark:bg-tgai-input-background'
         value={question}
         placeholder={t('datasetDocuments.segment.contentPlaceholder') || ''}
         onChange={e => setQuestion(e.target.value)}
@@ -115,13 +115,13 @@ const NewSegmentModal: FC<NewSegmentModalProps> = ({
       <div className={'flex flex-col relative'}>
         <div className='absolute right-0 -top-0.5 flex items-center h-6'>
           <div className='flex justify-center items-center w-6 h-6 cursor-pointer' onClick={handleCancel}>
-            <RiCloseLine className='w-4 h-4 text-gray-500' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
         <div className='mb-[14px]'>
-          <span className='inline-flex items-center px-1.5 h-5 border border-gray-200 rounded-md'>
-            <Hash02 className='mr-0.5 w-3 h-3 text-gray-400' />
-            <span className='text-[11px] font-medium text-gray-500 italic'>
+          <span className='inline-flex items-center px-1.5 h-5 border border-gray-200 dark:border-stone-600 rounded-md'>
+            <Hash02 className='mr-0.5 w-3 h-3 text-tgai-text-3' />
+            <span className='text-[11px] font-medium text-tgai-text-3 italic'>
               {
                 docForm === 'qa_model'
                   ? t('datasetDocuments.segment.newQaSegment')
@@ -130,8 +130,8 @@ const NewSegmentModal: FC<NewSegmentModalProps> = ({
             </span>
           </span>
         </div>
-        <div className='mb-4 py-1.5 h-[420px] overflow-auto'>{renderContent()}</div>
-        <div className='text-xs font-medium text-gray-500'>{t('datasetDocuments.segment.keywords')}</div>
+        <div className='mb-4 py-1.5 h-[420px] overflow-auto tgai-custom-scrollbar'>{renderContent()}</div>
+        <div className='text-xs font-medium text-tgai-text-3'>{t('datasetDocuments.segment.keywords')}</div>
         <div className='mb-8'>
           <TagInput items={keywords} onChange={newKeywords => setKeywords(newKeywords)} />
         </div>

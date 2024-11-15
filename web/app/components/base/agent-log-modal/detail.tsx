@@ -98,7 +98,7 @@ const AgentLogDetail: FC<AgentLogDetailProps> = ({
         >{t('runLog.tracing')}</div>
       </div>
       {/* panel detail */}
-      <div className={cn('grow bg-white h-0 overflow-y-auto rounded-b-2xl', currentTab !== 'DETAIL' && '!bg-gray-50')}>
+      <div className={cn('grow bg-white h-0 overflow-y-auto tgai-custom-scrollbar rounded-b-2xl', currentTab !== 'DETAIL' && '!bg-gray-50')}>
         {loading && (
           <div className='flex h-full items-center justify-center bg-white'>
             <Loading />

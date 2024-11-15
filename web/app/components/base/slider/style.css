@@ -3,7 +3,8 @@
 }
 
 .slider-track {
-    background-color: var(--color-components-slider-range);
+    background-color: var(--tgai-primary);
+    /* background-color: var(--color-components-slider-range); */
 }
 
 .slider-track-1 {

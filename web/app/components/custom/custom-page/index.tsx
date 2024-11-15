@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import CustomWebAppBrand from '../custom-web-app-brand'
 import s from '../style.module.css'
-import GridMask from '@/app/components/base/grid-mask'
-import UpgradeBtn from '@/app/components/billing/upgrade-btn'
-import { useProviderContext } from '@/context/provider-context'
-import { Plan } from '@/app/components/billing/type'
-import { contactSalesUrl } from '@/app/components/billing/config'
+import GridMask from '../../base/grid-mask'
+import UpgradeBtn from '../../billing/upgrade-btn'
+import { useProviderContext } from '../../../../context/provider-context'
+import { Plan } from '../../billing/type'
+import { contactSalesUrl } from '../../billing/config'
 
 const CustomPage = () => {
   const { t } = useTranslation()

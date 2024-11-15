@@ -6,12 +6,12 @@ import RemoveEffectVarConfirm from '../_base/components/remove-effect-var-confir
 import useConfig from './use-config'
 import type { VariableAssignerNodeType } from './types'
 import VarGroupItem from './components/var-group-item'
-import cn from '@/utils/classnames'
-import { type NodePanelProps } from '@/app/components/workflow/types'
-import Split from '@/app/components/workflow/nodes/_base/components/split'
-import OutputVars, { VarItem } from '@/app/components/workflow/nodes/_base/components/output-vars'
-import Switch from '@/app/components/base/switch'
-import AddButton from '@/app/components/workflow/nodes/_base/components/add-button'
+import cn from '../../../../../utils/classnames'
+import { type NodePanelProps } from '../../types'
+import Split from '../_base/components/split'
+import OutputVars, { VarItem } from '../_base/components/output-vars'
+import Switch from '../../../base/switch'
+import AddButton from '../_base/components/add-button'
 
 const i18nPrefix = 'workflow.nodes.variableAssigner'
 const Panel: FC<NodePanelProps<VariableAssignerNodeType>> = ({

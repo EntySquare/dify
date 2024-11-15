@@ -39,4 +39,10 @@ export const THEME_MAP: Record<string, { outer: string; title: string; bg: strin
     bg: '#F5F3FF',
     border: '#C3B5FD',
   },
+  [NoteTheme.dark]: {
+    outer: 'var(--tgai-primary)',
+    title: 'var(--tgai-primary)',
+    bg: 'var(--tgai-workflow-panel-background)',
+    border: 'var(--tgai-primary)',
+  }
 }

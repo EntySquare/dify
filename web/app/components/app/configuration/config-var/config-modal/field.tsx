@@ -15,8 +15,8 @@ const Field: FC<Props> = ({
   children,
 }) => {
   return (
-    <div className={cn(className)}>
-      <div className='text-text-secondary system-sm-semibold leading-8'>{title}</div>
+    <div>
+      <div className='leading-8 text-[13px] system-sm-semibold text-tgai-text-2'>{title}</div>
       <div>{children}</div>
     </div>
   )

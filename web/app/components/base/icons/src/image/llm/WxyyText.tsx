@@ -3,7 +3,7 @@
 
 import * as React from 'react'
 import s from './WxyyText.module.css'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../../utils/classnames'
 
 const Icon = React.forwardRef<HTMLSpanElement, React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>>((
   { className, ...restProps },

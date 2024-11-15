@@ -4,8 +4,8 @@ import { type FC, useEffect } from 'react'
 import { useContext } from 'use-context-selector'
 import TemplateEn from './template/template.en.mdx'
 import TemplateZh from './template/template.zh.mdx'
-import I18n from '@/context/i18n'
-import { LanguagesSupported } from '@/i18n/language'
+import I18n from '../../../context/i18n'
+import { LanguagesSupported } from '../../../i18n/language'
 
 type DocProps = {
   apiBaseUrl: string
@@ -13,6 +13,7 @@ type DocProps = {
 const Doc: FC<DocProps> = ({
   apiBaseUrl,
 }) => {
+  // alert(apiBaseUrl)
   const { locale } = useContext(I18n)
 
   useEffect(() => {

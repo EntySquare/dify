@@ -2,14 +2,14 @@ import { useCallback, useState } from 'react'
 import produce from 'immer'
 import { useBoolean } from 'ahooks'
 import type { StartNodeType } from './types'
-import { ChangeType } from '@/app/components/workflow/types'
-import type { InputVar, MoreInfo, ValueSelector } from '@/app/components/workflow/types'
-import useNodeCrud from '@/app/components/workflow/nodes/_base/hooks/use-node-crud'
+import { ChangeType } from '../../types'
+import type { InputVar, MoreInfo, ValueSelector } from '../../types'
+import useNodeCrud from '../_base/hooks/use-node-crud'
 import {
   useIsChatMode,
   useNodesReadOnly,
   useWorkflow,
-} from '@/app/components/workflow/hooks'
+} from '../../hooks'
 
 const useConfig = (id: string, payload: StartNodeType) => {
   const { nodesReadOnly: readOnly } = useNodesReadOnly()

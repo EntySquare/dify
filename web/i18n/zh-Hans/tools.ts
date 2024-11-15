@@ -1,12 +1,13 @@
 const translation = {
   title: '工具',
   createCustomTool: '创建自定义工具',
-  customToolTip: '了解更多关于 Dify 自定义工具的信息',
+  customToolTip: '',
   type: {
     all: '全部',
     builtIn: '内置',
     custom: '自定义',
-    workflow: '工作流',
+    // workflow: '工作流',
+    workflow: '任务',
   },
   contribute: {
     line1: '我有兴趣为 ',
@@ -29,8 +30,10 @@ const translation = {
     add: '添加',
     added: '已添加',
     manageInTools: '去工具列表管理',
-    emptyTitle: '没有可用的工作流工具',
-    emptyTip: '去 “工作流 -> 发布为工具” 添加',
+    // emptyTitle: '没有可用的工作流工具',
+    emptyTitle: '没有可用的任务工具',
+    // emptyTip: '去 “工作流 -> 发布为工具” 添加',
+    emptyTip: '去 任务 -> 发布为工具” 添加',
   },
   createTool: {
     title: '创建自定义工具',

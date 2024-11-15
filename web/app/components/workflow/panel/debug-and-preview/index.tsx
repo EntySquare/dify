@@ -97,7 +97,7 @@ const DebugAndPreview = () => {
           </div>
         </div>
       </div>
-      <div className='grow rounded-b-2xl overflow-y-auto'>
+      <div className='grow rounded-b-2xl overflow-y-auto tgai-custom-scrollbar'>
         <ChatWrapper
           ref={chatRef}
           showConversationVariableModal={showConversationVariableModal}

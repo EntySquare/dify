@@ -12,7 +12,7 @@ export default function DataSourcePage() {
 
   return (
     <div className='mb-8'>
-      <div className='mb-2 text-sm font-medium text-gray-900'>{t('common.dataSource.add')}</div>
+      <div className='mb-2 text-sm font-medium text-tgai-text-1'>{t('common.dataSource.add')}</div>
       <DataSourceNotion workspaces={notionWorkspaces} />
       <DataSourceWebsite provider={DataSourceProvider.jinaReader} />
       <DataSourceWebsite provider={DataSourceProvider.fireCrawl} />

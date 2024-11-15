@@ -36,7 +36,7 @@ const rowClass = `
   flex justify-between py-4 flex-wrap gap-y-2
 `
 const labelClass = `
-  flex items-center w-[168px] h-9
+  flex items-center w-[168px] h-9 text-tgai-text-1
 `
 
 const getKey = (pageIndex: number, previousPageData: DataSetListResponse) => {
@@ -224,7 +224,7 @@ const Form = () => {
       </div>
       {currentDataset && currentDataset.indexing_technique && (
         <>
-          <div className='w-full h-0 border-b-[0.5px] border-b-gray-200 my-2' />
+          <div className='w-full h-0 border-b-[0.5px] border-b-gray-200 dark:border-b-stone-600 my-2' />
           <div className={rowClass}>
             <div className={labelClass}>
               <div className='text-text-secondary system-sm-semibold'>{t('datasetSettings.form.indexMethod')}</div>
@@ -303,11 +303,11 @@ const Form = () => {
         : <div className={rowClass}>
           <div className={labelClass}>
             <div>
-              <div className='text-text-secondary system-sm-semibold'>{t('datasetSettings.form.retrievalSetting.title')}</div>
-              <div className='leading-[18px] text-xs font-normal text-gray-500'>
-                <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-4-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
-                {t('datasetSettings.form.retrievalSetting.description')}
-              </div>
+              {/*<div className='text-text-secondary system-sm-semibold'>{t('datasetSettings.form.retrievalSetting.title')}</div>*/}
+              {/*<div className='leading-[18px] text-xs font-normal text-gray-500'>*/}
+              {/*  <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-4-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>*/}
+              {/*  {t('datasetSettings.form.retrievalSetting.description')}*/}
+              {/*</div>*/}
             </div>
           </div>
           <div className='w-[480px]'>

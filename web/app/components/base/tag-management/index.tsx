@@ -6,12 +6,12 @@ import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
 import { useStore as useTagStore } from './store'
 import TagItemEditor from './tag-item-editor'
-import Modal from '@/app/components/base/modal'
-import { ToastContext } from '@/app/components/base/toast'
+import Modal from '../modal'
+import { ToastContext } from '../toast'
 import {
   createTag,
   fetchTagList,
-} from '@/service/tag'
+} from '../../../../service/tag'
 
 type TagManagementModalProps = {
   type: 'knowledge' | 'app'
@@ -60,17 +60,17 @@ const TagManagementModal = ({ show, type }: TagManagementModalProps) => {
 
   return (
     <Modal
-      className='px-8 py-6 !max-w-[600px] !w-[600px] rounded-xl'
+      className='px-8 py-6 !max-w-[600px] !w-[600px] rounded-xl !bg-tgai-panel-background border-tgai-panel-border border'
       isShow={show}
       onClose={() => setShowTagManagementModal(false)}
     >
-      <div className='relative pb-2 text-xl font-semibold leading-[30px] text-gray-900'>{t('common.tag.manageTags')}</div>
+      <div className='relative pb-2 text-xl font-semibold leading-[30px] text-tgai-text-1'>{t('common.tag.manageTags')}</div>
       <div className='absolute right-4 top-4 p-2 cursor-pointer' onClick={() => setShowTagManagementModal(false)}>
-        <RiCloseLine className='w-4 h-4 text-gray-500' />
+        <RiCloseLine className='w-4 h-4 text-tgai-text-2' />
       </div>
       <div className='mt-3 flex flex-wrap gap-2'>
         <input
-          className='shrink-0 w-[100px] px-2 py-1 rounded-lg border border-dashed border-gray-200 text-sm leading-5 text-gray-700 outline-none appearance-none  placeholder:text-gray-300 caret-primary-600 focus:border-solid'
+          className='shrink-0 w-[100px] px-2 py-1 bg-tgai-input-background rounded-lg border border-dashed border-gray-200 text-sm leading-5 text-tgai-text-1 outline-none appearance-none  placeholder:text-tgai-text-2 caret-tgai-primary focus:border-solid'
           placeholder={t('common.tag.addNew') || ''}
           autoFocus
           value={name}

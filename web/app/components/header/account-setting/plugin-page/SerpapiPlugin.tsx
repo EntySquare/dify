@@ -4,9 +4,9 @@ import SerpapiLogo from '../../assets/serpapi.png'
 import KeyValidator from '../key-validator'
 import type { Form, ValidateValue } from '../key-validator/declarations'
 import { updatePluginKey, validatePluginKey } from './utils'
-import { useToastContext } from '@/app/components/base/toast'
-import type { PluginProvider } from '@/models/common'
-import { useAppContext } from '@/context/app-context'
+import { useToastContext } from '../../../base/toast'
+import type { PluginProvider } from '../../../../../models/common'
+import { useAppContext } from '../../../../../context/app-context'
 
 type SerpapiPluginProps = {
   plugin: PluginProvider

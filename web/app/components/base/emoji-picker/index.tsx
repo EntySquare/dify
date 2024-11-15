@@ -4,10 +4,10 @@ import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import s from './style.module.css'
 import EmojiPickerInner from './Inner'
-import cn from '@/utils/classnames'
-import Divider from '@/app/components/base/divider'
-import Button from '@/app/components/base/button'
-import Modal from '@/app/components/base/modal'
+import cn from '../../../../utils/classnames'
+import Divider from '../divider'
+import Button from '../button'
+import Modal from '../modal'
 
 type IEmojiPickerProps = {
   isModal?: boolean
@@ -37,7 +37,7 @@ const EmojiPicker: FC<IEmojiPickerProps> = ({
       isShow
       closable={false}
       wrapperClassName={className}
-      className={cn(s.container, '!w-[362px] !p-0')}
+      className={cn(s.container, '!w-[362px] !p-0 dark:!border-stone-600 dark:!shadow-stone-800')}
     >
       <EmojiPickerInner
         className="pt-3"

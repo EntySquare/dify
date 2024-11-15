@@ -3,8 +3,8 @@ import type { FC } from 'react'
 import React from 'react'
 import UpgradeBtn from '../upgrade-btn'
 import { Plan } from '../type'
-import cn from '@/utils/classnames'
-import { useProviderContext } from '@/context/provider-context'
+import cn from '../../../../utils/classnames'
+import { useProviderContext } from '../../../../context/provider-context'
 
 type Props = {
   onClick: () => void

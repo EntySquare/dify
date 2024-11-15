@@ -82,6 +82,8 @@ const VarList: FC<Props> = ({
             value={list[index].variable}
             onChange={handleVarNameChange(index)}
             placeholder={t('workflow.common.variableNamePlaceholder')!}
+            className='w-[120px] h-8 leading-8 px-2.5 rounded-lg border-0 bg-gray-100 dark:bg-tgai-input-background text-tgai-text-1 text-[13px]  placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600'
+            type='text'
           />
           <VarReferencePicker
             nodeId={nodeId}
@@ -97,7 +99,7 @@ const VarList: FC<Props> = ({
           />
           {!readonly && (
             <RemoveButton
-              className='!p-2 !bg-gray-100 hover:!bg-gray-200'
+              className='!p-2 !bg-gray-100 dark:!bg-tgai-input-background hover:!bg-gray-200 dark:hover:!bg-zinc-600'
               onClick={handleVarRemove(index)}
             />
           )}

@@ -41,21 +41,21 @@ const Panel: FC<Props> = ({
   const isWebsite = type === DataSourceType.website
 
   return (
-    <div className='mb-2 border-[0.5px] border-gray-200 bg-gray-50 rounded-xl'>
+    <div className='mb-2 border-[0.5px] border-gray-200 bg-gray-50 dark:bg-zinc-700 dark:border-zinc-600 rounded-xl'>
       <div className='flex items-center px-3 py-[9px]'>
-        <div className={cn(s[`${type}-icon`], 'w-8 h-8 mr-3 border border-gray-100 rounded-lg')} />
+        <div className={cn(s[`${type}-icon`], 'w-8 h-8 mr-3 border border-gray-100 dark:border-zinc-500 rounded-lg')} />
         <div className='grow'>
           <div className='flex items-center h-5'>
-            <div className='text-sm font-medium text-gray-800'>{t(`common.dataSource.${type}.title`)}</div>
+            <div className='text-sm font-medium text-tgai-text-1'>{t(`common.dataSource.${type}.title`)}</div>
             {isWebsite && (
-              <div className='ml-1 leading-[18px] px-1.5 rounded-md bg-white border border-gray-100 text-xs font-medium text-gray-700'>
-                <span className='text-gray-500'>{t('common.dataSource.website.with')}</span> { provider === DataSourceProvider.fireCrawl ? '🔥 Firecrawl' : 'Jina Reader'}
+              <div className='ml-1 leading-[18px] px-1.5 rounded-md bg-white dark:bg-neutral-800 border border-gray-100 dark:border-neutral-500 text-xs font-medium text-tgai-text-2'>
+                <span className='text-tgai-text-3'>{t('common.dataSource.website.with')}</span> { provider === DataSourceProvider.fireCrawl ? '🔥 Firecrawl' : 'Jina Reader'}
               </div>
             )}
           </div>
           {
             !isConfigured && (
-              <div className='leading-5 text-xs text-gray-500'>
+              <div className='leading-5 text-xs text-tgai-text-3'>
                 {t(`common.dataSource.${type}.description`)}
               </div>
             )
@@ -68,8 +68,8 @@ const Panel: FC<Props> = ({
                 ? (
                   <div
                     className={
-                      `flex items-center ml-3 px-3 h-7 bg-white border border-gray-200
-                  rounded-md text-xs font-medium text-gray-700
+                      `flex items-center ml-3 px-3 h-7 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-600
+                  rounded-md text-xs font-medium text-tgai-text-2
                   ${!readOnly ? 'cursor-pointer' : 'grayscale opacity-50 cursor-default'}`
                     }
                     onClick={onConfigure}
@@ -81,7 +81,7 @@ const Panel: FC<Props> = ({
                   <>
                     {isSupportList && <div
                       className={
-                        `flex items-center px-3 py-1 min-h-7 bg-white border-[0.5px] border-gray-200 text-xs font-medium text-primary-600 rounded-md
+                        `flex items-center px-3 py-1 min-h-7 bg-white dark:bg-neutral-800 border-[0.5px] border-gray-200 dark:border-neutral-600 text-xs font-medium text-tgai-primary rounded-md
                   ${!readOnly ? 'cursor-pointer' : 'grayscale opacity-50 cursor-default'}`
                       }
                       onClick={onConfigure}
@@ -98,8 +98,8 @@ const Panel: FC<Props> = ({
         {isWebsite && !isConfigured && (
           <div
             className={
-              `flex items-center ml-3 px-3 h-7 bg-white border border-gray-200
-              rounded-md text-xs font-medium text-gray-700
+              `flex items-center ml-3 px-3 h-7 bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-600
+              rounded-md text-xs font-medium text-tgai-text-2
               ${!readOnly ? 'cursor-pointer' : 'grayscale opacity-50 cursor-default'}`
             }
             onClick={!readOnly ? onConfigure : undefined}
@@ -113,10 +113,10 @@ const Panel: FC<Props> = ({
         isConfigured && (
           <>
             <div className='flex items-center px-3 h-[18px]'>
-              <div className='text-xs font-medium text-gray-500'>
+              <div className='text-xs font-medium text-tgai-text-3'>
                 {isNotion ? t('common.dataSource.notion.connectedWorkspace') : t('common.dataSource.website.configuredCrawlers')}
               </div>
-              <div className='grow ml-3 border-t border-t-gray-100' />
+              <div className='grow ml-3 border-t border-t-gray-100 dark:border-t-stone-700' />
             </div>
             <div className='px-3 pt-2 pb-3'>
               {

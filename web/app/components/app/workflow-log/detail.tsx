@@ -15,9 +15,9 @@ const DetailPanel: FC<ILogDetail> = ({ runID, onClose }) => {
   return (
     <div className='grow relative flex flex-col pt-3'>
       <span className='absolute right-3 top-4 p-1 cursor-pointer z-20' onClick={onClose}>
-        <RiCloseLine className='w-4 h-4 text-text-tertiary' />
+        <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
       </span>
-      <h1 className='shrink-0 px-4 py-1 text-text-primary system-xl-semibold'>{t('appLog.runDetail.workflowTitle')}</h1>
+      <h1 className='shrink-0 px-4 py-1 text-tgai-text-1 system-xl-semibold'>{t('appLog.runDetail.workflowTitle')}</h1>
       <Run runID={runID}/>
     </div>
   )

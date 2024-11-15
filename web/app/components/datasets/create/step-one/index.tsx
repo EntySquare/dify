@@ -46,8 +46,8 @@ export const NotionConnector = ({ onSetting }: NotionConnectorProps) => {
   const { t } = useTranslation()
 
   return (
-    <div className={s.notionConnectionTip}>
-      <span className={s.notionIcon} />
+    <div className={cn(s.notionConnectionTip, "dark:!bg-tgai-panel-background-3")}>
+      <span className={cn(s.notionIcon, "dark:!bg-tgai-panel-background-4 dark:!border-stone-600 dark:!shadow-lg dark:!shadow-stone-700")} />
       <div className={s.title}>{t('datasetCreation.stepOne.notionSyncTitle')}</div>
       <div className={s.tip}>{t('datasetCreation.stepOne.notionSyncTip')}</div>
       <Button className='h-8' variant='primary' onClick={onSetting}>{t('datasetCreation.stepOne.connect')}</Button>
@@ -123,23 +123,31 @@ const StepOne = ({
 
     return false
   }, [files])
+
+  const dataSourceItemClass = "dark:!border-stone-600 dark:!shadow-stone-700 dark:!shadow-sm dark:hover:!shadow-lg dark:hover:!shadow-stone-700 dark:hover:!bg-zinc-700 dark:hover:!border-tgai-primary-7"
+  const dataSourceItemActiveClass = "dark:!bg-zinc-700 dark:hover:!shadow-sm dark:hover:!bg-zinc-700 dark:!border-tgai-primary dark:hover:!border-tgai-primary"
+  const dataSourceItemDisabledClass = "dark:!bg-zinc-800 dark:!border-stone-700 dark:hover:!border-stone-700 dark:hover:!bg-zinc-700 dark:hover:!shadow-sm dark:!text-tgai-text-3"
+
   return (
     <div className='flex w-full h-full'>
-      <div className='grow overflow-y-auto relative'>
+      <div className='grow overflow-y-auto tgai-custom-scrollbar relative tgai-custom-scrollbar'>
         {
           shouldShowDataSourceTypeList && (
-            <div className={s.stepHeader}>{t('datasetCreation.steps.one')}</div>
+            <div className={cn(s.stepHeader)}>{t('datasetCreation.steps.one')}</div>
           )
         }
-        <div className={s.form}>
+        <div className={cn(s.form, "dark:!bg-tgai-panel-background")}>
           {
             shouldShowDataSourceTypeList && (
               <div className='flex items-center mb-8 flex-wrap gap-y-4'>
                 <div
                   className={cn(
                     s.dataSourceItem,
+                    dataSourceItemClass,
                     dataSourceType === DataSourceType.FILE && s.active,
+                    dataSourceType === DataSourceType.FILE && dataSourceItemActiveClass,
                     dataSourceTypeDisable && dataSourceType !== DataSourceType.FILE && s.disabled,
+                    dataSourceTypeDisable && dataSourceType !== DataSourceType.FILE && dataSourceItemDisabledClass,
                   )}
                   onClick={() => {
                     if (dataSourceTypeDisable)
@@ -155,8 +163,11 @@ const StepOne = ({
                 <div
                   className={cn(
                     s.dataSourceItem,
+                    dataSourceItemClass,
                     dataSourceType === DataSourceType.NOTION && s.active,
+                    dataSourceType === DataSourceType.NOTION && dataSourceItemActiveClass,
                     dataSourceTypeDisable && dataSourceType !== DataSourceType.NOTION && s.disabled,
+                    dataSourceTypeDisable && dataSourceType !== DataSourceType.NOTION && dataSourceItemDisabledClass,
                   )}
                   onClick={() => {
                     if (dataSourceTypeDisable)
@@ -172,8 +183,11 @@ const StepOne = ({
                 <div
                   className={cn(
                     s.dataSourceItem,
+                    dataSourceItemClass,
                     dataSourceType === DataSourceType.WEB && s.active,
+                    dataSourceType === DataSourceType.WEB && dataSourceItemActiveClass,
                     dataSourceTypeDisable && dataSourceType !== DataSourceType.WEB && s.disabled,
+                    dataSourceTypeDisable && dataSourceType !== DataSourceType.WEB && dataSourceItemDisabledClass
                   )}
                   onClick={() => changeType(DataSourceType.WEB)}
                 >
@@ -187,7 +201,7 @@ const StepOne = ({
             <>
               <FileUploader
                 fileList={files}
-                titleClassName={!shouldShowDataSourceTypeList ? 'mt-[30px] !mb-[44px] !text-lg !font-semibold !text-gray-900' : undefined}
+                titleClassName={!shouldShowDataSourceTypeList ? 'mt-[30px] !mb-[44px] !text-lg !font-semibold !text-tgai-text-1' : undefined}
                 prepareFileList={updateFileList}
                 onFileListUpdate={updateFileList}
                 onFileUpdate={updateFile}
@@ -247,7 +261,7 @@ const StepOne = ({
           )}
           {!datasetId && (
             <>
-              <div className={s.dividerLine} />
+              <div className={cn(s.dividerLine, "dark:!bg-stone-600")} />
               <div onClick={modalShowHandle} className={s.OtherCreationOption}>{t('datasetCreation.stepOne.emptyDatasetCreation')}</div>
             </>
           )}

@@ -5,8 +5,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { varHighlightHTML } from '../../app/configuration/base/var-highlight'
 import Toast from '../toast'
-import classNames from '@/utils/classnames'
-import { checkKeys } from '@/utils/var'
+import classNames from '../../../../utils/classnames'
+import { checkKeys } from '../../../../utils/var'
 
 // regex to match the {{}} and replace it with a span
 const regex = /\{\{([^}]+)\}\}/g
@@ -107,7 +107,7 @@ const BlockInput: FC<IBlockInputProps> = ({
   const editAreaClassName = 'focus:outline-none bg-transparent text-sm'
 
   const textAreaContent = (
-    <div className={classNames(readonly ? 'max-h-[180px] pb-5' : 'h-[180px]', ' overflow-y-auto')} onClick={() => !readonly && setIsEditing(true)}>
+    <div className={classNames(readonly ? 'max-h-[180px] pb-5' : 'h-[180px]', ' overflow-y-auto tgai-custom-scrollbar')} onClick={() => !readonly && setIsEditing(true)}>
       {isEditing
         ? <div className='h-full px-4 py-2'>
           <textarea
@@ -130,7 +130,7 @@ const BlockInput: FC<IBlockInputProps> = ({
     </div>)
 
   return (
-    <div className={classNames('block-input w-full overflow-y-auto bg-white border-none rounded-xl')}>
+    <div className={classNames('block-input w-full overflow-y-auto tgai-custom-scrollbar bg-white border-none rounded-xl')}>
       {textAreaContent}
       {/* footer */}
       {!readonly && (

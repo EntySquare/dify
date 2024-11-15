@@ -86,21 +86,21 @@ const CreateAppModal = ({
       <Modal
         isShow={show}
         onClose={() => {}}
-        className='relative !max-w-[480px] px-8'
+        className='relative !max-w-[480px] px-8 !bg-tgai-panel-background border-tgai-panel-border border'
       >
         <div className='absolute right-4 top-4 p-2 cursor-pointer' onClick={onHide}>
-          <RiCloseLine className='w-4 h-4 text-gray-500' />
+          <RiCloseLine className='w-4 h-4 text-tgai-text-2' />
         </div>
         {isEditModal && (
-          <div className='mb-9 font-semibold text-xl leading-[30px] text-gray-900'>{t('app.editAppTitle')}</div>
+          <div className='mb-9 font-semibold text-xl leading-[30px] text-tgai-text-1'>{t('app.editAppTitle')}</div>
         )}
         {!isEditModal && (
-          <div className='mb-9 font-semibold text-xl leading-[30px] text-gray-900'>{t('explore.appCustomize.title', { name: appName })}</div>
+          <div className='mb-9 font-semibold text-xl leading-[30px] text-tgai-text-1'>{t('explore.appCustomize.title', { name: appName })}</div>
         )}
         <div className='mb-9'>
           {/* icon & name */}
           <div className='pt-2'>
-            <div className='py-2 text-sm font-medium leading-[20px] text-gray-900'>{t('app.newApp.captionName')}</div>
+            <div className='py-2 text-sm font-medium leading-[20px] text-tgai-text-1'>{t('app.newApp.captionName')}</div>
             <div className='flex items-center justify-between space-x-2'>
               <AppIcon
                 size='large'
@@ -121,7 +121,7 @@ const CreateAppModal = ({
           </div>
           {/* description */}
           <div className='pt-2'>
-            <div className='py-2 text-sm font-medium leading-[20px] text-gray-900'>{t('app.newApp.captionDescription')}</div>
+            <div className='py-2 text-sm font-medium leading-[20px] text-tgai-text-1'>{t('app.newApp.captionDescription')}</div>
             <Textarea
               className='resize-none'
               placeholder={t('app.newApp.appDescriptionPlaceholder') || ''}
@@ -133,13 +133,13 @@ const CreateAppModal = ({
           {isEditModal && (appMode === 'chat' || appMode === 'advanced-chat' || appMode === 'agent-chat') && (
             <div className='pt-2'>
               <div className='flex justify-between items-center'>
-                <div className='py-2 text-sm font-medium leading-[20px] text-gray-900'>{t('app.answerIcon.title')}</div>
+                <div className='py-2 text-sm font-medium leading-[20px] text-tgai-text-1'>{t('app.answerIcon.title')}</div>
                 <Switch
                   defaultValue={useIconAsAnswerIcon}
                   onChange={v => setUseIconAsAnswerIcon(v)}
                 />
               </div>
-              <p className='body-xs-regular text-gray-500'>{t('app.answerIcon.descriptionInExplore')}</p>
+              <p className='body-xs-regular text-tgai-text-3'>{t('app.answerIcon.descriptionInExplore')}</p>
             </div>
           )}
           {!isEditModal && isAppsFull && <AppsFull loc='app-explore-create' />}

@@ -112,7 +112,7 @@ const Editor: FC<Props> = ({
             <Tooltip
               popupContent={`${t('workflow.common.insertVarTip')}`}
             >
-              <div className='p-0.5 rounded-[5px] shadow-lg cursor-pointer bg-white hover:bg-gray-100 border-[0.5px] border-black/5'>
+              <div className='p-0.5 rounded-[5px] shadow-lg cursor-pointer bg-white dark:bg-neutral-600 hover:bg-gray-100 dark:hover:bg-neutral-500 border-[0.5px] border-black/5 dark:border-stone-600/95'>
                 <Variable02 className='w-3.5 h-3.5 text-components-button-secondary-accent-text' />
               </div>
             </Tooltip>

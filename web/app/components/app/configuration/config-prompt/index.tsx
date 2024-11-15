@@ -8,12 +8,12 @@ import {
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import SimplePromptInput from './simple-prompt-input'
-import AdvancedMessageInput from '@/app/components/app/configuration/config-prompt/advanced-prompt-input'
-import { PromptRole } from '@/models/debug'
-import type { PromptItem, PromptVariable } from '@/models/debug'
-import { type AppType, ModelModeType } from '@/types/app'
-import ConfigContext from '@/context/debug-configuration'
-import { MAX_PROMPT_MESSAGE_LENGTH } from '@/config'
+import AdvancedMessageInput from './advanced-prompt-input'
+import { PromptRole } from '../../../../../models/debug'
+import type { PromptItem, PromptVariable } from '../../../../../models/debug'
+import { type AppType, ModelModeType } from '../../../../../types/app'
+import ConfigContext from '../../../../../context/debug-configuration'
+import { MAX_PROMPT_MESSAGE_LENGTH } from '../../../../../config'
 export type IPromptProps = {
   mode: AppType
   promptTemplate: string
@@ -157,7 +157,7 @@ const Prompt: FC<IPromptProps> = ({
       {(modelModeType === ModelModeType.chat && (currentAdvancedPrompt as PromptItem[]).length < MAX_PROMPT_MESSAGE_LENGTH) && (
         <div
           onClick={handleAddMessage}
-          className='mt-3 flex items-center h-8 justify-center bg-gray-50 rounded-lg cursor-pointer text-[13px] font-medium text-gray-700 space-x-2'>
+          className='mt-3 flex items-center h-8 justify-center bg-gray-50 dark:bg-tgai-input-background rounded-lg cursor-pointer text-[13px] font-medium text-tgai-text-2 space-x-2'>
           <RiAddLine className='w-4 h-4' />
           <div>{t('appDebug.promptMode.operation.addMessage')}</div>
         </div>

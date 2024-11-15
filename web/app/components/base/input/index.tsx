@@ -52,7 +52,7 @@ const Input = ({
       <input
         style={styleCss}
         className={cn(
-          'w-full py-[7px] bg-components-input-bg-normal border border-transparent text-components-input-text-filled hover:bg-components-input-bg-hover hover:border-components-input-border-hover focus:bg-components-input-bg-active focus:border-components-input-border-active focus:shadow-xs placeholder:text-components-input-text-placeholder appearance-none outline-none caret-primary-600',
+          'w-full py-[7px] bg-components-input-bg-normal dark:bg-tgai-input-background border border-transparent dark:border-stone-700 text-components-input-text-filled dark:text-tgai-text-1 hover:bg-components-input-bg-hover dark:hover:bg-zinc-600 hover:border-components-input-border-hover dark:hover:border-stone-600 focus:bg-components-input-bg-active dark:focus:bg-zinc-600 focus:border-components-input-border-active dark:focus:border-stone-600 focus:shadow-xs dark:focus:shadow-stone-800 placeholder:text-components-input-text-placeholder dark:placeholder:text-tgai-text-3 appearance-none outline-none caret-tgai-primary',
           inputVariants({ size }),
           showLeftIcon && 'pl-[26px]',
           showLeftIcon && size === 'large' && 'pl-7',
@@ -60,8 +60,8 @@ const Input = ({
           showClearIcon && value && size === 'large' && 'pr-7',
           destructive && 'pr-[26px]',
           destructive && size === 'large' && 'pr-7',
-          disabled && 'bg-components-input-bg-disabled border-transparent text-components-input-text-filled-disabled cursor-not-allowed hover:bg-components-input-bg-disabled hover:border-transparent',
-          destructive && 'bg-components-input-bg-destructive border-components-input-border-destructive text-components-input-text-filled hover:bg-components-input-bg-destructive hover:border-components-input-border-destructive focus:bg-components-input-bg-destructive focus:border-components-input-border-destructive',
+          disabled && 'bg-components-input-bg-disabled dark:bg-zinc-800 border-transparent dark:border-transparent text-components-input-text-filled-disabled dark:text-tgai-text-2 cursor-not-allowed hover:bg-components-input-bg-disabled dark:hover:bg-zinc-800 hover:border-transparent dark:hover:border-transparent',
+          destructive && 'bg-components-input-bg-destructive dark:bg-components-input-bg-destructive border-components-input-border-destructive dark:border-components-input-border-destructive text-components-input-text-filled dark:text-components-input-text-filled hover:bg-components-input-bg-destructive dark:hover:bg-components-input-bg-destructive hover:border-components-input-border-destructive dark:hover:border-components-input-border-destructive focus:bg-components-input-bg-destructive dark:focus:bg-components-input-bg-destructive focus:border-components-input-border-destructive dark:focus:border-components-input-border-destructive',
           className,
         )}
         placeholder={placeholder ?? (showLeftIcon ? t('common.operation.search') ?? '' : t('common.placeholder.input'))}
@@ -72,7 +72,7 @@ const Input = ({
       />
       {showClearIcon && value && !disabled && !destructive && (
         <div className={cn('absolute right-2 top-1/2 -translate-y-1/2 group p-[1px] cursor-pointer')} onClick={onClear}>
-          <RiCloseCircleFill className='w-3.5 h-3.5 text-text-quaternary cursor-pointer group-hover:text-text-tertiary' />
+          <RiCloseCircleFill className='w-3.5 h-3.5 text-tgai-text-4 cursor-pointer group-hover:text-tgai-text-3' />
         </div>
       )}
       {destructive && (

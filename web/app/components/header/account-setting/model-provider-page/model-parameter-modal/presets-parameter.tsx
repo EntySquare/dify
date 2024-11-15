@@ -2,12 +2,12 @@ import type { FC } from 'react'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { RiArrowDownSLine } from '@remixicon/react'
-import Dropdown from '@/app/components/base/dropdown'
-import { SlidersH } from '@/app/components/base/icons/src/vender/line/mediaAndDevices'
-import { Brush01 } from '@/app/components/base/icons/src/vender/solid/editor'
-import { Scales02 } from '@/app/components/base/icons/src/vender/solid/FinanceAndECommerce'
-import { Target04 } from '@/app/components/base/icons/src/vender/solid/general'
-import { TONE_LIST } from '@/config'
+import Dropdown from '../../../../base/dropdown'
+import { SlidersH } from '../../../../base/icons/src/vender/line/mediaAndDevices'
+import { Brush01 } from '../../../../base/icons/src/vender/solid/editor'
+import { Scales02 } from '../../../../base/icons/src/vender/solid/FinanceAndECommerce'
+import { Target04 } from '../../../../base/icons/src/vender/solid/general'
+import { TONE_LIST } from '../../../../../../config'
 
 type PresetsParameterProps = {
   onSelect: (toneId: number) => void
@@ -20,23 +20,23 @@ const PresetsParameter: FC<PresetsParameterProps> = ({
     return (
       <div
         className={`
-          flex items-center px-[7px] h-7 rounded-md border-[0.5px] border-gray-200 shadow-xs
-          text-xs font-medium text-gray-700 cursor-pointer
-          ${open && 'bg-gray-100'}
+          flex items-center px-[7px] h-7 rounded-md border-[0.5px] border-gray-200 dark:border-stone-600 shadow-xs
+          text-xs font-medium text-tgai-text-2 cursor-pointer
+          ${open && 'bg-gray-100 dark:bg-tgai-input-background'}
         `}
       >
-        <SlidersH className='mr-[5px] w-3.5 h-3.5 text-gray-500' />
+        <SlidersH className='mr-[5px] w-3.5 h-3.5 text-tgai-text-3' />
         {t('common.modelProvider.loadPresets')}
-        <RiArrowDownSLine className='ml-0.5 w-3.5 h-3.5 text-gray-500' />
+        <RiArrowDownSLine className='ml-0.5 w-3.5 h-3.5 text-tgai-text-3' />
       </div>
     )
   }, [])
   const getToneIcon = (toneId: number) => {
     const className = 'mr-2 w-[14px] h-[14px]'
     const res = ({
-      1: <Brush01 className={`${className} text-[#6938EF]`} />,
-      2: <Scales02 className={`${className} text-indigo-600`} />,
-      3: <Target04 className={`${className} text-[#107569]`} />,
+      1: <Brush01 className={`${className} text-tgai-primary`} />,
+      2: <Scales02 className={`${className} text-tgai-primary-5`} />,
+      3: <Target04 className={`${className} text-tgai-text-2`} />,
     })[toneId]
     return res
   }

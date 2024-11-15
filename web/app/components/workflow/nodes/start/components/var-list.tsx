@@ -4,7 +4,7 @@ import React, { useCallback } from 'react'
 import produce from 'immer'
 import { useTranslation } from 'react-i18next'
 import VarItem from './var-item'
-import { ChangeType, type InputVar, type MoreInfo } from '@/app/components/workflow/types'
+import { ChangeType, type InputVar, type MoreInfo } from '../../../types'
 type Props = {
   readonly: boolean
   list: InputVar[]
@@ -46,7 +46,7 @@ const VarList: FC<Props> = ({
 
   if (list.length === 0) {
     return (
-      <div className='flex rounded-md bg-gray-50 items-center h-[42px] justify-center leading-[18px] text-xs font-normal text-gray-500'>
+      <div className='flex rounded-md bg-gray-50 dark:bg-tgai-panel-background-4 items-center h-[42px] justify-center leading-[18px] text-xs font-normal text-tgai-text-3'>
         {t('workflow.nodes.start.noVarTip')}
       </div>
     )

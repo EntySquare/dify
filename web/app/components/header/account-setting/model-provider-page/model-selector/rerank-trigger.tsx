@@ -1,7 +1,7 @@
 import {
   RiExternalLinkLine,
 } from '@remixicon/react'
-import { CubeOutline } from '@/app/components/base/icons/src/vender/line/shapes'
+import { CubeOutline } from '../../../../base/icons/src/vender/line/shapes'
 
 const ModelTrigger = () => {
   return (

@@ -94,7 +94,7 @@ const Form: FC<FormProps> = ({
       const disabled = readonly || (isEditMode && (variable === '__model_type' || variable === '__model_name'))
       return (
         <div key={variable} className={cn(itemClassName, 'py-3')}>
-          <div className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-gray-900')}>
+          <div className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-tgai-text-1')}>
             {label[language] || label.en_US}
             {
               required && (
@@ -135,7 +135,7 @@ const Form: FC<FormProps> = ({
 
       return (
         <div key={variable} className={cn(itemClassName, 'py-3')}>
-          <div className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-gray-900')}>
+          <div className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-tgai-text-1')}>
             {label[language] || label.en_US}
             {
               required && (
@@ -154,18 +154,18 @@ const Form: FC<FormProps> = ({
               }).map(option => (
                 <div
                   className={`
-                    flex items-center px-3 py-2 rounded-lg border border-gray-100 bg-gray-25 cursor-pointer
-                    ${value[variable] === option.value && 'bg-white border-[1.5px] border-primary-400 shadow-sm'}
+                    flex items-center px-3 py-2 rounded-lg border border-gray-100 dark:border-stone-600 bg-gray-25 dark:bg-tgai-input-background cursor-pointer
+                    ${value[variable] === option.value && 'bg-white border-[1.5px] border-primary-400 dark:border-tgai-primary-5 shadow-sm dark:shadow-stone-800'}
                     ${disabled && '!cursor-not-allowed opacity-60'}
                   `}
                   onClick={() => handleFormChange(variable, option.value)}
                   key={`${variable}-${option.value}`}
                 >
                   <div className={`
-                    flex justify-center items-center mr-2 w-4 h-4 border border-gray-300 rounded-full
-                    ${value[variable] === option.value && 'border-[5px] border-primary-600'}
+                    flex justify-center items-center mr-2 w-4 h-4 border border-gray-300 dark:border-stone-500 rounded-full
+                    ${value[variable] === option.value && 'border-[5px] border-primary-600 dark:border-tgai-primary'}
                   `} />
-                  <div className='text-sm text-gray-900'>{option.label[language] || option.label.en_US}</div>
+                  <div className='text-sm text-tgai-text-1'>{option.label[language] || option.label.en_US}</div>
                 </div>
               ))
             }
@@ -191,7 +191,7 @@ const Form: FC<FormProps> = ({
 
       return (
         <div key={variable} className={cn(itemClassName, 'py-3')}>
-          <div className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-gray-900')}>
+          <div className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-tgai-text-1')}>
             {label[language] || label.en_US}
 
             {
@@ -233,9 +233,9 @@ const Form: FC<FormProps> = ({
 
       return (
         <div key={variable} className={cn(itemClassName, 'py-3')}>
-          <div className='flex items-center justify-between py-2 text-sm text-gray-900'>
+          <div className='flex items-center justify-between py-2 text-sm text-tgai-text-1'>
             <div className='flex items-center space-x-2'>
-              <span className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-gray-900')}>{label[language] || label.en_US}</span>
+              <span className={cn(fieldLabelClassName, 'flex items-center py-2 text-sm text-tgai-text-1')}>{label[language] || label.en_US}</span>
               {
                 required && (
                   <span className='ml-1 text-red-500'>*</span>

@@ -591,12 +591,19 @@ const StepTwo = ({
 
   return (
     <div className='flex w-full h-full'>
-      <div ref={scrollRef} className='relative h-full w-full overflow-y-scroll'>
-        <div className={cn(s.pageHeader, scrolled && s.fixed, isMobile && '!px-6')}>
+      <div ref={scrollRef} className='relative h-full w-full overflow-y-scroll tgai-custom-scrollbar'>
+        <div className={cn(
+            s.pageHeader,
+            scrolled && s.fixed,
+            isMobile && "!px-6",
+            "dark:!bg-tgai-panel-background-2 dark:!text-tgai-text-1",
+            scrolled && "dark:!border-b-stone-600",
+          )}
+        >
           <span>{t('datasetCreation.steps.two')}</span>
-          {(isMobile || !showPreview) && (
+          {(isMobile && !showPreview) && (
             <Button
-              className='border-[0.5px] !h-8 hover:outline hover:outline-[0.5px] hover:outline-gray-300 text-gray-700 font-medium bg-white shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]'
+              className='border-[0.5px] !h-8 hover:outline hover:outline-[0.5px] hover:outline-gray-300 text-tgai-text-2 font-medium bg-white shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]'
               onClick={setShowPreview}
             >
               <Tooltip>
@@ -608,44 +615,76 @@ const StepTwo = ({
             </Button>
           )}
         </div>
-        <div className={cn(s.form, isMobile && '!px-4')}>
-          <div className={s.label}>{t('datasetCreation.stepTwo.segmentation')}</div>
-          <div className='max-w-[640px]'>
+        <div className={cn(s.form, isMobile && "!px-4")}>
+          <div className={cn(s.label, "dark:!text-tgai-text-2")}>
+            {t("datasetCreation.stepTwo.segmentation")}
+          </div>
+          <div className="max-w-[640px]">
             <div
               className={cn(
                 s.radioItem,
+                "dark:!bg-neutral-700 dark:!border-stone-600 dark:hover:!bg-neutral-600 dark:hover:!border-tgai-primary-7 group",
+                "dark:!shadow-sm dark:!shadow-stone-700 dark:hover:!shadow-lg dark:hover:!shadow-stone-700",
                 s.segmentationItem,
                 segmentationType === SegmentType.AUTO && s.active,
+                segmentationType === SegmentType.AUTO &&
+                "dark:!border-tgai-primary dark:hover:!border-tgai-primary",
               )}
               onClick={() => setSegmentationType(SegmentType.AUTO)}
             >
               <span className={cn(s.typeIcon, s.auto)} />
-              <span className={cn(s.radio)} />
+              <span
+                className={cn(
+                  s.radio,
+                  "dark:!border-stone-600 dark:group-hover:!border-tgai-primary",
+                  segmentationType === SegmentType.AUTO &&
+                  "dark:!border-tgai-primary",
+                )}
+              />
               <div className={s.typeHeader}>
-                <div className={s.title}>{t('datasetCreation.stepTwo.auto')}</div>
-                <div className={s.tip}>{t('datasetCreation.stepTwo.autoDescription')}</div>
+                <div className={cn(s.title, "dark:!text-tgai-text-1")}>
+                  {t("datasetCreation.stepTwo.auto")}
+                </div>
+                <div className={cn(s.tip, "dark:!text-tgai-text-3")}>
+                  {t("datasetCreation.stepTwo.autoDescription")}
+                </div>
               </div>
             </div>
             <div
               className={cn(
                 s.radioItem,
+                "dark:!bg-neutral-700 dark:!border-stone-600 dark:hover:!bg-neutral-600 dark:hover:!border-tgai-primary-7 group",
+                "dark:!shadow-sm dark:!shadow-stone-700 dark:hover:!shadow-lg dark:hover:!shadow-stone-700",
                 s.segmentationItem,
                 segmentationType === SegmentType.CUSTOM && s.active,
                 segmentationType === SegmentType.CUSTOM && s.custom,
+                segmentationType === SegmentType.CUSTOM &&
+                "dark:!border-tgai-primary dark:hover:!border-tgai-primary",
               )}
               onClick={() => setSegmentationType(SegmentType.CUSTOM)}
             >
               <span className={cn(s.typeIcon, s.customize)} />
-              <span className={cn(s.radio)} />
+              <span
+                className={cn(
+                  s.radio,
+                  "dark:!border-stone-600 dark:group-hover:!border-tgai-primary",
+                  segmentationType === SegmentType.CUSTOM &&
+                  "dark:!border-tgai-primary",
+                )}
+              />
               <div className={s.typeHeader}>
-                <div className={s.title}>{t('datasetCreation.stepTwo.custom')}</div>
-                <div className={s.tip}>{t('datasetCreation.stepTwo.customDescription')}</div>
+                <div className={cn(s.title, "dark:!text-tgai-text-1")}>
+                  {t("datasetCreation.stepTwo.custom")}
+                </div>
+                <div className={cn(s.tip, "dark:!text-tgai-text-3")}>
+                  {t("datasetCreation.stepTwo.customDescription")}
+                </div>
               </div>
               {segmentationType === SegmentType.CUSTOM && (
-                <div className={s.typeFormBody}>
+                <div className={cn(s.typeFormBody, "dark:!border-t-stone-500")}>
                   <div className={s.formRow}>
                     <div className='w-full'>
-                      <div className={s.label}>
+                      <div className={cn(s.label, 'dark:!text-tgai-text-1')}>
                         {t('datasetCreation.stepTwo.separator')}
                         <Tooltip
                           popupContent={
@@ -665,7 +704,7 @@ const StepTwo = ({
                   </div>
                   <div className={s.formRow}>
                     <div className='w-full'>
-                      <div className={s.label}>{t('datasetCreation.stepTwo.maxLength')}</div>
+                      <div className={cn(s.label, 'dark:!text-tgai-text-1')}>{t('datasetCreation.stepTwo.maxLength')}</div>
                       <Input
                         type="number"
                         className='h-9'
@@ -679,7 +718,7 @@ const StepTwo = ({
                   </div>
                   <div className={s.formRow}>
                     <div className='w-full'>
-                      <div className={s.label}>
+                      <div className={cn(s.label, 'dark:!text-tgai-text-1')}>
                         {t('datasetCreation.stepTwo.overlap')}
                         <Tooltip
                           popupContent={
@@ -701,11 +740,11 @@ const StepTwo = ({
                   </div>
                   <div className={s.formRow}>
                     <div className='w-full flex flex-col gap-1'>
-                      <div className={s.label}>{t('datasetCreation.stepTwo.rules')}</div>
+                      <div className={cn(s.label, 'dark:!text-tgai-text-1')}>{t('datasetCreation.stepTwo.rules')}</div>
                       {rules.map(rule => (
                         <div key={rule.id} className={s.ruleItem}>
-                          <input id={rule.id} type="checkbox" checked={rule.enabled} onChange={() => ruleChangeHandle(rule.id)} className="w-4 h-4 rounded border-gray-300 text-blue-700 focus:ring-blue-700" />
-                          <label htmlFor={rule.id} className="ml-2 text-sm font-normal cursor-pointer text-gray-800">{getRuleName(rule.id)}</label>
+                          <input id={rule.id} type="checkbox" checked={rule.enabled} onChange={() => ruleChangeHandle(rule.id)} className="w-4 h-4 rounded border-gray-300 dark:border-stone-500 text-blue-700 dark:text-tgai-primary focus:ring-blue-700 dark:focus:ring-tgai-primary" />
+                          <label htmlFor={rule.id} className="ml-2 text-sm font-normal cursor-pointer text-tgai-text-1">{getRuleName(rule.id)}</label>
                         </div>
                       ))}
                     </div>
@@ -718,18 +757,26 @@ const StepTwo = ({
               )}
             </div>
           </div>
-          <div className={s.label}>{t('datasetCreation.stepTwo.indexMode')}</div>
+          <div className={cn(s.label, "dark:!text-tgai-text-2")}>{t('datasetCreation.stepTwo.indexMode')}</div>
           <div className='max-w-[640px]'>
             <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
               {(!hasSetIndexType || (hasSetIndexType && indexingType === IndexingType.QUALIFIED)) && (
                 <div
                   className={cn(
                     s.radioItem,
+                    "dark:!bg-neutral-700 dark:!border-stone-600 dark:hover:!bg-neutral-600 dark:hover:!border-tgai-primary-7 group",
+                    "dark:!shadow-sm dark:!shadow-stone-700 dark:hover:!shadow-lg dark:hover:!shadow-stone-700",
+                    s.segmentationItem,
                     s.indexItem,
                     !isAPIKeySet && s.disabled,
-                    !hasSetIndexType && indexType === IndexingType.QUALIFIED && s.active,
+                    !hasSetIndexType &&
+                    indexType === IndexingType.QUALIFIED &&
+                    s.active,
+                    !hasSetIndexType &&
+                    indexType === IndexingType.QUALIFIED && "dark:!border-tgai-primary dark:hover:!border-tgai-primary dark:hover:!shadow-sm",
                     hasSetIndexType && s.disabled,
-                    hasSetIndexType && '!w-full !min-h-[96px]',
+                    (!isAPIKeySet || hasSetIndexType) && "dark:hover:!bg-neutral-800 dark:hover:!border-stone-700 dark:hover:!shadow-none",
+                    hasSetIndexType && "!w-full !min-h-[96px]",
                   )}
                   onClick={() => {
                     if (isAPIKeySet)
@@ -737,13 +784,23 @@ const StepTwo = ({
                   }}
                 >
                   <span className={cn(s.typeIcon, s.qualified)} />
-                  {!hasSetIndexType && <span className={cn(s.radio)} />}
+                  {!hasSetIndexType && <span className={cn(s.radio,
+                    "dark:!border-stone-600 dark:group-hover:!border-tgai-primary",
+                    !hasSetIndexType && indexType === IndexingType.QUALIFIED && "dark:!border-tgai-primary",
+                    (!isAPIKeySet || hasSetIndexType) && "dark:group-hover:!border-stone-600"
+                  )} />}
                   <div className={s.typeHeader}>
-                    <div className={s.title}>
-                      {t('datasetCreation.stepTwo.qualified')}
-                      {!hasSetIndexType && <span className={s.recommendTag}>{t('datasetCreation.stepTwo.recommend')}</span>}
+                    <div className={cn(s.title, "!text-tgai-text-1", (!isAPIKeySet || hasSetIndexType) && "dark:group-hover:!text-tgai-text-4")}>
+                      {t("datasetCreation.stepTwo.qualified")}
+                      {!hasSetIndexType && (
+                        <span className={cn(s.recommendTag, "dark:!border-stone-600 dark:!text-tgai-primary-7")}>
+                            {t("datasetCreation.stepTwo.recommend")}
+                          </span>
+                      )}
                     </div>
-                    <div className={s.tip}>{t('datasetCreation.stepTwo.qualifiedTip')}</div>
+                    <div className={cn(s.tip, "!text-tgai-text-3",  (!isAPIKeySet || hasSetIndexType) && "dark:group-hover:!text-tgai-text-4")}>
+                      {t("datasetCreation.stepTwo.qualifiedTip")}
+                    </div>
                   </div>
                   {!isAPIKeySet && (
                     <div className={s.warningTip}>
@@ -758,37 +815,56 @@ const StepTwo = ({
                 <div
                   className={cn(
                     s.radioItem,
+                    "dark:!bg-neutral-700 dark:!border-stone-600 dark:hover:!bg-neutral-600 dark:hover:!border-tgai-primary-7 group",
+                    "dark:!shadow-sm dark:!shadow-stone-700 dark:hover:!shadow-lg dark:hover:!shadow-stone-700",
+                    s.segmentationItem,
                     s.indexItem,
-                    !hasSetIndexType && indexType === IndexingType.ECONOMICAL && s.active,
+                    !hasSetIndexType && indexType === IndexingType.ECONOMICAL &&
+                    s.active,
+                    indexType === IndexingType.ECONOMICAL && "dark:!border-tgai-primary dark:hover:!border-tgai-primary dark:hover:!shadow-sm",
                     hasSetIndexType && s.disabled,
+                    hasSetIndexType && "dark:hover:!bg-neutral-800 dark:hover:!border-stone-700 dark:hover:!shadow-none",
                     hasSetIndexType && '!w-full !min-h-[96px]',
                   )}
                   onClick={changeToEconomicalType}
                 >
                   <span className={cn(s.typeIcon, s.economical)} />
-                  {!hasSetIndexType && <span className={cn(s.radio)} />}
+                  {!hasSetIndexType && <span className={cn(s.radio,
+                    "dark:!border-stone-600 dark:group-hover:!border-tgai-primary",
+                    !hasSetIndexType && indexType === IndexingType.ECONOMICAL && "dark:!border-tgai-primary",
+                    hasSetIndexType && "dark:group-hover:!border-stone-600"
+                  )} />}
                   <div className={s.typeHeader}>
-                    <div className={s.title}>{t('datasetCreation.stepTwo.economical')}</div>
-                    <div className={s.tip}>{t('datasetCreation.stepTwo.economicalTip')}</div>
+                    <div className={cn(s.title, "dark:!text-tgai-text-1", hasSetIndexType && "dark:group-hover:!text-tgai-text-4")}>
+                      {t("datasetCreation.stepTwo.economical")}
+                    </div>
+                    <div className={cn(s.tip, "dark:!text-tgai-text-3", hasSetIndexType && "dark:group-hover:!text-tgai-text-4")}>
+                      {t("datasetCreation.stepTwo.economicalTip")}
+                    </div>
                   </div>
                 </div>
               )}
             </div>
             {hasSetIndexType && indexType === IndexingType.ECONOMICAL && (
-              <div className='mt-2 text-xs text-gray-500 font-medium'>
+              <div className='mt-2 text-xs text-tgai-text-3 font-medium'>
                 {t('datasetCreation.stepTwo.indexSettingTip')}
-                <Link className='text-[#155EEF]' href={`/datasets/${datasetId}/settings`}>{t('datasetCreation.stepTwo.datasetSettingLink')}</Link>
+                <Link
+                  className="text-[#155EEF] dark:text-tgai-primary"
+                  href={`/datasets/${datasetId}/settings`}
+                >
+                  {t("datasetCreation.stepTwo.datasetSettingLink")}
+                </Link>
               </div>
             )}
             {IS_CE_EDITION && indexType === IndexingType.QUALIFIED && (
-              <div className='mt-3 rounded-xl bg-gray-50 border border-gray-100'>
-                <div className='flex justify-between items-center px-5 py-4'>
-                  <div className='flex justify-center items-center w-8 h-8 rounded-lg bg-indigo-50'>
-                    <MessageChatSquare className='w-4 h-4' />
+              <div className="mt-3 rounded-xl bg-gray-50 dark:bg-neutral-700 border border-gray-100 dark:border-stone-700">
+                <div className="flex justify-between items-center px-5 py-4">
+                  <div className="flex justify-center items-center w-8 h-8 rounded-lg bg-indigo-50">
+                    <MessageChatSquare className="w-4 h-4" />
                   </div>
                   <div className='grow mx-3'>
-                    <div className='mb-[2px] text-md font-medium text-gray-900'>{t('datasetCreation.stepTwo.QATitle')}</div>
-                    <div className='inline-flex items-center text-[13px] leading-[18px] text-gray-500'>
+                    <div className='mb-[2px] text-md font-medium text-tgai-text-1'>{t('datasetCreation.stepTwo.QATitle')}</div>
+                    <div className='inline-flex items-center text-[13px] leading-[18px] text-tgai-text-3'>
                       <span className='pr-1'>{t('datasetCreation.stepTwo.QALanguage')}</span>
                       <LanguageSelect currentLanguage={docLanguage} onSelect={handleSelect} disabled={isLanguageSelectDisabled} />
                     </div>
@@ -802,9 +878,12 @@ const StepTwo = ({
                   </div>
                 </div>
                 {docForm === DocForm.QA && !QATipHide && (
-                  <div className='flex justify-between items-center px-5 py-2 bg-orange-50 border-t border-amber-100 rounded-b-xl text-[13px] leading-[18px] text-medium text-amber-500'>
-                    {t('datasetCreation.stepTwo.QATip')}
-                    <RiCloseLine className='w-4 h-4 text-gray-500 cursor-pointer' onClick={() => setQATipHide(true)} />
+                  <div className="flex justify-between items-center px-5 py-2 bg-orange-50 dark:bg-orange-900 border-t border-amber-100 dark:border-amber-800 rounded-b-xl text-[13px] leading-[18px] text-medium text-amber-500 dark:text-amber-400">
+                    {t("datasetCreation.stepTwo.QATip")}
+                    <RiCloseLine
+                      className="w-4 h-4 text-tgai-text-3 cursor-pointer"
+                      onClick={() => setQATipHide(true)}
+                    />
                   </div>
                 )}
               </div>
@@ -812,7 +891,7 @@ const StepTwo = ({
             {/* Embedding model */}
             {indexType === IndexingType.QUALIFIED && (
               <div className='mb-2'>
-                <div className={cn(s.label, datasetId && 'flex justify-between items-center')}>{t('datasetSettings.form.embeddingModel')}</div>
+                <div className={cn(s.label, datasetId && 'flex justify-between items-center', "dark:!text-tgai-text-1")}>{t('datasetSettings.form.embeddingModel')}</div>
                 <ModelSelector
                   readonly={!!datasetId}
                   defaultModel={embeddingModel}
@@ -833,16 +912,16 @@ const StepTwo = ({
             <div>
               {!datasetId
                 ? (
-                  <div className={s.label}>
+                  <div className={cn(s.label, "dark:!text-tgai-text-1")}>
                     <div className='shrink-0 mr-4'>{t('datasetSettings.form.retrievalSetting.title')}</div>
-                    <div className='leading-[18px] text-xs font-normal text-gray-500'>
+                    {/* <div className='leading-[18px] text-xs font-normal text-gray-500'>
                       <a target='_blank' rel='noopener noreferrer' href='https://docs.dify.ai/guides/knowledge-base/create-knowledge-and-upload-documents#id-4-retrieval-settings' className='text-[#155eef]'>{t('datasetSettings.form.retrievalSetting.learnMore')}</a>
                       {t('datasetSettings.form.retrievalSetting.longDescription')}
-                    </div>
+                    </div> */}
                   </div>
                 )
                 : (
-                  <div className={cn(s.label, 'flex justify-between items-center')}>
+                  <div className={cn(s.label, 'flex justify-between items-center dark:!text-tgai-text-2')}>
                     <div>{t('datasetSettings.form.retrievalSetting.title')}</div>
                   </div>
                 )}
@@ -866,14 +945,26 @@ const StepTwo = ({
               </div>
             </div>
 
-            <div className={s.source}>
+            <div
+              className={cn(
+                s.source,
+                "dark:!bg-neutral-700 dark:!border-stone-600",
+              )}
+            >
               <div className={s.sourceContent}>
                 {dataSourceType === DataSourceType.FILE && (
                   <>
-                    <div className='mb-2 text-xs font-medium text-gray-500'>{t('datasetCreation.stepTwo.fileSource')}</div>
-                    <div className='flex items-center text-sm leading-6 font-medium text-gray-800'>
-                      <span className={cn(s.fileIcon, files.length && s[files[0].extension || ''])} />
-                      {getFileName(files[0].name || '')}
+                    <div className="mb-2 text-xs font-medium text-tgai-text-3">
+                      {t("datasetCreation.stepTwo.fileSource")}
+                    </div>
+                    <div className="flex items-center text-sm leading-6 font-medium text-tgai-text-1">
+                      <span
+                        className={cn(
+                          s.fileIcon,
+                          files.length && s[files[0].extension || ""],
+                        )}
+                      />
+                      {getFileName(files[0].name || "")}
                       {files.length > 1 && (
                         <span className={s.sourceCount}>
                           <span>{t('datasetCreation.stepTwo.other')}</span>
@@ -886,8 +977,10 @@ const StepTwo = ({
                 )}
                 {dataSourceType === DataSourceType.NOTION && (
                   <>
-                    <div className='mb-2 text-xs font-medium text-gray-500'>{t('datasetCreation.stepTwo.notionSource')}</div>
-                    <div className='flex items-center text-sm leading-6 font-medium text-gray-800'>
+                    <div className="mb-2 text-xs font-medium text-tgai-text-3">
+                      {t("datasetCreation.stepTwo.notionSource")}
+                    </div>
+                    <div className="flex items-center text-sm leading-6 font-medium text-tgai-text-1">
                       <NotionIcon
                         className='shrink-0 mr-1'
                         type='page'
@@ -906,10 +999,14 @@ const StepTwo = ({
                 )}
                 {dataSourceType === DataSourceType.WEB && (
                   <>
-                    <div className='mb-2 text-xs font-medium text-gray-500'>{t('datasetCreation.stepTwo.websiteSource')}</div>
-                    <div className='flex items-center text-sm leading-6 font-medium text-gray-800'>
-                      <Globe01 className='shrink-0 mr-1' />
-                      <span className='grow w-0 truncate'>{websitePages[0].source_url}</span>
+                    <div className="mb-2 text-xs font-medium text-tgai-text-3">
+                      {t("datasetCreation.stepTwo.websiteSource")}
+                    </div>
+                    <div className="flex items-center text-sm leading-6 font-medium text-gray-800">
+                      <Globe01 className="shrink-0 mr-1" />
+                      <span className="grow w-0 truncate">
+                        {websitePages[0].source_url}
+                      </span>
                       {websitePages.length > 1 && (
                         <span className={s.sourceCount}>
                           <span>{t('datasetCreation.stepTwo.other')}</span>
@@ -921,19 +1018,21 @@ const StepTwo = ({
                   </>
                 )}
               </div>
-              <div className={s.divider} />
-              <div className={s.segmentCount}>
-                <div className='mb-2 text-xs font-medium text-gray-500'>{t('datasetCreation.stepTwo.estimateSegment')}</div>
-                <div className='flex items-center text-sm leading-6 font-medium text-gray-800'>
-                  {
-                    fileIndexingEstimate
-                      ? (
-                        <div className='text-xs font-medium text-gray-800'>{formatNumber(fileIndexingEstimate.total_segments)} </div>
-                      )
-                      : (
-                        <div className={s.calculating}>{t('datasetCreation.stepTwo.calculating')}</div>
-                      )
-                  }
+              <div className={cn(s.divider, "dark:!bg-zinc-600")} />
+              <div className={cn(s.segmentCount)}>
+                <div className="mb-2 text-xs font-medium text-tgai-text-3">
+                  {t("datasetCreation.stepTwo.estimateSegment")}
+                </div>
+                <div className="flex items-center text-sm leading-6 font-medium text-tgai-text-1">
+                  {fileIndexingEstimate ? (
+                    <div className="text-xs font-medium text-tgai-text-1">
+                      {formatNumber(fileIndexingEstimate.total_segments)}{" "}
+                    </div>
+                  ) : (
+                    <div className={s.calculating}>
+                      {t("datasetCreation.stepTwo.calculating")}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -941,7 +1040,7 @@ const StepTwo = ({
               ? (
                 <div className='flex items-center mt-8 py-2'>
                   <Button onClick={() => onStepChange && onStepChange(-1)}>{t('datasetCreation.stepTwo.previousStep')}</Button>
-                  <div className={s.divider} />
+                  <div className={cn(s.divider, 'dark:!bg-zinc-600')} />
                   <Button loading={isCreating} variant='primary' onClick={createHandle}>{t('datasetCreation.stepTwo.nextStep')}</Button>
                 </div>
               )
@@ -955,21 +1054,21 @@ const StepTwo = ({
         </div>
       </div>
       <FloatRightContainer isMobile={isMobile} isOpen={showPreview} onClose={hidePreview} footer={null}>
-        {showPreview && <div ref={previewScrollRef} className={cn(s.previewWrap, isMobile && s.isMobile, 'relative h-full overflow-y-scroll border-l border-[#F2F4F7]')}>
-          <div className={cn(s.previewHeader, previewScrolled && `${s.fixed} pb-3`)}>
+        {showPreview && <div ref={previewScrollRef} className={cn(s.previewWrap, isMobile && s.isMobile, 'relative h-full overflow-y-scroll border-l border-[#F2F4F7] dark:border-stone-600 tgai-custom-scrollbar')}>
+          <div className={cn(s.previewHeader, 'dark:!bg-tgai-panel-background-2', previewScrolled && `${s.fixed} pb-3`)}>
             <div className='flex items-center justify-between px-8'>
               <div className='grow flex items-center'>
-                <div>{t('datasetCreation.stepTwo.previewTitle')}</div>
+                <div className='text-tgai-text-1'>{t('datasetCreation.stepTwo.previewTitle')}</div>
                 {docForm === DocForm.QA && !previewSwitched && (
                   <Button className='ml-2' variant='secondary-accent' onClick={() => previewSwitch()}>{t('datasetCreation.stepTwo.previewButton')}</Button>
                 )}
               </div>
               <div className='flex items-center justify-center w-6 h-6 cursor-pointer' onClick={hidePreview}>
-                <XMarkIcon className='h-4 w-4'></XMarkIcon>
+                <XMarkIcon className='h-4 w-4 text-tgai-text-2'></XMarkIcon>
               </div>
             </div>
             {docForm === DocForm.QA && !previewSwitched && (
-              <div className='px-8 pr-12 text-xs text-gray-500'>
+              <div className='px-8 pr-12 text-xs text-tgai-text-3'>
                 <span>{t('datasetCreation.stepTwo.previewSwitchTipStart')}</span>
                 <span className='text-amber-600'>{t('datasetCreation.stepTwo.previewSwitchTipEnd')}</span>
               </div>

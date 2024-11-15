@@ -7,7 +7,7 @@ import {
   RiMoreFill,
 } from '@remixicon/react'
 import { PreferredProviderTypeEnum } from '../declarations'
-import Button from '@/app/components/base/button'
+import Button from '../../../../base/button'
 
 type SelectorProps = {
   value?: string

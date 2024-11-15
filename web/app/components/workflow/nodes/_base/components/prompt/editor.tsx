@@ -129,17 +129,17 @@ const Editor: FC<Props> = ({
 
   return (
     <Wrap className={cn(className, wrapClassName)} style={wrapStyle} isInNode isExpand={isExpand}>
-      <div ref={ref} className={cn(isFocus ? s.gradientBorder : 'bg-gray-100', isExpand && 'h-full', '!rounded-[9px] p-0.5')}>
-        <div className={cn(isFocus ? 'bg-gray-50' : 'bg-gray-100', isExpand && 'h-full flex flex-col', 'rounded-lg')}>
+      <div ref={ref} className={cn(isFocus ? s.gradientBorder : 'bg-gray-100 dark:bg-tgai-input-background', isExpand && 'h-full', '!rounded-[9px] p-0.5')}>
+        <div className={cn(isFocus ? 'bg-gray-50 dark:bg-zinc-700' : 'bg-gray-100 dark:bg-tgai-input-background', isExpand && 'h-full flex flex-col', 'rounded-lg')}>
           <div className={cn(headerClassName, 'pt-1 pl-3 pr-2 flex justify-between items-center')}>
-            <div className='leading-4 text-xs font-semibold text-gray-700 uppercase'>{title}</div>
+            <div className='leading-4 text-xs font-semibold text-tgai-text-2 uppercase'>{title}</div>
             <div className='flex items-center'>
-              <div className='leading-[18px] text-xs font-medium text-gray-500'>{value?.length || 0}</div>
+              <div className='leading-[18px] text-xs font-medium text-tgai-text-3'>{value?.length || 0}</div>
               {isSupportPromptGenerator && (
                 <PromptGeneratorBtn className='ml-[5px]' onGenerated={onGenerated} modelConfig={modelConfig} />
               )}
 
-              <div className='w-px h-3 ml-2 mr-2 bg-gray-200'></div>
+              <div className='w-px h-3 ml-2 mr-2 bg-gray-200 dark:bg-zinc-600'></div>
               {/* Operations */}
               <div className='flex items-center space-x-[2px]'>
                 {isSupportJinja && (
@@ -147,13 +147,13 @@ const Editor: FC<Props> = ({
                     popupContent={
                       <div>
                         <div>{t('workflow.common.enableJinja')}</div>
-                        <a className='text-[#155EEF]' target='_blank' href='https://jinja.palletsprojects.com/en/2.10.x/'>{t('workflow.common.learnMore')}</a>
+                        <a className='text-tgai-primary' target='_blank' href='https://jinja.palletsprojects.com/en/2.10.x/'>{t('workflow.common.learnMore')}</a>
                       </div>
                     }
                     needsDelay
                   >
-                    <div className={cn(editionType === EditionType.jinja2 && 'border-black/5 bg-white', 'flex h-[22px] items-center px-1.5 rounded-[5px] border border-transparent hover:border-black/5 space-x-0.5')}>
-                      <Jinja className='w-6 h-3 text-gray-300' />
+                    <div className={cn(editionType === EditionType.jinja2 && 'border-black/5 bg-white dark:bg-zinc-600 dark:border-stone-600/95', 'flex h-[22px] items-center px-1.5 rounded-[5px] border border-transparent hover:border-black/5 space-x-0.5')}>
+                      <Jinja className='w-6 h-3 text-tgai-text-3' />
                       <Switch
                         size='sm'
                         defaultValue={editionType === EditionType.jinja2}
@@ -201,7 +201,7 @@ const Editor: FC<Props> = ({
           <div className={cn('pb-2', isExpand && 'flex flex-col grow')}>
             {!(isSupportJinja && editionType === EditionType.jinja2)
               ? (
-                <div className={cn(isExpand ? 'grow' : 'max-h-[536px]', 'relative px-3 min-h-[56px]  overflow-y-auto')}>
+                <div className={cn(isExpand ? 'grow' : 'max-h-[536px]', 'relative px-3 min-h-[56px]  overflow-y-auto tgai-custom-scrollbar')}>
                   <PromptEditor
                     key={controlPromptEditorRerenderKey}
                     instanceId={instanceId}
@@ -254,7 +254,7 @@ const Editor: FC<Props> = ({
                 </div>
               )
               : (
-                <div className={cn(isExpand ? 'grow' : 'max-h-[536px]', 'relative px-3 min-h-[56px]  overflow-y-auto')}>
+                <div className={cn(isExpand ? 'grow' : 'max-h-[536px]', 'relative px-3 min-h-[56px]  overflow-y-auto tgai-custom-scrollbar')}>
                   <CodeEditor
                     availableVars={nodesOutputVars || []}
                     varList={varList}

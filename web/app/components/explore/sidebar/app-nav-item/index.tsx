@@ -4,10 +4,10 @@ import React, { useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useHover } from 'ahooks'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import ItemOperation from '@/app/components/explore/item-operation'
-import AppIcon from '@/app/components/base/app-icon'
-import type { AppIconType } from '@/types/app'
+import cn from '../../../../../utils/classnames'
+import ItemOperation from '../../item-operation'
+import AppIcon from '../../../base/app-icon'
+import type { AppIconType } from '../../../../../types/app'
 
 export type IAppNavItemProps = {
   isMobile: boolean

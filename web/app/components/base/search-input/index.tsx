@@ -11,6 +11,7 @@ type SearchInputProps = {
   value: string
   onChange: (v: string) => void
   white?: boolean
+  dark?: boolean;
 }
 
 const SearchInput: FC<SearchInputProps> = ({
@@ -19,6 +20,7 @@ const SearchInput: FC<SearchInputProps> = ({
   value,
   onChange,
   white,
+  dark,
 }) => {
   const { t } = useTranslation()
   const [focus, setFocus] = useState<boolean>(false)
@@ -30,19 +32,21 @@ const SearchInput: FC<SearchInputProps> = ({
       focus && '!bg-white hover:bg-white shadow-xs !border-gray-300',
       !focus && value && 'hover:!bg-gray-200 hover:!shadow-xs hover:!border-black/5',
       white && '!bg-white hover:!bg-white shadow-xs !border-gray-300 hover:!border-gray-300',
+      dark && '!bg-tgai-input-background hover:!bg-tgai-input-background shadow-xs !border-zinc-600 hover:!border-zinc-600',
       className,
     )}>
       <div className="pointer-events-none shrink-0 flex items-center mr-1.5 justify-center w-4 h-4">
-        <RiSearchLine className="h-3.5 w-3.5 text-gray-500" aria-hidden="true" />
+        <RiSearchLine className="h-3.5 w-3.5 text-tgai-text-3" aria-hidden="true" />
       </div>
       <input
         type="text"
         name="query"
         className={cn(
-          'grow block h-[18px] bg-gray-200 border-0 text-gray-700 text-[13px] placeholder:text-gray-500 appearance-none outline-none group-hover:bg-gray-300 caret-blue-600',
+          'grow block h-[18px] bg-gray-200 border-0 text-tgai-text-1 text-[13px] placeholder:text-gray-500 appearance-none outline-none group-hover:bg-gray-300 caret-blue-600',
           focus && '!bg-white hover:bg-white group-hover:bg-white placeholder:!text-gray-400',
           !focus && value && 'hover:!bg-gray-200 group-hover:!bg-gray-200',
           white && '!bg-white hover:!bg-white group-hover:!bg-white placeholder:!text-gray-400',
+          dark && '!bg-tgai-input-background hover:!bg-tgai-input-background group-hover:!bg-tgai-input-background placeholder:!text-tgai-text-2 !caret-tgai-primary',
         )}
         placeholder={placeholder || t('common.operation.search')!}
         value={value}
@@ -65,7 +69,7 @@ const SearchInput: FC<SearchInputProps> = ({
           className='shrink-0 flex items-center justify-center w-4 h-4 cursor-pointer group/clear'
           onClick={() => onChange('')}
         >
-          <XCircle className='w-3.5 h-3.5 text-gray-400 group-hover/clear:text-gray-600' />
+          <XCircle className='w-3.5 h-3.5 text-gray-400 group-hover/clear:text-gray-600 dark:group-hover/clear:text-gray-200' />
         </div>
       )}
     </div>

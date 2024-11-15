@@ -145,19 +145,19 @@ const ModelLoadBalancingConfigs = ({
     <>
       <div
         className={classNames(
-          'min-h-16 bg-gray-50 border rounded-xl transition-colors',
-          (withSwitch || !draftConfig.enabled) ? 'border-gray-200' : 'border-primary-400',
+          'min-h-16 bg-gray-50 dark:bg-zinc-700 border rounded-xl transition-colors',
+          (withSwitch || !draftConfig.enabled) ? 'border-gray-200 dark:border-stone-600' : 'border-tgai-primary-5',
           (withSwitch || draftConfig.enabled) ? 'cursor-default' : 'cursor-pointer',
           className,
         )}
         onClick={(!withSwitch && !draftConfig.enabled) ? () => toggleModalBalancing(true) : undefined}
       >
         <div className='flex items-center px-[15px] py-3 gap-2 select-none'>
-          <div className='grow-0 shrink-0 flex items-center justify-center w-8 h-8 text-primary-600 bg-indigo-50 border border-indigo-100 rounded-lg'>
+          <div className='grow-0 shrink-0 flex items-center justify-center w-8 h-8 text-tgai-primary bg-indigo-50 dark:bg-slate-600 border border-indigo-100 dark:border-slate-700 rounded-lg'>
             <Balance className='w-4 h-4' />
           </div>
           <div className='grow'>
-            <div className='flex items-center gap-1 text-sm'>
+            <div className='flex items-center gap-1 text-sm text-tgai-text-1'>
               {t('common.modelProvider.loadBalancing')}
               <Tooltip
                 popupContent={t('common.modelProvider.loadBalancingInfo')}
@@ -165,7 +165,7 @@ const ModelLoadBalancingConfigs = ({
                 triggerClassName='w-3 h-3'
               />
             </div>
-            <div className='text-xs text-gray-500'>{t('common.modelProvider.loadBalancingDescription')}</div>
+            <div className='text-xs text-tgai-text-2'>{t('common.modelProvider.loadBalancingDescription')}</div>
           </div>
           {
             withSwitch && (

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useChatWithHistoryContext } from './context'
 import Sidebar from './sidebar'
-import AppIcon from '@/app/components/base/app-icon'
+import AppIcon from '../../app-icon'
 import {
   Edit05,
   Menu01,
-} from '@/app/components/base/icons/src/vender/line/general'
+} from '../../icons/src/vender/line/general'
 
 const HeaderInMobile = () => {
   const {

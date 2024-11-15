@@ -28,6 +28,10 @@ import Confirm from '@/app/components/base/confirm'
 import useTimestamp from '@/hooks/use-timestamp'
 import { useAppContext } from '@/context/app-context'
 
+import Copy from './assets/copy.svg'
+import Copied from './assets/copied.svg'
+import classNames from '@/utils/classnames'
+
 type ISecretKeyModalProps = {
   isShow: boolean
   appId?: string
@@ -98,13 +102,13 @@ const SecretKeyModal = ({
 
   return (
     <Modal isShow={isShow} onClose={onClose} title={`${t('appApi.apiKeyModal.apiSecretKey')}`} className={`${s.customModal} px-8 flex flex-col`}>
-      <XMarkIcon className={`w-6 h-6 absolute cursor-pointer text-gray-500 ${s.close}`} onClick={onClose} />
-      <p className='mt-1 text-[13px] text-gray-500 font-normal leading-5 flex-shrink-0'>{t('appApi.apiKeyModal.apiSecretKeyTips')}</p>
+      <XMarkIcon className={`w-6 h-6 absolute cursor-pointer text-tgai-text-2 ${s.close}`} onClick={onClose} />
+      <p className='mt-1 text-[13px] text-tgai-tgai-text-2 font-normal leading-5 flex-shrink-0 text-tgai-text-3'>{t('appApi.apiKeyModal.apiSecretKeyTips')}</p>
       {!apiKeysList && <div className='mt-4'><Loading /></div>}
       {
         !!apiKeysList?.data?.length && (
           <div className='flex flex-col flex-grow mt-4 overflow-hidden'>
-            <div className='flex items-center flex-shrink-0 text-xs font-semibold text-gray-500 border-b border-solid h-9'>
+            <div className='flex items-center flex-shrink-0 text-xs font-semibold text-tgai-text-2 border-b dark:border-b-zinc-600 border-solid h-9'>
               <div className='flex-shrink-0 w-64 px-3'>{t('appApi.apiKeyModal.secretKey')}</div>
               <div className='flex-shrink-0 px-3 w-[200px]'>{t('appApi.apiKeyModal.created')}</div>
               <div className='flex-shrink-0 px-3 w-[200px]'>{t('appApi.apiKeyModal.lastUsed')}</div>
@@ -112,7 +116,7 @@ const SecretKeyModal = ({
             </div>
             <div className='flex-grow overflow-auto'>
               {apiKeysList.data.map(api => (
-                <div className='flex items-center text-sm font-normal text-gray-700 border-b border-solid h-9' key={api.id}>
+                <div className='flex items-center text-sm font-normal text-tgai-text-2 border-b dark:border-b-zinc-600 border-solid h-9' key={api.id}>
                   <div className='flex-shrink-0 w-64 px-3 font-mono truncate'>{generateToken(api.token)}</div>
                   <div className='flex-shrink-0 px-3 truncate w-[200px]'>{formatTime(Number(api.created_at), t('appLog.dateTimeFormat') as string)}</div>
                   <div className='flex-shrink-0 px-3 truncate w-[200px]'>{api.last_used_at ? formatTime(Number(api.last_used_at), t('appLog.dateTimeFormat') as string) : t('appApi.never')}</div>
@@ -121,11 +125,14 @@ const SecretKeyModal = ({
                       popupContent={copyValue === api.token ? `${t('appApi.copied')}` : `${t('appApi.copy')}`}
                       popupClassName='mr-1'
                     >
-                      <div className={`flex items-center justify-center flex-shrink-0 w-6 h-6 mr-1 rounded-lg cursor-pointer hover:bg-gray-100 ${s.copyIcon} ${copyValue === api.token ? s.copied : ''}`} onClick={() => {
+                      <div className={ classNames("flex items-center justify-center flex-shrink-0 w-6 h-6 mr-1 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-600 text-tgai-text-3 hover:text-tgai-text-1",copyValue === api.token ? "!text-tgai-text-1" : "" )} onClick={() => {
                         // setIsCopied(true)
                         copy(api.token)
                         setCopyValue(api.token)
-                      }}></div>
+                      }}>
+                        {copyValue !== api.token && <Copy />}
+                        {copyValue === api.token && <Copied />}
+                      </div>
                     </Tooltip>
                     {isCurrentWorkspaceManager
                       && <div className={`flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-lg cursor-pointer ${s.trashIcon}`} onClick={() => {
@@ -144,7 +151,7 @@ const SecretKeyModal = ({
       <div className='flex'>
         <Button className={`flex flex-shrink-0 mt-4 ${s.autoWidth}`} onClick={onCreate} disabled={!currentWorkspace || !isCurrentWorkspaceEditor}>
           <PlusIcon className='flex flex-shrink-0 w-4 h-4' />
-          <div className='text-xs font-medium text-gray-800'>{t('appApi.apiKeyModal.createNewSecretKey')}</div>
+          <div className='text-xs font-medium text-tgai-text-1'>{t('appApi.apiKeyModal.createNewSecretKey')}</div>
         </Button>
       </div>
       <SecretKeyGenerateModal className='flex-shrink-0' isShow={isVisible} onClose={() => setVisible(false)} newKey={newKey} />

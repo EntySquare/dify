@@ -5,12 +5,12 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useChatWithHistoryContext } from '../context'
 import List from './list'
-import AppIcon from '@/app/components/base/app-icon'
-import Button from '@/app/components/base/button'
-import { Edit05 } from '@/app/components/base/icons/src/vender/line/general'
-import type { ConversationItem } from '@/models/share'
-import Confirm from '@/app/components/base/confirm'
-import RenameModal from '@/app/components/base/chat/chat-with-history/sidebar/rename-modal'
+import AppIcon from '../../../app-icon'
+import Button from '../../../button'
+import { Edit05 } from '../../../icons/src/vender/line/general'
+import type { ConversationItem } from '../../../../../../models/share'
+import Confirm from '../../../confirm'
+import RenameModal from './rename-modal'
 
 const Sidebar = () => {
   const { t } = useTranslation()
@@ -88,7 +88,7 @@ const Sidebar = () => {
           {t('share.chat.newChat')}
         </Button>
       </div>
-      <div className='grow px-4 py-2 overflow-y-auto'>
+      <div className='grow px-4 py-2 overflow-y-auto tgai-custom-scrollbar'>
         {
           !!pinnedConversationList.length && (
             <div className='mb-4'>

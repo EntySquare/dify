@@ -250,6 +250,14 @@ def upgrade():
     sa.Column('setup_at', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP(0)'), nullable=False),
     sa.PrimaryKeyConstraint('version', name='dify_setup_pkey')
     )
+    op.execute(
+        """
+        INSERT INTO dify_setups (version, setup_at)
+        SELECT '0.7.0', '2024-09-19 09:01:27.000000'
+        WHERE NOT EXISTS (SELECT 1 FROM dify_setups);
+        """
+    )
+
     op.create_table('document_segments',
     sa.Column('id', postgresql.UUID(), server_default=sa.text('uuid_generate_v4()'), nullable=False),
     sa.Column('tenant_id', postgresql.UUID(), nullable=False),

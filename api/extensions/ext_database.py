@@ -1,3 +1,4 @@
+
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
@@ -14,4 +15,16 @@ db = SQLAlchemy(metadata=metadata)
 
 
 def init_app(app):
+    # app.config['SQLALCHEMY_ECHO'] = True
+
+    # # 配置 SQLAlchemy 日志记录器
+    # sqlalchemy_logger = logging.getLogger('sqlalchemy.engine')
+    # sqlalchemy_logger.setLevel(logging.ERROR) # SQL打印日志
+    #
+    # # 设置日志格式和颜色
+    # coloredlogs.install(level='INFO', logger=sqlalchemy_logger,
+    #                     fmt='%(asctime)s %(hostname)s %(name)s[%(process)d] %(levelname)s %(message)s',
+    #                     level_styles={'info': {'color': 'blue'}, 'warning': {'color': 'yellow'},
+    #                                   'error': {'color': 'red'}})
+
     db.init_app(app)

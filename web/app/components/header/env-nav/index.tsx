@@ -1,9 +1,7 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'
-import { useAppContext } from '@/context/app-context'
-import { Beaker02 } from '@/app/components/base/icons/src/vender/solid/education'
-import { TerminalSquare } from '@/app/components/base/icons/src/vender/solid/development'
+import { useAppContext } from '../../../../context/app-context'
 
 const headerEnvClassName: { [k: string]: string } = {
   DEVELOPMENT: 'bg-[#FEC84B] border-[#FDB022] text-[#93370D]',
@@ -19,27 +17,28 @@ const EnvNav = () => {
     return null
 
   return (
-    <div className={`
-      flex items-center h-[22px] mr-4 rounded-md px-2 text-xs font-medium border
-      ${headerEnvClassName[langeniusVersionInfo.current_env]}
-    `}>
-      {
-        langeniusVersionInfo.current_env === 'TESTING' && (
-          <>
-            <Beaker02 className='w-3 h-3 mr-1' />
-            {t('common.environment.testing')}
-          </>
-        )
-      }
-      {
-        langeniusVersionInfo.current_env === 'DEVELOPMENT' && (
-          <>
-            <TerminalSquare className='w-3 h-3 mr-1' />
-            {t('common.environment.development')}
-          </>
-        )
-      }
-    </div>
+    <></>
+    // <div className={`
+    //   flex items-center h-[22px] mr-4 rounded-md px-2 text-xs font-medium border
+    //   ${headerEnvClassName[langeniusVersionInfo.current_env]}
+    // `}>
+    //   {
+    //     langeniusVersionInfo.current_env === 'TESTING' && (
+    //       <>
+    //         <Beaker02 className='w-3 h-3 mr-1' />
+    //         {t('common.environment.testing')}
+    //       </>
+    //     )
+    //   }
+    //   {
+    //     langeniusVersionInfo.current_env === 'DEVELOPMENT' && (
+    //       <>
+    //         <TerminalSquare className='w-3 h-3 mr-1' />
+    //         {t('common.environment.development')}
+    //       </>
+    //     )
+    //   }
+    // </div>
   )
 }
 

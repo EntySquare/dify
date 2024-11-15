@@ -20,7 +20,8 @@ const OutputPanel: FC<OutputPanelProps> = ({
   height,
 }) => {
   return (
-    <div className='py-2'>
+    // bg-gray-50 dark:bg-tgai-panel-background-2
+  <div className='py-2'>
       {isRunning && (
         <div className='pt-4 pl-[26px]'>
           <LoadingAnim type='text' />

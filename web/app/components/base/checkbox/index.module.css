@@ -3,9 +3,13 @@
 }
 
 .checked {
-  background: #155eef url(./assets/check.svg) center center no-repeat;
+  /* background: #155eef url(./assets/check.svg) center center no-repeat; */
+  background: #ff0073 url(./assets/check.svg) center center no-repeat;
+
   background-size: 12px 12px;
-  border-color: #155eef;
+  /* border-color: #155eef; */
+  border-color: #ff0073;
+
 }
 
 .checked.disabled {

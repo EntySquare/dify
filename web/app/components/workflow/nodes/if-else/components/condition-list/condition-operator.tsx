@@ -6,14 +6,14 @@ import { useTranslation } from 'react-i18next'
 import { RiArrowDownSLine } from '@remixicon/react'
 import { getOperators, isComparisonOperatorNeedTranslate } from '../../utils'
 import type { ComparisonOperator } from '../../types'
-import Button from '@/app/components/base/button'
+import Button from '../../../../../base/button'
 import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import type { VarType } from '@/app/components/workflow/types'
-import cn from '@/utils/classnames'
+} from '../../../../../base/portal-to-follow-elem'
+import type { VarType } from '../../../../types'
+import cn from '../../../../../../../utils/classnames'
 const i18nPrefix = 'workflow.nodes.ifElse'
 
 type ConditionOperatorProps = {

@@ -3,7 +3,7 @@ import { useId } from 'react'
 import { useContext } from 'use-context-selector'
 import RadioGroupContext from '../../context'
 import s from '../../style.module.css'
-import cn from '@/utils/classnames'
+import cn from '../../../../../../utils/classnames'
 
 export type IRadioProps = {
   className?: string
@@ -44,8 +44,9 @@ export default function Radio({
     <div className={cn(
       s.label,
       disabled ? s.disabled : '',
-      isChecked ? 'bg-white shadow' : '',
+      isChecked ? 'bg-white dark:bg-zinc-600 shadow' : '',
       divClassName,
+      'dark:hover:bg-zinc-600',
       className)}
     onClick={() => handleChange(value)}
     >

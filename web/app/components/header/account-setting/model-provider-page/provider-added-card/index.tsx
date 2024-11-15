@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   RiLoader2Line,
@@ -21,11 +21,11 @@ import CredentialPanel from './credential-panel'
 import QuotaPanel from './quota-panel'
 import ModelList from './model-list'
 import AddModelButton from './add-model-button'
-import { ChevronDownDouble } from '@/app/components/base/icons/src/vender/line/arrows'
-import { fetchModelProviderModelList } from '@/service/common'
-import { useEventEmitterContextContext } from '@/context/event-emitter'
-import { IS_CE_EDITION } from '@/config'
-import { useAppContext } from '@/context/app-context'
+import { ChevronDownDouble } from '../../../../base/icons/src/vender/line/arrows'
+import { fetchModelProviderModelList } from '../../../../../../service/common'
+import { useEventEmitterContextContext } from '../../../../../../context/event-emitter'
+import { IS_CE_EDITION } from '../../../../../../config'
+import { useAppContext } from '../../../../../../context/app-context'
 
 export const UPDATE_MODEL_PROVIDER_CUSTOM_MODEL_LIST = 'UPDATE_MODEL_PROVIDER_CUSTOM_MODEL_LIST'
 type ProviderAddedCardProps = {
@@ -76,10 +76,21 @@ const ProviderAddedCard: FC<ProviderAddedCardProps> = ({
       getModelList(v.payload)
   })
 
+  const background = useMemo(() => {
+    if (provider.background) {
+      if (provider.background.startsWith('#')) {
+        return (provider.background.length === 3 || provider.background.length === 7) ? provider.background : DEFAULT_BACKGROUND_COLOR
+      }
+      return provider.background
+    }
+    return DEFAULT_BACKGROUND_COLOR
+
+  }, [provider])
+
   return (
     <div
       className='mb-2 rounded-xl border-[0.5px] border-black/5 shadow-xs'
-      style={{ background: provider.background || DEFAULT_BACKGROUND_COLOR }}
+      style={{ background: background }}
     >
       <div className='flex pl-3 py-2 pr-2 rounded-t-xl'>
         <div className='grow px-1 pt-1 pb-0.5'>
@@ -143,7 +154,7 @@ const ProviderAddedCard: FC<ProviderAddedCardProps> = ({
               configurationMethods.includes(ConfigurationMethodEnum.customizableModel) && isCurrentWorkspaceManager && (
                 <AddModelButton
                   onClick={() => onOpenModal(ConfigurationMethodEnum.customizableModel)}
-                  className='hidden group-hover:flex group-hover:text-primary-600'
+                  className='hidden group-hover:flex group-hover:text-tgai-primary'
                 />
               )
             }

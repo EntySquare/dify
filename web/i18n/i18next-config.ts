@@ -2,7 +2,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import { LanguagesSupported } from '@/i18n/language'
+import { LanguagesSupported } from './language'
 
 const loadLangResources = (lang: string) => ({
   translation: {

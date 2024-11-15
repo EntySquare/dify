@@ -3,11 +3,11 @@ import type { FC } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useBoolean } from 'ahooks'
 import { useTranslation } from 'react-i18next'
-import type { Props as EditorProps } from '.'
-import Editor from '.'
-import cn from '@/utils/classnames'
-import VarReferenceVars from '@/app/components/workflow/nodes/_base/components/variable/var-reference-vars'
-import type { NodeOutPutVar, Variable } from '@/app/components/workflow/types'
+import type { Props as EditorProps } from './index'
+import Editor from './index'
+import cn from '../../../../../../../../utils/classnames'
+import VarReferenceVars from '../../variable/var-reference-vars'
+import type { NodeOutPutVar, Variable } from '../../../../../types'
 
 const TO_WINDOW_OFFSET = 8
 
@@ -148,7 +148,7 @@ const CodeEditor: FC<Props> = ({
       {isShowVarPicker && (
         <div
           ref={popupRef}
-          className='w-[228px] p-1 bg-white rounded-lg border border-gray-200 shadow-lg space-y-1'
+          className='w-[228px] p-1 bg-white dark:bg-tgai-input-background rounded-lg border border-gray-200 dark:border-stone-600 shadow-lg dark:shadow-stone-800 space-y-1'
           style={{
             position: 'fixed',
             top: popupPosition.y,

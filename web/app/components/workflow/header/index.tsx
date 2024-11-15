@@ -34,11 +34,11 @@ import RestoringTitle from './restoring-title'
 import ViewHistory from './view-history'
 import ChatVariableButton from './chat-variable-button'
 import EnvButton from './env-button'
-import Button from '@/app/components/base/button'
-import { useStore as useAppStore } from '@/app/components/app/store'
-import { publishWorkflow } from '@/service/workflow'
-import { ArrowNarrowLeft } from '@/app/components/base/icons/src/vender/line/arrows'
-import { useFeatures } from '@/app/components/base/features/hooks'
+import Button from '../../base/button'
+import { useStore as useAppStore } from '../../app/store'
+import { publishWorkflow } from '../../../../service/workflow'
+import { ArrowNarrowLeft } from '../../base/icons/src/vender/line/arrows'
+import { useFeatures } from '../../base/features/hooks'
 
 const Header: FC = () => {
   const { t } = useTranslation()
@@ -144,15 +144,19 @@ const Header: FC = () => {
 
   return (
     <div
-      className='absolute top-0 left-0 z-10 flex items-center justify-between w-full px-3 h-14'
-      style={{
-        background: 'linear-gradient(180deg, #F9FAFB 0%, rgba(249, 250, 251, 0.00) 100%)',
-      }}
+      className='absolute top-0 left-0 z-10 flex items-center justify-between w-full px-3 h-14
+      bg-gradient-to-b from-[#F9FAFB] to-[rgba(249,_250,_251,_0.00)]
+      dark:from-stone-800 dark:to-[rgba(6,_5,_4,_0.00)]
+      dark:bg-none
+      '
+      // style={{
+      //   background: 'linear-gradient(180deg, #F9FAFB 0%, rgba(249, 250, 251, 0.00) 100%)',
+      // }}
     >
       <div>
         {
           appSidebarExpand === 'collapse' && (
-            <div className='text-xs font-medium text-gray-700'>{appDetail?.name}</div>
+            <div className='text-xs font-medium text-tgai-text-2'>{appDetail?.name}</div>
           )
         }
         {
@@ -171,9 +175,9 @@ const Header: FC = () => {
             {/* <GlobalVariableButton disabled={nodesReadOnly} /> */}
             {isChatMode && <ChatVariableButton disabled={nodesReadOnly} />}
             <EnvButton disabled={nodesReadOnly} />
-            <div className='w-[1px] h-3.5 bg-gray-200'></div>
+            <div className='w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
             <RunAndHistory />
-            <Button className='text-components-button-secondary-text' onClick={handleShowFeatures}>
+            <Button className='text-components-button-secondary-text !bg-tgai-panel-background-3' onClick={handleShowFeatures}>
               <RiApps2AddLine className='w-4 h-4 mr-1 text-components-button-secondary-text' />
               {t('workflow.common.features')}
             </Button>
@@ -198,7 +202,7 @@ const Header: FC = () => {
         viewHistory && (
           <div className='flex items-center'>
             <ViewHistory withText />
-            <div className='mx-2 w-[1px] h-3.5 bg-gray-200'></div>
+            <div className='mx-2 w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
             <Button
               variant='primary'
               className='mr-2'
@@ -217,7 +221,7 @@ const Header: FC = () => {
               <RiApps2AddLine className='w-4 h-4 mr-1 text-components-button-secondary-text' />
               {t('workflow.common.features')}
             </Button>
-            <div className='mx-2 w-[1px] h-3.5 bg-gray-200'></div>
+            <div className='mx-2 w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
             <Button
               className='mr-2'
               onClick={handleCancelRestore}

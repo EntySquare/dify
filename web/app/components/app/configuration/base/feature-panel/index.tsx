@@ -25,11 +25,11 @@ const FeaturePanel: FC<IFeaturePanelProps> = ({
   return (
     <div className={cn('rounded-xl border-t-[0.5px] border-l-[0.5px] bg-background-section-burn pb-3', noBodySpacing && '!pb-0', className)}>
       {/* Header */}
-      <div className={cn('px-3 pt-2', hasHeaderBottomBorder && 'border-b border-divider-subtle')}>
+      <div className={cn('px-3 pt-2', hasHeaderBottomBorder && 'border-b border-divider-subtle dark:border-zinc-600')}>
         <div className='flex justify-between items-center h-8'>
           <div className='flex items-center space-x-1 shrink-0'>
             {headerIcon && <div className='flex items-center justify-center w-6 h-6'>{headerIcon}</div>}
-            <div className='text-text-secondary system-sm-semibold'>{title}</div>
+            <div className='text-tgai-text-1 system-sm-semibold'>{title}</div>
           </div>
           <div className='flex gap-2 items-center'>
             {headerRight && <div>{headerRight}</div>}

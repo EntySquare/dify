@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAppContext } from '@/context/app-context'
+import { useAppContext } from '../../../../context/app-context'
 
 export type IAppDetail = {
   children: React.ReactNode

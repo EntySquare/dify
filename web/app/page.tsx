@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Loading from '@/app/components/base/loading'
+import Loading from './components/base/loading'
 
 const Home = async () => {
   return (

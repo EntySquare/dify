@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next'
 import TypeIcon from '../type-icon'
 import RemoveIcon from '../../base/icons/remove-icon'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import type { DataSet } from '@/models/datasets'
-import { formatNumber } from '@/utils/format'
-import Tooltip from '@/app/components/base/tooltip'
+import cn from '../../../../../../utils/classnames'
+import type { DataSet } from '../../../../../../models/datasets'
+import { formatNumber } from '../../../../../../utils/format'
+import Tooltip from '../../../../base/tooltip'
 
 export type ICardItemProps = {
   className?: string

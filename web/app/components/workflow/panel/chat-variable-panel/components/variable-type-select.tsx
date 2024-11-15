@@ -5,8 +5,8 @@ import {
   PortalToFollowElem,
   PortalToFollowElemContent,
   PortalToFollowElemTrigger,
-} from '@/app/components/base/portal-to-follow-elem'
-import cn from '@/utils/classnames'
+} from '../../../../base/portal-to-follow-elem'
+import cn from '../../../../../../utils/classnames'
 
 type Props = {
   inCell?: boolean

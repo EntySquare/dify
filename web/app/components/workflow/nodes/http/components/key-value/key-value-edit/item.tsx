@@ -62,8 +62,8 @@ const KeyValueItem: FC<Props> = ({
 
   return (
     // group class name is for hover row show remove button
-    <div className={cn(className, 'group flex h-min-7 border-t border-gray-200')}>
-      <div className={cn('shrink-0 border-r border-divider-regular', isSupportFile ? 'w-[140px]' : 'w-1/2')}>
+    <div className={cn(className, 'group flex h-min-7 border-t border-gray-200 dark:border-stone-600')}>
+      <div className={cn('shrink-0 border-r border-divider-regular dark:border-stone-600', isSupportFile ? 'w-[140px]' : 'w-1/2')}>
         {!keyNotSupportVar
           ? (
             <InputItem
@@ -79,7 +79,7 @@ const KeyValueItem: FC<Props> = ({
           )
           : (
             <input
-              className='appearance-none outline-none rounded-none bg-white border-none system-sm-regular focus:ring-0 focus:bg-gray-100! hover:bg-gray-50'
+              className='appearance-none outline-none rounded-none bg-white dark:bg-tgai-workflow-panel-background border-none system-sm-regular focus:ring-0 focus:bg-gray-100! dark:focus:!bg-tgai-input-background hover:bg-gray-50 dark:hover:bg-zinc-700'
               value={payload.key}
               onChange={e => handleChange('key')(e.target.value)}
             />

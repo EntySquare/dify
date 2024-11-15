@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import React from 'react'
-import Main from '@/app/components/explore/installed-app'
+import Main from '../../../../components/explore/installed-app'
 
 export type IInstalledAppProps = {
   params: {

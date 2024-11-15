@@ -181,8 +181,8 @@ const EmbeddingProcess: FC<Props> = ({ datasetId, batchId, documents = [], index
 
   return (
     <>
-      <div className='h-5 flex items-center mb-5'>
-        <div className={s.embeddingStatus}>
+      <div className='h-5 flex justify-between items-center mb-5'>
+        <div className={cn(s.embeddingStatus,"dark:!text-tgai-text-1")}>
           {isEmbedding && t('datasetDocuments.embedding.processing')}
           {isEmbeddingCompleted && t('datasetDocuments.embedding.completed')}
         </div>
@@ -193,14 +193,14 @@ const EmbeddingProcess: FC<Props> = ({ datasetId, batchId, documents = [], index
             <div className='shrink-0 flex items-center justify-center w-8 h-8 bg-[#FFF6ED] rounded-lg'>
               <ZapFast className='w-4 h-4 text-[#FB6514]' />
             </div>
-            <div className='grow mx-3 text-[13px] font-medium text-gray-700'>
+            <div className='grow mx-3 text-[13px] font-medium text-tgai-text-2'>
               {t('billing.plansCommon.documentProcessingPriorityUpgrade')}
             </div>
             <UpgradeBtn loc='knowledge-speed-up' />
           </div>
         )
       }
-      <div className={s.progressContainer}>
+      <div className={cn(s.progressContainer, "dark:!border-b-stone-700")}>
         {indexingStatusBatchDetail.map(indexingStatusDetail => (
           <div key={indexingStatusDetail.id} className={cn(
             s.sourceItem,

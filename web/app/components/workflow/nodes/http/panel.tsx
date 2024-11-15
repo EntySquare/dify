@@ -8,14 +8,14 @@ import EditBody from './components/edit-body'
 import AuthorizationModal from './components/authorization'
 import type { HttpNodeType } from './types'
 import Timeout from './components/timeout'
-import cn from '@/utils/classnames'
-import Field from '@/app/components/workflow/nodes/_base/components/field'
-import Split from '@/app/components/workflow/nodes/_base/components/split'
-import OutputVars, { VarItem } from '@/app/components/workflow/nodes/_base/components/output-vars'
-import { Settings01 } from '@/app/components/base/icons/src/vender/line/general'
-import type { NodePanelProps } from '@/app/components/workflow/types'
-import BeforeRunForm from '@/app/components/workflow/nodes/_base/components/before-run-form'
-import ResultPanel from '@/app/components/workflow/run/result-panel'
+import cn from '../../../../../utils/classnames'
+import Field from '../_base/components/field'
+import Split from '../_base/components/split'
+import OutputVars, { VarItem } from '../_base/components/output-vars'
+import { Settings01 } from '../../../base/icons/src/vender/line/general'
+import type { NodePanelProps } from '../../types'
+import BeforeRunForm from '../_base/components/before-run-form'
+import ResultPanel from '../../run/result-panel'
 
 const i18nPrefix = 'workflow.nodes.http'
 
@@ -66,12 +66,12 @@ const Panel: FC<NodePanelProps<HttpNodeType>> = ({
           operations={
             <div
               onClick={showAuthorization}
-              className={cn(!readOnly && 'cursor-pointer hover:bg-gray-50', 'flex items-center h-6 space-x-1 px-2 rounded-md ')}
+              className={cn(!readOnly && 'cursor-pointer hover:bg-gray-50 dark:hover:bg-zinc-700', 'flex items-center h-6 space-x-1 px-2 rounded-md ')}
             >
-              {!readOnly && <Settings01 className='w-3 h-3 text-gray-500' />}
-              <div className='text-xs font-medium text-gray-500'>
+              {!readOnly && <Settings01 className='w-3 h-3 text-tgai-text-3' />}
+              <div className='text-xs font-medium text-tgai-text-3'>
                 {t(`${i18nPrefix}.authorization.authorization`)}
-                <span className='ml-1 text-gray-700'>{t(`${i18nPrefix}.authorization.${inputs.authorization.type}`)}</span>
+                <span className='ml-1 text-tgai-text-2'>{t(`${i18nPrefix}.authorization.${inputs.authorization.type}`)}</span>
               </div>
             </div>
           }

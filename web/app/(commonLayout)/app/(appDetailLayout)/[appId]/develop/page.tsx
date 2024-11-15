@@ -1,6 +1,6 @@
 import React from 'react'
-import { type Locale } from '@/i18n'
-import DevelopMain from '@/app/components/develop'
+import { type Locale } from '../../../../../../i18n'
+import DevelopMain from '../../../../../components/develop'
 
 export type IDevelopProps = {
   params: { locale: Locale; appId: string }

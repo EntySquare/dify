@@ -28,7 +28,7 @@ type Props = {
 const Field = ({ title, isRequired, children }: { title: string; isRequired?: boolean; children: JSX.Element }) => {
   return (
     <div>
-      <div className='leading-8 text-[13px] font-medium text-gray-700'>
+      <div className='leading-8 text-[13px] font-medium text-tgai-text-2'>
         {title}
         {isRequired && <span className='ml-0.5 text-[#D92D20]'>*</span>}
       </div>
@@ -118,6 +118,7 @@ const Authorization: FC<Props> = ({
       title={t(`${i18nPrefix}.authorization`)}
       isShow={isShow}
       onClose={onHide}
+      className='dark:!bg-tgai-panel-background dark:border-stone-600 dark:border'
     >
       <div>
         <div className='space-y-2'>
@@ -147,6 +148,7 @@ const Authorization: FC<Props> = ({
               </Field>
               {tempPayload.config?.type === APIType.custom && (
                 <Field title={t(`${i18nPrefix}.header`)} isRequired>
+                  {/*className='w-full h-8 leading-8 px-2.5  rounded-lg border-0 bg-gray-100 dark:bg-tgai-input-background text-tgai-text-1 text-[13px]  placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-inset focus:ring-gray-200 dark:focus:ring-stone-600'*/}
                   <BaseInput
                     value={tempPayload.config?.header || ''}
                     onChange={handleAPIKeyOrHeaderChange('header')}
@@ -158,7 +160,7 @@ const Authorization: FC<Props> = ({
                 <div className='flex'>
                   <Input
                     instanceId='http-api-key'
-                    className={cn(isFocus ? 'shadow-xs bg-gray-50 border-gray-300' : 'bg-gray-100 border-gray-100', 'w-0 grow rounded-lg px-3 py-[6px] border')}
+                    className={cn(isFocus ? 'shadow-xs bg-gray-50 dark:bg-zinc-700 border-gray-300 dark:border-stone-600' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-stone-700', 'w-0 grow rounded-lg px-3 py-[6px] border')}
                     value={tempPayload.config?.api_key || ''}
                     onChange={handleAPIKeyChange}
                     nodesOutputVars={availableVars}

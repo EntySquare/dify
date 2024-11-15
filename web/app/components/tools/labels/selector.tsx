@@ -18,6 +18,8 @@ import type { Label } from '@/app/components/tools/labels/constant'
 import { fetchLabelList } from '@/service/tools'
 import I18n from '@/context/i18n'
 import { getLanguage } from '@/i18n/language'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 type LabelSelectorProps = {
   value: string[]
@@ -66,6 +68,8 @@ const LabelSelector: FC<LabelSelectorProps> = ({
     })
   })
 
+  const theme = useTGAIGlobalStore(state => state.theme)
+
   return (
     <PortalToFollowElem
       open={open}
@@ -79,20 +83,20 @@ const LabelSelector: FC<LabelSelectorProps> = ({
           className='block'
         >
           <div className={cn(
-            'flex items-center gap-1 px-3 h-10 rounded-lg border-[0.5px] border-transparent bg-gray-100 cursor-pointer hover:bg-gray-200',
-            open && '!bg-gray-200 hover:bg-gray-200',
+            'flex items-center gap-1 px-3 h-10 rounded-lg border-[0.5px] border-transparent bg-tgai-input-background cursor-pointer hover:bg-gray-200 dark:hover:bg-zinc-600',
+            open && '!bg-gray-200 hover:bg-gray-200 dark:!bg-zinc-600 dark:hover:bg-zinc-600',
           )}>
-            <div title={value.length > 0 ? selectedLabels : ''} className={cn('grow text-[13px] leading-[18px] text-gray-700 truncate', !value.length && '!text-gray-400')}>
+            <div title={value.length > 0 ? selectedLabels : ''} className={cn('grow text-[13px] leading-[18px] text-tgai-text-2 truncate', !value.length && '!text-tgai-text-3')}>
               {!value.length && t('tools.createTool.toolInput.labelPlaceholder')}
               {!!value.length && selectedLabels}
             </div>
-            <div className='shrink-0 ml-1 text-gray-700 opacity-60'>
+            <div className='shrink-0 ml-1 text-tgai-text-2 opacity-60'>
               <RiArrowDownSLine className='h-4 w-4' />
             </div>
           </div>
         </PortalToFollowElemTrigger>
         <PortalToFollowElemContent className='z-[1040]'>
-          <div className='relative w-[591px] bg-white rounded-lg border-[0.5px] border-gray-200  shadow-lg'>
+          <div className='relative w-[591px] bg-tgai-panel-background-3 rounded-lg border-[0.5px] border-gray-200 dark:border-zinc-600 shadow-lg'>
             <div className='p-2 border-b-[0.5px] border-black/5'>
               <Input
                 showLeftIcon
@@ -100,27 +104,29 @@ const LabelSelector: FC<LabelSelectorProps> = ({
                 value={keywords}
                 onChange={e => handleKeywordsChange(e.target.value)}
                 onClear={() => handleKeywordsChange('')}
+                white={theme === Theme.light}
+                dark={theme === Theme.dark}
               />
             </div>
-            <div className='p-1 max-h-[264px] overflow-y-auto'>
+            <div className='p-1 max-h-[264px] overflow-y-auto tgai-custom-scrollbar'>
               {filteredLabelList.map(label => (
                 <div
                   key={label.name}
-                  className='flex items-center gap-2 pl-3 py-[6px] pr-2 rounded-lg cursor-pointer hover:bg-gray-100'
+                  className='flex items-center gap-2 pl-3 py-[6px] pr-2 rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-600'
                   onClick={() => selectLabel(label)}
                 >
                   <Checkbox
-                    className='shrink-0'
+                    className='shrink-0 dark:!border-zinc-600'
                     checked={value.includes(label.name)}
                     onCheck={() => { }}
                   />
-                  <div title={label.label[language]} className='grow text-sm text-gray-700 leading-5 truncate'>{label.label[language]}</div>
+                  <div title={label.label[language]} className='grow text-sm text-tgai-text-2 leading-5 truncate'>{label.label[language]}</div>
                 </div>
               ))}
               {!filteredLabelList.length && (
                 <div className='p-3 flex flex-col items-center gap-1'>
-                  <Tag03 className='h-6 w-6 text-gray-300' />
-                  <div className='text-gray-500 text-xs leading-[14px]'>{t('common.tag.noTag')}</div>
+                  <Tag03 className='h-6 w-6 text-tgai-text-3' />
+                  <div className='text-tgai-text-3 text-xs leading-[14px]'>{t('common.tag.noTag')}</div>
                 </div>
               )}
             </div>

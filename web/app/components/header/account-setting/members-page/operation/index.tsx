@@ -5,11 +5,11 @@ import { useContext } from 'use-context-selector'
 import { Menu, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import s from './index.module.css'
-import { useProviderContext } from '@/context/provider-context'
-import cn from '@/utils/classnames'
-import type { Member } from '@/models/common'
-import { deleteMemberOrCancelInvitation, updateMemberRole } from '@/service/common'
-import { ToastContext } from '@/app/components/base/toast'
+import { useProviderContext } from '../../../../../../context/provider-context'
+import cn from '../../../../../../utils/classnames'
+import type { Member } from '../../../../../../models/common'
+import { deleteMemberOrCancelInvitation, updateMemberRole } from '../../../../../../service/common'
+import { ToastContext } from '../../../../base/toast'
 
 const itemClassName = `
   flex px-3 py-2 cursor-pointer hover:bg-gray-50 rounded-lg

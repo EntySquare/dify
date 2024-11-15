@@ -6,8 +6,8 @@ import UpgradeBtn from '../upgrade-btn'
 import Modal from '../../base/modal'
 import Usage from './usage'
 import s from './style.module.css'
-import cn from '@/utils/classnames'
-import GridMask from '@/app/components/base/grid-mask'
+import cn from '../../../../utils/classnames'
+import GridMask from '../../base/grid-mask'
 
 type Props = {
   show: boolean

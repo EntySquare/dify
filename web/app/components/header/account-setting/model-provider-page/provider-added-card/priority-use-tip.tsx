@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { ChevronDownDouble } from '@/app/components/base/icons/src/vender/line/arrows'
-import Tooltip from '@/app/components/base/tooltip'
+import { ChevronDownDouble } from '../../../../base/icons/src/vender/line/arrows'
+import Tooltip from '../../../../base/tooltip'
 
 const PriorityUseTip = () => {
   const { t } = useTranslation()

@@ -116,7 +116,7 @@ const RetrievalParamConfig: FC<Props> = ({
     <div>
       {!isEconomical && !isHybridSearch && (
         <div>
-          <div className='flex h-8 items-center text-[13px] font-medium text-gray-900 space-x-2'>
+          <div className='flex h-8 items-center text-[13px] font-medium text-tgai-text-1 space-x-2'>
             {canToggleRerankModalEnable && (
               <div
                 className='flex items-center'
@@ -208,8 +208,8 @@ const RetrievalParamConfig: FC<Props> = ({
                     key={option.value}
                     className={cn(
                       'flex items-center justify-center mb-4 w-[calc((100%-8px)/2)] h-8 rounded-lg border border-components-option-card-option-border bg-components-option-card-option-bg cursor-pointer system-sm-medium text-text-secondary',
-                      value.reranking_mode === RerankingModeEnum.WeightedScore && option.value === RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border bg-components-option-card-option-selected-bg text-text-primary',
-                      value.reranking_mode !== RerankingModeEnum.WeightedScore && option.value !== RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border bg-components-option-card-option-selected-bg text-text-primary',
+                      value.reranking_mode === RerankingModeEnum.WeightedScore && option.value === RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border dark:border-tgai-primary bg-components-option-card-option-selected-bg text-text-primary',
+                      value.reranking_mode !== RerankingModeEnum.WeightedScore && option.value !== RerankingModeEnum.WeightedScore && 'border-[1.5px] border-components-option-card-option-selected-border dark:border-tgai-primary bg-components-option-card-option-selected-bg text-text-primary',
                     )}
                     onClick={() => handleChangeRerankMode(option.value)}
                   >

@@ -135,7 +135,7 @@ const ComponentPicker = ({
             // See https://github.com/facebook/lexical/blob/ac97dfa9e14a73ea2d6934ff566282d7f758e8bb/packages/lexical-react/src/shared/LexicalMenu.ts#L493
             <div className='w-0 h-0'>
               <div
-                className='p-1 w-[260px] bg-white rounded-lg border-[0.5px] border-gray-200 shadow-lg'
+                className='p-1 w-[260px] bg-white dark:bg-tgai-panel-background-3 rounded-lg border-[0.5px] border-gray-200 dark:border-stone-600 shadow-lg dark:shadow-stone-800 overflow-y-auto tgai-custom-scrollbar overflow-x-hidden'
                 style={{
                   ...floatingStyles,
                   visibility: isPositioned ? 'visible' : 'hidden',
@@ -148,7 +148,7 @@ const ComponentPicker = ({
                       {
                         // Divider
                         index !== 0 && options.at(index - 1)?.group !== option.group && (
-                          <div className='h-px bg-gray-100 my-1 w-full -translate-x-1'></div>
+                          <div className='h-px bg-gray-100 my-1 w-full -translate-x-1 dark:bg-zinc-600'></div>
                         )
                       }
                       {option.renderMenuOption({
@@ -169,7 +169,7 @@ const ComponentPicker = ({
                     <>
                       {
                         (!!options.length) && (
-                          <div className='h-px bg-gray-100 my-1 w-full -translate-x-1'></div>
+                          <div className='h-px bg-gray-100 my-1 w-full -translate-x-1 dark:bg-zinc-600'></div>
                         )
                       }
                       <div className='p-1'>

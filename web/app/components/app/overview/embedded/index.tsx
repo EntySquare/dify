@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import copy from 'copy-to-clipboard'
 import style from './style.module.css'
-import cn from '@/utils/classnames'
-import Modal from '@/app/components/base/modal'
-import copyStyle from '@/app/components/base/copy-btn/style.module.css'
-import Tooltip from '@/app/components/base/tooltip'
-import { useAppContext } from '@/context/app-context'
-import { IS_CE_EDITION } from '@/config'
-import type { SiteInfo } from '@/models/share'
-import { useThemeContext } from '@/app/components/base/chat/embedded-chatbot/theme/theme-context'
+import cn from '../../../../../utils/classnames'
+import Modal from '../../../base/modal'
+import copyStyle from '../../../base/copy-btn/style.module.css'
+import Tooltip from '../../../base/tooltip'
+import { useAppContext } from '../../../../../context/app-context'
+import { IS_CE_EDITION } from '../../../../../config'
+import type { SiteInfo } from '../../../../../models/share'
+import { useThemeContext } from '../../../base/chat/embedded-chatbot/theme/theme-context'
 
 type Props = {
   siteInfo?: SiteInfo
@@ -103,7 +103,7 @@ const Embedded = ({ siteInfo, isShow, onClose, appBaseUrl, accessToken, classNam
   }
 
   const navigateToChromeUrl = () => {
-    window.open('https://chrome.google.com/webstore/detail/dify-chatbot/ceehdapohffmjmkdcifjofadiaoeggaf', '_blank')
+    // window.open('https://chrome.google.com/webstore/detail/dify-chatbot/ceehdapohffmjmkdcifjofadiaoeggaf', '_blank')
   }
 
   useEffect(() => {

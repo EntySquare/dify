@@ -33,14 +33,14 @@ const Line = ({
                       d='M0,18 L24,18'
                       strokeWidth={1}
                       fill='none'
-                      className='stroke-divider-solid'
+                      className='stroke-divider-solid dark:!stroke-tgai-text-2'
                     />
                     <rect
                       x={0}
                       y={16}
                       width={1}
                       height={4}
-                      className='fill-divider-solid-alt'
+                      className='fill-divider-solid-alt dark:!fill-tgai-primary-5'
                     />
                   </>
                 )
@@ -51,7 +51,7 @@ const Line = ({
                     d={`M0,18 Q12,18 12,28 L12,${space - 10 + 2} Q12,${space + 2} 24,${space + 2}`}
                     strokeWidth={1}
                     fill='none'
-                    className='stroke-divider-solid'
+                    className='stroke-divider-solid dark:!stroke-tgai-text-2'
                   />
                 )
               }
@@ -60,7 +60,7 @@ const Line = ({
                 y={space}
                 width={1}
                 height={4}
-                className='fill-divider-solid-alt'
+                className='fill-divider-solid-alt dark:!fill-tgai-primary-5'
               />
             </g>
           )

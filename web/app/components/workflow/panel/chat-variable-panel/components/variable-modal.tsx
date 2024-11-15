@@ -266,7 +266,7 @@ const ChatVariableModal = ({
           </div>
         </div>
       </div>
-      <div className='px-4 py-2 max-h-[480px] overflow-y-auto'>
+      <div className='px-4 py-2 max-h-[480px] overflow-y-auto tgai-custom-scrollbar'>
         {/* name */}
         <div className='mb-4'>
           <div className='mb-1 h-6 flex items-center text-text-secondary system-sm-semibold'>{t('workflow.chatVariable.modal.name')}</div>

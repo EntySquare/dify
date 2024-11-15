@@ -35,6 +35,8 @@ import type { ToolNodeType } from './nodes/tool/types'
 import type { IterationNodeType } from './nodes/iteration/types'
 import { CollectionType } from '@/app/components/tools/types'
 import { toolParametersToFormSchemas } from '@/app/components/tools/utils/to-form-schema'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { Theme } from '@/types/app'
 
 const WHITE = 'WHITE'
 const GRAY = 'GRAY'

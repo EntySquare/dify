@@ -1,8 +1,8 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWorkflow } from '../hooks'
-import { useStore } from '@/app/components/workflow/store'
-import useTimestamp from '@/hooks/use-timestamp'
+import { useStore } from '../store'
+import useTimestamp from '../../../../hooks/use-timestamp'
 
 const EditingTitle = () => {
   const { t } = useTranslation()
@@ -13,7 +13,7 @@ const EditingTitle = () => {
   const isSyncingWorkflowDraft = useStore(s => s.isSyncingWorkflowDraft)
 
   return (
-    <div className='flex items-center h-[18px] text-xs text-gray-500'>
+    <div className='flex items-center h-[18px] text-xs text-tgai-text-2'>
       {
         !!draftUpdatedAt && (
           <>

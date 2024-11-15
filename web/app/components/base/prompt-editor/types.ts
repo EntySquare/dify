@@ -3,7 +3,7 @@ import type { RoleName } from './plugins/history-block'
 import type {
   Node,
   NodeOutPutVar,
-} from '@/app/components/workflow/types'
+} from '../../workflow/types'
 
 export type Option = {
   value: string

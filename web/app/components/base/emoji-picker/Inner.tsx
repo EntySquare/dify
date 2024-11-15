@@ -7,9 +7,9 @@ import { init } from 'emoji-mart'
 import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline'
-import cn from '@/utils/classnames'
-import Divider from '@/app/components/base/divider'
-import { searchEmoji } from '@/utils/emoji'
+import cn from '../../../../utils/classnames'
+import Divider from '../divider'
+import { searchEmoji } from '../../../../utils/emoji'
 
 declare global {
   namespace JSX {
@@ -76,7 +76,7 @@ const EmojiPickerInner: FC<IEmojiPickerInnerProps> = ({
         <input
           type="search"
           id="search"
-          className='block w-full h-10 px-3 pl-10 text-sm font-normal bg-gray-100 rounded-lg'
+          className='block w-full h-10 px-3 pl-10 text-sm font-normal bg-gray-100 dark:bg-tgai-input-background text-tgai-text-1 rounded-lg'
           placeholder="Search emojis..."
           onChange={async (e: ChangeEvent<HTMLInputElement>) => {
             if (e.target.value === '') {
@@ -93,10 +93,10 @@ const EmojiPickerInner: FC<IEmojiPickerInnerProps> = ({
     </div>
     <Divider className='m-0 mb-3' />
 
-    <div className="w-full max-h-[200px] overflow-x-hidden overflow-y-auto px-3">
+    <div className="w-full max-h-[200px] overflow-x-hidden overflow-y-auto tgai-custom-scrollbar px-3">
       {isSearching && <>
         <div key={'category-search'} className='flex flex-col'>
-          <p className='font-medium uppercase text-xs text-[#101828] mb-1'>Search</p>
+          <p className='font-medium uppercase text-xs text-tgai-text-2 mb-1'>Search</p>
           <div className='w-full h-full grid grid-cols-8 gap-1'>
             {searchedEmojis.map((emoji: string, index: number) => {
               return <div
@@ -117,7 +117,7 @@ const EmojiPickerInner: FC<IEmojiPickerInnerProps> = ({
 
       {categories.map((category, index: number) => {
         return <div key={`category-${index}`} className='flex flex-col'>
-          <p className='font-medium uppercase text-xs text-[#101828] mb-1'>{category.id}</p>
+          <p className='font-medium uppercase text-xs text-tgai-text-2 mb-1'>{category.id}</p>
           <div className='w-full h-full grid grid-cols-8 gap-1'>
             {category.emojis.map((emoji, index: number) => {
               return <div
@@ -140,7 +140,7 @@ const EmojiPickerInner: FC<IEmojiPickerInnerProps> = ({
 
     {/* Color Select */}
     <div className={cn('p-3 pb-0', selectedEmoji === '' ? 'opacity-25' : '')}>
-      <p className='font-medium uppercase text-xs text-[#101828] mb-2'>Choose Style</p>
+      <p className='font-medium uppercase text-xs text-tgai-text-2 mb-2'>Choose Style</p>
       <div className='w-full h-full grid grid-cols-8 gap-1'>
         {backgroundColors.map((color) => {
           return <div
