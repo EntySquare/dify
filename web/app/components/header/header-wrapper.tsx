@@ -13,7 +13,7 @@ const HeaderWrapper = ({
 }: HeaderWrapperProps) => {
   const pathname = usePathname()
   const isBordered = ['/apps', '/datasets', '/datasets/create', '/tools', '/account', '/data-cleansing'].includes(pathname)
-  const isBordered = ['/apps', '/datasets', '/datasets/create', '/tools', '/data-cleansing'].includes(pathname)
+  // const isBordered = ['/apps', '/datasets', '/datasets/create', '/tools', '/data-cleansing'].includes(pathname)
   const isWorkflow = useMemo(() => {
     return pathname.includes('/apps') || pathname.includes('/datasets') || pathname.includes('/tools') || pathname.includes('/explore') || pathname.includes('/data-cleansing')
   }, [pathname])

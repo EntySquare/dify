@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Input from './input'
-import Button from '../../../../../base/button'
+import Button from '@/app/components/base/button'
 
 const I18N_PREFIX = 'datasetCreation.stepOne.website'
 

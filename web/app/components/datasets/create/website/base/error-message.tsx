@@ -1,8 +1,8 @@
 'use client'
 import type { FC } from 'react'
 import React from 'react'
-import cn from '../../../../../../../utils/classnames'
-import { AlertTriangle } from '../../../../../base/icons/src/vender/solid/alertsAndFeedback'
+import cn from '@/utils/classnames'
+import { AlertTriangle } from '@/app/components/base/icons/src/vender/solid/alertsAndFeedback'
 
 type Props = {
   className?: string

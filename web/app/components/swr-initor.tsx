@@ -16,7 +16,7 @@ const SwrInitor = ({
   const searchParams = useSearchParams()
   const consoleToken = decodeURIComponent(searchParams.get('access_token') || '')
   const refreshToken = decodeURIComponent(searchParams.get('refresh_token') || '')
-  const consoleToken = searchParams.get('console_token')
+  // const consoleToken = searchParams.get('console_token')
   const TGAIToken = localStorage?.getItem('tgai_token')
   const consoleTokenFromLocalStorage = localStorage?.getItem('console_token')
   const refreshTokenFromLocalStorage = localStorage?.getItem('refresh_token')
@@ -80,7 +80,6 @@ const SwrInitor = ({
 }
 
 export default SwrInitor
-
 
 // TODO: CHECK PREVIOUS TOKEN
 // 'use client'

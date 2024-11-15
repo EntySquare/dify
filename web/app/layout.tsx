@@ -5,14 +5,13 @@ import SentryInitor from './components/sentry-initor'
 import { getLocaleOnServer } from '@/i18n/server'
 import './styles/globals.css'
 import './styles/markdown.scss'
-import Topbar from "./components/base/topbar";
 import '@arco-themes/react-entytg/css/arco.css'
-import { AxiosProvider } from "@/app/components/http/axios-provider";
-import { TGAIGlobalStoreProvider } from "@/context/tgai-global-context";
+import { AxiosProvider } from '@/app/components/http/axios-provider'
+import { TGAIGlobalStoreProvider } from '@/context/tgai-global-context'
 
 export const metadata = {
-  title: "TGAI",
-};
+  title: 'TGAI',
+}
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -30,7 +29,7 @@ const LocaleLayout = ({
   const locale = getLocaleOnServer()
 
   return (
-    <html lang={locale ?? "en"} className="h-full" data-theme="dark">
+    <html lang={locale ?? 'en'} className="h-full" data-theme="dark">
       <head>
         <meta name="theme-color" content="#FFFFFF" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -52,14 +51,13 @@ const LocaleLayout = ({
         data-public-text-generation-timeout-ms={process.env.NEXT_PUBLIC_TEXT_GENERATION_TIMEOUT_MS}
       >
         <TGAIGlobalStoreProvider>
-          <Topbar />
-          <BrowerInitor>
+          <BrowserInitor>
             <SentryInitor>
               <I18nServer>
                 <AxiosProvider>{children}</AxiosProvider>
               </I18nServer>
             </SentryInitor>
-          </BrowerInitor>
+          </BrowserInitor>
         </TGAIGlobalStoreProvider>
       </body>
     </html>

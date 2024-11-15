@@ -50,6 +50,7 @@ export type ISelectProps = {
     selected: boolean
   }) => React.ReactNode
 }
+
 const Select: FC<ISelectProps> = ({
   className,
   items = defaultItems,
@@ -125,7 +126,7 @@ const Select: FC<ISelectProps> = ({
           </Combobox.Button>
         </div>
 
-        {(filteredItems.length > 0 && open) (
+        {(filteredItems.length > 0 && open) && (
           <Combobox.Options className={`absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-tgai-panel-background-3 py-1 text-base shadow-lg dark:shadow-stone-800 border-gray-200 dark:border-stone-600 border-[0.5px] focus:outline-none sm:text-sm ${overlayClassName}`}>
             {filteredItems.map((item: Item) => (
               <Combobox.Option
@@ -135,7 +136,7 @@ const Select: FC<ISelectProps> = ({
                   classNames(
                     'relative cursor-default select-none py-2 pl-3 pr-9 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-700 text-tgai-text-2',
                     active ? 'bg-gray-100 dark:bg-zinc-700' : '',
-                    optionClassName
+                    optionClassName,
                   )
                 }
               >
@@ -213,27 +214,28 @@ const SimpleSelect: FC<ISelectProps> = ({
           <Listbox.Button className={classNames(`flex items-center w-full h-full bg-tgai-input-background rounded-lg border-0 pl-3 pr-10 sm:text-sm sm:leading-6 focus-visible:outline-none focus-visible:bg-gray-200 dark:focus-visible:bg-zinc-700 group-hover/simple-select:bg-state-base-hover-alt dark:group-hover/simple-select:bg-zinc-700 ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`, className)}>
             <span className={classNames('block truncate text-left system-sm-regular text-components-input-text-filled dark:text-tgai-text-2', !selectedItem?.name && 'text-components-input-text-placeholder dark:text-tgai-text-3')}>{selectedItem?.name ?? localPlaceholder}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2">
-            {(selectedItem && !notClearable)
-              ? (
-                <XMarkIcon
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setSelectedItem(null)
-                    onSelect({ name: '', value: '' })
-                  }}
-                  className="h-4 w-4 text-tgai-text-3 cursor-pointer"
-                  aria-hidden="false"
-                />
-              )
-              : (
-                <ChevronDownIcon
-                  className="h-4 w-4 text-tgai-text-3 group-hover/simple-select:text-tgai-text-2"
-                  aria-hidden="true"
-                />
-              )}
+              {(selectedItem && !notClearable)
+                ? (
+                  <XMarkIcon
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setSelectedItem(null)
+                      onSelect({ name: '', value: '' })
+                    }}
+                    className="h-4 w-4 text-tgai-text-3 cursor-pointer"
+                    aria-hidden="false"
+                  />
+                )
+                : (
+                  <ChevronDownIcon
+                    className="h-4 w-4 text-tgai-text-3 group-hover/simple-select:text-tgai-text-2"
+                    aria-hidden="true"
+                  />
+                )}
             </span>
           </Listbox.Button>
         )}
+
         {!disabled && (
           <Transition
             as={Fragment}
@@ -241,8 +243,7 @@ const SimpleSelect: FC<ISelectProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-
-            <Listbox.Options className={classNames('absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto tgai-custom-scrollbar rounded-md bg-tgai-panel-background-3 py-1 text-base shadow-lg border-gray-200 dark:border-stone-600 border-[0.5px] focus:outline-none sm:text-sm', optionWrapClassName)>
+            <Listbox.Options className={classNames('absolute z-10 mt-1 px-1 max-h-60 w-full overflow-auto tgai-custom-scrollbar rounded-md bg-tgai-panel-background-3 py-1 text-base shadow-lg border-gray-200 dark:border-stone-600 border-[0.5px] focus:outline-none sm:text-sm', optionWrapClassName)}>
               {items.map((item: Item) => (
                 <Listbox.Option
                   key={item.value}

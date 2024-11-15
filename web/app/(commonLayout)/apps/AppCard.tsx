@@ -211,14 +211,14 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
     }
     return (
       <div className="relative w-full py-1" onMouseLeave={onMouseLeave}>
-        <button className={cn(s.actionItem, "hover:bg-gray-100 dark:hover:bg-zinc-600")} onClick={onClickSettings}>
+        <button className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={onClickSettings}>
           <span className={s.actionName}>{t('app.editApp')}</span>
         </button>
         <Divider className="!my-1 dark:!bg-zinc-600" />
-        <button className={cn(s.actionItem, "hover:bg-gray-100 dark:hover:bg-zinc-600")} onClick={onClickDuplicate}>
+        <button className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={onClickDuplicate}>
           <span className={s.actionName}>{t('app.duplicate')}</span>
         </button>
-        <button className={cn(s.actionItem, "hover:bg-gray-100 dark:hover:bg-zinc-600")} onClick={onClickExport}>
+        <button className={cn(s.actionItem, 'hover:bg-gray-100 dark:hover:bg-zinc-600')} onClick={onClickExport}>
           <span className={s.actionName}>{t('app.export')}</span>
         </button>
         {(app.mode === 'completion' || app.mode === 'chat') && (
@@ -307,16 +307,17 @@ const AppCard = ({ app, onRefresh }: AppCardProps) => {
           >
             {app.description}
           </div>
+        </div>
         {/*  TODO: CHECK STYLE CHANGED */}
-        {/*<div*/}
-        {/*  className={cn(*/}
-        {/*    'grow mb-2 px-[14px] max-h-[72px] text-xs leading-normal text-tgai-text-2 group-hover:line-clamp-2 group-hover:max-h-[36px]',*/}
-        {/*    tags.length ? 'line-clamp-2' : 'line-clamp-4',*/}
-        {/*  )}*/}
-        {/*  title={app.description}*/}
-        {/*>*/}
-        {/*  {app.description}*/}
-        {/*</div>*/}
+        {/* <div */}
+        {/*  className={cn( */}
+        {/*    'grow mb-2 px-[14px] max-h-[72px] text-xs leading-normal text-tgai-text-2 group-hover:line-clamp-2 group-hover:max-h-[36px]', */}
+        {/*    tags.length ? 'line-clamp-2' : 'line-clamp-4', */}
+        {/*  )} */}
+        {/*  title={app.description} */}
+        {/* > */}
+        {/*  {app.description} */}
+        {/* </div> */}
         <div className={cn(
           'absolute bottom-1 left-0 right-0 items-center shrink-0 pt-1 pl-[14px] pr-[6px] pb-[6px] h-[42px]',
           tags.length ? 'flex' : '!hidden group-hover:!flex',
