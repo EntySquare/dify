@@ -47,7 +47,7 @@ class DifyConfig(
     HTTP_REQUEST_MAX_WRITE_TIMEOUT: int = 600
     HTTP_REQUEST_NODE_MAX_BINARY_SIZE: int = 1024 * 1024 * 10
 
-    TG_API_SERVICE_3011:str = 'http://127.0.0.1:3011'
+    TG_API_SERVICE_3011: str = 'http://127.0.0.1:3011'
 
     @computed_field
     def HTTP_REQUEST_NODE_READABLE_MAX_BINARY_SIZE(self) -> str:

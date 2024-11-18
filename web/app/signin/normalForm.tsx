@@ -99,7 +99,7 @@ const NormalForm = () => {
             <h2 className="title-4xl-semi-bold text-text-primary">{t('login.pageTitle')}</h2>
             <p className='mt-2 body-md-regular text-text-tertiary'>{t('login.welcome')}</p>
           </div>}
-        <div className="bg-white">
+        <div className="bg-white dark:bg-tgai-panel-background">
           <div className="flex flex-col gap-3 mt-6">
             {systemFeatures.enable_social_oauth_login && <SocialAuth />}
             {systemFeatures.sso_enforced_for_signin && <div className='w-full'>

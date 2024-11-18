@@ -804,6 +804,7 @@ class RegisterService:
                 password=password,
                 is_setup=is_setup,
             )
+
             account.status = AccountStatus.ACTIVE.value if not status else status.value
             account.initialized_at = datetime.now(timezone.utc).replace(tzinfo=None)
 

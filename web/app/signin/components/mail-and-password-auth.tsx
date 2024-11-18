@@ -5,17 +5,18 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useContext } from 'use-context-selector'
 import Button from '@/app/components/base/button'
 import Toast from '@/app/components/base/toast'
-import { emailRegex } from '@/config'
+// import { emailRegex } from '@/config'
 import { login } from '@/service/common'
 import Input from '@/app/components/base/input'
 import I18NContext from '@/context/i18n'
+import { TGAIPost } from '@/service/http'
 
 type MailAndPasswordAuthProps = {
   isInvite: boolean
   allowRegistration: boolean
 }
 
-const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
+// const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/
 
 export default function MailAndPasswordAuth({ isInvite, allowRegistration }: MailAndPasswordAuthProps) {
   const { t } = useTranslation()
@@ -33,24 +34,24 @@ export default function MailAndPasswordAuth({ isInvite, allowRegistration }: Mai
       Toast.notify({ type: 'error', message: t('login.error.emailEmpty') })
       return
     }
-    if (!emailRegex.test(email)) {
-      Toast.notify({
-        type: 'error',
-        message: t('login.error.emailInValid'),
-      })
-      return
-    }
+    // if (!emailRegex.test(email)) {
+    //   Toast.notify({
+    //     type: 'error',
+    //     message: t('login.error.emailInValid'),
+    //   })
+    //   return
+    // }
     if (!password?.trim()) {
       Toast.notify({ type: 'error', message: t('login.error.passwordEmpty') })
       return
     }
-    if (!passwordRegex.test(password)) {
-      Toast.notify({
-        type: 'error',
-        message: t('login.error.passwordInvalid'),
-      })
-      return
-    }
+    // if (!passwordRegex.test(password)) {
+    //   Toast.notify({
+    //     type: 'error',
+    //     message: t('login.error.passwordInvalid'),
+    //   })
+    //   return
+    // }
     try {
       setIsLoading(true)
       const loginData: Record<string, any> = {
@@ -61,34 +62,51 @@ export default function MailAndPasswordAuth({ isInvite, allowRegistration }: Mai
       }
       if (isInvite)
         loginData.invite_token = decodeURIComponent(searchParams.get('invite_token') as string)
+
+      const TGAILoginRes = await TGAIPost<{ token: string, userInfo: any }>('/manage/login',
+        {
+          username: email,
+          password,
+          googleCode: '',
+        },
+      )
+
+      // const res = await login({
+      //   url: '/login',
+      //   body: loginData,
+      // })
+
       const res = await login({
-        url: '/login',
+        url: '/enty-login',
         body: loginData,
       })
-      if (res.result === 'success') {
+
+      if (res.result === 'success' && TGAILoginRes.data.token) {
         if (isInvite) {
           router.replace(`/signin/invite-settings?${searchParams.toString()}`)
         }
         else {
           localStorage.setItem('console_token', res.data.access_token)
           localStorage.setItem('refresh_token', res.data.refresh_token)
-          router.replace('/apps')
+          localStorage.setItem('tgai_token', TGAILoginRes.data.token)
+          localStorage.setItem('tgai_user_info', JSON.stringify(TGAILoginRes.data.userInfo))
+          router.replace('/heat/list')
         }
       }
-      else if (res.code === 'account_not_found') {
-        if (allowRegistration) {
-          const params = new URLSearchParams()
-          params.append('email', encodeURIComponent(email))
-          params.append('token', encodeURIComponent(res.data))
-          router.replace(`/reset-password/check-code?${params.toString()}`)
-        }
-        else {
-          Toast.notify({
-            type: 'error',
-            message: t('login.error.registrationNotAllowed'),
-          })
-        }
-      }
+      // else if (res.code === 'account_not_found') {
+      //   if (allowRegistration) {
+      //     const params = new URLSearchParams()
+      //     params.append('email', encodeURIComponent(email))
+      //     params.append('token', encodeURIComponent(res.data))
+      //     router.replace(`/reset-password/check-code?${params.toString()}`)
+      //   }
+      //   else {
+      //     Toast.notify({
+      //       type: 'error',
+      //       message: t('login.error.registrationNotAllowed'),
+      //     })
+      //   }
+      // }
       else {
         Toast.notify({
           type: 'error',

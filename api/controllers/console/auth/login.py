@@ -35,6 +35,7 @@ from services.feature_service import FeatureService
 # from models.account import Account
 # from services.account_service import AccountService, RegisterService, TenantService
 
+
 class LoginApi(Resource):
     """Resource for user login."""
 
@@ -218,14 +219,15 @@ class RefreshTokenApi(Resource):
         except Exception as e:
             return {"result": "fail", "data": str(e)}, 401
 
+
 class LoginAdmin(Resource):
     def post(self):
         user = 'admin'
         account = Account.query.filter_by(email=user).first()  # 查询用户
         # 没有测创建
         if account:
-            token = AccountService.login(account, ip_address=get_remote_ip(request))
-            return {'result': 'success', 'data': token}
+            token_pair = AccountService.login(account, ip_address=extract_remote_ip(request))
+            return {'result': 'success', 'data': token_pair.model_dump()}
 
         if not account:
             account = RegisterService.register(
@@ -233,13 +235,14 @@ class LoginAdmin(Resource):
                 name=user,
                 password=user,
                 language="en-US")
-            token = AccountService.login(account, ip_address=get_remote_ip(request))
+            token_pair = AccountService.login(account, ip_address=extract_remote_ip(request))
             tenant = TenantService.create_tenant(f"{account.name}'s Workspace")
             TenantService.create_tenant_member(tenant, account, role='owner')
             account.current_tenant = tenant
             tenant_was_created.send(tenant)
 
-            return {'result': 'success', 'data': token}
+            return {'result': 'success', 'data': token_pair.model_dump()}
+
 
 api.add_resource(LoginApi, "/login")
 api.add_resource(LogoutApi, "/logout")

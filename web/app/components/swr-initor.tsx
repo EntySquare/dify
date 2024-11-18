@@ -23,33 +23,47 @@ const SwrInitor = ({
   const pathname = usePathname()
   const [init, setInit] = useState(false)
 
-  const isSetupFinished = useCallback(async () => {
-    try {
-      if (localStorage.getItem('setup_status') === 'finished')
-        return true
-      const setUpStatus = await fetchSetupStatus()
-      if (setUpStatus.step !== 'finished') {
-        localStorage.removeItem('setup_status')
-        return false
-      }
-      localStorage.setItem('setup_status', 'finished')
-      return true
-    }
-    catch (error) {
-      console.error(error)
-      return false
-    }
-  }, [])
+  // const isSetupFinished = useCallback(async () => {
+  //   try {
+  //     if (localStorage.getItem('setup_status') === 'finished')
+  //       return true
+  //     const setUpStatus = await fetchSetupStatus()
+  //     if (setUpStatus.step !== 'finished') {
+  //       localStorage.removeItem('setup_status')
+  //       return false
+  //     }
+  //     localStorage.setItem('setup_status', 'finished')
+  //     return true
+  //   }
+  //   catch (error) {
+  //     console.error(error)
+  //     return false
+  //   }
+  // }, [])
 
   useEffect(() => {
     (async () => {
       try {
-        const isFinished = await isSetupFinished()
-        if (!isFinished) {
-          router.replace('/install')
+        // const isFinished = await isSetupFinished()
+        // if (!isFinished) {
+        //   router.replace('/install')
+        //   return
+        // }
+        if (!((consoleToken && refreshToken) || (consoleTokenFromLocalStorage && refreshTokenFromLocalStorage))) {
+          if (typeof window !== undefined) {
+            localStorage.removeItem('console_token')
+            localStorage.removeItem('refresh_token')
+            localStorage.removeItem('tgai_token')
+          }
+          router.replace('/signin')
           return
         }
-        if (!((consoleToken && refreshToken) || (consoleTokenFromLocalStorage && refreshTokenFromLocalStorage))) {
+        if (!TGAIToken || TGAIToken === 'undefined') {
+          if (typeof window !== undefined) {
+            localStorage.removeItem('console_token')
+            localStorage.removeItem('refresh_token')
+            localStorage.removeItem('tgai_token')
+          }
           router.replace('/signin')
           return
         }
@@ -65,7 +79,8 @@ const SwrInitor = ({
         router.replace('/signin')
       }
     })()
-  }, [isSetupFinished, router, pathname, searchParams, consoleToken, refreshToken, consoleTokenFromLocalStorage, refreshTokenFromLocalStorage])
+  }, [router, pathname, searchParams, consoleToken, refreshToken, consoleTokenFromLocalStorage, refreshTokenFromLocalStorage])
+  // }, [isSetupFinished, router, pathname, searchParams, consoleToken, refreshToken, consoleTokenFromLocalStorage, refreshTokenFromLocalStorage])
 
   return init
     ? (

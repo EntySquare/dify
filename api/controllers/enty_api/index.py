@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime
 
 import jmespath
-from flask import jsonify
+from flask import jsonify, request
 from flask_login import current_user
 from flask_restful import Resource, marshal_with, reqparse
 from sqlalchemy import text
@@ -12,8 +12,14 @@ from werkzeug.exceptions import BadRequest, Forbidden, InternalServerError
 
 from configs import dify_config
 from controllers.console import api as console_api
-from controllers.console.setup import setup_required
-from controllers.console.wraps import account_initialization_required, cloud_edition_billing_resource_check
+from controllers.console.setup import get_setup_status
+
+# from controllers.console.setup import setup_required
+from controllers.console.wraps import (
+    account_initialization_required,
+    cloud_edition_billing_resource_check,
+    setup_required,
+)
 from controllers.enty_api import api
 from controllers.service_api.app.error import (
     CompletionRequestError,
@@ -30,13 +36,15 @@ from core.errors.error import (
     QuotaExceededError,
 )
 from core.model_runtime.errors.invoke import InvokeError
+from events.tenant_event import tenant_was_created
 from extensions.ext_database import db
 from fields.app_fields import (
     app_detail_fields,
 )
 from libs import helper
 from libs.login import login_required
-from models.model import App
+from models.model import Account, App, DifySetup
+from services.account_service import AccountService, TenantService
 from services.app_generate_service import AppGenerateService
 from services.app_service import AppService
 from services.workflow_service import WorkflowService
@@ -44,6 +52,7 @@ from services.workflow_service import WorkflowService
 from .chat_one_v1.chat_one_v1_features import data as one_v1_features
 from .chat_one_v1.chat_one_v1_qraph import data as chat_one_v1_qraph  # 第一版
 from .chat_one_v1.general_v2 import data as general_v2  # 通用版本 第二版
+from .enty_account_service.enty_account_service import EntyAccountService
 
 logger = logging.getLogger(__name__)
 
@@ -144,7 +153,6 @@ class DraftWorkflowRunApi(Resource):
 #             return {'result': 'success', 'data': token}
 
 
-
 class CreateChatOneV1(Resource):
     @setup_required
     @login_required
@@ -162,7 +170,7 @@ class CreateChatOneV1(Resource):
         args = parser.parse_args()
 
         args["name"] = "单聊模版(TGAI_V1)"
-        args["description"] = '临时模版名称，请修改。此模版为TGAI单聊对接模版，遵循输入输出规范才可生效模版创建时间：'+datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        args["description"] = '临时模版名称，请修改。此模版为TGAI单聊对接模版，遵循输入输出规范才可生效模版创建时间：' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         args["mode"] = 'workflow'
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
@@ -206,7 +214,7 @@ class CreateGeneralV2(Resource):
         args = parser.parse_args()
 
         args["name"] = "通用模版(V2)"
-        args["description"] = '临时模版名称，请修改。此模版为通用模版，遵循输入输出规范才可生效模版创建时间：'+datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        args["description"] = '临时模版名称，请修改。此模版为通用模版，遵循输入输出规范才可生效模版创建时间：' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         args["mode"] = 'workflow'
         # The role of the current user in the ta table must be admin, owner, or editor
         if not current_user.is_editor:
@@ -231,6 +239,37 @@ class CreateGeneralV2(Resource):
         print("workflow")
         print("得到workflow》》》》》》")
         return app, 201
+    
+
+class EntyLogin(Resource):
+    def post(self):
+        user = 'admin'
+        account = Account.query.filter_by(email=user).first()  # 查询用户
+
+        if not get_setup_status():
+            dify_setup = DifySetup(version=dify_config.CURRENT_VERSION)
+            db.session.add(dify_setup)
+            db.session.commit()
+
+        # 没有测创建
+        if account:
+            token_pair = AccountService.login(account, ip_address=helper.extract_remote_ip(request))
+            return {'result': 'success', 'data': token_pair.model_dump()}
+
+        if not account:
+            account = EntyAccountService.register(
+                email=user,
+                name=user,
+                password=user,
+                language="en-US")
+            token_pair = AccountService.login(account, ip_address=helper.extract_remote_ip(request))
+            tenant = EntyAccountService.create_tenant(f"{account.name}'s Workspace")
+            TenantService.create_tenant_member(tenant, account, role='owner')
+            account.current_tenant = tenant
+            tenant_was_created.send(tenant)
+
+            return {'result': 'success', 'data': token_pair.model_dump()}
+
 
 api.add_resource(Ping, '/ping')
 api.add_resource(WorkflowsAll, '/workflows-all')  # 列表
@@ -239,3 +278,5 @@ api.add_resource(DraftWorkflowRunApi, '/workflows-run/<uuid:app_id>')  # 执行
 
 console_api.add_resource(CreateChatOneV1, '/create/chat_one_v1')  # 创建tgai 单聊模版
 console_api.add_resource(CreateGeneralV2, '/create/general_v2')  # 创建tgai 单聊模版
+console_api.add_resource(EntyLogin, '/enty-login')  # 创建tgai 单聊模版
+

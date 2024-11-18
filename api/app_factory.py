@@ -138,6 +138,7 @@ def unauthorized_handler():
 # register blueprint routers
 def register_blueprints(app):
     from controllers.console import bp as console_app_bp
+    from controllers.enty_api import bp as enty_api_bp
     from controllers.files import bp as files_bp
     from controllers.inner_api import bp as inner_api_bp
     from controllers.service_api import bp as service_api_bp
@@ -176,3 +177,11 @@ def register_blueprints(app):
     app.register_blueprint(files_bp)
 
     app.register_blueprint(inner_api_bp)
+
+    CORS(
+        enty_api_bp,
+        allow_headers=["Content-Type", "Authorization", "X-App-Code"],
+        methods=["GET", "PUT", "POST", "DELETE", "OPTIONS", "PATCH"],
+    )
+    app.register_blueprint(enty_api_bp)
+
