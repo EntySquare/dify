@@ -743,7 +743,7 @@ const StepTwo = ({
                       <div className={cn(s.label, 'dark:!text-tgai-text-1')}>{t('datasetCreation.stepTwo.rules')}</div>
                       {rules.map(rule => (
                         <div key={rule.id} className={s.ruleItem}>
-                          <input id={rule.id} type="checkbox" checked={rule.enabled} onChange={() => ruleChangeHandle(rule.id)} className="w-4 h-4 rounded border-gray-300 dark:border-stone-500 text-blue-700 dark:text-tgai-primary focus:ring-blue-700 dark:focus:ring-tgai-primary" />
+                          <input id={rule.id} type="checkbox" checked={rule.enabled} onChange={() => ruleChangeHandle(rule.id)} className="w-4 h-4 rounded border-gray-300 dark:border-stone-500 text-blue-700 dark:text-tgai-primary focus:ring-blue-700 dark:focus:ring-tgai-primary dark:accent-tgai-primary" />
                           <label htmlFor={rule.id} className="ml-2 text-sm font-normal cursor-pointer text-tgai-text-1">{getRuleName(rule.id)}</label>
                         </div>
                       ))}

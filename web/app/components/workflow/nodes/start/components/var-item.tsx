@@ -56,7 +56,7 @@ const VarItem: FC<Props> = ({
         {showLegacyBadge && (
           <Badge
             text='LEGACY'
-            className='shrink-0 border-text-accent-secondary text-text-accent-secondary'
+            className='shrink-0 border-text-accent-secondary dark:border-tgai-primary-7 text-text-accent-secondary dark:text-tgai-primary-7'
           />
         )}
       </div>

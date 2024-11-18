@@ -37,7 +37,7 @@ const FileTypeItem: FC<Props> = ({
       className={cn(
         'rounded-lg bg-components-option-card-option-bg border border-components-option-card-option-border cursor-pointer select-none',
         !isCustomSelected && 'py-2 px-3',
-        selected && 'border-[1.5px] bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border',
+        selected && 'border-[1.5px] bg-components-option-card-option-selected-bg border-components-option-card-option-selected-border dark:border-tgai-primary',
         !selected && 'hover:bg-components-option-card-option-bg-hover hover:border-components-option-card-option-border-hover',
       )}
       onClick={handleOnSelect}

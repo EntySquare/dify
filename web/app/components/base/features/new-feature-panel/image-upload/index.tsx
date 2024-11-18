@@ -59,7 +59,7 @@ const FileUpload = ({
           {t('appDebug.feature.imageUpload.title')}
           <Badge
             text='LEGACY'
-            className='shrink-0 mx-1 border-text-accent-secondary text-text-accent-secondary'
+            className='shrink-0 mx-1 border-text-accent-secondary text-text-accent-secondary dark:border-tgai-primary-7 dark:text-tgai-primary-7'
           />
         </div>
       }

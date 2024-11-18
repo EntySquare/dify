@@ -29,7 +29,7 @@ const SubVariablePicker: FC<Props> = ({
     return (
       <div className='flex items-center h-6 justify-between'>
         <div className='flex items-center h-full'>
-          <Variable02 className='mr-[5px] w-3.5 h-3.5 text-text-accent' />
+          <Variable02 className='mr-[5px] w-3.5 h-3.5 text-text-accent dark:text-tgai-primary' />
           <span className='text-text-secondary system-sm-medium'>{item.name}</span>
         </div>
         <span className='text-text-tertiary system-xs-regular'>{item.type}</span>
@@ -55,8 +55,8 @@ const SubVariablePicker: FC<Props> = ({
           <div className='group/sub-variable-picker flex items-center h-8 pl-1 rounded-lg bg-components-input-bg-normal hover:bg-state-base-hover-alt'>
             {item
               ? <div className='flex justify-start cursor-pointer'>
-                <div className='inline-flex max-w-full px-1.5 items-center h-6 rounded-md border-[0.5px] border-components-panel-border-subtle bg-components-badge-white-to-dark shadow-xs text-text-accent'>
-                  <Variable02 className='shrink-0 w-3.5 h-3.5 text-text-accent' />
+                <div className='inline-flex max-w-full px-1.5 items-center h-6 rounded-md border-[0.5px] border-components-panel-border-subtle bg-components-badge-white-to-dark shadow-xs text-text-accent dark:text-tgai-primary'>
+                  <Variable02 className='shrink-0 w-3.5 h-3.5 text-text-accent dark:text-tgai-primary' />
                   <div className='ml-0.5 truncate system-xs-medium'>{item?.name}</div>
                 </div>
               </div>

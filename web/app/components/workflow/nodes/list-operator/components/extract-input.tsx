@@ -35,7 +35,7 @@ const ExtractInput: FC<Props> = ({
     <div className='flex items-start  space-x-1'>
       <Input
         instanceId='http-extract-number'
-        className={cn(isFocus ? 'shadow-xs bg-gray-50 border-gray-300' : 'bg-gray-100 border-gray-100', 'w-0 grow rounded-lg px-3 py-[6px] border')}
+        className={cn(isFocus ? 'shadow-xs bg-gray-50 dark:bg-zinc-700 border-gray-300 dark:border-stone-600' : 'bg-gray-100 dark:bg-tgai-input-background border-gray-100 dark:border-tgai-input-background', 'w-0 grow rounded-lg px-3 py-[6px] border')}
         value={value}
         onChange={onChange}
         readOnly={readOnly}

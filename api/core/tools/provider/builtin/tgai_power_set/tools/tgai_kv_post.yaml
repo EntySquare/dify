@@ -1,0 +1,40 @@
+identity:
+  name: tgai_kv_post
+  author: Enty
+  label:
+    en_US: TGAI KV POST
+    zh_Hans: TGAI KV POST
+    pt_BR: TGAI KV POST
+description:
+  human:
+    en_US: A tool for update/insert data to kv store with key and value.
+    zh_Hans: 一个用于向 TGAI KV 数据库插入/更新数据。
+    pt_BR: A tool for update/insert data to kv store with key and value.
+  llm: A tool for update/insert data to kv store with key and value.
+parameters:
+  - name: kv_key
+    type: string
+    required: true
+    label:
+      en_US: key
+      zh_Hans: key
+      pt_BR: key
+    human_description:
+      en_US: Key to insert/update
+      zh_Hans: 要更新/插入的 key
+      pt_BR: Key to insert/update
+    llm_description: Key to insert/update
+    form: llm
+  - name: kv_value
+    type: string
+    required: true
+    label:
+      en_US: value
+      zh_Hans: value
+      pt_BR: value
+    human_description:
+      en_US: Value to insert/update
+      zh_Hans: 要更新/插入的 value
+      pt_BR: Value to insert/update
+    llm_description: Value to insert/update
+    form: llm

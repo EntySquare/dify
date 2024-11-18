@@ -83,7 +83,7 @@ const BaseNode: FC<BaseNodeProps> = ({
     <div
       className={cn(
         'flex border-[2px] rounded-2xl',
-        showSelectedBorder ? 'border-components-option-card-option-selected-border dark:border-tgai-primary' : 'border-transparent',
+        showSelectedBorder ? 'border-components-option-card-option-selected-border dark:border-tgai-primary' : 'border-transparent dark:border-tgai-workflow-panel-border',
         !showSelectedBorder && data._inParallelHovering && 'border-workflow-block-border-highlight',
       )}
       ref={nodeRef}
@@ -94,7 +94,6 @@ const BaseNode: FC<BaseNodeProps> = ({
     >
       <div
         className={cn(
-          'group relative pb-1 shadow-xs',
           'border border-transparent rounded-[15px]',
           data.type !== BlockEnum.Iteration && 'w-[240px] bg-workflow-block-bg dark:bg-tgai-workflow-panel-background',
           data.type === BlockEnum.Iteration && 'flex flex-col w-full h-full bg-[#fcfdff]/80 dark:bg-[#1e1e1e]/80',

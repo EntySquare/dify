@@ -64,9 +64,9 @@ const Panel: FC<NodePanelProps<DocExtractorNodeType>> = ({
               filterVar={filterVar}
               typePlaceHolder='File | Array[File]'
             />
-            <div className='mt-1 py-0.5 text-text-tertiary body-xs-regular'>
+            <div className='mt-1 py-0.5 text-text-tertiary dark:text-tgai-text-3 body-xs-regular'>
               {t(`${i18nPrefix}.supportFileTypes`, { types: supportTypesShowNames })}
-              <a className='text-text-accent' href={link} target='_blank'>{t(`${i18nPrefix}.learnMore`)}</a>
+              <a className='text-text-accent dark:text-tgai-primary' href={'#' || link} target='_blank'>{t(`${i18nPrefix}.learnMore`)}</a>
             </div>
           </>
         </Field>

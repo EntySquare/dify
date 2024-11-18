@@ -1,0 +1,27 @@
+identity:
+  name: tgai_kv_get
+  author: Enty
+  label:
+    en_US: TGAI KV GET
+    zh_Hans: TGAI KV GET
+    pt_BR: TGAI KV GET
+description:
+  human:
+    en_US: A tool for get value from kv store with key, result type is json.
+    zh_Hans: 一个用于从 TGAI KV 数据库中根据指定 key 获取 value 的工具，返回结果为 json。
+    pt_BR: A tool for get value from kv store with key, result type is json.
+  llm: A tool for get value from kv store with key, result type is json.
+parameters:
+  - name: key
+    type: string
+    required: true
+    label:
+      en_US: key
+      zh_Hans: key
+      pt_BR: key
+    human_description:
+      en_US: key used for querying from KV DB
+      zh_Hans: 要查询的 key
+      pt_BR:  key used for querying from KV DB
+    llm_description: key used for querying from KV DB
+    form: llm

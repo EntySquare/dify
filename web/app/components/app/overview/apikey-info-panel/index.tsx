@@ -27,8 +27,8 @@ const APIKeyInfoPanel: FC = () => {
     return null
 
   return (
-    <div className={cn('bg-[#EFF4FF] border-[#D1E0FF]', 'mb-6 relative  rounded-2xl shadow-md border  p-8 ')}>
-      <div className={cn('text-[24px] text-gray-800 font-semibold', isCloud ? 'flex items-center h-8 space-x-1' : 'leading-8 mb-6')}>
+    <div className={cn('bg-[#EFF4FF] dark:bg-gray-800 border-[#D1E0FF] dark:border-stone-500', 'mb-6 relative  rounded-2xl shadow-md dark:shadow-stone-800 border  p-8 ')}>
+      <div className={cn('text-[24px] text-tgai-text-1 font-semibold', isCloud ? 'flex items-center h-8 space-x-1' : 'leading-8 mb-6')}>
         {isCloud && <em-emoji id={'😀'} />}
         {isCloud
           ? (
@@ -53,15 +53,16 @@ const APIKeyInfoPanel: FC = () => {
         <LinkExternal02 className='w-4 h-4' />
       </Button>
       {!isCloud && (
-        <a
-          className='mt-2 flex items-center h-[26px] text-xs  font-medium text-[#155EEF] p-1 space-x-1'
-          href=''
-          // href='https://cloud.dify.ai/apps'
-          target='_blank' rel='noopener noreferrer'
-        >
-          <div>{t('appOverview.apiKeyInfo.tryCloud')}</div>
-          <LinkExternal02 className='w-3 h-3' />
-        </a>
+        <></>
+        // <a
+        //   className='mt-2 flex items-center h-[26px] text-xs  font-medium text-[#155EEF] p-1 space-x-1'
+        //   href=''
+        //   // href='https://cloud.dify.ai/apps'
+        //   target='_blank' rel='noopener noreferrer'
+        // >
+        //   <div>{t('appOverview.apiKeyInfo.tryCloud')}</div>
+        //   <LinkExternal02 className='w-3 h-3' />
+        // </a>
       )}
       <div
         onClick={() => setIsShow(false)}

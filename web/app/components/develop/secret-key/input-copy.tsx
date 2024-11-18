@@ -41,7 +41,7 @@ const InputCopy = ({
       <div className="flex items-center flex-grow h-5">
         {children}
         <div className='flex-grow bg-gray-50 dark:bg-tgai-input-background text-[13px] relative h-full'>
-          <div className='absolute top-0 left-0 w-full pl-2 pr-2 truncate cursor-pointer r-0' onClick={() => {
+          <div className='absolute top-0 left-0 w-full pl-2 pr-2 truncate cursor-pointer text-tgai-text-2 r-0' onClick={() => {
             copy(value)
             setIsCopied(true)
           }}>

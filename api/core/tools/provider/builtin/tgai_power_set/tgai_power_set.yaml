@@ -1,0 +1,31 @@
+identity:
+  author: Enty
+  name: tgai_power_set
+  label:
+    en_US: TGAI Power Set
+    zh_Hans: TGAI 能力集
+    pt_BR: TGAI Power Set
+  description:
+    en_US: Built in power set of TGAI, unleash furious power.
+    zh_Hans: TGAI 能力集合，释放狂野力量
+    pt_BR: Built in power set of TGAI, unleash furious power.
+  icon: icon.svg
+  tags:
+    - search
+    - utilities
+credentials_for_provider:
+  tgai_api_url:
+    type: text-input
+    required: true
+    label:
+      en_US: TGAI API URL
+      zh_Hans: TGAI API URL
+      pt_BR: TGAI API URL
+    help:
+      en_US: Please input your TGAI API URL
+      zh_Hans: 请输入你的 TGAI API URL
+      pt_BR: Please input your TGAI API URL
+    placeholder:
+      en_US: Please input your TGAI API URL
+      zh_Hans: 请输入你的 TGAI API URL
+      pt_BR: Please input your TGAI API URL
