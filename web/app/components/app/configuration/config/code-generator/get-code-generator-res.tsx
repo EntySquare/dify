@@ -102,13 +102,13 @@ export const GetCodeGeneratorResModal: FC<IGetCodeGeneratorResProps> = (
   const renderLoading = (
     <div className='w-0 grow flex flex-col items-center justify-center h-full space-y-3'>
       <Loading />
-      <div className='text-[13px] text-gray-400'>{t('appDebug.codegen.loading')}</div>
+      <div className='text-[13px] text-tgai-text-3'>{t('appDebug.codegen.loading')}</div>
     </div>
   )
   const renderNoData = (
     <div className='w-0 grow flex flex-col items-center px-8 justify-center h-full space-y-3'>
-      <Generator className='w-14 h-14 text-gray-300' />
-      <div className='leading-5 text-center text-[13px] font-normal text-gray-400'>
+      <Generator className='w-14 h-14 text-tgai-text-4' />
+      <div className='leading-5 text-center text-[13px] font-normal text-tgai-text-3'>
         <div>{t('appDebug.codegen.noDataLine1')}</div>
         <div>{t('appDebug.codegen.noDataLine2')}</div>
       </div>
@@ -119,14 +119,14 @@ export const GetCodeGeneratorResModal: FC<IGetCodeGeneratorResProps> = (
     <Modal
       isShow={isShow}
       onClose={onClose}
-      className='!p-0 min-w-[1140px]'
+      className='!p-0 min-w-[1140px] dark:!bg-tgai-panel-background dark:border-stone-600 dark:border'
       closable
     >
       <div className='relative flex h-[680px] flex-wrap'>
-        <div className='w-[570px] shrink-0 p-8 h-full overflow-y-auto border-r border-gray-100'>
+        <div className='w-[570px] shrink-0 p-8 h-full overflow-y-auto tgai-custom-scrollbar border-r border-gray-100 dark:border-stone-700'>
           <div className='mb-8'>
-            <div className={'leading-[28px] text-lg font-bold'}>{t('appDebug.codegen.title')}</div>
-            <div className='mt-1 text-[13px] font-normal text-gray-500'>{t('appDebug.codegen.description')}</div>
+            <div className={'leading-[28px] text-lg font-bold text-tgai-text-1'}>{t('appDebug.codegen.title')}</div>
+            <div className='mt-1 text-[13px] font-normal text-tgai-text-3'>{t('appDebug.codegen.description')}</div>
           </div>
           <div className='flex items-center'>
             <ModelIcon
@@ -143,9 +143,9 @@ export const GetCodeGeneratorResModal: FC<IGetCodeGeneratorResProps> = (
           </div>
           <div className='mt-6'>
             <div className='text-[0px]'>
-              <div className='mb-2 leading-5 text-sm font-medium text-gray-900'>{t('appDebug.codegen.instruction')}</div>
+              <div className='mb-2 leading-5 text-sm font-medium text-tgai-text-1'>{t('appDebug.codegen.instruction')}</div>
               <textarea
-                className="w-full h-[200px] overflow-y-auto px-3 py-2 text-sm bg-gray-50 rounded-lg"
+                className="w-full h-[200px] overflow-y-auto tgai-custom-scrollbar px-3 py-2 text-sm bg-gray-50 dark:bg-tgai-input-background rounded-lg text-tgai-text-1"
                 placeholder={t('appDebug.codegen.instructionPlaceholder') || ''}
                 value={instruction}
                 onChange={e => setInstruction(e.target.value)}

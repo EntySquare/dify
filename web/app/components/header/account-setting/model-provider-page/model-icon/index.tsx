@@ -34,7 +34,7 @@ const ModelIcon: FC<ModelIconProps> = ({
 
   return (
     <div className={`
-      flex items-center justify-center w-6 h-6 rounded border-[0.5px] border-black/5 bg-gray-50 dark:bg-tgai-primary dark:border-stone-600
+      flex items-center justify-center w-6 h-6 rounded border-[0.5px] border-black/5 bg-gray-50 dark:bg-zinc-700 dark:border-stone-600
       ${className}
     `}>
       <CubeOutline className='w-4 h-4 text-tgai-text-3' />
