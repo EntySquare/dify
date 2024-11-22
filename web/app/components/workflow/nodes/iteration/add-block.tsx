@@ -61,8 +61,8 @@ const AddBlock = ({
 
   return (
     <div className='absolute top-7 left-14 flex items-center h-8 z-10'>
-      <div className='group/insert relative w-16 h-0.5 bg-gray-300'>
-        <div className='absolute right-0 top-1/2 -translate-y-1/2 w-0.5 h-2 bg-primary-500'></div>
+      <div className='group/insert relative w-16 h-0.5 bg-gray-300 dark:bg-[rgb(92,_92,_92)]'>
+        <div className='absolute right-0 top-1/2 -translate-y-1/2 w-0.5 h-2 bg-primary-500 dark:bg-tgai-primary'></div>
       </div>
       <BlockSelector
         disabled={nodesReadOnly}

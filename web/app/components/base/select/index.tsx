@@ -58,7 +58,7 @@ const Select: FC<ISelectProps> = ({
   disabled = false,
   onSelect,
   allowSearch = true,
-  bgClassName = 'bg-gray-100',
+  bgClassName = 'bg-gray-100 dark:bg-tgai-input-background',
   overlayClassName,
   optionClassName,
   renderOption,
