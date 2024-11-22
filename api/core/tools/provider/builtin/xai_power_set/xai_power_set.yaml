@@ -1,0 +1,31 @@
+identity:
+  author: Enty
+  name: xai_power_set
+  label:
+    en_US: XAI Power Set
+    zh_Hans: XAI 能力集
+    pt_BR: XAI Power Set
+  description:
+    en_US: Built in power set of XAI, unleash furious power.
+    zh_Hans: XAI 能力集合，释放狂野力量
+    pt_BR: Built in power set of XAI, unleash furious power.
+  icon: icon.svg
+  tags:
+    - search
+    - utilities
+credentials_for_provider:
+  xai_api_url:
+    type: text-input
+    required: true
+    label:
+      en_US: XAI API URL
+      zh_Hans: XAI API URL
+      pt_BR: XAI API URL
+    help:
+      en_US: Please input your XAI API URL
+      zh_Hans: 请输入你的 XAI API URL
+      pt_BR: Please input your XAI API URL
+    placeholder:
+      en_US: Please input your XAI API URL
+      zh_Hans: 请输入你的 XAI API URL
+      pt_BR: Please input your XAI API URL
