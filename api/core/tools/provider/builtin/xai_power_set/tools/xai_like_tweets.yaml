@@ -49,6 +49,6 @@ parameters:
       en_US: Whether to sync of not
       zh_Hans: 是否需要阻塞同步
       pt_BR: Whether to sync of not
-    llm_description: Whether to sync of not
-    form: llm
+    default: true
+    form: form
     
