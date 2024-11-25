@@ -15,8 +15,6 @@ import type { Tag } from '@/app/components/base/tag-management/constant'
 import Checkbox from '@/app/components/base/checkbox'
 import { bindTag, createTag, fetchTagList, unBindTag } from '@/service/tag'
 import { ToastContext } from '@/app/components/base/toast'
-import { useTGAIGlobalStore } from '@/context/tgai-global-context'
-import { Theme } from '@/types/app'
 
 type TagSelectorProps = {
   targetID: string
@@ -126,8 +124,6 @@ const Panel = (props: PanelProps) => {
     handleValueChange()
   })
 
-  const theme = useTGAIGlobalStore(state => state.theme)
-
   return (
     <div className='relative w-full bg-tgai-panel-background-3 rounded-lg border-[0.5px] border-gray-200 dark:border-zinc-600' onMouseLeave={onMouseLeave}>
       <div className='p-2 border-b-[0.5px] border-black/5'>
@@ -138,8 +134,6 @@ const Panel = (props: PanelProps) => {
           placeholder={t('common.tag.selectorPlaceholder') || ''}
           onChange={e => handleKeywordsChange(e.target.value)}
           onClear={() => handleKeywordsChange('')}
-          white={theme === Theme.light}
-          dark={theme === Theme.dark}
         />
       </div>
       {keywords && notExisted && (
