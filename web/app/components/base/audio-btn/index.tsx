@@ -2,10 +2,11 @@
 import { useState } from 'react'
 import { t } from 'i18next'
 import { useParams, usePathname } from 'next/navigation'
-import s from './style.module.css'
 import Tooltip from '@/app/components/base/tooltip'
 import Loading from '@/app/components/base/loading'
 import { AudioPlayerManager } from '@/app/components/base/audio-btn/audio.player.manager'
+import Play from '@/app/components/develop/secret-key/assets/play.svg'
+import Pause from '@/app/components/develop/secret-key/assets/pause.svg'
 
 type AudioBtnProps = {
   id?: string
@@ -87,7 +88,7 @@ const AudioBtn = ({
       >
         <button
           disabled={audioState === 'loading'}
-          className={`box-border w-6 h-6 flex items-center justify-center cursor-pointer ${isAudition ? 'p-0.5' : 'p-0 rounded-md bg-white'}`}
+          className={`box-border w-6 h-6 flex items-center justify-center cursor-pointer ${isAudition ? 'p-0.5' : 'p-0 rounded-md bg-white dark:bg-tgai-panel-background-2'}`}
           onClick={handleToggle}
         >
           {audioState === 'loading'
@@ -97,8 +98,10 @@ const AudioBtn = ({
               </div>
             )
             : (
-              <div className={`w-full h-full rounded-md flex items-center justify-center ${!isAudition ? 'hover:bg-gray-50' : 'hover:bg-gray-50'}`}>
-                <div className={`w-4 h-4 ${(audioState === 'playing') ? s.pauseIcon : s.playIcon}`}></div>
+              <div className={`w-full h-full rounded-md flex items-center text-tgai-text-3 justify-center ${!isAudition ? 'hover:bg-gray-50 dark:hover:bg-zinc-700' : 'hover:bg-gray-50 dark:hover:bg-zinc-700'}`}>
+                <div className={'w-4 h-4 flex justify-center items-center'}>
+                  { audioState === 'playing' ? <Pause /> : <Play />}
+                </div>
               </div>
             )}
         </button>

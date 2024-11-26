@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import copy from 'copy-to-clipboard'
-import style from './style.module.css'
 import cn from '../../../../../utils/classnames'
 import Modal from '../../../base/modal'
 import copyStyle from '../../../base/copy-btn/style.module.css'
@@ -10,6 +9,7 @@ import { useAppContext } from '../../../../../context/app-context'
 import { IS_CE_EDITION } from '../../../../../config'
 import type { SiteInfo } from '../../../../../models/share'
 import { useThemeContext } from '../../../base/chat/embedded-chatbot/theme/theme-context'
+import style from './style.module.css'
 
 type Props = {
   siteInfo?: SiteInfo
@@ -119,7 +119,7 @@ const Embedded = ({ siteInfo, isShow, onClose, appBaseUrl, accessToken, classNam
       wrapperClassName={className}
       closable={true}
     >
-      <div className="mb-4 mt-8 text-gray-900 text-[14px] font-medium leading-tight">
+      <div className="mb-4 mt-8 text-tgai-text-1 text-[14px] font-medium leading-tight">
         {t(`${prefixEmbedded}.explanation`)}
       </div>
       <div className="flex flex-wrap items-center justify-between gap-y-2">

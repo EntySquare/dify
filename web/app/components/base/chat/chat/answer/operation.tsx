@@ -116,11 +116,11 @@ const Operation: FC<OperationProps> = ({
         )}
 
         {!isOpeningStatement && (showPromptLog || config?.text_to_speech?.enabled) && (
-          <div className='hidden group-hover:flex items-center w-max h-[28px] p-0.5 rounded-lg bg-white border-[0.5px] border-gray-100 shadow-md shrink-0'>
+          <div className='hidden group-hover:flex items-center w-max h-[28px] p-0.5 rounded-lg bg-white dark:bg-tgai-panel-background-2 border-[0.5px] border-gray-100 dark:border-stone-800 shadow-md dark:shadow-stone-800 shrink-0'>
             {showPromptLog && (
               <>
                 <Log logItem={item} />
-                <div className='mx-1 w-[1px] h-[14px] bg-gray-200' />
+                <div className='mx-1 w-[1px] h-[14px] bg-gray-200 dark:bg-zinc-600' />
               </>
             )}
 

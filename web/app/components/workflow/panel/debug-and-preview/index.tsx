@@ -88,12 +88,12 @@ const DebugAndPreview = () => {
               {expanded && <div className='absolute z-10 bottom-[-17px] right-[5px] w-3 h-3 bg-components-panel-on-panel-item-bg border-l-[0.5px] border-t-[0.5px] border-components-panel-border-subtle rotate-45'/>}
             </div>
           )}
-          <div className='mx-3 w-[1px] h-3.5 bg-gray-200'></div>
+          <div className='mx-3 w-[1px] h-3.5 bg-gray-200 dark:bg-zinc-600'></div>
           <div
             className='flex items-center justify-center w-6 h-6 cursor-pointer'
             onClick={handleCancelDebugAndPreviewPanel}
           >
-            <RiCloseLine className='w-4 h-4 text-gray-500' />
+            <RiCloseLine className='w-4 h-4 text-tgai-text-3' />
           </div>
         </div>
       </div>
