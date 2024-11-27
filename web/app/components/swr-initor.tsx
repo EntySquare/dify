@@ -1,27 +1,29 @@
-'use client'
+"use client";
 
-import { SWRConfig } from 'swr'
-import { useCallback, useEffect, useState } from 'react'
-import type { ReactNode } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { fetchSetupStatus } from '@/service/common'
+import { SWRConfig } from "swr";
+import { useCallback, useEffect, useState } from "react";
+import type { ReactNode } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { fetchSetupStatus } from "@/service/common";
 
 type SwrInitorProps = {
-  children: ReactNode
-}
-const SwrInitor = ({
-  children,
-}: SwrInitorProps) => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const consoleToken = decodeURIComponent(searchParams.get('access_token') || '')
-  const refreshToken = decodeURIComponent(searchParams.get('refresh_token') || '')
+  children: ReactNode;
+};
+const SwrInitor = ({ children }: SwrInitorProps) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const consoleToken = decodeURIComponent(
+    searchParams.get("access_token") || ""
+  );
+  const refreshToken = decodeURIComponent(
+    searchParams.get("refresh_token") || ""
+  );
   // const consoleToken = searchParams.get('console_token')
-  const TGAIToken = localStorage?.getItem('tgai_token')
-  const consoleTokenFromLocalStorage = localStorage?.getItem('console_token')
-  const refreshTokenFromLocalStorage = localStorage?.getItem('refresh_token')
-  const pathname = usePathname()
-  const [init, setInit] = useState(false)
+  const TGAIToken = localStorage?.getItem("xai_token");
+  const consoleTokenFromLocalStorage = localStorage?.getItem("console_token");
+  const refreshTokenFromLocalStorage = localStorage?.getItem("refresh_token");
+  const pathname = usePathname();
+  const [init, setInit] = useState(false);
 
   // const isSetupFinished = useCallback(async () => {
   //   try {
@@ -49,52 +51,67 @@ const SwrInitor = ({
         //   router.replace('/install')
         //   return
         // }
-        if (!((consoleToken && refreshToken) || (consoleTokenFromLocalStorage && refreshTokenFromLocalStorage))) {
+        if (
+          !(
+            (consoleToken && refreshToken) ||
+            (consoleTokenFromLocalStorage && refreshTokenFromLocalStorage)
+          )
+        ) {
           if (typeof window !== undefined) {
-            localStorage.removeItem('console_token')
-            localStorage.removeItem('refresh_token')
-            localStorage.removeItem('tgai_token')
+            localStorage.removeItem("console_token");
+            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("xai_token");
           }
-          router.replace('/signin')
-          return
+          router.replace("/signin");
+          return;
         }
-        if (!TGAIToken || TGAIToken === 'undefined') {
+        if (!TGAIToken || TGAIToken === "undefined") {
           if (typeof window !== undefined) {
-            localStorage.removeItem('console_token')
-            localStorage.removeItem('refresh_token')
-            localStorage.removeItem('tgai_token')
+            localStorage.removeItem("console_token");
+            localStorage.removeItem("refresh_token");
+            localStorage.removeItem("xai_token");
           }
-          router.replace('/signin')
-          return
+          router.replace("/signin");
+          return;
         }
-        if (searchParams.has('access_token') || searchParams.has('refresh_token')) {
-          consoleToken && localStorage.setItem('console_token', consoleToken)
-          refreshToken && localStorage.setItem('refresh_token', refreshToken)
-          router.replace(pathname)
+        if (
+          searchParams.has("access_token") ||
+          searchParams.has("refresh_token")
+        ) {
+          consoleToken && localStorage.setItem("console_token", consoleToken);
+          refreshToken && localStorage.setItem("refresh_token", refreshToken);
+          router.replace(pathname);
         }
 
-        setInit(true)
+        setInit(true);
+      } catch (error) {
+        router.replace("/signin");
       }
-      catch (error) {
-        router.replace('/signin')
-      }
-    })()
-  }, [router, pathname, searchParams, consoleToken, refreshToken, consoleTokenFromLocalStorage, refreshTokenFromLocalStorage])
+    })();
+  }, [
+    router,
+    pathname,
+    searchParams,
+    consoleToken,
+    refreshToken,
+    consoleTokenFromLocalStorage,
+    refreshTokenFromLocalStorage,
+  ]);
   // }, [isSetupFinished, router, pathname, searchParams, consoleToken, refreshToken, consoleTokenFromLocalStorage, refreshTokenFromLocalStorage])
 
-  return init
-    ? (
-      <SWRConfig value={{
+  return init ? (
+    <SWRConfig
+      value={{
         shouldRetryOnError: false,
         revalidateOnFocus: false,
-      }}>
-        {children}
-      </SWRConfig>
-    )
-    : null
-}
+      }}
+    >
+      {children}
+    </SWRConfig>
+  ) : null;
+};
 
-export default SwrInitor
+export default SwrInitor;
 
 // TODO: CHECK PREVIOUS TOKEN
 // 'use client'
@@ -113,7 +130,7 @@ export default SwrInitor
 //   const router = useRouter()
 //   const searchParams = useSearchParams()
 //   const consoleToken = searchParams.get('console_token')
-//   const TGAIToken = localStorage?.getItem('tgai_token')
+//   const TGAIToken = localStorage?.getItem('xai_token')
 //   const consoleTokenFromLocalStorage = localStorage?.getItem('console_token')
 //   const [init, setInit] = useState(false)
 //
@@ -121,7 +138,7 @@ export default SwrInitor
 //     if (!(consoleToken || consoleTokenFromLocalStorage)) {
 //       if (typeof window !== undefined) {
 //         localStorage.removeItem('console_token')
-//         localStorage.removeItem('tgai_token')
+//         localStorage.removeItem('xai_token')
 //       }
 //       router.replace('/signin')
 //     }
@@ -129,7 +146,7 @@ export default SwrInitor
 //     if (!TGAIToken || TGAIToken === 'undefined') {
 //       if (typeof window !== undefined) {
 //         localStorage.removeItem('console_token')
-//         localStorage.removeItem('tgai_token')
+//         localStorage.removeItem('xai_token')
 //       }
 //       router.replace('/signin')
 //     }
