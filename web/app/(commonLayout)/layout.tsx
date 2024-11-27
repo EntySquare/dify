@@ -10,7 +10,6 @@ import { ProviderContextProvider } from '../../context/provider-context'
 import { ModalContextProvider } from '../../context/modal-context'
 import SiderMenu from '../components/menu/sider-menu'
 import { TGAIHeader } from '@/app/components/header/tgai-header'
-import { TGAIWebSocketProvider } from '@/app/components/http/tgai-ws-provider'
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -21,22 +20,22 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <EventEmitterContextProvider>
             <ProviderContextProvider>
               <ModalContextProvider >
-                <TGAIWebSocketProvider>
-                  <TGAIHeader />
-                  <div className='flex overflow-hidden h-full w-full flex-row'>
-                    <SiderMenu />
-                    <main className='flex-1 h-full overflow-y-auto flex flex-col w-full bg-tgai-section-background tgai-custom-scrollbar border-l-tgai-panel-border dark:border-l-stone-600 border-l'>
+                {/* <TGAIWebSocketProvider> */}
+                <TGAIHeader />
+                <div className='flex overflow-hidden h-full w-full flex-row'>
+                  <SiderMenu />
+                  <main className='flex-1 h-full overflow-y-auto flex flex-col w-full bg-tgai-section-background tgai-custom-scrollbar border-l-tgai-panel-border dark:border-l-stone-600 border-l'>
 
-                      <div className='flex flex-col h-full'>
-                        <HeaderWrapper>
-                          <Header />
-                        </HeaderWrapper>
-                        {children}
+                    <div className='flex flex-col h-full'>
+                      <HeaderWrapper>
+                        <Header />
+                      </HeaderWrapper>
+                      {children}
 
-                      </div>
-                    </main>
-                  </div>
-                </TGAIWebSocketProvider>
+                    </div>
+                  </main>
+                </div>
+                {/* </TGAIWebSocketProvider> */}
               </ModalContextProvider>
 
             </ProviderContextProvider>
