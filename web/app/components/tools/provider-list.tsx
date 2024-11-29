@@ -17,8 +17,6 @@ import ProviderCard from '@/app/components/tools/provider/card'
 import ProviderDetail from '@/app/components/tools/provider/detail'
 import Empty from '@/app/components/tools/add-tool-modal/empty'
 import { fetchCollectionList } from '@/service/tools'
-import { useTGAIGlobalStore } from '@/context/tgai-global-context'
-import { Theme } from '@/types/app'
 
 const ProviderList = () => {
   const { t } = useTranslation()
@@ -69,8 +67,6 @@ const ProviderList = () => {
     }
   }, [collectionList, currentProvider])
 
-  const theme = useTGAIGlobalStore(state => state.theme)
-
   return (
     <div className='relative flex overflow-hidden bg-tgai-section-background shrink-0 h-0 grow'>
       <div className='relative flex flex-col overflow-y-auto bg-tgai-section-background grow tgai-custom-scrollbar'>
@@ -96,8 +92,6 @@ const ProviderList = () => {
               value={keywords}
               onChange={e => handleKeywordsChange(e.target.value)}
               onClear={() => handleKeywordsChange('')}
-              white={theme === Theme.light}
-              dark={theme === Theme.dark}
             />
           </div>
         </div>

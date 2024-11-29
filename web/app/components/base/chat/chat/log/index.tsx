@@ -20,7 +20,7 @@ const Log: FC<LogProps> = ({
 
   return (
     <div
-      className='shrink-0 p-1 flex items-center justify-center rounded-[6px] font-medium text-gray-500 hover:bg-gray-50 cursor-pointer hover:text-gray-700'
+      className='shrink-0 p-1 flex items-center justify-center rounded-[6px] font-medium text-tgai-text-3 hover:bg-gray-50 dark:hover:bg-zinc-700 cursor-pointer hover:text-tgai-text-2'
       onClick={(e) => {
         e.stopPropagation()
         e.nativeEvent.stopImmediatePropagation()

@@ -251,11 +251,8 @@ const Chat: FC<ChatProps> = ({
           </div>
         </div>
         <div
-          className={`absolute bottom-0 ${(hasTryToAsk || !noChatInput || !noStopResponding) && chatFooterClassName}`}
+          className={`absolute bottom-0 ${(hasTryToAsk || !noChatInput || !noStopResponding) && chatFooterClassName} bg-gradient-to-t from-[#F9FAFB] dark:from-[rgba(29,_29,_32,_0.90)] from-[40%] to-[rgba(255,_255,_255,_0.00)] dark:to-[rgba(0,_0,_0,_0.00)] to-100%`}
           ref={chatFooterRef}
-          style={{
-            background: 'linear-gradient(0deg, #F9FAFB 40%, rgba(255, 255, 255, 0.00) 100%)',
-          }}
         >
           <div
             ref={chatFooterInnerRef}
@@ -265,8 +262,8 @@ const Chat: FC<ChatProps> = ({
               !noStopResponding && isResponding && (
                 <div className='flex justify-center mb-2'>
                   <Button onClick={onStopResponding}>
-                    <StopCircle className='mr-[5px] w-3.5 h-3.5 text-gray-500' />
-                    <span className='text-xs text-gray-500 font-normal'>{t('appDebug.operation.stopResponding')}</span>
+                    <StopCircle className='mr-[5px] w-3.5 h-3.5 text-tgai-text-3' />
+                    <span className='text-xs text-tgai-text-3 font-normal'>{t('appDebug.operation.stopResponding')}</span>
                   </Button>
                 </div>
               )

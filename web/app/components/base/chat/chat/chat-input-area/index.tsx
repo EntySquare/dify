@@ -144,7 +144,7 @@ const ChatInputArea = ({
               <Textarea
                 ref={textareaRef}
                 className={cn(
-                  'p-1 w-full leading-6 body-lg-regular text-text-tertiary outline-none',
+                  'p-1 w-full leading-6 body-lg-regular text-text-tertiary outline-none bg-components-panel-bg-blur',
                 )}
                 placeholder={t('common.chat.inputPlaceholder') || ''}
                 autoSize={{ minRows: 1 }}

@@ -1,0 +1,54 @@
+identity:
+  name: xai_follow_x_user
+  author: Enty
+  label:
+    en_US: XAI Follow X User
+    zh_Hans: XAI 关注用户
+    pt_BR: XAI Follow X User
+description:
+  human:
+    en_US: A tool for follow X user with provided parameters.
+    zh_Hans: 一个用于基于给定参数关注指定推特用户的工具。
+    pt_BR: A tool for follow X user with provided parameters.
+  llm: A tool for follow X user with provided parameters.
+parameters:
+  - name: tweets_user_name
+    type: string
+    required: true
+    label: 
+      en_US: X Account to be followed
+      zh_Hans: 被关注的 X 账号
+      pt_BR: X Account to be followed
+    human_description:
+      en_US: X Account to be followed
+      zh_Hans: 被关注的 X 账号
+      pt_BR: X Account to be followed
+    llm_description: X Account to be followed
+    form: llm
+  - name: tweets_user_name_one
+    type: string
+    required: true
+    label:
+      en_US: X Account to follow
+      zh_Hans: 执行 X 账号
+      pt_BR: X Account to follow
+    human_description:
+      en_US: X Account to do follow
+      zh_Hans: 需要执行关注操作的 X 账号
+      pt_BR: X Account to do follow
+    llm_description: X Account to do follow
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    

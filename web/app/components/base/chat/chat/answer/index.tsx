@@ -114,7 +114,7 @@ const Answer: FC<AnswerProps> = ({
         <div className={cn('group relative pr-10', chatAnswerContainerInner)}>
           <div
             ref={contentRef}
-            className={cn('relative inline-block px-4 py-3 max-w-full bg-gray-100 rounded-2xl text-sm text-gray-900', workflowProcess && 'w-full')}
+            className={cn('relative inline-block px-4 py-3 max-w-full bg-gray-100 dark:bg-tgai-input-background rounded-2xl text-sm text-tgai-text-1', workflowProcess && 'w-full')}
           >
             {
               !responding && (

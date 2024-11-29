@@ -56,7 +56,7 @@ const FileImageItem = ({
         />
         {
           progress >= 0 && !fileIsUploaded(file) && (
-            <div className='absolute inset-0 flex items-center justify-center border-[2px] border-effects-image-frame bg-background-overlay-alt z-10'>
+            <div className='absolute inset-0 flex items-center justify-center border-[2px] border-effects-image-frame dark:border-stone-700 bg-background-overlay-alt z-10'>
               <ProgressCircle
                 percentage={progress}
                 size={12}

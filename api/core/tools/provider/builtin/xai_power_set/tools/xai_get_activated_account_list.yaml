@@ -1,0 +1,28 @@
+identity:
+  name: xai_get_activated_account_list
+  author: Enty
+  label:
+    en_US: XAI GET ACCOUNT LIST
+    zh_Hans: XAI 获取当前在线账号列表
+    pt_BR: XAI GET ACCOUNT LIST
+description:
+  human:
+    en_US: A tool for retrieve list of all online X account in matrix.
+    zh_Hans: 一个用于获取矩阵中当前在线账号列表的工具。
+    pt_BR: A tool for retrieve list of all online X account in matrix.
+  llm: A tool for retrieve list of all online X account in matrix.
+parameters:
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    

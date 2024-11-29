@@ -1,0 +1,67 @@
+identity:
+  name: xai_comment_tweets
+  author: Enty
+  label:
+    en_US: XAI COMMENT TWEETS
+    zh_Hans: XAI 评论推文
+    pt_BR: XAI COMMENT TWEETS
+description:
+  human:
+    en_US: A tool for comment tweets with provided parameters.
+    zh_Hans: 一个用于基于给定参数评论指定推文的工具。
+    pt_BR: A tool for comment tweets with provided parameters.
+  llm: A tool for comment tweets with provided parameters.
+parameters:
+  - name: content
+    type: string
+    required: true
+    label: 
+      en_US: Content
+      zh_Hans: 评论内容
+      pt_BR: Content
+    human_description:
+      en_US: Content to comment tweets
+      zh_Hans: 评论推文的内容
+      pt_BR: Content to comment tweets
+    llm_description: Content to comment tweets
+    form: llm
+  - name: tweets_user_name_one
+    type: string
+    required: true
+    label:
+      en_US: X Account
+      zh_Hans: X 账号
+      pt_BR: X Account
+    human_description:
+      en_US: X Account to comment the tweets
+      zh_Hans: 需要对指定推文评论的账号
+      pt_BR: X Account to comment the tweets
+    llm_description: X Account to comment the tweets
+    form: llm
+  - name: twitter_url
+    type: string
+    required: true
+    label:
+      en_US: Tweets Link
+      zh_Hans: 推文链接
+      pt_BR: Tweets Link
+    human_description:
+      en_US: Link of tweets to comment
+      zh_Hans: 待评论推文的链接
+      pt_BR: Link of tweets to comment
+    llm_description: Link of tweets to comment
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    

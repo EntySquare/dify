@@ -19,8 +19,6 @@ import type { Label } from '@/app/components/tools/labels/constant'
 import { fetchLabelList } from '@/service/tools'
 import I18n from '@/context/i18n'
 import { getLanguage } from '@/i18n/language'
-import { useTGAIGlobalStore } from '@/context/tgai-global-context'
-import { Theme } from '@/types/app'
 
 type LabelFilterProps = {
   value: string[]
@@ -68,8 +66,6 @@ const LabelFilter: FC<LabelFilterProps> = ({
       setLabelList(res)
     })
   })
-
-  const theme = useTGAIGlobalStore(state=>state.theme)
 
   return (
     <PortalToFollowElem
@@ -123,8 +119,6 @@ const LabelFilter: FC<LabelFilterProps> = ({
                 value={keywords}
                 onChange={e => handleKeywordsChange(e.target.value)}
                 onClear={() => handleKeywordsChange('')}
-                white={theme === Theme.light}
-                dark={theme === Theme.dark}
               />
             </div>
             <div className='p-1'>
