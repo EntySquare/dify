@@ -1,4 +1,4 @@
-import { XAIPost } from "./x-http";
+import { XAIGet, XAIPost } from "./x-http";
 import type { TGAIAccount, TGAccountRes } from "@/models/tgai-user";
 
 // 用户 API
@@ -83,3 +83,21 @@ export const sendTwitter = (
 // 根据链接查看推文信息
 export const selectTwitterUrl = (twitterUrl: any) =>
   XAIPost<any>("/adminApi/selectTwitterUrl", { url: twitterUrl });
+
+// 获取知识库列表
+export const getKnowledgeList = (page: number, limit: number) =>
+  XAIGet<any>(`/knowledge/list?page=${page}&limit=${limit}`);
+
+// 获取知识库文档列表
+export const getKnowledgeDoclist = (
+  page: number,
+  limit: number,
+  dataset_id: string
+) =>
+  XAIGet<any>(
+    `/knowledge/docList?page=${page}&limit=${limit}&dataset_id=${dataset_id}`
+  );
+
+// 创建知识库
+export const createIndividual = (data: any) =>
+  XAIPost<any>("/knowledge/create", data);

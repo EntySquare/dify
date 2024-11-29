@@ -280,6 +280,33 @@ const SiderMenu = () => {
         icon: <IconUserGroup />,
         key: "fire",
       },
+      {
+        type: "sub",
+        title: "知识库",
+        href: "",
+        children: [
+          {
+            type: "item",
+            title: "个体管理",
+            href: "/knowledge-base/individual-management",
+            key: "/knowledge-base/individual-management",
+          },
+          {
+            type: "item",
+            title: "文件喂料",
+            href: "/knowledge-base/upload-file",
+            key: "/knowledge-base/upload-file",
+          },
+          {
+            type: "item",
+            title: "文本喂料",
+            href: "/knowledge-base/upload-text",
+            key: "/knowledge-base/upload-text",
+          },
+        ],
+        icon: <IconUserGroup />,
+        key: "knowledge-base",
+      },
     ],
     []
   );
