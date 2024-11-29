@@ -123,3 +123,31 @@ export const getKnowledgeList = (params: GetKnowledgeReqParams) => XAIGet<GetKno
     Authorization: 'Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j',
   },
 })
+
+/*
+*   conversation_id "" if not exist
+*   knowledge use knowledge.id
+*   parent_message_id: message_id of last answer
+ */
+export type SendAIChatMsgReq = {
+  conversation_id: string
+  knowledge: string
+  message: string
+  parent_message_id: string
+  tweets_user_name_list: string[]
+}
+
+/*
+*  outputs: try convert to json as task response instead of text response
+ */
+type SendAIChatMsgRes = {
+  conversation_id: string
+  message_id: string
+  outputs: string
+}
+
+/*
+*   发送 AI 聊天消息
+*   POST
+ */
+export const sendAIChatMsg = (params: SendAIChatMsgReq) => XAIPost<SendAIChatMsgRes>('/adminApi/chat/sendMessage', params)

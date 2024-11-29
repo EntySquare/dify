@@ -32,14 +32,24 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
 
   return <div className={'mt-3'}>
     { (!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有 AI 人设</div> }
-    { data && data.length > 0 && searchFilterList && <div className={'flex flex-col gap-3'}>
+    { data && data.length > 0 && <div className={'flex flex-col gap-3'}>
       <div className={'flex gap-2'}>
-        <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)} onClear={() => setSearch('')} />
+        <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)}
+          onClear={() => setSearch('')}
+        />
       </div>
       <div className={'flex flex-col gap-[6px]'}>
-        {searchFilterList.map(personality => <ListItem key={personality.id} text={personality.name} value={personality.id} type={'radio'} selected={selectedPersonality === personality.id} onClick={() => onItemClick(personality.id)}/>)}
+        {searchFilterList.length > 0
+          ? searchFilterList.map(personality => <ListItem key={personality.id}
+            text={personality.name}
+            value={personality.id}
+            type={'radio'}
+            selected={selectedPersonality === personality.id}
+            onClick={() => onItemClick(personality.id)}
+          />)
+          : <div className={'text-tgai-text-2'}>未找到匹配的人设</div>}
       </div>
-    </div>}
+    </div> }
 
   </div>
 })

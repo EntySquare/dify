@@ -8,6 +8,7 @@ type State = {
   isResponding: boolean
   selectedPersonality?: string
   chatLists: ChatItem[]
+  conversation_id?: string
 }
 
 type Action = {
@@ -17,6 +18,7 @@ type Action = {
   setChatLists: (chatLists: ChatItem[]) => void
   setIsResponding: (isResponding: boolean) => void
   setSelectedPersonality: (selectedPersonality: string) => void
+  setConversationId: (conversation_id: string) => void
 }
 
 export const useEntyAIChatStore = create<State & Action>(set => ({
@@ -26,10 +28,12 @@ export const useEntyAIChatStore = create<State & Action>(set => ({
   chatLists: [],
   isResponding: false,
   selectedPersonality: undefined,
+  conversation_id: undefined,
   setSelectedAccounts: selectedAccounts => set(() => ({ selectedAccounts })),
   setIsChatStarted: isChatStarted => set(() => ({ isChatStarted })),
   setIsLeftPanelOpen: isLeftPanelOpen => set(() => ({ isLeftPanelOpen })),
   setChatLists: chatLists => set(() => ({ chatLists })),
   setIsResponding: isResponding => set(() => ({ isResponding })),
   setSelectedPersonality: selectedPersonality => set(() => ({ selectedPersonality })),
+  setConversationId: conversation_id => set(() => ({ conversation_id })),
 }))

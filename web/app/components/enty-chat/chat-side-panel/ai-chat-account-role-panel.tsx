@@ -106,9 +106,18 @@ const AccountRolePanel = React.memo(() => {
                 <CommonSectionLabel text={'已登录X账号列表'}/>
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
-              <Disclosure.Panel>
-                <XAccountSelection data={userListData ? userListData.data.tweets_user_name_list : []}/>
-              </Disclosure.Panel>
+              <Transition
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
+                <Disclosure.Panel>
+                  <XAccountSelection data={userListData ? userListData.data.tweets_user_name_list : []}/>
+                </Disclosure.Panel>
+              </Transition>
             </>
           )}
         </Disclosure>
@@ -120,9 +129,18 @@ const AccountRolePanel = React.memo(() => {
                 <CommonSectionLabel text={'AI 人设列表'}/>
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
-              <Disclosure.Panel>
-                <PersonalitySelection data={knowledgeListData ? knowledgeListData.data.data : []} />
-              </Disclosure.Panel>
+              <Transition
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
+              >
+                <Disclosure.Panel>
+                  <PersonalitySelection data={knowledgeListData ? knowledgeListData.data.data : []} />
+                </Disclosure.Panel>
+              </Transition>
             </>
           )}
         </Disclosure>

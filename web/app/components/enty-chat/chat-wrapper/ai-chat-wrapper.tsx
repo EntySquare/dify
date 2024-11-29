@@ -2,6 +2,9 @@
 
 import React, { useCallback, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { getLastAnswer } from '@/app/components/enty-chat/utils'
+import type { SendAIChatMsgReq } from '@/service/xai'
+import { sendAIChatMsg } from '@/service/xai'
 import { PanelTopHeader } from '@/app/components/enty-chat/chat-side-panel/ai-chat-account-role-panel'
 import Toast from '@/app/components/base/toast'
 import type { FileEntity } from '@/app/components/base/file-uploader/types'
@@ -11,6 +14,8 @@ import type { ChatConfig } from '@/app/components/base/chat/types'
 import Chat from '@/app/components/enty-chat/chat'
 import type { ChatItem } from '@/app/components/enty-chat/types'
 import cn from '@/utils/classnames'
+
+const SUGGESTED_QUESTION = ['生成推文', '生成推文评论', '生成私信回复']
 
 const AIChatWrapperHeader = React.memo(() => {
   const { isLeftPanelOpen, setIsLeftPanelOpen } = useEntyAIChatStore(useShallow(state => ({
@@ -27,7 +32,7 @@ const AIChatWrapperHeader = React.memo(() => {
 AIChatWrapperHeader.displayName = 'AIChatWrapperHeader'
 
 const AIChatWrapper = React.memo(() => {
-  const { isChatStarted, chatLists, setChatLists, isResponding, setIsResponding, selectedAccounts, selectedPersonality } = useEntyAIChatStore(useShallow(state => ({
+  const { isChatStarted, chatLists, setChatLists, isResponding, setIsResponding, selectedAccounts, selectedPersonality, conversation_id, setConversationId } = useEntyAIChatStore(useShallow(state => ({
     isChatStarted: state.isChatStarted,
     chatLists: state.chatLists,
     setChatLists: state.setChatLists,
@@ -35,6 +40,8 @@ const AIChatWrapper = React.memo(() => {
     setIsResponding: state.setIsResponding,
     selectedAccounts: state.selectedAccounts,
     selectedPersonality: state.selectedPersonality,
+    conversation_id: state.conversation_id,
+    setConversationId: state.setConversationId,
   })))
 
   const appConfig = useMemo(() => {
@@ -45,19 +52,19 @@ const AIChatWrapper = React.memo(() => {
       speech_to_text: {
         enabled: false,
       },
+      suggested_questions_after_answer: {
+        enabled: true,
+      },
     } as ChatConfig
   }, [])
 
-  const onSendMsg = useCallback((message: string, files?: FileEntity[], last_answer?: ChatItem | null) => {
+  const onSendMsg = useCallback(async (message: string, files?: FileEntity[], last_answer?: ChatItem | null) => {
     if (isResponding) {
       Toast.notify({
         message: 'AI助手 正在回复，请等待回复结束！',
       })
       return
     }
-
-    console.log(selectedPersonality)
-    console.log(selectedAccounts)
 
     const questionItem: ChatItem = {
       id: `question-${Date.now()}`,
@@ -73,7 +80,42 @@ const AIChatWrapper = React.memo(() => {
     }
 
     setChatLists([...chatLists, questionItem, answerItem])
-  }, [chatLists, selectedAccounts, selectedPersonality])
+
+    const reqParams: SendAIChatMsgReq = {
+      conversation_id: conversation_id || '',
+      parent_message_id: last_answer?.id || getLastAnswer(chatLists)?.id || '',
+      knowledge: selectedPersonality || '',
+      tweets_user_name_list: selectedAccounts,
+      message,
+    }
+
+    console.log(reqParams)
+
+    try {
+      setIsResponding(true)
+      const res = await sendAIChatMsg(reqParams)
+
+      console.log(res)
+
+      if (res.data.conversation_id)
+        setConversationId(res.data.conversation_id)
+
+      answerItem.id = res.data.message_id
+      answerItem.content = res.data.outputs
+    }
+    catch (error) {
+      Toast.notify({
+        type: 'error',
+        message: 'AI 聊天响应出错！',
+      })
+      answerItem.content = '响应出错，请重试！'
+    }
+    finally {
+      setIsResponding(false)
+    }
+
+    console.log(answerItem)
+  }, [chatLists, selectedAccounts, selectedPersonality, conversation_id, isResponding])
 
   return <div className={'relative h-full border-l border-tgai-panel-border w-full bg-gray-50 dark:bg-tgai-panel-background'}>
     <AIChatWrapperHeader />
@@ -90,6 +132,7 @@ const AIChatWrapper = React.memo(() => {
         onSend={onSendMsg}
         noStopResponding={true}
         isResponding={isResponding}
+        suggestedQuestions={SUGGESTED_QUESTION}
       />
     }
   </div>

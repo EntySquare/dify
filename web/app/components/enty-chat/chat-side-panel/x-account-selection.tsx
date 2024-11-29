@@ -43,17 +43,21 @@ export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) =
 
   return <div className={'mt-3'}>
     { (!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有已登录的 X 账号</div> }
-    { data && data.length > 0 && searchFilterList && <div className={'flex flex-col gap-3'}>
+    {data && data.length > 0 && searchFilterList && <div className={'flex flex-col gap-3'}>
       <div className={'flex gap-2'}>
         <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)} onClear={() => setSearch('')} />
         <Button onClick={() => onSelectAllClick()}>{allSelected ? '清空' : '全选'}</Button>
       </div>
       <div className={'flex flex-col gap-[6px]'}>
-        {searchFilterList.map((account, index) => <ListItem key={`${account}-${index}`} text={account} value={account} selected={selectedAccounts.includes(account)} onClick={() => onItemClick(account)}/>)}
+        {searchFilterList.length > 0
+          ? searchFilterList.map((account, index) => <ListItem
+            key={`${account}-${index}`} text={account} value={account} selected={selectedAccounts.includes(account)}
+            onClick={() => onItemClick(account)}
+          />)
+          : <div className={'text-tgai-text-2'}>未找到匹配的账号</div>}
       </div>
       {selectedAccounts.length > 0 && <span className={'text-tgai-text-3 text-xs'}>{`已选中 ${selectedAccounts.length} 个账号`}</span>}
     </div>}
-
   </div>
 })
 

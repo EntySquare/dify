@@ -35,7 +35,7 @@ const TryToAsk: FC<TryToAskProps> = ({
             <Button
               key={index}
               variant='secondary-accent'
-              className='mb-2 mr-2 last:mr-0'
+              className='mb-2 mr-2 last:mr-0 !text-tgai-primary'
               onClick={() => onSend(suggestQuestion)}
             >
               {suggestQuestion}

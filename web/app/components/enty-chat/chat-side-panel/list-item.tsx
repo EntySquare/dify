@@ -17,8 +17,8 @@ const ListItem = React.memo<ListItemProps>(({ text, value, selected, onClick, ty
     onClick && onClick(value)
   }
 
-  const selectedIcon = type !== 'radio' ? <RiCheckboxFill className={'text-tgai-primary'}/> : <RiRadioButtonFill className={'text-tgai-primary'} />
-  const notSelectedIcon = type !== 'radio' ? <RiCheckboxBlankFill className={'text-transparent'}/> : <RiRadioButtonFill className={'dark:text-neutral-700 text-gray-200 group-hover:text-tgai-primary-5 dark:group-hover:text-tgai-primary-7'} />
+  const selectedIcon = type !== 'radio' ? <RiCheckboxFill className={'text-tgai-primary size-4'}/> : <RiRadioButtonFill className={'text-tgai-primary size-4'} />
+  const notSelectedIcon = type !== 'radio' ? <RiCheckboxBlankFill className={'text-transparent size-4'}/> : <RiRadioButtonFill className={'dark:text-neutral-700 text-gray-200 group-hover:text-tgai-primary-5 dark:group-hover:text-tgai-primary-7 size-4'} />
 
   return <div
     className={cn('group rounded-lg relative px-3 py-3 outline-1 outline outline-gray-200 dark:outline-slate-600 flex items-center justify-between cursor-pointer hover:outline-tgai-primary-5 dark:hover:outline-tgai-primary-7 hover:outline-2 hover:bg-gray-50 dark:hover:bg-zinc-700',
