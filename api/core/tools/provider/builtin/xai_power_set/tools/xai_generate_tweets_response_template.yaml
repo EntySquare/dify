@@ -1,0 +1,41 @@
+identity:
+  name: xai_generate_tweets_response_template
+  author: Enty
+  label:
+    en_US: XAI Generate Tweets Template
+    zh_Hans: XAI 生成推特回复模板
+    pt_BR: XAI Generate Tweets Template
+description:
+  human:
+    en_US: A tool for generating response content template to chat with provided json string.
+    zh_Hans: 一个用于基于给定 json 字符串生成 AI 聊天中生成推文聊天回复模板的工具。
+    pt_BR: A tool for generating response content template to chat with provided json string.
+  llm: A tool for generating response content template to chat with provided json string.
+parameters:
+  - name: json_string
+    type: string
+    required: true
+    label: 
+      en_US: json string
+      zh_Hans: json 字符串
+      pt_BR: json string
+    human_description:
+      en_US: json string can parse to certain structure
+      zh_Hans: 可以解析成指定结构的 json 字符串
+      pt_BR: json string can parse to certain structure
+    llm_description: json string can parse to certain structure
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    
