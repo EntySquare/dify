@@ -1,0 +1,67 @@
+identity:
+  name: xai_forward_quote_tweets
+  author: Enty
+  label:
+    en_US: XAI Forward and quote tweets
+    zh_Hans: XAI 转发并引用推文
+    pt_BR: XAI Forward and quote tweets
+description:
+  human:
+    en_US: A tool for forward and quote tweets with provided parameters.
+    zh_Hans: 一个用于基于给定参数转发并引用指定推文的工具。
+    pt_BR: A tool for forward and quote tweets with provided parameters.
+  llm: A tool for forward and quote tweets with provided parameters.
+parameters:
+  - name: content
+    type: string
+    required: true
+    label: 
+      en_US: Content
+      zh_Hans: 转发并引用的内容
+      pt_BR: Content
+    human_description:
+      en_US: Content for forward and quote tweets
+      zh_Hans: 转发并引用的内容
+      pt_BR: Content for forward and quote tweets
+    llm_description: Content for forward and quote tweets
+    form: llm
+  - name: tweets_user_name_one
+    type: string
+    required: true
+    label:
+      en_US: X Account
+      zh_Hans: X 账号
+      pt_BR: X Account
+    human_description:
+      en_US: X Account to forward and quote the tweets
+      zh_Hans: 需要转发并引用指定推文的账号
+      pt_BR: X Account to forward and quote the tweets
+    llm_description: X Account to forward and quote the tweets
+    form: llm
+  - name: twitter_url
+    type: string
+    required: true
+    label:
+      en_US: Tweets Link
+      zh_Hans: 推文链接
+      pt_BR: Tweets Link
+    human_description:
+      en_US: Link of tweets to forward and quote
+      zh_Hans: 待转发+引用推文的链接
+      pt_BR: Link of tweets to forward and quote
+    llm_description: Link of tweets to forward and quote
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    

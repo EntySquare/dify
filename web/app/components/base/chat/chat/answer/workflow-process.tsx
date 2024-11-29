@@ -11,6 +11,8 @@ import {
 } from '@remixicon/react'
 import { useTranslation } from 'react-i18next'
 import type { ChatItem, WorkflowProcess } from '../../types'
+import { Theme } from '@/types/app'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
 import TracingPanel from '@/app/components/workflow/run/tracing-panel'
 import cn from '@/utils/classnames'
 import { CheckCircle } from '@/app/components/base/icons/src/vender/solid/general'
@@ -37,17 +39,19 @@ const WorkflowProcessItem = ({
   const succeeded = data.status === WorkflowRunningStatus.Succeeded
   const failed = data.status === WorkflowRunningStatus.Failed || data.status === WorkflowRunningStatus.Stopped
 
+  const { theme } = useTGAIGlobalStore(state => state.theme)
+
   const background = useMemo(() => {
     if (collapse)
       return 'linear-gradient(90deg, rgba(200, 206, 218, 0.20) 0%, rgba(200, 206, 218, 0.04) 100%)'
     if (running && !collapse)
-      return 'linear-gradient(180deg, #E1E4EA 0%, #EAECF0 100%)'
+      return theme === Theme.light ? 'linear-gradient(180deg, #E1E4EA 0%, #EAECF0 100%)' : 'linear-gradient(180deg, rgba(200, 206, 218, 0.20) 0%, rgba(200, 206, 218, 0.04) 100%)'
 
     if (succeeded && !collapse)
-      return 'linear-gradient(180deg, #ECFDF3 0%, #F6FEF9 100%)'
+      return theme === Theme.light ? 'linear-gradient(180deg, #ECFDF3 0%, #F6FEF9 100%)' : 'linear-gradient(180deg, rgba(202, 217, 199, 0.20) 0%, rgba(202, 217, 199, 0.04) 100%)'
 
     if (failed && !collapse)
-      return 'linear-gradient(180deg, #FEE4E2 0%, #FEF3F2 100%)'
+      return theme === Theme.light ? 'linear-gradient(180deg, #FEE4E2 0%, #FEF3F2 100%)' : 'linear-gradient(180deg, rgba(217, 199, 199, 0.20) 0%, rgba(200, 206, 218, 0.04) 100%)'
   }, [running, succeeded, failed, collapse])
 
   useEffect(() => {

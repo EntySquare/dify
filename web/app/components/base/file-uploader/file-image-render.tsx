@@ -17,7 +17,7 @@ const FileImageRender = ({
   showDownloadAction,
 }: FileImageRenderProps) => {
   return (
-    <div className={cn('border-[2px] border-effects-image-frame shadow-xs', className)}>
+    <div className={cn('border-[2px] border-effects-image-frame dark:border-transparent shadow-xs dark:shadow-stone-700', className)}>
       <img
         className={cn('w-full h-full object-cover', showDownloadAction && 'cursor-pointer')}
         alt={alt}

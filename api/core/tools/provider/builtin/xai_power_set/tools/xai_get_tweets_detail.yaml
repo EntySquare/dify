@@ -1,0 +1,41 @@
+identity:
+  name: xai_get_tweets_detail
+  author: Enty
+  label:
+    en_US: XAI Get Tweets Detail
+    zh_Hans: XAI 获取推文详情
+    pt_BR: XAI Get Tweets Detail
+description:
+  human:
+    en_US: A tool for retrieve detail of certain tweets.
+    zh_Hans: 一个用于获取指定推文详情的工具。
+    pt_BR: A tool for retrieve detail of certain tweets.
+  llm: A tool for retrieve detail of certain tweets.
+parameters:
+  - name: url
+    type: string
+    required: true
+    label:
+      en_US: Tweets Link
+      zh_Hans: 推文链接
+      pt_BR: Tweets Link
+    human_description:
+      en_US: Link of tweets to get detail
+      zh_Hans: 待获取详情推文的链接
+      pt_BR: Link of tweets to get detail
+    llm_description: Link of tweets to get detail
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    
