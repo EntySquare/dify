@@ -1,0 +1,67 @@
+identity:
+  name: xai_send_tweets
+  author: Enty
+  label:
+    en_US: XAI SEND TWEETS
+    zh_Hans: XAI 发送推文
+    pt_BR: XAI SEND TWEETS
+description:
+  human:
+    en_US: A tool for send tweets with provided parameters.
+    zh_Hans: 一个用于基于给定参数发送指定推文的工具。
+    pt_BR: A tool for send tweets with provided parameters.
+  llm: A tool for send tweets with provided parameters.
+parameters:
+  - name: content
+    type: string
+    required: true
+    label: 
+      en_US: Tweets Content
+      zh_Hans: 推文内容
+      pt_BR: Tweets Content
+    human_description:
+      en_US: Tweets content to send
+      zh_Hans: 需要发送推文的内容
+      pt_BR: Tweets content to send
+    llm_description: Tweets content to send
+    form: llm
+  - name: img_url
+    type: string
+    required: false
+    label: 
+      en_US: Image url of Tweets
+      zh_Hans: 推文附图链接
+      pt_BR: Image url of Tweets
+    human_description:
+      en_US: Image need to send with tweets
+      zh_Hans: 推文附图的链接
+      pt_BR: Image need to send with tweets
+    llm_description: Image need to send with tweets
+    form: llm
+  - name: tweets_user_name_one
+    type: string
+    required: true
+    label:
+      en_US: X Account
+      zh_Hans: X 账号
+      pt_BR: X Account
+    human_description:
+      en_US: X Account to send the tweets
+      zh_Hans: 需要发送推文的账号
+      pt_BR: X Account to send the tweets
+    llm_description: X Account to send the tweets
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    

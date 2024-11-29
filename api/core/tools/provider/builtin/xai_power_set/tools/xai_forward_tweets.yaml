@@ -1,16 +1,16 @@
 identity:
-  name: xai_like_tweets
+  name: xai_forward_tweets
   author: Enty
   label:
-    en_US: XAI LIKE TWEETS
-    zh_Hans: XAI 点赞推文
-    pt_BR: XAI LIKE TWEETS
+    en_US: XAI Forward Tweets
+    zh_Hans: XAI 转发推文
+    pt_BR: XAI Forward Tweets
 description:
   human:
-    en_US: A tool for like tweets with provided parameters.
-    zh_Hans: 一个用于基于给定参数点赞指定推文的工具。
-    pt_BR: A tool for like tweets with provided parameters.
-  llm: A tool for like tweets with provided parameters.
+    en_US: A tool for forward tweets with provided parameters.
+    zh_Hans: 一个用于基于给定参数转发指定推文的工具。
+    pt_BR: A tool for forward tweets with provided parameters.
+  llm: A tool for forward tweets with provided parameters.
 parameters:
   - name: tweets_user_name_one
     type: string
@@ -20,10 +20,10 @@ parameters:
       zh_Hans: X 账号
       pt_BR: X Account
     human_description:
-      en_US: X Account to like the tweets
-      zh_Hans: 需要对指定推文点赞的账号
-      pt_BR: X Account to like the tweets
-    llm_description: X Account to like the tweets
+      en_US: X Account to forward the tweets
+      zh_Hans: 需要转发指定推文的账号
+      pt_BR: X Account to forward the tweets
+    llm_description: X Account to forward the tweets
     form: llm
   - name: twitter_url
     type: string
@@ -33,10 +33,10 @@ parameters:
       zh_Hans: 推文链接
       pt_BR: Tweets Link
     human_description:
-      en_US: Link of tweets to like
-      zh_Hans: 待点赞推文的链接
-      pt_BR: Link of tweets to like
-    llm_description: Link of tweets to like
+      en_US: Link of tweets to forward
+      zh_Hans: 待转发推文的链接
+      pt_BR: Link of tweets to forward
+    llm_description: Link of tweets to forward
     form: llm
   - name: sync
     type: boolean
