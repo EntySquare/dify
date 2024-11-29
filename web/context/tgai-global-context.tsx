@@ -1,83 +1,79 @@
-"use client";
+'use client'
 
-import { Theme } from "@/types/app";
-import { type ReactNode, createContext, useRef, useContext, useEffect } from 'react'
-import { createStore } from "zustand/vanilla";
+import { type ReactNode, createContext, useContext, useEffect, useRef } from 'react'
+import { createStore } from 'zustand/vanilla'
 import { useStore } from 'zustand'
+import { Theme } from '@/types/app'
 
 type TGAIGlobalState = {
-    theme: Theme
+  theme: Theme
 }
 
 type TGAIGlobalActions = {
-    setTheme: (theme: Theme) => void;
+  setTheme: (theme: Theme) => void
 }
 
 type TGAIGlobalStore = TGAIGlobalState & TGAIGlobalActions
 
 const defaultInitState: TGAIGlobalState = {
-    theme: Theme.dark,
+  theme: Theme.light,
 }
 
 const createTGAIGlobalStore = (initState: TGAIGlobalState = defaultInitState) => {
-    return createStore<TGAIGlobalStore>()((set) => ({
-        ...initState,
-        setTheme: (theme: Theme) => {
-            set((_state) => ({ theme }))
-            if (globalThis) {
-                globalThis.document.documentElement.setAttribute("data-theme", theme);
-                theme === Theme.dark ? globalThis.document.body.setAttribute("arco-theme", theme) : globalThis.document.body.removeAttribute("arco-theme")
-                theme === Theme.dark ? globalThis.document.documentElement.classList.add('dark') : globalThis.document.documentElement.classList.remove('dark')
-            }
-        }
-    }))
+  return createStore<TGAIGlobalStore>()(set => ({
+    ...initState,
+    setTheme: (theme: Theme) => {
+      set(_state => ({ theme }))
+      if (globalThis) {
+        globalThis.document.documentElement.setAttribute('data-theme', theme)
+        theme === Theme.dark ? globalThis.document.body.setAttribute('arco-theme', theme) : globalThis.document.body.removeAttribute('arco-theme')
+        theme === Theme.dark ? globalThis.document.documentElement.classList.add('dark') : globalThis.document.documentElement.classList.remove('dark')
+      }
+    },
+  }))
 }
 
 export type TGAIGlobalStoreApi = ReturnType<typeof createTGAIGlobalStore>
 
 export const TGAIGlobalStoreContext = createContext<TGAIGlobalStoreApi | undefined>(undefined)
 
-export interface TGAIGlobalStoreProviderProps {
-    children: ReactNode
+export type TGAIGlobalStoreProviderProps = {
+  children: ReactNode
 }
 
 export const TGAIGlobalStoreProvider = ({
-    children,
+  children,
 }: TGAIGlobalStoreProviderProps) => {
-    const storeRef = useRef<TGAIGlobalStoreApi>()
-    if (!storeRef.current) {
-        storeRef.current = createTGAIGlobalStore()
+  const storeRef = useRef<TGAIGlobalStoreApi>()
+  if (!storeRef.current)
+    storeRef.current = createTGAIGlobalStore()
+
+  useEffect(() => {
+    if (storeRef.current && globalThis) {
+      const theme = storeRef.current.getState().theme
+      globalThis.document.documentElement.setAttribute('data-theme', theme)
+      theme === Theme.dark ? globalThis.document.body.setAttribute('arco-theme', theme) : globalThis.document.body.removeAttribute('arco-theme')
+      theme === Theme.dark ? globalThis.document.documentElement.classList.add('dark') : globalThis.document.documentElement.classList.remove('dark')
     }
+  }, [])
 
-    useEffect(() => {
-        if (storeRef.current && globalThis) {
-            const theme = storeRef.current.getState().theme
-            globalThis.document.documentElement.setAttribute("data-theme", theme);
-            theme === Theme.dark ? globalThis.document.body.setAttribute("arco-theme", theme) : globalThis.document.body.removeAttribute("arco-theme")
-            theme === Theme.dark ? globalThis.document.documentElement.classList.add('dark') : globalThis.document.documentElement.classList.remove('dark')
-        }
-    }, [])
-
-
-    return (
-        <TGAIGlobalStoreContext.Provider value={storeRef.current}>
-            {children}
-        </TGAIGlobalStoreContext.Provider>
-    )
+  return (
+    <TGAIGlobalStoreContext.Provider value={storeRef.current}>
+      {children}
+    </TGAIGlobalStoreContext.Provider>
+  )
 }
 
 export const useTGAIGlobalStore = <T,>(
-    selector: (store: TGAIGlobalStore) => T,
+  selector: (store: TGAIGlobalStore) => T,
 ): T => {
-    const tgaiGlobalStoreContext = useContext(TGAIGlobalStoreContext)
+  const tgaiGlobalStoreContext = useContext(TGAIGlobalStoreContext)
 
-    if (!tgaiGlobalStoreContext) {
-        throw new Error(`useTGAIGlobalStore must be used within TGAIGlobalStoreProvider`)
-    }
+  if (!tgaiGlobalStoreContext)
+    throw new Error('useTGAIGlobalStore must be used within TGAIGlobalStoreProvider')
 
-    return useStore(tgaiGlobalStoreContext, selector)
+  return useStore(tgaiGlobalStoreContext, selector)
 }
-
 
 // import { ReactNode, useCallback, useEffect, useState } from "react";
 // import {
