@@ -14,6 +14,7 @@ import BasicContent from './basic-content'
 import SuggestedQuestions from './suggested-questions'
 import More from './more'
 import WorkflowProcess from './workflow-process'
+import TaskMessageContent from '@/app/components/enty-chat/chat/answer/task-content/task-message-content'
 import LoadingAnim from '@/app/components/base/chat/chat/loading-anim'
 import Citation from '@/app/components/base/chat/chat/citation'
 import { EditTitle } from '@/app/components/app/annotation/edit-annotation-modal/edit-item'
@@ -165,6 +166,7 @@ const Answer: FC<AnswerProps> = ({
                   {!content.includes('生成推文') && !content.includes('生成推文评论') && <BasicContent item={item} />}
                   {content.includes('生成推文') && !content.includes('推文评论') && <TaskTweetsContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'}/> }
                   {content.includes('生成推文评论') && content !== '生成推文' && <TaskCommentContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'} /> }
+                  {content.includes('生成私信回复') && <TaskMessageContent content={'Hi! What\'s up! How\'s everything with utilitynet? Really interested in the latest progress!'} /> }
                 </>
               )
             }
