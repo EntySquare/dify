@@ -151,3 +151,16 @@ type SendAIChatMsgRes = {
 *   POST
  */
 export const sendAIChatMsg = (params: SendAIChatMsgReq) => XAIPost<SendAIChatMsgRes>('/adminApi/chat/sendMessage', params)
+
+// 获取知识库文档列表
+export const getKnowledgeDoclist = (
+  page: number,
+  limit: number,
+  dataset_id: string,
+) =>
+  XAIGet<any>(
+    `/knowledge/docList?page=${page}&limit=${limit}&dataset_id=${dataset_id}`,
+  )
+// 创建知识库
+export const createIndividual = (data: any) =>
+  XAIPost<any>('/knowledge/create', data)
