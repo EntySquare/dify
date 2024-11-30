@@ -69,10 +69,24 @@ const DetailsModal = React.forwardRef<
   const [pageSize, setPageSize] = useState(1)
   const [limit, setLimit] = useState(10)
   const [total, setTotal] = useState(0)
-  const { data: tableList, isLoading } = useSWR(
-    [`/knowledge/list?page=${pageSize}&limit=${limit}`],
-    () => getKnowledgeDoclist(pageSize, limit, detailData.id)
-  );
+  const [isLoading, setIsLoading] = useState(false)
+  const [tableList, setTableList] = useState([] as any)
+
+  const getDetailList = async () => {
+    try {
+      setIsLoading(true)
+      const res = await getKnowledgeDoclist(pageSize, limit, detailData.id);
+      setTableList(res.data)
+    } catch (error: any) {
+      Message.error({
+        content: error.response.data.data.message_zh,
+      });
+    }
+    finally {
+      setIsLoading(false)
+    }
+  }
+
   const promiseRef = useRef<{
     resolve: (value: DetailsType | false) => void;
   }>();
@@ -80,11 +94,37 @@ const DetailsModal = React.forwardRef<
   useImperativeHandle(ref, () => ({
     show: () => {
       setVisible(true);
+      getDetailList();
       return new Promise((resolve) => {
         promiseRef.current = { resolve };
       });
     },
   }));
+
+  const formatSourceType = (type: any) => {
+    switch (type) {
+      case 'upload_file':
+        return '文件类型'
+        break;
+      case 'upload_text':
+        return '文本类型'
+        break;
+      default:
+        return '其他'
+        break;
+    }
+  }
+
+  const formatSourceStatus = (status: any) => {
+    switch (status) {
+      case 'completed':
+        return '完成'
+        break;
+      default:
+        return '其他'
+        break;
+    }
+  }
 
   const columns: TableColumnProps[] = [
     {
@@ -92,12 +132,16 @@ const DetailsModal = React.forwardRef<
       dataIndex: 'name',
     },
     {
+      title: "数据源类型",
+      render: (_col, item) => <div>{formatSourceType(item.data_source_type)}</div>,
+    },
+    {
       title: '文件大小',
-      dataIndex: 'name',
+      render: (_col, item) => <div>{item.tokens} 字符</div>,
     },
     {
       title: '当前状态',
-      dataIndex: 'name',
+      render: (_col, item) => <div>{formatSourceStatus(item.indexing_status)}</div>,
     },
     {
       title: '创建时间',
@@ -146,7 +190,6 @@ const DetailsModal = React.forwardRef<
       onCancel={handleCancel}
       autoFocus={false}
       focusLock={true}
-      maskClosable={false}
       unmountOnExit={true}
       mountOnEnter={true}
       className={"!w-[95%] md:!w-[85%] xl:!w-[100%] max-w-[1440px]"}
@@ -173,11 +216,11 @@ const DetailsModal = React.forwardRef<
       <Card>
         <Typography.Title heading={6}>相关知识库</Typography.Title>
         <Divider />
-        <Table columns={columns} data={tableList ? tableList.data.data : undefined} pagination={false}
+        <Table columns={columns} data={tableList ? tableList.data : undefined} pagination={false}
           loading={isLoading}
           rowKey={"id"} />
         <div className="pt-4">
-          <Pagination size={'small'} total={tableList?.data.total} showTotal sizeCanChange current={pageSize} pageSize={limit} onChange={(page) => {
+          <Pagination size={'small'} total={tableList.total} showTotal sizeCanChange current={pageSize} pageSize={limit} onChange={(page) => {
             setPageSize(page); // 设置当前页码
           }} onPageSizeChange={(size: number, current: number) => {
             setPageSize(1)

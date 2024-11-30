@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useImperativeHandle, useRef } from "react";
+import React, { useImperativeHandle, useRef, useState } from "react";
 import {
   Button,
   Form,
@@ -12,9 +12,12 @@ import {
   Switch,
   Table,
   TableInstance,
+  Upload,
 } from "@arco-design/web-react";
 import {
   commentTwitter,
+  createDocFile,
+  getKnowledgeList,
   selectTwitterUrl,
   tweetsUserNameList,
 } from "@/service/xai";
@@ -35,82 +38,92 @@ export type CommentModalRefType = {
 };
 
 const CommentModal = React.forwardRef<CommentModalRefType, CommentModalProps>(
-  ({}, ref) => {
-    const [visible, setVisible] = React.useState(false);
-    const [sreachTweetsType, setSreachTweetsType] = React.useState(false);
-    const [tableLoading, setTableLoading] = React.useState(false);
-    const [tweetAccount, setTweetAccount] = React.useState("");
-    const [tweetContent, setTweetContent] = React.useState("");
-    const [tweetsUserList, setTweetsUserList] = React.useState([] as any);
+  ({ }, ref) => {
+    const [visible, setVisible] = useState(false);
     const table = useRef<TableInstance>(null);
     const [form] = Form.useForm<any>();
-    const options = ["工作流"];
-
-    const sreachTweets = async (value: any) => {
-      setSreachTweetsType(true);
-      const res = await selectTwitterUrl(value);
-      setTweetAccount(res.data.tweet_account);
-      setTweetContent(res.data.content);
-      promiseRef.current?.resolve("成啦！");
-      setSreachTweetsType(false);
-    };
-
-    // const getTweetsUserList = async () => {
-    //   setTableLoading(true);
-    //   const res = await tweetsUserNameList();
-    //   setTweetsUserList(res.data.tweets_user_name_list);
-    //   promiseRef.current?.resolve(false);
-    //   setTableLoading(false);
-    // };
+    const [fileData, setFileData] = useState<File | null>(null)
+    const [options, setOptions] = useState([] as any);
+    const [selectedValues, setSelectedValues] = useState('');
 
     const promiseRef = useRef<{
       resolve: (value: CommentModalType | false) => void;
     }>();
 
-    // 转换为对象数组
-    const tableData = tweetsUserList.map((item: any, index: number) => ({
-      key: index,
-      username: item,
-    }));
-
-    // 定义表格的列
-    const columns = [
-      {
-        title: "账号",
-        dataIndex: "username", // 表示 username 字段
-      },
-    ];
-
     useImperativeHandle(ref, () => ({
       show: () => {
         setVisible(true);
-        setTweetAccount("");
+        getIndividualList();
         return new Promise((resolve) => {
           promiseRef.current = { resolve };
         });
       },
     }));
 
+    const getIndividualList = async () => {
+      try {
+        const res = await getKnowledgeList({ page: 1, limit: 999999999 })
+        setOptions(res.data.data)
+      } catch (error) { }
+    }
+
+    const isAcceptFile = (file: any, accept: any) => {
+      if (accept && file) {
+        const accepts = Array.isArray(accept)
+          ? accept
+          : accept
+            .split(',')
+            .map((x: any) => x.trim())
+            .filter((x: any) => x);
+        const fileExtension = file.name.indexOf('.') > -1 ? file.name.split('.').pop() : '';
+        return accepts.some((type: any) => {
+          const text = type && type.toLowerCase();
+          const fileType = (file.type || '').toLowerCase();
+          if (text === fileType) {
+            return true;
+          }
+          if (new RegExp('\/\*').test(text)) {
+            // image/* 这种通配的形式处理
+            const regExp = new RegExp('\/.*$')
+            return fileType.replace(regExp, '') === text.replace(regExp, '');
+          }
+          if (new RegExp('\..*').test(text)) {
+            // .jpg 等后缀名
+            return text === `.${fileExtension && fileExtension.toLowerCase()}`;
+          }
+          return false;
+        });
+      }
+      return !!file;
+    }
+
+    const handleChange = (value: string) => {
+      setSelectedValues(value); // value 是一个数组，包含所有选中的 id
+    };
+
     const handleConfirm = async () => {
       try {
         await form.validate();
         const { searchUrl, timeInterval } = form.getFields();
         if (searchUrl === "" || searchUrl === undefined || searchUrl === null) {
-          Message.error("请输入推文链接");
+          Message.error("请选择投喂个体");
           return;
         }
-        if (timeInterval === "") {
-          Message.error("请输入时间间隔");
-          return;
-        }
-        // await commentTwitter("111", [], searchUrl);
+        await createDocFile({
+          file: fileData, dataset_id: selectedValues, data: {
+            "indexing_technique": "high_quality",
+            "process_rule": {
+              "rules": "",
+              "mode": "automatic"
+            }
+          }
+        })
         form.resetFields();
         setVisible(false);
         Message.success({
-          content: "操作成功！请等待设备调备",
-          duration: 5000,
+          content: "投喂成功",
         });
-      } catch (error) {}
+      } catch (error) { }
     };
 
     const handleCancel = () => {
@@ -121,7 +134,7 @@ const CommentModal = React.forwardRef<CommentModalRefType, CommentModalProps>(
 
     return (
       <Modal
-        title="创建火推"
+        title="文件投喂"
         visible={visible}
         footer={null}
         onCancel={handleCancel}
@@ -130,79 +143,63 @@ const CommentModal = React.forwardRef<CommentModalRefType, CommentModalProps>(
         maskClosable={false}
         unmountOnExit={true}
         mountOnEnter={true}
-        className={"!w-[95%] md:!w-[85%] xl:!w-[70%] max-w-[1440px]"}
+        className={"!w-[95%] md:!w-[85%] xl:!w-[30%] max-w-[1440px]"}
       >
         <div className="flex flex-wrap justify-evenly items-start">
           <Form
             form={form}
-            labelAlign="left"
-            layout="vertical"
             style={{ width: "max-content" }}
             requiredSymbol={false}
           >
-            <div className={"mr-5"}>
-              <div>
-                <FormItem
-                  label="搜索推文"
-                  field="searchUrl"
-                  rules={[{ required: true, message: "请输入推文链接" }]}
-                >
-                  <InputSearch
-                    loading={sreachTweetsType}
-                    searchButton="搜索"
-                    allowClear
-                    style={{ width: "500px" }}
-                    placeholder="请输入推文链接"
-                    onSearch={sreachTweets}
-                  />
-                </FormItem>
-              </div>
-              {tweetAccount && (
-                <div className="border-dashed border-gray-200 border-2 p-2.5 mb-10">
-                  <div className="mb-2">{tweetAccount}</div>
-                  <div className="text-slate-500">{tweetContent}</div>
-                </div>
-              )}
-              <div>
-                <FormItem
-                  label="间隔时间（通过右侧工具获取）"
-                  field="timeInterval"
-                  rules={[{ required: true, message: "请输入间隔时间" }]}
-                >
-                  <Input allowClear placeholder="Crontab表达式" />
-                </FormItem>
-              </div>
-              <div>
-                <div className="flex justify-between items-center">
-                  <div>工作流</div>
-                  <div className="flex justify-end items-center">
-                    <Select
-                      placeholder="请选择"
-                      bordered={false}
-                      style={{ minWidth: 100 }}
-                      onChange={(value) => console.log("value", value)}
-                    >
-                      {options.map((option, index) => (
-                        <Option key={option} value={option}>
-                          {option}
-                        </Option>
-                      ))}
-                    </Select>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <FormItem
+              label="投喂个体"
+              field="searchUrl"
+              rules={[{ required: true, message: "请选择投喂的个体" }]}
+            >
+              <Select
+                placeholder='请选择投喂的个体'
+                style={{ width: 345 }}
+                showSearch
+                onChange={handleChange}
+              >
+                {options.map((item: any) => (
+                  <Option key={item.id} value={item.id}>
+                    {item.name}
+                  </Option>
+                ))}
+              </Select>
+            </FormItem>
+            <FormItem
+              label="上传文件"
+              field=""
+            >
+              <Upload
+                drag
+                multiple
+                accept='text/plain'
+                action='/'
+                onDrop={(e) => {
+                  console.log('uploadFile', e);
+                  let uploadFile = e.dataTransfer.files[0]
+                  if (isAcceptFile(uploadFile, 'text/plain')) {
+                    return
+                  } else {
+                    Message.info('不接受的文件类型，请重新上传指定文件类型~');
+                  }
+                }}
+                beforeUpload={async (file, fileList) => {
+                  setFileData(file);
+                  return true;
+                }}
+                tip='仅支持上传 txt 文件'
+                limit={1}
+              />
+            </FormItem>
           </Form>
-          <iframe
-            src="https://www.toolnb.com/tools/croncreate.html"
-            width="550"
-            height="700"
-            allowFullScreen
-          ></iframe>
         </div>
         <div className="flex justify-center items-center mt-10">
           <Button shape="round" type="primary" onClick={handleConfirm}>
-            确认执行
+            提交喂料
           </Button>
         </div>
       </Modal>

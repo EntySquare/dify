@@ -41,10 +41,15 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
   const { mutate } = useSWRConfig();
   const [pageSize, setPageSize] = useState(1)
   const [limit, setLimit] = useState(10)
-  const { data: knowledgeList, isLoading } = useSWR(
+  const { data: knowledgeList, error, isLoading } = useSWR(
     [`/knowledge/list?page=${pageSize}&limit=${limit}`],
-    () => getKnowledgeList(pageSize, limit)
+    () => getKnowledgeList({
+      page: pageSize, limit: limit
+    })
   );
+  if (error) {
+    Message.error('查询失败')
+  }
   const CreatIndividualModalRef = useRef<CreatRefType>(null);
   const DetailsModalRef = useRef<DetailsRefType>(null);
   const [detailData, setDetailData] = useState([] as any)
@@ -97,6 +102,20 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
     }
   }
 
+  const formatIndexingTechnique = (type: any) => {
+    switch (type) {
+      case 'high_quality':
+        return '高质量'
+        break;
+      case 'economy':
+        return '经济型'
+        break;
+      default:
+        return '其他'
+        break;
+    }
+  }
+
   const onDetailHandler = async (item: any) => {
     await setDetailData(item)
     const result = await DetailsModalRef.current!.show();
@@ -117,6 +136,10 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
     {
       title: "个体昵称",
       dataIndex: "name",
+    },
+    {
+      title: "个体质量",
+      render: (_col, item) => <div>{formatIndexingTechnique(item.indexing_technique)}</div>,
     },
     {
       title: "数据源类型",
