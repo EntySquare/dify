@@ -22,6 +22,7 @@ import AnswerIcon from '@/app/components/base/answer-icon'
 import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
 import cn from '@/utils/classnames'
 import { FileList } from '@/app/components/base/file-uploader'
+import TaskTweetsContent from '@/app/components/enty-chat/chat/answer/task-content/task-tweets-content'
 
 type AnswerProps = {
   item: ChatItem
@@ -159,7 +160,11 @@ const Answer: FC<AnswerProps> = ({
             }
             {
               content && !hasAgentThoughts && (
-                <BasicContent item={item} />
+                <>
+                  <BasicContent item={item} />
+                  <TaskTweetsContent content={'123'}/>
+                  {/* <TaskCommentContent content={'123'} /> */}
+                </>
               )
             }
             {
