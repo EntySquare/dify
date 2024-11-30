@@ -24,8 +24,6 @@ import {
 import useSWR, { useSWRConfig } from "swr";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AxiosError } from "axios";
-import type { GroupStrategyEditModalRefType } from "./group-strategy-edit-modal";
-import { GroupStrategyEditModal } from "./group-strategy-edit-modal";
 import type { TGAIGroupStrategy } from "@/models/tgai-strategy";
 import { getXAIDeviceList } from "@/service/xai";
 import { CommentModal, CommentModalRefType } from "./comment";
@@ -134,8 +132,6 @@ export const KnowledgeBaseUpLoadFileHomeView = () => {
         break;
     }
   };
-
-  const groupStrategyEditModalRef = useRef<GroupStrategyEditModalRefType>(null);
   const CommentModalRef = useRef<CommentModalRefType>(null);
 
   const onCommentClickHandler = async () => {
@@ -144,78 +140,26 @@ export const KnowledgeBaseUpLoadFileHomeView = () => {
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
   };
 
-  const onEditClickHandler = async () => {
-    const result = await groupStrategyEditModalRef.current!.show();
-    if (!result) return;
-    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
-  };
-
   const columns: TableColumnProps<any>[] = [
+    // {
+    //   title: "序号",
+    //   render: (_col, item, index) => index + 1,
+    // },
     {
-      title: "序号",
-      render: (_col, item, index) => index + 1,
-    },
-    {
-      title: "发布者",
+      title: "时间",
       dataIndex: "user_name",
     },
     {
-      title: "内容",
-      render: (_col, item) => <div>内容内容内容内容内容内容内容</div>,
+      title: "文件名",
+      dataIndex: "file_name",
     },
     {
-      title: "工作流",
-      render: (_col, item) => <div>推文宣推工作流V1</div>,
+      title: "喂料条数",
+      render: (_col, item) => <div>{item.total} 条</div>,
     },
     {
-      title: "状态",
-      render: (_col, item) => <div>{formatStatus(item.status)}</div>,
-    },
-    {
-      title: "详情",
-      render: (_col, item) => (
-        <div>
-          <div className="flex items-center justify-start gap-2 my-2">
-            <Button
-              type="secondary"
-              size="small"
-              // onClick={() => onEditClickHandler()}
-            >
-              查看详情
-            </Button>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "操作",
-      render: (_col, item) => (
-        <div>
-          <div className="flex items-center justify-start gap-2 my-2">
-            <Button
-              type="secondary"
-              size="small"
-              // onClick={() => onEditClickHandler()}
-            >
-              立即执行
-            </Button>
-            <Button
-              type="secondary"
-              size="small"
-              // onClick={() => onEditClickHandler()}
-            >
-              设置
-            </Button>
-            <Button
-              type="secondary"
-              size="small"
-              // onClick={() => onEditClickHandler()}
-            >
-              删除
-            </Button>
-          </div>
-        </div>
-      ),
+      title: "效果AI",
+      dataIndex: "effect",
     },
   ];
 
@@ -227,12 +171,13 @@ export const KnowledgeBaseUpLoadFileHomeView = () => {
         <div>
           <Space>
             <Button type="outline" size="small" onClick={onCommentClickHandler}>
-              发布火推
+              文件投喂
             </Button>
           </Space>
         </div>
       </Space>
       <Divider />
+      <Typography.Title heading={6}>历史上传记录</Typography.Title>
       <Table
         columns={columns}
         data={
@@ -275,12 +220,6 @@ export const KnowledgeBaseUpLoadFileHomeView = () => {
         pagination={false}
         loading={isLoading}
         rowKey={"device_id"}
-      />
-      <GroupStrategyEditModal
-        ref={groupStrategyEditModalRef}
-        groupTemplatesList={[]}
-        loggedAccountList={[]}
-        channelSetsList={[]}
       />
       <CommentModal ref={CommentModalRef} />
     </Card>
