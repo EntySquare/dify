@@ -95,6 +95,9 @@ const AIChatWrapper = React.memo(() => {
       setIsResponding(true)
       const res = await sendAIChatMsg(reqParams)
 
+      if (res.code === -1)
+        throw new Error('error')
+
       console.log(res)
 
       if (res.data.conversation_id)
