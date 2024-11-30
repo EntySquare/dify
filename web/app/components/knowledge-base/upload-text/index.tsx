@@ -24,11 +24,10 @@ import {
 import useSWR, { useSWRConfig } from "swr";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AxiosError } from "axios";
-import type { GroupStrategyEditModalRefType } from "./group-strategy-edit-modal";
-import { GroupStrategyEditModal } from "./group-strategy-edit-modal";
 import type { TGAIGroupStrategy } from "@/models/tgai-strategy";
 import { getXAIDeviceList } from "@/service/xai";
 import { CommentModal, CommentModalRefType } from "./comment";
+import { ReplyModal, ReplyModalRefType } from "./reply";
 
 const SWR_KEYS = [
   "/adminApi/deviceList",
@@ -134,18 +133,16 @@ export const KnowledgeBaseUpLoadTextHomeView = () => {
         break;
     }
   };
-
-  const groupStrategyEditModalRef = useRef<GroupStrategyEditModalRefType>(null);
   const CommentModalRef = useRef<CommentModalRefType>(null);
+  const ReplyModalRef = useRef<ReplyModalRefType>(null);
 
   const onCommentClickHandler = async () => {
     const result = await CommentModalRef.current!.show();
     if (!result) return;
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
   };
-
-  const onEditClickHandler = async () => {
-    const result = await groupStrategyEditModalRef.current!.show();
+  const onReplyClickHandler = async () => {
+    const result = await ReplyModalRef.current!.show();
     if (!result) return;
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
   };
@@ -179,7 +176,7 @@ export const KnowledgeBaseUpLoadTextHomeView = () => {
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               查看详情
             </Button>
@@ -195,21 +192,21 @@ export const KnowledgeBaseUpLoadTextHomeView = () => {
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               立即执行
             </Button>
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               设置
             </Button>
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               删除
             </Button>
@@ -227,8 +224,14 @@ export const KnowledgeBaseUpLoadTextHomeView = () => {
         <div>
           <Space>
             <Button type="outline" size="small" onClick={onCommentClickHandler}>
-              发布火推
+              文本投喂
             </Button>
+            {/* <Button type="outline" size="small" icon={<IconPlus />} onClick={onCommentClickHandler}>
+              单条添加（推文模版）
+            </Button>
+            <Button type="outline" size="small" icon={<IconPlus />} onClick={onReplyClickHandler}>
+              单条添加（回复模版）
+            </Button> */}
           </Space>
         </div>
       </Space>
@@ -276,13 +279,8 @@ export const KnowledgeBaseUpLoadTextHomeView = () => {
         loading={isLoading}
         rowKey={"device_id"}
       />
-      <GroupStrategyEditModal
-        ref={groupStrategyEditModalRef}
-        groupTemplatesList={[]}
-        loggedAccountList={[]}
-        channelSetsList={[]}
-      />
       <CommentModal ref={CommentModalRef} />
+      <ReplyModal ref={ReplyModalRef} />
     </Card>
   );
 };

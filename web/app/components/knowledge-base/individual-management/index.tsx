@@ -39,20 +39,24 @@ const SWR_KEYS = [
 
 export const KnowledgeBaseIndividualManagementHomeView = () => {
   const { mutate } = useSWRConfig();
-  const [pageSize, setPageSize] = useState(1)
-  const [limit, setLimit] = useState(10)
-  const { data: knowledgeList, error, isLoading } = useSWR(
-    [`/knowledge/list?page=${pageSize}&limit=${limit}`],
-    () => getKnowledgeList({
-      page: pageSize, limit: limit
+  const [pageSize, setPageSize] = useState(1);
+  const [limit, setLimit] = useState(10);
+  const {
+    data: knowledgeList,
+    error,
+    isLoading,
+  } = useSWR([`/knowledge/list?page=${pageSize}&limit=${limit}`], () =>
+    getKnowledgeList({
+      page: pageSize,
+      limit: limit,
     })
   );
   if (error) {
-    Message.error('查询失败')
+    Message.error("查询失败");
   }
   const CreatIndividualModalRef = useRef<CreatRefType>(null);
   const DetailsModalRef = useRef<DetailsRefType>(null);
-  const [detailData, setDetailData] = useState([] as any)
+  const [detailData, setDetailData] = useState([] as any);
 
   const onClickHandler = async () => {
     const result = await CreatIndividualModalRef.current!.show();
@@ -63,65 +67,68 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
   const formatTime = (timestamp: any) => {
     const date = new Date(timestamp * 1000);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，所以要加1
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份从0开始，所以要加1
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }
+  };
 
   const formatPermission = (time: any) => {
     switch (time) {
-      case 'only_me':
-        return '仅自己'
+      case "only_me":
+        return "仅自己";
         break;
-      case 'all_team_members':
-        return '所有团队成员'
+      case "all_team_members":
+        return "所有团队成员";
         break;
-      case 'partial_members':
-        return '部分团队成员'
+      case "partial_members":
+        return "部分团队成员";
         break;
       default:
-        return ''
+        return "";
         break;
     }
-  }
+  };
 
   const formatSourceType = (type: any) => {
     switch (type) {
-      case 'upload_file':
-        return '文件类型'
+      case "upload_file":
+        return "文件类型";
         break;
-      case 'upload_text':
-        return '文本类型'
+      case "upload_text":
+        return "文本类型";
         break;
       default:
-        return '其他'
+        return "其他";
         break;
     }
-  }
+  };
 
   const formatIndexingTechnique = (type: any) => {
     switch (type) {
-      case 'high_quality':
-        return '高质量'
+      case "high_quality":
+        return "高质量";
         break;
-      case 'economy':
-        return '经济型'
+      case "economy":
+        return "经济型";
         break;
       default:
-        return '其他'
+        return "其他";
         break;
     }
-  }
+  };
 
   const onDetailHandler = async (item: any) => {
-    await setDetailData(item)
+    await setDetailData(item);
     const result = await DetailsModalRef.current!.show();
     if (!result) return;
     mutate([`/knowledge/list?page=${pageSize}&limit=${limit}`]);
-  }
+  };
+  const onDeleteHandler = async (item: any) => {
+    // await setDetailData(item);
+  };
 
   const columns: TableColumnProps<any>[] = [
     // {
@@ -131,7 +138,7 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
     {
       title: "个体ID",
       dataIndex: "id",
-      width: 200
+      width: 200,
     },
     {
       title: "个体昵称",
@@ -139,11 +146,15 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
     },
     {
       title: "个体质量",
-      render: (_col, item) => <div>{formatIndexingTechnique(item.indexing_technique)}</div>,
+      render: (_col, item) => (
+        <div>{formatIndexingTechnique(item.indexing_technique)}</div>
+      ),
     },
     {
       title: "数据源类型",
-      render: (_col, item) => <div>{formatSourceType(item.data_source_type)}</div>,
+      render: (_col, item) => (
+        <div>{formatSourceType(item.data_source_type)}</div>
+      ),
     },
     {
       title: "文档数量",
@@ -169,10 +180,24 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
             <Button
               type="secondary"
               size="small"
-              onClick={() => { onDetailHandler(item) }}
+              onClick={() => {
+                onDetailHandler(item);
+              }}
             >
               详情
             </Button>
+            <Popconfirm
+              focusLock
+              title="提示"
+              content="确定要删除该条知识库吗？"
+              onOk={() => {
+                onDeleteHandler(item);
+              }}
+            >
+              <Button type="secondary" status="danger" size="small">
+                删除
+              </Button>
+            </Popconfirm>
           </div>
         </div>
       ),
@@ -201,12 +226,21 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
         rowKey={"id"}
       />
       <div className="pt-4">
-        <Pagination size={'small'} total={knowledgeList?.data.total || 0} showTotal sizeCanChange current={pageSize} pageSize={limit} onChange={(page) => {
-          setPageSize(page); // 设置当前页码
-        }} onPageSizeChange={(size: number, current: number) => {
-          setPageSize(1)
-          setLimit(size)
-        }} />
+        <Pagination
+          size={"small"}
+          total={knowledgeList?.data.total || 0}
+          showTotal
+          sizeCanChange
+          current={pageSize}
+          pageSize={limit}
+          onChange={(page) => {
+            setPageSize(page); // 设置当前页码
+          }}
+          onPageSizeChange={(size: number, current: number) => {
+            setPageSize(1);
+            setLimit(size);
+          }}
+        />
       </div>
       <CreatIndividualModal ref={CreatIndividualModalRef} />
       <DetailsModal detailData={detailData} ref={DetailsModalRef} />

@@ -140,26 +140,94 @@ export const KnowledgeBaseUpLoadFileHomeView = () => {
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
   };
 
+  // const columns: TableColumnProps<any>[] = [
+  //   // {
+  //   //   title: "序号",
+  //   //   render: (_col, item, index) => index + 1,
+  //   // },
+  //   {
+  //     title: "时间",
+  //     dataIndex: "user_name",
+  //   },
+  //   {
+  //     title: "文件名",
+  //     dataIndex: "file_name",
+  //   },
+  //   {
+  //     title: "喂料条数",
+  //     render: (_col, item) => <div>{item.total} 条</div>,
+  //   },
+  //   {
+  //     title: "效果AI",
+  //     dataIndex: "effect",
+  //   },
+  // ];
   const columns: TableColumnProps<any>[] = [
-    // {
-    //   title: "序号",
-    //   render: (_col, item, index) => index + 1,
-    // },
     {
-      title: "时间",
+      title: "序号",
+      render: (_col, item, index) => index + 1,
+    },
+    {
+      title: "发布者",
       dataIndex: "user_name",
     },
     {
-      title: "文件名",
-      dataIndex: "file_name",
+      title: "内容",
+      render: (_col, item) => <div>内容内容内容内容内容内容内容</div>,
     },
     {
-      title: "喂料条数",
-      render: (_col, item) => <div>{item.total} 条</div>,
+      title: "工作流",
+      render: (_col, item) => <div>推文宣推工作流V1</div>,
     },
     {
-      title: "效果AI",
-      dataIndex: "effect",
+      title: "状态",
+      render: (_col, item) => <div>{formatStatus(item.status)}</div>,
+    },
+    {
+      title: "详情",
+      render: (_col, item) => (
+        <div>
+          <div className="flex items-center justify-start gap-2 my-2">
+            <Button
+              type="secondary"
+              size="small"
+            // onClick={() => onEditClickHandler()}
+            >
+              查看详情
+            </Button>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "操作",
+      render: (_col, item) => (
+        <div>
+          <div className="flex items-center justify-start gap-2 my-2">
+            <Button
+              type="secondary"
+              size="small"
+            // onClick={() => onEditClickHandler()}
+            >
+              立即执行
+            </Button>
+            <Button
+              type="secondary"
+              size="small"
+            // onClick={() => onEditClickHandler()}
+            >
+              设置
+            </Button>
+            <Button
+              type="secondary"
+              size="small"
+            // onClick={() => onEditClickHandler()}
+            >
+              删除
+            </Button>
+          </div>
+        </div>
+      ),
     },
   ];
 

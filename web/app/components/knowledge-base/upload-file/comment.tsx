@@ -42,7 +42,7 @@ const CommentModal = React.forwardRef<CommentModalRefType, CommentModalProps>(
     const [visible, setVisible] = useState(false);
     const table = useRef<TableInstance>(null);
     const [form] = Form.useForm<any>();
-    const [fileData, setFileData] = useState<File | null>(null)
+    const [uploadFileData, setUploadFileData] = useState<File | null>(null)
     const [options, setOptions] = useState([] as any);
     const [selectedValues, setSelectedValues] = useState('');
 
@@ -109,14 +109,12 @@ const CommentModal = React.forwardRef<CommentModalRefType, CommentModalProps>(
           Message.error("请选择投喂个体");
           return;
         }
+        if (uploadFileData === null) {
+          Message.error("请上传需要投喂的文件");
+          return;
+        }
         await createDocFile({
-          file: fileData, dataset_id: selectedValues, data: {
-            "indexing_technique": "high_quality",
-            "process_rule": {
-              "rules": "",
-              "mode": "automatic"
-            }
-          }
+          file: uploadFileData, dataset_id: selectedValues, data: '{"indexing_technique": "high_quality","process_rule": {"rules": "","mode": "automatic"}}'
         })
         form.resetFields();
         setVisible(false);
@@ -187,8 +185,11 @@ const CommentModal = React.forwardRef<CommentModalRefType, CommentModalProps>(
                     Message.info('不接受的文件类型，请重新上传指定文件类型~');
                   }
                 }}
+                onRemove={() => {
+                  setUploadFileData(null);
+                }}
                 beforeUpload={async (file, fileList) => {
-                  setFileData(file);
+                  setUploadFileData(file);
                   return true;
                 }}
                 tip='仅支持上传 txt 文件'
