@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         'primary': 'btn-primary',
         'warning': 'btn-warning',
-        'secondary': 'btn-secondary dark:bg-black/70 dark:hover:bg-black/60 dark:border-stone-600',
+        'secondary': 'btn-secondary dark:bg-black/70 dark:hover:bg-black/60 dark:border-stone-700 dark:hover:border-stone-600 dark:hover:bg-zinc-700',
         'secondary-accent': 'btn-secondary-accent',
         'ghost': 'btn-ghost',
         'ghost-accent': 'btn-ghost-accent',
