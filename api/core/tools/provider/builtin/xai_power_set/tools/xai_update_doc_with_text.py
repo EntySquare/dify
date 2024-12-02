@@ -6,10 +6,10 @@ from yarl import URL
 from core.tools.entities.tool_entities import ToolInvokeMessage
 from core.tools.tool.builtin_tool import BuiltinTool
 
-XAI_CREATE_DATASET_PATH = "knowledge/create"
+XAI_UPDATE_DOC_TEXT_PATH = "knowledge/updateDocText"
 
 
-class XAICreateDataset(BuiltinTool):
+class XAIUpdateDocWithText(BuiltinTool):
 
     def _invoke(self,
                 user_id: str,
@@ -17,33 +17,36 @@ class XAICreateDataset(BuiltinTool):
                 ) -> Union[ToolInvokeMessage, list[ToolInvokeMessage]]:
         
         api_url = self.runtime.credentials.get('xai_api_url', None)
-        name = tool_parameters.get("name", "")
-        indexing_technique = tool_parameters.get("indexing_technique", "")
-        permission = tool_parameters.get('permission', "")
+        dataset_id = tool_parameters.get("dataset_id", "")
+        document_id = tool_parameters.get("document_id", "")
+        name = tool_parameters.get("name")
+        text = tool_parameters.get("text")
 
-        if name is None or name == "":
-            raise Exception("个体名称不能为空！")
-
-        if indexing_technique is None or indexing_technique == "":
-            raise Exception("请设置索引模式！")
+        if dataset_id is None or dataset_id == "":
+            raise Exception("个体ID不能为空！")
         
-        if permission is None or permission == "":
-            raise Exception("请设置个体权限！")
+        if document_id is None or document_id == "":
+            raise Exception("料 ID不能为空！")
         
-        url = URL(api_url) / "api" / XAI_CREATE_DATASET_PATH if 'api' not in api_url else URL(api_url) / XAI_CREATE_DATASET_PATH
-
         data = {
-            "name": name,
-            "indexing_technique": indexing_technique,
-            "permission": permission,
+            "dataset_id": dataset_id,
+            "document_id": document_id,
         }
+        
+        if name is not None and name != "":
+            data['name'] = name
+
+        if text is not None and text != "":
+            data['text'] = text
+        
+        url = URL(api_url) / "api" / XAI_UPDATE_DOC_TEXT_PATH if 'api' not in api_url else URL(api_url) / XAI_UPDATE_DOC_TEXT_PATH
 
         try:
             response = post(str(url), json=data)
 
         except:
 
-            raise Exception(f'Failed to create peronality name: {name}, indexing_technique: {indexing_technique}, permission: {permission} ')
+            raise Exception(f'Failed to update doc {document_id} of personality {dataset_id} to name: {name}, text: {text}')
         
         try:
             json_response = response.json()
@@ -52,7 +55,7 @@ class XAICreateDataset(BuiltinTool):
 
             if response.status_code == 200:
                 if data is None or isinstance(data, dict) is not True:
-                    raise Exception(f'Failed to create peronality name: {name}, indexing_technique: {indexing_technique}, permission: {permission} ')
+                    raise Exception(f'Failed to update doc {document_id} of personality {dataset_id} to name: {name}, text: {text}')
 
                 # response_data = json.loads(data)
 
@@ -63,7 +66,7 @@ class XAICreateDataset(BuiltinTool):
             
             else:
                 if data is None or isinstance(data, dict) is not True:
-                    raise Exception(f'Failed to create peronality name: {name}, indexing_technique: {indexing_technique}, permission: {permission} ')
+                    raise Exception(f'Failed to update doc {document_id} of personality {dataset_id} to name: {name}, text: {text}')
                 message = data['message']
                 message_zh = data['message_zh']
                 if message_zh is not None and isinstance(message_zh, str) and message_zh != "":
@@ -71,10 +74,11 @@ class XAICreateDataset(BuiltinTool):
                 elif message is not None and isinstance(message, str) and message != '':
                     raise Exception(message)
                 else:
-                    raise Exception(f'Failed to create peronality name: {name}, indexing_technique: {indexing_technique}, permission: {permission} ')
+                    raise Exception(f'Failed to update doc {document_id} of personality {dataset_id} to name: {name}, text: {text}')
 
         except Exception as e: 
             raise e
+
 
 
        

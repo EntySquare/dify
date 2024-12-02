@@ -1,0 +1,97 @@
+identity:
+  name: xai_create_doc_with_text
+  author: Enty
+  label:
+    en_US: XAI Create Doc(text)
+    zh_Hans: XAI 创建料（文本）
+    pt_BR: XAI Create Doc(Text)
+description:
+  human:
+    en_US: A tool for using text to create doc with provided parameters.
+    zh_Hans: 一个用于基于给定参数及文本创建料的工具。
+    pt_BR: A tool for using text to create doc with provided parameters.
+  llm:  A tool for using text to create doc with provided parameters.
+parameters:
+  - name: dataset_id
+    type: string
+    required: true
+    label: 
+      en_US: Personality id
+      zh_Hans: 个体 id
+      pt_BR: Personality id
+    human_description:
+      en_US: Id of personality 
+      zh_Hans: 个体 id
+      pt_BR: Id of personality 
+    llm_description: Id of personality 
+    form: llm
+  - name: name
+    type: string
+    required: true
+    label: 
+      en_US: Doc Name
+      zh_Hans: 料名
+      pt_BR: Doc Name
+    human_description:
+      en_US: Name of Doc 
+      zh_Hans: 料名
+      pt_BR: Name of Doc 
+    llm_description: Name of Doc 
+    form: llm
+  - name: text
+    type: string
+    required: true
+    label: 
+      en_US: Doc Content
+      zh_Hans: 料的内容
+      pt_BR: Doc Content
+    human_description:
+      en_US: Content of Doc 
+      zh_Hans: 料的内容
+      pt_BR: Content of Doc  
+    llm_description: Content of Doc 
+    form: llm
+  - name: indexing_technique
+    type: select
+    required: true
+    human_description:
+      en_US: Indexing technique for this personality
+      zh_Hans: 此个体的索引模式
+      pt_BR: Indexing technique for this personality
+    label:
+      en_US: Indexing technique
+      zh_Hans: 索引模式
+      pt_BR: Indexing technique
+    form: form
+    options:
+      - value: high_quality
+        label:
+          en_US: High quality
+          zh_Hans: 高质量 
+          pt_BR: High quality
+      - value: economy
+        label:
+          en_US: Economy
+          zh_Hans: 经济
+          pt_BR: Economy
+    default: economy
+  - name: mode
+    type: select
+    required: true
+    human_description:
+      en_US: Mode of process rule
+      zh_Hans: 处理规则模式
+      pt_BR: Mode of process rule
+    label:
+      en_US: Mode
+      zh_Hans: 模式
+      pt_BR: Mode
+    form: form
+    options:
+      - value: automatic
+        label:
+          en_US: Automatic
+          zh_Hans: 自动模式
+          pt_BR: Automatic
+    default: automatic
+    
