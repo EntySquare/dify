@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useCallback } from 'react'
+import { usePathname } from 'next/navigation'
+import React, { useCallback, useMemo } from 'react'
 import useSWR from 'swr'
 import { useShallow } from 'zustand/react/shallow'
 import { Disclosure, Transition } from '@headlessui/react'
@@ -94,6 +95,15 @@ const AccountRolePanel = React.memo(() => {
     isLeftPanelOpen: state.isLeftPanelOpen,
   })))
 
+  const pathname = usePathname()
+
+  const chatType = useMemo(() => {
+    if (!pathname)
+      return 'x'
+
+    return pathname.includes('ai-chat-x') ? 'x' : 'instagram'
+  }, [pathname])
+
   return <Transition show={isLeftPanelOpen}
     className={'w-full max-w-[300px]'}
     enter="transition-all duration-150"
@@ -110,7 +120,7 @@ const AccountRolePanel = React.memo(() => {
           {({ open }) => (
             <>
               <Disclosure.Button className={'flex items-center justify-between w-full'}>
-                <CommonSectionLabel text={'已登录X账号列表'}/>
+                <CommonSectionLabel text={`已登录${chatType === 'x' ? 'X' : 'Instagram'}账号列表`}/>
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
               <Transition
