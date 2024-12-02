@@ -1,0 +1,81 @@
+identity:
+  name: xai_create_datasets
+  author: Enty
+  label:
+    en_US: XAI Create Personality
+    zh_Hans: XAI 创建个体
+    pt_BR: XAI Create Personality
+description:
+  human:
+    en_US: A tool for create personality with provided parameters.
+    zh_Hans: 一个用于基于给定参数创建个体的工具。
+    pt_BR: A tool for create personality with provided parameters.
+  llm: A tool for create personality with provided parameters.
+parameters:
+  - name: name
+    type: string
+    required: true
+    label: 
+      en_US: Name
+      zh_Hans: 名称
+      pt_BR: Name
+    human_description:
+      en_US: Name of personality 
+      zh_Hans: 个体名称
+      pt_BR: Name of personality 
+    llm_description: Name of personality 
+    form: llm
+  - name: indexing_technique
+    type: select
+    required: true
+    human_description:
+      en_US: Indexing technique for this personality
+      zh_Hans: 此个体的索引模式
+      pt_BR: Indexing technique for this personality
+    label:
+      en_US: Indexing technique
+      zh_Hans: 索引模式
+      pt_BR: Indexing technique
+    form: form
+    options:
+      - value: high_quality
+        label:
+          en_US: High quality
+          zh_Hans: 高质量 
+          pt_BR: High quality
+      - value: economy
+        label:
+          en_US: Economy
+          zh_Hans: 经济
+          pt_BR: Economy
+    default: economy
+  - name: permission
+    type: select
+    required: true
+    human_description:
+      en_US: Permission for this personality
+      zh_Hans: 个体权限
+      pt_BR: Permission for this personality
+    label:
+      en_US: Permission
+      zh_Hans: 权限
+      pt_BR: Permission
+    form: form
+    options:
+      - value: only_me
+        label:
+          en_US: Only me
+          zh_Hans: 仅自己
+          pt_BR: Only me
+      - value: all_team_members
+        label:
+          en_US: All team members
+          zh_Hans: 所有团队成员
+          pt_BR: All team members
+      - value: partial_members
+        label:
+          en_US: Partial members
+          zh_Hans: 部分团队成员
+          pt_BR: Partial members
+    default: only_me
+    
