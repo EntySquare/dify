@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import useSWR from 'swr'
 import { useShallow } from 'zustand/react/shallow'
 import { Disclosure, Transition } from '@headlessui/react'
@@ -31,11 +31,18 @@ export const PanelTopHeader = React.memo(() => {
     isLeftPanelOpen,
     setIsLeftPanelOpen,
     setChatLists,
+    setConversationId,
   } = useEntyAIChatStore(useShallow(state => ({
     isLeftPanelOpen: state.isLeftPanelOpen,
     setIsLeftPanelOpen: state.setIsLeftPanelOpen,
     setChatLists: state.setChatLists,
+    setConversationId: state.setConversationId,
   })))
+
+  const onRestartAIChat = useCallback(() => {
+    setChatLists([])
+    setConversationId()
+  }, [])
 
   return <div className={'flex gap-2 h-14 items-center px-3'}>
     <Tooltip
@@ -56,7 +63,7 @@ export const PanelTopHeader = React.memo(() => {
         </div>
       }
     >
-      <Button className={'text-tgai-text-3 font-bold px-0 w-10 h-10'} onClick={() => setChatLists([])}>
+      <Button className={'text-tgai-text-3 font-bold px-0 w-10 h-10'} onClick={() => onRestartAIChat()}>
         <RiRestartLine />
       </Button>
     </Tooltip>

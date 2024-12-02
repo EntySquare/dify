@@ -2,12 +2,16 @@ import type {
   FC,
   ReactNode,
 } from 'react'
-import { memo, useEffect, useRef, useState } from 'react'
+import {
+  memo,
+  useEffect, useMemo, useRef, useState,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 import type {
   ChatConfig,
   ChatItem,
 } from '../../types'
+import { ChatResponseTypes } from '../../types'
 import Operation from './operation'
 import AgentContent from './agent-content'
 import BasicContent from './basic-content'
@@ -71,6 +75,20 @@ const Answer: FC<AnswerProps> = ({
   const [contentWidth, setContentWidth] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+
+  const replyType = useMemo<ChatResponseTypes>(() => {
+    try {
+      const parsedContent = JSON.parse(content)
+      if (typeof parsedContent === 'object' && !Array.isArray(parsedContent))
+        return ChatResponseTypes.TWEETS_GENERATION
+      else return ChatResponseTypes.PLAIN_TEXT
+    }
+    catch (err) {
+      return ChatResponseTypes.PLAIN_TEXT
+    }
+  }, [content])
+
+  console.log(replyType, content)
 
   const getContainerWidth = () => {
     if (containerRef.current)
@@ -161,7 +179,7 @@ const Answer: FC<AnswerProps> = ({
               )
             }
             {
-              content && !hasAgentThoughts && (
+              !responding && content && !hasAgentThoughts && (
                 <>
                   {!content.includes('生成推文') && !content.includes('生成推文评论') && <BasicContent item={item} />}
                   {content.includes('生成推文') && !content.includes('推文评论') && <TaskTweetsContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'}/> }

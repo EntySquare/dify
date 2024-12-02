@@ -80,3 +80,8 @@ export type Callback = {
 export type Feedback = {
   rating: 'like' | 'dislike' | null
 }
+
+export enum ChatResponseTypes {
+  TWEETS_GENERATION = 'tweets',
+  PLAIN_TEXT = 'text',
+}
