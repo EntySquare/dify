@@ -18,7 +18,7 @@ type Action = {
   setChatLists: (chatLists: ChatItem[]) => void
   setIsResponding: (isResponding: boolean) => void
   setSelectedPersonality: (selectedPersonality: string) => void
-  setConversationId: (conversation_id: string) => void
+  setConversationId: (conversation_id?: string) => void
 }
 
 export const useEntyAIChatStore = create<State & Action>(set => ({

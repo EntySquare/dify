@@ -18,14 +18,13 @@ import cn from '@/utils/classnames'
 const SUGGESTED_QUESTION = ['生成推文', '生成推文评论', '生成私信回复']
 
 const AIChatWrapperHeader = React.memo(() => {
-  const { isLeftPanelOpen, setIsLeftPanelOpen } = useEntyAIChatStore(useShallow(state => ({
+  const { isLeftPanelOpen } = useEntyAIChatStore(useShallow(state => ({
     isLeftPanelOpen: state.isLeftPanelOpen,
-    setIsLeftPanelOpen: state.setIsLeftPanelOpen,
   })))
 
   return <div className={cn('absolute top-0 left-0 h-14 flex justify-between items-center z-50 gap-4', isLeftPanelOpen ? 'pl-4' : '')}>
     {!isLeftPanelOpen && <PanelTopHeader/>}
-    <div className={'text-base font-bold text-tgai-text-1'} onClick={() => setIsLeftPanelOpen(!isLeftPanelOpen)}>AI智能聊天</div>
+    <div className={'text-base font-bold text-tgai-text-1'}>AI智能聊天</div>
   </div>
 })
 
