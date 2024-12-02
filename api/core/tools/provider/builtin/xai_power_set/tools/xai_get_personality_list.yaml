@@ -1,0 +1,39 @@
+identity:
+  name: xai_get_personality_list
+  author: Enty
+  label:
+    en_US: XAI Get Personality List
+    zh_Hans: XAI 获取个体列表
+    pt_BR: XAI Get Personality List
+description:
+  human:
+    en_US: A tool for retrieve personality list with provided parameters.
+    zh_Hans: 一个用于基于给定参数获取个体列表的工具。
+    pt_BR: A tool for retrieve personality list with provided parameters.
+  llm: A tool for retrieve personality list with provided parameters.
+parameters:
+  - name: page
+    type: number
+    required: false
+    label: 
+      en_US: Page
+      zh_Hans: 页码
+      pt_BR: Page
+    human_description:
+      en_US: Page
+      zh_Hans: 页码
+      pt_BR: Page 
+    form: form
+  - name: limit
+    type: number
+    required: false
+    label: 
+      en_US: Limit
+      zh_Hans: 每页数量
+      pt_BR: Limit
+    human_description:
+      en_US: Limit of each page
+      zh_Hans: 每页数量
+      pt_BR: Limit of each page 
+    form: form
+    
