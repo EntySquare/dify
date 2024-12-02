@@ -307,15 +307,9 @@ const SiderMenu = () => {
           },
           {
             type: 'item',
-            title: '文件喂料',
-            href: '/knowledge-base/upload-file',
-            key: '/knowledge-base/upload-file',
-          },
-          {
-            type: 'item',
-            title: '文本喂料',
-            href: '/knowledge-base/upload-text',
-            key: '/knowledge-base/upload-text',
+            title: '喂料管理',
+            href: '/knowledge-base/upload',
+            key: '/knowledge-base/upload',
           },
         ],
         icon: <IconUserGroup />,
