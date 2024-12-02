@@ -1,0 +1,53 @@
+identity:
+  name: xai_retrieve_document
+  author: Enty
+  label:
+    en_US: XAI Retrieve Doc
+    zh_Hans: XAI 检索文档
+    pt_BR: XAI Retrieve Doc
+description:
+  human:
+    en_US: A tool for using text to retrieve doc with provided parameters.
+    zh_Hans: 一个用于基于给定参数检索文档的工具。
+    pt_BR: A tool for using text to retrieve doc with provided parameters.
+  llm: A tool for using text to retrieve doc with provided parameters.
+parameters:
+  - name: dataset_id
+    type: string
+    required: true
+    label: 
+      en_US: Personality id
+      zh_Hans: 个体 id
+      pt_BR: Personality id
+    human_description:
+      en_US: Id of personality 
+      zh_Hans: 个体 id
+      pt_BR: Id of personality 
+    llm_description: Id of personality 
+    form: llm
+  - name: query
+    type: string
+    required: true
+    label: 
+      en_US: Query
+      zh_Hans: 检索内容
+      pt_BR: Query
+    human_description:
+      en_US: Query to retrieve 
+      zh_Hans: 检索内容
+      pt_BR: Query to retrieve  
+    llm_description: Query to retrieve 
+    form: llm
+  - name: retrieval_model
+    type: string
+    required: true
+    label: 
+      en_US: Retrieval Model(json string)
+      zh_Hans: 检索模型参数（json 字符串）
+      pt_BR: Retrieval Model(json string)
+    human_description:
+      en_US: Retrieval Model(string can be parsed to json)
+      zh_Hans: 检索模型参数（可被解析为 json 的字符串）
+      pt_BR: Retrieval Model(string can be parsed to json)
+    llm_description: Retrieval Model(string can be parsed to json)
+    form: llm

@@ -1,0 +1,67 @@
+identity:
+  name: xai_update_doc_with_text
+  author: Enty
+  label:
+    en_US: XAI Update Doc(text)
+    zh_Hans: XAI 更新料（文本）
+    pt_BR: XAI Update Doc(Text)
+description:
+  human:
+    en_US: A tool for using text to update doc with provided parameters.
+    zh_Hans: 一个用于基于给定参数及文本更新料的工具。
+    pt_BR: A tool for using text to update doc with provided parameters.
+  llm: A tool for using text to update doc with provided parameters.
+parameters:
+  - name: dataset_id
+    type: string
+    required: true
+    label: 
+      en_US: Personality id
+      zh_Hans: 个体 id
+      pt_BR: Personality id
+    human_description:
+      en_US: Id of personality 
+      zh_Hans: 个体 id
+      pt_BR: Id of personality 
+    llm_description: Id of personality 
+    form: llm
+  - name: document_id
+    type: string
+    required: true
+    label: 
+      en_US: Document id
+      zh_Hans: 料 id
+      pt_BR: Document id
+    human_description:
+      en_US: Id of document 
+      zh_Hans: 料 id
+      pt_BR: Id of document 
+    llm_description: Id of document 
+    form: llm
+  - name: name
+    type: string
+    required: false
+    label: 
+      en_US: Doc Name
+      zh_Hans: 料名
+      pt_BR: Doc Name
+    human_description:
+      en_US: Update name of doc to 
+      zh_Hans: 更新料名为
+      pt_BR: Update name of doc to 
+    llm_description: Name of Doc 
+    form: llm
+  - name: text
+    type: string
+    required: false
+    label: 
+      en_US: Doc Content
+      zh_Hans: 料的内容
+      pt_BR: Doc Content
+    human_description:
+      en_US: Update content of Doc to
+      zh_Hans: 更新料的内容为
+      pt_BR: Update content of Doc to
+    llm_description: Content of Doc 
+    form: llm
+    
