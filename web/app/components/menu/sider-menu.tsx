@@ -244,9 +244,15 @@ const SiderMenu = () => {
           },
           {
             type: 'item',
-            title: 'AI聊天',
-            href: '/group/ai-chat',
-            key: '/group/ai-chat',
+            title: 'AI聊天(X)',
+            href: '/group/ai-chat-x',
+            key: '/group/ai-chat-x',
+          },
+          {
+            type: 'item',
+            title: 'AI聊天(ins)',
+            href: '/group/ai-chat-ins',
+            key: '/group/ai-chat-ins',
           },
           // {
           //   type: "item",
