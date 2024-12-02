@@ -2,7 +2,6 @@
 
 import { RiTwitterXLine } from '@remixicon/react'
 import { HeaderUserProfile } from './header-user-profile'
-import { HeaderAccountRestValid } from './header-account-rest-valid'
 import { HeaderThemeSwitcher } from './header-theme-switcher'
 import classNames from '@/utils/classnames'
 
@@ -25,7 +24,7 @@ export function TGAIHeader({ className }: TGAIHeaderProps) {
       {/* /> */}
       <RiTwitterXLine className={'text-tgai-text-1'} />
       <div className="flex flex-row gap-8 items-center">
-        <HeaderAccountRestValid />
+        {/* <HeaderAccountRestValid /> */}
         <HeaderThemeSwitcher />
         <HeaderUserProfile />
       </div>
