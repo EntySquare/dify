@@ -40,7 +40,9 @@ const SWR_KEYS = [
 export const KnowledgeBaseIndividualManagementHomeView = () => {
   const { mutate } = useSWRConfig();
   const [pageSize, setPageSize] = useState(1);
+  const [detailId, setDetailId] = useState();
   const [limit, setLimit] = useState(10);
+  const [loadingKeys, setLoadingKeys] = useState<Set<number>>(new Set());
   const {
     data: knowledgeList,
     error,
@@ -120,13 +122,19 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
     }
   };
 
+  const updateListData = () => {
+    mutate([`/knowledge/list?page=${pageSize}&limit=${limit}`]);
+  };
+
   const onDetailHandler = async (item: any) => {
     await setDetailData(item);
+    setDetailId(item.id);
     const result = await DetailsModalRef.current!.show();
     if (!result) return;
     mutate([`/knowledge/list?page=${pageSize}&limit=${limit}`]);
   };
   const onDeleteHandler = async (item: any) => {
+    setLoadingKeys((prevKeys) => new Set(prevKeys.add(item.id)));
     try {
       const res = await deleteIndividual(item.id);
       if (res.code != 0) {
@@ -144,6 +152,11 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
         content: "删除失败",
       });
     } finally {
+      setLoadingKeys((prevKeys) => {
+        const newKeys = new Set(prevKeys);
+        newKeys.delete(item.id);
+        return newKeys;
+      });
     }
   };
 
@@ -211,7 +224,12 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
                 onDeleteHandler(item);
               }}
             >
-              <Button type="secondary" status="danger" size="small">
+              <Button
+                type="secondary"
+                loading={loadingKeys.has(item.id)}
+                status="danger"
+                size="small"
+              >
                 删除
               </Button>
             </Popconfirm>
@@ -260,11 +278,15 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
         />
       </div>
       <CreatIndividualModal ref={CreatIndividualModalRef} />
-      <DetailsModal
-        setDetailData={setDetailData}
-        detailData={detailData}
-        ref={DetailsModalRef}
-      />
+      {knowledgeList && (
+        <DetailsModal
+          updateListData={updateListData}
+          detailData={detailData}
+          detailId={detailId}
+          ref={DetailsModalRef}
+          detailList={knowledgeList.data.data}
+        />
+      )}
     </Card>
   );
 };

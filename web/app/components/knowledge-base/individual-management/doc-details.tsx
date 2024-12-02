@@ -31,7 +31,7 @@ export type docDetailDataType = {
 
 type DocDetailsProps = {
   docDetailData: docDetailDataType;
-  setDetailData: React.Dispatch<React.SetStateAction<detailDataType>>;
+  updateListData: () => void;
 };
 
 export type DocDetailsRefType = {
@@ -39,9 +39,10 @@ export type DocDetailsRefType = {
 };
 
 const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
-  ({ docDetailData, setDetailData }, ref) => {
+  ({ docDetailData, updateListData }, ref) => {
     const [visible, setVisible] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
     const [form] = Form.useForm<any>();
     const [tableList, setTableList] = useState([] as any);
     const promiseRef = useRef<{
@@ -113,7 +114,12 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
                   onDeleteHandler(item);
                 }}
               >
-                <Button type="secondary" status="danger" size="small">
+                <Button
+                  type="secondary"
+                  loading={loading}
+                  status="danger"
+                  size="small"
+                >
                   删除
                 </Button>
               </Popconfirm>
@@ -136,6 +142,7 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
 
     const onDeleteHandler = async (item: any) => {
       try {
+        setLoading(true);
         const res = await deleteSeg(
           docDetailData.dataset_id,
           docDetailData.document_id,
@@ -150,10 +157,7 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
         Message.success({
           content: "删除成功",
         });
-        setDetailData((prevDetailData: any) => ({
-          ...prevDetailData,
-          word_count: prevDetailData.word_count - item.word_count, // 假设 item 有 word_count
-        }));
+        updateListData();
         promiseRef.current?.resolve("成功");
         form.resetFields();
         setVisible(false);
@@ -162,6 +166,7 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
           content: "删除失败",
         });
       } finally {
+        setLoading(false);
       }
     };
 

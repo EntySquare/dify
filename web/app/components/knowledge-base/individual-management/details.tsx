@@ -56,7 +56,9 @@ export type detailDataType = {
 type DetailsProps = {
   //   tweetsUrl: string | undefined;
   detailData: detailDataType;
-  setDetailData: React.Dispatch<React.SetStateAction<detailDataType>>;
+  updateListData: () => void;
+  detailList: detailDataType[];
+  detailId: string | undefined;
 };
 
 export type DetailsRefType = {
@@ -64,8 +66,10 @@ export type DetailsRefType = {
 };
 
 const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
-  ({ detailData, setDetailData }, ref) => {
+  ({ detailData, updateListData, detailList, detailId }, ref) => {
     const [visible, setVisible] = React.useState(false);
+    const [loading, setLoading] = useState(false);
+    const [loadingKeys, setLoadingKeys] = useState<Set<number>>(new Set());
     const [form] = Form.useForm<any>();
     const [pageSize, setPageSize] = useState(1);
     const [limit, setLimit] = useState(10);
@@ -78,11 +82,15 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
     } = useSWR(
       detailData?.id
         ? [
-            `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailData.id}`,
+            `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
           ]
         : null,
       () => getKnowledgeDoclist(pageSize, limit, detailData.id)
     );
+
+    const detailItem = detailId
+      ? detailList.find((item) => item.id === detailId)
+      : undefined;
 
     const promiseRef = useRef<{
       resolve: (value: DetailsType | false) => void;
@@ -151,7 +159,7 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
       },
       {
         title: "操作",
-        render: (_col, item) => (
+        render: (_col, item, index) => (
           <div>
             <div className="flex items-center justify-start gap-2 my-2">
               <Button
@@ -168,10 +176,15 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 title="提示"
                 content="确定要删除该文件吗？"
                 onOk={() => {
-                  onDeleteHandler(item);
+                  onDeleteHandler(item, index);
                 }}
               >
-                <Button type="secondary" status="danger" size="small">
+                <Button
+                  type="secondary"
+                  loading={loadingKeys.has(item.id)}
+                  status="danger"
+                  size="small"
+                >
                   删除
                 </Button>
               </Popconfirm>
@@ -196,11 +209,13 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
       const result = await DocDetailsModalRef.current!.show();
       if (!result) return;
       mutate([
-        `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailData.id}`,
+        `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
       ]);
     };
 
-    const onDeleteHandler = async (item: any) => {
+    const onDeleteHandler = async (item: any, index: any) => {
+      setLoadingKeys((prevKeys) => new Set(prevKeys.add(item.id)));
+
       try {
         const res = await deleteDoc(detailData.id, item.id);
         if (res.code != 0) {
@@ -215,16 +230,18 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
         mutate([
           `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailData.id}`,
         ]);
-        setDetailData((prevDetailData: any) => ({
-          ...prevDetailData,
-          word_count: prevDetailData.word_count - item.word_count, // 假设 item 有 word_count
-        }));
+        updateListData();
         promiseRef.current?.resolve("成功");
       } catch (error: any) {
         Message.error({
           content: "删除失败",
         });
       } finally {
+        setLoadingKeys((prevKeys) => {
+          const newKeys = new Set(prevKeys);
+          newKeys.delete(item.id);
+          return newKeys;
+        });
       }
     };
 
@@ -312,7 +329,7 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 <div className="inline-block min-w-28 text-right">
                   知识库容量：
                 </div>
-                <div>{detailData.word_count} 字符</div>
+                <div>{detailItem?.word_count} 字符</div>
               </div>
               <div className="flex">
                 <div className="inline-block min-w-20 text-right">
@@ -371,10 +388,10 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
         </Card>
         <DocDetailsModal
           docDetailData={{
-            dataset_id: detailData?.id || "",
+            dataset_id: detailId || "",
             document_id: documentId,
           }}
-          setDetailData={setDetailData}
+          updateListData={updateListData}
           ref={DocDetailsModalRef}
         />
       </Modal>
