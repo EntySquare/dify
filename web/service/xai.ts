@@ -1,7 +1,7 @@
-import { XAIDelete, XAIGet, XAIPost } from "./x-http";
-import type { TGAccountRes } from "@/models/tgai-user";
+import { XAIDelete, XAIGet, XAIPost } from './x-http'
+import type { TGAccountRes } from '@/models/tgai-user'
 
-export const headersAuthorization = "Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j";
+export const headersAuthorization = 'Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j'
 
 // 用户 API
 /*
@@ -9,126 +9,126 @@ export const headersAuthorization = "Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j";
  *   POST
  */
 export const getTGAIUserContancts = (phone: string) =>
-  XAIPost<{ contact_res_list: TGAccountRes[] }>("/contact/list", {
+  XAIPost<{ contact_res_list: TGAccountRes[] }>('/contact/list', {
     phone,
     pageNum: 1,
     pageSize: 10,
-  });
+  })
 
 /*
  *   获取所有已登录账号
  *   POST
  */
-export const getXAIDeviceList = () => XAIPost<any>("/adminApi/deviceList");
+export const getXAIDeviceList = () => XAIPost<any>('/adminApi/deviceList')
 
-export type TweetsUserNameListRes = { tweets_user_name_list: string[] };
+export type TweetsUserNameListRes = { tweets_user_name_list: string[] }
 // 查询当前推特账号列表
 export const tweetsUserNameList = () =>
-  XAIPost<TweetsUserNameListRes>("/adminApi/tweetsUserNameList");
+  XAIPost<TweetsUserNameListRes>('/adminApi/tweetsUserNameList')
 
 // 关注用户
 export const followTwitterUser = (userNameList: [], tweetsUserName: string) =>
-  XAIPost<any>("/adminApi/followTwitterUser", {
+  XAIPost<any>('/adminApi/followTwitterUser', {
     tweets_user_name_list: userNameList,
     tweets_user_name: tweetsUserName,
-  });
+  })
 
 // 点赞推文
 export const supportTwitter = (userNameList: [], twitterUrl: string) =>
-  XAIPost<any>("/adminApi/supportTwitter", {
+  XAIPost<any>('/adminApi/supportTwitter', {
     tweets_user_name_list: userNameList,
     twitter_url: twitterUrl,
-  });
+  })
 
 // 转发
 export const forwardTwitter = (userNameList: [], twitterUrl: string) =>
-  XAIPost<any>("/adminApi/forwardTwitter", {
+  XAIPost<any>('/adminApi/forwardTwitter', {
     tweets_user_name_list: userNameList,
     twitter_url: twitterUrl,
-  });
+  })
 
 // 转发并引用
 export const forwardAndQuoteTwitter = (
   forwardAndQuoteContent: string,
   userNameList: [],
-  twitterUrl: string
+  twitterUrl: string,
 ) =>
-  XAIPost<any>("/adminApi/forwardAndQuoteTwitter", {
+  XAIPost<any>('/adminApi/forwardAndQuoteTwitter', {
     content: forwardAndQuoteContent,
     tweets_user_name_list: userNameList,
     twitter_url: twitterUrl,
-  });
+  })
 
 // 评论推文
 export const commentTwitter = (
   commentContent: string,
   userNameList: [],
-  twitterUrl: string
+  twitterUrl: string,
 ) =>
-  XAIPost<any>("/adminApi/commentTwitter", {
+  XAIPost<any>('/adminApi/commentTwitter', {
     content: commentContent,
     tweets_user_name_list: userNameList,
     twitter_url: twitterUrl,
-  });
+  })
 
 // 发布推文
 export const sendTwitter = (
   releaseContent: string,
   userNameList: [],
-  imgUrl: string
+  imgUrl: string,
 ) =>
-  XAIPost<any>("/adminApi/sendTwitter", {
+  XAIPost<any>('/adminApi/sendTwitter', {
     content: releaseContent,
     tweets_user_name_list: userNameList,
     img_url: imgUrl,
-  });
+  })
 
 // 根据链接查看推文信息
 export const selectTwitterUrl = (twitterUrl: any) =>
-  XAIPost<any>("/adminApi/selectTwitterUrl", { url: twitterUrl });
+  XAIPost<any>('/adminApi/selectTwitterUrl', { url: twitterUrl })
 
 /*
  *   获取知识库列表
  *   GET
  */
 export type KnowLedge = {
-  id: string;
-  name: string;
-  description: string;
-  permission: string;
-  data_source_type: string;
-  indexing_technique: string;
-  app_count: number;
-  document_count: number;
-  word_count: number;
-  created_by: string;
-  created_at: number;
-  updated_by: string;
-  updated_at: number;
-};
+  id: string
+  name: string
+  description: string
+  permission: string
+  data_source_type: string
+  indexing_technique: string
+  app_count: number
+  document_count: number
+  word_count: number
+  created_by: string
+  created_at: number
+  updated_by: string
+  updated_at: number
+}
 
 export type GetKnowledgeListResponse = {
-  data: KnowLedge[];
-  has_more: boolean;
-  limit: number;
-  page: number;
-  total: number;
-};
+  data: KnowLedge[]
+  has_more: boolean
+  limit: number
+  page: number
+  total: number
+}
 
 type GetKnowledgeReqParams = {
-  page: number;
-  limit: number;
-};
+  page: number
+  limit: number
+}
 
 export const getKnowledgeList = (params: GetKnowledgeReqParams) =>
   XAIGet<GetKnowledgeListResponse>(
     `/knowledge/list?page=${params.page}&limit=${params.limit}`,
-    {
-      headers: {
-        Authorization: headersAuthorization,
-      },
-    }
-  );
+    // {
+    //   headers: {
+    //     Authorization: headersAuthorization,
+    //   },
+    // }
+  )
 
 /*
  *   conversation_id "" if not exist
@@ -136,95 +136,98 @@ export const getKnowledgeList = (params: GetKnowledgeReqParams) =>
  *   parent_message_id: message_id of last answer
  */
 export type SendAIChatMsgReq = {
-  conversation_id: string;
-  knowledge: string;
-  message: string;
-  parent_message_id: string;
-  tweets_user_name_list: string[];
-};
+  conversation_id: string
+  knowledge: string
+  message: string
+  parent_message_id: string
+  tweets_user_name_list: string[]
+}
 
 /*
  *  outputs: try convert to json as task response instead of text response
  */
 type SendAIChatMsgRes = {
-  conversation_id: string;
-  message_id: string;
-  outputs: string;
-};
+  conversation_id: string
+  message_id: string
+  outputs: string
+}
 
 /*
  *   发送 AI 聊天消息
  *   POST
  */
 export const sendAIChatMsg = (params: SendAIChatMsgReq) =>
-  XAIPost<SendAIChatMsgRes>("/adminApi/chat/sendMessage", params);
+  XAIPost<SendAIChatMsgRes>('/adminApi/chat/sendMessage', params)
 
 // 获取知识库文档列表
 export const getKnowledgeDoclist = (
   page: number,
   limit: number,
-  dataset_id: string
+  dataset_id: string,
 ) =>
   XAIGet<any>(
-    `/knowledge/docList?page=${page}&limit=${limit}&dataset_id=${dataset_id}`
-  );
+    `/knowledge/docList?page=${page}&limit=${limit}&dataset_id=${dataset_id}`,
+  )
 
 // 获取知识库文档分段列表
 export const getKnowledgeDocDetail = (
   dataset_id: string,
-  document_id: string
+  document_id: string,
 ) =>
   XAIGet<any>(
-    `/knowledge/getSeg?dataset_id=${dataset_id}&document_id=${document_id}`
-  );
+    `/knowledge/getSeg?dataset_id=${dataset_id}&document_id=${document_id}`,
+  )
 
 // 创建知识库
 export const createIndividual = (data: any) =>
-  XAIPost<any>("/knowledge/create", data);
+  XAIPost<any>('/knowledge/create', data)
 
 // 删除知识库
 export const deleteIndividual = (id: string) =>
-  XAIDelete<any>(`/knowledge/delete?dataset_id=${id}`, {
-    headers: {
-      Authorization: headersAuthorization,
-    },
-  });
+  XAIDelete<any>(
+    `/knowledge/delete?dataset_id=${id}`,
+    //   {
+    //   headers: {
+    //     Authorization: headersAuthorization,
+    //   },
+    // }
+  )
 
 // 通过文本创建文档
 export const createDocText = (data: any) =>
-  XAIPost<any>("/knowledge/createDocText", data);
+  XAIPost<any>('/knowledge/createDocText', data)
 
 // 删除知识库文档
 export const deleteDoc = (dataset_id: string, document_id: string) =>
   XAIDelete<any>(
     `/knowledge/deleteDoc?dataset_id=${dataset_id}&document_id=${document_id}`,
-    {
-      headers: {
-        Authorization: headersAuthorization,
-      },
-    }
-  );
+    // {
+    //   headers: {
+    //     Authorization: headersAuthorization,
+    //   },
+    // }
+  )
 
 // 删除知识库文档分段
 export const deleteSeg = (
   dataset_id: string,
   document_id: string,
-  segment_id: string
+  segment_id: string,
 ) =>
   XAIDelete<any>(
     `/knowledge/delSeg?dataset_id=${dataset_id}&document_id=${document_id}&segment_id=${segment_id}`,
-    {
-      headers: {
-        Authorization: headersAuthorization,
-      },
-    }
-  );
+    // {
+    //   headers: {
+    //     Authorization: headersAuthorization,
+    //   },
+    // }
+  )
 
 // 通过文件上传创建文档
 export const createDocFile = (data: any) =>
-  XAIPost<any>("/knowledge/createDocFile", data, {
+  XAIPost<any>('/knowledge/createDocFile', data, {
     headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: headersAuthorization,
+      'Content-Type': 'multipart/form-data',
+      // Authorization: headersAuthorization,
     },
-  });
+  })
