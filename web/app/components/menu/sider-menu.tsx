@@ -1,35 +1,31 @@
-'use client'
-import { Menu } from '@arco-design/web-react'
-import {
-  IconApps,
-  IconUser,
-  IconUserGroup,
-} from '@arco-design/web-react/icon'
-import { useTranslation } from 'react-i18next'
+"use client";
+import { Menu } from "@arco-design/web-react";
+import { IconApps, IconUser, IconUserGroup } from "@arco-design/web-react/icon";
+import { useTranslation } from "react-i18next";
 
-import Link from 'next/link'
-import type { ReactNode } from 'react'
-import { useEffect, useMemo, useState } from 'react'
-import { usePathname } from 'next/navigation'
-import classNames from '@/utils/classnames'
+import Link from "next/link";
+import type { ReactNode } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
+import classNames from "@/utils/classnames";
 
-const MenuItem = Menu.Item
-const SubMenu = Menu.SubMenu
-const MenuItemGroup = Menu.ItemGroup
+const MenuItem = Menu.Item;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 type SideBarMenuItems = {
-  type: 'sub' | 'group' | 'item'
-  title: string
-  href: string
-  children?: SideBarMenuItems[]
-  icon?: ReactNode
-  key: string
-}
+  type: "sub" | "group" | "item";
+  title: string;
+  href: string;
+  children?: SideBarMenuItems[];
+  icon?: ReactNode;
+  key: string;
+};
 
 const SiderMenu = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const path = usePathname()
+  const path = usePathname();
 
   const routesItems: SideBarMenuItems[] = useMemo(
     //   () => [
@@ -220,22 +216,37 @@ const SiderMenu = () => {
     //   }
     // ], []
     () => [
+      // {
+      //   type: "sub",
+      //   title: "热度",
+      //   href: "",
+      //   children: [
+      //     {
+      //       type: "item",
+      //       title: "热度总览",
+      //       href: "/heat/list",
+      //       key: "/heat/list",
+      //     },
+      //   ],
+      //   icon: <IconApps />,
+      //   key: "heat",
+      // },
       {
-        type: 'sub',
-        title: '群控',
-        href: '',
+        type: "sub",
+        title: "群控",
+        href: "",
         children: [
           {
-            type: 'item',
-            title: '手机群控',
-            href: '/group/control',
-            key: '/group/control',
+            type: "item",
+            title: "手机群控",
+            href: "/group/control",
+            key: "/group/control",
           },
           {
-            type: 'item',
-            title: 'AI聊天',
-            href: '/group/ai-chat',
-            key: '/group/ai-chat',
+            type: "item",
+            title: "AI聊天",
+            href: "/group/ai-chat",
+            key: "/group/ai-chat",
           },
           // {
           //   type: "item",
@@ -251,37 +262,37 @@ const SiderMenu = () => {
           // },
         ],
         icon: <IconApps />,
-        key: 'manage',
+        key: "manage",
       },
       {
-        type: 'sub',
-        title: '宣推',
-        href: '',
+        type: "sub",
+        title: "宣推",
+        href: "",
         children: [
           {
-            type: 'item',
-            title: '宣推',
-            href: '/declare/home',
-            key: '/declare/home',
+            type: "item",
+            title: "宣推",
+            href: "/declare/home",
+            key: "/declare/home",
           },
         ],
         icon: <IconUser />,
-        key: 'declare',
+        key: "declare",
       },
       {
-        type: 'sub',
-        title: '火推',
-        href: '',
+        type: "sub",
+        title: "火推",
+        href: "",
         children: [
           {
-            type: 'item',
-            title: '火推',
-            href: '/fire/home',
-            key: '/fire/home',
+            type: "item",
+            title: "火推",
+            href: "/fire/home",
+            key: "/fire/home",
           },
         ],
         icon: <IconUserGroup />,
-        key: 'fire',
+        key: "fire",
       },
       {
         type: "sub",
@@ -296,76 +307,67 @@ const SiderMenu = () => {
           },
           {
             type: "item",
-            title: "文件喂料",
-            href: "/knowledge-base/upload-file",
-            key: "/knowledge-base/upload-file",
-          },
-          {
-            type: "item",
-            title: "文本喂料",
-            href: "/knowledge-base/upload-text",
-            key: "/knowledge-base/upload-text",
+            title: "喂料管理",
+            href: "/knowledge-base/upload",
+            key: "/knowledge-base/upload",
           },
         ],
         icon: <IconUserGroup />,
         key: "knowledge-base",
       },
     ],
-    [],
-  )
+    []
+  );
 
   const subMenuKeys = useMemo(
-    () => routesItems.map(item => item.key),
-    [routesItems],
-  )
+    () => routesItems.map((item) => item.key),
+    [routesItems]
+  );
 
   const keyMap = useMemo(() => {
-    const map = new Map<string, string>()
-    map.set('/templates/single-chat/template-detail', '/templates/single-chat')
-    map.set('/templates/group-chat/template-detail', '/templates/group-chat')
-    return map
-  }, [])
+    const map = new Map<string, string>();
+    map.set("/templates/single-chat/template-detail", "/templates/single-chat");
+    map.set("/templates/group-chat/template-detail", "/templates/group-chat");
+    return map;
+  }, []);
 
-  const [currentSelected, setCurrentSelected] = useState<string>(path)
-  const [collapsed, setCollapsed] = useState(false)
+  const [currentSelected, setCurrentSelected] = useState<string>(path);
+  const [collapsed, setCollapsed] = useState(false);
 
   const renderRoutes = (routes: SideBarMenuItems[]) => {
     return routes.map((route) => {
-      if (route.children && (route.type === 'sub' || route.type === 'group')) {
+      if (route.children && (route.type === "sub" || route.type === "group")) {
         // Nested route with children
-        return route.type === 'sub'
-          ? (
-            <SubMenu
-              key={route.key}
-              title={
-                <>
-                  {route.icon && route.icon}
-                  {route.title}
-                </>
-              }
-            >
-              {renderRoutes(route.children)}
-            </SubMenu>
-          )
-          : (
-            <MenuItemGroup
-              key={route.key}
-              title={
-                <>
-                  {route.icon && route.icon}
-                  {route.title}
-                </>
-              }
-            >
+        return route.type === "sub" ? (
+          <SubMenu
+            key={route.key}
+            title={
               <>
                 {route.icon && route.icon}
                 {route.title}
               </>
-              {renderRoutes(route.children)}
-            </MenuItemGroup>
-          )
-      }
-      else {
+            }
+          >
+            {renderRoutes(route.children)}
+          </SubMenu>
+        ) : (
+          <MenuItemGroup
+            key={route.key}
+            title={
+              <>
+                {route.icon && route.icon}
+                {route.title}
+              </>
+            }
+          >
+            <>
+              {route.icon && route.icon}
+              {route.title}
+            </>
+            {renderRoutes(route.children)}
+          </MenuItemGroup>
+        );
+      } else {
         // Single route without children
         return (
           <MenuItem key={route.key}>
@@ -374,57 +376,56 @@ const SiderMenu = () => {
               {route.title}
             </Link>
           </MenuItem>
-        )
+        );
       }
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    const keyInMap = keyMap.get(path)
-    setCurrentSelected(keyInMap || path)
-  }, [path])
+    const keyInMap = keyMap.get(path);
+    setCurrentSelected(keyInMap || path);
+  }, [path]);
 
   // collapse tgai side menu when into certain route
   useEffect(() => {
-    const paths = path.split('/')
-    if (paths.length < 2)
-      return
+    const paths = path.split("/");
+    if (paths.length < 2) return;
 
-    const startPath = paths[1]
+    const startPath = paths[1];
 
     if (
-      startPath === 'app'
-      || startPath === 'apps'
-      || startPath === 'datasets'
-      || startPath === 'tools'
-      || startPath === 'data-cleansing'
+      startPath === "app" ||
+      startPath === "apps" ||
+      startPath === "datasets" ||
+      startPath === "tools" ||
+      startPath === "data-cleansing"
     )
-      setCollapsed(true)
-  }, [path])
+      setCollapsed(true);
+  }, [path]);
 
   return (
     <div
       className={classNames(
-        'tgai-side-menu-wrapper h-full transition-[width_300ms_ease-in-out]',
-        collapsed ? 'w-[48px]' : 'w-[250px]',
+        "tgai-side-menu-wrapper h-full transition-[width_300ms_ease-in-out]",
+        collapsed ? "w-[48px]" : "w-[250px]"
       )}
     >
       <Menu
         className={classNames(
-          'h-full overflow-y-auto tgai-custom-scrollbar w-full',
+          "h-full overflow-y-auto tgai-custom-scrollbar w-full"
         )}
         selectedKeys={[currentSelected]}
         autoOpen
         hasCollapseButton
         defaultOpenKeys={subMenuKeys}
-        onCollapseChange={collapse => setCollapsed(collapse)}
+        onCollapseChange={(collapse) => setCollapsed(collapse)}
         collapse={collapsed}
         mode="vertical"
       >
         {renderRoutes(routesItems)}
       </Menu>
     </div>
-  )
-}
+  );
+};
 
-export default SiderMenu
+export default SiderMenu;

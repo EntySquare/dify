@@ -26,7 +26,7 @@ import useSWR, { useSWRConfig } from "swr";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { AxiosError } from "axios";
 import type { TGAIGroupStrategy } from "@/models/tgai-strategy";
-import { getKnowledgeList } from "@/service/xai";
+import { deleteIndividual, getKnowledgeList } from "@/service/xai";
 import { CreatIndividualModal, CreatRefType } from "./creat";
 import { DetailsModal, DetailsRefType } from "./details";
 
@@ -127,7 +127,24 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
     mutate([`/knowledge/list?page=${pageSize}&limit=${limit}`]);
   };
   const onDeleteHandler = async (item: any) => {
-    // await setDetailData(item);
+    try {
+      const res = await deleteIndividual(item.id);
+      if (res.code != 0) {
+        Message.error({
+          content: res.data?.data?.message,
+        });
+        return;
+      }
+      Message.success({
+        content: "删除成功",
+      });
+      mutate([`/knowledge/list?page=${pageSize}&limit=${limit}`]);
+    } catch (error: any) {
+      Message.error({
+        content: "删除失败",
+      });
+    } finally {
+    }
   };
 
   const columns: TableColumnProps<any>[] = [
@@ -243,7 +260,11 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
         />
       </div>
       <CreatIndividualModal ref={CreatIndividualModalRef} />
-      <DetailsModal detailData={detailData} ref={DetailsModalRef} />
+      <DetailsModal
+        setDetailData={setDetailData}
+        detailData={detailData}
+        ref={DetailsModalRef}
+      />
     </Card>
   );
 };

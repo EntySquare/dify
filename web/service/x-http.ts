@@ -29,3 +29,9 @@ export const XAIPost = <T>(
   data?: unknown,
   config?: AxiosRequestConfig
 ) => XAIHttp.post<FetchResponse<T>>(url, data, config).then((res) => res.data);
+
+export const XAIDelete = <T>(
+  url: string,
+  data?: unknown,
+  config?: AxiosRequestConfig
+) => XAIHttp.delete<FetchResponse<T>>(url, config).then((res) => res.data);
