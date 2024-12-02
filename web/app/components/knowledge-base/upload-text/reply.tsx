@@ -15,21 +15,19 @@ import {
   Table,
   TableInstance,
   Typography,
-
 } from "@arco-design/web-react";
 import {
   commentTwitter,
-  createDocText,
   createIndividual,
   getKnowledgeList,
   selectTwitterUrl,
   tweetsUserNameList,
 } from "@/service/xai";
+import TextArea from "rc-textarea";
 
 const FormItem = Form.Item;
 const InputSearch = Input.Search;
 const Option = Select.Option;
-const TextArea = Input.TextArea;
 
 export type CommentType = string;
 
@@ -37,12 +35,12 @@ type CommentProps = {
   //   tweetsUrl: string | undefined;
 };
 
-export type CommentModalRefType = {
+export type ReplyModalRefType = {
   show: () => Promise<CommentType | false>;
 };
 
-const CommentModal = React.forwardRef<
-  CommentModalRefType,
+const ReplyModal = React.forwardRef<
+  ReplyModalRefType,
   CommentProps
 >(({ }, ref) => {
   const [visible, setVisible] = React.useState(false);
@@ -82,26 +80,14 @@ const CommentModal = React.forwardRef<
   const handleConfirm = async () => {
     try {
       await form.validate();
-      const { userName, docName, docContent } = form.getFields();
+      const { userName } = form.getFields();
       if (userName === "" || userName === undefined || userName === null) {
         Message.error("请选择投喂个体");
         return;
       }
-      if (docName === "" || docName === undefined || docName === null) {
-        Message.error("请输入文档名称");
-        return;
-      }
-      if (docContent === "" || docContent === undefined || docContent === null) {
-        Message.error("请输入文档内容");
-        return;
-      }
-      const res = await createDocText({
-        dataset_id: selectedValues,
-        text: docContent,
-        name: docName,
-        process_rule: {
-          "mode": "automatic"
-        },
+      const res = await createIndividual({
+        name: '',
+        permission: "all_team_members", //配置知识库权限
         indexing_technique: qualityType === 1 ? 'high_quality' : 'economy'
       });
       if (res.code != 0) {
@@ -113,7 +99,7 @@ const CommentModal = React.forwardRef<
       form.resetFields();
       setVisible(false);
       Message.success({
-        content: "投喂成功",
+        content: "创建成功",
       });
     } catch (error: any) {
 
@@ -128,7 +114,7 @@ const CommentModal = React.forwardRef<
 
   return (
     <Modal
-      title="文本投喂"
+      title="单条添加（回复模版）"
       visible={visible}
       footer={null}
       onCancel={handleCancel}
@@ -186,23 +172,9 @@ const CommentModal = React.forwardRef<
             })}
           </Radio.Group>
         </FormItem>
-        <FormItem
-          label="文档名称"
-          field="docName"
-          rules={[{ required: true, message: "请输入文档名称" }]}
-        >
-          <Input style={{ width: 350 }} allowClear placeholder='请输入文档名称' />
-        </FormItem>
-        <FormItem
-          label="文档内容"
-          field="docContent"
-          rules={[{ required: true, message: "请输入文档内容" }]}
-        >
-          <TextArea placeholder='请输入文档内容' style={{ minHeight: 64, width: 350 }} />
-        </FormItem>
         <div className="flex justify-center items-center mt-4">
           <Button shape="round" type="primary" onClick={handleConfirm}>
-            提交投喂
+            创建个体
           </Button>
         </div>
       </Form>
@@ -210,6 +182,6 @@ const CommentModal = React.forwardRef<
   );
 });
 
-CommentModal.displayName = "CommentModal";
+ReplyModal.displayName = "ReplyModal";
 
-export { CommentModal };
+export { ReplyModal };

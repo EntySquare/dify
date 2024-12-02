@@ -170,8 +170,15 @@ export const getKnowledgeDoclist = (
 export const createIndividual = (data: any) =>
   XAIPost<any>("/knowledge/create", data);
 
+// 通过文本创建文档
+export const createDocText = (data: any) =>
+  XAIPost<any>("/knowledge/createDocText", data);
+
 // 通过文件上传创建文档
 export const createDocFile = (data: any) =>
   XAIPost<any>("/knowledge/createDocFile", data, {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: "Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j",
+    },
   });

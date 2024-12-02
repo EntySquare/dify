@@ -137,7 +137,7 @@ const DetailsModal = React.forwardRef<
     },
     {
       title: '文件大小',
-      render: (_col, item) => <div>{item.tokens} 字符</div>,
+      render: (_col, item) => <div>{item.word_count} 字符</div>,
     },
     {
       title: '当前状态',
