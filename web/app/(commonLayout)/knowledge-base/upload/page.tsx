@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { KnowledgeBaseUpLoadFileHomeView } from "@/app/components/knowledge-base/upload-file/index";
+import { KnowledgeBaseUpLoadFileHomeView } from "@/app/components/knowledge-base/upload/index";
 
 const KnowledgeBaseUpLoadFileHome = () => {
   return (

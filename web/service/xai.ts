@@ -1,5 +1,7 @@
-import { XAIGet, XAIPost } from "./x-http";
+import { XAIDelete, XAIGet, XAIPost } from "./x-http";
 import type { TGAccountRes } from "@/models/tgai-user";
+
+export const headersAuthorization = "Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j";
 
 // 用户 API
 /*
@@ -123,7 +125,7 @@ export const getKnowledgeList = (params: GetKnowledgeReqParams) =>
     `/knowledge/list?page=${params.page}&limit=${params.limit}`,
     {
       headers: {
-        Authorization: "Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j",
+        Authorization: headersAuthorization,
       },
     }
   );
@@ -166,19 +168,63 @@ export const getKnowledgeDoclist = (
   XAIGet<any>(
     `/knowledge/docList?page=${page}&limit=${limit}&dataset_id=${dataset_id}`
   );
+
+// 获取知识库文档分段列表
+export const getKnowledgeDocDetail = (
+  dataset_id: string,
+  document_id: string
+) =>
+  XAIGet<any>(
+    `/knowledge/getSeg?dataset_id=${dataset_id}&document_id=${document_id}`
+  );
+
 // 创建知识库
 export const createIndividual = (data: any) =>
   XAIPost<any>("/knowledge/create", data);
 
+// 删除知识库
+export const deleteIndividual = (id: string) =>
+  XAIDelete<any>(`/knowledge/delete?dataset_id=${id}`, {
+    headers: {
+      Authorization: headersAuthorization,
+    },
+  });
+
 // 通过文本创建文档
 export const createDocText = (data: any) =>
   XAIPost<any>("/knowledge/createDocText", data);
+
+// 删除知识库文档
+export const deleteDoc = (dataset_id: string, document_id: string) =>
+  XAIDelete<any>(
+    `/knowledge/deleteDoc?dataset_id=${dataset_id}&document_id=${document_id}`,
+    {
+      headers: {
+        Authorization: headersAuthorization,
+      },
+    }
+  );
+
+// 删除知识库文档分段
+export const deleteSeg = (
+  dataset_id: string,
+  document_id: string,
+  segment_id: string
+) =>
+  XAIDelete<any>(
+    `/knowledge/delSeg?dataset_id=${dataset_id}&document_id=${document_id}&segment_id=${segment_id}`,
+    {
+      headers: {
+        Authorization: headersAuthorization,
+      },
+    }
+  );
 
 // 通过文件上传创建文档
 export const createDocFile = (data: any) =>
   XAIPost<any>("/knowledge/createDocFile", data, {
     headers: {
       "Content-Type": "multipart/form-data",
-      Authorization: "Bearer dataset-4jnh8BQuVWjJFpm6ahYkTF7j",
+      Authorization: headersAuthorization,
     },
   });
