@@ -30,6 +30,7 @@ import {
 } from "@/service/xai";
 import TextArea from "rc-textarea";
 import { DocDetailsModal, DocDetailsRefType } from "./doc-details";
+import { CreatSegTextModal, CreatSegTextRefType } from "./creat-seg-text";
 
 const FormItem = Form.Item;
 const InputSearch = Input.Search;
@@ -75,6 +76,7 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
     const [limit, setLimit] = useState(10);
     const [documentId, setDocumentId] = useState("");
     const DocDetailsModalRef = useRef<DocDetailsRefType>(null);
+    const creatSegTextModalRef = useRef<CreatSegTextRefType>(null);
     const {
       data: tableList,
       error,
@@ -188,6 +190,15 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                   删除
                 </Button>
               </Popconfirm>
+              <Button
+                type="outline"
+                size="small"
+                onClick={() => {
+                  addSegTex(item);
+                }}
+              >
+                添加段落
+              </Button>
             </div>
           </div>
         ),
@@ -249,6 +260,15 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
       promiseRef.current?.resolve(false);
       form.resetFields();
       setVisible(false);
+    };
+
+    const addSegTex = async (item: any) => {
+      await setDocumentId(item.id);
+      const result = await creatSegTextModalRef.current!.show();
+      if (!result) return;
+      mutate([
+        `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
+      ]);
     };
 
     return (
@@ -393,6 +413,14 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
           }}
           updateListData={updateListData}
           ref={DocDetailsModalRef}
+        />
+        <CreatSegTextModal
+          docDetailData={{
+            dataset_id: detailId || "",
+            document_id: documentId,
+          }}
+          updateListData={updateListData}
+          ref={creatSegTextModalRef}
         />
       </Modal>
     );
