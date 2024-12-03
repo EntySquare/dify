@@ -1,0 +1,67 @@
+identity:
+  name: xai_update_seg
+  author: Enty
+  label:
+    en_US: XAI Update Segments
+    zh_Hans: XAI 更新料分段
+    pt_BR: XAI Update Segments
+description:
+  human:
+    en_US: A tool for updating segements into doc with provided parameters.
+    zh_Hans: 一个用于基于给定参数更新料中分段的工具。
+    pt_BR: A tool for updating segements into doc with provided parameters.
+  llm: A tool for updating segements into doc with provided parameters.
+parameters:
+  - name: dataset_id
+    type: string
+    required: true
+    label: 
+      en_US: Personality id
+      zh_Hans: 个体 id
+      pt_BR: Personality id
+    human_description:
+      en_US: Id of personality 
+      zh_Hans: 个体 id
+      pt_BR: Id of personality 
+    llm_description: Id of personality 
+    form: llm
+  - name: document_id
+    type: string
+    required: true
+    label: 
+      en_US: Document id
+      zh_Hans: 料 id
+      pt_BR: Document id
+    human_description:
+      en_US: Id of document 
+      zh_Hans: 料 id
+      pt_BR: Id of document 
+    llm_description: Id of document 
+    form: llm
+  - name: segment_id
+    type: string
+    required: true
+    label: 
+      en_US: Segment id
+      zh_Hans: 分段 id
+      pt_BR: Segment id
+    human_description:
+      en_US: Id of Segment 
+      zh_Hans: 分段 id
+      pt_BR: Id of Segment 
+    llm_description: Id of Segment 
+    form: llm
+  - name: segment
+    type: string
+    required: true
+    label: 
+      en_US: Segment(json string)
+      zh_Hans: 分段(json 字符串)
+      pt_BR: Segment(json string)
+    human_description:
+      en_US: String can be parsed to json, example {"segment":{"answer":"answer","content":"content","enabled":true,"keywords":["keyword"]}}
+      zh_Hans: 可被解析为 json 的字符串，示例 {"segment":{"answer":"answer","content":"content","enabled":true,"keywords":["keyword"]}}
+      pt_BR: String can be parsed to json, example {"segment":{"answer":"answer","content":"content","enabled":true,"keywords":["keyword"]}}
+    llm_description: String can be parsed to json, example {"segment":{"answer":"answer","content":"content","enabled":true,"keywords":["keyword"]}}
+    form: llm
+    

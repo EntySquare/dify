@@ -1,0 +1,52 @@
+identity:
+  name: xai_create_doc_with_file_disabled
+  author: Enty
+  label:
+    en_US: XAI Create Doc(file)
+    zh_Hans: XAI 创建料（文件）
+    pt_BR: XAI Create Doc(file)
+description:
+  human:
+    en_US: A tool for using file to create doc with provided parameters.
+    zh_Hans: 一个用于基于给定参数及文件创建料的工具。
+    pt_BR: A tool for using file to create doc with provided parameters.
+  llm:  A tool for using file to create doc with provided parameters.
+parameters:
+  - name: dataset_id
+    type: string
+    required: true
+    label: 
+      en_US: Personality id
+      zh_Hans: 个体 id
+      pt_BR: Personality id
+    human_description:
+      en_US: Id of personality 
+      zh_Hans: 个体 id
+      pt_BR: Id of personality 
+    llm_description: Id of personality 
+    form: llm
+  - name: data
+    type: string
+    required: true
+    label: 
+      en_US: Config data(json string)
+      zh_Hans: 参数设置（json 字符串）
+      pt_BR: Config data(json string)
+    human_description:
+      en_US: Config data(string can be parsed to json)
+      zh_Hans: 参数设置（可被解析成 json 对象的字符串）
+      pt_BR: Config data(can be parsed to json string)
+    llm_description: Config data(string can be parsed to json)
+    form: llm
+  - name: file
+    type: file
+    required: true
+    label:
+      en_US: Document File
+      zh_Hans: 文档文件
+    human_description:
+      en_US: The document for creating document
+      zh_Hans: 用于创建料的文件
+    llm_description: The document for creating document
+    form: llm
+    
