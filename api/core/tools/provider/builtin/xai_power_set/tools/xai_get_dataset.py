@@ -6,8 +6,6 @@ from yarl import URL
 from core.tools.entities.tool_entities import ToolInvokeMessage
 from core.tools.tool.builtin_tool import BuiltinTool
 
-import logging
-
 XAI_API_PATH = "knowledge/getKnowDataset"
 
 
@@ -48,8 +46,6 @@ class XAIGetDataset(BuiltinTool):
             raise Exception(
                 f'Failed to create peronality name: {dataset_name}')
         
-        logging.info(response.content)
-
         try:
             json_response = response.json()
 
