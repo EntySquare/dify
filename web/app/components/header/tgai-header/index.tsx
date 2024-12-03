@@ -1,12 +1,13 @@
 'use client'
 
-import {EntyServiceType, useTGAIGlobalStore} from '@/context/tgai-global-context'
+import { RiInstagramFill, RiTwitterXLine } from '@remixicon/react'
+import { useShallow } from 'zustand/react/shallow'
+import { HeaderThemeSwitcher } from './header-theme-switcher'
+import { HeaderUserProfile } from './header-user-profile'
 import cn from '@/utils/classnames'
-import {RiInstagramFill, RiTwitterXLine} from '@remixicon/react'
-import {useShallow} from 'zustand/react/shallow'
-import {HeaderThemeSwitcher} from './header-theme-switcher'
-import {HeaderUserProfile} from './header-user-profile'
+import { EntyServiceType, useTGAIGlobalStore } from '@/context/tgai-global-context'
 import TruthSocial from '@/assets/TS-Logomark-BLK.svg'
+import LocaleSelector from '@/app/components/base/locale-select'
 
 type TGAIHeaderProps = {
   className?: string
@@ -34,6 +35,7 @@ export function TGAIHeader({ className }: TGAIHeaderProps) {
       </div>
       <div className="flex flex-row gap-8 items-center">
         {/* <HeaderAccountRestValid /> */}
+        <LocaleSelector reloadPage={false}/>
         <HeaderThemeSwitcher />
         <HeaderUserProfile />
       </div>
