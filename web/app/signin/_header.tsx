@@ -9,9 +9,9 @@ const Header = () => {
   const { locale, setLocaleOnClient } = useContext(I18n)
 
   return (
-    <div className="flex items-center justify-between p-6 w-full">
+    <div className="flex items-center justify-end p-6 w-full">
       {/* <TGAILogo className="text-tgai-text-1 h-16 w-auto" /> */}
-      <RiTwitterXLine className={'text-tgai-text-1 size-14'} />
+      {/* <RiTwitterXLine className={'text-tgai-text-1 size-14'} /> */}
       <HeaderThemeSwitcher className="h-16 w-16" />
 
       {/* <Select

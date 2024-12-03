@@ -5,18 +5,27 @@ import { createStore } from 'zustand/vanilla'
 import { useStore } from 'zustand'
 import { Theme } from '@/types/app'
 
+export enum EntyServiceType {
+  X = 'x',
+  INSTAGRAM = 'instagram',
+  TRUTH_SOCIAL = 'truthsocial',
+}
+
 type TGAIGlobalState = {
   theme: Theme
+  serviceType: EntyServiceType
 }
 
 type TGAIGlobalActions = {
   setTheme: (theme: Theme) => void
+  setServiceType: (serviceType: EntyServiceType) => void
 }
 
 type TGAIGlobalStore = TGAIGlobalState & TGAIGlobalActions
 
 const defaultInitState: TGAIGlobalState = {
   theme: Theme.light,
+  serviceType: EntyServiceType.X
 }
 
 const createTGAIGlobalStore = (initState: TGAIGlobalState = defaultInitState) => {
@@ -30,6 +39,9 @@ const createTGAIGlobalStore = (initState: TGAIGlobalState = defaultInitState) =>
         theme === Theme.dark ? globalThis.document.documentElement.classList.add('dark') : globalThis.document.documentElement.classList.remove('dark')
       }
     },
+    setServiceType: (serviceType: EntyServiceType) => {
+      set(() => ({ serviceType }))
+    }
   }))
 }
 
@@ -64,7 +76,7 @@ export const TGAIGlobalStoreProvider = ({
   )
 }
 
-export const useTGAIGlobalStore = <T,>(
+export const useTGAIGlobalStore = <T>(
   selector: (store: TGAIGlobalStore) => T,
 ): T => {
   const tgaiGlobalStoreContext = useContext(TGAIGlobalStoreContext)

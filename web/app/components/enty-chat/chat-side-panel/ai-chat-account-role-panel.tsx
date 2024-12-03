@@ -101,7 +101,7 @@ const AccountRolePanel = React.memo(() => {
     if (!pathname)
       return 'x'
 
-    return pathname.includes('ai-chat-x') ? 'x' : 'instagram'
+    return pathname.includes('ai-chat') ? 'x' : 'instagram'
   }, [pathname])
 
   return <Transition show={isLeftPanelOpen}

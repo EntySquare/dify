@@ -133,7 +133,8 @@ export default function MailAndPasswordAuth({
           htmlFor="email"
           className="my-2 system-md-semibold text-text-secondary"
         >
-          {t("login.email")}
+          {/* {t("login.email")} */}
+          账号
         </label>
         <div className="mt-1">
           <Input
@@ -157,12 +158,12 @@ export default function MailAndPasswordAuth({
           <span className="system-md-semibold text-text-secondary">
             {t("login.password")}
           </span>
-          <Link
-            href={`/reset-password?${searchParams.toString()}`}
-            className="system-xs-regular text-components-button-secondary-accent-text"
-          >
-            {t("login.forget")}
-          </Link>
+          {/* <Link */}
+          {/*   href={`/reset-password?${searchParams.toString()}`} */}
+          {/*   className="system-xs-regular text-components-button-secondary-accent-text" */}
+          {/* > */}
+          {/*   {t("login.forget")} */}
+          {/* </Link> */}
         </label>
         <div className="relative mt-1">
           <Input

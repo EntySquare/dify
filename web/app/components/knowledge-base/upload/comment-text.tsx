@@ -38,7 +38,7 @@ const CommentTextModal = React.forwardRef<
   CommentTextProps
 >(({}, ref) => {
   const [visible, setVisible] = React.useState(false);
-  const [qualityType, setQualityType] = React.useState(1);
+  const [qualityType, setQualityType] = React.useState(2);
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm<any>();
@@ -66,7 +66,7 @@ const CommentTextModal = React.forwardRef<
   useImperativeHandle(ref, () => ({
     show: () => {
       setVisible(true);
-      setQualityType(1);
+      setQualityType(2);
       getIndividualList();
       return new Promise((resolve) => {
         promiseRef.current = { resolve };
@@ -180,7 +180,7 @@ const CommentTextModal = React.forwardRef<
             onChange={changeQualityType}
           >
             {[
-              { id: 1, title: "高质量", tip: "需要额外的费用" },
+              // { id: 1, title: "高质量", tip: "需要额外的费用" },
               { id: 2, title: "经济型", tip: "免费提供功能" },
             ].map((item) => {
               return (

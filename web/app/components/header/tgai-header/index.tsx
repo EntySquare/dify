@@ -1,8 +1,10 @@
 'use client'
 
 import { RiTwitterXLine } from '@remixicon/react'
+import { useShallow } from 'zustand/react/shallow'
 import { HeaderUserProfile } from './header-user-profile'
 import { HeaderThemeSwitcher } from './header-theme-switcher'
+import { useTGAIGlobalStore } from '@/context/tgai-global-context'
 import classNames from '@/utils/classnames'
 
 type TGAIHeaderProps = {
@@ -10,6 +12,7 @@ type TGAIHeaderProps = {
 }
 
 export function TGAIHeader({ className }: TGAIHeaderProps) {
+
   return (
     <header
       className={classNames(

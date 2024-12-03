@@ -46,7 +46,7 @@ export default async function SignInLayout({ children }: any) {
           </div>
         </div>
         <div className='px-8 py-6 system-xs-regular text-text-tertiary dark:text-tgai-text-3'>
-          © {new Date().getFullYear()} XAI, Inc. All rights reserved.
+          © {new Date().getFullYear()} EntyAI, Inc. All rights reserved.
         </div>
       </div>
     </div>

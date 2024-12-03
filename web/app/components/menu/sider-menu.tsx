@@ -244,15 +244,9 @@ const SiderMenu = () => {
           },
           {
             type: 'item',
-            title: 'AI聊天(X)',
-            href: '/group/ai-chat-x',
-            key: '/group/ai-chat-x',
-          },
-          {
-            type: 'item',
-            title: 'AI聊天(ins)',
-            href: '/group/ai-chat-ins',
-            key: '/group/ai-chat-ins',
+            title: 'AI聊天',
+            href: '/group/ai-chat',
+            key: '/group/ai-chat',
           },
           // {
           //   type: "item",
@@ -320,6 +314,41 @@ const SiderMenu = () => {
         ],
         icon: <IconUserGroup />,
         key: 'knowledge-base',
+      },
+      {
+        type: 'sub',
+        title: '电子员工管理',
+        href: '',
+        children: [
+          {
+            type: 'item',
+            title: '任务中心',
+            href: '/apps',
+            key: '/apps',
+          }, {
+            type: 'item',
+            title: '向量记录',
+            href: '/datasets',
+            key: '/datasets',
+          }, {
+            type: 'item',
+            title: '能力',
+            href: '/tools',
+            key: '/tools',
+          }, {
+            type: 'item',
+            title: '主动任务',
+            href: '/periodical-tasks',
+            key: '/periodical-tasks',
+          }, {
+            type: 'item',
+            title: '数据整理',
+            href: '/data-cleansing',
+            key: '/data-cleansing',
+          },
+        ],
+        icon: <IconApps/>,
+        key: 'workflow',
       },
     ],
     [],

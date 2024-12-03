@@ -41,7 +41,7 @@ export type CreatRefType = {
 const CreatIndividualModal = React.forwardRef<CreatRefType, CreatProps>(
   ({}, ref) => {
     const [visible, setVisible] = React.useState(false);
-    const [qualityType, setQualityType] = React.useState(1);
+    const [qualityType, setQualityType] = React.useState(2);
     const [form] = Form.useForm<any>();
     const [loading, setLoading] = useState(false);
     const promiseRef = useRef<{
@@ -127,7 +127,7 @@ const CreatIndividualModal = React.forwardRef<CreatRefType, CreatProps>(
               onChange={changeQualityType}
             >
               {[
-                { id: 1, title: "高质量", tip: "需要额外的费用" },
+                // { id: 1, title: "高质量", tip: "需要额外的费用" },
                 { id: 2, title: "经济型", tip: "免费提供功能" },
               ].map((item) => {
                 return (
