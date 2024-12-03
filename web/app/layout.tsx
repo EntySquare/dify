@@ -10,7 +10,7 @@ import { AxiosProvider } from "@/app/components/http/axios-provider";
 import { TGAIGlobalStoreProvider } from "@/context/tgai-global-context";
 
 export const metadata = {
-  title: "TGAI",
+  title: "EntyAI",
 };
 
 export const viewport: Viewport = {
