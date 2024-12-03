@@ -6,6 +6,7 @@ import { HeaderThemeSwitcher } from '../components/header/tgai-header/header-the
 import LocaleSelector from '@/app/components/base/locale-select'
 
 const Header = () => {
+
   return (
     <div className="flex items-center justify-end p-6 w-full gap-8">
       {/* <TGAILogo className="text-tgai-text-1 h-16 w-auto" /> */}

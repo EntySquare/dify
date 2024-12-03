@@ -1,5 +1,6 @@
 'use client'
 
+import type { FC } from 'react'
 import React from 'react'
 import { useContext } from 'use-context-selector'
 import I18n from '@/context/i18n'
@@ -11,17 +12,18 @@ type LocaleSelectorProps = {
   reloadPage?: boolean
 }
 
-const LocaleSelector = React.memo<LocaleSelectorProps>(({ reloadPage }) => {
+const LocaleSelector: FC<LocaleSelectorProps> = ({ reloadPage }) => {
   const { locale, setLocaleOnClient } = useContext(I18n)
 
   return <Select
     value={locale}
     items={languages.filter(item => item.supported)}
     onChange={(value) => {
+      console.log(value)
       setLocaleOnClient(value as Locale, reloadPage)
     }}
   />
-})
+}
 
 LocaleSelector.displayName = 'LocaleSelector'
 

@@ -1,34 +1,23 @@
-import type {
-  FC,
-  ReactNode,
-} from 'react'
-import {
-  memo,
-  useEffect, useMemo, useRef, useState,
-} from 'react'
+import type { FC, ReactNode } from 'react'
+import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import type {
-  ChatConfig,
-  ChatItem,
-} from '../../types'
+import type { ChatConfig, ChatItem } from '../../types'
 import { ChatResponseTypes } from '../../types'
-import Operation from './operation'
 import AgentContent from './agent-content'
 import BasicContent from './basic-content'
-import SuggestedQuestions from './suggested-questions'
 import More from './more'
+import Operation from './operation'
+import SuggestedQuestions from './suggested-questions'
 import WorkflowProcess from './workflow-process'
-import TaskMessageContent from '@/app/components/enty-chat/chat/answer/task-content/task-message-content'
+import cn from '@/utils/classnames'
+import type { AppData } from '@/models/share'
+import TaskTweetsContent from '@/app/components/enty-chat/chat/answer/task-content/task-tweets-content'
+import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
+import { FileList } from '@/app/components/base/file-uploader'
 import LoadingAnim from '@/app/components/base/chat/chat/loading-anim'
 import Citation from '@/app/components/base/chat/chat/citation'
-import { EditTitle } from '@/app/components/app/annotation/edit-annotation-modal/edit-item'
-import type { AppData } from '@/models/share'
 import AnswerIcon from '@/app/components/base/answer-icon'
-import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
-import cn from '@/utils/classnames'
-import { FileList } from '@/app/components/base/file-uploader'
-import TaskTweetsContent from '@/app/components/enty-chat/chat/answer/task-content/task-tweets-content'
-import TaskCommentContent from '@/app/components/enty-chat/chat/answer/task-content/task-comment-content'
+import { EditTitle } from '@/app/components/app/annotation/edit-annotation-modal/edit-item'
 
 type AnswerProps = {
   item: ChatItem
@@ -79,16 +68,31 @@ const Answer: FC<AnswerProps> = ({
   const replyType = useMemo<ChatResponseTypes>(() => {
     try {
       const parsedContent = JSON.parse(content)
-      if (typeof parsedContent === 'object' && !Array.isArray(parsedContent))
-        return ChatResponseTypes.TWEETS_GENERATION
-      else return ChatResponseTypes.PLAIN_TEXT
+      if (typeof parsedContent === 'object' && !Array.isArray(parsedContent)) {
+        if (parsedContent.diy_type && typeof parsedContent.diy_type === 'string') {
+          switch (parsedContent.diy_type) {
+            case 'tweet':
+              return ChatResponseTypes.TWEETS_GENERATION
+          }
+        }
+        return ChatResponseTypes.PLAIN_TEXT
+      }
+
+      else { return ChatResponseTypes.PLAIN_TEXT }
     }
     catch (err) {
       return ChatResponseTypes.PLAIN_TEXT
     }
   }, [content])
 
-  console.log(replyType, content)
+  const contentArray = useMemo(() => {
+    if (replyType === ChatResponseTypes.PLAIN_TEXT)
+      return undefined
+
+    const parsedContent = JSON.parse(content)
+
+    return parsedContent.list ? parsedContent.list : []
+  }, [replyType, content])
 
   const getContainerWidth = () => {
     if (containerRef.current)
@@ -181,10 +185,10 @@ const Answer: FC<AnswerProps> = ({
             {
               !responding && content && !hasAgentThoughts && (
                 <>
-                  {!content.includes('生成推文') && !content.includes('生成推文评论') && <BasicContent item={item} />}
-                  {content.includes('生成推文') && !content.includes('推文评论') && <TaskTweetsContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'}/> }
-                  {content.includes('生成推文评论') && content !== '生成推文' && <TaskCommentContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'} /> }
-                  {content.includes('生成私信回复') && <TaskMessageContent content={'Hi! What\'s up! How\'s everything with utilitynet? Really interested in the latest progress!'} /> }
+                  {replyType === ChatResponseTypes.PLAIN_TEXT && <BasicContent item={item} />}
+                  {replyType === ChatResponseTypes.TWEETS_GENERATION && contentArray && <TaskTweetsContent content={contentArray} item={item}/> }
+                  {/* {content.includes('生成推文评论') && content !== '生成推文' && <TaskCommentContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'} /> } */}
+                  {/* {content.includes('生成私信回复') && <TaskMessageContent content={'Hi! What\'s up! How\'s everything with utilitynet? Really interested in the latest progress!'} /> } */}
                 </>
               )
             }

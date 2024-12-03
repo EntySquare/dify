@@ -76,7 +76,7 @@ export const TGAIGlobalStoreProvider = ({
   )
 }
 
-export const useTGAIGlobalStore = <T>(
+export const useTGAIGlobalStore = <T,>(
   selector: (store: TGAIGlobalStore) => T,
 ): T => {
   const tgaiGlobalStoreContext = useContext(TGAIGlobalStoreContext)
