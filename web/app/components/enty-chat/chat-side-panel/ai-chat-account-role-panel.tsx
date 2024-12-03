@@ -1,18 +1,19 @@
 'use client'
 
+import { Disclosure, Transition } from '@headlessui/react'
+import { RiArrowDropRightLine, RiLayoutLeftLine, RiRestartLine } from '@remixicon/react'
 import { usePathname } from 'next/navigation'
 import React, { useCallback, useMemo } from 'react'
 import useSWR from 'swr'
 import { useShallow } from 'zustand/react/shallow'
-import { Disclosure, Transition } from '@headlessui/react'
-import { RiArrowDropRightLine, RiLayoutLeftLine, RiRestartLine } from '@remixicon/react'
+import Button from '@/app/components/base/button'
+import Tooltip from '@/app/components/base/tooltip'
 import PersonalitySelection from '@/app/components/enty-chat/chat-side-panel/personality-selection'
 import XAccountSelection from '@/app/components/enty-chat/chat-side-panel/x-account-selection'
-import Tooltip from '@/app/components/base/tooltip'
-import Button from '@/app/components/base/button'
-import cn from '@/utils/classnames'
-import { getKnowledgeList, tweetsUserNameList } from '@/service/xai'
 import { useEntyAIChatStore } from '@/app/components/enty-chat/store'
+import { EntyServiceType, useTGAIGlobalStore } from '@/context/tgai-global-context'
+import { getKnowledgeList, tweetsUserNameList } from '@/service/xai'
+import cn from '@/utils/classnames'
 
 type CommonSectionLabelProps = {
   text: string
@@ -95,6 +96,8 @@ const AccountRolePanel = React.memo(() => {
     isLeftPanelOpen: state.isLeftPanelOpen,
   })))
 
+  const serviceType = useTGAIGlobalStore(state => state.serviceType)
+
   const pathname = usePathname()
 
   const chatType = useMemo(() => {
@@ -103,6 +106,22 @@ const AccountRolePanel = React.memo(() => {
 
     return pathname.includes('ai-chat') ? 'x' : 'instagram'
   }, [pathname])
+
+  const serviceText = useMemo(() => {
+    switch (serviceType) {
+      case EntyServiceType.X: {
+        return 'X'
+      }
+      case EntyServiceType.INSTAGRAM: {
+        return 'Instagram'
+      }
+      case EntyServiceType.TRUTH_SOCIAL: {
+        return 'Truth Social'
+      }
+      default:
+        return 'X'
+    }
+  }, [serviceType])
 
   return <Transition show={isLeftPanelOpen}
     className={'w-full max-w-[300px]'}
@@ -120,7 +139,7 @@ const AccountRolePanel = React.memo(() => {
           {({ open }) => (
             <>
               <Disclosure.Button className={'flex items-center justify-between w-full'}>
-                <CommonSectionLabel text={`已登录${chatType === 'x' ? 'X' : 'Instagram'}账号列表`}/>
+                <CommonSectionLabel text={`已登录${serviceText}账号列表`}/>
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
               <Transition

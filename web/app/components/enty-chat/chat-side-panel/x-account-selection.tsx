@@ -1,5 +1,6 @@
 'use client'
 
+import {EntyServiceType, useTGAIGlobalStore} from "@/context/tgai-global-context";
 import React, { useCallback, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 import ListItem from '@/app/components/enty-chat/chat-side-panel/list-item'
@@ -15,6 +16,8 @@ export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) =
   const [search, setSearch] = React.useState('')
 
   const { selectedAccounts, setSelectedAccounts } = useEntyAIChatStore(useShallow(state => ({ selectedAccounts: state.selectedAccounts, setSelectedAccounts: state.setSelectedAccounts })))
+
+  const serviceType = useTGAIGlobalStore(state => state.serviceType)
 
   const onItemClick = useCallback((item: string) => {
     const set = new Set(selectedAccounts)
@@ -41,8 +44,24 @@ export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) =
     allSelected ? setSelectedAccounts([]) : setSelectedAccounts([...data])
   }
 
+  const serviceText = useMemo(() => {
+    switch (serviceType) {
+      case EntyServiceType.X: {
+        return 'X'
+      }
+      case EntyServiceType.INSTAGRAM: {
+        return 'Instagram'
+      }
+      case EntyServiceType.TRUTH_SOCIAL: {
+        return 'Truth Social'
+      }
+      default:
+        return 'X'
+    }
+  }, [serviceType])
+
   return <div className={'mt-3'}>
-    { (!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有已登录的 X 账号</div> }
+    { (!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有已登录的 {serviceText} 账号</div> }
     {data && data.length > 0 && searchFilterList && <div className={'flex flex-col gap-3'}>
       <div className={'flex gap-2'}>
         <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)} onClear={() => setSearch('')} />
