@@ -1,10 +1,12 @@
 from typing import Any, Union
 
-from httpx import post
+from httpx import get
 from yarl import URL
 
 from core.tools.entities.tool_entities import ToolInvokeMessage
 from core.tools.tool.builtin_tool import BuiltinTool
+
+import logging
 
 XAI_API_PATH = "knowledge/getKnowDataset"
 
@@ -32,17 +34,21 @@ class XAIGetDataset(BuiltinTool):
 
         url = URL(api_url) / "api" / XAI_API_PATH if 'api' not in api_url else URL(api_url) / XAI_API_PATH
 
-        data = {
+        params = {
             "dataset_name": dataset_name,
         }
 
         try:
-            response = post(str(url), json=data)
+            response = get(str(url), params=params)
+
+            
 
         except:
 
             raise Exception(
                 f'Failed to create peronality name: {dataset_name}')
+        
+        logging.info(response.content)
 
         try:
             json_response = response.json()
@@ -73,7 +79,7 @@ class XAIGetDataset(BuiltinTool):
                     raise Exception(message)
                 else:
                     raise Exception(
-                        f'Failed to create peronality name: {name}, indexing_technique: {indexing_technique}, permission: {permission} ')
+                        f'Failed to create peronality name: {dataset_name}')
 
         except Exception as e:
             raise e
