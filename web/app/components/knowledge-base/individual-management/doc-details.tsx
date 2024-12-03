@@ -42,9 +42,9 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
   ({ docDetailData, updateListData }, ref) => {
     const [visible, setVisible] = React.useState(false);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
     const [form] = Form.useForm<any>();
     const [tableList, setTableList] = useState([] as any);
+    const [loadingKeys, setLoadingKeys] = useState<Set<number>>(new Set());
     const promiseRef = useRef<{
       resolve: (value: DocDetailsType | false) => void;
     }>();
@@ -116,7 +116,7 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
               >
                 <Button
                   type="secondary"
-                  loading={loading}
+                  loading={loadingKeys.has(item.id)}
                   status="danger"
                   size="small"
                 >
@@ -141,8 +141,8 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
     };
 
     const onDeleteHandler = async (item: any) => {
+      setLoadingKeys((prevKeys) => new Set(prevKeys.add(item.id)));
       try {
-        setLoading(true);
         const res = await deleteSeg(
           docDetailData.dataset_id,
           docDetailData.document_id,
@@ -166,7 +166,11 @@ const DocDetailsModal = React.forwardRef<DocDetailsRefType, DocDetailsProps>(
           content: "删除失败",
         });
       } finally {
-        setLoading(false);
+        setLoadingKeys((prevKeys) => {
+          const newKeys = new Set(prevKeys);
+          newKeys.delete(item.id);
+          return newKeys;
+        });
       }
     };
 
