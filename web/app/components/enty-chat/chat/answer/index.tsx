@@ -183,7 +183,7 @@ const Answer: FC<AnswerProps> = ({
               )
             }
             {
-              !responding && content && !hasAgentThoughts && (
+              content && !hasAgentThoughts && (
                 <>
                   {replyType === ChatResponseTypes.PLAIN_TEXT && <BasicContent item={item} />}
                   {replyType === ChatResponseTypes.TWEETS_GENERATION && contentArray && <TaskTweetsContent content={contentArray} item={item}/> }
