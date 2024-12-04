@@ -1,0 +1,41 @@
+identity:
+  name: xai_generate_comments_template
+  author: Enty
+  label:
+    en_US: XAI Generate Comments Template
+    zh_Hans: XAI 生成推特评论模板
+    pt_BR: XAI Generate Comments Template
+description:
+  human:
+    en_US: A tool for generating tweets comments response content template to chat with provided json string.
+    zh_Hans: 一个用于基于给定 json 字符串生成 AI 聊天中生成推文评论聊天回复模板的工具。
+    pt_BR: A tool for generating tweets comments response content template to chat with provided json string.
+  llm: A tool for generating tweets comments response content template to chat with provided json string.
+parameters:
+  - name: json_string
+    type: string
+    required: true
+    label: 
+      en_US: json string
+      zh_Hans: json 字符串
+      pt_BR: json string
+    human_description:
+      en_US: json string can parse to certain structure, example {"json_string":"personality and accounts passed by request, no need to input manully","list":[{"tweets_user_name":"username","content":"content"}],"twitter_content":"content of tweets comment to","twitter_link":"url link of tweets comment to"}
+      zh_Hans: 可以解析成指定结构的 json 字符串, 示例 {"json_string":"json_string数据,内容包含个体，可控制推特账号","list":[{"tweets_user_name":"评论执行者账号","content":"评论文案"}],"twitter_content":"推文内容","twitter_link":"推文链接"}
+      pt_BR: json string can parse to certain structure example {"json_string":"personality and accounts passed by request, no need to input manully","list":[{"tweets_user_name":"username","content":"content"}],"twitter_content":"content of tweets comment to","twitter_link":"url link of tweets comment to"}
+    llm_description: json string can parse to certain structure example {"json_string":"personality and accounts passed by request, no need to input manully","list":[{"tweets_user_name":"username","content":"content"}],"twitter_content":"content of tweets comment to","twitter_link":"url link of tweets comment to"}
+    form: llm
+  - name: sync
+    type: boolean
+    required: true
+    label:
+      en_US: Sync
+      zh_Hans: 堵塞同步
+      pt_BR: Sync
+    human_description:
+      en_US: Whether to sync of not
+      zh_Hans: 是否需要阻塞同步
+      pt_BR: Whether to sync of not
+    default: true
+    form: form
+    
