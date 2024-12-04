@@ -1,6 +1,7 @@
 "use client";
 
 import type { TableColumnProps } from "@arco-design/web-react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Card,
@@ -14,19 +15,11 @@ import {
   Typography,
 } from "@arco-design/web-react";
 import {
-  IconDelete,
   IconEdit,
   IconMessage,
-  IconPause,
-  IconPlayArrow,
-  IconPlus,
 } from "@arco-design/web-react/icon";
 import useSWR, { useSWRConfig } from "swr";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { AxiosError } from "axios";
-import type { GroupStrategyEditModalRefType } from "./group-strategy-edit-modal";
-import { GroupStrategyEditModal } from "./group-strategy-edit-modal";
-import type { TGAIGroupStrategy } from "@/models/tgai-strategy";
 import { getXAIDeviceList } from "@/service/xai";
 import { PraiseModal, PraiseModalRefType } from "./praise";
 import { ForwardModal, ForwardModalRefType } from "./forward";
@@ -43,45 +36,34 @@ const SWR_KEYS = [
 ];
 
 export const HeatOverview = () => {
+  const { t } = useTranslation();
   const { mutate } = useSWRConfig();
   const { data: groupStrategies, isLoading } = useSWR(
     ["/adminApi/deviceList"],
     getXAIDeviceList
   );
-  // const { data: groupTemplates } = useSWR(
-  //   ["/template/getActiveTemplateList"],
-  //   getActiveGroupTemplateList
-  // );
-  // const { data: accountLists } = useSWR(
-  //   ["/account/hasLogged"],
-  //   getTGAILoggedAccount
-  // );
-  // const { data: channel_sets_lists } = useSWR(
-  //   ["/channel/getAllSet"],
-  //   getTGAIChannelSets
-  // );
 
   const formatStatus = (status: number) => {
     switch (status) {
       case -1:
-        return "失败";
+        return t("group.controlDetails.error");
 
         break;
       case 0:
-        return "初始化";
+        return t("group.controlDetails.initialization");
 
         break;
       case 1:
-        return "已下达";
+        return t("group.controlDetails.Issued");
 
         break;
       case 2:
-        return "完成";
+        return t("group.controlDetails.complete");
 
         break;
 
       default:
-        return "未知";
+        return t("group.unknown");
         break;
     }
   };
@@ -114,39 +96,39 @@ export const HeatOverview = () => {
   const formatContent = (content: string) => {
     switch (content) {
       case "1":
-        return "转发";
+        return t("group.controlDetails.forward");
 
         break;
       case "2":
-        return "转发评论";
+        return t("group.controlDetails.forwardComments");
 
         break;
       case "3":
-        return "评论";
+        return t("group.controlDetails.comment");
 
         break;
       case "4":
-        return "点赞";
+        return t("group.controlDetails.thumbsUp");
 
         break;
       case "5":
-        return "发推";
+        return t("group.controlDetails.tweet");
 
         break;
       case "6":
-        return "关注用户";
+        return t("group.controlDetails.followUsers");
 
         break;
       case "7":
-        return "取关用户";
+        return t("group.controlDetails.retrieveUsers");
 
         break;
       case "9":
-        return "模糊搜索文章链接";
+        return t("group.controlDetails.searchLinks");
 
         break;
       case "10":
-        return "同步文章详情";
+        return t("group.controlDetails.asyncDetails");
 
         break;
 
@@ -155,8 +137,6 @@ export const HeatOverview = () => {
         break;
     }
   };
-
-  const groupStrategyEditModalRef = useRef<GroupStrategyEditModalRefType>(null);
   const AttentionsModalRef = useRef<AttentionsModalRefType>(null);
   const PraiseModalRef = useRef<PraiseModalRefType>(null);
   const ForwardModalRef = useRef<ForwardModalRefType>(null);
@@ -194,34 +174,18 @@ export const HeatOverview = () => {
     if (!result) return;
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
   };
-  const onCreateClickHandler = async () => {
-    const result = await groupStrategyEditModalRef.current!.show();
-    if (!result) return;
-
-    Message.success("创建群聊策略成功！");
-    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
-  };
-
-  const onEditClickHandler = async (data: TGAIGroupStrategy) => {
-    const result = await groupStrategyEditModalRef.current!.show(data);
-
-    if (!result) return;
-
-    Message.success("修改群聊策略成功！");
-    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
-  };
 
   const columns: TableColumnProps<any>[] = [
     {
-      title: "序号",
+      title: t("group.serialNumber"),
       render: (_col, item, index) => index + 1,
     },
     {
-      title: "设备ID",
+      title: t("group.deviceId"),
       dataIndex: "device_id",
     },
     {
-      title: "登录用户",
+      title: t("group.loginUser"),
       render: (_col, item) => (
         <div className="flex-col items-center justify-start gap-2">
           {item.tweet_account_list.map((account: any, index: any) => (
@@ -233,7 +197,7 @@ export const HeatOverview = () => {
       ),
     },
     {
-      title: "控制记录",
+      title: t("group.controlRecords"),
       render: (_col, item) => (
         <div className="flex-col items-center justify-start gap-2">
           {item.tweet_account_list.map((account: any, index: any) => (
@@ -257,7 +221,7 @@ export const HeatOverview = () => {
       ),
     },
     {
-      title: "查看详情",
+      title: t("group.viewDetails"),
       render: (_col, item) => (
         <div>
           {item.tweet_account_list.map((account: any, index: any) => (
@@ -270,7 +234,7 @@ export const HeatOverview = () => {
                 size="small"
                 // onClick={() => onEditClickHandler(account)}
               >
-                控制记录
+                {t("group.controlRecords")}
               </Button>
               <Button
                 type="secondary"
@@ -280,20 +244,20 @@ export const HeatOverview = () => {
                     await navigator.clipboard.writeText(
                       item.tweet_account_list[index].tweet_account
                     );
-                    Message.success("复制成功");
+                    Message.success(`${t("group.replicatingSuccess")}`);
                   } catch (err) {
                     console.error("Failed to copy text to clipboard:", err);
                   }
                 }}
               >
-                用户链接
+                {t("group.userLink")}
               </Button>
               <Button
                 type="secondary"
                 size="small"
                 // onClick={() => onEditClickHandler(account)}
               >
-                粉丝/关注
+                {t("group.fansAndFollowers")}
               </Button>
             </div>
           ))}
@@ -304,50 +268,52 @@ export const HeatOverview = () => {
 
   return (
     <Card className={"px-4"}>
-      <Typography.Title heading={5}>手机群控</Typography.Title>
+      <Typography.Title heading={5}>
+        {t("group.mobileGroupControl")}
+      </Typography.Title>
       <Divider />
       <Space direction="vertical">
         <div>
           <Space>
             <IconMessage />
-            用户互动
+            {t("group.userInteraction")}
             <Button
               type="outline"
               size="small"
               onClick={onAttentionsClickHandler}
             >
-              关注用户
+              {t("group.controlDetails.followUsers")}
             </Button>
           </Space>
         </div>
         <div style={{ margin: "5px 0" }}>
           <Space>
             <IconMessage />
-            推文互动
+            {t("group.interactiveTweets")}
             <Button type="outline" size="small" onClick={onPraiseClickHandler}>
-              点赞
+              {t("group.controlDetails.thumbsUp")}
             </Button>
             <Button type="outline" size="small" onClick={onForwardClickHandler}>
-              转发
+              {t("group.controlDetails.forward")}
             </Button>
             <Button
               type="outline"
               size="small"
               onClick={onForwardQuoteClickHandler}
             >
-              转发+引用
+              {t("group.forwardingAndQuoting")}
             </Button>
             <Button type="outline" size="small" onClick={onCommentClickHandler}>
-              评论推文
+              {t("group.commentAndTweet")}
             </Button>
           </Space>
         </div>
         <div>
           <Space>
             <IconEdit />
-            发布推文
+            {t("group.postTweet")}
             <Button type="outline" size="small" onClick={onReleaseClickHandler}>
-              发布推文
+              {t("group.postTweet")}
             </Button>
           </Space>
         </div>
@@ -359,12 +325,6 @@ export const HeatOverview = () => {
         pagination={false}
         loading={isLoading}
         rowKey={"device_id"}
-      />
-      <GroupStrategyEditModal
-        ref={groupStrategyEditModalRef}
-        groupTemplatesList={[]}
-        loggedAccountList={[]}
-        channelSetsList={[]}
       />
       <AttentionsModal ref={AttentionsModalRef} />
       <PraiseModal ref={PraiseModalRef} />

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useImperativeHandle, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Form,
@@ -30,6 +31,7 @@ const AttentionsModal = React.forwardRef<
   AttentionsModalRefType,
   AttentionsModalProps
 >(({}, ref) => {
+  const { t } = useTranslation();
   const { mutate } = useSWRConfig();
   const [visible, setVisible] = React.useState(false);
   const [tableLoading, setTableLoading] = React.useState(false);
@@ -41,10 +43,17 @@ const AttentionsModal = React.forwardRef<
   const [userNameText, setUserNameText] = React.useState("");
 
   const getTweetsUserList = async () => {
-    setTableLoading(true);
-    const res = await tweetsUserNameList();
-    setTweetsUserList(res.data.tweets_user_name_list);
-    setTableLoading(false);
+    try {
+      setTableLoading(true);
+      const res = await tweetsUserNameList();
+      if (res.code != 0) {
+        Message.error(`${t("group.queryFailed")}`);
+      }
+      setTweetsUserList(res.data.tweets_user_name_list);
+    } catch (error) {
+    } finally {
+      setTableLoading(false);
+    }
   };
 
   const promiseRef = useRef<{
@@ -52,15 +61,17 @@ const AttentionsModal = React.forwardRef<
   }>();
 
   // 转换为对象数组
-  const tableData = tweetsUserList.map((item: any, index: number) => ({
-    key: index,
-    username: item,
-  }));
+  const tableData = tweetsUserList
+    ? tweetsUserList.map((item: any, index: number) => ({
+        key: index,
+        username: item,
+      }))
+    : [];
 
   // 定义表格的列
   const columns = [
     {
-      title: "账号",
+      title: t("group.attentions.accountNumber"),
       dataIndex: "username", // 表示 username 字段
     },
   ];
@@ -97,11 +108,11 @@ const AttentionsModal = React.forwardRef<
         userNameText === undefined ||
         userNameText === null
       ) {
-        Message.error("请输入要关注的用户名");
+        Message.error(`${t("group.attentions.placeholderUsernameFollow")}`);
         return;
       }
       if (!selectedUsernames.length) {
-        Message.error("选择执行账号");
+        Message.error(`${t("group.attentions.placeholderExecutionAccount")}`);
         return;
       }
       await followTwitterUser(selectedUsernames, userNameText);
@@ -109,7 +120,7 @@ const AttentionsModal = React.forwardRef<
       form.resetFields();
       setVisible(false);
       Message.success({
-        content: "操作成功",
+        content: t("group.operationSuccessful"),
       });
     } catch (error) {}
   };
@@ -121,7 +132,7 @@ const AttentionsModal = React.forwardRef<
 
   return (
     <Modal
-      title="关注用户"
+      title={t("group.controlDetails.followUsers")}
       visible={visible}
       footer={null}
       onCancel={handleCancel}
@@ -140,19 +151,26 @@ const AttentionsModal = React.forwardRef<
       >
         <div>
           <FormItem
-            label="用户名"
+            label={t("group.attentions.userName")}
             field="userName"
-            rules={[{ required: true, message: "请输入要关注的用户名" }]}
+            rules={[
+              {
+                required: true,
+                message: t("group.attentions.placeholderUsernameFollow"),
+              },
+            ]}
           >
             <Input
               value={userNameText}
               allowClear
-              placeholder="示例：@abc123ABC"
+              placeholder="@abc123ABC"
               onChange={changeUserName}
             />
           </FormItem>
         </div>
-        <div className="mb-2 mt-2">选择执行账号</div>
+        <div className="mb-2 mt-2">
+          {t("group.attentions.placeholderExecutionAccount")}
+        </div>
         <Table
           loading={tableLoading}
           ref={table}
@@ -170,7 +188,7 @@ const AttentionsModal = React.forwardRef<
         />
         <div className="flex justify-center items-center mt-10">
           <Button shape="round" type="primary" onClick={handleConfirm}>
-            确认执行（{selectedUsernames.length}）
+            {t("group.confirmExecution")}（{selectedUsernames.length}）
           </Button>
         </div>
       </Form>

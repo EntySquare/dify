@@ -1,8 +1,8 @@
-'use client'
-import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
+"use client";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-import { LanguagesSupported } from './language'
+import { LanguagesSupported } from "./language";
 
 const loadLangResources = (lang: string) => ({
   translation: {
@@ -28,21 +28,21 @@ const loadLangResources = (lang: string) => ({
     tools: require(`./${lang}/tools`).default,
     workflow: require(`./${lang}/workflow`).default,
     runLog: require(`./${lang}/run-log`).default,
+    group: require(`./${lang}/group`).default,
   },
-})
+});
 
 // Automatically generate the resources object
 const resources = LanguagesSupported.reduce((acc: any, lang: string) => {
-  acc[lang] = loadLangResources(lang)
-  return acc
-}, {})
+  acc[lang] = loadLangResources(lang);
+  return acc;
+}, {});
 
-i18n.use(initReactI18next)
-  .init({
-    lng: undefined,
-    fallbackLng: 'en-US',
-    resources,
-  })
+i18n.use(initReactI18next).init({
+  lng: undefined,
+  fallbackLng: "en-US",
+  resources,
+});
 
-export const changeLanguage = i18n.changeLanguage
-export default i18n
+export const changeLanguage = i18n.changeLanguage;
+export default i18n;
