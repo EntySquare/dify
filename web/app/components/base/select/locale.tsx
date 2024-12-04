@@ -2,23 +2,26 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { GlobeAltIcon } from '@heroicons/react/24/outline'
+import cn from '@/utils/classnames'
 
 type ISelectProps = {
   items: Array<{ value: string; name: string }>
   value?: string
   className?: string
   onChange?: (value: string) => void
+  outerContainerClassName?: string
 }
 
 export default function Select({
   items,
   value,
   onChange,
+  outerContainerClassName,
 }: ISelectProps) {
   const item = items.filter(item => item.value === value)[0]
 
   return (
-    <div className="w-56 text-right">
+    <div className={cn('w-56 text-right', outerContainerClassName)}>
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full h-[44px] justify-center items-center
