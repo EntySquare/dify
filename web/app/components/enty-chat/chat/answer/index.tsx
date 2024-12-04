@@ -9,6 +9,7 @@ import More from './more'
 import Operation from './operation'
 import SuggestedQuestions from './suggested-questions'
 import WorkflowProcess from './workflow-process'
+import { Markdown } from '@/app/components/base/markdown'
 import cn from '@/utils/classnames'
 import type { AppData } from '@/models/share'
 import CommonTaskContent from '@/app/components/enty-chat/chat/answer/task-content/common-task-content'
@@ -73,6 +74,10 @@ const Answer: FC<AnswerProps> = ({
           switch (parsedContent.diy_type) {
             case 'tweet':
               return ChatResponseTypes.TWEETS_GENERATION
+            case 'tweet_comment':
+              return ChatResponseTypes.COMMENTS_GENERATION
+            case 'private_message':
+              return ChatResponseTypes.MESSAGE_GENERATION
           }
         }
         return ChatResponseTypes.PLAIN_TEXT
@@ -85,14 +90,31 @@ const Answer: FC<AnswerProps> = ({
     }
   }, [content])
 
-  const contentArray = useMemo(() => {
+  const contentArray = useMemo<any[] | undefined>(() => {
     if (replyType === ChatResponseTypes.PLAIN_TEXT)
       return undefined
 
-    const parsedContent = JSON.parse(content)
-
-    return parsedContent.list ? parsedContent.list : []
+    try {
+      const parsedContent = JSON.parse(content)
+      return parsedContent.list ? parsedContent.list : []
+    }
+    catch (err) {
+      return undefined
+    }
   }, [replyType, content])
+
+  const outerContent = useMemo<string | undefined>(() => {
+    if (replyType === ChatResponseTypes.PLAIN_TEXT)
+      return undefined
+
+    try {
+      const parsedContent = JSON.parse(content)
+      return parsedContent.view ? parsedContent.view : undefined
+    }
+    catch (err) {
+      return undefined
+    }
+  }, [content])
 
   const getContainerWidth = () => {
     if (containerRef.current)
@@ -186,11 +208,14 @@ const Answer: FC<AnswerProps> = ({
               content && !hasAgentThoughts && (
                 <>
                   {replyType === ChatResponseTypes.PLAIN_TEXT && <BasicContent item={item} />}
-                  {replyType !== ChatResponseTypes.PLAIN_TEXT && contentArray && <CommonTaskContent content={contentArray} item={item} replyType={replyType}/> }
+                  {replyType !== ChatResponseTypes.PLAIN_TEXT && contentArray && <>
+                    {outerContent && <Markdown content={outerContent} />}
+                    <CommonTaskContent content={contentArray} item={item} replyType={replyType}/>
+                  </>
+                  }
                   {/* {content.includes('生成推文评论') && content !== '生成推文' && <TaskCommentContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'} /> } */}
                   {/* {content.includes('生成私信回复') && <TaskMessageContent content={'Hi! What\'s up! How\'s everything with utilitynet? Really interested in the latest progress!'} /> } */}
-                </>
-              )
+                </>)
             }
             {
               hasAgentThoughts && (

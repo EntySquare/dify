@@ -85,5 +85,5 @@ export enum ChatResponseTypes {
   TWEETS_GENERATION = 'tweets',
   PLAIN_TEXT = 'text',
   COMMENTS_GENERATION = 'comments',
-  MESSAGE_GENERATION = 'message',
+  MESSAGE_GENERATION = 'private_message',
 }
