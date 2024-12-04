@@ -152,14 +152,23 @@ export const AccountCard = () => {
     {
       title: "用户名",
       dataIndex: "name",
+      render: (_col, item) => {
+        return <div>{item.name || "-"}</div>;
+      },
     },
     {
       title: "ID",
       dataIndex: "user_id",
+      render: (_col, item) => {
+        return <div>{item.user_id || "-"}</div>;
+      },
     },
     {
       title: "AccessHash",
       dataIndex: "access_hash",
+      render: (_col, item) => {
+        return <div>{item.access_hash || "-"}</div>;
+      },
     },
     {
       title: "启动状态",
@@ -189,12 +198,16 @@ export const AccountCard = () => {
       title: "设备在线状态",
       render: (_col, item) => {
         return item.device_online === "0" ? (
-          <Button type="text" disabled status="danger">
-            {item.device_online}
+          <Button type="text" disabled style={{ color: "#aaa" }}>
+            未知
           </Button>
         ) : item.device_online === "1" ? (
+          <Button type="text" disabled status="danger">
+            离线
+          </Button>
+        ) : item.device_online === "2" ? (
           <Button type="text" disabled status="success">
-            {item.device_online}
+            在线
           </Button>
         ) : null;
       },
