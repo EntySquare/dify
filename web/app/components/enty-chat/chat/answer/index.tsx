@@ -11,7 +11,7 @@ import SuggestedQuestions from './suggested-questions'
 import WorkflowProcess from './workflow-process'
 import cn from '@/utils/classnames'
 import type { AppData } from '@/models/share'
-import TaskTweetsContent from '@/app/components/enty-chat/chat/answer/task-content/task-tweets-content'
+import CommonTaskContent from '@/app/components/enty-chat/chat/answer/task-content/common-task-content'
 import { ChevronRight } from '@/app/components/base/icons/src/vender/line/arrows'
 import { FileList } from '@/app/components/base/file-uploader'
 import LoadingAnim from '@/app/components/base/chat/chat/loading-anim'
@@ -142,7 +142,7 @@ const Answer: FC<AnswerProps> = ({
             className={cn('relative inline-block px-4 py-3 max-w-full bg-gray-100 dark:bg-tgai-input-background rounded-2xl text-sm text-tgai-text-1', workflowProcess && 'w-full')}
           >
             {
-              !responding && (
+              !responding && replyType === ChatResponseTypes.PLAIN_TEXT && (
                 <Operation
                   hasWorkflowProcess={!!workflowProcess}
                   maxSize={containerWidth - contentWidth - 4}
@@ -186,7 +186,7 @@ const Answer: FC<AnswerProps> = ({
               content && !hasAgentThoughts && (
                 <>
                   {replyType === ChatResponseTypes.PLAIN_TEXT && <BasicContent item={item} />}
-                  {replyType === ChatResponseTypes.TWEETS_GENERATION && contentArray && <TaskTweetsContent content={contentArray} item={item}/> }
+                  {replyType !== ChatResponseTypes.PLAIN_TEXT && contentArray && <CommonTaskContent content={contentArray} item={item} replyType={replyType}/> }
                   {/* {content.includes('生成推文评论') && content !== '生成推文' && <TaskCommentContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'} /> } */}
                   {/* {content.includes('生成私信回复') && <TaskMessageContent content={'Hi! What\'s up! How\'s everything with utilitynet? Really interested in the latest progress!'} /> } */}
                 </>
