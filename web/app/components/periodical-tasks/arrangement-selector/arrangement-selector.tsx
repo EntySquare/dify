@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useMemo, useState } from "react"
-import { PortalToFollowElem, PortalToFollowElemContent, PortalToFollowElemTrigger } from "@/app/components/base/portal-to-follow-elem"
-import { TGAIWorkflow } from "@/models/tgai-workflow"
-import Popup from "./popup"
-import ArrangementTrigger from "./trigger"
+import React, { useMemo, useState } from 'react'
+import Popup from './popup'
+import ArrangementTrigger from './trigger'
+import { PortalToFollowElem, PortalToFollowElemContent, PortalToFollowElemTrigger } from '@/app/components/base/portal-to-follow-elem'
+import type { TGAIWorkflow } from '@/models/tgai-workflow'
 
 type ArrangementSelectorProps = {
   arrangementList: TGAIWorkflow[]
@@ -13,13 +13,10 @@ type ArrangementSelectorProps = {
 }
 
 const ArrangementSelector = React.memo<ArrangementSelectorProps>(({ arrangementList, selectedArrangement, onSelect }) => {
-
   const [open, setOpen] = useState(false)
 
   const selectedArrangementData = useMemo(() => {
-
     return arrangementList.find(arrangement => arrangement.workflow_id === selectedArrangement)
-
   }, [arrangementList, selectedArrangement])
 
   const handleSelect = (arrangement_id: string) => {
@@ -74,7 +71,7 @@ const ArrangementSelector = React.memo<ArrangementSelectorProps>(({ arrangementL
                 )
               } */}
         </PortalToFollowElemTrigger>
-        <PortalToFollowElemContent className={`z-[1002]`}>
+        <PortalToFollowElemContent className={'z-[1002]'}>
           <Popup
             arrangementList={arrangementList}
             selectedArrangement={selectedArrangement}

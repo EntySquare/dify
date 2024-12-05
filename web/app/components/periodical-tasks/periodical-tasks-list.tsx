@@ -1,28 +1,26 @@
 'use client'
 
-import React from "react"
-import PeriodicalTaskCard from "./card"
-import cn from '@/utils/classnames'
-import { usePeriodicalTasksStore } from "./store"
-import { PeriodicalTaskRes } from "@/models/tgai-periodical-task"
-import { TGAIWorkflow } from "@/models/tgai-workflow"
+import React from 'react'
+import PeriodicalTaskCard from './card'
+import { usePeriodicalTasksStore } from './store'
+import type { PeriodicalTaskRes } from '@/models/tgai-periodical-task'
+import type { TGAIWorkflow } from '@/models/tgai-workflow'
 
 type Props = {
-    taskList: PeriodicalTaskRes[]
-    arrangementList: TGAIWorkflow[] | undefined
+  taskList: PeriodicalTaskRes[]
+  arrangementList: TGAIWorkflow[] | undefined
 }
 
 const PeriodicalTasksList = React.memo<Props>(({ taskList, arrangementList }) => {
+  const currentTask = usePeriodicalTasksStore(state => state.currentTask)
 
-    const currentTask = usePeriodicalTasksStore(state => state.currentTask)
-
-    return (
-        <>
-            {taskList.map((task) => <PeriodicalTaskCard key={task.id} task={task} active={currentTask === task.id} arrangementList={arrangementList}/>)}
-        </>
-    )
+  return (
+    <>
+      {taskList.map(task => <PeriodicalTaskCard key={task.id} task={task} active={currentTask === task.id} arrangementList={arrangementList}/>)}
+    </>
+  )
 })
 
-PeriodicalTasksList.displayName = "PeriodicalTasksList"
+PeriodicalTasksList.displayName = 'PeriodicalTasksList'
 
 export default PeriodicalTasksList

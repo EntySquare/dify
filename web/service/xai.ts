@@ -1,3 +1,5 @@
+import {PeriodicalTaskRes, PeriodicalTaskStateEnum} from "@/models/tgai-periodical-task";
+import {TGAIWorkflow} from "@/models/tgai-workflow";
 import { XAIDelete, XAIGet, XAIPost } from "./x-http";
 import type { TGAccountRes } from "@/models/tgai-user";
 
@@ -235,3 +237,45 @@ export const createDocFile = (data: any) =>
       // Authorization: headersAuthorization,
     },
   });
+
+
+// 工作流
+/*
+*   获取所有工作流
+*   POST
+*/
+export const getXAIAllWorkflows = () => XAIPost<{ workflow_array: TGAIWorkflow[] }>('/workflow/all')
+
+// 主动任务
+
+/*
+*   查看主动任务列表
+*   POST
+*/
+
+export const getAllPeriodicalTasks = () => XAIPost<{ cron_list: PeriodicalTaskRes[] }>('/cron/list')
+
+/*
+*   添加主动任务
+*   POST
+*/
+export type AddPeriodicalTaskReq = {
+  interval: string
+  workflow_id: string
+  task_name: string
+}
+export const addPeriodicalTask = ({ workflow_id, task_name, interval }: AddPeriodicalTaskReq) => XAIPost<null>('/cron/add', { cron_spec: interval, workflow_id, name: task_name })
+
+/*
+*   修改主动任务状态
+*   POST
+*/
+
+export const postPeriodicalTaskState = (id: number, state: PeriodicalTaskStateEnum) => XAIPost<null>('/cron/switch', { id, state })
+
+/*
+*   立即执行一次
+*   POST
+*/
+
+export const postExecutePeriodicalTaskOnce = (id: number) => XAIPost<null>('/cron/inRunWorkflow', { id })
