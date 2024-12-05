@@ -54,7 +54,7 @@ const PraiseModal = React.forwardRef<PraiseModalRefType, PraiseModalProps>(
     const getTweetsUserList = async () => {
       setTableLoading(true);
       const res = await tweetsUserNameList();
-      setTweetsUserList(res.data.tweets_user_name_list);
+      setTweetsUserList(res.data.tweets_user_name_list || []);
       promiseRef.current?.resolve(false);
       setTableLoading(false);
     };
