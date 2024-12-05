@@ -1,0 +1,54 @@
+identity:
+  name: xai_create_seg
+  author: Enty
+  label:
+    en_US: XAI Create Segments
+    zh_Hans: XAI 创建料分段
+    pt_BR: XAI Create Segments
+description:
+  human:
+    en_US: A tool for creating segements into doc with provided parameters.
+    zh_Hans: 一个用于基于给定参数在料中创建分段的工具。
+    pt_BR: A tool for creating segements into doc with provided parameters.
+  llm: A tool for creating segements into doc with provided parameters.
+parameters:
+  - name: dataset_id
+    type: string
+    required: true
+    label: 
+      en_US: Personality id
+      zh_Hans: 个体 id
+      pt_BR: Personality id
+    human_description:
+      en_US: Id of personality 
+      zh_Hans: 个体 id
+      pt_BR: Id of personality 
+    llm_description: Id of personality 
+    form: llm
+  - name: document_id
+    type: string
+    required: true
+    label: 
+      en_US: Document id
+      zh_Hans: 料 id
+      pt_BR: Document id
+    human_description:
+      en_US: Id of document 
+      zh_Hans: 料 id
+      pt_BR: Id of document 
+    llm_description: Id of document 
+    form: llm
+  - name: segments
+    type: string
+    required: true
+    label: 
+      en_US: Segments(json string)
+      zh_Hans: 分段(json 字符串)
+      pt_BR: Segments(json string)
+    human_description:
+      en_US: String can be parsed to json, example {"segments":[{"answer":"answer","content":"content","keywords":["keyword"]}]}
+      zh_Hans: 可被解析为 json 的字符串，示例 {"segments":[{"answer":"answer","content":"content","keywords":["keyword"]}]"}
+      pt_BR: String can be parsed to json, example {"segments":[{"answer":"answer","content":"content","keywords":["keyword"]}]}
+    llm_description: String can be parsed to json, example {"segments":[{"answer":"answer","content":"content","keywords":["keyword"]}]}
+    form: llm
+    

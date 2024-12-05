@@ -1,0 +1,28 @@
+identity:
+  name: xai_get_dataset
+  author: Enty
+  label:
+    en_US: XAI Get Dataset
+    zh_Hans: XAI 查询个体
+    pt_BR: XAI Get Dataset
+description:
+  human:
+    en_US: A tool for querying individuals by name.
+    zh_Hans: 一个用于通过名称查询个体的工具。
+    pt_BR: A tool for querying individuals by name.
+  llm: A tool for querying individuals by name.
+parameters:
+  - name: dataset_name
+    type: string
+    required: true
+    label:
+      en_US: Dataset Name
+      zh_Hans: 个体名
+      pt_BR: Dataset Name
+    human_description:
+      en_US: Name of dataset
+      zh_Hans: 个体名称
+      pt_BR: Name of dataset
+    llm_description: Name of dataset
+    form: llm
+
