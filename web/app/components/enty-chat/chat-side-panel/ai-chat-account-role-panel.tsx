@@ -181,7 +181,7 @@ const AccountRolePanel = React.memo(() => {
           )}
         </Disclosure>
       </div>
-      <PanelFooter />
+      {/* <PanelFooter /> */}
     </div>
   </Transition>
 })

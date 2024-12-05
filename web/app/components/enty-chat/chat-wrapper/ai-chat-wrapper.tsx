@@ -15,7 +15,8 @@ import Chat from '@/app/components/enty-chat/chat'
 import type { ChatItem } from '@/app/components/enty-chat/types'
 import cn from '@/utils/classnames'
 
-const SUGGESTED_QUESTION = ['生成推文', '生成推文评论', '生成私信回复']
+// const SUGGESTED_QUESTION = ['生成推文', '生成推文评论', '生成私信回复']
+const SUGGESTED_QUESTION = ['生成推文', '生成评论']
 
 const AIChatWrapperHeader = React.memo(() => {
   const { isLeftPanelOpen } = useEntyAIChatStore(useShallow(state => ({
@@ -88,16 +89,12 @@ const AIChatWrapper = React.memo(() => {
       message,
     }
 
-    console.log(reqParams)
-
     try {
       setIsResponding(true)
       const res = await sendAIChatMsg(reqParams)
 
       if (res.code === -1)
         throw new Error('error')
-
-      console.log(res)
 
       if (res.data.conversation_id)
         setConversationId(res.data.conversation_id)
@@ -116,7 +113,6 @@ const AIChatWrapper = React.memo(() => {
       setIsResponding(false)
     }
 
-    console.log(answerItem)
   }, [chatLists, selectedAccounts, selectedPersonality, conversation_id, isResponding])
 
   return <div className={'relative h-full border-l border-tgai-panel-border w-full bg-gray-50 dark:bg-tgai-panel-background'}>

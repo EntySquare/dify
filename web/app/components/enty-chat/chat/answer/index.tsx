@@ -163,20 +163,20 @@ const Answer: FC<AnswerProps> = ({
             ref={contentRef}
             className={cn('relative inline-block px-4 py-3 max-w-full bg-gray-100 dark:bg-tgai-input-background rounded-2xl text-sm text-tgai-text-1', workflowProcess && 'w-full')}
           >
-            {
-              !responding && replyType === ChatResponseTypes.PLAIN_TEXT && (
-                <Operation
-                  hasWorkflowProcess={!!workflowProcess}
-                  maxSize={containerWidth - contentWidth - 4}
-                  contentWidth={contentWidth}
-                  item={item}
-                  question={question}
-                  index={index}
-                  showPromptLog={showPromptLog}
-                  noChatInput={noChatInput}
-                />
-              )
-            }
+            {/* { */}
+            {/*   !responding && replyType === ChatResponseTypes.PLAIN_TEXT && ( */}
+            {/*     <Operation */}
+            {/*       hasWorkflowProcess={!!workflowProcess} */}
+            {/*       maxSize={containerWidth - contentWidth - 4} */}
+            {/*       contentWidth={contentWidth} */}
+            {/*       item={item} */}
+            {/*       question={question} */}
+            {/*       index={index} */}
+            {/*       showPromptLog={showPromptLog} */}
+            {/*       noChatInput={noChatInput} */}
+            {/*     /> */}
+            {/*   ) */}
+            {/* } */}
             {/** Render the normal steps */}
             {
               workflowProcess && !hideProcessDetail && (
