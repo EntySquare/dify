@@ -340,11 +340,6 @@ const SiderMenu = () => {
             title: '主动任务',
             href: '/periodical-tasks',
             key: '/periodical-tasks',
-          }, {
-            type: 'item',
-            title: '数据整理',
-            href: '/data-cleansing',
-            key: '/data-cleansing',
           },
         ],
         icon: <IconApps/>,
