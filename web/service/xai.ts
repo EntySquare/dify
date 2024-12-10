@@ -21,7 +21,19 @@ export const getTGAIUserContancts = (phone: string) =>
  *   获取所有已登录账号
  *   POST
  */
-export const getXAIDeviceList = () => XAIPost<any>("/adminApi/deviceList");
+
+export type DeviceData = {
+    device_id: string
+    ping_time: number
+    status_ready: boolean
+    tweet_account_list: {
+        tweet_account: string
+        control_status: number
+        data_time: string
+        control_cmd: string
+    } []
+}
+export const getXAIDeviceList = () => XAIPost<{ device_list: DeviceData[] }>("/adminApi/deviceList");
 
 export type TweetsUserNameListRes = { tweets_user_name_list: string[] };
 // 查询当前推特账号列表
