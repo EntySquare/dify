@@ -19,13 +19,14 @@ class EntyTTSGetGenerateResult(BuiltinTool):
             raise Exception("enty tts api url is required!")
         
         url = URL(api_url) / TEST_PING_PATH
-
-        response = get(str(url))
-
-        if response.status_code != 200:
-            raise Exception("connect to enty tts api failed")
         
         try:
+
+            response = get(str(url))
+
+            if response.status_code != 200:
+                raise Exception("connect to enty tts api failed")
+            
             data = response.json()
 
             if isinstance(data, dict) is not True:
@@ -34,7 +35,6 @@ class EntyTTSGetGenerateResult(BuiltinTool):
 
             if 'status' not in data or data['status'] != "ojbk":
                 raise Exception("Not the api server we need!")
-
 
         except:
             raise Exception("connect to enty tts api failed")
