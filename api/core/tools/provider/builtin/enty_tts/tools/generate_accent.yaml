@@ -1,0 +1,40 @@
+identity:
+  name: generate_accent
+  author: Enty
+  label:
+    en_US: Generate Accent
+    zh_Hans: Enty TTS - 创建音色
+    pt_BR: Generate TTS Task
+description:
+  human:
+    en_US: A tool for generating accent with audio files.
+    zh_Hans: 一个用于通过音频文件在 Enty TTS 服务中创建音色的工具
+    pt_BR: A tool for generating accent with audio files.
+  llm: A tool for generating accent with audio files.
+parameters:
+  - name: accent_name
+    type: string
+    required: true
+    label:
+      en_US: Accent Name
+      zh_Hans: 音色名
+      pt_BR: Accent Name
+    human_description:
+      en_US: accent name to store, example - "vc_name_lily"
+      zh_Hans: 要储存的音色名, 示例 - "vc_name_lily"
+      pt_BR: accent name to store, example - "vc_name_lily"
+    llm_description: accent name to store, example - "vc_name_lily"
+    form: llm
+  - name: audio_files
+    type: files
+    required: true
+    label:
+      en_US: Audio
+      zh_Hans: 音频
+      pt_BR: Audio
+    human_description:
+      en_US: Audio used to generate accent
+      zh_Hans: 用于生成音色的音频文件
+      pt_BR: Audio used to generate accent
+    llm_description: Audio used to generate accent
+    form: llm

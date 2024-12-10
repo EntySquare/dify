@@ -1,0 +1,40 @@
+identity:
+  name: generate_tts
+  author: Enty
+  label:
+    en_US: Generate TTS Task
+    zh_Hans: Enty TTS - 生成 TTS 任务
+    pt_BR: Generate TTS Task
+description:
+  human:
+    en_US: A tool for generating tts task with provided parameters, response is task_id.
+    zh_Hans: 一个用于根据参数生成 TTS 任务的工具，返回值为任务 id。
+    pt_BR: A tool for generating tts task with provided parameters, response is task_id.
+  llm: A tool for generating tts task with provided parameters, response is task_id.
+parameters:
+  - name: tts_text
+    type: string
+    required: true
+    label:
+      en_US: Text
+      zh_Hans: 文本
+      pt_BR: Text
+    human_description:
+      en_US: Text to convert to speech
+      zh_Hans: 要转换成音频的文本
+      pt_BR: Text to convert to speech
+    llm_description: Text to convert to speech
+    form: llm
+  - name: vc_uid
+    type: string
+    required: true
+    label:
+      en_US: Voice accent ID
+      zh_Hans: 音色 ID
+      pt_BR: Voice accent ID
+    human_description:
+      en_US: ID of the voice accent to use.
+      zh_Hans: 要使用的音色的 ID。
+      pt_BR: ID of the voice accent to use.
+    llm_description: ID of the voice accent to use.
+    form: llm

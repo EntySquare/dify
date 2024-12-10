@@ -1,0 +1,27 @@
+identity:
+  name: get_generate_tts_result
+  author: Enty
+  label:
+    en_US: Get TTS Generation Result
+    zh_Hans: Enty TTS - 获取 TTS 任务结果
+    pt_BR: Get TTS Generation Result
+description:
+  human:
+    en_US: A tool for get tts generation result with task_id.
+    zh_Hans: 一个用于查询对应 task_id 的 TTS 任务结果的工具
+    pt_BR: A tool for get tts generation result with task_id.
+  llm: A tool for get tts generation result with task_id.
+parameters:
+  - name: task_id
+    type: string
+    required: true
+    label:
+      en_US: Task ID
+      zh_Hans: 任务 ID
+      pt_BR: Task ID
+    human_description:
+      en_US: Task ID of TTS generation task return by api server.
+      zh_Hans: TTS 生成任务的任务 ID。
+      pt_BR: Task ID of TTS generation task return by api server.
+    llm_description: Task ID of TTS generation task return by api server.
+    form: llm

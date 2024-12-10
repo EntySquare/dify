@@ -1,0 +1,30 @@
+identity:
+  author: Enty
+  name: enty_tts
+  label:
+    en_US: Enty TTS
+    zh_Hans: Enty TTS
+    pt_BR: Enty TTS
+  description:
+    en_US: Enty TTS power set.
+    zh_Hans: Enty TTS 能力集
+    pt_BR: Enty TTS power set.
+  icon: icon.svg
+  tags:
+    - utilities
+credentials_for_provider:
+  enty_tts_api_url:
+    type: text-input
+    required: true
+    label:
+      en_US: Enty TTS API Url
+      zh_Hans: Enty TTS API Url
+      pt_BR: Enty TTS API Url
+    help:
+      en_US: Please input your Enty TTS API Url
+      zh_Hans: 请输入你的 Enty TTS API UrlL
+      pt_BR: Please input your Enty TTS API Url
+    placeholder:
+      en_US: Please input your Enty TTS API Url
+      zh_Hans: 请输入你的 Enty TTS API Url
+      pt_BR: Please input your Enty TTS API Url
