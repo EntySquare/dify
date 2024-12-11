@@ -1,16 +1,17 @@
-"use client";
-import React from "react";
-import { DeclareHomeView } from "@/app/components/declare/home/index";
+'use client'
+import React from 'react'
+import HuoXuanContainer from '@/app/components/xai-huoxuan/huoxuan-container'
+import { HuoXuanListItemType } from '@/models/xai-huoxuan'
 
 const DeclareHome = () => {
   return (
     <div
       className="px-5 py-4 h-full overflow-y-auto"
-      style={{ background: `var(--color-background-grey)` }}
+      style={{ background: 'var(--color-background-grey)' }}
     >
-      <DeclareHomeView />
+      <HuoXuanContainer huoxuanType={HuoXuanListItemType.XUAN} />
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(DeclareHome);
+export default React.memo(DeclareHome)

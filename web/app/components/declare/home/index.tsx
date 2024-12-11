@@ -1,185 +1,177 @@
-"use client";
+'use client'
 
-import type { TableColumnProps } from "@arco-design/web-react";
+import type { TableColumnProps } from '@arco-design/web-react'
 import {
   Button,
   Card,
   Divider,
-  Message,
-  Popconfirm,
   Space,
-  Switch,
   Table,
-  Tooltip,
   Typography,
-} from "@arco-design/web-react";
-import {
-  IconDelete,
-  IconEdit,
-  IconMessage,
-  IconPause,
-  IconPlayArrow,
-  IconPlus,
-} from "@arco-design/web-react/icon";
-import useSWR, { useSWRConfig } from "swr";
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { AxiosError } from "axios";
-import type { GroupStrategyEditModalRefType } from "./group-strategy-edit-modal";
-import { GroupStrategyEditModal } from "./group-strategy-edit-modal";
-import type { TGAIGroupStrategy } from "@/models/tgai-strategy";
-import { getXAIDeviceList } from "@/service/xai";
-import { CommentModal, CommentModalRefType } from "./comment";
+} from '@arco-design/web-react'
+
+import useSWR, { useSWRConfig } from 'swr'
+import { useRef } from 'react'
+import type { GroupStrategyEditModalRefType } from './group-strategy-edit-modal'
+import { GroupStrategyEditModal } from './group-strategy-edit-modal'
+import type { CommentModalRefType } from './comment'
+import { CommentModal } from './comment'
+import { getHuoXuanList } from '@/service/xai'
 
 const SWR_KEYS = [
-  "/adminApi/deviceList",
-  "/template/getActiveTemplateList",
-  "/account/hasLogged",
-  "/channel/getAllSet",
-];
+  '/adminApi/deviceList',
+  '/template/getActiveTemplateList',
+  '/account/hasLogged',
+  '/channel/getAllSet',
+]
 
 export const DeclareHomeView = () => {
-  const { mutate } = useSWRConfig();
-  const { data: groupStrategies, isLoading } = useSWR(
-    ["/adminApi/deviceList"],
-    getXAIDeviceList
-  );
+  const { mutate } = useSWRConfig()
+  const { data: huoXuanList, isLoading } = useSWR(
+    ['/adminApi/huoXuan/list'],
+    getHuoXuanList,
+  )
+
+  console.log(huoXuanList)
 
   const formatStatus = (status: number) => {
     switch (status) {
       case -1:
-        return "暂停";
+        return '暂停'
 
-        break;
+        break
       case 0:
-        return "申请中";
+        return '申请中'
 
-        break;
+        break
       case 1:
-        return "进行中";
+        return '进行中'
 
-        break;
+        break
 
       default:
-        return "未知";
-        break;
+        return '未知'
+        break
     }
-  };
+  }
 
   const formatStatusColor = (status: number) => {
     switch (status) {
       case -1:
-        return "red";
+        return 'red'
 
-        break;
+        break
       case 0:
-        return "orange";
+        return 'orange'
 
-        break;
+        break
       case 1:
-        return "grey";
+        return 'grey'
 
-        break;
+        break
       case 2:
-        return "green";
+        return 'green'
 
-        break;
+        break
 
       default:
-        return "";
-        break;
+        return ''
+        break
     }
-  };
+  }
 
   const formatContent = (content: string) => {
     switch (content) {
-      case "1":
-        return "转发";
+      case '1':
+        return '转发'
 
-        break;
-      case "2":
-        return "转发评论";
+        break
+      case '2':
+        return '转发评论'
 
-        break;
-      case "3":
-        return "评论";
+        break
+      case '3':
+        return '评论'
 
-        break;
-      case "4":
-        return "点赞";
+        break
+      case '4':
+        return '点赞'
 
-        break;
-      case "5":
-        return "发推";
+        break
+      case '5':
+        return '发推'
 
-        break;
-      case "6":
-        return "关注用户";
+        break
+      case '6':
+        return '关注用户'
 
-        break;
-      case "7":
-        return "取关用户";
+        break
+      case '7':
+        return '取关用户'
 
-        break;
-      case "9":
-        return "模糊搜索文章链接";
+        break
+      case '9':
+        return '模糊搜索文章链接'
 
-        break;
-      case "10":
-        return "同步文章详情";
+        break
+      case '10':
+        return '同步文章详情'
 
-        break;
+        break
 
       default:
-        return "";
-        break;
+        return ''
+        break
     }
-  };
+  }
 
-  const groupStrategyEditModalRef = useRef<GroupStrategyEditModalRefType>(null);
-  const CommentModalRef = useRef<CommentModalRefType>(null);
+  const groupStrategyEditModalRef = useRef<GroupStrategyEditModalRefType>(null)
+  const CommentModalRef = useRef<CommentModalRefType>(null)
 
   const onCommentClickHandler = async () => {
-    const result = await CommentModalRef.current!.show();
-    if (!result) return;
-    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
-  };
+    const result = await CommentModalRef.current!.show()
+    if (!result)
+      return
+    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]))
+  }
 
   const onEditClickHandler = async () => {
-    const result = await groupStrategyEditModalRef.current!.show();
-    if (!result) return;
-    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]));
-  };
+    const result = await groupStrategyEditModalRef.current!.show()
+    if (!result)
+      return
+    mutate((key: Array<string>) => SWR_KEYS.includes(key[0]))
+  }
 
   const columns: TableColumnProps<any>[] = [
     {
-      title: "序号",
+      title: '序号',
       render: (_col, item, index) => index + 1,
     },
     {
-      title: "发布者",
-      dataIndex: "user_name",
+      title: '发布者',
+      dataIndex: 'user_name',
     },
     {
-      title: "内容",
+      title: '内容',
       render: (_col, item) => <div>内容内容内容内容内容内容内容</div>,
     },
     {
-      title: "工作流",
+      title: '工作流',
       render: (_col, item) => <div>推文宣推工作流V1</div>,
     },
     {
-      title: "状态",
+      title: '状态',
       render: (_col, item) => <div>{formatStatus(item.status)}</div>,
     },
     {
-      title: "详情",
+      title: '详情',
       render: (_col, item) => (
         <div>
           <div className="flex items-center justify-start gap-2 my-2">
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               查看详情
             </Button>
@@ -188,28 +180,28 @@ export const DeclareHomeView = () => {
       ),
     },
     {
-      title: "操作",
+      title: '操作',
       render: (_col, item) => (
         <div>
           <div className="flex items-center justify-start gap-2 my-2">
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               立即执行
             </Button>
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               设置
             </Button>
             <Button
               type="secondary"
               size="small"
-              // onClick={() => onEditClickHandler()}
+            // onClick={() => onEditClickHandler()}
             >
               删除
             </Button>
@@ -217,10 +209,10 @@ export const DeclareHomeView = () => {
         </div>
       ),
     },
-  ];
+  ]
 
   return (
-    <Card className={"px-4"}>
+    <Card className={'px-4'}>
       <Typography.Title heading={5}>
         宣推&nbsp;
         <span style={{ fontSize: 14, opacity: 0.5 }}>
@@ -248,38 +240,38 @@ export const DeclareHomeView = () => {
             {
               device_id: 100,
               status: -1,
-              user_name: "@特朗普",
+              user_name: '@特朗普',
               tweet_account_list: [],
             },
             {
               device_id: 101,
               status: -1,
-              user_name: "@特朗普",
+              user_name: '@特朗普',
               tweet_account_list: [],
             },
             {
               device_id: 102,
               status: 1,
-              user_name: "@特朗普",
+              user_name: '@特朗普',
               tweet_account_list: [],
             },
             {
               device_id: 103,
               status: 1,
-              user_name: "@特朗普",
+              user_name: '@特朗普',
               tweet_account_list: [],
             },
             {
               device_id: 104,
               status: 1,
-              user_name: "@特朗普",
+              user_name: '@特朗普',
               tweet_account_list: [],
             },
           ]
         }
         pagination={false}
         loading={isLoading}
-        rowKey={"device_id"}
+        rowKey={'device_id'}
       />
       <GroupStrategyEditModal
         ref={groupStrategyEditModalRef}
@@ -289,5 +281,5 @@ export const DeclareHomeView = () => {
       />
       <CommentModal ref={CommentModalRef} />
     </Card>
-  );
-};
+  )
+}
