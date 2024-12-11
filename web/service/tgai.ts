@@ -1,4 +1,4 @@
-import { TGAIGet, TGAIPost } from './http'
+import {TGAIDelete, TGAIGet, TGAIPost} from './http'
 import type { TGAIAccount, TGAITokenConfig, TGAccountRes } from '@/models/tgai-user'
 import type { TGAIGroupStrategy, TGAIKeywordStrategy, TGAIReplyTypeEnum, TGAISingleStrategy, TGAISingleStrategyFlag, TGAIStrategyTakeEffectEnum } from '@/models/tgai-strategy'
 import type { TGAIAccountInChannelRes, TGAIAllChannelList, TGAIAllChannelListRes, TGAIChannelDetail, TGAIChannelSet, TGAIEngineSearchChannel, TGAIGroupList, TGAIGroupTypeEnum, TGAIJoinedChannelList } from '@/models/tgai-channel'
@@ -82,7 +82,11 @@ export const deleteTGAIAccount = (phone: string) => TGAIPost<string>('/account/d
 *   获取 TGAI Token 配置
 *   POST
 */
-export const getTGAITokenConfig = () => TGAIPost<TGAITokenConfig>('/config/all')
+type GetTGAITokenConfigRes = {
+    conf_data: TGAITokenConfig[]
+}
+
+export const getTGAITokenConfig = () => TGAIPost<GetTGAITokenConfigRes>('/config/all')
 
 /*
 *   配置 TGAI 密钥
@@ -94,6 +98,12 @@ type SetTGAITokenConfigReq = {
     phone: string
 }
 export const setTGAITokenConfig = (data: SetTGAITokenConfigReq) => TGAIPost<string>('/config/login', data)
+
+/*
+*   删除 TGAI 密钥（配置）
+*   DELETE
+ */
+export const deleteTGAITokenConfig = (app_id: string) => TGAIDelete<null>(`/config/delete/${app_id}`)
 
 
 // 群组 API
@@ -390,6 +400,13 @@ type UpdateTGAISingleStrategyReq = {
     workflow_name: string
 }
 export const updateTGAISingleStrategy = (data: UpdateTGAISingleStrategyReq) => TGAIPost<null>('/message/updateListen', data)
+
+/*
+*   单聊策略 - 删除单聊策略
+*   DELETE
+ */
+
+export const deleteTGAISingleStrategy = (phone: string) => TGAIDelete<null>(`/listen/delete/${phone}`)
 
 /*
 *   群聊策略 - 获取所有群聊策略
