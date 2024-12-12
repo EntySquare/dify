@@ -138,7 +138,7 @@ const CreateHuoxuanModal = React.forwardRef<CreateHuoxuanModalRefType, CreateHuo
               />
             </FormItem>
             <FormItem
-              label="评论内容（要推广的内容）"
+              label={`评论内容（${createType === HuoXuanListItemType.HUO ? '文案' : '要推广的内容'}）`}
               field="content"
               rules={[{ required: true, message: '请输入内容' }]}
             >
@@ -155,7 +155,7 @@ const CreateHuoxuanModal = React.forwardRef<CreateHuoxuanModalRefType, CreateHuo
               <Input allowClear placeholder="Crontab表达式" />
             </FormItem>
             <FormItem
-              label="工作流）"
+              label="工作流"
               field="workflow_id"
               rules={[{ required: true, message: '请要执行的工作流' }]}
             >
