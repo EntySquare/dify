@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import { useContext } from 'use-context-selector'
 import { useTranslation } from 'react-i18next'
 import { RiCloseLine } from '@remixicon/react'
-import { useStore as useTagStore } from './store'
-import TagItemEditor from './tag-item-editor'
 import Modal from '../modal'
 import { ToastContext } from '../toast'
 import {
   createTag,
   fetchTagList,
 } from '../../../../service/tag'
+import TagItemEditor from './tag-item-editor'
+import { useStore as useTagStore } from './store'
 
 type TagManagementModalProps = {
   type: 'knowledge' | 'app'
@@ -70,7 +70,7 @@ const TagManagementModal = ({ show, type }: TagManagementModalProps) => {
       </div>
       <div className='mt-3 flex flex-wrap gap-2'>
         <input
-          className='shrink-0 w-[100px] px-2 py-1 bg-tgai-input-background rounded-lg border border-dashed border-gray-200 text-sm leading-5 text-tgai-text-1 outline-none appearance-none  placeholder:text-tgai-text-2 caret-tgai-primary focus:border-solid'
+          className='shrink-0 w-[100px] px-2 py-1 bg-tgai-input-background rounded-lg border border-dashed border-gray-200 dark:border-zinc-600 text-sm leading-5 text-tgai-text-1 outline-none appearance-none  placeholder:text-tgai-text-2 caret-tgai-primary focus:border-solid'
           placeholder={t('common.tag.addNew') || ''}
           autoFocus
           value={name}
