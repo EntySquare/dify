@@ -53,7 +53,7 @@ class EntyTTSGetGenerateResult(BuiltinTool):
         url = URL(api_url) / ENTY_TTS_GENERATE_RESULT_PATH / task_id
 
         try:
-            response = get(str(url))
+            response = get(str(url), timeout=60.0)
 
             if response.status_code == 404:
                 raise Exception("Failed to get task result - Task with id:{task_id} not found")

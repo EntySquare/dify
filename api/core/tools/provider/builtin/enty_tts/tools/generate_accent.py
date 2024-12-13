@@ -21,6 +21,7 @@ class EntyTTSStartAccentGeneration(BuiltinTool):
         api_url = self.runtime.credentials.get('enty_tts_api_url', None)
         audio_files = tool_parameters.get("audio_files", None)
         accent_name = tool_parameters.get("accent_name", "")
+        timeout = tool_parameters.get("timeout", "30")
 
         if accent_name is None or accent_name == "":
             raise Exception("音色名不能为空")
@@ -28,8 +29,11 @@ class EntyTTSStartAccentGeneration(BuiltinTool):
         if audio_files is None or len(audio_files) == 0:
             raise Exception("必须提供音频文件！")
         
-
+        if timeout is None or timeout == "":
+            raise Exception("请设置请求超时时间！")
         
+        timeout = float(timeout)
+
         url = URL(api_url) / ENTY_TTS_ACCENT_GENERATION_PATH / accent_name
 
         files = []
@@ -55,7 +59,7 @@ class EntyTTSStartAccentGeneration(BuiltinTool):
 
         try:
 
-            response = post(str(url), files=files, headers=headers, timeout=60.0)
+            response = post(str(url), files=files, headers=headers, timeout=timeout)
 
             if response.status_code != 200: 
                 raise Exception("Failed to generate accent", )

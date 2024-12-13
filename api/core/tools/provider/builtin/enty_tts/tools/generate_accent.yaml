@@ -38,3 +38,47 @@ parameters:
       pt_BR: Audio used to generate accent
     llm_description: Audio used to generate accent
     form: llm
+  - name: timeout
+    type: select
+    required: true
+    human_description:
+      en_US: Set request timeout(s)
+      zh_Hans: 设置请求超时时间(秒)
+      pt_BR: Set request timeout(s)
+    label:
+      en_US: Timeout
+      zh_Hans: 请求超时时间
+      pt_BR: Timeout
+    form: form
+    options:
+      - value: 30
+        label:
+          en_US: "30"
+          zh_Hans: "30"
+          pt_BR: "30"
+      - value: 60
+        label:
+          en_US: "60"
+          zh_Hans: "60"
+          pt_BR: "60"
+      - value: 90
+        label:
+          en_US: "90"
+          zh_Hans: "90"
+          pt_BR: "90"
+      - value: 120
+        label:
+          en_US: "120"
+          zh_Hans: "120"
+          pt_BR: "120"
+      - value: 150
+        label:
+          en_US: "150"
+          zh_Hans: "150"
+          pt_BR: "150"
+      - value: 180
+        label:
+          en_US: "180"
+          zh_Hans: "180"
+          pt_BR: "180"
+    default: 30

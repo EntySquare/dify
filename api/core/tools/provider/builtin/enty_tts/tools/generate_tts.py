@@ -34,7 +34,7 @@ class EntyTTSStartTTSGeneration(BuiltinTool):
         }
 
         try:
-            response = post(str(url), json=data)
+            response = post(str(url), json=data, timeout=60.0)
 
             data = response.json()
 
