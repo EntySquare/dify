@@ -127,6 +127,8 @@ export type KnowLedge = {
   created_at: number
   updated_by: string
   updated_at: number
+  binding_tweet_account: string
+  binding_document_id: string
 }
 
 export type GetKnowledgeListResponse = {
@@ -257,6 +259,17 @@ export const createDocFile = (data: any) =>
       // Authorization: headersAuthorization,
     },
   })
+
+/*
+* 绑定个体与账号
+* POST
+*/
+type BindPersonalityAndAccountPayload = {
+  knowledge_id: string
+  tweet_account: string
+  document_id: string
+}
+export const bindPersonalityAndAccount = (payload: BindPersonalityAndAccountPayload) => XAIPost<string>('/knowledge/bindingGather', payload)
 
 // 工作流
 /*

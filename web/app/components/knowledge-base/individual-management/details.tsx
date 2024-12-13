@@ -1,7 +1,8 @@
-"use client";
+'use client'
 
-import React, { useImperativeHandle, useRef, useState } from "react";
-import useSWR, { mutate, useSWRConfig } from "swr";
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react'
+import useSWR, { mutate } from 'swr'
+import type { TableColumnProps } from '@arco-design/web-react'
 import {
   Button,
   Card,
@@ -13,70 +14,66 @@ import {
   Pagination,
   Popconfirm,
   Select,
-  Space,
-  Switch,
   Table,
-  TableColumnProps,
-  TableInstance,
   Typography,
-} from "@arco-design/web-react";
+} from '@arco-design/web-react'
+import type { DocDetailsRefType } from './doc-details'
+import { DocDetailsModal } from './doc-details'
+import type { CreatSegTextRefType } from './creat-seg-text'
+import { CreatSegTextModal } from './creat-seg-text'
+import type { KnowLedge } from '@/service/xai'
 import {
-  commentTwitter,
-  createIndividual,
+  bindPersonalityAndAccount,
   deleteDoc,
   getKnowledgeDoclist,
-  selectTwitterUrl,
   tweetsUserNameList,
-} from "@/service/xai";
-import TextArea from "rc-textarea";
-import { DocDetailsModal, DocDetailsRefType } from "./doc-details";
-import { CreatSegTextModal, CreatSegTextRefType } from "./creat-seg-text";
+} from '@/service/xai'
 
-const FormItem = Form.Item;
-const InputSearch = Input.Search;
-const Option = Select.Option;
+const FormItem = Form.Item
+const InputSearch = Input.Search
+const Option = Select.Option
 
-export type DetailsType = string;
+export type DetailsType = string
 
 export type detailDataType = {
-  app_count: number;
-  created_at: number;
-  created_by: string;
-  data_source_type: string;
-  description: string;
-  document_count: number;
-  id: string;
-  indexing_technique: string;
-  name: string;
-  permission: string;
-  updated_at: number;
-  updated_by: string;
-  word_count: number;
-};
+  app_count: number
+  created_at: number
+  created_by: string
+  data_source_type: string
+  description: string
+  document_count: number
+  id: string
+  indexing_technique: string
+  name: string
+  permission: string
+  updated_at: number
+  updated_by: string
+  word_count: number
+}
 
 type DetailsProps = {
   //   tweetsUrl: string | undefined;
-  detailData: detailDataType;
-  updateListData: () => void;
-  detailList: detailDataType[];
-  detailId: string | undefined;
-};
+  detailData: KnowLedge
+  updateListData: () => void
+  detailList: KnowLedge[]
+  detailId: string | undefined
+}
 
 export type DetailsRefType = {
-  show: () => Promise<DetailsType | false>;
-};
+  show: () => Promise<DetailsType | false>
+}
 
 const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
   ({ detailData, updateListData, detailList, detailId }, ref) => {
-    const [visible, setVisible] = React.useState(false);
-    const [loading, setLoading] = useState(false);
-    const [loadingKeys, setLoadingKeys] = useState<Set<number>>(new Set());
-    const [form] = Form.useForm<any>();
-    const [pageSize, setPageSize] = useState(1);
-    const [limit, setLimit] = useState(10);
-    const [documentId, setDocumentId] = useState("");
-    const DocDetailsModalRef = useRef<DocDetailsRefType>(null);
-    const creatSegTextModalRef = useRef<CreatSegTextRefType>(null);
+    const [visible, setVisible] = React.useState(false)
+    const [loading, setLoading] = useState(false)
+    const [loadingKeys, setLoadingKeys] = useState<Set<number>>(new Set())
+    const [form] = Form.useForm<any>()
+    const [pageSize, setPageSize] = useState(1)
+    const [limit, setLimit] = useState(10)
+    const [documentId, setDocumentId] = useState('')
+    const DocDetailsModalRef = useRef<DocDetailsRefType>(null)
+    const creatSegTextModalRef = useRef<CreatSegTextRefType>(null)
     const {
       data: tableList,
       error,
@@ -84,83 +81,137 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
     } = useSWR(
       detailData?.id
         ? [
-            `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
-          ]
+          `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
+        ]
         : null,
-      () => getKnowledgeDoclist(pageSize, limit, detailData.id)
-    );
+      () => getKnowledgeDoclist(pageSize, limit, detailData.id),
+    )
+    const { data: allDocList } = useSWR(
+      detailData?.id
+        ? [
+          `/knowledge/docList?page=1&limit=10000&dataset_id=${detailId}`,
+        ]
+        : null,
+      () => getKnowledgeDoclist(1, 10000, detailData.id),
+    )
+    const { data: userListData } = useSWR(['/tweetsUserNameList'], tweetsUserNameList)
+    const userOptions = useMemo(() => {
+      return userListData
+        ? userListData.data.tweets_user_name_list.map(tweet => ({
+          label: tweet,
+          value: tweet,
+        }))
+        : []
+    }, [userListData])
+
+    const docOptions = useMemo(() => {
+      return allDocList
+        ? allDocList.data.data.map(doc => ({
+          label: doc.name,
+          value: doc.id,
+        }))
+        : []
+    }, [allDocList])
 
     const detailItem = detailId
-      ? detailList.find((item) => item.id === detailId)
-      : undefined;
+      ? detailList.find(item => item.id === detailId)
+      : undefined
 
     const promiseRef = useRef<{
-      resolve: (value: DetailsType | false) => void;
-    }>();
+      resolve: (value: DetailsType | false) => void
+    }>()
 
     useImperativeHandle(ref, () => ({
       show: () => {
-        setVisible(true);
-        setPageSize(1);
-        setLimit(10);
+        setVisible(true)
+        setPageSize(1)
+        setLimit(10)
         return new Promise((resolve) => {
-          promiseRef.current = { resolve };
-        });
+          promiseRef.current = { resolve }
+        })
       },
-    }));
+    }))
 
     const formatSourceType = (type: any) => {
       switch (type) {
-        case "upload_file":
-          return "文件类型";
-          break;
-        case "upload_text":
-          return "文本类型";
-          break;
+        case 'upload_file':
+          return '文件类型'
+          break
+        case 'upload_text':
+          return '文本类型'
+          break
         default:
-          return "其他";
-          break;
+          return '其他'
+          break
       }
-    };
+    }
 
     const formatSourceStatus = (status: any) => {
       switch (status) {
-        case "completed":
-          return "完成";
-          break;
+        case 'completed':
+          return '完成'
+          break
         default:
-          return "其他";
-          break;
+          return '其他'
+          break
       }
-    };
+    }
+
+    const onGatherAccountBindChange = async (value: string) => {
+      if (!detailItem)
+        return
+      try {
+        const res = await bindPersonalityAndAccount({ tweet_account: value, knowledge_id: detailItem.id, document_id: detailItem.binding_document_id })
+        updateListData && updateListData()
+        mutate([`/knowledge/docList?page=1&limit=10000&dataset_id=${detailId}`])
+        Message.success('设置采集账号成功！')
+      }
+      catch (_err) {
+
+      }
+    }
+
+    const onGatherDocBindChange = async (value: string) => {
+      if (!detailItem)
+        return
+      try {
+        const res = await bindPersonalityAndAccount({ tweet_account: detailItem.binding_tweet_account, knowledge_id: detailItem.id, document_id: value })
+        updateListData && updateListData()
+        mutate([`/knowledge/docList?page=1&limit=10000&dataset_id=${detailId}`])
+        Message.success('设置采集账号成功！')
+      }
+      catch (_err) {
+
+      }
+    }
 
     const columns: TableColumnProps[] = [
       {
-        title: "文件名字",
-        dataIndex: "name",
+        title: '文件名字',
+        dataIndex: 'name',
       },
       {
-        title: "数据源类型",
+        title: '数据源类型',
         render: (_col, item) => (
           <div>{formatSourceType(item.data_source_type)}</div>
         ),
       },
       {
-        title: "文件大小",
+        title: '文件大小',
         render: (_col, item) => <div>{item.word_count} 字符</div>,
       },
       {
-        title: "当前状态",
+        title: '当前状态',
         render: (_col, item) => (
           <div>{formatSourceStatus(item.indexing_status)}</div>
         ),
       },
       {
-        title: "创建时间",
+        title: '创建时间',
         render: (_col, item) => <div>{formatTime(item.created_at)}</div>,
       },
       {
-        title: "操作",
+        title: '操作',
         render: (_col, item, index) => (
           <div>
             <div className="flex items-center justify-start gap-2 my-2">
@@ -168,7 +219,7 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 type="secondary"
                 size="small"
                 onClick={() => {
-                  onDocDetailHandler(item);
+                  onDocDetailHandler(item)
                 }}
               >
                 详情
@@ -178,7 +229,7 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 title="提示"
                 content="确定要删除该文件吗？"
                 onOk={() => {
-                  onDeleteHandler(item, index);
+                  onDeleteHandler(item, index)
                 }}
               >
                 <Button
@@ -194,7 +245,7 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 type="outline"
                 size="small"
                 onClick={() => {
-                  addSegTex(item);
+                  addSegTex(item)
                 }}
               >
                 添加段落
@@ -203,73 +254,77 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
           </div>
         ),
       },
-    ];
+    ]
 
     const formatTime = (timestamp: any) => {
-      const date = new Date(timestamp * 1000);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份从0开始，所以要加1
-      const day = String(date.getDate()).padStart(2, "0");
-      const hours = String(date.getHours()).padStart(2, "0");
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-      const seconds = String(date.getSeconds()).padStart(2, "0");
-      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    };
+      const date = new Date(timestamp * 1000)
+      const year = date.getFullYear()
+      const month = String(date.getMonth() + 1).padStart(2, '0') // 月份从0开始，所以要加1
+      const day = String(date.getDate()).padStart(2, '0')
+      const hours = String(date.getHours()).padStart(2, '0')
+      const minutes = String(date.getMinutes()).padStart(2, '0')
+      const seconds = String(date.getSeconds()).padStart(2, '0')
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+    }
     const onDocDetailHandler = async (item: any) => {
-      await setDocumentId(item.id);
-      const result = await DocDetailsModalRef.current!.show();
-      if (!result) return;
+      await setDocumentId(item.id)
+      const result = await DocDetailsModalRef.current!.show()
+      if (!result)
+        return
       mutate([
         `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
-      ]);
-    };
+      ])
+    }
 
     const onDeleteHandler = async (item: any, index: any) => {
-      setLoadingKeys((prevKeys) => new Set(prevKeys.add(item.id)));
+      setLoadingKeys(prevKeys => new Set(prevKeys.add(item.id)))
 
       try {
-        const res = await deleteDoc(detailData.id, item.id);
+        const res = await deleteDoc(detailData.id, item.id)
         if (res.code != 0) {
           Message.error({
             content: res.data?.data?.message,
-          });
-          return;
+          })
+          return
         }
         Message.success({
-          content: "删除成功",
-        });
+          content: '删除成功',
+        })
         mutate([
           `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailData.id}`,
-        ]);
-        updateListData();
-        promiseRef.current?.resolve("成功");
-      } catch (error: any) {
-        Message.error({
-          content: "删除失败",
-        });
-      } finally {
-        setLoadingKeys((prevKeys) => {
-          const newKeys = new Set(prevKeys);
-          newKeys.delete(item.id);
-          return newKeys;
-        });
+        ])
+        updateListData()
+        promiseRef.current?.resolve('成功')
       }
-    };
+      catch (error: any) {
+        Message.error({
+          content: '删除失败',
+        })
+      }
+      finally {
+        setLoadingKeys((prevKeys) => {
+          const newKeys = new Set(prevKeys)
+          newKeys.delete(item.id)
+          return newKeys
+        })
+      }
+    }
 
     const handleCancel = () => {
-      promiseRef.current?.resolve(false);
-      form.resetFields();
-      setVisible(false);
-    };
+      promiseRef.current?.resolve(false)
+      form.resetFields()
+      setVisible(false)
+    }
 
     const addSegTex = async (item: any) => {
-      await setDocumentId(item.id);
-      const result = await creatSegTextModalRef.current!.show();
-      if (!result) return;
+      await setDocumentId(item.id)
+      const result = await creatSegTextModalRef.current!.show()
+      if (!result)
+        return
       mutate([
         `/knowledge/docList?page=${pageSize}&limit=${limit}&dataset_id=${detailId}`,
-      ]);
-    };
+      ])
+    }
 
     return (
       <Modal
@@ -281,28 +336,20 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
         focusLock={true}
         unmountOnExit={true}
         mountOnEnter={true}
-        className={"!w-[95%] md:!w-[85%] xl:!w-[100%] max-w-[1440px]"}
+        className={'!w-[95%] md:!w-[85%] xl:!w-[100%] max-w-[1440px]'}
       >
-        <Space
-          style={{
-            display: "grid",
-            alignItems: "flex-start",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "20px",
-          }}
-          className={"mb-5"}
-        >
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-5 lg:gap-y-10 gap-x-4'>
           <Card>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                gap: "16px",
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: '16px',
               }}
             >
               <div className="flex">
                 <div className="inline-block min-w-20 text-right">个体ID：</div>
-                <div>{detailData.id}</div>
+                <div>{detailData?.id}</div>
               </div>
               <div>
                 <span className="inline-block min-w-20 text-right">
@@ -311,8 +358,8 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 <span
                   className="inline-block px-1.5 rounded-sm"
                   style={{
-                    backgroundColor: "rgba(232, 255, 234, 1)",
-                    color: "green",
+                    backgroundColor: 'rgba(232, 255, 234, 1)',
+                    color: 'green',
                     fontWeight: 700,
                   }}
                 >
@@ -336,9 +383,9 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
           <Card>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                gap: "16px",
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: '16px',
               }}
             >
               <div className="flex">
@@ -355,60 +402,99 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                 <div className="inline-block min-w-20 text-right">
                   推文喂料：
                 </div>
-                <div>{"0"} 条</div>
+                <div>{'0'} 条</div>
               </div>
               <div className="flex">
                 <div className="inline-block min-w-28 text-right">
                   推文生产次数：
                 </div>
-                <div>{"0"} 次</div>
+                <div>{'0'} 次</div>
               </div>
               <div className="flex">
                 <div className="inline-block min-w-20 text-right">
                   回复喂料：
                 </div>
-                <div>{"0"} 条</div>
+                <div>{'0'} 条</div>
               </div>
               <div className="flex">
                 <div className="inline-block min-w-28 text-right">
                   回复生产次数：
                 </div>
-                <div>{"0"} 次</div>
+                <div>{'0'} 次</div>
               </div>
             </div>
           </Card>
-        </Space>
-        <Card>
-          <Typography.Title heading={6}>相关知识库</Typography.Title>
-          <Divider />
-          <Table
-            columns={columns}
-            data={tableList ? tableList.data.data : undefined}
-            pagination={false}
-            loading={isLoading}
-            rowKey={"id"}
-          />
-          <div className="pt-4">
-            <Pagination
-              size={"small"}
-              total={tableList ? tableList.data.total : 0}
-              showTotal
-              sizeCanChange
-              current={pageSize}
-              pageSize={limit}
-              onChange={(page) => {
-                setPageSize(page); // 设置当前页码
-              }}
-              onPageSizeChange={(size: number, current: number) => {
-                setPageSize(1);
-                setLimit(size);
-              }}
+          <Card className={'col-span-1 lg:col-span-2'}>
+            <Typography.Title heading={6}>相关知识库</Typography.Title>
+            <Divider />
+            <Table
+              columns={columns}
+              data={tableList ? tableList.data.data : undefined}
+              pagination={false}
+              loading={isLoading}
+              rowKey={'id'}
             />
-          </div>
-        </Card>
+            <div className="pt-4">
+              <Pagination
+                size={'small'}
+                total={tableList ? tableList.data.total : 0}
+                showTotal
+                sizeCanChange
+                current={pageSize}
+                pageSize={limit}
+                onChange={(page) => {
+                  setPageSize(page) // 设置当前页码
+                }}
+                onPageSizeChange={(size: number, current: number) => {
+                  setPageSize(1)
+                  setLimit(size)
+                }}
+              />
+            </div>
+          </Card>
+          <Card
+            title={<Typography.Title heading={6}>采集配置</Typography.Title>}
+            className='col-span-1 lg:col-span-2'
+          >
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-1 items-center'>
+              <div className="flex items-center gap-1">
+                <div className="inline-block min-w-28 text-right">
+                  采集账号：
+                </div>
+                <div className='w-full'>
+                  <Select
+                    placeholder='选择账号'
+                    showSearch
+                    bordered={false}
+                    onChange={value => onGatherAccountBindChange(value)}
+                    defaultValue={detailItem?.binding_tweet_account || undefined}
+                  >
+                    {userOptions.map(opt => <Option key={opt.value} value={opt.value}>{opt.label}</Option>)}
+                  </Select>
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="inline-block min-w-28 text-right">
+                  采集归集文件：
+                </div>
+                <div className='w-full'>
+                  <Select
+                    placeholder='选择文档'
+                    showSearch
+                    bordered={false}
+                    onChange={value => onGatherDocBindChange(value)}
+                    defaultValue={detailItem?.binding_document_id || undefined}
+                  >
+                    {docOptions.map(opt => <Option key={opt.value} value={opt.value}>{opt.label}</Option>)}
+                  </Select>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
         <DocDetailsModal
           docDetailData={{
-            dataset_id: detailId || "",
+            dataset_id: detailId || '',
             document_id: documentId,
           }}
           updateListData={updateListData}
@@ -416,17 +502,17 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
         />
         <CreatSegTextModal
           docDetailData={{
-            dataset_id: detailId || "",
+            dataset_id: detailId || '',
             document_id: documentId,
           }}
           updateListData={updateListData}
           ref={creatSegTextModalRef}
         />
       </Modal>
-    );
-  }
-);
+    )
+  },
+)
 
-DetailsModal.displayName = "DetailsModal";
+DetailsModal.displayName = 'DetailsModal'
 
-export { DetailsModal };
+export { DetailsModal }
