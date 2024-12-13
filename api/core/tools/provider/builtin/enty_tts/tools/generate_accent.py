@@ -55,7 +55,7 @@ class EntyTTSStartAccentGeneration(BuiltinTool):
 
         try:
 
-            response = post(str(url), files=files, headers=headers, timeout=30.0)
+            response = post(str(url), files=files, headers=headers, timeout=60.0)
 
             if response.status_code != 200: 
                 raise Exception("Failed to generate accent", )
