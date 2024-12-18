@@ -1,0 +1,27 @@
+identity:
+  name: xai_delete_dataset_by_name
+  author: Enty
+  label:
+    en_US: XAI Delete Personality By Name
+    zh_Hans: XAI 删除个体（根据名称）
+    pt_BR: XAI Delete Personality By Name
+description:
+  human:
+    en_US: A tool for delete personality with personality name.
+    zh_Hans: 一个用于基于个体名称删除个体的工具。
+    pt_BR: A tool for delete personality with personality name.
+  llm: A tool for delete personality with personality name.
+parameters:
+  - name: name
+    type: string
+    required: true
+    label:
+      en_US: Name
+      zh_Hans: 名称
+      pt_BR: Name
+    human_description:
+      en_US: Name of personality to delete
+      zh_Hans: 个体名称
+      pt_BR: Name of personality to delete
+    llm_description: Name of personality to delete
+    form: llm

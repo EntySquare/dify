@@ -1,5 +1,5 @@
 identity:
-  name: xai_create_datasets
+  name: xai_create_dataset
   author: Enty
   label:
     en_US: XAI Create Personality
@@ -15,15 +15,15 @@ parameters:
   - name: name
     type: string
     required: true
-    label: 
+    label:
       en_US: Name
       zh_Hans: 名称
       pt_BR: Name
     human_description:
-      en_US: Name of personality 
+      en_US: Name of personality
       zh_Hans: 个体名称
-      pt_BR: Name of personality 
-    llm_description: Name of personality 
+      pt_BR: Name of personality
+    llm_description: Name of personality
     form: llm
   - name: indexing_technique
     type: select
@@ -41,7 +41,7 @@ parameters:
       - value: high_quality
         label:
           en_US: High quality
-          zh_Hans: 高质量 
+          zh_Hans: 高质量
           pt_BR: High quality
       - value: economy
         label:
@@ -78,4 +78,3 @@ parameters:
           zh_Hans: 部分团队成员
           pt_BR: Partial members
     default: only_me
-    

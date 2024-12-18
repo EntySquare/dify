@@ -1,0 +1,40 @@
+identity:
+  name: xai_delete_doc
+  author: Enty
+  label:
+    en_US: XAI Delete Doc
+    zh_Hans: XAI 删除料
+    pt_BR: XAI Delete DOC
+description:
+  human:
+    en_US: A tool for delete doc with provided parameters.
+    zh_Hans: 一个用于根据指定参数删除个体下的料的工具。
+    pt_BR: A tool for delete doc with provided parameters.
+  llm: A tool for delete doc with provided parameters.
+parameters:
+  - name: personality_id
+    type: string
+    required: true
+    label:
+      en_US: Personality ID
+      zh_Hans: 个体 ID
+      pt_BR: Personality ID
+    human_description:
+      en_US: Personality ID of the doc to delete belong
+      zh_Hans: 要删除的料所属的个体的 ID
+      pt_BR: Personality ID of the doc to delete belong
+    llm_description: Personality ID of the doc to delete belong
+    form: llm
+  - name: doc_id
+    type: string
+    required: true
+    label:
+      en_US: Doc ID
+      zh_Hans: 料 ID
+      pt_BR: Doc ID
+    human_description:
+      en_US: ID of the doc to delete
+      zh_Hans: 要删除的个体的 ID
+      pt_BR: ID of the doc to delete
+    llm_description: ID of the doc to delete
+    form: llm
