@@ -1,4 +1,4 @@
-import { MonitorChannelListCard } from "@/app/components/tgai-channel/monitor-channel/monitor-channel-list-card";
+import { MonitorChannelListCard } from "@/app/components/tgai-channel/monitor-channel/monitor-channel-card";
 import React from "react";
 
 const TGAIMonitorChannel = () => {

@@ -597,3 +597,31 @@ export const getDataCleansingFileDownload = (filename: string) => {
     const encodedFilename = encodeURIComponent(filename);
     return TGAIGet<unknown>("/file/download/" + encodedFilename)
 }
+
+export type createGroupListenReq = {
+  group_domain: string;
+  group_id?: number;
+  group_name?: string;
+  id?: number;
+  phone: string;
+  state: string;
+  workflow_id: string;
+  workflow_name: string;
+};
+
+// 创建群监听
+export const createGroupListen = (data: createGroupListenReq) =>
+  TGAIPost<any>("/groupListen/create", data);
+
+// 查询群监听列表
+export const getGroupListenList = (current_page: number, page_size: number) =>
+  TGAIGet<any>(
+    `/groupListen/list?current_page=${current_page}&page_size=${page_size}`
+  );
+
+// 更新群监听状态
+export const updateGroupListen = (data: any) =>
+  TGAIPost<any>("/groupListen/update", data);
+
+// 查询当前执行群监听的账号
+export const getGroupListenCurrent = () => TGAIGet<any>("/groupListen/current");
