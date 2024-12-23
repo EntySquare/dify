@@ -7,16 +7,24 @@ import {
   Divider,
   Link,
   Message,
+  Popconfirm,
   Select,
   Space,
   Table,
   Typography,
 } from "@arco-design/web-react";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { useShallow } from "zustand/react/shallow";
 import {
   createGroupListenReq,
+  deleteGroupListen,
   getGroupListenCurrent,
   getGroupListenList,
   getTGAIAllChannelList,
@@ -35,6 +43,9 @@ export const MonitorChannelListCard = () => {
   const [bthLoading, setBthLoading] = useState(false);
   const [phone, setPhone] = useState<string>();
   const monitorChannelAddModalRef = useRef<MonitorChannelAddModalRefType>(null);
+  const [deleteLoadingState, setDeleteLoadingState] = useState<Set<number>>(
+    new Set()
+  );
   const { data: groupListenCurrent } = useSWR(
     ["/groupListen/current"],
     getGroupListenCurrent
@@ -110,6 +121,24 @@ export const MonitorChannelListCard = () => {
         return <div style={statusStyle}>{statusText}</div>;
       },
     },
+    {
+      title: "操作",
+      render: (_col, item) => (
+        <div>
+          <Popconfirm
+            title={"删除任务"}
+            content={"确认删除此任务？"}
+            onOk={() => {
+              delGroupTask(item.id!);
+            }}
+          >
+            <Button loading={deleteLoadingState.has(item.id!)} status="danger">
+              删除
+            </Button>
+          </Popconfirm>
+        </div>
+      ),
+    },
   ];
 
   const showAddModal = async (data: any) => {
@@ -134,24 +163,40 @@ export const MonitorChannelListCard = () => {
     }
     try {
       setBthLoading(true);
-      const res = await updateGroupListen({
+      await updateGroupListen({
         old_phone: groupListenCurrent ? groupListenCurrent?.data : "",
         new_phone: phone,
         state: "1",
       });
-      if (res.code === 0) {
-        Message.success("执行成功！");
-        mutate(
-          [`/groupListen/list?current_page=${currentPage}&page_size=25`],
-          undefined
-        );
-        mutate(["/groupListen/current"], undefined);
-      }
+      Message.success("执行成功！");
+      mutate(
+        [`/groupListen/list?current_page=${currentPage}&page_size=25`],
+        undefined
+      );
+      mutate(["/groupListen/current"], undefined);
     } catch (error) {
     } finally {
       setBthLoading(false);
     }
   };
+  const delGroupTask = useCallback(async (id: number) => {
+    try {
+      setDeleteLoadingState((prev) => new Set(prev.add(id)));
+      await deleteGroupListen(id);
+      Message.success("删除成功！");
+      mutate(
+        [`/groupListen/list?current_page=${currentPage}&page_size=25`],
+        undefined
+      );
+      mutate(["/groupListen/current"], undefined);
+    } catch (err) {
+    } finally {
+      setDeleteLoadingState((prev) => {
+        prev.delete(id);
+        return new Set(prev);
+      });
+    }
+  }, []);
 
   return (
     <Card className={"px-4"}>
@@ -179,7 +224,7 @@ export const MonitorChannelListCard = () => {
         <Space className={"my-2.5"}>
           <Typography.Text>
             当前执行账号：
-            {groupListenCurrent ? groupListenCurrent?.data : "暂无执行账号"}
+            {groupListenCurrent ? groupListenCurrent?.data || "暂无执行账号"  : "暂无执行账号"}
           </Typography.Text>
         </Space>
         <Space>

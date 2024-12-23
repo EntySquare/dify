@@ -625,3 +625,8 @@ export const updateGroupListen = (data: any) =>
 
 // 查询当前执行群监听的账号
 export const getGroupListenCurrent = () => TGAIGet<any>("/groupListen/current");
+
+// 删除群监听状态
+export const deleteGroupListen = (listen_id: number) =>
+    TGAIDelete<any>(`/groupListen/delete/${listen_id}`);
+  
