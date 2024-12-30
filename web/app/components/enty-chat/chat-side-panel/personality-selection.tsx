@@ -14,14 +14,24 @@ type PersonalitySelectionProps = {
 const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) => {
   const [search, setSearch] = React.useState('')
 
-  const { selectedPersonality, setSelectedPersonality } = useEntyAIChatStore(useShallow(state => ({ selectedPersonality: state.selectedPersonality, setSelectedPersonality: state.setSelectedPersonality })))
+  const {
+    selectedPersonality,
+    setSelectedPersonality,
+    isChatStarted,
+  } = useEntyAIChatStore(useShallow(state => ({
+    selectedPersonality: state.selectedPersonality,
+    setSelectedPersonality: state.setSelectedPersonality,
+    isChatStarted: state.isChatStarted,
+  })))
 
   const onItemClick = useCallback((item: string) => {
+    if (isChatStarted)
+      return
     if (selectedPersonality === item)
       return
 
     setSelectedPersonality(item)
-  }, [selectedPersonality])
+  }, [selectedPersonality, isChatStarted])
 
   const searchFilterList = useMemo(() => {
     if (!data || data.length === 0)
@@ -31,11 +41,12 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
   }, [data, search])
 
   return <div className={'mt-3'}>
-    { (!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有 AI 人设</div> }
-    { data && data.length > 0 && <div className={'flex flex-col gap-3'}>
+    {(!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有 AI 人设</div>}
+    {data && data.length > 0 && <div className={'flex flex-col gap-3'}>
       <div className={'flex gap-2'}>
         <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)}
           onClear={() => setSearch('')}
+          disabled={isChatStarted}
         />
       </div>
       <div className={'flex flex-col gap-[6px]'}>
@@ -49,7 +60,7 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
           />)
           : <div className={'text-tgai-text-2'}>未找到匹配的人设</div>}
       </div>
-    </div> }
+    </div>}
 
   </div>
 })

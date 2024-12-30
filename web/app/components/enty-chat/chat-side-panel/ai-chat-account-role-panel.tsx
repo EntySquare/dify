@@ -3,9 +3,10 @@
 import { Disclosure, Transition } from '@headlessui/react'
 import { RiArrowDropRightLine, RiLayoutLeftLine, RiRestartLine } from '@remixicon/react'
 import { usePathname } from 'next/navigation'
-import React, { useCallback, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import useSWR from 'swr'
 import { useShallow } from 'zustand/react/shallow'
+import { useEntyChat } from '@/app/components/enty-chat/hooks'
 import Button from '@/app/components/base/button'
 import Tooltip from '@/app/components/base/tooltip'
 import PersonalitySelection from '@/app/components/enty-chat/chat-side-panel/personality-selection'
@@ -32,21 +33,21 @@ export const PanelTopHeader = React.memo(() => {
   const {
     isLeftPanelOpen,
     setIsLeftPanelOpen,
-    setChatLists,
-    setConversationId,
+
   } = useEntyAIChatStore(useShallow(state => ({
     isLeftPanelOpen: state.isLeftPanelOpen,
     setIsLeftPanelOpen: state.setIsLeftPanelOpen,
+    isChatStarted: state.isChatStarted,
+    setIsChatStarted: state.setIsChatStarted,
     setChatLists: state.setChatLists,
     setConversationId: state.setConversationId,
+    setSelectedAccounts: state.setSelectedAccounts,
+    setSelectedPersonality: state.setSelectedPersonality,
   })))
 
-  const onRestartAIChat = useCallback(() => {
-    setChatLists([])
-    setConversationId()
-  }, [])
+  const { onRestartAIChat } = useEntyChat()
 
-  return <div className={'flex gap-2 h-14 items-center px-3'}>
+  return <div className={'flex gap-2 h-14 items-center px-3 z-50'}>
     <Tooltip
       popupContent={
         <div className='w-[180px]'>
@@ -87,14 +88,18 @@ const AccountRolePanel = React.memo(() => {
   const { data: knowledgeListData } = useSWR(['/knowledge/list'], () => getKnowledgeList({ page: 1, limit: 50 }))
 
   const {
+    isChatStarted,
     selectedAccounts,
     setSelectedAccounts,
     isLeftPanelOpen,
   } = useEntyAIChatStore(useShallow(state => ({
+    isChatStarted: state.isChatStarted,
     selectedAccounts: state.selectedAccounts,
     setSelectedAccounts: state.setSelectedAccounts,
     isLeftPanelOpen: state.isLeftPanelOpen,
   })))
+
+  const { onRestartAIChat } = useEntyChat()
 
   const serviceType = useTGAIGlobalStore(state => state.serviceType)
 
@@ -132,14 +137,18 @@ const AccountRolePanel = React.memo(() => {
     leaveFrom="opacity-100 w-full"
     leaveTo="opacity-0 w-0"
   >
-    <div className={cn('text-tgai-text-1 overflow-hidden flex flex-col h-full')}>
-      <PanelTopHeader/>
-      <div className={'overflow-y-auto h-full tgai-custom-scrollbar py-4 px-3'}>
+    <div className={cn('text-tgai-text-1 overflow-hidden flex flex-col h-full relative')}>
+      <PanelTopHeader />
+      {isChatStarted && <div className='group absolute top-0 left-0 size-full h-full backdrop-blur-0 hover:backdrop-blur-[3px] z-40 transition-all flex justify-center items-center'>
+        <Button variant={'primary'} className='opacity-0 group-hover:opacity-100 transition-all' onClick={onRestartAIChat}>重置参数</Button>
+      </div>
+      }
+      <div className={cn('overflow-y-auto h-full tgai-custom-scrollbar py-4 px-3 relative')}>
         <Disclosure defaultOpen>
           {({ open }) => (
             <>
               <Disclosure.Button className={'flex items-center justify-between w-full'}>
-                <CommonSectionLabel text={`已登录${serviceText}账号列表`}/>
+                <CommonSectionLabel text={`已登录${serviceText}账号列表`} />
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
               <Transition
@@ -151,7 +160,7 @@ const AccountRolePanel = React.memo(() => {
                 leaveTo="transform scale-95 opacity-0"
               >
                 <Disclosure.Panel>
-                  <XAccountSelection data={userListData ? userListData.data.tweets_user_name_list : []}/>
+                  <XAccountSelection data={userListData ? userListData.data.tweets_user_name_list : []} />
                 </Disclosure.Panel>
               </Transition>
             </>
@@ -162,7 +171,7 @@ const AccountRolePanel = React.memo(() => {
           {({ open }) => (
             <>
               <Disclosure.Button className={'flex items-center justify-between w-full mt-10'}>
-                <CommonSectionLabel text={'AI 人设列表'}/>
+                <CommonSectionLabel text={'AI 人设列表'} />
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
               <Transition

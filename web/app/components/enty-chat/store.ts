@@ -6,9 +6,9 @@ type State = {
   isChatStarted: boolean
   isLeftPanelOpen: boolean
   isResponding: boolean
-  selectedPersonality?: string
+  selectedPersonality: string | null
   chatLists: ChatItem[]
-  conversation_id?: string
+  conversation_id: string | null
 }
 
 type Action = {
@@ -17,18 +17,18 @@ type Action = {
   setIsLeftPanelOpen: (isLeftPanelOpen: boolean) => void
   setChatLists: (chatLists: ChatItem[]) => void
   setIsResponding: (isResponding: boolean) => void
-  setSelectedPersonality: (selectedPersonality: string) => void
-  setConversationId: (conversation_id?: string) => void
+  setSelectedPersonality: (selectedPersonality: string | null) => void
+  setConversationId: (conversation_id: string | null) => void
 }
 
 export const useEntyAIChatStore = create<State & Action>(set => ({
   selectedAccounts: [],
-  isChatStarted: true,
+  isChatStarted: false,
   isLeftPanelOpen: true,
   chatLists: [],
   isResponding: false,
-  selectedPersonality: undefined,
-  conversation_id: undefined,
+  selectedPersonality: null,
+  conversation_id: null,
   setSelectedAccounts: selectedAccounts => set(() => ({ selectedAccounts })),
   setIsChatStarted: isChatStarted => set(() => ({ isChatStarted })),
   setIsLeftPanelOpen: isLeftPanelOpen => set(() => ({ isLeftPanelOpen })),

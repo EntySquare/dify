@@ -24,7 +24,7 @@ const AIChatWrapperHeader = React.memo(() => {
   })))
 
   return <div className={cn('absolute top-0 left-0 h-14 flex justify-between items-center z-50 gap-4', isLeftPanelOpen ? 'pl-4' : '')}>
-    {!isLeftPanelOpen && <PanelTopHeader/>}
+    {!isLeftPanelOpen && <PanelTopHeader />}
     <div className={'text-base font-bold text-tgai-text-1'}>AI智能聊天</div>
   </div>
 })
@@ -112,13 +112,12 @@ const AIChatWrapper = React.memo(() => {
     finally {
       setIsResponding(false)
     }
-
   }, [chatLists, selectedAccounts, selectedPersonality, conversation_id, isResponding])
 
   return <div className={'relative h-full border-l border-tgai-panel-border w-full bg-gray-50 dark:bg-tgai-panel-background'}>
     <AIChatWrapperHeader />
 
-    { selectedPersonality === undefined
+    {(selectedPersonality === undefined || !isChatStarted)
       ? <Empty />
       : <Chat
         chatFooterClassName={'pb-12 w-full'}

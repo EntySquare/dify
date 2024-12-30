@@ -1,8 +1,8 @@
 'use client'
 
-import {EntyServiceType, useTGAIGlobalStore} from "@/context/tgai-global-context";
 import React, { useCallback, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { EntyServiceType, useTGAIGlobalStore } from '@/context/tgai-global-context'
 import ListItem from '@/app/components/enty-chat/chat-side-panel/list-item'
 import Button from '@/app/components/base/button'
 import Input from '@/app/components/base/input'
@@ -15,11 +15,14 @@ type XAccountSelectionProps = {
 export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) => {
   const [search, setSearch] = React.useState('')
 
-  const { selectedAccounts, setSelectedAccounts } = useEntyAIChatStore(useShallow(state => ({ selectedAccounts: state.selectedAccounts, setSelectedAccounts: state.setSelectedAccounts })))
+  const { selectedAccounts, setSelectedAccounts, isChatStarted } = useEntyAIChatStore(useShallow(state => ({ selectedAccounts: state.selectedAccounts, setSelectedAccounts: state.setSelectedAccounts, isChatStarted: state.isChatStarted })))
 
   const serviceType = useTGAIGlobalStore(state => state.serviceType)
 
   const onItemClick = useCallback((item: string) => {
+    if (isChatStarted)
+      return
+
     const set = new Set(selectedAccounts)
 
     if (set.has(item))
@@ -27,7 +30,7 @@ export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) =
     else set.add(item)
 
     setSelectedAccounts([...set])
-  }, [selectedAccounts])
+  }, [selectedAccounts, isChatStarted])
 
   const searchFilterList = useMemo(() => {
     if (!data || data.length === 0)
@@ -39,6 +42,8 @@ export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) =
   const allSelected = data ? data.length === selectedAccounts.length : false
 
   const onSelectAllClick = () => {
+    if (isChatStarted)
+      return
     if (!data)
       return
     allSelected ? setSelectedAccounts([]) : setSelectedAccounts([...data])
@@ -61,11 +66,11 @@ export const XAccountSelection = React.memo<XAccountSelectionProps>(({ data }) =
   }, [serviceType])
 
   return <div className={'mt-3'}>
-    { (!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有已登录的 {serviceText} 账号</div> }
+    {(!data || data.length === 0) && <div className={'text-tgai-text-2'}>没有已登录的 {serviceText} 账号</div>}
     {data && data.length > 0 && searchFilterList && <div className={'flex flex-col gap-3'}>
       <div className={'flex gap-2'}>
-        <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)} onClear={() => setSearch('')} />
-        <Button onClick={() => onSelectAllClick()}>{allSelected ? '清空' : '全选'}</Button>
+        <Input value={search} showLeftIcon showClearIcon onChange={e => setSearch(e.target.value)} onClear={() => setSearch('')} disabled={isChatStarted} />
+        <Button onClick={() => onSelectAllClick()} disabled={isChatStarted}>{allSelected ? '清空' : '全选'}</Button>
       </div>
       <div className={'flex flex-col gap-[6px]'}>
         {searchFilterList.length > 0

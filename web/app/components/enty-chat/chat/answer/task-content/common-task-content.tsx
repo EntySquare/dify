@@ -197,8 +197,6 @@ const CommonTaskContent = React.memo<CommonTaskContentProps>(({
   replyType,
   item,
 }) => {
-  console.log(content)
-
   return <div className={'flex flex-col gap-y-4'}>
     {content.map((taskItem, index) => <CommonTaskItem key={taskItem.uuid || 'index'} content={taskItem.view || ''} execute_url={taskItem.execute_url} refresh_url={taskItem.refresh_url} message_id={item.id} name={name} username={username} replyType={replyType} execute_url_2={taskItem.execute2_url ? taskItem.execute2_url : undefined} execute_url_3={taskItem.execute3_url ? taskItem.execute3_url : undefined} />)}
   </div>
