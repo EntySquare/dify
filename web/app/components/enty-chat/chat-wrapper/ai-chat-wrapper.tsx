@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { useEntyChat } from '../hooks'
 import { getLastAnswer } from '@/app/components/enty-chat/utils'
 import type { SendAIChatMsgReq } from '@/service/xai'
 import { sendAIChatMsg } from '@/service/xai'
@@ -43,6 +44,8 @@ const AIChatWrapper = React.memo(() => {
     conversation_id: state.conversation_id,
     setConversationId: state.setConversationId,
   })))
+
+  const { onRestartAIChat } = useEntyChat()
 
   const appConfig = useMemo(() => {
     return {
@@ -113,6 +116,12 @@ const AIChatWrapper = React.memo(() => {
       setIsResponding(false)
     }
   }, [chatLists, selectedAccounts, selectedPersonality, conversation_id, isResponding])
+
+  useEffect(() => {
+    return () => {
+      onRestartAIChat()
+    }
+  }, [])
 
   return <div className={'relative h-full border-l border-tgai-panel-border w-full bg-gray-50 dark:bg-tgai-panel-background'}>
     <AIChatWrapperHeader />
