@@ -31,7 +31,7 @@ const ToolsNav = ({
           : <RiHammerLine className='mr-2 w-4 h-4' />
       }
       {/* {t('common.menus.tools')} */}
-      能力
+      扩展
     </Link>
   )
 }

@@ -89,7 +89,7 @@ const CreateAppCardEntyTgAi = forwardRef<HTMLAnchorElement, CreateAppCardProps>(
       isCreatingRef.current = true
       try {
         const app = await createApp({
-          name: '聊天助手（任务）',
+          name: '聊天助手（架构）',
           description: '',
           icon_type: 'emoji',
           icon: '🤖',
@@ -115,7 +115,7 @@ const CreateAppCardEntyTgAi = forwardRef<HTMLAnchorElement, CreateAppCardProps>(
         className='relative col-span-1 flex flex-col justify-between min-h-[160px] bg-tgai-panel-background-2 rounded-xl border-[0.5px] border-black/5'
       >
         <div className="grow p-2 rounded-t-xl">
-          <div className="px-6 pt-2 pb-1 text-xs font-medium leading-[18px] text-tgai-text-3">TG AI 任务</div>
+          <div className="px-6 pt-2 pb-1 text-xs font-medium leading-[18px] text-tgai-text-3">AI 架构</div>
           <div
             className="flex items-center mb-1 px-6 py-[7px] rounded-lg text-[13px] font-medium leading-[18px] text-tgai-text-1 cursor-pointer hover:text-tgai-primary hover:bg-tgai-panel-background-3"
             onClick={createInChatOneV1}
@@ -141,7 +141,7 @@ const CreateAppCardEntyTgAi = forwardRef<HTMLAnchorElement, CreateAppCardProps>(
             onClick={onCreateChatWorkflow}
           >
             {/* <FilePlus02 className='shrink-0 mr-2 w-4 h-4' /> */}
-            创建 聊天助手（任务）
+            创建 聊天助手（架构）
           </div>
         </div>
         {/* <CreateAppModal */}

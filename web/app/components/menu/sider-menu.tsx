@@ -317,22 +317,22 @@ const SiderMenu = () => {
       },
       {
         type: 'sub',
-        title: '电子员工管理',
+        title: 'AI管理',
         href: '',
         children: [
           {
             type: 'item',
-            title: '任务中心',
+            title: '架构',
             href: '/apps',
             key: '/apps',
           }, {
             type: 'item',
-            title: '向量记录',
+            title: '投喂',
             href: '/datasets',
             key: '/datasets',
           }, {
             type: 'item',
-            title: '能力',
+            title: '扩展',
             href: '/tools',
             key: '/tools',
           }, {
@@ -342,7 +342,7 @@ const SiderMenu = () => {
             key: '/periodical-tasks',
           },
         ],
-        icon: <IconApps/>,
+        icon: <IconApps />,
         key: 'workflow',
       },
     ],

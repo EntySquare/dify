@@ -120,7 +120,7 @@ const AppNav = () => {
         icon={<RiRobot2Line className='w-4 h-4' />}
         activeIcon={<RiRobot2Fill className='w-4 h-4' />}
         // text={t('common.menus.apps')}
-        text={'任务中心'}
+        text={'架构'}
         activeSegment={['apps', 'app']}
         link='/apps'
         curNav={appDetail}

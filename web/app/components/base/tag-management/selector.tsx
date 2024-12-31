@@ -125,7 +125,7 @@ const Panel = (props: PanelProps) => {
   })
 
   return (
-    <div className='relative w-full bg-tgai-panel-background-3 rounded-lg border-[0.5px] border-gray-200 dark:border-zinc-600' onMouseLeave={onMouseLeave}>
+    <div className='relative w-full bg-tgai-panel-background-3 rounded-lg border-[0.5px] border-gray-200 dark:border-zinc-600'>
       <div className='p-2 border-b-[0.5px] border-black/5'>
         <Input
           showLeftIcon
