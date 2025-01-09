@@ -129,6 +129,9 @@ export type KnowLedge = {
   updated_at: number
   binding_tweet_account: string
   binding_document_id: string
+  role: string
+  character: string
+  tweet_account: string
 }
 
 export type GetKnowledgeListResponse = {
@@ -270,6 +273,14 @@ type BindPersonalityAndAccountPayload = {
   document_id: string
 }
 export const bindPersonalityAndAccount = (payload: BindPersonalityAndAccountPayload) => XAIPost<string>('/knowledge/bindingGather', payload)
+
+type UpdateIndividualCustomConfigPayload = {
+  character: string
+  role: string
+  tweet_account: string
+  id: string
+}
+export const updateIndividualCustomConfig = (payload: UpdateIndividualCustomConfigPayload) => XAIPost<string>('/knowledge/updateClientKnowledge', payload)
 
 // 工作流
 /*

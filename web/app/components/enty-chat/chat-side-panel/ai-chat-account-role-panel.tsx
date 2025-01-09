@@ -10,10 +10,9 @@ import { useEntyChat } from '@/app/components/enty-chat/hooks'
 import Button from '@/app/components/base/button'
 import Tooltip from '@/app/components/base/tooltip'
 import PersonalitySelection from '@/app/components/enty-chat/chat-side-panel/personality-selection'
-import XAccountSelection from '@/app/components/enty-chat/chat-side-panel/x-account-selection'
 import { useEntyAIChatStore } from '@/app/components/enty-chat/store'
 import { EntyServiceType, useTGAIGlobalStore } from '@/context/tgai-global-context'
-import { getKnowledgeList, tweetsUserNameList } from '@/service/xai'
+import { getKnowledgeList } from '@/service/xai'
 import cn from '@/utils/classnames'
 
 type CommonSectionLabelProps = {
@@ -84,8 +83,8 @@ const PanelFooter = React.memo(() => {
 PanelFooter.displayName = 'PanelFooter'
 
 const AccountRolePanel = React.memo(() => {
-  const { data: userListData } = useSWR(['/tweetsUserNameList'], tweetsUserNameList)
-  const { data: knowledgeListData } = useSWR(['/knowledge/list'], () => getKnowledgeList({ page: 1, limit: 50 }))
+  // const { data: userListData } = useSWR(['/tweetsUserNameList'], tweetsUserNameList)
+  const { data: knowledgeListData } = useSWR(['/knowledge/list'], () => getKnowledgeList({ page: 1, limit: 10000 }))
 
   const {
     isChatStarted,
@@ -144,7 +143,7 @@ const AccountRolePanel = React.memo(() => {
       </div>
       }
       <div className={cn('overflow-y-auto h-full tgai-custom-scrollbar py-4 px-3 relative')}>
-        <Disclosure defaultOpen>
+        {/* <Disclosure defaultOpen>
           {({ open }) => (
             <>
               <Disclosure.Button className={'flex items-center justify-between w-full'}>
@@ -165,12 +164,12 @@ const AccountRolePanel = React.memo(() => {
               </Transition>
             </>
           )}
-        </Disclosure>
+        </Disclosure> */}
         {/* <div className={'h-[1px] bg-gray-200 dark:bg-stone-600 w-[90%] my-8 mx-auto'}/> */}
         <Disclosure defaultOpen>
           {({ open }) => (
             <>
-              <Disclosure.Button className={'flex items-center justify-between w-full mt-10'}>
+              <Disclosure.Button className={'flex items-center justify-between w-full'}>
                 <CommonSectionLabel text={'AI 人设列表'} />
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>

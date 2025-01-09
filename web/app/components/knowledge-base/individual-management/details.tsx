@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
 import useSWR, { mutate } from 'swr'
 import type { TableColumnProps } from '@arco-design/web-react'
 import {
@@ -27,6 +27,7 @@ import {
   deleteDoc,
   getKnowledgeDoclist,
   tweetsUserNameList,
+  updateIndividualCustomConfig,
 } from '@/service/xai'
 
 const FormItem = Form.Item
@@ -74,6 +75,10 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
     const [documentId, setDocumentId] = useState('')
     const DocDetailsModalRef = useRef<DocDetailsRefType>(null)
     const creatSegTextModalRef = useRef<CreatSegTextRefType>(null)
+    const [individualBindAccount, setIndividualBindAccount] = useState<string>()
+    const [individualRole, setIndividualRole] = useState('')
+    const [individualCharacter, setIndividualCharacter] = useState('')
+
     const {
       data: tableList,
       error,
@@ -182,6 +187,41 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
       }
       catch (_err) {
 
+      }
+    }
+
+    const onIndividualCustomConfigSave = async () => {
+      if (loading || !detailItem)
+        return
+
+      if (!individualBindAccount) {
+        Message.error('必须选择一个绑定账号！')
+        return
+      }
+      if (!individualRole || !individualRole.trim()) {
+        Message.error('个体角色为必填项！')
+        return
+      }
+      if (!individualCharacter || !individualCharacter.trim())
+        Message.error('个体性格为必填项！')
+
+      try {
+        setLoading(true)
+        const res = await updateIndividualCustomConfig({
+          id: detailItem.id,
+          tweet_account: individualBindAccount,
+          role: individualRole,
+          character: individualCharacter,
+        })
+
+        Message.success('保存个体参数配置成功！')
+        updateListData && updateListData()
+      }
+      catch (err) {
+
+      }
+      finally {
+        setLoading(false)
       }
     }
 
@@ -326,6 +366,14 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
       ])
     }
 
+    useEffect(() => {
+      if (detailData) {
+        setIndividualRole(detailData.role)
+        setIndividualCharacter(detailData.character)
+        setIndividualBindAccount(detailData.tweet_account)
+      }
+    }, [detailData])
+
     return (
       <Modal
         title="个体详情"
@@ -450,6 +498,59 @@ const DetailsModal = React.forwardRef<DetailsRefType, DetailsProps>(
                   setLimit(size)
                 }}
               />
+            </div>
+          </Card>
+          <Card
+            title={<Typography.Title heading={6}>参数配置</Typography.Title>}
+            className='col-span-1 lg:col-span-2'
+          >
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-1 lg:gap-y-2 items-center'>
+              <div className="flex items-center gap-1">
+                <div className="inline-block min-w-28 text-right">
+                  个体绑定账号：
+                </div>
+                <div className='w-full'>
+                  <Select
+                    placeholder='选择账号'
+                    showSearch
+                    value={individualBindAccount}
+                    onChange={value => setIndividualBindAccount(value)}
+                  >
+                    {userOptions.map(opt => <Option key={opt.value} value={opt.value}>{opt.label}</Option>)}
+                  </Select>
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="inline-block min-w-28 text-right">
+                  角色：
+                </div>
+                <div className='w-full'>
+                  <Input
+                    allowClear
+                    placeholder="请输入个体角色"
+                    normalize={v => v ? v.trim() : v}
+                    value={individualRole}
+                    onChange={value => setIndividualRole(value.trim())}
+                  />
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="inline-block min-w-28 text-right">
+                  性格：
+                </div>
+                <div className='w-full'>
+                  <Input
+                    allowClear
+                    placeholder="请输入个体性格"
+                    normalize={v => v ? v.trim() : v}
+                    value={individualCharacter}
+                    onChange={value => setIndividualCharacter(value.trim())}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='flex items-center justify-center mt-4 lg:mt-8'>
+              <Button type='primary' className={'lg:w-auto w-full'} onClick={onIndividualCustomConfigSave} loading={loading}>保存</Button>
             </div>
           </Card>
           <Card

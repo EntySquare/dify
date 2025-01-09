@@ -2,10 +2,12 @@
 
 import React, { useCallback, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import { RiErrorWarningLine } from '@remixicon/react'
 import Input from '@/app/components/base/input'
 import ListItem from '@/app/components/enty-chat/chat-side-panel/list-item'
 import { useEntyAIChatStore } from '@/app/components/enty-chat/store'
 import type { KnowLedge } from '@/service/xai'
+import cn from '@/utils/classnames'
 
 type PersonalitySelectionProps = {
   data?: KnowLedge[]
@@ -17,20 +19,25 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
   const {
     selectedPersonality,
     setSelectedPersonality,
+    selectedAccounts,
+    setSelectedAccounts,
     isChatStarted,
   } = useEntyAIChatStore(useShallow(state => ({
     selectedPersonality: state.selectedPersonality,
     setSelectedPersonality: state.setSelectedPersonality,
     isChatStarted: state.isChatStarted,
+    selectedAccounts: state.selectedAccounts,
+    setSelectedAccounts: state.setSelectedAccounts,
   })))
 
-  const onItemClick = useCallback((item: string) => {
+  const onItemClick = useCallback((knowledge: KnowLedge) => {
     if (isChatStarted)
       return
-    if (selectedPersonality === item)
+    if (selectedPersonality === knowledge.id)
       return
 
-    setSelectedPersonality(item)
+    setSelectedPersonality(knowledge.id)
+    setSelectedAccounts([knowledge.tweet_account])
   }, [selectedPersonality, isChatStarted])
 
   const searchFilterList = useMemo(() => {
@@ -56,8 +63,17 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
             value={personality.id}
             type={'radio'}
             selected={selectedPersonality === personality.id}
-            onClick={() => onItemClick(personality.id)}
-          />)
+            disabled={!personality.tweet_account}
+            onClick={() => onItemClick(personality)}
+          >
+            <>
+              <span className='truncate'>{personality.name}</span>
+              {personality.tweet_account
+                ? <span className={cn('text-xs truncate w-full')}>{personality.tweet_account}</span>
+                : <span className={cn('text-xs flex flex-row flex-nowrap items-center truncate w-full')}><RiErrorWarningLine className='size-4 stroke-1' />未绑定账号</span>
+              }
+            </>
+          </ListItem>)
           : <div className={'text-tgai-text-2'}>未找到匹配的人设</div>}
       </div>
     </div>}

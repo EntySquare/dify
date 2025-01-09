@@ -173,17 +173,25 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
       dataIndex: 'name',
     },
     {
-      title: '个体质量',
-      render: (_col, item) => (
-        <div>{formatIndexingTechnique(item.indexing_technique)}</div>
-      ),
+      title: '角色',
+      dataIndex: 'role',
     },
     {
-      title: '数据源类型',
-      render: (_col, item) => (
-        <div>{formatSourceType(item.data_source_type)}</div>
-      ),
+      title: '绑定账号',
+      dataIndex: 'tweet_account',
     },
+    // {
+    //   title: '个体质量',
+    //   render: (_col, item) => (
+    //     <div>{formatIndexingTechnique(item.indexing_technique)}</div>
+    //   ),
+    // },
+    // {
+    //   title: '数据源类型',
+    //   render: (_col, item) => (
+    //     <div>{formatSourceType(item.data_source_type)}</div>
+    //   ),
+    // },
     {
       title: '文档数量',
       dataIndex: 'document_count',
@@ -192,10 +200,10 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
       title: '知识库容量',
       render: (_col, item) => <div>{item.word_count} 字符</div>,
     },
-    {
-      title: '权限',
-      render: (_col, item) => <div>{formatPermission(item.permission)}</div>,
-    },
+    // {
+    //   title: '权限',
+    //   render: (_col, item) => <div>{formatPermission(item.permission)}</div>,
+    // },
     {
       title: '创建时间',
       render: (_col, item) => <div>{formatTime(item.created_at)}</div>,
@@ -275,7 +283,7 @@ export const KnowledgeBaseIndividualManagementHomeView = () => {
           }}
         />
       </div>
-      <CreatIndividualModal ref={CreatIndividualModalRef} />
+      <CreatIndividualModal ref={CreatIndividualModalRef} accountList={userListData ? userListData.data.tweets_user_name_list : []} />
       {knowledgeList && detailData && (
         <DetailsModal
           updateListData={updateListData}
