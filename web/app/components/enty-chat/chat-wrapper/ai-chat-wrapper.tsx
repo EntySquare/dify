@@ -2,10 +2,11 @@
 
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+import useSWR from 'swr'
 import { useEntyChat } from '../hooks'
 import { getLastAnswer } from '@/app/components/enty-chat/utils'
 import type { SendAIChatMsgReq } from '@/service/xai'
-import { sendAIChatMsg } from '@/service/xai'
+import { getKnowledgeList, sendAIChatMsg } from '@/service/xai'
 import { PanelTopHeader } from '@/app/components/enty-chat/chat-side-panel/ai-chat-account-role-panel'
 import Toast from '@/app/components/base/toast'
 import type { FileEntity } from '@/app/components/base/file-uploader/types'
@@ -33,19 +34,28 @@ const AIChatWrapperHeader = React.memo(() => {
 AIChatWrapperHeader.displayName = 'AIChatWrapperHeader'
 
 const AIChatWrapper = React.memo(() => {
-  const { isChatStarted, chatLists, setChatLists, isResponding, setIsResponding, selectedAccounts, selectedPersonality, conversation_id, setConversationId } = useEntyAIChatStore(useShallow(state => ({
+  const { isChatStarted, chatLists, setChatLists, isResponding, setIsResponding, selectedPersonality, conversation_id, setConversationId } = useEntyAIChatStore(useShallow(state => ({
     isChatStarted: state.isChatStarted,
     chatLists: state.chatLists,
     setChatLists: state.setChatLists,
     isResponding: state.isResponding,
     setIsResponding: state.setIsResponding,
-    selectedAccounts: state.selectedAccounts,
     selectedPersonality: state.selectedPersonality,
     conversation_id: state.conversation_id,
     setConversationId: state.setConversationId,
   })))
 
+  const { data: knowledgeListData } = useSWR(['/knowledge/list'], () => getKnowledgeList({ page: 1, limit: 10000 }))
+
   const { onRestartAIChat } = useEntyChat()
+
+  const selectedKnowledge = useMemo(() => {
+    if (!selectedPersonality || !knowledgeListData)
+      return null
+    const foundPersonality = knowledgeListData.data.data.find(knowledge => knowledge.id === selectedPersonality)
+
+    return foundPersonality || null
+  }, [knowledgeListData, selectedPersonality])
 
   const appConfig = useMemo(() => {
     return {
@@ -62,6 +72,9 @@ const AIChatWrapper = React.memo(() => {
   }, [])
 
   const onSendMsg = useCallback(async (message: string, files?: FileEntity[], last_answer?: ChatItem | null) => {
+    if (!selectedKnowledge)
+      return
+
     if (isResponding) {
       Toast.notify({
         message: 'AI助手 正在回复，请等待回复结束！',
@@ -87,9 +100,12 @@ const AIChatWrapper = React.memo(() => {
     const reqParams: SendAIChatMsgReq = {
       conversation_id: conversation_id || '',
       parent_message_id: last_answer?.id || getLastAnswer(chatLists)?.id || '',
-      knowledge: selectedPersonality || '',
-      tweets_user_name_list: selectedAccounts,
+      knowledge: selectedKnowledge.id || '',
+      tweets_user_name_list: [selectedKnowledge.tweet_account],
       message,
+      tweet_account: selectedKnowledge.tweet_account,
+      role: selectedKnowledge.role,
+      character: selectedKnowledge.character,
     }
 
     try {
@@ -115,7 +131,7 @@ const AIChatWrapper = React.memo(() => {
     finally {
       setIsResponding(false)
     }
-  }, [chatLists, selectedAccounts, selectedPersonality, conversation_id, isResponding])
+  }, [chatLists, selectedKnowledge, conversation_id, isResponding])
 
   useEffect(() => {
     return () => {
@@ -126,7 +142,7 @@ const AIChatWrapper = React.memo(() => {
   return <div className={'relative h-full border-l border-tgai-panel-border w-full bg-gray-50 dark:bg-tgai-panel-background'}>
     <AIChatWrapperHeader />
 
-    {(selectedPersonality === undefined || !isChatStarted)
+    {(selectedPersonality === undefined || !isChatStarted || selectedKnowledge === null)
       ? <Empty />
       : <Chat
         chatFooterClassName={'pb-12 w-full'}
@@ -134,7 +150,7 @@ const AIChatWrapper = React.memo(() => {
         chatContainerInnerClassName={'pt-16'}
         chatList={chatLists}
         config={appConfig}
-        noChatInput={selectedPersonality === undefined}
+        noChatInput={selectedPersonality === undefined || selectedKnowledge === null}
         onSend={onSendMsg}
         noStopResponding={true}
         isResponding={isResponding}

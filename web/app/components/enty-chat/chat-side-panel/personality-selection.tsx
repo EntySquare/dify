@@ -19,15 +19,11 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
   const {
     selectedPersonality,
     setSelectedPersonality,
-    selectedAccounts,
-    setSelectedAccounts,
     isChatStarted,
   } = useEntyAIChatStore(useShallow(state => ({
     selectedPersonality: state.selectedPersonality,
     setSelectedPersonality: state.setSelectedPersonality,
     isChatStarted: state.isChatStarted,
-    selectedAccounts: state.selectedAccounts,
-    setSelectedAccounts: state.setSelectedAccounts,
   })))
 
   const onItemClick = useCallback((knowledge: KnowLedge) => {
@@ -37,7 +33,6 @@ const PersonalitySelection = React.memo<PersonalitySelectionProps>(({ data }) =>
       return
 
     setSelectedPersonality(knowledge.id)
-    setSelectedAccounts([knowledge.tweet_account])
   }, [selectedPersonality, isChatStarted])
 
   const searchFilterList = useMemo(() => {

@@ -9,12 +9,10 @@ const Empty = () => {
   const {
     isChatStarted,
     setIsChatStarted,
-    selectedAccounts,
     selectedPersonality,
   } = useEntyAIChatStore(useShallow(state => ({
     isChatStarted: state.isChatStarted,
     setIsChatStarted: state.setIsChatStarted,
-    selectedAccounts: state.selectedAccounts,
     selectedPersonality: state.selectedPersonality,
   })))
 
@@ -22,16 +20,16 @@ const Empty = () => {
     if (isChatStarted)
       return
 
-    if (selectedPersonality === null || selectedAccounts.length === 0) {
+    if (selectedPersonality === null) {
       Toast.notify({
         type: 'warning',
-        message: '请先在左侧面板选择要操作的账号以及要使用的 AI 人设！',
+        message: '请先在左侧面板选择要使用的 AI 人设！',
       })
       return
     }
 
     setIsChatStarted(true)
-  }, [isChatStarted, selectedAccounts, selectedPersonality])
+  }, [isChatStarted, selectedPersonality])
 
   return (
     <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>

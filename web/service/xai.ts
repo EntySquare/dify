@@ -168,6 +168,9 @@ export type SendAIChatMsgReq = {
   message: string
   parent_message_id: string
   tweets_user_name_list: string[]
+  role: string
+  character: string
+  tweet_account: string
 }
 
 /*
