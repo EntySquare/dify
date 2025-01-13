@@ -187,7 +187,9 @@ type SendAIChatMsgRes = {
  *   POST
  */
 export const sendAIChatMsg = (params: SendAIChatMsgReq) =>
-  XAIPost<SendAIChatMsgRes>('/adminApi/chat/sendMessage', params)
+  XAIPost<SendAIChatMsgRes>('/adminApi/chat/sendMessage', params, {
+    timeout: 180000,
+  })
 
 // 获取知识库文档列表
 export const getKnowledgeDoclist = (

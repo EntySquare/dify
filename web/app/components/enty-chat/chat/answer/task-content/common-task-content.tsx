@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useCallback, useMemo, useState } from 'react'
+import http from 'axios'
 import { useShallow } from 'zustand/react/shallow'
 import Button from '@/app/components/base/button'
 import Toast from '@/app/components/base/toast'
@@ -61,10 +62,10 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
       setIsExecuting(true)
 
       if (regeneratedItem)
-        await fetch(regeneratedItem.execute_url)
+        await http.get(regeneratedItem.execute_url, { timeout: 180000 })
 
       else
-        await fetch(execute_url)
+        await http.get(execute_url, { timeout: 180000 })
 
       Toast.notify({ type: 'success', message: '执行成功！' })
     }
@@ -93,14 +94,14 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
       setIsRefreshing(true)
 
       if (regeneratedItem) {
-        const res = await fetch(regeneratedItem.refresh_url)
-        const json = await res.json() as { code: number; data: regeneratedItem }
+        const res = await http.get<{ code: number; data: regeneratedItem }>(regeneratedItem.refresh_url, { timeout: 180000 })
+        const json = await res.data
 
         setRegeneratedItem(json.data)
       }
       else {
-        const res = await fetch(refresh_url)
-        const json = await res.json() as { code: number; data: regeneratedItem }
+        const res = await http.get<{ code: number; data: regeneratedItem }>(refresh_url, { timeout: 180000 })
+        const json = await res.data
 
         setRegeneratedItem(json.data)
       }
@@ -130,10 +131,10 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
       setIsExecuting2(true)
 
       if (regeneratedItem)
-        await fetch(regeneratedItem.execute2_url)
+        await http.get(regeneratedItem.execute2_url, { timeout: 180000 })
 
       else
-        await fetch(execute_url_2)
+        await http.get(execute_url_2, { timeout: 180000 })
 
       Toast.notify({ type: 'success', message: '执行成功！' })
     }
