@@ -6,7 +6,6 @@ import { ChatResponseTypes } from '../../types'
 import AgentContent from './agent-content'
 import BasicContent from './basic-content'
 import More from './more'
-import Operation from './operation'
 import SuggestedQuestions from './suggested-questions'
 import WorkflowProcess from './workflow-process'
 import { Markdown } from '@/app/components/base/markdown'
@@ -210,7 +209,7 @@ const Answer: FC<AnswerProps> = ({
                   {replyType === ChatResponseTypes.PLAIN_TEXT && <BasicContent item={item} />}
                   {replyType !== ChatResponseTypes.PLAIN_TEXT && contentArray && <>
                     {outerContent && <Markdown content={outerContent} />}
-                    <CommonTaskContent content={contentArray} item={item} replyType={replyType}/>
+                    <CommonTaskContent content={contentArray} item={item} replyType={replyType} />
                   </>
                   }
                   {/* {content.includes('生成推文评论') && content !== '生成推文' && <TaskCommentContent content={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis congue dolor, id pellentesque leo. Ut luctus mattis neque eu consequat. Maecenas sapien diam, semper eu quam eu, efficitur facilisis massa. Praesent aliquet quis odio in dignissim. Mauris ac arcu eget eros tristique accumsan non ac eros. Etiam fringilla pretium imperdiet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam eget mi quis neque ultricies faucibus. Integer faucibus orci nec felis commodo porta. Etiam ut turpis sit amet leo commodo congue id id ipsum. Suspendisse sit amet neque vitae justo convallis sodales eu id nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus.'} /> } */}

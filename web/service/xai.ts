@@ -191,6 +191,19 @@ export const sendAIChatMsg = (params: SendAIChatMsgReq) =>
     timeout: 180000,
   })
 
+/*
+* AI聊天 - 提交延时任务
+* POST
+*/
+type SubmitScheduledMatrixTaskPayload = {
+  execute_url: string
+  execute_datetime: string
+  workflow_id: string
+}
+
+export const submitScheduledMatrixTask = (payload: SubmitScheduledMatrixTaskPayload) =>
+  XAIPost<string>('/adminApi/chat/template/pushDelaySend', payload)
+
 // 获取知识库文档列表
 export const getKnowledgeDoclist = (
   page: number,
