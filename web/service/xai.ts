@@ -22,6 +22,12 @@ export const getTGAIUserContancts = (phone: string) =>
  *   获取所有已登录账号
  *   POST
  */
+export enum DeviceInfoType {
+  NOT_SET,
+  X,
+  TRUTHSOCIAL,
+  INSTAGRAM,
+}
 
 export type DeviceData = {
   device_id: string
@@ -33,8 +39,19 @@ export type DeviceData = {
     data_time: string
     control_cmd: string
   }[]
+  info_type: DeviceInfoType
 }
 export const getXAIDeviceList = () => XAIPost<{ device_list: DeviceData[] }>('/adminApi/deviceList')
+
+/*
+* 设置当前设备登录的社媒
+* POST
+*/
+export type SetXAIDeviceInfoTypePayload = {
+  device_id: string
+  info_type: DeviceInfoType
+}
+export const setXAIDeviceInfoType = (payload: SetXAIDeviceInfoTypePayload) => XAIPost<string>('/adminApi/deviceSetInfoType', payload)
 
 export type TweetsUserNameListRes = { tweets_user_name_list: string[] }
 // 查询当前推特账号列表
