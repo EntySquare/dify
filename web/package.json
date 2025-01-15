@@ -23,7 +23,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@arco-design/web-react": "^2.64.0",
+    "@arco-design/web-react": "^2.65.0",
     "@arco-themes/react-entytg": "^0.0.1",
     "@babel/runtime": "^7.22.3",
     "@dagrejs/dagre": "^1.1.2",
