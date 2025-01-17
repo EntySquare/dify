@@ -69,6 +69,7 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [editingContent, setEditingContent] = useState<string>()
   const [editedContent, setEditedContent] = useState<string>('')
+  const [scheduledTaskSubmited, setScheduledTaskSubmited] = useState(false)
 
   const [regeneratedItem, setRegeneratedItem] = useState<regeneratedItem>()
 
@@ -211,6 +212,9 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
   }, [editingContent])
 
   const onScheduledTaskSubmit = useCallback(async (execute_datetime: string, workflow_id: string, execute_type?: ExecuteType) => {
+    if (scheduledTaskSubmited)
+      return
+
     const execute_url = execute_type ? executeLinkGetter(execute_type, links) : links.execute_url
 
     if (!execute_url)
@@ -228,6 +232,7 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
         type: 'success',
         message: '提交延时任务成功！',
       })
+      setScheduledTaskSubmited(true)
     }
     catch (err) {
 
@@ -235,7 +240,7 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
     finally {
 
     }
-  }, [links])
+  }, [links, scheduledTaskSubmited])
 
   const actionPanel = useMemo(() => {
     const refreshButtonText = '重新生成'
@@ -259,16 +264,16 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
       </div>
       {editingContent === undefined
         && <div className={'flex flex-row flex-wrap gap-2'}>
-          <CustomPopover
+          {!scheduledTaskSubmited && <CustomPopover
             htmlContent={<ScheduledTaskOperation onSubmit={onScheduledTaskSubmit} replyType={replyType} />}
             position='bottom'
             trigger={'click'}
             btnElement={'延时发送'}
             btnClassName={'dark:!bg-zinc-700 !text-tgai-text-1 !text-[13px] !py-0 !px-[14px] !leading-4 !font-medium !h-8 !shadow-xs'}
-            disabled={isResponding}
+            disabled={isResponding && scheduledTaskSubmited}
             className={'!w-[280px]'}
             popupClassName={'!w-full'}
-          />
+          />}
           {/* <Button variant={'secondary'} type={'button'} loading={isRefreshing && isResponding} disabled={isResponding}
             onClick={() => onRefreshClick()}
           >{refreshButtonText}</Button> */}
@@ -281,7 +286,7 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
         </div>
       }
     </div>
-  }, [isRefreshing, isExecuting, isResponding, onRefreshClick, onExecuteClick, links, onExecute2Click, editingContent, editedContent])
+  }, [isRefreshing, isExecuting, isResponding, onRefreshClick, onExecuteClick, links, onExecute2Click, editingContent, editedContent, scheduledTaskSubmited])
 
   return (
     <>
