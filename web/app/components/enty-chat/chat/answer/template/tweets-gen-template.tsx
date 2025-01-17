@@ -11,10 +11,11 @@ type TweetsGenTemplateProps = {
   content: string
   editingContent?: string
   onEditContentChange?: (value: string) => void
+  img_url?: string
   children?: JSX.Element
 }
 
-const TweetsGenTemplate = React.memo<TweetsGenTemplateProps>(({ name, username, content, editingContent, onEditContentChange, children }) => {
+const TweetsGenTemplate = React.memo<TweetsGenTemplateProps>(({ name, username, content, editingContent, onEditContentChange, children, img_url }) => {
   return <div
     className={cn('group rounded-2xl border shadow-xs dark:shadow-gray-600 border-gray-200 dark:border-gray-600 min-h-16 flex flex-col bg-white dark:bg-black transition-colors w-[516px] max-w-full',
       editingContent === undefined && 'hover:border-gray-300 dark:hover:border-gray-600 hover:bg-[rgba(0,_0,_0,_0.03)] dark:hover:bg-[rgba(255,_255,_255,_0.03)]',
@@ -46,6 +47,9 @@ const TweetsGenTemplate = React.memo<TweetsGenTemplateProps>(({ name, username, 
         className={cn('!text-[15px] bg-transparent tgai-custom-scrollbar')}
       />
     </div>
+    {img_url && <div className='mb-4'>
+      <img src={img_url} className={'max-w-[516px] aspect-video object-contain'} alt={img_url} />
+    </div>}
     {children}
   </div>
 })

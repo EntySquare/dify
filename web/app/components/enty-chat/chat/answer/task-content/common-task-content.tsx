@@ -26,6 +26,7 @@ type CommonTaskItemProps = {
   name?: string
   username?: string
   replyType: ChatResponseTypes
+  img_url?: string
 }
 
 type regeneratedItem = {
@@ -58,7 +59,7 @@ const executeLinkGetter = (execute_type: ExecuteType, links: TaskLinks) => {
   }
 }
 
-const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, refresh_url, name, username, replyType, execute_url_2, execute_url_3 }) => {
+const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, refresh_url, name, username, replyType, execute_url_2, execute_url_3, img_url }) => {
   const { isResponding, setIsResponding } = useEntyAIChatStore(useShallow(state => ({
     isResponding: state.isResponding,
     setIsResponding: state.setIsResponding,
@@ -290,7 +291,7 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
 
   return (
     <>
-      {(replyType === ChatResponseTypes.TWEETS_GENERATION) && (<TweetsGenTemplate username={username} name={name} content={editedContent || (regeneratedItem ? regeneratedItem.view : content)} editingContent={editingContent} onEditContentChange={onEditContentChangeHandler}>
+      {(replyType === ChatResponseTypes.TWEETS_GENERATION) && (<TweetsGenTemplate username={username} name={name} content={editedContent || (regeneratedItem ? regeneratedItem.view : content)} editingContent={editingContent} onEditContentChange={onEditContentChangeHandler} img_url={img_url}>
         {actionPanel}
       </TweetsGenTemplate>)}
       {(replyType === ChatResponseTypes.COMMENTS_GENERATION) && (<CommentGenTemplate username={username} name={name} content={editedContent || (regeneratedItem ? regeneratedItem.view : content)} editingContent={editingContent} onEditContentChange={onEditContentChangeHandler}>
@@ -320,8 +321,9 @@ const CommonTaskContent = React.memo<CommonTaskContentProps>(({
   replyType,
   item,
 }) => {
+  console.log(content)
   return <div className={'flex flex-col gap-y-4'}>
-    {content.map((taskItem, index) => <CommonTaskItem key={taskItem.uuid || index} content={taskItem.view || ''} execute_url={taskItem.execute_url} refresh_url={taskItem.refresh_url} message_id={item.id} name={name} username={username} replyType={replyType} execute_url_2={taskItem.execute2_url ? taskItem.execute2_url : undefined} execute_url_3={taskItem.execute3_url ? taskItem.execute3_url : undefined} />)}
+    {content.map((taskItem, index) => <CommonTaskItem key={taskItem.uuid || index} content={taskItem.view || ''} execute_url={taskItem.execute_url} refresh_url={taskItem.refresh_url} message_id={item.id} name={name} username={username} replyType={replyType} execute_url_2={taskItem.execute2_url ? taskItem.execute2_url : undefined} execute_url_3={taskItem.execute3_url ? taskItem.execute3_url : undefined} img_url={taskItem.img_url} />)}
   </div>
 })
 
