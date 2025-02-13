@@ -59,7 +59,7 @@ const ModelListItem = ({ model, provider, isConfigurable, onConfig, onModifyLoad
         modelName={model.model}
       />
       <ModelName
-        className='grow text-sm font-normal text-gray-900'
+        className='grow text-sm font-normal !text-gray-900'
         modelItem={model}
         showModelType
         showMode
@@ -102,7 +102,7 @@ const ModelListItem = ({ model, provider, isConfigurable, onConfig, onModifyLoad
               <Tooltip
                 popupContent={
                   <span className='font-semibold'>{t('common.modelProvider.modelHasBeenDeprecated')}</span>} offset={{ mainAxis: 4 }
-                }
+                  }
                 needsDelay
               >
                 <Switch defaultValue={false} disabled size='md' />
