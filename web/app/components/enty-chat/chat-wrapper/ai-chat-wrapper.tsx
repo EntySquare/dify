@@ -17,8 +17,8 @@ import Chat from '@/app/components/enty-chat/chat'
 import type { ChatItem } from '@/app/components/enty-chat/types'
 import cn from '@/utils/classnames'
 
-// const SUGGESTED_QUESTION = ['生成推文', '生成推文评论', '生成私信回复']
-const SUGGESTED_QUESTION = ['生成推文', '生成评论']
+const SUGGESTED_QUESTION = ['生成推文', '生成推文评论', '生成私信回复']
+// const SUGGESTED_QUESTION = ['生成推文', '生成评论']
 
 const AIChatWrapperHeader = React.memo(() => {
   const { isLeftPanelOpen } = useEntyAIChatStore(useShallow(state => ({

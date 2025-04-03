@@ -15,6 +15,7 @@ import type { ChatItem } from '@/app/components/enty-chat/types'
 import { ChatResponseTypes } from '@/app/components/enty-chat/types'
 import CustomPopover from '@/app/components/base/popover'
 import { submitScheduledMatrixTask } from '@/service/xai'
+import ReplyDmsGenTemplate from '@/app/components/enty-chat/chat/answer/template/reply-dms-gen-template'
 
 type CommonTaskItemProps = {
   content: string
@@ -300,6 +301,9 @@ const CommonTaskItem = React.memo<CommonTaskItemProps>(({ content, execute_url, 
       {(replyType === ChatResponseTypes.MESSAGE_GENERATION) && (<PrivateMessagetGenTemplate content={regeneratedItem ? regeneratedItem.view : content}>
         {actionPanel}
       </PrivateMessagetGenTemplate>)}
+      {(replyType === ChatResponseTypes.REPLY_DMS) && (<ReplyDmsGenTemplate content={regeneratedItem ? regeneratedItem.view : content}>
+        {actionPanel}
+      </ReplyDmsGenTemplate>)}
     </>
   )
 })

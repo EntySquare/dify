@@ -86,4 +86,5 @@ export enum ChatResponseTypes {
   PLAIN_TEXT = 'text',
   COMMENTS_GENERATION = 'comments',
   MESSAGE_GENERATION = 'private_message',
+  REPLY_DMS = 'reply_dms',
 }

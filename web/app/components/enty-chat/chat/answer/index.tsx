@@ -77,6 +77,8 @@ const Answer: FC<AnswerProps> = ({
               return ChatResponseTypes.COMMENTS_GENERATION
             case 'private_message':
               return ChatResponseTypes.MESSAGE_GENERATION
+            case 'tweet_reply_dms':
+              return ChatResponseTypes.REPLY_DMS
           }
         }
         return ChatResponseTypes.PLAIN_TEXT
