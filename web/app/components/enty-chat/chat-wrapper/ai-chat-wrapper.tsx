@@ -27,7 +27,7 @@ const AIChatWrapperHeader = React.memo(() => {
 
   return <div className={cn('absolute top-0 left-0 h-14 flex justify-between items-center z-50 gap-4', isLeftPanelOpen ? 'pl-4' : '')}>
     {!isLeftPanelOpen && <PanelTopHeader />}
-    <div className={'text-base font-bold text-tgai-text-1'}>AI智能聊天</div>
+    <div className={'text-base font-bold text-tgai-text-1'}>智能KOL聊天</div>
   </div>
 })
 

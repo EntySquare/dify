@@ -1,37 +1,38 @@
-import type { Viewport } from "next";
-import I18nServer from "./components/i18n-server";
-import BrowserInitor from "./components/browser-initor";
-import SentryInitor from "./components/sentry-initor";
-import { getLocaleOnServer } from "@/i18n/server";
-import "./styles/globals.css";
-import "./styles/markdown.scss";
-import "@arco-themes/react-entytg/css/arco.css";
-import { AxiosProvider } from "@/app/components/http/axios-provider";
-import { TGAIGlobalStoreProvider } from "@/context/tgai-global-context";
+import type { Viewport } from 'next'
+import I18nServer from './components/i18n-server'
+import BrowserInitor from './components/browser-initor'
+import SentryInitor from './components/sentry-initor'
+import { getLocaleOnServer } from '@/i18n/server'
+import './styles/globals.css'
+import './styles/markdown.scss'
+import '@arco-themes/react-entytg/css/arco.css'
+import { AxiosProvider } from '@/app/components/http/axios-provider'
+import { TGAIGlobalStoreProvider } from '@/context/tgai-global-context'
 
 export const metadata = {
-  title: "EntyAI",
-};
+  title: 'AIE',
+}
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
-  viewportFit: "cover",
+  viewportFit: 'cover',
   userScalable: false,
-};
+}
 
 const LocaleLayout = ({ children }: { children: React.ReactNode }) => {
-  const locale = getLocaleOnServer();
+  const locale = getLocaleOnServer()
 
   return (
-    <html lang={locale ?? "en"} className="h-full">
+    <html lang={locale ?? 'en'} className="h-full">
       <head>
         <meta name="theme-color" content="#FFFFFF" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        {/* <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> */}
+        <link rel="icon" type="image/ico" href="/favicon.ico" />
       </head>
       <body
         className="h-screen select-auto overflow-hidden bg-tgai-section-background"
@@ -64,7 +65,7 @@ const LocaleLayout = ({ children }: { children: React.ReactNode }) => {
         </TGAIGlobalStoreProvider>
       </body>
     </html>
-  );
-};
+  )
+}
 
-export default LocaleLayout;
+export default LocaleLayout
