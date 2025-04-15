@@ -5,12 +5,10 @@ import { Button, Card, Divider, Message, Popconfirm, Switch, Table, Tooltip, Typ
 import { IconDelete, IconEdit, IconPause, IconPlayArrow, IconPlus } from '@arco-design/web-react/icon'
 import useSWR, { useSWRConfig } from 'swr'
 import { useCallback, useRef } from 'react'
-import type { AxiosError } from 'axios'
 import type { GroupStrategyEditModalRefType } from './group-strategy-edit-modal'
 import { GroupStrategyEditModal } from './group-strategy-edit-modal'
 import type { TGAIGroupStrategy } from '@/models/tgai-strategy'
 import { deleteTGAIGroupStrategy, getActiveGroupTemplateList, getTGAIChannelSets, getTGAIGroupStrategies, getTGAILoggedAccount, runTGAIGroupStrategy, runTGAIGroupStrategyOnce, stopTGAIGroupStrategy, updateTGAIGroupStrategyAutoDeleteStatus } from '@/service/tgai'
-
 const SWR_KEYS = ['/plan/getActivePlan', '/template/getActiveTemplateList', '/account/hasLogged', '/channel/getAllSet']
 
 export const GroupStrategyCard = () => {
@@ -68,7 +66,7 @@ export const GroupStrategyCard = () => {
     if (!result)
       return
 
-    Message.success("创建群聊策略成功！")
+    Message.success('创建群聊策略成功！')
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]))
   }
 
@@ -78,7 +76,7 @@ export const GroupStrategyCard = () => {
     if (!result)
       return
 
-    Message.success("修改群聊策略成功！")
+    Message.success('修改群聊策略成功！')
     mutate((key: Array<string>) => SWR_KEYS.includes(key[0]))
   }
 
@@ -109,8 +107,35 @@ export const GroupStrategyCard = () => {
       title: '执行时间',
       dataIndex: 'active_time_list',
       render: (col: TGAIGroupStrategy['active_time_list']) => {
- 
         return <div className='max-w-[300px]'>{col ? col.map(time => `${time.toString()}时`).join('，') : ''}</div>
+      },
+    },
+    {
+      title: '推广+执行群组',
+      dataIndex: 'account_phone_list',
+      render: (col: TGAIGroupStrategy['account_phone_list'], item) => {
+        return (
+          <div>
+            {item.account_phone_list.map(ite => (
+              <div key={ite} className="overflow-hidden text-ellipsis whitespace-nowrap">
+                {ite}
+              </div>
+            ))}
+            <div>+</div>
+            {
+              item.channel_sets_list?.map((it) => {
+                const setItem = channel_sets_lists?.data.channel_sets?.find(
+                  cs => cs.id === it,
+                )
+                return (
+                  <div key={it} className="overflow-hidden text-ellipsis whitespace-nowrap">
+                    {setItem?.set_name || ''}
+                  </div>
+                )
+              })
+            }
+          </div>
+        )
       },
     },
     {
