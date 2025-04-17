@@ -42,7 +42,7 @@ const SWR_KEYS = [
 const deviceInfoTypeOptions = [
   {
     label: '未设置',
-    value: DeviceInfoType.NOT_SET
+    value: DeviceInfoType.NOT_SET,
   },
   {
     label: 'X',
@@ -55,6 +55,10 @@ const deviceInfoTypeOptions = [
   {
     label: 'Instagram',
     value: DeviceInfoType.INSTAGRAM,
+  },
+  {
+    label: 'Tiktok',
+    value: DeviceInfoType.TIKTOK,
   },
 ]
 

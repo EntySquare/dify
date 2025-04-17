@@ -38,6 +38,7 @@ const ReleaseModal = React.forwardRef<ReleaseModalRefType, ReleaseModalProps>(
     const [visible, setVisible] = React.useState(false);
     const [tableLoading, setTableLoading] = React.useState(false);
     const [releaseContent, setReleaseContent] = React.useState("");
+    const [postMediaUrl, setPostReleaseUrl] = React.useState("");
     const [tweetsUserList, setTweetsUserList] = React.useState([] as any);
     const table = useRef<TableInstance>(null);
     // 用于存储选中的 username 的数组
@@ -101,7 +102,7 @@ const ReleaseModal = React.forwardRef<ReleaseModalRefType, ReleaseModalProps>(
           Message.error("选择执行账号");
           return;
         }
-        await sendTwitter(releaseContent, selectedUsernames, "");
+        await sendTwitter(releaseContent, selectedUsernames, postMediaUrl);
         form.resetFields();
         setVisible(false);
         Message.success({
@@ -169,6 +170,12 @@ const ReleaseModal = React.forwardRef<ReleaseModalRefType, ReleaseModalProps>(
               onChange={changeReleaseContent}
             />
           </div>
+          <div className="mb-2 mt-2">媒体链接</div>
+          <Input
+            placeholder="请输入媒体（视频或图片) 链接"
+            value={postMediaUrl}
+            onChange={value => setPostReleaseUrl(value)}
+          />
           <div className="mb-2 mt-2">选择执行账号</div>
           <Table
             loading={tableLoading}

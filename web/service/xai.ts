@@ -27,6 +27,7 @@ export enum DeviceInfoType {
   X,
   TRUTHSOCIAL,
   INSTAGRAM,
+  TIKTOK = 6,
 }
 
 export type DeviceData = {
