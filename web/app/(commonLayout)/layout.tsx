@@ -1,15 +1,15 @@
-import React from 'react'
-import type { ReactNode } from 'react'
-import SwrInitor from '../components/swr-initor'
-import { AppContextProvider } from '../../context/app-context'
-import GA, { GaType } from '../components/base/ga'
-import HeaderWrapper from '../components/header/header-wrapper'
-import Header from '../components/header'
-import { EventEmitterContextProvider } from '../../context/event-emitter'
-import { ProviderContextProvider } from '../../context/provider-context'
-import { ModalContextProvider } from '../../context/modal-context'
-import SiderMenu from '../components/menu/sider-menu'
-import { TGAIHeader } from '@/app/components/header/tgai-header'
+import React from "react";
+import type { ReactNode } from "react";
+import SwrInitor from "../components/swr-initor";
+import { AppContextProvider } from "../../context/app-context";
+import GA, { GaType } from "../components/base/ga";
+import HeaderWrapper from "../components/header/header-wrapper";
+import Header from "../components/header";
+import { EventEmitterContextProvider } from "../../context/event-emitter";
+import { ProviderContextProvider } from "../../context/provider-context";
+import { ModalContextProvider } from "../../context/modal-context";
+import SiderMenu from "../components/menu/sider-menu";
+import { TGAIHeader } from "@/app/components/header/tgai-header";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -40,11 +40,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
         </AppContextProvider>
       </SwrInitor>
     </>
-  )
-}
+  );
+};
 
 export const metadata = {
-  title: 'AIE',
-}
+  title: "EntyAI",
+};
 
-export default Layout
+export default Layout;

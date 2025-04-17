@@ -1,6 +1,6 @@
 const translation = {
   pageTitle: 'Hey, let\'s get started!',
-  welcome: '👋 Welcome to AIE, please log in to continue.',
+  welcome: '👋 Welcome to EntyAI, please log in to continue.',
   email: 'Email address',
   emailPlaceholder: 'Your email',
   password: 'Password',

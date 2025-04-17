@@ -170,7 +170,7 @@ const AccountRolePanel = React.memo(() => {
           {({ open }) => (
             <>
               <Disclosure.Button className={'flex items-center justify-between w-full'}>
-                <CommonSectionLabel text={'智能KOL列表'} />
+                <CommonSectionLabel text={'AI 人设列表'} />
                 <RiArrowDropRightLine className={cn('transition text-tgai-text-3', open ? 'rotate-90' : '')} />
               </Disclosure.Button>
               <Transition

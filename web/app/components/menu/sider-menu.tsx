@@ -244,7 +244,7 @@ const SiderMenu = () => {
           },
           {
             type: 'item',
-            title: '智能KOL',
+            title: 'AI聊天',
             href: '/group/ai-chat',
             key: '/group/ai-chat',
           },

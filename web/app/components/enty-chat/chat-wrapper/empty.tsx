@@ -37,7 +37,7 @@ const Empty = () => {
         <ChatBotSlim className='w-12 h-12 text-tgai-text-3' />
       </div>
       <div className='w-[256px] text-center text-[13px] text-tgai-text-3'>
-        智能KOL聊天未准备好，请先去配置相应参数
+        AI 聊天未准备好，请先去配置相应参数
       </div>
       <div className='w-full flex justify-center mt-4'>
         <Button variant={'primary'} onClick={onStartChat}>开始聊天</Button>
