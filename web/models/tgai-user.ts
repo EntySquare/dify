@@ -11,7 +11,8 @@ export type TGAIAccount = {
   user_id: number
   is_start: TGAIAccountIsStartEnum
   access_hash: number
-  device_online:string
+  device_online: string
+  remark: string
 }
 
 export type TGAccountRes = {
@@ -29,9 +30,9 @@ export type TGAccountRes = {
 }
 
 export type TGAITokenConfig = {
-    appHash: string
-    appId: string
-    code: string
-    name: string
-    phone: string
+  appHash: string
+  appId: string
+  code: string
+  name: string
+  phone: string
 }

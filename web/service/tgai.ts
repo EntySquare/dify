@@ -1,11 +1,11 @@
-import {TGAIDelete, TGAIGet, TGAIPost} from './http'
+import { TGAIDelete, TGAIGet, TGAIPost } from './http'
 import type { TGAIAccount, TGAITokenConfig, TGAccountRes } from '@/models/tgai-user'
 import type { TGAIGroupStrategy, TGAIKeywordStrategy, TGAIReplyTypeEnum, TGAISingleStrategy, TGAISingleStrategyFlag, TGAIStrategyTakeEffectEnum } from '@/models/tgai-strategy'
 import type { TGAIAccountInChannelRes, TGAIAllChannelList, TGAIAllChannelListRes, TGAIChannelDetail, TGAIChannelSet, TGAIEngineSearchChannel, TGAIGroupList, TGAIGroupTypeEnum, TGAIJoinedChannelList } from '@/models/tgai-channel'
-import type { GroupTemplate, ReqChatterRole, SingleTemplate } from '@/models/tgai-template'
+import type { GroupTemplate, SingleTemplate } from '@/models/tgai-template'
 import type { TGAIWorkflow } from '@/models/tgai-workflow'
-import { HeatChatRank, HeatOverviewData } from '@/models/tgai-heat'
-import { PeriodicalTaskRes, PeriodicalTaskStateEnum } from '@/models/tgai-periodical-task'
+import type { HeatChatRank, HeatOverviewData } from '@/models/tgai-heat'
+import type { PeriodicalTaskRes, PeriodicalTaskStateEnum } from '@/models/tgai-periodical-task'
 
 // 用户 API
 /*
@@ -13,9 +13,9 @@ import { PeriodicalTaskRes, PeriodicalTaskStateEnum } from '@/models/tgai-period
 *   POST
 */
 export const getTGAIUserContancts = (phone: string) => TGAIPost<{ contact_res_list: TGAccountRes[] }>('/contact/list', {
-    phone,
-    pageNum: 1,
-    pageSize: 10,
+  phone,
+  pageNum: 1,
+  pageSize: 10,
 })
 
 /*
@@ -35,11 +35,11 @@ export const getTGAIAllAccount = () => TGAIPost<TGAIAccount[]>('/account/all')
 *   POST
 */
 export type SendTGAIContactMsgReq = {
-    domain: string
-    input: string
-    link: string
-    phone: string
-    sender: string
+  domain: string
+  input: string
+  link: string
+  phone: string
+  sender: string
 }
 export const sendTGAIContactMsg = (data: SendTGAIContactMsgReq) => TGAIPost<string>('/message/send', data)
 
@@ -48,7 +48,7 @@ export const sendTGAIContactMsg = (data: SendTGAIContactMsgReq) => TGAIPost<stri
 *   POST
 */
 export const addTGAIAccount = (data: string) => TGAIPost<string>('/account/add', {
-    phone: data,
+  phone: data,
 })
 
 /*
@@ -56,7 +56,13 @@ export const addTGAIAccount = (data: string) => TGAIPost<string>('/account/add',
 *   POST
 */
 export const sendTGAIAccountLoginCode = (phone: string) => TGAIPost<{ code_hash: string }>('/user/sendCode', {
-    phone
+  phone,
+})
+
+// /account/updateRemark
+export const updateRemarkAccount = (remark: string, phone: string) => TGAIPost<string>('/account/updateRemark', {
+  remark,
+  phone,
 })
 
 /*
@@ -64,9 +70,9 @@ export const sendTGAIAccountLoginCode = (phone: string) => TGAIPost<{ code_hash:
 *   POST
 */
 type SigninTGAccountReq = {
-    code: string
-    code_hash: string
-    phone: string
+  code: string
+  code_hash: string
+  phone: string
 }
 export const signinTGAccountWithCode = (data: SigninTGAccountReq) => TGAIPost<any>('/user/signIn', data)
 
@@ -75,7 +81,7 @@ export const signinTGAccountWithCode = (data: SigninTGAccountReq) => TGAIPost<an
 *   POST
 */
 export const deleteTGAIAccount = (phone: string) => TGAIPost<string>('/account/delete', {
-    phone
+  phone,
 })
 
 /*
@@ -83,7 +89,7 @@ export const deleteTGAIAccount = (phone: string) => TGAIPost<string>('/account/d
 *   POST
 */
 type GetTGAITokenConfigRes = {
-    conf_data: TGAITokenConfig[]
+  conf_data: TGAITokenConfig[]
 }
 
 export const getTGAITokenConfig = () => TGAIPost<GetTGAITokenConfigRes>('/config/all')
@@ -93,9 +99,9 @@ export const getTGAITokenConfig = () => TGAIPost<GetTGAITokenConfigRes>('/config
 *   POST
 */
 type SetTGAITokenConfigReq = {
-    appHash: string
-    appId: string
-    phone: string
+  appHash: string
+  appId: string
+  phone: string
 }
 export const setTGAITokenConfig = (data: SetTGAITokenConfigReq) => TGAIPost<string>('/config/login', data)
 
@@ -104,7 +110,6 @@ export const setTGAITokenConfig = (data: SetTGAITokenConfigReq) => TGAIPost<stri
 *   DELETE
  */
 export const deleteTGAITokenConfig = (app_id: string) => TGAIDelete<null>(`/config/delete/${app_id}`)
-
 
 // 群组 API
 /*
@@ -124,8 +129,8 @@ export const getTGAIJoinedChannelList = (phone: string) => TGAIPost<TGAIJoinedCh
 *   POST
 */
 type GetTGAIAllChannelListReq = {
-    current_page: number
-    page_size: number
+  current_page: number
+  page_size: number
 }
 export const getTGAIAllChannelList = (data: GetTGAIAllChannelListReq) => TGAIPost<TGAIAllChannelListRes>('/channel/all', data)
 
@@ -134,7 +139,7 @@ export const getTGAIAllChannelList = (data: GetTGAIAllChannelListReq) => TGAIPos
 *   POST
 */
 export const getTGAIChannelDetail = (channel_id: number) => TGAIPost<TGAIChannelDetail>('/channel/detail', {
-    channel_id,
+  channel_id,
 })
 
 /*
@@ -142,8 +147,8 @@ export const getTGAIChannelDetail = (channel_id: number) => TGAIPost<TGAIChannel
 *   POST
 */
 export type GetTGAIChannelSetsRes = {
-    channel_sets: TGAIChannelSet[]
-    total: number
+  channel_sets: TGAIChannelSet[]
+  total: number
 }
 
 export const getTGAIChannelSets = () => TGAIPost<GetTGAIChannelSetsRes>('/channel/getAllSet')
@@ -153,13 +158,13 @@ export const getTGAIChannelSets = () => TGAIPost<GetTGAIChannelSetsRes>('/channe
 *   POST
 */
 type CreateTGAIChannelSetRes = {
-    set_id: number,
-    set_name: string
-    channels: TGAIAllChannelList[]
+  set_id: number
+  set_name: string
+  channels: TGAIAllChannelList[]
 }
 export const createTGAIChannelSet = (set_name: string, channel_ids: number[]) => TGAIPost<CreateTGAIChannelSetRes>('/channel/createSet', {
-    set_name,
-    channel_ids
+  set_name,
+  channel_ids,
 })
 
 /*
@@ -167,7 +172,7 @@ export const createTGAIChannelSet = (set_name: string, channel_ids: number[]) =>
 *   POST
 */
 export const deleteTGAIChannelSet = (set_id: number) => TGAIPost<string>('/channel/deleteSet', {
-    set_id
+  set_id,
 })
 
 /*
@@ -175,8 +180,8 @@ export const deleteTGAIChannelSet = (set_id: number) => TGAIPost<string>('/chann
 *   POST
 */
 export const deleteTGAIChannelSetItem = (set_id: number, channel_ids: number[]) => TGAIPost<string>('/channel/deleteSetItem', {
-    set_id,
-    channel_ids
+  set_id,
+  channel_ids,
 })
 
 /*
@@ -184,20 +189,19 @@ export const deleteTGAIChannelSetItem = (set_id: number, channel_ids: number[]) 
 *   POST
 */
 export const updateTGAIChannelSetItem = (set_id: number, channel_ids: number[]) => TGAIPost<string>('/channel/addSetItem', {
-    set_id,
-    channel_ids
+  set_id,
+  channel_ids,
 })
-
 
 /*
 *   爬虫搜索群列表
 *   POST
 */
 type GetTGAIEngineSearchChannelRes = {
-    search_res_list: TGAIEngineSearchChannel[]
+  search_res_list: TGAIEngineSearchChannel[]
 }
 export const getTGAIEngineSearchChannel = (keyword: string, phone: string) => TGAIPost<GetTGAIEngineSearchChannelRes>('/engine/third', {
-    keyword, phone,
+  keyword, phone,
 })
 
 /*
@@ -205,8 +209,8 @@ export const getTGAIEngineSearchChannel = (keyword: string, phone: string) => TG
 *   POST
 */
 export const checkAccountInChannel = (channel_name: string, phone: string) => TGAIPost<TGAIAccountInChannelRes>('/channel/searchOne', {
-    channel_name,
-    phone,
+  channel_name,
+  phone,
 })
 
 /*
@@ -214,8 +218,8 @@ export const checkAccountInChannel = (channel_name: string, phone: string) => TG
 *   POST
 */
 export const letAccountJoinChannel = (channel_link: string, phone: string) => TGAIPost<string>('/channel/join', {
-    channel_link,
-    phone,
+  channel_link,
+  phone,
 })
 
 /*
@@ -223,8 +227,8 @@ export const letAccountJoinChannel = (channel_link: string, phone: string) => TG
 *   POST
 */
 export const letAccountLeaveChannel = (channel_link: string, phone: string) => TGAIPost<string>('/channel/leave', {
-    channel_link,
-    phone,
+  channel_link,
+  phone,
 })
 
 // 模版 API
@@ -246,7 +250,6 @@ export const copySingleTemplate = (id: number) => TGAIPost<string>('/singleTempl
 */
 export const deleteSingleTemplate = (id: number) => TGAIPost<string>('/singleTemplate/deleteSingleTemplate', { id })
 
-
 /*
 *   更新单聊模版
 *   POST
@@ -264,7 +267,6 @@ export const createTGAISingleTemplate = (data: Partial<SingleTemplate>) => TGAIP
 *   POST
 */
 export const testTGAISingleTemplate = (data: Partial<SingleTemplate> & { message_list: string[] }) => TGAIPost<{ message: string }>('/singleTemplate/testSingleTemplate', data)
-
 
 /*
 *   获取生效群聊模版
@@ -300,8 +302,7 @@ export const createTGAIGroupTemplate = (data: Partial<GroupTemplate>) => TGAIPos
 *   测试群聊模版
 *   POST
 */
-export const testTGAIGroupTemplate = (data: Partial<GroupTemplate> & { phone?: string, channel_id?: number, chat_count?: number }) => TGAIPost<{ talk_text_list: string[] }>('/template/testTemplate', data)
-
+export const testTGAIGroupTemplate = (data: Partial<GroupTemplate> & { phone?: string; channel_id?: number; chat_count?: number }) => TGAIPost<{ talk_text_list: string[] }>('/template/testTemplate', data)
 
 // 策略 API
 
@@ -310,8 +311,8 @@ export const testTGAIGroupTemplate = (data: Partial<GroupTemplate> & { phone?: s
 *   POST
 */
 type GetTGAIKeywordStrategyListReq = {
-    keyword?: string
-    phone?: string
+  keyword?: string
+  phone?: string
 }
 export const getTGAIKeywordStrategyList = (data: GetTGAIKeywordStrategyListReq = {}) => TGAIPost<TGAIKeywordStrategy[]>('/groupTrigger/list', data)
 
@@ -321,7 +322,7 @@ export const getTGAIKeywordStrategyList = (data: GetTGAIKeywordStrategyListReq =
 */
 
 type GetTGAIKwStrategyAllIntervalRes = {
-    group_trigger_interval_minute: number
+  group_trigger_interval_minute: number
 }
 export const getTGAIKwStrategyAllInterval = () => TGAIPost<GetTGAIKwStrategyAllIntervalRes>('/keyValues/get')
 
@@ -330,13 +331,13 @@ export const getTGAIKwStrategyAllInterval = () => TGAIPost<GetTGAIKwStrategyAllI
 *   POST
 */
 type SetTGAIKwStrategyAllIntervalRes = {
-    key: 'group_trigger_interval_minute'
-    value: number
+  key: 'group_trigger_interval_minute'
+  value: number
 }
 
 export const setTGAIKwStrategyAllInterval = (interval: number) => TGAIPost<SetTGAIKwStrategyAllIntervalRes>('/keyValues/update', {
-    key: 'group_trigger_interval_minute',
-    value: interval,
+  key: 'group_trigger_interval_minute',
+  value: interval,
 })
 
 /*
@@ -344,8 +345,8 @@ export const setTGAIKwStrategyAllInterval = (interval: number) => TGAIPost<SetTG
 *   POST
 */
 export const setTGAIKwStrategyFlag = (id: number, flag: number) => TGAIPost<string>('/groupTrigger/updateFlag', {
-    flag,
-    id,
+  flag,
+  id,
 })
 
 /*
@@ -353,7 +354,7 @@ export const setTGAIKwStrategyFlag = (id: number, flag: number) => TGAIPost<stri
 *   POST
 */
 export const deleteTGAIKwStrategy = (id: number) => TGAIPost<string>('/groupTrigger/delete', {
-    id,
+  id,
 })
 
 /*
@@ -361,14 +362,14 @@ export const deleteTGAIKwStrategy = (id: number) => TGAIPost<string>('/groupTrig
 *   POST
 */
 type CreateTGAIKwStrategyReq = {
-    group_id: number
-    group_name: string
-    group_types: TGAIGroupTypeEnum
-    keyword?: string
-    phone: string
-    // reply: string
-    reply_type: TGAIReplyTypeEnum
-    flow_id: string
+  group_id: number
+  group_name: string
+  group_types: TGAIGroupTypeEnum
+  keyword?: string
+  phone: string
+  // reply: string
+  reply_type: TGAIReplyTypeEnum
+  flow_id: string
 }
 export const createTGAIKwStrategy = (data: CreateTGAIKwStrategyReq) => TGAIPost<string>('/groupTrigger/create', data)
 
@@ -390,14 +391,14 @@ export const getTGAISingleStrategies = () => TGAIPost<TGAISingleStrategy[]>('/me
 *   POST
 */
 type UpdateTGAISingleStrategyReq = {
-    counter: number
-    listen_state: '0' | '1'
-    phone: string
-    flag: TGAISingleStrategyFlag
-    smart_id: number
-    smart_name: string
-    workflow_id: string
-    workflow_name: string
+  counter: number
+  listen_state: '0' | '1'
+  phone: string
+  flag: TGAISingleStrategyFlag
+  smart_id: number
+  smart_name: string
+  workflow_id: string
+  workflow_name: string
 }
 export const updateTGAISingleStrategy = (data: UpdateTGAISingleStrategyReq) => TGAIPost<null>('/message/updateListen', data)
 
@@ -443,14 +444,14 @@ export const stopTGAIGroupStrategy = (id: number) => TGAIPost<string>('/plan/sto
 *   POST
 */
 export type CreateTGAIGroupStrategyReq = {
-    account_phone_list: string[]
-    active_time_list?: number[]
-    channel_sets_list: number[]
-    chat_count?: number
-    heat_trigger?: number
-    interval: number
-    name: string
-    template_id: number
+  account_phone_list: string[]
+  active_time_list?: number[]
+  channel_sets_list: number[]
+  chat_count?: number
+  heat_trigger?: number
+  interval: number
+  name: string
+  template_id: number
 }
 export const createTGAIGroupStrategy = (data: CreateTGAIGroupStrategyReq) => TGAIPost<null>('/plan/createPlan', data)
 
@@ -476,8 +477,8 @@ export const getTGAIAllWorkflows = () => TGAIPost<{ workflow_array: TGAIWorkflow
 *   POST
 */
 export type TGAIHeatPeak = {
-    peak_time: string
-    peak_data: number
+  peak_time: string
+  peak_data: number
 }
 export const getTGAIChannelHeatPeak = (channel_id: number) => TGAIPost<TGAIHeatPeak[]>('/heat/channelPeak', { channel_id })
 
@@ -486,13 +487,11 @@ export const getTGAIChannelHeatPeak = (channel_id: number) => TGAIPost<TGAIHeatP
 *   POST
 */
 export type TGAIActiveHeatRes = {
-    data_7_days: number[]
-    data_30_days: number[]
-    data_yesterday: number[]
+  data_7_days: number[]
+  data_30_days: number[]
+  data_yesterday: number[]
 }
 export const getTGAIChannelActiveHeat = (channel_id: number) => TGAIPost<TGAIActiveHeatRes>('/heat/channelActive', { channel_id })
-
-
 
 /*
 *   获取 TGAI 私聊记录排行
@@ -506,9 +505,8 @@ export const getTGAIHeatChatRank = () => TGAIPost<HeatChatRank[]>('/heat/chatRan
 *   POST
 */
 export const getTGAIHeatData = (set_id?: number) => TGAIPost<HeatOverviewData>('/heat/view', {
-    set_id
+  set_id,
 })
-
 
 // 工具 API
 
@@ -518,21 +516,21 @@ export const getTGAIHeatData = (set_id?: number) => TGAIPost<HeatOverviewData>('
 */
 
 type ClearTGAIAccountChatHistoryReq = {
-    phone: string
-    channel_id: number
-    days: number
+  phone: string
+  channel_id: number
+  days: number
 }
 
 export type DeletedMessage = {
-    phone: string,
-    channel_name: string
-    channel_id: number
-    message_string: string
-    date: string
+  phone: string
+  channel_name: string
+  channel_id: number
+  message_string: string
+  date: string
 }
 
 type ClearTGAIAccountChatHistoryRes = {
-    deleted_message_list: DeletedMessage[] | null
+  deleted_message_list: DeletedMessage[] | null
 }
 
 export const clearTGAIAccountChatHistory = (data: ClearTGAIAccountChatHistoryReq) => TGAIPost<ClearTGAIAccountChatHistoryRes>('/message/deleteMessage', data)
@@ -542,7 +540,6 @@ export const clearTGAIAccountChatHistory = (data: ClearTGAIAccountChatHistoryReq
 *   POST
 */
 export const channelAdd = (channel_link: string, phone: string) => TGAIPost<string>('/channel/add', { channel_link, phone })
-
 
 // 主动任务
 
@@ -558,25 +555,25 @@ export const getAllPeriodicalTasks = () => TGAIPost<{ cron_list: PeriodicalTaskR
 *   POST
 */
 export type AddPeriodicalTaskReq = {
-    interval: string,
-    workflow_id: string,
-    task_name: string
+  interval: string
+  workflow_id: string
+  task_name: string
 }
-export const addPeriodicalTask = ({ workflow_id, task_name, interval }: AddPeriodicalTaskReq) => TGAIPost<null>('/cron/add', { cron_spec: interval, workflow_id, name: task_name, })
+export const addPeriodicalTask = ({ workflow_id, task_name, interval }: AddPeriodicalTaskReq) => TGAIPost<null>('/cron/add', { cron_spec: interval, workflow_id, name: task_name })
 
 /*
 *   修改主动任务状态
 *   POST
 */
 
-export const postPeriodicalTaskState = (id: number, state: PeriodicalTaskStateEnum) => TGAIPost<null>("/cron/switch", { id, state })
+export const postPeriodicalTaskState = (id: number, state: PeriodicalTaskStateEnum) => TGAIPost<null>('/cron/switch', { id, state })
 
 /*
 *   立即执行一次
 *   POST
 */
 
-export const postExecutePeriodicalTaskOnce = (id: number) => TGAIPost<null>("/cron/inRunWorkflow", { id })
+export const postExecutePeriodicalTaskOnce = (id: number) => TGAIPost<null>('/cron/inRunWorkflow', { id })
 
 // 数据整理
 
@@ -585,7 +582,7 @@ export const postExecutePeriodicalTaskOnce = (id: number) => TGAIPost<null>("/cr
 *   POST
 */
 
-export const fetchDataCleansingFileList = () => TGAIPost<string[]>("/file/list")
+export const fetchDataCleansingFileList = () => TGAIPost<string[]>('/file/list')
 
 /*
 *   获取文件下载链接
@@ -594,39 +591,38 @@ export const fetchDataCleansingFileList = () => TGAIPost<string[]>("/file/list")
 */
 
 export const getDataCleansingFileDownload = (filename: string) => {
-    const encodedFilename = encodeURIComponent(filename);
-    return TGAIGet<unknown>("/file/download/" + encodedFilename)
+  const encodedFilename = encodeURIComponent(filename)
+  return TGAIGet<unknown>(`/file/download/${encodedFilename}`)
 }
 
 export type createGroupListenReq = {
-  group_domain: string;
-  group_id?: number;
-  group_name?: string;
-  id?: number;
-  phone: string;
-  state: string;
-  workflow_id: string;
-  workflow_name: string;
-};
+  group_domain: string
+  group_id?: number
+  group_name?: string
+  id?: number
+  phone: string
+  state: string
+  workflow_id: string
+  workflow_name: string
+}
 
 // 创建群监听
 export const createGroupListen = (data: createGroupListenReq) =>
-  TGAIPost<any>("/groupListen/create", data);
+  TGAIPost<any>('/groupListen/create', data)
 
 // 查询群监听列表
 export const getGroupListenList = (current_page: number, page_size: number) =>
   TGAIGet<any>(
-    `/groupListen/list?current_page=${current_page}&page_size=${page_size}`
-  );
+    `/groupListen/list?current_page=${current_page}&page_size=${page_size}`,
+  )
 
 // 更新群监听状态
 export const updateGroupListen = (data: any) =>
-  TGAIPost<any>("/groupListen/update", data);
+  TGAIPost<any>('/groupListen/update', data)
 
 // 查询当前执行群监听的账号
-export const getGroupListenCurrent = () => TGAIGet<any>("/groupListen/current");
+export const getGroupListenCurrent = () => TGAIGet<any>('/groupListen/current')
 
 // 删除群监听状态
 export const deleteGroupListen = (listen_id: number) =>
-    TGAIDelete<any>(`/groupListen/delete/${listen_id}`);
-  
+  TGAIDelete<any>(`/groupListen/delete/${listen_id}`)
