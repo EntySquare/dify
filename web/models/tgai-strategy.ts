@@ -1,4 +1,4 @@
-import { TGAIGroupTypeEnum } from "./tgai-channel"
+import type { TGAIGroupTypeEnum } from './tgai-channel'
 
 export enum TGAISingleStrategyFlag {
   TEMPLATE = 1,
@@ -11,9 +11,9 @@ export enum TGAIStrategyTakeEffectEnum {
 }
 
 export enum TGAIReplyTypeEnum {
-    KEYWORD_TRIGGER = 1,
-    QUOTE,
-    MENTION
+  KEYWORD_TRIGGER = 1,
+  QUOTE,
+  MENTION,
 }
 
 export type TGAISingleStrategy = {
@@ -25,6 +25,7 @@ export type TGAISingleStrategy = {
   smart_name: string
   workflow_id: string
   workflow_name: string
+  remark: string
 }
 
 export type TGAIGroupStrategy = {

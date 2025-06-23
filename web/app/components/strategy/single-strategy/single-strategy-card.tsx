@@ -76,6 +76,10 @@ export const SingleStrategyCard = () => {
       dataIndex: 'workflow_name',
     },
     {
+      title: '备注',
+      dataIndex: 'remark',
+    },
+    {
       title: '策略类型',
       dataIndex: 'flag',
       render: col => col === TGAISingleStrategyFlag.TEMPLATE ? '模版' : '任务',
