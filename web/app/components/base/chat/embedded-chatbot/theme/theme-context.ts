@@ -12,7 +12,7 @@ export class Theme {
   public colorPathOnHeader = 'white'
   public backgroundButtonDefaultColorStyle = 'backgroundColor: #1C64F2'
   public roundedBackgroundColorStyle = 'backgroundColor: rgb(245 248 255)'
-  public chatBubbleColorStyle = 'backgroundColor: rgb(225 239 254)'
+  public chatBubbleColorStyle = 'backgroundColor: #2970fe'
   public chatBubbleColor = 'rgb(225 239 254)'
 
   constructor(chatColorTheme: string | null = null, chatColorThemeInverted = false) {

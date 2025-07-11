@@ -245,7 +245,7 @@ const Link = ({ node, ...props }: any) => {
 export function Markdown(props: { content: string; className?: string }) {
   const latexContent = preprocessLaTeX(props.content)
   return (
-    <div className={cn(props.className, 'markdown-body')}>
+    <div className={cn(props.className)}>
       <ReactMarkdown
         remarkPlugins={[RemarkGfm, RemarkMath, RemarkBreaks]}
         rehypePlugins={[
@@ -277,7 +277,7 @@ export function Markdown(props: { content: string; className?: string }) {
           form: MarkdownForm,
         }}
         linkTarget='_blank'
-        className='text-tgai-text-1'
+        className=''
       >
         {/* Markdown detect has problem. */}
         {latexContent}
