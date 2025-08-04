@@ -1,3 +1,5 @@
+name: "tgai-enty-ai-service"
+
 x-shared-env: &shared-api-worker-env
   LOG_LEVEL: ${LOG_LEVEL:-INFO}
   LOG_FILE: ${LOG_FILE:-}
@@ -190,7 +192,7 @@ x-shared-env: &shared-api-worker-env
 
 services:
   api:
-    image: 11153123/enty-work-api:latest
+    image: entysquare/enty-work-api:latest
     dns:
       - 8.8.8.8
       - 8.8.4.4
@@ -210,7 +212,7 @@ services:
       - default
 
   worker:
-    image: 11153123/enty-work-api:latest
+    image: entysquare/enty-work-api:latest
     restart: always
     environment:
       <<: *shared-api-worker-env
@@ -225,7 +227,7 @@ services:
       - default
 
   web:
-    image: 11153123/enty-web:latest
+    image: entysquare/enty-web:latest
     ports:
       - "3002:3000"
     environment:
@@ -255,7 +257,7 @@ services:
     volumes:
       - ./volumes/db/data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: ["CMD", "pg_isready"]
       interval: 1s
       timeout: 3s
       retries: 30
@@ -269,7 +271,7 @@ services:
     ports:
       - "6379:6379"
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: ["CMD", "redis-cli", "ping"]
 
   sandbox:
     image: langgenius/dify-sandbox:0.2.1
@@ -293,7 +295,12 @@ services:
     volumes:
       - ./ssrf_proxy/squid.conf.template:/etc/squid/squid.conf.template
       - ./ssrf_proxy/docker-entrypoint.sh:/docker-entrypoint-mount.sh
-    entrypoint: [ "sh", "-c", "cp /docker-entrypoint-mount.sh /docker-entrypoint.sh && sed -i 's/\r$$//' /docker-entrypoint.sh && chmod +x /docker-entrypoint.sh && /docker-entrypoint.sh" ]
+    entrypoint:
+      [
+        "sh",
+        "-c",
+        "cp /docker-entrypoint-mount.sh /docker-entrypoint.sh && sed -i 's/\r$$//' /docker-entrypoint.sh && chmod +x /docker-entrypoint.sh && /docker-entrypoint.sh",
+      ]
     environment:
       HTTP_PORT: ${SSRF_HTTP_PORT:-3128}
       COREDUMP_DIR: ${SSRF_COREDUMP_DIR:-/var/spool/squid}
@@ -319,13 +326,13 @@ services:
       - CERTBOT_EMAIL=${CERTBOT_EMAIL}
       - CERTBOT_DOMAIN=${CERTBOT_DOMAIN}
       - CERTBOT_OPTIONS=${CERTBOT_OPTIONS:-}
-    entrypoint: [ "/docker-entrypoint.sh" ]
+    entrypoint: ["/docker-entrypoint.sh"]
     command: ["tail", "-f", "/dev/null"]
 
   weaviate:
     image: semitechnologies/weaviate:1.19.0
     profiles:
-      - ''
+      - ""
       - weaviate
     restart: always
     volumes:
@@ -370,7 +377,7 @@ services:
     volumes:
       - ./volumes/pgvector/data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: ["CMD", "pg_isready"]
       interval: 1s
       timeout: 3s
       retries: 30
@@ -392,7 +399,7 @@ services:
     volumes:
       - ./volumes/pgvecto_rs/data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD", "pg_isready" ]
+      test: ["CMD", "pg_isready"]
       interval: 1s
       timeout: 3s
       retries: 30
@@ -440,7 +447,7 @@ services:
       - ./volumes/milvus/etcd:/etcd
     command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
     healthcheck:
-      test: [ "CMD", "etcdctl", "endpoint", "health" ]
+      test: ["CMD", "etcdctl", "endpoint", "health"]
       interval: 30s
       timeout: 20s
       retries: 3
@@ -459,7 +466,7 @@ services:
       - ./volumes/milvus/minio:/minio_data
     command: minio server /minio_data --console-address ":9001"
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s
       timeout: 20s
       retries: 3
@@ -471,7 +478,7 @@ services:
     image: milvusdb/milvus:v2.3.1
     profiles:
       - milvus
-    command: [ "milvus", "run", "standalone" ]
+    command: ["milvus", "run", "standalone"]
     environment:
       ETCD_ENDPOINTS: ${ETCD_ENDPOINTS:-etcd:2379}
       MINIO_ADDRESS: ${MINIO_ADDRESS:-minio:9000}
@@ -479,7 +486,7 @@ services:
     volumes:
       - ./volumes/milvus/milvus:/var/lib/milvus
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:9091/healthz" ]
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
       interval: 30s
       start_period: 90s
       timeout: 20s
@@ -564,7 +571,8 @@ services:
     ports:
       - ${ELASTICSEARCH_PORT:-9200}:9200
     healthcheck:
-      test: ["CMD", "curl", "-s", "http://localhost:9200/_cluster/health?pretty"]
+      test:
+        ["CMD", "curl", "-s", "http://localhost:9200/_cluster/health?pretty"]
       interval: 30s
       timeout: 10s
       retries: 50
@@ -592,7 +600,7 @@ services:
     ports:
       - ${KIBANA_PORT:-5601}:5601
     healthcheck:
-      test: [ "CMD-SHELL", "curl -s http://localhost:5601 >/dev/null || exit 1" ]
+      test: ["CMD-SHELL", "curl -s http://localhost:5601 >/dev/null || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
