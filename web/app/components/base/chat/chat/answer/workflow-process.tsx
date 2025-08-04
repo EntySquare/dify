@@ -97,7 +97,7 @@ const WorkflowProcessItem = ({
             <RiErrorWarningFill className='shrink-0 mr-1 w-3.5 h-3.5 text-text-destructive' />
           )
         }
-        <div className={cn('system-xs-medium text-text-secondary', !collapse && 'grow')}>
+        <div className={cn('system-xs-medium', !collapse && 'grow')}>
           {t('workflow.common.workflowProcess')}
         </div>
         <RiArrowRightSLine className={`'ml-1 w-4 h-4 text-text-tertiary' ${collapse ? '' : 'rotate-90'}`} />
