@@ -186,6 +186,8 @@ sdks/python-client/build
 sdks/python-client/dist
 sdks/python-client/dify_client.egg-info
 
+docker-ent/volumes
+
 .vscode/*
 !.vscode/launch.json
 pyrightconfig.json
