@@ -626,3 +626,38 @@ export const getGroupListenCurrent = () => TGAIGet<any>('/groupListen/current')
 // 删除群监听状态
 export const deleteGroupListen = (listen_id: number) =>
   TGAIDelete<any>(`/groupListen/delete/${listen_id}`)
+
+// 群聊互动策略 - 新增群聊监听
+export type CreateGroupChatListenReq = {
+  phone: string
+  group_id: number
+  monitor_content: string
+  chat_purpose: string
+  state: number
+  start_time: string
+  end_time: string
+}
+export const createGroupChatListen = (data: CreateGroupChatListenReq) =>
+  TGAIPost<any>('/groupChat/listen', data)
+
+// 群聊互动策略 - 修改群聊监听
+export type UpdateGroupChatListenReq = {
+  id: number
+  phone: string
+  group_id: number
+  monitor_content: string
+  chat_purpose: string
+  state: number
+  start_time: string
+  end_time: string
+}
+export const updateGroupChatListen = (data: UpdateGroupChatListenReq) =>
+  TGAIPost<any>('/groupChat/update', data)
+
+// 群聊互动策略 - 删除群聊监听
+export const deleteGroupChatListen = (listen_id: number) =>
+  TGAIDelete<any>(`/groupChat/delete/${listen_id}`)
+
+// 群聊互动策略 - 查询群聊监听列表
+export const getGroupChatListenList = (current_page: number, page_size: number) =>
+  TGAIGet<any>(`/groupChat/list?current_page=${current_page}&page_size=${page_size}`)
