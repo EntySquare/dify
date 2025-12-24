@@ -630,7 +630,7 @@ export const deleteGroupListen = (listen_id: number) =>
 // 群聊互动策略 - 新增群聊监听
 export type CreateGroupChatListenReq = {
   phone: string
-  group_id: number
+  group_link: string
   monitor_content: string
   chat_purpose: string
   state: number
@@ -644,7 +644,7 @@ export const createGroupChatListen = (data: CreateGroupChatListenReq) =>
 export type UpdateGroupChatListenReq = {
   id: number
   phone: string
-  group_id: number
+  group_link: string
   monitor_content: string
   chat_purpose: string
   state: number

@@ -8,18 +8,18 @@ import { useCallback, useRef, useState } from 'react'
 import type { InteractionStrategyEditModalRefType } from './interaction-strategy-edit-modal'
 import { InteractionStrategyEditModal } from './interaction-strategy-edit-modal'
 import { deleteGroupChatListen, getGroupChatListenList, getTGAIAllChannelList } from '@/service/tgai'
-import type { TGAIAllChannelList } from '@/models/tgai-channel'
 
 // 定义群聊监听数据类型
 export type GroupChatListen = {
   id: number
   phone: string
-  group_id: number
+  group_link: string
   monitor_content: string
   chat_purpose: string
   state: number
   start_time: string
   end_time: string
+  group_domain: string
 }
 
 export const InteractionStrategyCard = () => {
@@ -112,15 +112,36 @@ export const InteractionStrategyCard = () => {
     //   dataIndex: 'group_id',
     //   width: 120
     // },
+    // {
+    //   title: '群名称',
+    //   dataIndex: 'group_id',
+    //   width: 180,
+    //   render: (group_id) => {
+    //     // 使用正确的TGAIAllChannelList类型和字段名
+    //     const channel = channelsList.find((channelItem: TGAIAllChannelList) => channelItem.channel_id === group_id)
+    //     return channel ? channel.name : group_id
+    //   },
+    // },
+
+    {
+      title: '群聊id',
+      dataIndex: 'group_id',
+      width: 250,
+    },
     {
       title: '群名称',
-      dataIndex: 'group_id',
-      width: 180,
-      render: (group_id) => {
-        // 使用正确的TGAIAllChannelList类型和字段名
-        const channel = channelsList.find((channelItem: TGAIAllChannelList) => channelItem.channel_id === group_id)
-        return channel ? channel.name : group_id
-      },
+      dataIndex: 'group_name',
+      width: 250,
+    },
+    {
+      title: '群用户名',
+      dataIndex: 'group_domain',
+      width: 250,
+    },
+    {
+      title: '群聊链接',
+      dataIndex: 'group_link',
+      width: 250,
     },
     {
       title: '监听内容',

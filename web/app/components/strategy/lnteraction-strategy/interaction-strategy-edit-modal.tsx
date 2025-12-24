@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useImperativeHandle } from 'react'
-import { Form, Input, Message, Modal, Radio, Select, TimePicker } from '@arco-design/web-react'
+import { Form, Input, Message, Modal, Radio, TimePicker } from '@arco-design/web-react'
 import type { GroupChatListen } from './interaction-strategy-card'
 import type { TGAIAllChannelList } from '@/models/tgai-channel'
 import { createGroupChatListen, updateGroupChatListen } from '@/service/tgai'
@@ -49,7 +49,7 @@ const InteractionStrategyEditModal = React.forwardRef<InteractionStrategyEditMod
         const fieldsToSet = {
           id: initData.id,
           phone: initData.phone,
-          group_id: initData.group_id,
+          group_link: initData.group_domain, // 兼容旧数据
           monitor_content: initData.monitor_content,
           chat_purpose: initData.chat_purpose,
           state: initData.state, // 直接使用数字值
@@ -68,7 +68,7 @@ const InteractionStrategyEditModal = React.forwardRef<InteractionStrategyEditMod
         // 移除可能导致错误的resetFields调用，直接设置默认值
         form.setFieldsValue({
           phone: '',
-          group_id: undefined,
+          group_link: '',
           monitor_content: '',
           chat_purpose: '',
           state: 1, // 使用数字值，1表示开启
@@ -100,7 +100,7 @@ const InteractionStrategyEditModal = React.forwardRef<InteractionStrategyEditMod
         // 新增逻辑
         await createGroupChatListen({
           phone: values.phone,
-          group_id: values.group_id,
+          group_link: values.group_link,
           monitor_content: values.monitor_content,
           chat_purpose: values.chat_purpose,
           state: values.state,
@@ -113,7 +113,7 @@ const InteractionStrategyEditModal = React.forwardRef<InteractionStrategyEditMod
         await updateGroupChatListen({
           id: values.id!,
           phone: values.phone,
-          group_id: values.group_id,
+          group_link: values.group_link,
           monitor_content: values.monitor_content,
           chat_purpose: values.chat_purpose,
           state: values.state,
@@ -169,16 +169,11 @@ const InteractionStrategyEditModal = React.forwardRef<InteractionStrategyEditMod
         </FormItem>
 
         <FormItem
-          field="group_id"
-          label="群ID"
-          rules={[{ required: true, message: '请选择群ID' }]}
+          field="group_link"
+          label="群链接"
+          rules={[{ required: true, message: '请输入群链接' }]}
         >
-          <Select
-            options={channelOptions}
-            placeholder="请选择群"
-            showSearch
-            allowClear
-          />
+          <Input placeholder="请输入群链接" />
         </FormItem>
 
         <FormItem
